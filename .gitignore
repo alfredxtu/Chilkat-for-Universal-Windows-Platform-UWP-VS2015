@@ -1,0 +1,13 @@
+ipch/
+Generated Files/
+obj/
+bin/
+bld/
+*.sdf
+*.suo
+*.obj
+*.pch
+*.ilk
+*.pdb
+*.sbr
+*.ncb
