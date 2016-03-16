@@ -541,22 +541,6 @@ return create_async([this, dirPath]() -> Boolean
 
 });
     }
-IAsyncOperation<Boolean>^ Zip::ExtractExeAsync(Platform::String ^exePath, Platform::String ^dirPath)
-    {
-return create_async([this, exePath, dirPath]() -> Boolean
-{
-// This runs in a thread pool thread...
-
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxZipProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->ExtractExe(exePath ? exePath->Data() : L"",dirPath ? dirPath->Data() : L"");
-
-});
-    }
 IAsyncOperation<Boolean>^ Zip::ExtractIntoAsync(Platform::String ^dirPath)
     {
 return create_async([this, dirPath]() -> Boolean
@@ -720,18 +704,6 @@ StringArray ^Zip::GetExclusions(void)
 	pStringArray->m_impl = pRetObj;
 	return pStringArray;
     }
-Platform::String ^Zip::GetExeConfigParam(Platform::String ^name)
-    {
-	if (m_impl == nullptr) { return nullptr; }
-	// --- prep output arg ---
-	CxZipProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->getExeConfigParam(name ? name->Data() : L"");
-	if (!retStr) return nullptr;
-	return ref new String(retStr);
-    }
 ZipEntry ^Zip::InsertNew(Platform::String ^fileName, int beforeIndex)
     {
 	if (m_impl == nullptr) { return nullptr; }
@@ -868,7 +840,7 @@ void Zip::SetExclusions(StringArray ^excludePatterns)
     {
 	if (m_impl == nullptr) { return ; }
 	if (excludePatterns == nullptr) { return ; }
-	const CkStringArrayW* pObj0 = excludePatterns->m_impl;
+	CkStringArrayW* pObj0 = excludePatterns->m_impl;
 	 if (!pObj0) { return ; }
 	// --- prep output arg ---
 	CxZipProgress cxProgress(m_impl);
@@ -876,16 +848,6 @@ void Zip::SetExclusions(StringArray ^excludePatterns)
 	// gType = void
 	// cppType = void
 	m_impl->SetExclusions(*pObj0);
-    }
-void Zip::SetExeConfigParam(Platform::String ^name, Platform::String ^value)
-    {
-	if (m_impl == nullptr) { return ; }
-	// --- prep output arg ---
-	CxZipProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
-	m_impl->SetExeConfigParam(name ? name->Data() : L"",value ? value->Data() : L"");
     }
 void Zip::SetPassword(Platform::String ^password)
     {
@@ -996,42 +958,6 @@ Boolean Zip::VerifyPassword(void)
 	// gType = bool
 	// cppType = bool
 	return m_impl->VerifyPassword();
-    }
-IAsyncOperation<Boolean>^ Zip::WriteExeAsync(Platform::String ^exeFilename)
-    {
-return create_async([this, exeFilename]() -> Boolean
-{
-// This runs in a thread pool thread...
-
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxZipProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->WriteExe(exeFilename ? exeFilename->Data() : L"");
-
-});
-    }
-IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ Zip::WriteExeToMemoryAsync(void)
-    {
-return create_async([this]() -> Windows::Foundation::Collections::IVector<uint8>^
-{
-// This runs in a thread pool thread...
-
-	if (m_impl == nullptr) { return nullptr; }
-	// --- prep output arg ---
-	CkByteData outDb;
-	CxZipProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
-	bool success = m_impl->WriteExeToMemory(outDb);
-	const uint8 *pOut = outDb.getData();
-	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
-	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
-
-});
     }
 IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ Zip::WriteToMemoryAsync(void)
     {

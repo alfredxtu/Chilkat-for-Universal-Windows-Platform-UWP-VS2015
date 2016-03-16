@@ -356,8 +356,6 @@ public ref class Zip sealed
 
 	IAsyncOperation<Boolean>^ ExtractAsync(Platform::String ^dirPath);
 
-	IAsyncOperation<Boolean>^ ExtractExeAsync(Platform::String ^exePath, Platform::String ^dirPath);
-
 	IAsyncOperation<Boolean>^ ExtractIntoAsync(Platform::String ^dirPath);
 
 	IAsyncOperation<Boolean>^ ExtractMatchingAsync(Platform::String ^dirPath, Platform::String ^pattern);
@@ -379,8 +377,6 @@ public ref class Zip sealed
 	ZipEntry ^GetEntryByName(Platform::String ^entryName);
 
 	StringArray ^GetExclusions(void);
-
-	Platform::String ^GetExeConfigParam(Platform::String ^name);
 
 	ZipEntry ^InsertNew(Platform::String ^fileName, int beforeIndex);
 
@@ -406,8 +402,6 @@ public ref class Zip sealed
 
 	void SetExclusions(StringArray ^excludePatterns);
 
-	void SetExeConfigParam(Platform::String ^name, Platform::String ^value);
-
 	void SetPassword(Platform::String ^password);
 
 	Boolean UnlockComponent(Platform::String ^regCode);
@@ -423,10 +417,6 @@ public ref class Zip sealed
 	IAsyncOperation<int>^ UnzipNewerAsync(Platform::String ^dirPath);
 
 	Boolean VerifyPassword(void);
-
-	IAsyncOperation<Boolean>^ WriteExeAsync(Platform::String ^exeFilename);
-
-	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ WriteExeToMemoryAsync(void);
 
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ WriteToMemoryAsync(void);
 

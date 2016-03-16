@@ -327,6 +327,8 @@
     <ClCompile Include="HttpResponse.cpp" />
     <ClCompile Include="Imap.cpp" />
     <ClCompile Include="JavaKeyStore.cpp" />
+    <ClCompile Include="JsonArray.cpp" />
+    <ClCompile Include="JsonObject.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="Mailboxes.cpp" />
     <ClCompile Include="MailMan.cpp" />
@@ -358,6 +360,7 @@
     <ClCompile Include="Spider.cpp" />
     <ClCompile Include="Ssh.cpp" />
     <ClCompile Include="SshKey.cpp" />
+    <ClCompile Include="Stream.cpp" />
     <ClCompile Include="StringArray.cpp" />
     <ClCompile Include="Tar.cpp" />
     <ClCompile Include="TrustedRoots.cpp" />
