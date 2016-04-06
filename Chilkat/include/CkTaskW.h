@@ -283,7 +283,7 @@ class CK_VISIBLE_PUBLIC CkTaskW  : public CkClassWithCallbacksW
 	bool RunSynchronously(void);
 
 	// Convenience method to force the calling thread to sleep for a number of
-	// milliseconds.
+	// milliseconds. (This does not cause the task's background thread to sleep.)
 	void SleepMs(int numMs);
 
 	// Waits for the task to complete. Returns when task has completed, or after ARG1

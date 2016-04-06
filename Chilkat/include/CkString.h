@@ -199,7 +199,7 @@ class CK_VISIBLE_PUBLIC CkString : public CkObject
 	const char *getEnc(const char *encoding);
 	const char *getEncW(const wchar_t *encoding);
 
-	// Same as strcmp
+	// Same as ckStrCmp
 	int compareStr(const CkString &str) const;	// Compare against another CkString
 
 	const char *getString(void) const;

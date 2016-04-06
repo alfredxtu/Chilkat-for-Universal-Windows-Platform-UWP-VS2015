@@ -85,6 +85,9 @@ class CK_VISIBLE_PUBLIC CkImap  : public CkClassWithCallbacks
 	// 
 	// The XOAUTH2 method was added in version 9.5.0.44.
 	// 
+	// Note: If SPA (i.e. NTLM) authentication does not succeed, set the
+	// Global.DefaultNtlmVersion property equal to 1 and then retry.
+	// 
 	void get_AuthMethod(CkString &str);
 	// Can be set to "XOAUTH2", "CRAM-MD5", "NTLM", "PLAIN", or "LOGIN" to select the
 	// authentication method. NTLM is the most secure, and is a synonym for "Windows
@@ -94,6 +97,9 @@ class CK_VISIBLE_PUBLIC CkImap  : public CkClassWithCallbacks
 	// 
 	// The XOAUTH2 method was added in version 9.5.0.44.
 	// 
+	// Note: If SPA (i.e. NTLM) authentication does not succeed, set the
+	// Global.DefaultNtlmVersion property equal to 1 and then retry.
+	// 
 	const char *authMethod(void);
 	// Can be set to "XOAUTH2", "CRAM-MD5", "NTLM", "PLAIN", or "LOGIN" to select the
 	// authentication method. NTLM is the most secure, and is a synonym for "Windows
@@ -102,6 +108,9 @@ class CK_VISIBLE_PUBLIC CkImap  : public CkClassWithCallbacks
 	// support all authentication methods.
 	// 
 	// The XOAUTH2 method was added in version 9.5.0.44.
+	// 
+	// Note: If SPA (i.e. NTLM) authentication does not succeed, set the
+	// Global.DefaultNtlmVersion property equal to 1 and then retry.
 	// 
 	void put_AuthMethod(const char *newVal);
 
@@ -1020,6 +1029,23 @@ class CK_VISIBLE_PUBLIC CkImap  : public CkClassWithCallbacks
 	// maintain UID's between sessions.
 	// 
 	int get_UidValidity(void);
+
+	// When set to true, causes the currently running method to abort. Methods that
+	// always finish quickly (i.e.have no length file operations or network
+	// communications) are not affected. If no method is running, then this property is
+	// automatically reset to false when the next method is called. When the abort
+	// occurs, this property is reset to false. Both synchronous and asynchronous
+	// method calls can be aborted. (A synchronous method call could be aborted by
+	// setting this property from a separate thread.)
+	bool get_AbortCurrent(void);
+	// When set to true, causes the currently running method to abort. Methods that
+	// always finish quickly (i.e.have no length file operations or network
+	// communications) are not affected. If no method is running, then this property is
+	// automatically reset to false when the next method is called. When the abort
+	// occurs, this property is reset to false. Both synchronous and asynchronous
+	// method calls can be aborted. (A synchronous method call could be aborted by
+	// setting this property from a separate thread.)
+	void put_AbortCurrent(bool newVal);
 
 
 

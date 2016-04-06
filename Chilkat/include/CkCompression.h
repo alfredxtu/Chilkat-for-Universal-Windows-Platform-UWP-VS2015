@@ -333,6 +333,19 @@ class CK_VISIBLE_PUBLIC CkCompression  : public CkClassWithCallbacks
 	CkTask *CompressFileAsync(const char *srcPath, const char *destPath);
 
 
+	// Compresses a stream. Internally, the ARG1's source is read, compressed, and the
+	// compressed data written to the ARG1's sink. It does this in streaming fashion.
+	// Extremely large or even infinite streams can be compressed with stable ungrowing
+	// memory usage.
+	bool CompressStream(CkStream &strm);
+
+	// Compresses a stream. Internally, the ARG1's source is read, compressed, and the
+	// compressed data written to the ARG1's sink. It does this in streaming fashion.
+	// Extremely large or even infinite streams can be compressed with stable ungrowing
+	// memory usage.
+	CkTask *CompressStreamAsync(CkStream &strm);
+
+
 	// Compresses a string.
 	bool CompressString(const char *str, CkByteData &outData);
 
@@ -382,6 +395,19 @@ class CK_VISIBLE_PUBLIC CkCompression  : public CkClassWithCallbacks
 	// the file is decompressed in streaming mode which allows files of any size to be
 	// decompressed.
 	CkTask *DecompressFileAsync(const char *srcPath, const char *destPath);
+
+
+	// Decompresses a stream. Internally, the ARG1's source is read, decompressed, and
+	// the decompressed data written to the ARG1's sink. It does this in streaming
+	// fashion. Extremely large or even infinite streams can be decompressed with
+	// stable ungrowing memory usage.
+	bool DecompressStream(CkStream &strm);
+
+	// Decompresses a stream. Internally, the ARG1's source is read, decompressed, and
+	// the decompressed data written to the ARG1's sink. It does this in streaming
+	// fashion. Extremely large or even infinite streams can be decompressed with
+	// stable ungrowing memory usage.
+	CkTask *DecompressStreamAsync(CkStream &strm);
 
 
 	// Takes compressed bytes, decompresses, and returns the resulting string.
@@ -679,32 +705,6 @@ class CK_VISIBLE_PUBLIC CkCompression  : public CkClassWithCallbacks
 	// unlock code is provided which should replace the temporary/arbitrary string
 	// passed to this method.
 	bool UnlockComponent(const char *unlockCode);
-
-
-	// Compresses a stream. Internally, the ARG1's source is read, compressed, and the
-	// compressed data written to the ARG1's sink. It does this in streaming fashion.
-	// Extremely large or even infinite streams can be compressed with stable ungrowing
-	// memory usage.
-	bool CompressStream(CkStream &strm);
-
-	// Compresses a stream. Internally, the ARG1's source is read, compressed, and the
-	// compressed data written to the ARG1's sink. It does this in streaming fashion.
-	// Extremely large or even infinite streams can be compressed with stable ungrowing
-	// memory usage.
-	CkTask *CompressStreamAsync(CkStream &strm);
-
-
-	// Decompresses a stream. Internally, the ARG1's source is read, decompressed, and
-	// the decompressed data written to the ARG1's sink. It does this in streaming
-	// fashion. Extremely large or even infinite streams can be decompressed with
-	// stable ungrowing memory usage.
-	bool DecompressStream(CkStream &strm);
-
-	// Decompresses a stream. Internally, the ARG1's source is read, decompressed, and
-	// the decompressed data written to the ARG1's sink. It does this in streaming
-	// fashion. Extremely large or even infinite streams can be decompressed with
-	// stable ungrowing memory usage.
-	CkTask *DecompressStreamAsync(CkStream &strm);
 
 
 

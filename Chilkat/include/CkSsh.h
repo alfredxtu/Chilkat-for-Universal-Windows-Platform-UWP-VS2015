@@ -660,6 +660,23 @@ class CK_VISIBLE_PUBLIC CkSsh  : public CkClassWithCallbacks
 	// 
 	void put_EnableCompression(bool newVal);
 
+	// When set to true, causes the currently running method to abort. Methods that
+	// always finish quickly (i.e.have no length file operations or network
+	// communications) are not affected. If no method is running, then this property is
+	// automatically reset to false when the next method is called. When the abort
+	// occurs, this property is reset to false. Both synchronous and asynchronous
+	// method calls can be aborted. (A synchronous method call could be aborted by
+	// setting this property from a separate thread.)
+	bool get_AbortCurrent(void);
+	// When set to true, causes the currently running method to abort. Methods that
+	// always finish quickly (i.e.have no length file operations or network
+	// communications) are not affected. If no method is running, then this property is
+	// automatically reset to false when the next method is called. When the abort
+	// occurs, this property is reset to false. Both synchronous and asynchronous
+	// method calls can be aborted. (A synchronous method call could be aborted by
+	// setting this property from a separate thread.)
+	void put_AbortCurrent(bool newVal);
+
 
 
 	// ----------------------
@@ -1653,10 +1670,11 @@ class CK_VISIBLE_PUBLIC CkSsh  : public CkClassWithCallbacks
 	bool UnlockComponent(const char *unlockCode);
 
 
-	// Waits for an incoming message on any channel. This includes data, EOF, CLOSE,
-	// etc. If a message arrives in the alotted time, the channel number is returned. A
-	// value of -1 is returned for a timeout, and -2 for any other errors such as if
-	// the connection is lost.
+	// The ARG1 is the number of milliseconds to wait. To poll, pass a value of 0 in
+	// ARG1. Waits for an incoming message on any channel. This includes data, EOF,
+	// CLOSE, etc. If a message arrives in the alotted time, the channel number is
+	// returned. A value of -1 is returned for a timeout, and -2 for any other errors
+	// such as if the connection is lost.
 	// 
 	// Note: If a channel number is returned, the message must still be read by calling
 	// a method such as ChannelRead, ChannelReceiveUntilMatch, etc. Once the message is
@@ -1665,10 +1683,11 @@ class CK_VISIBLE_PUBLIC CkSsh  : public CkClassWithCallbacks
 	// 
 	int WaitForChannelMessage(int pollTimeoutMs);
 
-	// Waits for an incoming message on any channel. This includes data, EOF, CLOSE,
-	// etc. If a message arrives in the alotted time, the channel number is returned. A
-	// value of -1 is returned for a timeout, and -2 for any other errors such as if
-	// the connection is lost.
+	// The ARG1 is the number of milliseconds to wait. To poll, pass a value of 0 in
+	// ARG1. Waits for an incoming message on any channel. This includes data, EOF,
+	// CLOSE, etc. If a message arrives in the alotted time, the channel number is
+	// returned. A value of -1 is returned for a timeout, and -2 for any other errors
+	// such as if the connection is lost.
 	// 
 	// Note: If a channel number is returned, the message must still be read by calling
 	// a method such as ChannelRead, ChannelReceiveUntilMatch, etc. Once the message is

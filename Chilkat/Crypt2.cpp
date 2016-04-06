@@ -354,6 +354,14 @@ void Chilkat::Crypt2::UuMode::set(String ^newVal)
     {
         if (m_impl) m_impl->put_UuMode(newVal ? newVal->Data() : L"");
     }
+Boolean Chilkat::Crypt2::AbortCurrent::get()
+    {
+    return m_impl ? m_impl->get_AbortCurrent() : false;
+    }
+void Chilkat::Crypt2::AbortCurrent::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
+    }
 
 
 Boolean Crypt2::SaveLastError(Platform::String ^path)

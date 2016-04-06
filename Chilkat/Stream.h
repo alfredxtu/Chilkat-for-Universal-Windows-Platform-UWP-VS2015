@@ -180,6 +180,11 @@ public ref class Stream sealed
 	{
 		int64 get();
 	}
+	property Boolean AbortCurrent
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 
 
 	// ----------------------

@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.56
+// This is a generated source file for Chilkat version 9.5.0.58
 #ifndef _C_CkUploadWH
 #define _C_CkUploadWH
 #include "chilkatDefs.h"
@@ -14,6 +14,8 @@ CK_VISIBLE_PUBLIC void CkUploadW_setTaskCompleted(HCkUploadW cHandle, void (*fnT
 CK_VISIBLE_PUBLIC HCkUploadW CkUploadW_Create(void);
 CK_VISIBLE_PUBLIC HCkUploadW CkUploadW_Create2(BOOL bCallbackOwned);
 CK_VISIBLE_PUBLIC void CkUploadW_Dispose(HCkUploadW handle);
+CK_VISIBLE_PUBLIC BOOL CkUploadW_getAbortCurrent(HCkUploadW cHandle);
+CK_VISIBLE_PUBLIC void CkUploadW_putAbortCurrent(HCkUploadW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC int CkUploadW_getBandwidthThrottleUp(HCkUploadW cHandle);
 CK_VISIBLE_PUBLIC void CkUploadW_putBandwidthThrottleUp(HCkUploadW cHandle, int newVal);
 CK_VISIBLE_PUBLIC int CkUploadW_getChunkSize(HCkUploadW cHandle);

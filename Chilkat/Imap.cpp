@@ -465,6 +465,14 @@ int Chilkat::Imap::UidValidity::get()
     {
     return m_impl ? m_impl->get_UidValidity() : 0;
     }
+Boolean Chilkat::Imap::AbortCurrent::get()
+    {
+    return m_impl ? m_impl->get_AbortCurrent() : false;
+    }
+void Chilkat::Imap::AbortCurrent::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
+    }
 
 
 Boolean Imap::SaveLastError(Platform::String ^path)

@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.56
+// This is a generated source file for Chilkat version 9.5.0.58
 #ifndef _C_CkZipWH
 #define _C_CkZipWH
 #include "chilkatDefs.h"
@@ -14,6 +14,8 @@ CK_VISIBLE_PUBLIC void CkZipW_setTaskCompleted(HCkZipW cHandle, void (*fnTaskCom
 CK_VISIBLE_PUBLIC HCkZipW CkZipW_Create(void);
 CK_VISIBLE_PUBLIC HCkZipW CkZipW_Create2(BOOL bCallbackOwned);
 CK_VISIBLE_PUBLIC void CkZipW_Dispose(HCkZipW handle);
+CK_VISIBLE_PUBLIC BOOL CkZipW_getAbortCurrent(HCkZipW cHandle);
+CK_VISIBLE_PUBLIC void CkZipW_putAbortCurrent(HCkZipW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkZipW_getAppendFromDir(HCkZipW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void CkZipW_putAppendFromDir(HCkZipW cHandle, const wchar_t *newVal);
 CK_VISIBLE_PUBLIC const wchar_t *CkZipW_appendFromDir(HCkZipW cHandle);

@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.56
+// This is a generated source file for Chilkat version 9.5.0.58
 #ifndef _C_CkCrypt2WH
 #define _C_CkCrypt2WH
 #include "chilkatDefs.h"
@@ -14,6 +14,8 @@ CK_VISIBLE_PUBLIC void CkCrypt2W_setTaskCompleted(HCkCrypt2W cHandle, void (*fnT
 CK_VISIBLE_PUBLIC HCkCrypt2W CkCrypt2W_Create(void);
 CK_VISIBLE_PUBLIC HCkCrypt2W CkCrypt2W_Create2(BOOL bCallbackOwned);
 CK_VISIBLE_PUBLIC void CkCrypt2W_Dispose(HCkCrypt2W handle);
+CK_VISIBLE_PUBLIC BOOL CkCrypt2W_getAbortCurrent(HCkCrypt2W cHandle);
+CK_VISIBLE_PUBLIC void CkCrypt2W_putAbortCurrent(HCkCrypt2W cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC int CkCrypt2W_getBlockSize(HCkCrypt2W cHandle);
 CK_VISIBLE_PUBLIC BOOL CkCrypt2W_getCadesEnabled(HCkCrypt2W cHandle);
 CK_VISIBLE_PUBLIC void CkCrypt2W_putCadesEnabled(HCkCrypt2W cHandle, BOOL newVal);

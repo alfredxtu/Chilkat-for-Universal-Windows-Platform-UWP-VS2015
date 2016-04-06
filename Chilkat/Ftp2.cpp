@@ -370,6 +370,10 @@ void Chilkat::Ftp2::IdleTimeoutMs::set(int newVal)
     {
         if (m_impl) m_impl->put_IdleTimeoutMs(newVal);
     }
+Boolean Chilkat::Ftp2::IsConnected::get()
+    {
+    return m_impl ? m_impl->get_IsConnected() : false;
+    }
 Boolean Chilkat::Ftp2::KeepSessionLog::get()
     {
     return m_impl ? m_impl->get_KeepSessionLog() : false;
@@ -701,6 +705,14 @@ String ^Chilkat::Ftp2::Username::get()
 void Chilkat::Ftp2::Username::set(String ^newVal)
     {
         if (m_impl) m_impl->put_Username(newVal ? newVal->Data() : L"");
+    }
+Boolean Chilkat::Ftp2::AbortCurrent::get()
+    {
+    return m_impl ? m_impl->get_AbortCurrent() : false;
+    }
+void Chilkat::Ftp2::AbortCurrent::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
     }
 
 
@@ -2199,6 +2211,16 @@ Boolean Ftp2::UnlockComponent(Platform::String ^unlockCode)
 	// gType = bool
 	// cppType = bool
 	return m_impl->UnlockComponent(unlockCode ? unlockCode->Data() : L"");
+    }
+Boolean Ftp2::SetOption(Platform::String ^option)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxFtp2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	// gType = bool
+	// cppType = bool
+	return m_impl->SetOption(option ? option->Data() : L"");
     }
 
 

@@ -784,6 +784,14 @@ Boolean Chilkat::Http::WasRedirected::get()
     {
     return m_impl ? m_impl->get_WasRedirected() : false;
     }
+Boolean Chilkat::Http::AbortCurrent::get()
+    {
+    return m_impl ? m_impl->get_AbortCurrent() : false;
+    }
+void Chilkat::Http::AbortCurrent::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
+    }
 
 
 Boolean Http::SaveLastError(Platform::String ^path)

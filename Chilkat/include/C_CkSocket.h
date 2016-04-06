@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.56
+// This is a generated source file for Chilkat version 9.5.0.58
 #ifndef _C_CkSocket_H
 #define _C_CkSocket_H
 #include "chilkatDefs.h"
@@ -13,6 +13,8 @@ CK_VISIBLE_PUBLIC void CkSocket_setTaskCompleted(HCkSocket cHandle, void (*fnTas
 
 CK_VISIBLE_PUBLIC HCkSocket CkSocket_Create(void);
 CK_VISIBLE_PUBLIC void CkSocket_Dispose(HCkSocket handle);
+CK_VISIBLE_PUBLIC BOOL CkSocket_getAbortCurrent(HCkSocket cHandle);
+CK_VISIBLE_PUBLIC void CkSocket_putAbortCurrent(HCkSocket cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC int CkSocket_getAcceptFailReason(HCkSocket cHandle);
 CK_VISIBLE_PUBLIC BOOL CkSocket_getAsyncAcceptFinished(HCkSocket cHandle);
 CK_VISIBLE_PUBLIC void CkSocket_getAsyncAcceptLog(HCkSocket cHandle, HCkString retval);

@@ -275,6 +275,14 @@ void Chilkat::Zip::ZipxDefaultAlg::set(String ^newVal)
     {
         if (m_impl) m_impl->put_ZipxDefaultAlg(newVal ? newVal->Data() : L"");
     }
+Boolean Chilkat::Zip::AbortCurrent::get()
+    {
+    return m_impl ? m_impl->get_AbortCurrent() : false;
+    }
+void Chilkat::Zip::AbortCurrent::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
+    }
 
 
 Boolean Zip::SaveLastError(Platform::String ^path)

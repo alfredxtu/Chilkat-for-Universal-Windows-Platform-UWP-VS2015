@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.56
+// This is a generated source file for Chilkat version 9.5.0.58
 #ifndef _C_CkSFtpWH
 #define _C_CkSFtpWH
 #include "chilkatDefs.h"
@@ -14,6 +14,8 @@ CK_VISIBLE_PUBLIC void CkSFtpW_setTaskCompleted(HCkSFtpW cHandle, void (*fnTaskC
 CK_VISIBLE_PUBLIC HCkSFtpW CkSFtpW_Create(void);
 CK_VISIBLE_PUBLIC HCkSFtpW CkSFtpW_Create2(BOOL bCallbackOwned);
 CK_VISIBLE_PUBLIC void CkSFtpW_Dispose(HCkSFtpW handle);
+CK_VISIBLE_PUBLIC BOOL CkSFtpW_getAbortCurrent(HCkSFtpW cHandle);
+CK_VISIBLE_PUBLIC void CkSFtpW_putAbortCurrent(HCkSFtpW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkSFtpW_getAccumulateBuffer(HCkSFtpW cHandle, HCkByteData retval);
 CK_VISIBLE_PUBLIC int CkSFtpW_getAuthFailReason(HCkSFtpW cHandle);
 CK_VISIBLE_PUBLIC int CkSFtpW_getBandwidthThrottleDown(HCkSFtpW cHandle);

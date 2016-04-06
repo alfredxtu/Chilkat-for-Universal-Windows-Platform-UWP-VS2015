@@ -344,6 +344,11 @@ public ref class SFtp sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Platform::String ^SyncedFiles
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Boolean TcpNoDelay
 	{
 		Boolean get();
@@ -355,6 +360,11 @@ public ref class SFtp sealed
 		void set(int32);
 	}
 	property Boolean UtcMode
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Boolean AbortCurrent
 	{
 		Boolean get();
 		void set(Boolean);

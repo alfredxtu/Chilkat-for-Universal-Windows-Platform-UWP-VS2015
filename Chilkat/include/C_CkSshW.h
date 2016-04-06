@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.56
+// This is a generated source file for Chilkat version 9.5.0.58
 #ifndef _C_CkSshWH
 #define _C_CkSshWH
 #include "chilkatDefs.h"
@@ -14,6 +14,8 @@ CK_VISIBLE_PUBLIC void CkSshW_setTaskCompleted(HCkSshW cHandle, void (*fnTaskCom
 CK_VISIBLE_PUBLIC HCkSshW CkSshW_Create(void);
 CK_VISIBLE_PUBLIC HCkSshW CkSshW_Create2(BOOL bCallbackOwned);
 CK_VISIBLE_PUBLIC void CkSshW_Dispose(HCkSshW handle);
+CK_VISIBLE_PUBLIC BOOL CkSshW_getAbortCurrent(HCkSshW cHandle);
+CK_VISIBLE_PUBLIC void CkSshW_putAbortCurrent(HCkSshW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC int CkSshW_getAuthFailReason(HCkSshW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkSshW_getCaretControl(HCkSshW cHandle);
 CK_VISIBLE_PUBLIC void CkSshW_putCaretControl(HCkSshW cHandle, BOOL newVal);

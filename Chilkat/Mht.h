@@ -289,6 +289,11 @@ public ref class Mht sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Boolean AbortCurrent
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 
 
 	// ----------------------

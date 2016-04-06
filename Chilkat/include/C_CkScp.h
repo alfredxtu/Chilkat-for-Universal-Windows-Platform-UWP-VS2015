@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.56
+// This is a generated source file for Chilkat version 9.5.0.58
 #ifndef _C_CkScp_H
 #define _C_CkScp_H
 #include "chilkatDefs.h"
@@ -13,6 +13,8 @@ CK_VISIBLE_PUBLIC void CkScp_setTaskCompleted(HCkScp cHandle, void (*fnTaskCompl
 
 CK_VISIBLE_PUBLIC HCkScp CkScp_Create(void);
 CK_VISIBLE_PUBLIC void CkScp_Dispose(HCkScp handle);
+CK_VISIBLE_PUBLIC BOOL CkScp_getAbortCurrent(HCkScp cHandle);
+CK_VISIBLE_PUBLIC void CkScp_putAbortCurrent(HCkScp cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkScp_getDebugLogFilePath(HCkScp cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void CkScp_putDebugLogFilePath(HCkScp cHandle, const char *newVal);
 CK_VISIBLE_PUBLIC const char *CkScp_debugLogFilePath(HCkScp cHandle);

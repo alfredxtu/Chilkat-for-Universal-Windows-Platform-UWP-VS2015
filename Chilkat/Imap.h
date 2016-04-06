@@ -365,6 +365,11 @@ public ref class Imap sealed
 	{
 		int32 get();
 	}
+	property Boolean AbortCurrent
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 
 
 	// ----------------------

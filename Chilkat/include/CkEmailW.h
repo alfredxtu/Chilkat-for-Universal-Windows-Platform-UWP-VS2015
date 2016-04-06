@@ -461,15 +461,15 @@ class CK_VISIBLE_PUBLIC CkEmailW  : public CkWideCharBase
 
 	// When an email is sent encrypted (using PKCS7 public-key encryption), this
 	// selects the underlying symmetric encryption algorithm. Possible values are:
-	// "aes", "des", "3des", and "rc2".
+	// "aes", "des", "3des", and "rc2". The default value is "aes".
 	void get_Pkcs7CryptAlg(CkString &str);
 	// When an email is sent encrypted (using PKCS7 public-key encryption), this
 	// selects the underlying symmetric encryption algorithm. Possible values are:
-	// "aes", "des", "3des", and "rc2".
+	// "aes", "des", "3des", and "rc2". The default value is "aes".
 	const wchar_t *pkcs7CryptAlg(void);
 	// When an email is sent encrypted (using PKCS7 public-key encryption), this
 	// selects the underlying symmetric encryption algorithm. Possible values are:
-	// "aes", "des", "3des", and "rc2".
+	// "aes", "des", "3des", and "rc2". The default value is "aes".
 	void put_Pkcs7CryptAlg(const wchar_t *newVal);
 
 	// When the email is sent encrypted (using PKCS7 public-key encryption), this

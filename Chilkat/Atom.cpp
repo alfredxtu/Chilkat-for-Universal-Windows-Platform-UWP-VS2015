@@ -88,6 +88,10 @@ int Chilkat::Atom::NumEntries::get()
     {
     return m_impl ? m_impl->get_NumEntries() : 0;
     }
+Boolean Chilkat::Atom::AbortCurrent::get()
+    {
+    return m_impl ? m_impl->get_AbortCurrent() : false;
+    }
 
 
 Boolean Atom::SaveLastError(Platform::String ^path)

@@ -611,6 +611,11 @@ public ref class Http sealed
 	{
 		Boolean get();
 	}
+	property Boolean AbortCurrent
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 
 
 	// ----------------------

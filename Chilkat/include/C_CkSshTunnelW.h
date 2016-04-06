@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.56
+// This is a generated source file for Chilkat version 9.5.0.58
 #ifndef _C_CkSshTunnelWH
 #define _C_CkSshTunnelWH
 #include "chilkatDefs.h"
@@ -14,6 +14,8 @@ CK_VISIBLE_PUBLIC void CkSshTunnelW_setTaskCompleted(HCkSshTunnelW cHandle, void
 CK_VISIBLE_PUBLIC HCkSshTunnelW CkSshTunnelW_Create(void);
 CK_VISIBLE_PUBLIC HCkSshTunnelW CkSshTunnelW_Create2(BOOL bCallbackOwned);
 CK_VISIBLE_PUBLIC void CkSshTunnelW_Dispose(HCkSshTunnelW handle);
+CK_VISIBLE_PUBLIC BOOL CkSshTunnelW_getAbortCurrent(HCkSshTunnelW cHandle);
+CK_VISIBLE_PUBLIC void CkSshTunnelW_putAbortCurrent(HCkSshTunnelW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkSshTunnelW_getAcceptLog(HCkSshTunnelW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void CkSshTunnelW_putAcceptLog(HCkSshTunnelW cHandle, const wchar_t *newVal);
 CK_VISIBLE_PUBLIC const wchar_t *CkSshTunnelW_acceptLog(HCkSshTunnelW cHandle);

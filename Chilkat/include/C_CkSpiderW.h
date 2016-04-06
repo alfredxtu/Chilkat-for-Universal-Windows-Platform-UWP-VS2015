@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.56
+// This is a generated source file for Chilkat version 9.5.0.58
 #ifndef _C_CkSpiderWH
 #define _C_CkSpiderWH
 #include "chilkatDefs.h"
@@ -14,6 +14,8 @@ CK_VISIBLE_PUBLIC void CkSpiderW_setTaskCompleted(HCkSpiderW cHandle, void (*fnT
 CK_VISIBLE_PUBLIC HCkSpiderW CkSpiderW_Create(void);
 CK_VISIBLE_PUBLIC HCkSpiderW CkSpiderW_Create2(BOOL bCallbackOwned);
 CK_VISIBLE_PUBLIC void CkSpiderW_Dispose(HCkSpiderW handle);
+CK_VISIBLE_PUBLIC BOOL CkSpiderW_getAbortCurrent(HCkSpiderW cHandle);
+CK_VISIBLE_PUBLIC void CkSpiderW_putAbortCurrent(HCkSpiderW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC BOOL CkSpiderW_getAvoidHttps(HCkSpiderW cHandle);
 CK_VISIBLE_PUBLIC void CkSpiderW_putAvoidHttps(HCkSpiderW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkSpiderW_getCacheDir(HCkSpiderW cHandle, HCkString retval);

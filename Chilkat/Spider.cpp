@@ -271,6 +271,14 @@ void Chilkat::Spider::WindDownCount::set(int newVal)
     {
         if (m_impl) m_impl->put_WindDownCount(newVal);
     }
+Boolean Chilkat::Spider::AbortCurrent::get()
+    {
+    return m_impl ? m_impl->get_AbortCurrent() : false;
+    }
+void Chilkat::Spider::AbortCurrent::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
+    }
 
 
 Boolean Spider::SaveLastError(Platform::String ^path)

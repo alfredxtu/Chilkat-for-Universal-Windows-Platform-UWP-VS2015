@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.56
+// This is a generated source file for Chilkat version 9.5.0.58
 #ifndef _C_CkMailManWH
 #define _C_CkMailManWH
 #include "chilkatDefs.h"
@@ -14,6 +14,8 @@ CK_VISIBLE_PUBLIC void CkMailManW_setTaskCompleted(HCkMailManW cHandle, void (*f
 CK_VISIBLE_PUBLIC HCkMailManW CkMailManW_Create(void);
 CK_VISIBLE_PUBLIC HCkMailManW CkMailManW_Create2(BOOL bCallbackOwned);
 CK_VISIBLE_PUBLIC void CkMailManW_Dispose(HCkMailManW handle);
+CK_VISIBLE_PUBLIC BOOL CkMailManW_getAbortCurrent(HCkMailManW cHandle);
+CK_VISIBLE_PUBLIC void CkMailManW_putAbortCurrent(HCkMailManW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC BOOL CkMailManW_getAllOrNone(HCkMailManW cHandle);
 CK_VISIBLE_PUBLIC void CkMailManW_putAllOrNone(HCkMailManW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC BOOL CkMailManW_getAutoFix(HCkMailManW cHandle);

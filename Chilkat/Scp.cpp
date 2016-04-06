@@ -125,6 +125,14 @@ void Chilkat::Scp::SyncedFiles::set(String ^newVal)
     {
         if (m_impl) m_impl->put_SyncedFiles(newVal ? newVal->Data() : L"");
     }
+Boolean Chilkat::Scp::AbortCurrent::get()
+    {
+    return m_impl ? m_impl->get_AbortCurrent() : false;
+    }
+void Chilkat::Scp::AbortCurrent::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
+    }
 
 
 Boolean Scp::SaveLastError(Platform::String ^path)

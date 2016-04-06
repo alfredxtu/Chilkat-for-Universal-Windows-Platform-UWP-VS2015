@@ -15,11 +15,11 @@
 class CkByteData;
 class CkCertW;
 class CkTaskW;
+class CkStreamW;
 class CkCertChainW;
 class CkCspW;
 class CkPrivateKeyW;
 class CkXmlCertVaultW;
-class CkStreamW;
 class CkBaseProgressW;
 
 
@@ -902,15 +902,15 @@ class CK_VISIBLE_PUBLIC CkCrypt2W  : public CkClassWithCallbacksW
 
 	// When the CryptAlgorithm property is "PKI" to select PKCS7 public-key encryption,
 	// this selects the underlying symmetric encryption algorithm. Possible values are:
-	// "aes", "des", "3des", and "rc2".
+	// "aes", "des", "3des", and "rc2". The default value is "aes".
 	void get_Pkcs7CryptAlg(CkString &str);
 	// When the CryptAlgorithm property is "PKI" to select PKCS7 public-key encryption,
 	// this selects the underlying symmetric encryption algorithm. Possible values are:
-	// "aes", "des", "3des", and "rc2".
+	// "aes", "des", "3des", and "rc2". The default value is "aes".
 	const wchar_t *pkcs7CryptAlg(void);
 	// When the CryptAlgorithm property is "PKI" to select PKCS7 public-key encryption,
 	// this selects the underlying symmetric encryption algorithm. Possible values are:
-	// "aes", "des", "3des", and "rc2".
+	// "aes", "des", "3des", and "rc2". The default value is "aes".
 	void put_Pkcs7CryptAlg(const wchar_t *newVal);
 
 	// The effective key length (in bits) for the RC2 encryption algorithm. When RC2 is
@@ -977,6 +977,23 @@ class CK_VISIBLE_PUBLIC CkCrypt2W  : public CkClassWithCallbacksW
 	// output. The default is "644". When UU decoding, this property is set to the mode
 	// found in the UU encoded input.
 	void put_UuMode(const wchar_t *newVal);
+
+	// When set to true, causes the currently running method to abort. Methods that
+	// always finish quickly (i.e.have no length file operations or network
+	// communications) are not affected. If no method is running, then this property is
+	// automatically reset to false when the next method is called. When the abort
+	// occurs, this property is reset to false. Both synchronous and asynchronous
+	// method calls can be aborted. (A synchronous method call could be aborted by
+	// setting this property from a separate thread.)
+	bool get_AbortCurrent(void);
+	// When set to true, causes the currently running method to abort. Methods that
+	// always finish quickly (i.e.have no length file operations or network
+	// communications) are not affected. If no method is running, then this property is
+	// automatically reset to false when the next method is called. When the abort
+	// occurs, this property is reset to false. Both synchronous and asynchronous
+	// method calls can be aborted. (A synchronous method call could be aborted by
+	// setting this property from a separate thread.)
+	void put_AbortCurrent(bool newVal);
 
 
 
@@ -1183,6 +1200,17 @@ class CK_VISIBLE_PUBLIC CkCrypt2W  : public CkClassWithCallbacksW
 	// setting, and returns the decrypted data in encoded string form.
 	const wchar_t *decryptEncoded(const wchar_t *str);
 
+	// Decrypts a stream. Internally, the ARG1's source is read, decrypted, and the
+	// decrypted data written to the ARG1's sink. It does this in streaming fashion.
+	// Extremely large or even infinite streams can be decrypted with stable ungrowing
+	// memory usage.
+	bool DecryptStream(CkStreamW &strm);
+
+	// Creates an asynchronous task to call the DecryptStream method with the arguments
+	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *DecryptStreamAsync(CkStreamW &strm);
+
 	// The reverse of EncryptString.
 	// 
 	// Decrypts encrypted byte data and returns the original string. The property
@@ -1299,6 +1327,17 @@ class CK_VISIBLE_PUBLIC CkCrypt2W  : public CkClassWithCallbacksW
 	// according to the encryption algorithm specified by CryptAlgorithm. The resulting
 	// encrypted data is encoded (using EncodingMode) and returned.
 	const wchar_t *encryptEncoded(const wchar_t *str);
+
+	// Encrypts a stream. Internally, the ARG1's source is read, encrypted, and the
+	// encrypted data written to the ARG1's sink. It does this in streaming fashion.
+	// Extremely large or even infinite streams can be encrypted with stable ungrowing
+	// memory usage.
+	bool EncryptStream(CkStreamW &strm);
+
+	// Creates an asynchronous task to call the EncryptStream method with the arguments
+	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *EncryptStreamAsync(CkStreamW &strm);
 
 	// Encrypts a string and returns the encrypted data as a byte array. The minimal
 	// set of properties that should be set before encrypting are: CryptAlgorithm,
@@ -2388,28 +2427,6 @@ class CK_VISIBLE_PUBLIC CkCrypt2W  : public CkClassWithCallbacksW
 
 	// Convenience method to write an entire byte array to a file.
 	bool WriteFile(const wchar_t *filename, CkByteData &fileData);
-
-	// Encrypts a stream. Internally, the ARG1's source is read, encrypted, and the
-	// encrypted data written to the ARG1's sink. It does this in streaming fashion.
-	// Extremely large or even infinite streams can be encrypted with stable ungrowing
-	// memory usage.
-	bool EncryptStream(CkStreamW &strm);
-
-	// Creates an asynchronous task to call the EncryptStream method with the arguments
-	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
-	// The caller is responsible for deleting the object returned by this method.
-	CkTaskW *EncryptStreamAsync(CkStreamW &strm);
-
-	// Decrypts a stream. Internally, the ARG1's source is read, decrypted, and the
-	// decrypted data written to the ARG1's sink. It does this in streaming fashion.
-	// Extremely large or even infinite streams can be decrypted with stable ungrowing
-	// memory usage.
-	bool DecryptStream(CkStreamW &strm);
-
-	// Creates an asynchronous task to call the DecryptStream method with the arguments
-	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
-	// The caller is responsible for deleting the object returned by this method.
-	CkTaskW *DecryptStreamAsync(CkStreamW &strm);
 
 
 

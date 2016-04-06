@@ -271,15 +271,15 @@ class CK_VISIBLE_PUBLIC CkMime  : public CkMultiByteBase
 
 	// When the MIME is encrypted (using PKCS7 public-key encryption), this selects the
 	// underlying symmetric encryption algorithm. Possible values are: "aes", "des",
-	// "3des", and "rc2".
+	// "3des", and "rc2". The default value is "aes".
 	void get_Pkcs7CryptAlg(CkString &str);
 	// When the MIME is encrypted (using PKCS7 public-key encryption), this selects the
 	// underlying symmetric encryption algorithm. Possible values are: "aes", "des",
-	// "3des", and "rc2".
+	// "3des", and "rc2". The default value is "aes".
 	const char *pkcs7CryptAlg(void);
 	// When the MIME is encrypted (using PKCS7 public-key encryption), this selects the
 	// underlying symmetric encryption algorithm. Possible values are: "aes", "des",
-	// "3des", and "rc2".
+	// "3des", and "rc2". The default value is "aes".
 	void put_Pkcs7CryptAlg(const char *newVal);
 
 	// When the MIME is encrypted (using PKCS7 public-key encryption), this selects the

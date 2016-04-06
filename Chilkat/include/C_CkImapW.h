@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.56
+// This is a generated source file for Chilkat version 9.5.0.58
 #ifndef _C_CkImapWH
 #define _C_CkImapWH
 #include "chilkatDefs.h"
@@ -14,6 +14,8 @@ CK_VISIBLE_PUBLIC void CkImapW_setTaskCompleted(HCkImapW cHandle, void (*fnTaskC
 CK_VISIBLE_PUBLIC HCkImapW CkImapW_Create(void);
 CK_VISIBLE_PUBLIC HCkImapW CkImapW_Create2(BOOL bCallbackOwned);
 CK_VISIBLE_PUBLIC void CkImapW_Dispose(HCkImapW handle);
+CK_VISIBLE_PUBLIC BOOL CkImapW_getAbortCurrent(HCkImapW cHandle);
+CK_VISIBLE_PUBLIC void CkImapW_putAbortCurrent(HCkImapW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC BOOL CkImapW_getAppendSeen(HCkImapW cHandle);
 CK_VISIBLE_PUBLIC void CkImapW_putAppendSeen(HCkImapW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC int CkImapW_getAppendUid(HCkImapW cHandle);

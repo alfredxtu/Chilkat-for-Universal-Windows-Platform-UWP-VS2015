@@ -350,6 +350,10 @@ public ref class Ftp2 sealed
 		int32 get();
 		void set(int32);
 	}
+	property Boolean IsConnected
+	{
+		Boolean get();
+	}
 	property Boolean KeepSessionLog
 	{
 		Boolean get();
@@ -571,6 +575,11 @@ public ref class Ftp2 sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Boolean AbortCurrent
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 
 
 	// ----------------------
@@ -759,6 +768,8 @@ public ref class Ftp2 sealed
 	IAsyncOperation<Platform::String ^>^ SystAsync(void);
 
 	Boolean UnlockComponent(Platform::String ^unlockCode);
+
+	Boolean SetOption(Platform::String ^option);
 
 
 

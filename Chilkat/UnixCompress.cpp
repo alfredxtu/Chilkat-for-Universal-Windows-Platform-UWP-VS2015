@@ -91,6 +91,14 @@ void Chilkat::UnixCompress::HeartbeatMs::set(int newVal)
     {
         if (m_impl) m_impl->put_HeartbeatMs(newVal);
     }
+Boolean Chilkat::UnixCompress::AbortCurrent::get()
+    {
+    return m_impl ? m_impl->get_AbortCurrent() : false;
+    }
+void Chilkat::UnixCompress::AbortCurrent::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
+    }
 
 
 Boolean UnixCompress::SaveLastError(Platform::String ^path)

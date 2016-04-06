@@ -287,6 +287,14 @@ void Chilkat::Upload::SslProtocol::set(String ^newVal)
     {
         if (m_impl) m_impl->put_SslProtocol(newVal ? newVal->Data() : L"");
     }
+Boolean Chilkat::Upload::AbortCurrent::get()
+    {
+    return m_impl ? m_impl->get_AbortCurrent() : false;
+    }
+void Chilkat::Upload::AbortCurrent::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
+    }
 
 
 Boolean Upload::SaveLastError(Platform::String ^path)

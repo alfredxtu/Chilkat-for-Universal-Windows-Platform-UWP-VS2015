@@ -481,6 +481,14 @@ void Chilkat::Socket::UserData::set(String ^newVal)
     {
         if (m_impl) m_impl->put_UserData(newVal ? newVal->Data() : L"");
     }
+Boolean Chilkat::Socket::AbortCurrent::get()
+    {
+    return m_impl ? m_impl->get_AbortCurrent() : false;
+    }
+void Chilkat::Socket::AbortCurrent::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
+    }
 
 
 Boolean Socket::SaveLastError(Platform::String ^path)

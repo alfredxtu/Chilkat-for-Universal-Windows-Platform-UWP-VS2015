@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.56
+// This is a generated source file for Chilkat version 9.5.0.58
 #ifndef _C_CkUnixCompress_H
 #define _C_CkUnixCompress_H
 #include "chilkatDefs.h"
@@ -13,6 +13,8 @@ CK_VISIBLE_PUBLIC void CkUnixCompress_setTaskCompleted(HCkUnixCompress cHandle, 
 
 CK_VISIBLE_PUBLIC HCkUnixCompress CkUnixCompress_Create(void);
 CK_VISIBLE_PUBLIC void CkUnixCompress_Dispose(HCkUnixCompress handle);
+CK_VISIBLE_PUBLIC BOOL CkUnixCompress_getAbortCurrent(HCkUnixCompress cHandle);
+CK_VISIBLE_PUBLIC void CkUnixCompress_putAbortCurrent(HCkUnixCompress cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkUnixCompress_getDebugLogFilePath(HCkUnixCompress cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void CkUnixCompress_putDebugLogFilePath(HCkUnixCompress cHandle, const char *newVal);
 CK_VISIBLE_PUBLIC const char *CkUnixCompress_debugLogFilePath(HCkUnixCompress cHandle);

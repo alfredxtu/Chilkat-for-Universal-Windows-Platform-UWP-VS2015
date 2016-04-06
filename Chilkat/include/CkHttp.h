@@ -1230,6 +1230,10 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	// Digest, or Basic. Setting this property equal to "basic" prevents the 407
 	// response which is automatically handled internal to Chilkat and never seen by
 	// your application.
+	// 
+	// Note: If NTLM authentication does not succeed, set the Global.DefaultNtlmVersion
+	// property equal to 1 and then retry.
+	// 
 	void get_ProxyAuthMethod(CkString &str);
 	// Set this to "basic" if you know in advance that Basic authentication is to be
 	// used for the HTTP proxy. Otherwise leave this property unset. Note: It is not
@@ -1238,6 +1242,10 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	// Digest, or Basic. Setting this property equal to "basic" prevents the 407
 	// response which is automatically handled internal to Chilkat and never seen by
 	// your application.
+	// 
+	// Note: If NTLM authentication does not succeed, set the Global.DefaultNtlmVersion
+	// property equal to 1 and then retry.
+	// 
 	const char *proxyAuthMethod(void);
 	// Set this to "basic" if you know in advance that Basic authentication is to be
 	// used for the HTTP proxy. Otherwise leave this property unset. Note: It is not
@@ -1246,6 +1254,10 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	// Digest, or Basic. Setting this property equal to "basic" prevents the 407
 	// response which is automatically handled internal to Chilkat and never seen by
 	// your application.
+	// 
+	// Note: If NTLM authentication does not succeed, set the Global.DefaultNtlmVersion
+	// property equal to 1 and then retry.
+	// 
 	void put_ProxyAuthMethod(const char *newVal);
 
 	// The domain name of a proxy host if an HTTP proxy is used.
@@ -1998,6 +2010,23 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	// Indicates whether the last HTTP GET was redirected.
 	bool get_WasRedirected(void);
 
+	// When set to true, causes the currently running method to abort. Methods that
+	// always finish quickly (i.e.have no length file operations or network
+	// communications) are not affected. If no method is running, then this property is
+	// automatically reset to false when the next method is called. When the abort
+	// occurs, this property is reset to false. Both synchronous and asynchronous
+	// method calls can be aborted. (A synchronous method call could be aborted by
+	// setting this property from a separate thread.)
+	bool get_AbortCurrent(void);
+	// When set to true, causes the currently running method to abort. Methods that
+	// always finish quickly (i.e.have no length file operations or network
+	// communications) are not affected. If no method is running, then this property is
+	// automatically reset to false when the next method is called. When the abort
+	// occurs, this property is reset to false. Both synchronous and asynchronous
+	// method calls can be aborted. (A synchronous method call could be aborted by
+	// setting this property from a separate thread.)
+	void put_AbortCurrent(bool newVal);
+
 
 
 	// ----------------------
@@ -2436,6 +2465,10 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	// of the HTTP response are required, call PBinary instead (which returns the HTTP
 	// response object).
 	// 
+	// Note: The HTTP response code is available in the LastStatus property. Other
+	// properties having information include LastResponseHeader, LastResponseBody,
+	// LastModDate, LastContentType, etc.
+	// 
 	bool PostBinary(const char *url, CkByteData &byteData, const char *contentType, bool md5, bool gzip, CkString &outStr);
 
 	// Sends an HTTP POST request to the url. The body of the HTTP request contains
@@ -2453,6 +2486,10 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	// of the HTTP response are required, call PBinary instead (which returns the HTTP
 	// response object).
 	// 
+	// Note: The HTTP response code is available in the LastStatus property. Other
+	// properties having information include LastResponseHeader, LastResponseBody,
+	// LastModDate, LastContentType, etc.
+	// 
 	const char *postBinary(const char *url, CkByteData &byteData, const char *contentType, bool md5, bool gzip);
 	// Sends an HTTP POST request to the url. The body of the HTTP request contains
 	// the bytes passed in  byteData. The  contentType is a content type such as "image/gif",
@@ -2468,6 +2505,10 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	// status code. Otherwise the method is considered to have failed. If more details
 	// of the HTTP response are required, call PBinary instead (which returns the HTTP
 	// response object).
+	// 
+	// Note: The HTTP response code is available in the LastStatus property. Other
+	// properties having information include LastResponseHeader, LastResponseBody,
+	// LastModDate, LastContentType, etc.
 	// 
 	CkTask *PostBinaryAsync(const char *url, CkByteData &byteData, const char *contentType, bool md5, bool gzip);
 
@@ -2645,11 +2686,26 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 
 
 	// Same as QuickGetStr, but uses the HTTP DELETE method instead of the GET method.
+	// 
+	// Note: The HTTP response code is available in the LastStatus property. Other
+	// properties having information include LastResponseHeader, LastResponseBody,
+	// LastModDate, LastContentType, etc.
+	// 
 	bool QuickDeleteStr(const char *url, CkString &outStr);
 
 	// Same as QuickGetStr, but uses the HTTP DELETE method instead of the GET method.
+	// 
+	// Note: The HTTP response code is available in the LastStatus property. Other
+	// properties having information include LastResponseHeader, LastResponseBody,
+	// LastModDate, LastContentType, etc.
+	// 
 	const char *quickDeleteStr(const char *url);
 	// Same as QuickGetStr, but uses the HTTP DELETE method instead of the GET method.
+	// 
+	// Note: The HTTP response code is available in the LastStatus property. Other
+	// properties having information include LastResponseHeader, LastResponseBody,
+	// LastModDate, LastContentType, etc.
+	// 
 	CkTask *QuickDeleteStrAsync(const char *url);
 
 
@@ -2663,6 +2719,11 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	// instead. If the HTTP request fails, a zero-length byte array is returned and
 	// error information can be found in the LastErrorText, LastErrorXml, or
 	// LastErrorHtml properties.
+	// 
+	// Note: The HTTP response code is available in the LastStatus property. Other
+	// properties having information include LastResponseHeader, LastResponseBody,
+	// LastModDate, LastContentType, etc.
+	// 
 	bool QuickGet(const char *url, CkByteData &outData);
 
 	// Sends an HTTP GET request for a URL and returns the response body as a byte
@@ -2675,6 +2736,11 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	// instead. If the HTTP request fails, a zero-length byte array is returned and
 	// error information can be found in the LastErrorText, LastErrorXml, or
 	// LastErrorHtml properties.
+	// 
+	// Note: The HTTP response code is available in the LastStatus property. Other
+	// properties having information include LastResponseHeader, LastResponseBody,
+	// LastModDate, LastContentType, etc.
+	// 
 	CkTask *QuickGetAsync(const char *url);
 
 
@@ -2696,35 +2762,65 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	// The URL may contain query parameters. If the SendCookies property is true,
 	// matching cookies previously persisted to the CookiesDir are automatically
 	// included in the request. If the FetchFromCache property is true, the page
-	// could be fetched directly from cache. If the HTTP request fails, a NULL value is
-	// returned and error information can be found in the LastErrorText, LastErrorXml,
-	// or LastErrorHtml properties.
+	// could be fetched directly from cache. If the HTTP request fails, a _NULL_ value
+	// is returned and error information can be found in the LastErrorText,
+	// LastErrorXml, or LastErrorHtml properties.
+	// 
+	// Note: The HTTP response code is available in the LastStatus property. Other
+	// properties having information include LastResponseHeader, LastResponseBody,
+	// LastModDate, LastContentType, etc.
+	// 
 	bool QuickGetStr(const char *url, CkString &outStr);
 
 	// Sends an HTTP GET request for a URL and returns the response body as a string.
 	// The URL may contain query parameters. If the SendCookies property is true,
 	// matching cookies previously persisted to the CookiesDir are automatically
 	// included in the request. If the FetchFromCache property is true, the page
-	// could be fetched directly from cache. If the HTTP request fails, a NULL value is
-	// returned and error information can be found in the LastErrorText, LastErrorXml,
-	// or LastErrorHtml properties.
+	// could be fetched directly from cache. If the HTTP request fails, a _NULL_ value
+	// is returned and error information can be found in the LastErrorText,
+	// LastErrorXml, or LastErrorHtml properties.
+	// 
+	// Note: The HTTP response code is available in the LastStatus property. Other
+	// properties having information include LastResponseHeader, LastResponseBody,
+	// LastModDate, LastContentType, etc.
+	// 
 	const char *quickGetStr(const char *url);
 	// Sends an HTTP GET request for a URL and returns the response body as a string.
 	// The URL may contain query parameters. If the SendCookies property is true,
 	// matching cookies previously persisted to the CookiesDir are automatically
 	// included in the request. If the FetchFromCache property is true, the page
-	// could be fetched directly from cache. If the HTTP request fails, a NULL value is
-	// returned and error information can be found in the LastErrorText, LastErrorXml,
-	// or LastErrorHtml properties.
+	// could be fetched directly from cache. If the HTTP request fails, a _NULL_ value
+	// is returned and error information can be found in the LastErrorText,
+	// LastErrorXml, or LastErrorHtml properties.
+	// 
+	// Note: The HTTP response code is available in the LastStatus property. Other
+	// properties having information include LastResponseHeader, LastResponseBody,
+	// LastModDate, LastContentType, etc.
+	// 
 	CkTask *QuickGetStrAsync(const char *url);
 
 
 	// Same as QuickGetStr, but uses the HTTP PUT method instead of the GET method.
+	// 
+	// Note: The HTTP response code is available in the LastStatus property. Other
+	// properties having information include LastResponseHeader, LastResponseBody,
+	// LastModDate, LastContentType, etc.
+	// 
 	bool QuickPutStr(const char *url, CkString &outStr);
 
 	// Same as QuickGetStr, but uses the HTTP PUT method instead of the GET method.
+	// 
+	// Note: The HTTP response code is available in the LastStatus property. Other
+	// properties having information include LastResponseHeader, LastResponseBody,
+	// LastModDate, LastContentType, etc.
+	// 
 	const char *quickPutStr(const char *url);
 	// Same as QuickGetStr, but uses the HTTP PUT method instead of the GET method.
+	// 
+	// Note: The HTTP response code is available in the LastStatus property. Other
+	// properties having information include LastResponseHeader, LastResponseBody,
+	// LastModDate, LastContentType, etc.
+	// 
 	CkTask *QuickPutStrAsync(const char *url);
 
 

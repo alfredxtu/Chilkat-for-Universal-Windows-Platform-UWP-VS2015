@@ -111,7 +111,9 @@ class CK_VISIBLE_PUBLIC CkFileAccessW  : public CkWideCharBase
 	// Appends the 3-byte utf-8 BOM to the currently open file.
 	bool AppendUtf8BOM(void);
 
-	// Creates all directories necessary such that the entire dirPath exists.
+	// Same as DirEnsureExists, except the argument is a file path (the last part of
+	// the path is a filename and not a directory). Creates all missing directories
+	// such that dirPath may be created.
 	bool DirAutoCreate(const wchar_t *path);
 
 	// Creates a new directory specified by dirPath.
@@ -120,9 +122,7 @@ class CK_VISIBLE_PUBLIC CkFileAccessW  : public CkWideCharBase
 	// Deletes the directory specified by dirPath.
 	bool DirDelete(const wchar_t *path);
 
-	// Same as DirAutoCreate, except the argument is a file path (the last part of the
-	// path is a filename and not a directory). Creates all missing directories such
-	// that filePath may be created.
+	// Creates all directories necessary such that the entire filePath exists.
 	bool DirEnsureExists(const wchar_t *filePath);
 
 	// Closes the currently open file.

@@ -1805,6 +1805,23 @@ class CK_VISIBLE_PUBLIC CkFtp2W  : public CkClassWithCallbacksW
 	// Username for logging into the FTP server. Defaults to "anonymous".
 	void put_Username(const wchar_t *newVal);
 
+	// When set to true, causes the currently running method to abort. Methods that
+	// always finish quickly (i.e.have no length file operations or network
+	// communications) are not affected. If no method is running, then this property is
+	// automatically reset to false when the next method is called. When the abort
+	// occurs, this property is reset to false. Both synchronous and asynchronous
+	// method calls can be aborted. (A synchronous method call could be aborted by
+	// setting this property from a separate thread.)
+	bool get_AbortCurrent(void);
+	// When set to true, causes the currently running method to abort. Methods that
+	// always finish quickly (i.e.have no length file operations or network
+	// communications) are not affected. If no method is running, then this property is
+	// automatically reset to false when the next method is called. When the abort
+	// occurs, this property is reset to false. Both synchronous and asynchronous
+	// method calls can be aborted. (A synchronous method call could be aborted by
+	// setting this property from a separate thread.)
+	void put_AbortCurrent(bool newVal);
+
 
 
 	// ----------------------
@@ -3908,6 +3925,18 @@ class CK_VISIBLE_PUBLIC CkFtp2W  : public CkClassWithCallbacksW
 	// Unlocks the component. This must be called once prior to calling any other
 	// method. A permanent unlock code for FTP2 should contain the substring "FTP".
 	bool UnlockComponent(const wchar_t *unlockCode);
+
+	// This is a general purpose method to set miscellaneous options that might arise
+	// due to buggy or quirky FTP servers. The ARG1 is a string describing the option.
+	// The current list of possible options are:
+	//     "Microsoft-TLS-1.2-Workaround" -- This is to force the data connection to
+	//     use TLS 1.0 instead of the default. It works around the Microsoft FTP server bug
+	//     found here: https://support.microsoft.com/en-us/kb/2888853
+	// 
+	// To turn off an option, prepend the string "No-". For example
+	// "No-Microsoft-TLS-1.2-Workaround". All options are turned off by default.
+	// 
+	bool SetOption(const wchar_t *option);
 
 
 

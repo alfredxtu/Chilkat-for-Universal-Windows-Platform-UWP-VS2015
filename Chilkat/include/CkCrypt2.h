@@ -15,11 +15,11 @@
 class CkByteData;
 class CkCert;
 class CkTask;
+class CkStream;
 class CkCertChain;
 class CkCsp;
 class CkPrivateKey;
 class CkXmlCertVault;
-class CkStream;
 class CkBaseProgress;
 
 
@@ -895,15 +895,15 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 
 	// When the CryptAlgorithm property is "PKI" to select PKCS7 public-key encryption,
 	// this selects the underlying symmetric encryption algorithm. Possible values are:
-	// "aes", "des", "3des", and "rc2".
+	// "aes", "des", "3des", and "rc2". The default value is "aes".
 	void get_Pkcs7CryptAlg(CkString &str);
 	// When the CryptAlgorithm property is "PKI" to select PKCS7 public-key encryption,
 	// this selects the underlying symmetric encryption algorithm. Possible values are:
-	// "aes", "des", "3des", and "rc2".
+	// "aes", "des", "3des", and "rc2". The default value is "aes".
 	const char *pkcs7CryptAlg(void);
 	// When the CryptAlgorithm property is "PKI" to select PKCS7 public-key encryption,
 	// this selects the underlying symmetric encryption algorithm. Possible values are:
-	// "aes", "des", "3des", and "rc2".
+	// "aes", "des", "3des", and "rc2". The default value is "aes".
 	void put_Pkcs7CryptAlg(const char *newVal);
 
 	// The effective key length (in bits) for the RC2 encryption algorithm. When RC2 is
@@ -970,6 +970,23 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	// output. The default is "644". When UU decoding, this property is set to the mode
 	// found in the UU encoded input.
 	void put_UuMode(const char *newVal);
+
+	// When set to true, causes the currently running method to abort. Methods that
+	// always finish quickly (i.e.have no length file operations or network
+	// communications) are not affected. If no method is running, then this property is
+	// automatically reset to false when the next method is called. When the abort
+	// occurs, this property is reset to false. Both synchronous and asynchronous
+	// method calls can be aborted. (A synchronous method call could be aborted by
+	// setting this property from a separate thread.)
+	bool get_AbortCurrent(void);
+	// When set to true, causes the currently running method to abort. Methods that
+	// always finish quickly (i.e.have no length file operations or network
+	// communications) are not affected. If no method is running, then this property is
+	// automatically reset to false when the next method is called. When the abort
+	// occurs, this property is reset to false. Both synchronous and asynchronous
+	// method calls can be aborted. (A synchronous method call could be aborted by
+	// setting this property from a separate thread.)
+	void put_AbortCurrent(bool newVal);
 
 
 
@@ -1200,6 +1217,19 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	// setting, and returns the decrypted data in encoded string form.
 	const char *decryptEncoded(const char *str);
 
+	// Decrypts a stream. Internally, the ARG1's source is read, decrypted, and the
+	// decrypted data written to the ARG1's sink. It does this in streaming fashion.
+	// Extremely large or even infinite streams can be decrypted with stable ungrowing
+	// memory usage.
+	bool DecryptStream(CkStream &strm);
+
+	// Decrypts a stream. Internally, the ARG1's source is read, decrypted, and the
+	// decrypted data written to the ARG1's sink. It does this in streaming fashion.
+	// Extremely large or even infinite streams can be decrypted with stable ungrowing
+	// memory usage.
+	CkTask *DecryptStreamAsync(CkStream &strm);
+
+
 	// The reverse of EncryptString.
 	// 
 	// Decrypts encrypted byte data and returns the original string. The property
@@ -1324,6 +1354,19 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	// according to the encryption algorithm specified by CryptAlgorithm. The resulting
 	// encrypted data is encoded (using EncodingMode) and returned.
 	const char *encryptEncoded(const char *str);
+
+	// Encrypts a stream. Internally, the ARG1's source is read, encrypted, and the
+	// encrypted data written to the ARG1's sink. It does this in streaming fashion.
+	// Extremely large or even infinite streams can be encrypted with stable ungrowing
+	// memory usage.
+	bool EncryptStream(CkStream &strm);
+
+	// Encrypts a stream. Internally, the ARG1's source is read, encrypted, and the
+	// encrypted data written to the ARG1's sink. It does this in streaming fashion.
+	// Extremely large or even infinite streams can be encrypted with stable ungrowing
+	// memory usage.
+	CkTask *EncryptStreamAsync(CkStream &strm);
+
 
 	// Encrypts a string and returns the encrypted data as a byte array. The minimal
 	// set of properties that should be set before encrypting are: CryptAlgorithm,
@@ -2524,32 +2567,6 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 
 	// Convenience method to write an entire byte array to a file.
 	bool WriteFile(const char *filename, CkByteData &fileData);
-
-
-	// Encrypts a stream. Internally, the ARG1's source is read, encrypted, and the
-	// encrypted data written to the ARG1's sink. It does this in streaming fashion.
-	// Extremely large or even infinite streams can be encrypted with stable ungrowing
-	// memory usage.
-	bool EncryptStream(CkStream &strm);
-
-	// Encrypts a stream. Internally, the ARG1's source is read, encrypted, and the
-	// encrypted data written to the ARG1's sink. It does this in streaming fashion.
-	// Extremely large or even infinite streams can be encrypted with stable ungrowing
-	// memory usage.
-	CkTask *EncryptStreamAsync(CkStream &strm);
-
-
-	// Decrypts a stream. Internally, the ARG1's source is read, decrypted, and the
-	// decrypted data written to the ARG1's sink. It does this in streaming fashion.
-	// Extremely large or even infinite streams can be decrypted with stable ungrowing
-	// memory usage.
-	bool DecryptStream(CkStream &strm);
-
-	// Decrypts a stream. Internally, the ARG1's source is read, decrypted, and the
-	// decrypted data written to the ARG1's sink. It does this in streaming fashion.
-	// Extremely large or even infinite streams can be decrypted with stable ungrowing
-	// memory usage.
-	CkTask *DecryptStreamAsync(CkStream &strm);
 
 
 

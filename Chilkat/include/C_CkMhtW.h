@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.56
+// This is a generated source file for Chilkat version 9.5.0.58
 #ifndef _C_CkMhtWH
 #define _C_CkMhtWH
 #include "chilkatDefs.h"
@@ -14,6 +14,8 @@ CK_VISIBLE_PUBLIC void CkMhtW_setTaskCompleted(HCkMhtW cHandle, void (*fnTaskCom
 CK_VISIBLE_PUBLIC HCkMhtW CkMhtW_Create(void);
 CK_VISIBLE_PUBLIC HCkMhtW CkMhtW_Create2(BOOL bCallbackOwned);
 CK_VISIBLE_PUBLIC void CkMhtW_Dispose(HCkMhtW handle);
+CK_VISIBLE_PUBLIC BOOL CkMhtW_getAbortCurrent(HCkMhtW cHandle);
+CK_VISIBLE_PUBLIC void CkMhtW_putAbortCurrent(HCkMhtW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkMhtW_getBaseUrl(HCkMhtW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void CkMhtW_putBaseUrl(HCkMhtW cHandle, const wchar_t *newVal);
 CK_VISIBLE_PUBLIC const wchar_t *CkMhtW_baseUrl(HCkMhtW cHandle);

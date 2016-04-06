@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.56
+// This is a generated source file for Chilkat version 9.5.0.58
 #ifndef _C_CkBz2_H
 #define _C_CkBz2_H
 #include "chilkatDefs.h"
@@ -13,6 +13,8 @@ CK_VISIBLE_PUBLIC void CkBz2_setTaskCompleted(HCkBz2 cHandle, void (*fnTaskCompl
 
 CK_VISIBLE_PUBLIC HCkBz2 CkBz2_Create(void);
 CK_VISIBLE_PUBLIC void CkBz2_Dispose(HCkBz2 handle);
+CK_VISIBLE_PUBLIC BOOL CkBz2_getAbortCurrent(HCkBz2 cHandle);
+CK_VISIBLE_PUBLIC void CkBz2_putAbortCurrent(HCkBz2 cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkBz2_getDebugLogFilePath(HCkBz2 cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void CkBz2_putDebugLogFilePath(HCkBz2 cHandle, const char *newVal);
 CK_VISIBLE_PUBLIC const char *CkBz2_debugLogFilePath(HCkBz2 cHandle);

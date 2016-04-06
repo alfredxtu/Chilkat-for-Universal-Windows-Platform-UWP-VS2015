@@ -223,8 +223,8 @@ class CK_VISIBLE_PUBLIC CkMailMan  : public CkClassWithCallbacks
 	// 
 	void put_ClientIpAddress(const char *newVal);
 
-	// This property will be set to the status of the last HTTP connection made (or
-	// failed to be made) by any HTTP method.
+	// This property will be set to the status of the last connection made (or failed
+	// to be made) by any method.
 	// 
 	// Possible values are:
 	// 0 = success
@@ -674,10 +674,18 @@ class CK_VISIBLE_PUBLIC CkMailMan  : public CkClassWithCallbacks
 	// Controls whether SPA authentication for POP3 is used or not. To use SPA
 	// authentication, set this propoerty = true. No other programming changes are
 	// required. The default value is false.
+	// 
+	// Note: If SPA (i.e. NTLM) authentication does not succeed, set the
+	// Global.DefaultNtlmVersion property equal to 1 and then retry.
+	// 
 	bool get_Pop3SPA(void);
 	// Controls whether SPA authentication for POP3 is used or not. To use SPA
 	// authentication, set this propoerty = true. No other programming changes are
 	// required. The default value is false.
+	// 
+	// Note: If SPA (i.e. NTLM) authentication does not succeed, set the
+	// Global.DefaultNtlmVersion property equal to 1 and then retry.
+	// 
 	void put_Pop3SPA(bool newVal);
 
 	// 0 if no POP3 session is active. Otherwise a positive integer that is incremented
@@ -857,6 +865,10 @@ class CK_VISIBLE_PUBLIC CkMailMan  : public CkClassWithCallbacks
 	// to automatically determine the best authorization method. To force a particular
 	// auth method, or to prevent any authorization from being used, set this property
 	// to one of the following values: "NONE", "LOGIN", "PLAIN", "CRAM-MD5", or "NTLM".
+	// 
+	// Note: If NTLM authentication does not succeed, set the Global.DefaultNtlmVersion
+	// property equal to 1 and then retry.
+	// 
 	void get_SmtpAuthMethod(CkString &str);
 	// This property should usually be left empty. The MailMan will by default choose
 	// the most secure login method available to prevent unencrypted username and
@@ -865,6 +877,10 @@ class CK_VISIBLE_PUBLIC CkMailMan  : public CkClassWithCallbacks
 	// to automatically determine the best authorization method. To force a particular
 	// auth method, or to prevent any authorization from being used, set this property
 	// to one of the following values: "NONE", "LOGIN", "PLAIN", "CRAM-MD5", or "NTLM".
+	// 
+	// Note: If NTLM authentication does not succeed, set the Global.DefaultNtlmVersion
+	// property equal to 1 and then retry.
+	// 
 	const char *smtpAuthMethod(void);
 	// This property should usually be left empty. The MailMan will by default choose
 	// the most secure login method available to prevent unencrypted username and
@@ -873,6 +889,10 @@ class CK_VISIBLE_PUBLIC CkMailMan  : public CkClassWithCallbacks
 	// to automatically determine the best authorization method. To force a particular
 	// auth method, or to prevent any authorization from being used, set this property
 	// to one of the following values: "NONE", "LOGIN", "PLAIN", "CRAM-MD5", or "NTLM".
+	// 
+	// Note: If NTLM authentication does not succeed, set the Global.DefaultNtlmVersion
+	// property equal to 1 and then retry.
+	// 
 	void put_SmtpAuthMethod(const char *newVal);
 
 	// A keyword that indicates the cause of failure (or success) for the last SMTP
@@ -1565,6 +1585,23 @@ class CK_VISIBLE_PUBLIC CkMailMan  : public CkClassWithCallbacks
 	// If true, will automatically use APOP authentication if the POP3 server
 	// supports it. The default value of this property is false.
 	void put_UseApop(bool newVal);
+
+	// When set to true, causes the currently running method to abort. Methods that
+	// always finish quickly (i.e.have no length file operations or network
+	// communications) are not affected. If no method is running, then this property is
+	// automatically reset to false when the next method is called. When the abort
+	// occurs, this property is reset to false. Both synchronous and asynchronous
+	// method calls can be aborted. (A synchronous method call could be aborted by
+	// setting this property from a separate thread.)
+	bool get_AbortCurrent(void);
+	// When set to true, causes the currently running method to abort. Methods that
+	// always finish quickly (i.e.have no length file operations or network
+	// communications) are not affected. If no method is running, then this property is
+	// automatically reset to false when the next method is called. When the abort
+	// occurs, this property is reset to false. Both synchronous and asynchronous
+	// method calls can be aborted. (A synchronous method call could be aborted by
+	// setting this property from a separate thread.)
+	void put_AbortCurrent(bool newVal);
 
 
 

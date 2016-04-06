@@ -375,6 +375,14 @@ void Chilkat::Mht::WebSitePassword::set(String ^newVal)
     {
         if (m_impl) m_impl->put_WebSitePassword(newVal ? newVal->Data() : L"");
     }
+Boolean Chilkat::Mht::AbortCurrent::get()
+    {
+    return m_impl ? m_impl->get_AbortCurrent() : false;
+    }
+void Chilkat::Mht::AbortCurrent::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
+    }
 
 
 Boolean Mht::SaveLastError(Platform::String ^path)

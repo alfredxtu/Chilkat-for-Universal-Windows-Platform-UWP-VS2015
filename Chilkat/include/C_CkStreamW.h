@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.56
+// This is a generated source file for Chilkat version 9.5.0.58
 #ifndef _C_CkStreamWH
 #define _C_CkStreamWH
 #include "chilkatDefs.h"
@@ -14,6 +14,8 @@ CK_VISIBLE_PUBLIC void CkStreamW_setTaskCompleted(HCkStreamW cHandle, void (*fnT
 CK_VISIBLE_PUBLIC HCkStreamW CkStreamW_Create(void);
 CK_VISIBLE_PUBLIC HCkStreamW CkStreamW_Create2(BOOL bCallbackOwned);
 CK_VISIBLE_PUBLIC void CkStreamW_Dispose(HCkStreamW handle);
+CK_VISIBLE_PUBLIC BOOL CkStreamW_getAbortCurrent(HCkStreamW cHandle);
+CK_VISIBLE_PUBLIC void CkStreamW_putAbortCurrent(HCkStreamW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC BOOL CkStreamW_getCanRead(HCkStreamW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkStreamW_getCanWrite(HCkStreamW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkStreamW_getDataAvailable(HCkStreamW cHandle);

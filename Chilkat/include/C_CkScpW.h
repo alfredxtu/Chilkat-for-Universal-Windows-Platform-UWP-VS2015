@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.56
+// This is a generated source file for Chilkat version 9.5.0.58
 #ifndef _C_CkScpWH
 #define _C_CkScpWH
 #include "chilkatDefs.h"
@@ -14,6 +14,8 @@ CK_VISIBLE_PUBLIC void CkScpW_setTaskCompleted(HCkScpW cHandle, void (*fnTaskCom
 CK_VISIBLE_PUBLIC HCkScpW CkScpW_Create(void);
 CK_VISIBLE_PUBLIC HCkScpW CkScpW_Create2(BOOL bCallbackOwned);
 CK_VISIBLE_PUBLIC void CkScpW_Dispose(HCkScpW handle);
+CK_VISIBLE_PUBLIC BOOL CkScpW_getAbortCurrent(HCkScpW cHandle);
+CK_VISIBLE_PUBLIC void CkScpW_putAbortCurrent(HCkScpW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkScpW_getDebugLogFilePath(HCkScpW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void CkScpW_putDebugLogFilePath(HCkScpW cHandle, const wchar_t *newVal);
 CK_VISIBLE_PUBLIC const wchar_t *CkScpW_debugLogFilePath(HCkScpW cHandle);

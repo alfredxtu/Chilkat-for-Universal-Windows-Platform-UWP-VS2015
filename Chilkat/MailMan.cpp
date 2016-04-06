@@ -681,6 +681,14 @@ void Chilkat::MailMan::UseApop::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_UseApop(newVal);
     }
+Boolean Chilkat::MailMan::AbortCurrent::get()
+    {
+    return m_impl ? m_impl->get_AbortCurrent() : false;
+    }
+void Chilkat::MailMan::AbortCurrent::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
+    }
 
 
 Boolean MailMan::SaveLastError(Platform::String ^path)

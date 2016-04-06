@@ -289,7 +289,7 @@ class CK_VISIBLE_PUBLIC CkTask  : public CkClassWithCallbacks
 
 
 	// Convenience method to force the calling thread to sleep for a number of
-	// milliseconds.
+	// milliseconds. (This does not cause the task's background thread to sleep.)
 	void SleepMs(int numMs);
 
 

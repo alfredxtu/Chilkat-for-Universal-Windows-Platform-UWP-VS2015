@@ -313,6 +313,11 @@ public ref class Zip sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Boolean AbortCurrent
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 
 
 	// ----------------------

@@ -502,6 +502,11 @@ public ref class MailMan sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Boolean AbortCurrent
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 
 
 	// ----------------------

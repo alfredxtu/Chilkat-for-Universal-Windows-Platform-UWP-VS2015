@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.56
+// This is a generated source file for Chilkat version 9.5.0.58
 #ifndef _C_CkFtp2WH
 #define _C_CkFtp2WH
 #include "chilkatDefs.h"
@@ -14,6 +14,8 @@ CK_VISIBLE_PUBLIC void CkFtp2W_setTaskCompleted(HCkFtp2W cHandle, void (*fnTaskC
 CK_VISIBLE_PUBLIC HCkFtp2W CkFtp2W_Create(void);
 CK_VISIBLE_PUBLIC HCkFtp2W CkFtp2W_Create2(BOOL bCallbackOwned);
 CK_VISIBLE_PUBLIC void CkFtp2W_Dispose(HCkFtp2W handle);
+CK_VISIBLE_PUBLIC BOOL CkFtp2W_getAbortCurrent(HCkFtp2W cHandle);
+CK_VISIBLE_PUBLIC void CkFtp2W_putAbortCurrent(HCkFtp2W cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkFtp2W_getAccount(HCkFtp2W cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void CkFtp2W_putAccount(HCkFtp2W cHandle, const wchar_t *newVal);
 CK_VISIBLE_PUBLIC const wchar_t *CkFtp2W_account(HCkFtp2W cHandle);
@@ -404,6 +406,7 @@ CK_VISIBLE_PUBLIC BOOL CkFtp2W_SetModeZ(HCkFtp2W cHandle);
 CK_VISIBLE_PUBLIC HCkTaskW CkFtp2W_SetModeZAsync(HCkFtp2W cHandle);
 CK_VISIBLE_PUBLIC void CkFtp2W_SetOldestDate(HCkFtp2W cHandle, SYSTEMTIME *oldestDateTime);
 CK_VISIBLE_PUBLIC void CkFtp2W_SetOldestDateStr(HCkFtp2W cHandle, const wchar_t *oldestDateTimeStr);
+CK_VISIBLE_PUBLIC BOOL CkFtp2W_SetOption(HCkFtp2W cHandle, const wchar_t *option);
 CK_VISIBLE_PUBLIC BOOL CkFtp2W_SetRemoteFileDateTime(HCkFtp2W cHandle, SYSTEMTIME *dt, const wchar_t *remoteFilename);
 CK_VISIBLE_PUBLIC BOOL CkFtp2W_SetRemoteFileDateTimeStr(HCkFtp2W cHandle, const wchar_t *dateTimeStr, const wchar_t *remoteFilename);
 CK_VISIBLE_PUBLIC HCkTaskW CkFtp2W_SetRemoteFileDateTimeStrAsync(HCkFtp2W cHandle, const wchar_t *dateTimeStr, const wchar_t *remoteFilename);

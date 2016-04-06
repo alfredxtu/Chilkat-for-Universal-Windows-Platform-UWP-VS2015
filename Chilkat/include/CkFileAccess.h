@@ -111,7 +111,9 @@ class CK_VISIBLE_PUBLIC CkFileAccess  : public CkMultiByteBase
 	bool AppendUtf8BOM(void);
 
 
-	// Creates all directories necessary such that the entire dirPath exists.
+	// Same as DirEnsureExists, except the argument is a file path (the last part of
+	// the path is a filename and not a directory). Creates all missing directories
+	// such that dirPath may be created.
 	bool DirAutoCreate(const char *path);
 
 
@@ -123,9 +125,7 @@ class CK_VISIBLE_PUBLIC CkFileAccess  : public CkMultiByteBase
 	bool DirDelete(const char *path);
 
 
-	// Same as DirAutoCreate, except the argument is a file path (the last part of the
-	// path is a filename and not a directory). Creates all missing directories such
-	// that filePath may be created.
+	// Creates all directories necessary such that the entire filePath exists.
 	bool DirEnsureExists(const char *filePath);
 
 

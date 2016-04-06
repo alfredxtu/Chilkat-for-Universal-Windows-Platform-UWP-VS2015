@@ -179,6 +179,14 @@ int64 Chilkat::Stream::NumSent::get()
     {
     return m_impl ? m_impl->get_NumSent() : 0;
     }
+Boolean Chilkat::Stream::AbortCurrent::get()
+    {
+    return m_impl ? m_impl->get_AbortCurrent() : false;
+    }
+void Chilkat::Stream::AbortCurrent::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
+    }
 
 
 Boolean Stream::SaveLastError(Platform::String ^path)

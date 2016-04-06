@@ -426,6 +426,14 @@ void Chilkat::SFtp::SyncMustNotMatch::set(String ^newVal)
     {
         if (m_impl) m_impl->put_SyncMustNotMatch(newVal ? newVal->Data() : L"");
     }
+String ^Chilkat::SFtp::SyncedFiles::get()
+    {
+    return ref new String(m_impl ? m_impl->syncedFiles() : L"");
+    }
+void Chilkat::SFtp::SyncedFiles::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_SyncedFiles(newVal ? newVal->Data() : L"");
+    }
 Boolean Chilkat::SFtp::TcpNoDelay::get()
     {
     return m_impl ? m_impl->get_TcpNoDelay() : false;
@@ -449,6 +457,14 @@ Boolean Chilkat::SFtp::UtcMode::get()
 void Chilkat::SFtp::UtcMode::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_UtcMode(newVal);
+    }
+Boolean Chilkat::SFtp::AbortCurrent::get()
+    {
+    return m_impl ? m_impl->get_AbortCurrent() : false;
+    }
+void Chilkat::SFtp::AbortCurrent::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
     }
 
 

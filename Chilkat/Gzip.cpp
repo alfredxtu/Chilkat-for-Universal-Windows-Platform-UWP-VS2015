@@ -147,6 +147,14 @@ void Chilkat::Gzip::UseCurrentDate::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_UseCurrentDate(newVal);
     }
+Boolean Chilkat::Gzip::AbortCurrent::get()
+    {
+    return m_impl ? m_impl->get_AbortCurrent() : false;
+    }
+void Chilkat::Gzip::AbortCurrent::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
+    }
 
 
 Boolean Gzip::SaveLastError(Platform::String ^path)

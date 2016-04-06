@@ -80,11 +80,11 @@ class CK_VISIBLE_PUBLIC CkStringArray  : public CkMultiByteBase
 
 	// If true, then duplicates are not allowed. When an attempt is made to insert a
 	// string that already exists, the duplicate insertion is silently suppressed and
-	// no error is returned.
+	// no error is returned. The default value is false.
 	bool get_Unique(void);
 	// If true, then duplicates are not allowed. When an attempt is made to insert a
 	// string that already exists, the duplicate insertion is silently suppressed and
-	// no error is returned.
+	// no error is returned. The default value is false.
 	void put_Unique(bool newVal);
 
 

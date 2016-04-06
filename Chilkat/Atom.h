@@ -110,6 +110,10 @@ public ref class Atom sealed
 	{
 		int32 get();
 	}
+	property Boolean AbortCurrent
+	{
+		Boolean get();
+	}
 
 
 	// ----------------------

@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.56
+// This is a generated source file for Chilkat version 9.5.0.58
 #ifndef _C_CkHttpWH
 #define _C_CkHttpWH
 #include "chilkatDefs.h"
@@ -14,6 +14,8 @@ CK_VISIBLE_PUBLIC void CkHttpW_setTaskCompleted(HCkHttpW cHandle, void (*fnTaskC
 CK_VISIBLE_PUBLIC HCkHttpW CkHttpW_Create(void);
 CK_VISIBLE_PUBLIC HCkHttpW CkHttpW_Create2(BOOL bCallbackOwned);
 CK_VISIBLE_PUBLIC void CkHttpW_Dispose(HCkHttpW handle);
+CK_VISIBLE_PUBLIC BOOL CkHttpW_getAbortCurrent(HCkHttpW cHandle);
+CK_VISIBLE_PUBLIC void CkHttpW_putAbortCurrent(HCkHttpW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkHttpW_getAccept(HCkHttpW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void CkHttpW_putAccept(HCkHttpW cHandle, const wchar_t *newVal);
 CK_VISIBLE_PUBLIC const wchar_t *CkHttpW_ck_accept(HCkHttpW cHandle);

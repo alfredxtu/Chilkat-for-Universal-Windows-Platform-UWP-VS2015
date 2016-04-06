@@ -367,6 +367,14 @@ void Chilkat::Ssh::EnableCompression::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_EnableCompression(newVal);
     }
+Boolean Chilkat::Ssh::AbortCurrent::get()
+    {
+    return m_impl ? m_impl->get_AbortCurrent() : false;
+    }
+void Chilkat::Ssh::AbortCurrent::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
+    }
 
 
 Boolean Ssh::SaveLastError(Platform::String ^path)

@@ -307,6 +307,17 @@ class CK_VISIBLE_PUBLIC CkCompressionW  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *CompressFileAsync(const wchar_t *srcPath, const wchar_t *destPath);
 
+	// Compresses a stream. Internally, the ARG1's source is read, compressed, and the
+	// compressed data written to the ARG1's sink. It does this in streaming fashion.
+	// Extremely large or even infinite streams can be compressed with stable ungrowing
+	// memory usage.
+	bool CompressStream(CkStreamW &strm);
+
+	// Creates an asynchronous task to call the CompressStream method with the
+	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *CompressStreamAsync(CkStreamW &strm);
+
 	// Compresses a string.
 	bool CompressString(const wchar_t *str, CkByteData &outData);
 
@@ -356,6 +367,17 @@ class CK_VISIBLE_PUBLIC CkCompressionW  : public CkClassWithCallbacksW
 	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *DecompressFileAsync(const wchar_t *srcPath, const wchar_t *destPath);
+
+	// Decompresses a stream. Internally, the ARG1's source is read, decompressed, and
+	// the decompressed data written to the ARG1's sink. It does this in streaming
+	// fashion. Extremely large or even infinite streams can be decompressed with
+	// stable ungrowing memory usage.
+	bool DecompressStream(CkStreamW &strm);
+
+	// Creates an asynchronous task to call the DecompressStream method with the
+	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *DecompressStreamAsync(CkStreamW &strm);
 
 	// Takes compressed bytes, decompresses, and returns the resulting string.
 	bool DecompressString(CkByteData &data, CkString &outStr);
@@ -614,28 +636,6 @@ class CK_VISIBLE_PUBLIC CkCompressionW  : public CkClassWithCallbacksW
 	// unlock code is provided which should replace the temporary/arbitrary string
 	// passed to this method.
 	bool UnlockComponent(const wchar_t *unlockCode);
-
-	// Compresses a stream. Internally, the ARG1's source is read, compressed, and the
-	// compressed data written to the ARG1's sink. It does this in streaming fashion.
-	// Extremely large or even infinite streams can be compressed with stable ungrowing
-	// memory usage.
-	bool CompressStream(CkStreamW &strm);
-
-	// Creates an asynchronous task to call the CompressStream method with the
-	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
-	// The caller is responsible for deleting the object returned by this method.
-	CkTaskW *CompressStreamAsync(CkStreamW &strm);
-
-	// Decompresses a stream. Internally, the ARG1's source is read, decompressed, and
-	// the decompressed data written to the ARG1's sink. It does this in streaming
-	// fashion. Extremely large or even infinite streams can be decompressed with
-	// stable ungrowing memory usage.
-	bool DecompressStream(CkStreamW &strm);
-
-	// Creates an asynchronous task to call the DecompressStream method with the
-	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
-	// The caller is responsible for deleting the object returned by this method.
-	CkTaskW *DecompressStreamAsync(CkStreamW &strm);
 
 
 

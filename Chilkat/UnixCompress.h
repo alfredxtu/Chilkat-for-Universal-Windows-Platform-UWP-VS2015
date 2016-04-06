@@ -110,6 +110,11 @@ public ref class UnixCompress sealed
 		int32 get();
 		void set(int32);
 	}
+	property Boolean AbortCurrent
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 
 
 	// ----------------------

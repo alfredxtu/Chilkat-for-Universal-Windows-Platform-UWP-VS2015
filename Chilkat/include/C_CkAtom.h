@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.56
+// This is a generated source file for Chilkat version 9.5.0.58
 #ifndef _C_CkAtom_H
 #define _C_CkAtom_H
 #include "chilkatDefs.h"
@@ -13,6 +13,7 @@ CK_VISIBLE_PUBLIC void CkAtom_setTaskCompleted(HCkAtom cHandle, void (*fnTaskCom
 
 CK_VISIBLE_PUBLIC HCkAtom CkAtom_Create(void);
 CK_VISIBLE_PUBLIC void CkAtom_Dispose(HCkAtom handle);
+CK_VISIBLE_PUBLIC BOOL CkAtom_getAbortCurrent(HCkAtom cHandle);
 CK_VISIBLE_PUBLIC void CkAtom_getDebugLogFilePath(HCkAtom cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void CkAtom_putDebugLogFilePath(HCkAtom cHandle, const char *newVal);
 CK_VISIBLE_PUBLIC const char *CkAtom_debugLogFilePath(HCkAtom cHandle);
