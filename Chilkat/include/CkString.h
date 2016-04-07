@@ -3,6 +3,7 @@
 //////////////////////////////////////////////////////////////////////
 
 // This header is NOT generated.
+// Some methods may be undocumented.
 
 #ifndef _CKSTRING_H
 #define _CKSTRING_H
@@ -177,6 +178,7 @@ class CK_VISIBLE_PUBLIC CkString : public CkObject
 	// To/From Unicode (wchar_t)
 	// On some systems wchar_t is utf-16, on others it is utf-32.
 	void setStringU(const wchar_t *unicode);
+	void setStringUtf16(const uint16_t *unicode);
 	void appendU(const wchar_t *unicode);
 	void appendNU(const wchar_t *unicode, int numChars);
 	const wchar_t *getUnicode(void) const;
