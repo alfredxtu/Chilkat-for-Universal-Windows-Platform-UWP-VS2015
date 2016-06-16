@@ -371,6 +371,8 @@ CK_VISIBLE_PUBLIC BOOL CkFtp2W_GetXmlDirListing(HCkFtp2W cHandle, const wchar_t 
 CK_VISIBLE_PUBLIC const wchar_t *CkFtp2W_getXmlDirListing(HCkFtp2W cHandle, const wchar_t *pattern);
 CK_VISIBLE_PUBLIC HCkTaskW CkFtp2W_GetXmlDirListingAsync(HCkFtp2W cHandle, const wchar_t *pattern);
 CK_VISIBLE_PUBLIC BOOL CkFtp2W_IsUnlocked(HCkFtp2W cHandle);
+CK_VISIBLE_PUBLIC BOOL CkFtp2W_LargeFileUpload(HCkFtp2W cHandle, const wchar_t *localPath, const wchar_t *remotePath, int chunkSize);
+CK_VISIBLE_PUBLIC HCkTaskW CkFtp2W_LargeFileUploadAsync(HCkFtp2W cHandle, const wchar_t *localPath, const wchar_t *remotePath, int chunkSize);
 CK_VISIBLE_PUBLIC BOOL CkFtp2W_LoginAfterConnectOnly(HCkFtp2W cHandle);
 CK_VISIBLE_PUBLIC HCkTaskW CkFtp2W_LoginAfterConnectOnlyAsync(HCkFtp2W cHandle);
 CK_VISIBLE_PUBLIC int CkFtp2W_MGetFiles(HCkFtp2W cHandle, const wchar_t *remotePattern, const wchar_t *localDir);

@@ -71,6 +71,23 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	// ----------------------
 	// Properties
 	// ----------------------
+	// When set to true, causes the currently running method to abort. Methods that
+	// always finish quickly (i.e.have no length file operations or network
+	// communications) are not affected. If no method is running, then this property is
+	// automatically reset to false when the next method is called. When the abort
+	// occurs, this property is reset to false. Both synchronous and asynchronous
+	// method calls can be aborted. (A synchronous method call could be aborted by
+	// setting this property from a separate thread.)
+	bool get_AbortCurrent(void);
+	// When set to true, causes the currently running method to abort. Methods that
+	// always finish quickly (i.e.have no length file operations or network
+	// communications) are not affected. If no method is running, then this property is
+	// automatically reset to false when the next method is called. When the abort
+	// occurs, this property is reset to false. Both synchronous and asynchronous
+	// method calls can be aborted. (A synchronous method call could be aborted by
+	// setting this property from a separate thread.)
+	void put_AbortCurrent(bool newVal);
+
 	// When true (the default) the Append method will mark the email appended to a
 	// mailbox as already seen. Otherwise an appended email will be initialized to have
 	// a status of unseen.
@@ -1037,23 +1054,6 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	// 
 	int get_UidValidity(void);
 
-	// When set to true, causes the currently running method to abort. Methods that
-	// always finish quickly (i.e.have no length file operations or network
-	// communications) are not affected. If no method is running, then this property is
-	// automatically reset to false when the next method is called. When the abort
-	// occurs, this property is reset to false. Both synchronous and asynchronous
-	// method calls can be aborted. (A synchronous method call could be aborted by
-	// setting this property from a separate thread.)
-	bool get_AbortCurrent(void);
-	// When set to true, causes the currently running method to abort. Methods that
-	// always finish quickly (i.e.have no length file operations or network
-	// communications) are not affected. If no method is running, then this property is
-	// automatically reset to false when the next method is called. When the abort
-	// occurs, this property is reset to false. Both synchronous and asynchronous
-	// method calls can be aborted. (A synchronous method call could be aborted by
-	// setting this property from a separate thread.)
-	void put_AbortCurrent(bool newVal);
-
 
 
 	// ----------------------
@@ -1546,9 +1546,46 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *GetMailboxStatusAsync(const wchar_t *mailbox);
 
+	// Sends the GETQUOTA command and returns the response in JSON format. This feature
+	// is only possible with IMAP servers that support the QUOTA extension/capability.
+	bool GetQuota(const wchar_t *quotaRoot, CkString &outStr);
+	// Sends the GETQUOTA command and returns the response in JSON format. This feature
+	// is only possible with IMAP servers that support the QUOTA extension/capability.
+	const wchar_t *getQuota(const wchar_t *quotaRoot);
+	// Sends the GETQUOTA command and returns the response in JSON format. This feature
+	// is only possible with IMAP servers that support the QUOTA extension/capability.
+	const wchar_t *quota(const wchar_t *quotaRoot);
+
+	// Creates an asynchronous task to call the GetQuota method with the arguments
+	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *GetQuotaAsync(const wchar_t *quotaRoot);
+
+	// Sends the GETQUOTAROOT command and returns the response in JSON format. This
+	// feature is only possible with IMAP servers that support the QUOTA
+	// extension/capability.
+	bool GetQuotaRoot(const wchar_t *mailboxName, CkString &outStr);
+	// Sends the GETQUOTAROOT command and returns the response in JSON format. This
+	// feature is only possible with IMAP servers that support the QUOTA
+	// extension/capability.
+	const wchar_t *getQuotaRoot(const wchar_t *mailboxName);
+	// Sends the GETQUOTAROOT command and returns the response in JSON format. This
+	// feature is only possible with IMAP servers that support the QUOTA
+	// extension/capability.
+	const wchar_t *quotaRoot(const wchar_t *mailboxName);
+
+	// Creates an asynchronous task to call the GetQuotaRoot method with the arguments
+	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *GetQuotaRootAsync(const wchar_t *mailboxName);
+
 	// Returns the IMAP server's digital certificate (for SSL / TLS connections).
 	// The caller is responsible for deleting the object returned by this method.
 	CkCertW *GetSslServerCert(void);
+
+	// Returns true if the capability indicated by ARG1 is found in the ARG2.
+	// Otherwise returns false.
+	bool HasCapability(const wchar_t *name, const wchar_t *capabilityResponse);
 
 	// Polls the connection to see if any real-time updates are available. The ARG1
 	// indicates how long to wait for incoming updates. This method does not send a
@@ -2163,12 +2200,33 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	// Note: Calling this method is identical to calling the SetFlag method, except the
 	// UID is automatically obtained from the email object.
 	// 
+	// Important: Setting the "Deleted" flag does not remove the email from the
+	// mailbox. Emails marked "Deleted" are removed when the Expunge method is called.
+	// 
 	bool SetMailFlag(CkEmailW &email, const wchar_t *flagName, int value);
 
 	// Creates an asynchronous task to call the SetMailFlag method with the arguments
 	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *SetMailFlagAsync(CkEmailW &email, const wchar_t *flagName, int value);
+
+	// Sets the quota for a ARG1. The ARG2 should be one of two keywords:"STORAGE" or
+	// "MESSAGE". Use "STORAGE" to set the maximum capacity of the combined messages in
+	// ARG1. Use "MESSAGE" to set the maximum number of messages allowed.
+	// 
+	// If setting a STORAGE quota, the ARG3 is in units of 1024 octets. For example, to
+	// specify a limit of 500,000,000 bytes, set ARG3 equal to 500,000.
+	// 
+	// This feature is only possible with IMAP servers that support the QUOTA
+	// extension/capability. If an IMAP server supports the QUOTA extension, it likely
+	// supports the STORAGE resource. The MESSAGE resource is less commonly supported.
+	// 
+	bool SetQuota(const wchar_t *quotaRoot, const wchar_t *resource, int quota);
+
+	// Creates an asynchronous task to call the SetQuota method with the arguments
+	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *SetQuotaAsync(const wchar_t *quotaRoot, const wchar_t *resource, int quota);
 
 	// Specifies a client-side certificate to be used for the SSL / TLS connection. In
 	// most cases, servers do not require client-side certificates for SSL/TLS. A

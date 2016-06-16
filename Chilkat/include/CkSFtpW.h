@@ -773,6 +773,37 @@ class CK_VISIBLE_PUBLIC CkSFtpW  : public CkClassWithCallbacksW
 	// setting this property from a separate thread.)
 	void put_AbortCurrent(bool newVal);
 
+	// A property that can contain a list of comma-separated keywords to control
+	// certain aspects of an upload or download synchronization (for the SyncTreeUpload
+	// and SyncTreeDownload methods). At this time there is only one possible
+	// directive, but others may be added in the future.
+	// 
+	// Set this property to "UploadIgnoreLocalOpenFailures" to skip local files that
+	// cannot be opened. A common reason for this would be if another process on the
+	// system has the file open for exclusive access.
+	// 
+	void get_SyncDirectives(CkString &str);
+	// A property that can contain a list of comma-separated keywords to control
+	// certain aspects of an upload or download synchronization (for the SyncTreeUpload
+	// and SyncTreeDownload methods). At this time there is only one possible
+	// directive, but others may be added in the future.
+	// 
+	// Set this property to "UploadIgnoreLocalOpenFailures" to skip local files that
+	// cannot be opened. A common reason for this would be if another process on the
+	// system has the file open for exclusive access.
+	// 
+	const wchar_t *syncDirectives(void);
+	// A property that can contain a list of comma-separated keywords to control
+	// certain aspects of an upload or download synchronization (for the SyncTreeUpload
+	// and SyncTreeDownload methods). At this time there is only one possible
+	// directive, but others may be added in the future.
+	// 
+	// Set this property to "UploadIgnoreLocalOpenFailures" to skip local files that
+	// cannot be opened. A common reason for this would be if another process on the
+	// system has the file open for exclusive access.
+	// 
+	void put_SyncDirectives(const wchar_t *newVal);
+
 
 
 	// ----------------------
@@ -857,7 +888,7 @@ class CK_VISIBLE_PUBLIC CkSFtpW  : public CkClassWithCallbacksW
 	void ClearSessionLog(void);
 
 	// Closes a file on the SSH/SFTP server. handle is a file handle returned from a
-	// previous call to OpenFile.
+	// previous call to OpenFile or OpenDir.
 	bool CloseHandle(const wchar_t *handle);
 
 	// Creates an asynchronous task to call the CloseHandle method with the arguments
@@ -1311,7 +1342,8 @@ class CK_VISIBLE_PUBLIC CkSFtpW  : public CkClassWithCallbacksW
 
 	// Opens or creates a file on the remote system. Returns a handle which may be
 	// passed to methods for reading and/or writing the file. The remotePath is the remote
-	// file path (the path to the file on the server).
+	// file path (the path to the file on the server). When the application is finished
+	// with the handle, it should call CloseHandle(remotePath).
 	// 
 	//  access should be one of the following strings: "readOnly", "writeOnly", or
 	// "readWrite".
@@ -1413,7 +1445,8 @@ class CK_VISIBLE_PUBLIC CkSFtpW  : public CkClassWithCallbacksW
 	bool OpenFile(const wchar_t *remoteFilePath, const wchar_t *access, const wchar_t *createDisp, CkString &outStr);
 	// Opens or creates a file on the remote system. Returns a handle which may be
 	// passed to methods for reading and/or writing the file. The remotePath is the remote
-	// file path (the path to the file on the server).
+	// file path (the path to the file on the server). When the application is finished
+	// with the handle, it should call CloseHandle(remotePath).
 	// 
 	//  access should be one of the following strings: "readOnly", "writeOnly", or
 	// "readWrite".

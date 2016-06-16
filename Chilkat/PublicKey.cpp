@@ -279,6 +279,81 @@ Boolean PublicKey::SaveXmlFile(Platform::String ^path)
 	// cppType = bool
 	return m_impl->SaveXmlFile(path ? path->Data() : L"");
     }
+Boolean PublicKey::LoadFromBinary(Windows::Foundation::Collections::IVector<uint8>^keyBytes)
+    {
+	if (m_impl == nullptr) { return false; }
+	CkByteData db0; std::vector<uint8> v0;
+        if (keyBytes != nullptr) { v0 = to_vector(keyBytes);
+            db0.borrowData(&v0[0], (unsigned long)v0.size()); }
+	// --- prep output arg ---
+	// gType = bool
+	// cppType = bool
+	return m_impl->LoadFromBinary(db0);
+    }
+Boolean PublicKey::LoadFromString(Platform::String ^keyString)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	// gType = bool
+	// cppType = bool
+	return m_impl->LoadFromString(keyString ? keyString->Data() : L"");
+    }
+Boolean PublicKey::LoadFromFile(Platform::String ^path)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	// gType = bool
+	// cppType = bool
+	return m_impl->LoadFromFile(path ? path->Data() : L"");
+    }
+Windows::Foundation::Collections::IVector<uint8>^PublicKey::GetDer(Boolean preferPkcs1)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CkByteData outDb;
+	// gType = bytes
+	// cppType = bool
+	bool success = m_impl->GetDer(preferPkcs1,outDb);
+	const uint8 *pOut = outDb.getData();
+	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
+	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
+    }
+Platform::String ^PublicKey::GetPem(Boolean preferPkcs1)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	// gType = string
+	// cppType = bool
+	const wchar_t *retStr = m_impl->getPem(preferPkcs1);
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
+Platform::String ^PublicKey::GetEncoded(Boolean preferPkcs1, Platform::String ^encoding)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	// gType = string
+	// cppType = bool
+	const wchar_t *retStr = m_impl->getEncoded(preferPkcs1,encoding ? encoding->Data() : L"");
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
+Boolean PublicKey::SaveDerFile(Boolean preferPkcs1, Platform::String ^path)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	// gType = bool
+	// cppType = bool
+	return m_impl->SaveDerFile(preferPkcs1,path ? path->Data() : L"");
+    }
+Boolean PublicKey::SavePemFile(Boolean preferPkcs1, Platform::String ^path)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	// gType = bool
+	// cppType = bool
+	return m_impl->SavePemFile(preferPkcs1,path ? path->Data() : L"");
+    }
 
 
 

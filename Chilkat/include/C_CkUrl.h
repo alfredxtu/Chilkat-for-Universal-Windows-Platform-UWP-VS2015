@@ -19,6 +19,8 @@ CK_VISIBLE_PUBLIC void CkUrl_getPassword(HCkUrl cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const char *CkUrl_password(HCkUrl cHandle);
 CK_VISIBLE_PUBLIC void CkUrl_getPath(HCkUrl cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const char *CkUrl_path(HCkUrl cHandle);
+CK_VISIBLE_PUBLIC void CkUrl_getPathWithQueryParams(HCkUrl cHandle, HCkString retval);
+CK_VISIBLE_PUBLIC const char *CkUrl_pathWithQueryParams(HCkUrl cHandle);
 CK_VISIBLE_PUBLIC int CkUrl_getPort(HCkUrl cHandle);
 CK_VISIBLE_PUBLIC void CkUrl_getQuery(HCkUrl cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const char *CkUrl_query(HCkUrl cHandle);

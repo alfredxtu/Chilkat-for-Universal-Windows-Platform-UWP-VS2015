@@ -123,6 +123,10 @@ public ref class JsonArray sealed
 
 	Platform::String ^StringAt(int index);
 
+	Platform::String ^Emit(void);
+
+	int TypeAt(int index);
+
 
 
 };

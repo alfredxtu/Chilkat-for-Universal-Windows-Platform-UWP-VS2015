@@ -150,6 +150,31 @@ class CK_VISIBLE_PUBLIC CkJsonArrayW  : public CkWideCharBase
 	// member is at index 0).
 	const wchar_t *stringAt(int index);
 
+	// Writes the JSON array (rooted at the caller) and returns as a string.
+	// 
+	// Note: To control the compact/non-compact format, and to control the LF/CRLF
+	// line-endings, set the EmitCompact and EmitCrlf properties of the JSON object
+	// prior to getting the CLASS_NAME object.
+	// 
+	bool Emit(CkString &outStr);
+	// Writes the JSON array (rooted at the caller) and returns as a string.
+	// 
+	// Note: To control the compact/non-compact format, and to control the LF/CRLF
+	// line-endings, set the EmitCompact and EmitCrlf properties of the JSON object
+	// prior to getting the CLASS_NAME object.
+	// 
+	const wchar_t *emit(void);
+
+	// Returns the type of data at the given ARG1. Possible return values are:
+	//     string
+	//     number
+	//     object
+	//     array
+	//     boolean
+	//     null
+	// Returns -1 if no member exists at the given ARG1.
+	int TypeAt(int index);
+
 
 
 

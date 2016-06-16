@@ -133,6 +133,22 @@ void Chilkat::Scp::AbortCurrent::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_AbortCurrent(newVal);
     }
+String ^Chilkat::Scp::SyncMustMatchDir::get()
+    {
+    return ref new String(m_impl ? m_impl->syncMustMatchDir() : L"");
+    }
+void Chilkat::Scp::SyncMustMatchDir::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_SyncMustMatchDir(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::Scp::SyncMustNotMatchDir::get()
+    {
+    return ref new String(m_impl ? m_impl->syncMustNotMatchDir() : L"");
+    }
+void Chilkat::Scp::SyncMustNotMatchDir::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_SyncMustNotMatchDir(newVal ? newVal->Data() : L"");
+    }
 
 
 Boolean Scp::SaveLastError(Platform::String ^path)

@@ -55,6 +55,23 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	// ----------------------
 	// Properties
 	// ----------------------
+	// When set to true, causes the currently running method to abort. Methods that
+	// always finish quickly (i.e.have no length file operations or network
+	// communications) are not affected. If no method is running, then this property is
+	// automatically reset to false when the next method is called. When the abort
+	// occurs, this property is reset to false. Both synchronous and asynchronous
+	// method calls can be aborted. (A synchronous method call could be aborted by
+	// setting this property from a separate thread.)
+	bool get_AbortCurrent(void);
+	// When set to true, causes the currently running method to abort. Methods that
+	// always finish quickly (i.e.have no length file operations or network
+	// communications) are not affected. If no method is running, then this property is
+	// automatically reset to false when the next method is called. When the abort
+	// occurs, this property is reset to false. Both synchronous and asynchronous
+	// method calls can be aborted. (A synchronous method call could be aborted by
+	// setting this property from a separate thread.)
+	void put_AbortCurrent(bool newVal);
+
 	// If a AcceptNextConnection method fails, this property can be checked to
 	// determine the reason for failure.
 	// 
@@ -1353,23 +1370,6 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	// the socket.
 	void put_UserData(const char *newVal);
 
-	// When set to true, causes the currently running method to abort. Methods that
-	// always finish quickly (i.e.have no length file operations or network
-	// communications) are not affected. If no method is running, then this property is
-	// automatically reset to false when the next method is called. When the abort
-	// occurs, this property is reset to false. Both synchronous and asynchronous
-	// method calls can be aborted. (A synchronous method call could be aborted by
-	// setting this property from a separate thread.)
-	bool get_AbortCurrent(void);
-	// When set to true, causes the currently running method to abort. Methods that
-	// always finish quickly (i.e.have no length file operations or network
-	// communications) are not affected. If no method is running, then this property is
-	// automatically reset to false when the next method is called. When the abort
-	// occurs, this property is reset to false. Both synchronous and asynchronous
-	// method calls can be aborted. (A synchronous method call could be aborted by
-	// setting this property from a separate thread.)
-	void put_AbortCurrent(bool newVal);
-
 
 
 	// ----------------------
@@ -1636,6 +1636,22 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	// process an incoming connection and then return to accept the next connection.
 	// 
 	bool BindAndListen(int port, int backlog);
+
+	// Binds a TCP socket to a port and configures it to listen for incoming
+	// connections. The size of the backlog is passed in  backLog. The  backLog is necessary
+	// when multiple connections arrive at the same time, or close enough in time such
+	// that they cannot be serviced immediately. (A typical value to use for  backLog is
+	// 5.) This method should be called once prior to receiving incoming connection
+	// requests via the AcceptNextConnection or AsyncAcceptStart methods.
+	// 
+	// To bind and listen using IPv6, set the ListenIpv6 property = true prior to
+	// calling this method.
+	// 
+	// What is a reasonable value for  backLog? The answer depends on how many simultaneous
+	// incoming connections could be expected, and how quickly your application can
+	// process an incoming connection and then return to accept the next connection.
+	// 
+	CkTask *BindAndListenAsync(int port, int backlog);
 
 
 	// Convenience method for building a simple HTTP GET request from a URL.

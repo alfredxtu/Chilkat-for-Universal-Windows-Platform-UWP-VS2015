@@ -61,6 +61,23 @@ class CK_VISIBLE_PUBLIC CkFtp2W  : public CkClassWithCallbacksW
 	// ----------------------
 	// Properties
 	// ----------------------
+	// When set to true, causes the currently running method to abort. Methods that
+	// always finish quickly (i.e.have no length file operations or network
+	// communications) are not affected. If no method is running, then this property is
+	// automatically reset to false when the next method is called. When the abort
+	// occurs, this property is reset to false. Both synchronous and asynchronous
+	// method calls can be aborted. (A synchronous method call could be aborted by
+	// setting this property from a separate thread.)
+	bool get_AbortCurrent(void);
+	// When set to true, causes the currently running method to abort. Methods that
+	// always finish quickly (i.e.have no length file operations or network
+	// communications) are not affected. If no method is running, then this property is
+	// automatically reset to false when the next method is called. When the abort
+	// occurs, this property is reset to false. Both synchronous and asynchronous
+	// method calls can be aborted. (A synchronous method call could be aborted by
+	// setting this property from a separate thread.)
+	void put_AbortCurrent(bool newVal);
+
 	// Some FTP servers require an Account name in addition to login/password. This
 	// property can be set for those servers with this requirement.
 	void get_Account(CkString &str);
@@ -666,14 +683,41 @@ class CK_VISIBLE_PUBLIC CkFtp2W  : public CkClassWithCallbacksW
 	// If set, forces the IP address used in the PORT command for Active mode (i.e.
 	// non-passive) data transfers. This string property should be set to the IP
 	// address in dotted notation, such as "233.190.65.31".
+	// 
+	// Note: This property can also be set to the special keyword "control" to force
+	// the PORT IP address to be the address of the control connection's peer.
+	// 
+	// Starting in v9.5.0.58, the IP address can be prefixed with the string "bind-".
+	// For example, "bind-233.190.65.31". When "bind-" is specified, the local data
+	// socket will be bound to the IP address when created. Otherwise, the IP address
+	// is only used as the argument to the PORT command that is sent to the server.
+	// 
 	void get_ForcePortIpAddress(CkString &str);
 	// If set, forces the IP address used in the PORT command for Active mode (i.e.
 	// non-passive) data transfers. This string property should be set to the IP
 	// address in dotted notation, such as "233.190.65.31".
+	// 
+	// Note: This property can also be set to the special keyword "control" to force
+	// the PORT IP address to be the address of the control connection's peer.
+	// 
+	// Starting in v9.5.0.58, the IP address can be prefixed with the string "bind-".
+	// For example, "bind-233.190.65.31". When "bind-" is specified, the local data
+	// socket will be bound to the IP address when created. Otherwise, the IP address
+	// is only used as the argument to the PORT command that is sent to the server.
+	// 
 	const wchar_t *forcePortIpAddress(void);
 	// If set, forces the IP address used in the PORT command for Active mode (i.e.
 	// non-passive) data transfers. This string property should be set to the IP
 	// address in dotted notation, such as "233.190.65.31".
+	// 
+	// Note: This property can also be set to the special keyword "control" to force
+	// the PORT IP address to be the address of the control connection's peer.
+	// 
+	// Starting in v9.5.0.58, the IP address can be prefixed with the string "bind-".
+	// For example, "bind-233.190.65.31". When "bind-" is specified, the local data
+	// socket will be bound to the IP address when created. Otherwise, the IP address
+	// is only used as the argument to the PORT command that is sent to the server.
+	// 
 	void put_ForcePortIpAddress(const wchar_t *newVal);
 
 	// The initial greeting received from the FTP server after connecting.
@@ -1804,23 +1848,6 @@ class CK_VISIBLE_PUBLIC CkFtp2W  : public CkClassWithCallbacksW
 	const wchar_t *username(void);
 	// Username for logging into the FTP server. Defaults to "anonymous".
 	void put_Username(const wchar_t *newVal);
-
-	// When set to true, causes the currently running method to abort. Methods that
-	// always finish quickly (i.e.have no length file operations or network
-	// communications) are not affected. If no method is running, then this property is
-	// automatically reset to false when the next method is called. When the abort
-	// occurs, this property is reset to false. Both synchronous and asynchronous
-	// method calls can be aborted. (A synchronous method call could be aborted by
-	// setting this property from a separate thread.)
-	bool get_AbortCurrent(void);
-	// When set to true, causes the currently running method to abort. Methods that
-	// always finish quickly (i.e.have no length file operations or network
-	// communications) are not affected. If no method is running, then this property is
-	// automatically reset to false when the next method is called. When the abort
-	// occurs, this property is reset to false. Both synchronous and asynchronous
-	// method calls can be aborted. (A synchronous method call could be aborted by
-	// setting this property from a separate thread.)
-	void put_AbortCurrent(bool newVal);
 
 
 
@@ -3498,6 +3525,49 @@ class CK_VISIBLE_PUBLIC CkFtp2W  : public CkClassWithCallbacksW
 	// Return true if the component is already unlocked.
 	bool IsUnlocked(void);
 
+	// This is the same as PutFile, but designed to work around the following potential
+	// problem associated with an upload that is extremely large.
+	// 
+	// FTP uses two TCP (or TLS) connections: a control connection to submit commands
+	// and receive replies, and a data connection for actual file transfers. It is the
+	// nature of FTP that during a transfer the control connection stays completely
+	// idle. Many routers and firewalls automatically close idle connections after a
+	// certain period of time. Worse, they often don't notify the user, but just
+	// silently drop the connection.
+	// 
+	// For FTP, this means that during a long transfer the control connection can get
+	// dropped because it is detected as idle, but neither client nor server are
+	// notified. When all data has been transferred, the server assumes the control
+	// connection is alive and it sends the transfer confirmation reply.
+	// 
+	// Likewise, the client thinks the control connection is alive and it waits for the
+	// reply from the server. But since the control connection got dropped without
+	// notification, the reply never arrives and eventually the connection will
+	// timeout.
+	// 
+	// The Solution: This method uploads the file in chunks, where each chunk appends
+	// to the remote file. This way, each chunk is a separate FTP upload that does not
+	// take too long to complete. The ARG3 specifies the number of bytes to upload in
+	// each chunk. The size should be based on the amount of memory available (because
+	// each chunk will reside in memory as it's being uploaded), the transfer rate, and
+	// the total size of the file being uploaded. For example, if a 4GB file is
+	// uploaded, and the ARG3 is set to 1MB (1,048,576 bytes), then 4000 separate
+	// chunks would be required. This is likely not a good choice for ARG3. A more
+	// appropriate ARG3 might be 20MB, in which case the upload would complete in 200
+	// separate chunks. The application would temporarily be using a 20MB buffer for
+	// uploading chunks. The tradeoff is between the number of chunks (the more chunks,
+	// the larger the overall time to upload), the amount of memory that is reasonable
+	// for the temporary buffer, and the amount of time required to upload each chunk
+	// (if the chunk size is too large, then the problem described above is not
+	// solved).
+	// 
+	bool LargeFileUpload(const wchar_t *localPath, const wchar_t *remotePath, int chunkSize);
+
+	// Creates an asynchronous task to call the LargeFileUpload method with the
+	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *LargeFileUploadAsync(const wchar_t *localPath, const wchar_t *remotePath, int chunkSize);
+
 	// Authenticates with the FTP server using the values provided in the Username,
 	// Password, and/or other properties. This can be called after establishing the
 	// connection via the ConnectOnly method. (The Connect method both connects and
@@ -3726,6 +3796,18 @@ class CK_VISIBLE_PUBLIC CkFtp2W  : public CkClassWithCallbacksW
 	// 
 	void SetOldestDateStr(const wchar_t *oldestDateTimeStr);
 
+	// This is a general purpose method to set miscellaneous options that might arise
+	// due to buggy or quirky FTP servers. The ARG1 is a string describing the option.
+	// The current list of possible options are:
+	//     "Microsoft-TLS-1.2-Workaround" -- This is to force the data connection to
+	//     use TLS 1.0 instead of the default. It works around the Microsoft FTP server bug
+	//     found here: https://support.microsoft.com/en-us/kb/2888853
+	// 
+	// To turn off an option, prepend the string "No-". For example
+	// "No-Microsoft-TLS-1.2-Workaround". All options are turned off by default.
+	// 
+	bool SetOption(const wchar_t *option);
+
 	// Sets the last-modified date/time of a file on the FTP server. Important: Not all
 	// FTP servers support this functionality. Please see the information at the
 	// Chilkat blog below:
@@ -3925,18 +4007,6 @@ class CK_VISIBLE_PUBLIC CkFtp2W  : public CkClassWithCallbacksW
 	// Unlocks the component. This must be called once prior to calling any other
 	// method. A permanent unlock code for FTP2 should contain the substring "FTP".
 	bool UnlockComponent(const wchar_t *unlockCode);
-
-	// This is a general purpose method to set miscellaneous options that might arise
-	// due to buggy or quirky FTP servers. The ARG1 is a string describing the option.
-	// The current list of possible options are:
-	//     "Microsoft-TLS-1.2-Workaround" -- This is to force the data connection to
-	//     use TLS 1.0 instead of the default. It works around the Microsoft FTP server bug
-	//     found here: https://support.microsoft.com/en-us/kb/2888853
-	// 
-	// To turn off an option, prepend the string "No-". For example
-	// "No-Microsoft-TLS-1.2-Workaround". All options are turned off by default.
-	// 
-	bool SetOption(const wchar_t *option);
 
 
 

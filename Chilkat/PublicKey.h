@@ -124,6 +124,22 @@ public ref class PublicKey sealed
 
 	Boolean SaveXmlFile(Platform::String ^path);
 
+	Boolean LoadFromBinary(Windows::Foundation::Collections::IVector<uint8>^keyBytes);
+
+	Boolean LoadFromString(Platform::String ^keyString);
+
+	Boolean LoadFromFile(Platform::String ^path);
+
+	Windows::Foundation::Collections::IVector<uint8>^GetDer(Boolean preferPkcs1);
+
+	Platform::String ^GetPem(Boolean preferPkcs1);
+
+	Platform::String ^GetEncoded(Boolean preferPkcs1, Platform::String ^encoding);
+
+	Boolean SaveDerFile(Boolean preferPkcs1, Platform::String ^path);
+
+	Boolean SavePemFile(Boolean preferPkcs1, Platform::String ^path);
+
 
 
 };

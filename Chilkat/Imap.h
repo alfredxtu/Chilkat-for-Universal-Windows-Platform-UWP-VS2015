@@ -116,6 +116,11 @@ public ref class Imap sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Boolean AbortCurrent
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property Boolean AppendSeen
 	{
 		Boolean get();
@@ -365,11 +370,6 @@ public ref class Imap sealed
 	{
 		int32 get();
 	}
-	property Boolean AbortCurrent
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 
 
 	// ----------------------
@@ -538,6 +538,14 @@ public ref class Imap sealed
 	Boolean UseSsh(Ssh ^ssh);
 
 	Boolean UseSshTunnel(Socket ^tunnel);
+
+	Boolean HasCapability(Platform::String ^name, Platform::String ^capabilityResponse);
+
+	IAsyncOperation<Platform::String ^>^ GetQuotaRootAsync(Platform::String ^mailboxName);
+
+	IAsyncOperation<Platform::String ^>^ GetQuotaAsync(Platform::String ^quotaRoot);
+
+	IAsyncOperation<Boolean>^ SetQuotaAsync(Platform::String ^quotaRoot, Platform::String ^resource, int quota);
 
 
 

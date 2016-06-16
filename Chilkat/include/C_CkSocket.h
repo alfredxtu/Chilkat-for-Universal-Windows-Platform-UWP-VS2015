@@ -208,6 +208,7 @@ CK_VISIBLE_PUBLIC BOOL CkSocket_AsyncSendByteData(HCkSocket cHandle, HCkByteData
 CK_VISIBLE_PUBLIC BOOL CkSocket_AsyncSendBytes(HCkSocket cHandle, HCkByteData byteData);
 CK_VISIBLE_PUBLIC BOOL CkSocket_AsyncSendString(HCkSocket cHandle, const char *stringToSend);
 CK_VISIBLE_PUBLIC BOOL CkSocket_BindAndListen(HCkSocket cHandle, int port, int backLog);
+CK_VISIBLE_PUBLIC HCkTask CkSocket_BindAndListenAsync(HCkSocket cHandle, int port, int backLog);
 CK_VISIBLE_PUBLIC BOOL CkSocket_BuildHttpGetRequest(HCkSocket cHandle, const char *url, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkSocket_buildHttpGetRequest(HCkSocket cHandle, const char *url);
 CK_VISIBLE_PUBLIC int CkSocket_CheckWriteable(HCkSocket cHandle, int maxWaitMs);

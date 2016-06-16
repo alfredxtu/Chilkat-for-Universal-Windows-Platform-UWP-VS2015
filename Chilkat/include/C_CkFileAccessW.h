@@ -48,6 +48,9 @@ CK_VISIBLE_PUBLIC BOOL CkFileAccessW_FileRename(HCkFileAccessW cHandle, const wc
 CK_VISIBLE_PUBLIC BOOL CkFileAccessW_FileSeek(HCkFileAccessW cHandle, int offset, int origin);
 CK_VISIBLE_PUBLIC int CkFileAccessW_FileSize(HCkFileAccessW cHandle, const wchar_t *filePath);
 CK_VISIBLE_PUBLIC BOOL CkFileAccessW_FileWrite(HCkFileAccessW cHandle, HCkByteData data);
+CK_VISIBLE_PUBLIC BOOL CkFileAccessW_GenBlockId(HCkFileAccessW cHandle, int index, int length, const wchar_t *encoding, HCkString outStr);
+CK_VISIBLE_PUBLIC const wchar_t *CkFileAccessW_genBlockId(HCkFileAccessW cHandle, int index, int length, const wchar_t *encoding);
+CK_VISIBLE_PUBLIC int CkFileAccessW_GetNumBlocks(HCkFileAccessW cHandle, int blockSize);
 CK_VISIBLE_PUBLIC BOOL CkFileAccessW_GetTempFilename(HCkFileAccessW cHandle, const wchar_t *dirPath, const wchar_t *prefix, HCkString outStr);
 CK_VISIBLE_PUBLIC const wchar_t *CkFileAccessW_getTempFilename(HCkFileAccessW cHandle, const wchar_t *dirPath, const wchar_t *prefix);
 CK_VISIBLE_PUBLIC BOOL CkFileAccessW_OpenForAppend(HCkFileAccessW cHandle, const wchar_t *filePath);
@@ -56,6 +59,7 @@ CK_VISIBLE_PUBLIC BOOL CkFileAccessW_OpenForReadWrite(HCkFileAccessW cHandle, co
 CK_VISIBLE_PUBLIC BOOL CkFileAccessW_OpenForWrite(HCkFileAccessW cHandle, const wchar_t *filePath);
 CK_VISIBLE_PUBLIC BOOL CkFileAccessW_ReadBinaryToEncoded(HCkFileAccessW cHandle, const wchar_t *filePath, const wchar_t *encoding, HCkString outStr);
 CK_VISIBLE_PUBLIC const wchar_t *CkFileAccessW_readBinaryToEncoded(HCkFileAccessW cHandle, const wchar_t *filePath, const wchar_t *encoding);
+CK_VISIBLE_PUBLIC BOOL CkFileAccessW_ReadBlock(HCkFileAccessW cHandle, int blockIndex, int blockSize, HCkByteData outBytes);
 CK_VISIBLE_PUBLIC BOOL CkFileAccessW_ReadEntireFile(HCkFileAccessW cHandle, const wchar_t *filePath, HCkByteData outBytes);
 CK_VISIBLE_PUBLIC BOOL CkFileAccessW_ReadEntireTextFile(HCkFileAccessW cHandle, const wchar_t *filePath, const wchar_t *charset, HCkString outStrFileContents);
 CK_VISIBLE_PUBLIC const wchar_t *CkFileAccessW_readEntireTextFile(HCkFileAccessW cHandle, const wchar_t *filePath, const wchar_t *charset);

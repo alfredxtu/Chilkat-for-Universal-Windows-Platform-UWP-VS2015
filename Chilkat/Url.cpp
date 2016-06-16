@@ -119,6 +119,10 @@ Boolean Chilkat::Url::Ssl::get()
     {
     return m_impl ? m_impl->get_Ssl() : false;
     }
+String ^Chilkat::Url::PathWithQueryParams::get()
+    {
+    return ref new String(m_impl ? m_impl->pathWithQueryParams() : L"");
+    }
 
 
 Boolean Url::SaveLastError(Platform::String ^path)

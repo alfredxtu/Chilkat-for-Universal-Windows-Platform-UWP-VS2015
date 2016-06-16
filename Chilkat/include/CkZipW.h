@@ -61,6 +61,23 @@ class CK_VISIBLE_PUBLIC CkZipW  : public CkClassWithCallbacksW
 	// ----------------------
 	// Properties
 	// ----------------------
+	// When set to true, causes the currently running method to abort. Methods that
+	// always finish quickly (i.e.have no length file operations or network
+	// communications) are not affected. If no method is running, then this property is
+	// automatically reset to false when the next method is called. When the abort
+	// occurs, this property is reset to false. Both synchronous and asynchronous
+	// method calls can be aborted. (A synchronous method call could be aborted by
+	// setting this property from a separate thread.)
+	bool get_AbortCurrent(void);
+	// When set to true, causes the currently running method to abort. Methods that
+	// always finish quickly (i.e.have no length file operations or network
+	// communications) are not affected. If no method is running, then this property is
+	// automatically reset to false when the next method is called. When the abort
+	// occurs, this property is reset to false. Both synchronous and asynchronous
+	// method calls can be aborted. (A synchronous method call could be aborted by
+	// setting this property from a separate thread.)
+	void put_AbortCurrent(bool newVal);
+
 	// When files are added to a Zip archive, they are appended from this directory.
 	// For example, to add all the files under c:/abc/123/myAppDir, this property could
 	// be set to "c:/abc/123", and "myAppDir/*" would be passed to AppendFiles. The
@@ -872,23 +889,6 @@ class CK_VISIBLE_PUBLIC CkZipW  : public CkClassWithCallbacksW
 	// This feature will come at a later date. Currently, this property is ignored.
 	// 
 	void put_ZipxDefaultAlg(const wchar_t *newVal);
-
-	// When set to true, causes the currently running method to abort. Methods that
-	// always finish quickly (i.e.have no length file operations or network
-	// communications) are not affected. If no method is running, then this property is
-	// automatically reset to false when the next method is called. When the abort
-	// occurs, this property is reset to false. Both synchronous and asynchronous
-	// method calls can be aborted. (A synchronous method call could be aborted by
-	// setting this property from a separate thread.)
-	bool get_AbortCurrent(void);
-	// When set to true, causes the currently running method to abort. Methods that
-	// always finish quickly (i.e.have no length file operations or network
-	// communications) are not affected. If no method is running, then this property is
-	// automatically reset to false when the next method is called. When the abort
-	// occurs, this property is reset to false. Both synchronous and asynchronous
-	// method calls can be aborted. (A synchronous method call could be aborted by
-	// setting this property from a separate thread.)
-	void put_AbortCurrent(bool newVal);
 
 
 

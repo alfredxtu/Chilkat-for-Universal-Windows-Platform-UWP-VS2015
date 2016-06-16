@@ -93,57 +93,36 @@ class CK_VISIBLE_PUBLIC CkScp  : public CkClassWithCallbacks
 	// 
 	void put_PercentDoneScale(int newVal);
 
-	// Can contain a wildcarded list of file patterns (or exact file/directory names)
-	// separated by semicolons. For example, "*.xml; *.txt; *.csv". If set, the
-	// SyncTreeUpload and SyncTreeDownload methods will only transfer files that match
-	// any one of these patterns.
-	// 
-	// Note: Unlike the SFTP's SyncMustNotMatch property, this property applies to both
-	// filenames and directory names when recursively traversing a directory tree.
-	// 
+	// Can contain a wildcarded list of filename patterns separated by semicolons. For
+	// example, "*.xml; *.txt; *.csv". If set, the SyncTreeUpload and SyncTreeDownload
+	// methods will only transfer files having a filename that matches any one of these
+	// patterns.
 	void get_SyncMustMatch(CkString &str);
-	// Can contain a wildcarded list of file patterns (or exact file/directory names)
-	// separated by semicolons. For example, "*.xml; *.txt; *.csv". If set, the
-	// SyncTreeUpload and SyncTreeDownload methods will only transfer files that match
-	// any one of these patterns.
-	// 
-	// Note: Unlike the SFTP's SyncMustNotMatch property, this property applies to both
-	// filenames and directory names when recursively traversing a directory tree.
-	// 
+	// Can contain a wildcarded list of filename patterns separated by semicolons. For
+	// example, "*.xml; *.txt; *.csv". If set, the SyncTreeUpload and SyncTreeDownload
+	// methods will only transfer files having a filename that matches any one of these
+	// patterns.
 	const char *syncMustMatch(void);
-	// Can contain a wildcarded list of file patterns (or exact file/directory names)
-	// separated by semicolons. For example, "*.xml; *.txt; *.csv". If set, the
-	// SyncTreeUpload and SyncTreeDownload methods will only transfer files that match
-	// any one of these patterns.
-	// 
-	// Note: Unlike the SFTP's SyncMustNotMatch property, this property applies to both
-	// filenames and directory names when recursively traversing a directory tree.
-	// 
+	// Can contain a wildcarded list of filename patterns separated by semicolons. For
+	// example, "*.xml; *.txt; *.csv". If set, the SyncTreeUpload and SyncTreeDownload
+	// methods will only transfer files having a filename that matches any one of these
+	// patterns.
 	void put_SyncMustMatch(const char *newVal);
 
-	// Can contain a wildcarded list of file patterns separated by semicolons. For
+	// Can contain a wildcarded list of filename patterns separated by semicolons. For
 	// example, "*.xml; *.txt; *.csv". If set, the SyncTreeUpload and SyncTreeDownload
-	// methods will not transfer files that match any one of these patterns.
-	// 
-	// Note: Unlike the SFTP's SyncMustNotMatch property, this property applies to both
-	// filenames and directory names when recursively traversing a directory tree.
-	// 
+	// methods will not transfer files having a filename that matches any one of these
+	// patterns.
 	void get_SyncMustNotMatch(CkString &str);
-	// Can contain a wildcarded list of file patterns separated by semicolons. For
+	// Can contain a wildcarded list of filename patterns separated by semicolons. For
 	// example, "*.xml; *.txt; *.csv". If set, the SyncTreeUpload and SyncTreeDownload
-	// methods will not transfer files that match any one of these patterns.
-	// 
-	// Note: Unlike the SFTP's SyncMustNotMatch property, this property applies to both
-	// filenames and directory names when recursively traversing a directory tree.
-	// 
+	// methods will not transfer files having a filename that matches any one of these
+	// patterns.
 	const char *syncMustNotMatch(void);
-	// Can contain a wildcarded list of file patterns separated by semicolons. For
+	// Can contain a wildcarded list of filename patterns separated by semicolons. For
 	// example, "*.xml; *.txt; *.csv". If set, the SyncTreeUpload and SyncTreeDownload
-	// methods will not transfer files that match any one of these patterns.
-	// 
-	// Note: Unlike the SFTP's SyncMustNotMatch property, this property applies to both
-	// filenames and directory names when recursively traversing a directory tree.
-	// 
+	// methods will not transfer files having a filename that matches any one of these
+	// patterns.
 	void put_SyncMustNotMatch(const char *newVal);
 
 	// The paths of the files uploaded or downloaded in the last call to SyncUploadTree
@@ -178,6 +157,38 @@ class CK_VISIBLE_PUBLIC CkScp  : public CkClassWithCallbacks
 	// method calls can be aborted. (A synchronous method call could be aborted by
 	// setting this property from a separate thread.)
 	void put_AbortCurrent(bool newVal);
+
+	// Can contain a wildcarded list of directory name patterns separated by
+	// semicolons. For example, "a*; b*; c*". If set, the SyncTreeUpload and
+	// SyncTreeDownload methods will only traverse into a directory that matches any
+	// one of these patterns.
+	void get_SyncMustMatchDir(CkString &str);
+	// Can contain a wildcarded list of directory name patterns separated by
+	// semicolons. For example, "a*; b*; c*". If set, the SyncTreeUpload and
+	// SyncTreeDownload methods will only traverse into a directory that matches any
+	// one of these patterns.
+	const char *syncMustMatchDir(void);
+	// Can contain a wildcarded list of directory name patterns separated by
+	// semicolons. For example, "a*; b*; c*". If set, the SyncTreeUpload and
+	// SyncTreeDownload methods will only traverse into a directory that matches any
+	// one of these patterns.
+	void put_SyncMustMatchDir(const char *newVal);
+
+	// Can contain a wildcarded list of directory name patterns separated by
+	// semicolons. For example, "a*; b*; c*". If set, the SyncTreeUpload and
+	// SyncTreeDownload methods will not traverse into a directory that matches any one
+	// of these patterns.
+	void get_SyncMustNotMatchDir(CkString &str);
+	// Can contain a wildcarded list of directory name patterns separated by
+	// semicolons. For example, "a*; b*; c*". If set, the SyncTreeUpload and
+	// SyncTreeDownload methods will not traverse into a directory that matches any one
+	// of these patterns.
+	const char *syncMustNotMatchDir(void);
+	// Can contain a wildcarded list of directory name patterns separated by
+	// semicolons. For example, "a*; b*; c*". If set, the SyncTreeUpload and
+	// SyncTreeDownload methods will not traverse into a directory that matches any one
+	// of these patterns.
+	void put_SyncMustNotMatchDir(const char *newVal);
 
 
 

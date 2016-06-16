@@ -295,6 +295,10 @@
   <ItemGroup>
     <ClCompile Include="Asn.cpp" />
     <ClCompile Include="Atom.cpp" />
+    <ClCompile Include="AuthAws.cpp" />
+    <ClCompile Include="AuthAzureAD.cpp" />
+    <ClCompile Include="AuthAzureStorage.cpp" />
+    <ClCompile Include="AuthGoogle.cpp" />
     <ClCompile Include="Bounce.cpp" />
     <ClCompile Include="Bz2.cpp" />
     <ClCompile Include="Cache.cpp" />
@@ -329,6 +333,7 @@
     <ClCompile Include="JavaKeyStore.cpp" />
     <ClCompile Include="JsonArray.cpp" />
     <ClCompile Include="JsonObject.cpp" />
+    <ClCompile Include="Jwt.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="Mailboxes.cpp" />
     <ClCompile Include="MailMan.cpp" />
@@ -350,9 +355,11 @@
     <ClCompile Include="PrivateKey.cpp" />
     <ClCompile Include="Prng.cpp" />
     <ClCompile Include="PublicKey.cpp" />
+    <ClCompile Include="Rest.cpp" />
     <ClCompile Include="Rsa.cpp" />
     <ClCompile Include="Rss.cpp" />
     <ClCompile Include="Scp.cpp" />
+    <ClCompile Include="ServerSentEvent.cpp" />
     <ClCompile Include="SFtp.cpp" />
     <ClCompile Include="SFtpDir.cpp" />
     <ClCompile Include="SFtpFile.cpp" />
@@ -362,6 +369,7 @@
     <ClCompile Include="SshKey.cpp" />
     <ClCompile Include="Stream.cpp" />
     <ClCompile Include="StringArray.cpp" />
+    <ClCompile Include="StringBuilder.cpp" />
     <ClCompile Include="Tar.cpp" />
     <ClCompile Include="TrustedRoots.cpp" />
     <ClCompile Include="UnixCompress.cpp" />

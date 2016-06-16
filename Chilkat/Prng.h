@@ -107,6 +107,8 @@ public ref class Prng sealed
 
 	Platform::String ^RandomString(int length, Boolean bDigits, Boolean bLower, Boolean bUpper);
 
+	Platform::String ^FirebasePushId(void);
+
 
 
 };

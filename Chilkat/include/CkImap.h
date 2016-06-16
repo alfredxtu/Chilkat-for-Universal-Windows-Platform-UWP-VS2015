@@ -64,6 +64,23 @@ class CK_VISIBLE_PUBLIC CkImap  : public CkClassWithCallbacks
 	// ----------------------
 	// Properties
 	// ----------------------
+	// When set to true, causes the currently running method to abort. Methods that
+	// always finish quickly (i.e.have no length file operations or network
+	// communications) are not affected. If no method is running, then this property is
+	// automatically reset to false when the next method is called. When the abort
+	// occurs, this property is reset to false. Both synchronous and asynchronous
+	// method calls can be aborted. (A synchronous method call could be aborted by
+	// setting this property from a separate thread.)
+	bool get_AbortCurrent(void);
+	// When set to true, causes the currently running method to abort. Methods that
+	// always finish quickly (i.e.have no length file operations or network
+	// communications) are not affected. If no method is running, then this property is
+	// automatically reset to false when the next method is called. When the abort
+	// occurs, this property is reset to false. Both synchronous and asynchronous
+	// method calls can be aborted. (A synchronous method call could be aborted by
+	// setting this property from a separate thread.)
+	void put_AbortCurrent(bool newVal);
+
 	// When true (the default) the Append method will mark the email appended to a
 	// mailbox as already seen. Otherwise an appended email will be initialized to have
 	// a status of unseen.
@@ -1029,23 +1046,6 @@ class CK_VISIBLE_PUBLIC CkImap  : public CkClassWithCallbacks
 	// maintain UID's between sessions.
 	// 
 	int get_UidValidity(void);
-
-	// When set to true, causes the currently running method to abort. Methods that
-	// always finish quickly (i.e.have no length file operations or network
-	// communications) are not affected. If no method is running, then this property is
-	// automatically reset to false when the next method is called. When the abort
-	// occurs, this property is reset to false. Both synchronous and asynchronous
-	// method calls can be aborted. (A synchronous method call could be aborted by
-	// setting this property from a separate thread.)
-	bool get_AbortCurrent(void);
-	// When set to true, causes the currently running method to abort. Methods that
-	// always finish quickly (i.e.have no length file operations or network
-	// communications) are not affected. If no method is running, then this property is
-	// automatically reset to false when the next method is called. When the abort
-	// occurs, this property is reset to false. Both synchronous and asynchronous
-	// method calls can be aborted. (A synchronous method call could be aborted by
-	// setting this property from a separate thread.)
-	void put_AbortCurrent(bool newVal);
 
 
 
@@ -2612,6 +2612,9 @@ class CK_VISIBLE_PUBLIC CkImap  : public CkClassWithCallbacks
 	// Note: Calling this method is identical to calling the SetFlag method, except the
 	// UID is automatically obtained from the email object.
 	// 
+	// Important: Setting the "Deleted" flag does not remove the email from the
+	// mailbox. Emails marked "Deleted" are removed when the Expunge method is called.
+	// 
 	bool SetMailFlag(CkEmail &email, const char *flagName, int value);
 
 	// Sets a flag for a single message on the IMAP server. The UID of the email object
@@ -2630,6 +2633,9 @@ class CK_VISIBLE_PUBLIC CkImap  : public CkClassWithCallbacks
 	// 
 	// Note: Calling this method is identical to calling the SetFlag method, except the
 	// UID is automatically obtained from the email object.
+	// 
+	// Important: Setting the "Deleted" flag does not remove the email from the
+	// mailbox. Emails marked "Deleted" are removed when the Expunge method is called.
 	// 
 	CkTask *SetMailFlagAsync(CkEmail &email, const char *flagName, int value);
 
@@ -2853,6 +2859,74 @@ class CK_VISIBLE_PUBLIC CkImap  : public CkClassWithCallbacks
 	// logical channels. IMAP connections can exist simultaneously with other
 	// connection within a single SSH tunnel as SSH channels.)
 	bool UseSshTunnel(CkSocket &tunnel);
+
+
+	// Returns true if the capability indicated by ARG1 is found in the ARG2.
+	// Otherwise returns false.
+	bool HasCapability(const char *name, const char *capabilityResponse);
+
+
+	// Sends the GETQUOTAROOT command and returns the response in JSON format. This
+	// feature is only possible with IMAP servers that support the QUOTA
+	// extension/capability.
+	bool GetQuotaRoot(const char *mailboxName, CkString &outStr);
+
+	// Sends the GETQUOTAROOT command and returns the response in JSON format. This
+	// feature is only possible with IMAP servers that support the QUOTA
+	// extension/capability.
+	const char *getQuotaRoot(const char *mailboxName);
+	// Sends the GETQUOTAROOT command and returns the response in JSON format. This
+	// feature is only possible with IMAP servers that support the QUOTA
+	// extension/capability.
+	const char *quotaRoot(const char *mailboxName);
+
+	// Sends the GETQUOTAROOT command and returns the response in JSON format. This
+	// feature is only possible with IMAP servers that support the QUOTA
+	// extension/capability.
+	CkTask *GetQuotaRootAsync(const char *mailboxName);
+
+
+	// Sends the GETQUOTA command and returns the response in JSON format. This feature
+	// is only possible with IMAP servers that support the QUOTA extension/capability.
+	bool GetQuota(const char *quotaRoot, CkString &outStr);
+
+	// Sends the GETQUOTA command and returns the response in JSON format. This feature
+	// is only possible with IMAP servers that support the QUOTA extension/capability.
+	const char *getQuota(const char *quotaRoot);
+	// Sends the GETQUOTA command and returns the response in JSON format. This feature
+	// is only possible with IMAP servers that support the QUOTA extension/capability.
+	const char *quota(const char *quotaRoot);
+
+	// Sends the GETQUOTA command and returns the response in JSON format. This feature
+	// is only possible with IMAP servers that support the QUOTA extension/capability.
+	CkTask *GetQuotaAsync(const char *quotaRoot);
+
+
+	// Sets the quota for a ARG1. The ARG2 should be one of two keywords:"STORAGE" or
+	// "MESSAGE". Use "STORAGE" to set the maximum capacity of the combined messages in
+	// ARG1. Use "MESSAGE" to set the maximum number of messages allowed.
+	// 
+	// If setting a STORAGE quota, the ARG3 is in units of 1024 octets. For example, to
+	// specify a limit of 500,000,000 bytes, set ARG3 equal to 500,000.
+	// 
+	// This feature is only possible with IMAP servers that support the QUOTA
+	// extension/capability. If an IMAP server supports the QUOTA extension, it likely
+	// supports the STORAGE resource. The MESSAGE resource is less commonly supported.
+	// 
+	bool SetQuota(const char *quotaRoot, const char *resource, int quota);
+
+	// Sets the quota for a ARG1. The ARG2 should be one of two keywords:"STORAGE" or
+	// "MESSAGE". Use "STORAGE" to set the maximum capacity of the combined messages in
+	// ARG1. Use "MESSAGE" to set the maximum number of messages allowed.
+	// 
+	// If setting a STORAGE quota, the ARG3 is in units of 1024 octets. For example, to
+	// specify a limit of 500,000,000 bytes, set ARG3 equal to 500,000.
+	// 
+	// This feature is only possible with IMAP servers that support the QUOTA
+	// extension/capability. If an IMAP server supports the QUOTA extension, it likely
+	// supports the STORAGE resource. The MESSAGE resource is less commonly supported.
+	// 
+	CkTask *SetQuotaAsync(const char *quotaRoot, const char *resource, int quota);
 
 
 

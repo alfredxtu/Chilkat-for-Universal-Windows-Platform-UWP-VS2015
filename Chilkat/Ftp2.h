@@ -771,6 +771,8 @@ public ref class Ftp2 sealed
 
 	Boolean SetOption(Platform::String ^option);
 
+	IAsyncOperation<Boolean>^ LargeFileUploadAsync(Platform::String ^localPath, Platform::String ^remotePath, int chunkSize);
+
 
 
 };

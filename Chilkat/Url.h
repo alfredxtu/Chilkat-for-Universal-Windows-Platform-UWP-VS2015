@@ -109,6 +109,10 @@ public ref class Url sealed
 	{
 		Boolean get();
 	}
+	property Platform::String ^PathWithQueryParams
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------

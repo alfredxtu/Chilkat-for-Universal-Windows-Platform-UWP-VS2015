@@ -165,6 +165,11 @@ class CkDateTimeW  : public CkWideCharBase
 	// 
 	const wchar_t *asRfc822(bool bLocal);
 
+
+	bool GetAsTimestamp(bool bLocal, CkString &outStr);
+	const wchar_t *getAsTimestamp(bool bLocal);
+	const wchar_t *asTimestamp(bool bLocal);
+
 	// Returns the date/time in a Windows SYSTEMTIME structure.
 	// 
 	// bLocal indicates whether the date/time returned is local or UTC.
@@ -295,6 +300,9 @@ class CkDateTimeW  : public CkWideCharBase
 
 	// Sets the date/time from an RFC822 date/time formatted string.
 	bool SetFromRfc822(const wchar_t *rfc822Str);
+
+	// Sets the date/time from an RFC 3339 date/time formatted string.
+	bool SetFromTimestamp(const wchar_t *rfc3339Str);
 
 	// Sets the date/time from a Windows SYSTEMTIME structure.
 	// 

@@ -136,6 +136,16 @@ public ref class Scp sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Platform::String ^SyncMustMatchDir
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^SyncMustNotMatchDir
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 
 
 	// ----------------------

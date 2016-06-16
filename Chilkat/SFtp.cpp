@@ -466,6 +466,14 @@ void Chilkat::SFtp::AbortCurrent::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_AbortCurrent(newVal);
     }
+String ^Chilkat::SFtp::SyncDirectives::get()
+    {
+    return ref new String(m_impl ? m_impl->syncDirectives() : L"");
+    }
+void Chilkat::SFtp::SyncDirectives::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_SyncDirectives(newVal ? newVal->Data() : L"");
+    }
 
 
 Boolean SFtp::SaveLastError(Platform::String ^path)

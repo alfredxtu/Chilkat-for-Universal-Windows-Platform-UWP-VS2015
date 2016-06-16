@@ -773,10 +773,10 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	void put_IterationCount(int newVal);
 
 	// The key length in bits for symmetric encryption algorithms. The default value is
-	// 128.
+	// 256.
 	int get_KeyLength(void);
 	// The key length in bits for symmetric encryption algorithms. The default value is
-	// 128.
+	// 256.
 	void put_KeyLength(int newVal);
 
 	// (See the description for the FirstChunk property.)

@@ -171,6 +171,10 @@ int64 Chilkat::Stream::Length::get()
     {
     return m_impl ? m_impl->get_Length() : 0;
     }
+void Chilkat::Stream::Length::set(int64 newVal)
+    {
+        if (m_impl) m_impl->put_Length(newVal);
+    }
 int64 Chilkat::Stream::NumReceived::get()
     {
     return m_impl ? m_impl->get_NumReceived() : 0;
@@ -186,6 +190,14 @@ Boolean Chilkat::Stream::AbortCurrent::get()
 void Chilkat::Stream::AbortCurrent::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_AbortCurrent(newVal);
+    }
+int Chilkat::Stream::Length32::get()
+    {
+    return m_impl ? m_impl->get_Length32() : 0;
+    }
+void Chilkat::Stream::Length32::set(int newVal)
+    {
+        if (m_impl) m_impl->put_Length32(newVal);
     }
 
 

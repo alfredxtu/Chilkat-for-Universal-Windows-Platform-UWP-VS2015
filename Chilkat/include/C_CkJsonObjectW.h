@@ -10,6 +10,9 @@ CK_VISIBLE_PUBLIC void CkJsonObjectW_Dispose(HCkJsonObjectW handle);
 CK_VISIBLE_PUBLIC void CkJsonObjectW_getDebugLogFilePath(HCkJsonObjectW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void CkJsonObjectW_putDebugLogFilePath(HCkJsonObjectW cHandle, const wchar_t *newVal);
 CK_VISIBLE_PUBLIC const wchar_t *CkJsonObjectW_debugLogFilePath(HCkJsonObjectW cHandle);
+CK_VISIBLE_PUBLIC void CkJsonObjectW_getDelimiterChar(HCkJsonObjectW cHandle, HCkString retval);
+CK_VISIBLE_PUBLIC void CkJsonObjectW_putDelimiterChar(HCkJsonObjectW cHandle, const wchar_t *newVal);
+CK_VISIBLE_PUBLIC const wchar_t *CkJsonObjectW_delimiterChar(HCkJsonObjectW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_getEmitCompact(HCkJsonObjectW cHandle);
 CK_VISIBLE_PUBLIC void CkJsonObjectW_putEmitCompact(HCkJsonObjectW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_getEmitCrLf(HCkJsonObjectW cHandle);
@@ -40,6 +43,11 @@ CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_AddNullAt(HCkJsonObjectW cHandle, int index
 CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_AddNumberAt(HCkJsonObjectW cHandle, int index, const wchar_t *name, const wchar_t *numericStr);
 CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_AddObjectAt(HCkJsonObjectW cHandle, int index, const wchar_t *name);
 CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_AddStringAt(HCkJsonObjectW cHandle, int index, const wchar_t *name, const wchar_t *value);
+CK_VISIBLE_PUBLIC HCkJsonArrayW CkJsonObjectW_AppendArray(HCkJsonObjectW cHandle, const wchar_t *name);
+CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_AppendBool(HCkJsonObjectW cHandle, const wchar_t *name, BOOL value);
+CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_AppendInt(HCkJsonObjectW cHandle, const wchar_t *name, int value);
+CK_VISIBLE_PUBLIC HCkJsonObjectW CkJsonObjectW_AppendObject(HCkJsonObjectW cHandle, const wchar_t *name);
+CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_AppendString(HCkJsonObjectW cHandle, const wchar_t *name, const wchar_t *value);
 CK_VISIBLE_PUBLIC HCkJsonArrayW CkJsonObjectW_ArrayAt(HCkJsonObjectW cHandle, int index);
 CK_VISIBLE_PUBLIC HCkJsonArrayW CkJsonObjectW_ArrayOf(HCkJsonObjectW cHandle, const wchar_t *jsonPath);
 CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_BoolAt(HCkJsonObjectW cHandle, int index);
@@ -48,7 +56,11 @@ CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_Delete(HCkJsonObjectW cHandle, const wchar_
 CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_DeleteAt(HCkJsonObjectW cHandle, int index);
 CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_Emit(HCkJsonObjectW cHandle, HCkString outStr);
 CK_VISIBLE_PUBLIC const wchar_t *CkJsonObjectW_emit(HCkJsonObjectW cHandle);
+CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_FirebaseApplyEvent(HCkJsonObjectW cHandle, const wchar_t *name, const wchar_t *data);
+CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_FirebasePatch(HCkJsonObjectW cHandle, const wchar_t *jsonPath, const wchar_t *jsonData);
+CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_FirebasePut(HCkJsonObjectW cHandle, const wchar_t *jsonPath, const wchar_t *value);
 CK_VISIBLE_PUBLIC HCkJsonObjectW CkJsonObjectW_GetDocRoot(HCkJsonObjectW cHandle);
+CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_HasMember(HCkJsonObjectW cHandle, const wchar_t *jsonPath);
 CK_VISIBLE_PUBLIC int CkJsonObjectW_IndexOf(HCkJsonObjectW cHandle, const wchar_t *name);
 CK_VISIBLE_PUBLIC int CkJsonObjectW_IntAt(HCkJsonObjectW cHandle, int index);
 CK_VISIBLE_PUBLIC int CkJsonObjectW_IntOf(HCkJsonObjectW cHandle, const wchar_t *jsonPath);
@@ -78,4 +90,5 @@ CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_StringAt(HCkJsonObjectW cHandle, int index,
 CK_VISIBLE_PUBLIC const wchar_t *CkJsonObjectW_stringAt(HCkJsonObjectW cHandle, int index);
 CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_StringOf(HCkJsonObjectW cHandle, const wchar_t *jsonPath, HCkString outStr);
 CK_VISIBLE_PUBLIC const wchar_t *CkJsonObjectW_stringOf(HCkJsonObjectW cHandle, const wchar_t *jsonPath);
+CK_VISIBLE_PUBLIC int CkJsonObjectW_TypeAt(HCkJsonObjectW cHandle, int index);
 #endif

@@ -246,8 +246,13 @@ class CK_VISIBLE_PUBLIC CkStream  : public CkClassWithCallbacks
 	bool get_DataAvailable(void);
 
 	// The length (in bytes) of the stream's source. If unknown, then this property
-	// will have a value of -1.
+	// will have a value of -1. This property may be set by the application if it knows
+	// in advance the length of the stream.
 	__int64 get_Length(void);
+	// The length (in bytes) of the stream's source. If unknown, then this property
+	// will have a value of -1. This property may be set by the application if it knows
+	// in advance the length of the stream.
+	void put_Length(__int64 newVal);
 
 	// The number of bytes received by the stream.
 	__int64 get_NumReceived(void);
@@ -271,6 +276,21 @@ class CK_VISIBLE_PUBLIC CkStream  : public CkClassWithCallbacks
 	// method calls can be aborted. (A synchronous method call could be aborted by
 	// setting this property from a separate thread.)
 	void put_AbortCurrent(bool newVal);
+
+	// The length (in bytes) of the stream's source. If unknown, then this property
+	// will have a value of -1. This property may be set by the application if it knows
+	// in advance the length of the stream.
+	// 
+	// Setting this property also sets the Length property (which is a 64-bit integer).
+	// 
+	int get_Length32(void);
+	// The length (in bytes) of the stream's source. If unknown, then this property
+	// will have a value of -1. This property may be set by the application if it knows
+	// in advance the length of the stream.
+	// 
+	// Setting this property also sets the Length property (which is a 64-bit integer).
+	// 
+	void put_Length32(int newVal);
 
 
 

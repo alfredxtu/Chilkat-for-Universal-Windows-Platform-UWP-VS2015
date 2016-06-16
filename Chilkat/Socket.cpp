@@ -89,6 +89,14 @@ void Chilkat::Socket::LastMethodSuccess::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
+Boolean Chilkat::Socket::AbortCurrent::get()
+    {
+    return m_impl ? m_impl->get_AbortCurrent() : false;
+    }
+void Chilkat::Socket::AbortCurrent::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
+    }
 int Chilkat::Socket::AcceptFailReason::get()
     {
     return m_impl ? m_impl->get_AcceptFailReason() : 0;
@@ -481,14 +489,6 @@ void Chilkat::Socket::UserData::set(String ^newVal)
     {
         if (m_impl) m_impl->put_UserData(newVal ? newVal->Data() : L"");
     }
-Boolean Chilkat::Socket::AbortCurrent::get()
-    {
-    return m_impl ? m_impl->get_AbortCurrent() : false;
-    }
-void Chilkat::Socket::AbortCurrent::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_AbortCurrent(newVal);
-    }
 
 
 Boolean Socket::SaveLastError(Platform::String ^path)
@@ -531,8 +531,12 @@ Boolean Socket::AddSslAcceptableClientCaDn(Platform::String ^certAuthDN)
 	// cppType = bool
 	return m_impl->AddSslAcceptableClientCaDn(certAuthDN ? certAuthDN->Data() : L"");
     }
-Boolean Socket::BindAndListen(int port, int backlog)
+IAsyncOperation<Boolean>^ Socket::BindAndListenAsync(int port, int backlog)
     {
+return create_async([this, port, backlog]() -> Boolean
+{
+// This runs in a thread pool thread...
+
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
@@ -540,6 +544,8 @@ Boolean Socket::BindAndListen(int port, int backlog)
 	// gType = bool
 	// cppType = bool
 	return m_impl->BindAndListen(port,backlog);
+
+});
     }
 Platform::String ^Socket::BuildHttpGetRequest(Platform::String ^url)
     {

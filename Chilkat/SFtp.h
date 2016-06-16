@@ -369,6 +369,11 @@ public ref class SFtp sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Platform::String ^SyncDirectives
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 
 
 	// ----------------------

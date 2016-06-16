@@ -188,6 +188,15 @@ class CK_VISIBLE_PUBLIC CkOAuth1  : public CkMultiByteBase
 	bool AddParam(const char *name, const char *value);
 
 
+	// Generates a random nonce ARG1 in length and sets the Nonce property to the hex
+	// encoded value.
+	bool GenNonce(int numBytes);
+
+
+	// Sets the Timestamp property to the current date/time.
+	bool GenTimestamp(void);
+
+
 	// Generate the signature based on the property settings. Input properties are
 	// OauthVersion, OauthMethod, Url, ConsumerKey, ConsumerSecret, Token, TokenSecret,
 	// Nonce, and Timestamp. Properties set by this method include: BaseString,
@@ -198,15 +207,6 @@ class CK_VISIBLE_PUBLIC CkOAuth1  : public CkMultiByteBase
 
 	// Removes a name/value parameter from the OAuth1 signature.
 	bool RemoveParam(const char *name);
-
-
-	// Generates a random nonce ARG1 in length and sets the Nonce property to the hex
-	// encoded value.
-	bool GenNonce(int numBytes);
-
-
-	// Sets the Timestamp property to the current date/time.
-	bool GenTimestamp(void);
 
 
 

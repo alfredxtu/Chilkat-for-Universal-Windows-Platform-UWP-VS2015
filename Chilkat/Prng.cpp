@@ -210,6 +210,16 @@ Platform::String ^Prng::RandomString(int length, Boolean bDigits, Boolean bLower
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
+Platform::String ^Prng::FirebasePushId(void)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	// gType = string
+	// cppType = bool
+	const wchar_t *retStr = m_impl->firebasePushId();
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
 
 
 

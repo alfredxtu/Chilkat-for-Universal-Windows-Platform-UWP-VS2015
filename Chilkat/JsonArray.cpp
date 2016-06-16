@@ -261,6 +261,24 @@ Platform::String ^JsonArray::StringAt(int index)
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
+Platform::String ^JsonArray::Emit(void)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	// gType = string
+	// cppType = bool
+	const wchar_t *retStr = m_impl->emit();
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
+int JsonArray::TypeAt(int index)
+    {
+	if (m_impl == nullptr) { return -1; }
+	// --- prep output arg ---
+	// gType = int
+	// cppType = int
+	return m_impl->TypeAt(index);
+    }
 
 
 

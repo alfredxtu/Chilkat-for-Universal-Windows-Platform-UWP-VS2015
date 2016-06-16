@@ -219,6 +219,34 @@ class CK_VISIBLE_PUBLIC CkFileAccess  : public CkMultiByteBase
 	bool FileWrite(CkByteData &data);
 
 
+	// This is purely a utility/convenience method -- initially created to help with
+	// block file uploads to Azure Blob storage. It generates a block ID string that is
+	// the decimal representation of the ARG1 in ARG2 chars, and then encoded according
+	// to ARG3 (which can be an encoding such as "base64", "hex", "ascii", etc.) For
+	// example, if ARG1 = 8, ARG2 = 12, and ARG3 = "base64", then the string "00000012"
+	// is returned base64 encoded.
+	bool GenBlockId(int index, int length, const char *encoding, CkString &outStr);
+
+	// This is purely a utility/convenience method -- initially created to help with
+	// block file uploads to Azure Blob storage. It generates a block ID string that is
+	// the decimal representation of the ARG1 in ARG2 chars, and then encoded according
+	// to ARG3 (which can be an encoding such as "base64", "hex", "ascii", etc.) For
+	// example, if ARG1 = 8, ARG2 = 12, and ARG3 = "base64", then the string "00000012"
+	// is returned base64 encoded.
+	const char *genBlockId(int index, int length, const char *encoding);
+
+	// Returns the number of blocks in the currently open file. The number of bytes per
+	// block is specified by ARG1. The number of blocks is the file size divided by the
+	// ARG1, plus 1 if the file size is not evenly divisible by ARG1. For example, if
+	// the currently open file is 60500 bytes, and if the ARG1 is 1000 bytes, then this
+	// method returns a count of 61 blocks.
+	// 
+	// Returns -1 if no file is open. Return 0 if the file is completely empty (0
+	// bytes).
+	// 
+	int GetNumBlocks(int blockSize);
+
+
 	// Creates a temporary filepath of the form dirPath\ prefix_xxxx.TMP Where "xxxx" are
 	// random alpha-numeric chars. The returned filepath is guaranteed to not already
 	// exist.
@@ -278,6 +306,13 @@ class CK_VISIBLE_PUBLIC CkFileAccess  : public CkMultiByteBase
 	// (using an encoding such as Base64, Hex, etc.) The  encoding may be one of the
 	// following strings: base64, hex, qp, or url.
 	const char *readBinaryToEncoded(const char *filename, const char *encoding);
+
+	// Reads the Nth block of a file, where the size of each block is specified by
+	// ARG2. The first block is at ARG1 0. If the block to be read is the last in the
+	// file and there is not enough data to fill an entire block, then the partial
+	// block is returned.
+	bool ReadBlock(int blockIndex, int blockSize, CkByteData &outBytes);
+
 
 	// Reads the entire contents of a binary file and returns the data.
 	bool ReadEntireFile(const char *filename, CkByteData &outBytes);

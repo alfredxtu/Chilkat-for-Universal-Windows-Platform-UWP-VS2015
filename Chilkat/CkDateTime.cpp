@@ -266,6 +266,24 @@ void Chilkat::CkDateTime::SetFromUnixTime64(Boolean bLocal, int64 t)
 	// cppType = void
 	m_impl->SetFromUnixTime64(bLocal,t);
     }
+Boolean Chilkat::CkDateTime::SetFromTimestamp(Platform::String ^timestamp)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	// gType = bool
+	// cppType = bool
+	return m_impl->SetFromTimestamp(timestamp ? timestamp->Data() : L"");
+    }
+Platform::String ^Chilkat::CkDateTime::GetAsTimestamp(Boolean bLocal)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	// gType = string
+	// cppType = bool
+	const wchar_t *retStr = m_impl->getAsTimestamp(bLocal);
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
 
 
 

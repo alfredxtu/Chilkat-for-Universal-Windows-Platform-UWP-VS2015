@@ -74,6 +74,11 @@ public ref class JsonObject sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Platform::String ^DelimiterChar
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Boolean EmitCompact
 	{
 		Boolean get();
@@ -124,6 +129,16 @@ public ref class JsonObject sealed
 
 	Boolean AddStringAt(int index, Platform::String ^name, Platform::String ^value);
 
+	JsonArray ^AppendArray(Platform::String ^name);
+
+	Boolean AppendBool(Platform::String ^name, Boolean value);
+
+	Boolean AppendInt(Platform::String ^name, int value);
+
+	JsonObject ^AppendObject(Platform::String ^name);
+
+	Boolean AppendString(Platform::String ^name, Platform::String ^value);
+
 	JsonArray ^ArrayAt(int index);
 
 	JsonArray ^ArrayOf(Platform::String ^jsonPath);
@@ -138,7 +153,15 @@ public ref class JsonObject sealed
 
 	Platform::String ^Emit(void);
 
+	Boolean FirebaseApplyEvent(Platform::String ^name, Platform::String ^data);
+
+	Boolean FirebasePatch(Platform::String ^jsonPath, Platform::String ^jsonData);
+
+	Boolean FirebasePut(Platform::String ^jsonPath, Platform::String ^value);
+
 	JsonObject ^GetDocRoot(void);
+
+	Boolean HasMember(Platform::String ^jsonPath);
 
 	int IndexOf(Platform::String ^name);
 
@@ -189,6 +212,8 @@ public ref class JsonObject sealed
 	Platform::String ^StringAt(int index);
 
 	Platform::String ^StringOf(Platform::String ^jsonPath);
+
+	int TypeAt(int index);
 
 
 

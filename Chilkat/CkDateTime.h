@@ -127,6 +127,10 @@ public ref class CkDateTime sealed
 
 	void SetFromUnixTime64(Boolean bLocal, int64 t);
 
+	Boolean SetFromTimestamp(Platform::String ^timestamp);
+
+	Platform::String ^GetAsTimestamp(Boolean bLocal);
+
 
 
 };

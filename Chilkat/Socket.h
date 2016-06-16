@@ -108,6 +108,11 @@ public ref class Socket sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Boolean AbortCurrent
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property int32 AcceptFailReason
 	{
 		int32 get();
@@ -380,11 +385,6 @@ public ref class Socket sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
-	property Boolean AbortCurrent
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 
 
 	// ----------------------
@@ -396,7 +396,7 @@ public ref class Socket sealed
 
 	Boolean AddSslAcceptableClientCaDn(Platform::String ^certAuthDN);
 
-	Boolean BindAndListen(int port, int backlog);
+	IAsyncOperation<Boolean>^ BindAndListenAsync(int port, int backlog);
 
 	Platform::String ^BuildHttpGetRequest(Platform::String ^url);
 

@@ -48,6 +48,19 @@ class CK_VISIBLE_PUBLIC CkJsonObject  : public CkMultiByteBase
 	// ----------------------
 	// Properties
 	// ----------------------
+	// Sets the delimiter char for JSON paths. The default value is ".". To use
+	// Firebase style paths, set this property to "/". (This is a string property that
+	// should have a length of 1 char.)
+	void get_DelimiterChar(CkString &str);
+	// Sets the delimiter char for JSON paths. The default value is ".". To use
+	// Firebase style paths, set this property to "/". (This is a string property that
+	// should have a length of 1 char.)
+	const char *delimiterChar(void);
+	// Sets the delimiter char for JSON paths. The default value is ".". To use
+	// Firebase style paths, set this property to "/". (This is a string property that
+	// should have a length of 1 char.)
+	void put_DelimiterChar(const char *newVal);
+
 	// If true then the Emit method outputs in the most compact form possible (a
 	// single-line with no extra whitespace). If false, then emits with whitespace
 	// and indentation to make the JSON human-readable.
@@ -136,6 +149,31 @@ class CK_VISIBLE_PUBLIC CkJsonObject  : public CkMultiByteBase
 	bool AddStringAt(int index, const char *name, const char *value);
 
 
+	// Appends a new and empty JSON array and returns it.
+	// The caller is responsible for deleting the object returned by this method.
+	CkJsonArray *AppendArray(const char *name);
+
+
+	// Appends a new boolean member. (This is the same as passing -1 to the AddBoolAt
+	// method.)
+	bool AppendBool(const char *name, bool value);
+
+
+	// Appends a new integer member. (This is the same as passing an index of -1 to the
+	// AddIntAt method.)
+	bool AppendInt(const char *name, int value);
+
+
+	// Appends a new and empty JSON object and returns it.
+	// The caller is responsible for deleting the object returned by this method.
+	CkJsonObject *AppendObject(const char *name);
+
+
+	// Appends a new string member. (This is the same as passing -1 to the AddStringAt
+	// method.)
+	bool AppendString(const char *name, const char *value);
+
+
 	// Returns the JSON array that is the value of the Nth member. Indexing is 0-based
 	// (the 1st member is at index 0).
 	// The caller is responsible for deleting the object returned by this method.
@@ -171,12 +209,39 @@ class CK_VISIBLE_PUBLIC CkJsonObject  : public CkMultiByteBase
 	// Writes the JSON document (rooted at the caller) and returns as a string.
 	const char *emit(void);
 
+	// Applies a Firebase event to the JSON. The ARG2 contains JSON having a format
+	// such as
+	// {"path": "/", "data": {"a": 1, "b": 2}}
+	// The ARG1 should be "put" or "patch".
+	bool FirebaseApplyEvent(const char *name, const char *data);
+
+
+	// For each key in the ARG2, update (or add) the corresponding key in the JSON at
+	// the given ARG1. The ARG1 is relative to this JSON object. (This is effectively
+	// applying a Firebase patch event.)
+	bool FirebasePatch(const char *jsonPath, const char *jsonData);
+
+
+	// Inserts or replaces the value at the ARG1. The ARG2 can contain JSON text, an
+	// integer (in decimal string format), a boolean (true/false), the keyword "null",
+	// or a quoted string.
+	// 
+	// The ARG1 is relative to this JSON object. (This is effectively applying a
+	// Firebase put event.)
+	// 
+	bool FirebasePut(const char *jsonPath, const char *value);
+
+
 	// Returns the root of the JSON document. The root can be obtained from any JSON
 	// object within the JSON document. The entire JSON document remains in memory as
 	// long as at least one JSON object is referenced by the application. When the last
 	// reference is removed, the entire JSON document is automatically dellocated.
 	// The caller is responsible for deleting the object returned by this method.
 	CkJsonObject *GetDocRoot(void);
+
+
+	// Returns true if the item at the ARG1 exists.
+	bool HasMember(const char *jsonPath);
 
 
 	// Returns the index of the member having the given ARG1. Returns -1 if the name is
@@ -304,6 +369,17 @@ class CK_VISIBLE_PUBLIC CkJsonObject  : public CkMultiByteBase
 
 	// Returns the string value at the specified ARG1.
 	const char *stringOf(const char *jsonPath);
+
+	// Returns the type of data at the given ARG1. Possible return values are:
+	//     string
+	//     number
+	//     object
+	//     array
+	//     boolean
+	//     null
+	// Returns -1 if no member exists at the given ARG1.
+	int TypeAt(int index);
+
 
 
 

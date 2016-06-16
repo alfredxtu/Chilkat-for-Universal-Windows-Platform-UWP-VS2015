@@ -2334,20 +2334,17 @@ class CK_VISIBLE_PUBLIC CkHttpW  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *GetServerSslCertAsync(const wchar_t *domain, int port);
 
-	// Returns the path part of a URL. The syntax of a URL is :// : @
-	// 
-	// : / ; ? # . This method returns the "path" part.
-	// 
+	// Returns the path part of a URL. The syntax of a URL is
+	// _LT_scheme>://_LT_user>:_LT_password>@_LT_host>:_LT_port>/_LT_path>;_LT_params>?_
+	// LT_query>#_LT_frag>. This method returns the "path" part.
 	bool GetUrlPath(const wchar_t *url, CkString &outStr);
-	// Returns the path part of a URL. The syntax of a URL is :// : @
-	// 
-	// : / ; ? # . This method returns the "path" part.
-	// 
+	// Returns the path part of a URL. The syntax of a URL is
+	// _LT_scheme>://_LT_user>:_LT_password>@_LT_host>:_LT_port>/_LT_path>;_LT_params>?_
+	// LT_query>#_LT_frag>. This method returns the "path" part.
 	const wchar_t *getUrlPath(const wchar_t *url);
-	// Returns the path part of a URL. The syntax of a URL is :// : @
-	// 
-	// : / ; ? # . This method returns the "path" part.
-	// 
+	// Returns the path part of a URL. The syntax of a URL is
+	// _LT_scheme>://_LT_user>:_LT_password>@_LT_host>:_LT_port>/_LT_path>;_LT_params>?_
+	// LT_query>#_LT_frag>. This method returns the "path" part.
 	const wchar_t *urlPath(const wchar_t *url);
 
 	// Returns true if the specified header field is defined such that it will be sent

@@ -171,6 +171,7 @@ public ref class Stream sealed
 	property int64 Length
 	{
 		int64 get();
+		void set(int64);
 	}
 	property int64 NumReceived
 	{
@@ -184,6 +185,11 @@ public ref class Stream sealed
 	{
 		Boolean get();
 		void set(Boolean);
+	}
+	property int32 Length32
+	{
+		int32 get();
+		void set(int32);
 	}
 
 

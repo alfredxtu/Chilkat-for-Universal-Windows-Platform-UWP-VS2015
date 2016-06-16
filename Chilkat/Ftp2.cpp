@@ -2222,6 +2222,22 @@ Boolean Ftp2::SetOption(Platform::String ^option)
 	// cppType = bool
 	return m_impl->SetOption(option ? option->Data() : L"");
     }
+IAsyncOperation<Boolean>^ Ftp2::LargeFileUploadAsync(Platform::String ^localPath, Platform::String ^remotePath, int chunkSize)
+    {
+return create_async([this, localPath, remotePath, chunkSize]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxFtp2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	// gType = bool
+	// cppType = bool
+	return m_impl->LargeFileUpload(localPath ? localPath->Data() : L"",remotePath ? remotePath->Data() : L"",chunkSize);
+
+});
+    }
 
 
 

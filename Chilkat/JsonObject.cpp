@@ -85,6 +85,14 @@ void Chilkat::JsonObject::LastMethodSuccess::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
+String ^Chilkat::JsonObject::DelimiterChar::get()
+    {
+    return ref new String(m_impl ? m_impl->delimiterChar() : L"");
+    }
+void Chilkat::JsonObject::DelimiterChar::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DelimiterChar(newVal ? newVal->Data() : L"");
+    }
 Boolean Chilkat::JsonObject::EmitCompact::get()
     {
     return m_impl ? m_impl->get_EmitCompact() : false;
@@ -195,6 +203,54 @@ Boolean JsonObject::AddStringAt(int index, Platform::String ^name, Platform::Str
 	// cppType = bool
 	return m_impl->AddStringAt(index,name ? name->Data() : L"",value ? value->Data() : L"");
     }
+JsonArray ^JsonObject::AppendArray(Platform::String ^name)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	// gType = JsonArray
+	// cppType = CkJsonArray *
+	CkJsonArrayW *pRetObj = m_impl->AppendArray(name ? name->Data() : L"");
+	if (!pRetObj) return nullptr;
+	Chilkat::JsonArray ^pJsonArray = ref new Chilkat::JsonArray();
+	pJsonArray->m_impl = pRetObj;
+	return pJsonArray;
+    }
+Boolean JsonObject::AppendBool(Platform::String ^name, Boolean value)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	// gType = bool
+	// cppType = bool
+	return m_impl->AppendBool(name ? name->Data() : L"",value);
+    }
+Boolean JsonObject::AppendInt(Platform::String ^name, int value)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	// gType = bool
+	// cppType = bool
+	return m_impl->AppendInt(name ? name->Data() : L"",value);
+    }
+JsonObject ^JsonObject::AppendObject(Platform::String ^name)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	// gType = JsonObject
+	// cppType = CkJsonObject *
+	CkJsonObjectW *pRetObj = m_impl->AppendObject(name ? name->Data() : L"");
+	if (!pRetObj) return nullptr;
+	Chilkat::JsonObject ^pJsonObject = ref new Chilkat::JsonObject();
+	pJsonObject->m_impl = pRetObj;
+	return pJsonObject;
+    }
+Boolean JsonObject::AppendString(Platform::String ^name, Platform::String ^value)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	// gType = bool
+	// cppType = bool
+	return m_impl->AppendString(name ? name->Data() : L"",value ? value->Data() : L"");
+    }
 JsonArray ^JsonObject::ArrayAt(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }
@@ -261,6 +317,30 @@ Platform::String ^JsonObject::Emit(void)
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
+Boolean JsonObject::FirebaseApplyEvent(Platform::String ^name, Platform::String ^data)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	// gType = bool
+	// cppType = bool
+	return m_impl->FirebaseApplyEvent(name ? name->Data() : L"",data ? data->Data() : L"");
+    }
+Boolean JsonObject::FirebasePatch(Platform::String ^jsonPath, Platform::String ^jsonData)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	// gType = bool
+	// cppType = bool
+	return m_impl->FirebasePatch(jsonPath ? jsonPath->Data() : L"",jsonData ? jsonData->Data() : L"");
+    }
+Boolean JsonObject::FirebasePut(Platform::String ^jsonPath, Platform::String ^value)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	// gType = bool
+	// cppType = bool
+	return m_impl->FirebasePut(jsonPath ? jsonPath->Data() : L"",value ? value->Data() : L"");
+    }
 JsonObject ^JsonObject::GetDocRoot(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
@@ -272,6 +352,14 @@ JsonObject ^JsonObject::GetDocRoot(void)
 	Chilkat::JsonObject ^pJsonObject = ref new Chilkat::JsonObject();
 	pJsonObject->m_impl = pRetObj;
 	return pJsonObject;
+    }
+Boolean JsonObject::HasMember(Platform::String ^jsonPath)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	// gType = bool
+	// cppType = bool
+	return m_impl->HasMember(jsonPath ? jsonPath->Data() : L"");
     }
 int JsonObject::IndexOf(Platform::String ^name)
     {
@@ -486,6 +574,14 @@ Platform::String ^JsonObject::StringOf(Platform::String ^jsonPath)
 	const wchar_t *retStr = m_impl->stringOf(jsonPath ? jsonPath->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+    }
+int JsonObject::TypeAt(int index)
+    {
+	if (m_impl == nullptr) { return -1; }
+	// --- prep output arg ---
+	// gType = int
+	// cppType = int
+	return m_impl->TypeAt(index);
     }
 
 

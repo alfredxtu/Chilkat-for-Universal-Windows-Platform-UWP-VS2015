@@ -188,7 +188,13 @@ class CK_VISIBLE_PUBLIC CkDateTime  : public CkMultiByteBase
 	bool GetAsRfc822(bool bLocal, CkString &outStr);
 	const char *getAsRfc822(bool bLocal);
 
+	bool GetAsTimestamp(bool bLocal, CkString &outStr);
+	const char *getAsTimestamp(bool bLocal);
+
 	bool SetFromRfc822(const char *rfc822Str);
+
+	// Sets the date/time from an RFC 3339 date/time formatted string.
+	bool SetFromTimestamp(const char *rfc3339Str);
 
 	// Loads the date/time from a completed asynchronous task.
 	bool LoadTaskResult(CkTask &task);

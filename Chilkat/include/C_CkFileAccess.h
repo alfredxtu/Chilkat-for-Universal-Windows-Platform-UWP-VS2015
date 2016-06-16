@@ -50,6 +50,9 @@ CK_VISIBLE_PUBLIC BOOL CkFileAccess_FileRename(HCkFileAccess cHandle, const char
 CK_VISIBLE_PUBLIC BOOL CkFileAccess_FileSeek(HCkFileAccess cHandle, int offset, int origin);
 CK_VISIBLE_PUBLIC int CkFileAccess_FileSize(HCkFileAccess cHandle, const char *filePath);
 CK_VISIBLE_PUBLIC BOOL CkFileAccess_FileWrite(HCkFileAccess cHandle, HCkByteData data);
+CK_VISIBLE_PUBLIC BOOL CkFileAccess_GenBlockId(HCkFileAccess cHandle, int index, int length, const char *encoding, HCkString outStr);
+CK_VISIBLE_PUBLIC const char *CkFileAccess_genBlockId(HCkFileAccess cHandle, int index, int length, const char *encoding);
+CK_VISIBLE_PUBLIC int CkFileAccess_GetNumBlocks(HCkFileAccess cHandle, int blockSize);
 CK_VISIBLE_PUBLIC BOOL CkFileAccess_GetTempFilename(HCkFileAccess cHandle, const char *dirPath, const char *prefix, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkFileAccess_getTempFilename(HCkFileAccess cHandle, const char *dirPath, const char *prefix);
 CK_VISIBLE_PUBLIC BOOL CkFileAccess_OpenForAppend(HCkFileAccess cHandle, const char *filePath);
@@ -58,6 +61,7 @@ CK_VISIBLE_PUBLIC BOOL CkFileAccess_OpenForReadWrite(HCkFileAccess cHandle, cons
 CK_VISIBLE_PUBLIC BOOL CkFileAccess_OpenForWrite(HCkFileAccess cHandle, const char *filePath);
 CK_VISIBLE_PUBLIC BOOL CkFileAccess_ReadBinaryToEncoded(HCkFileAccess cHandle, const char *filePath, const char *encoding, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkFileAccess_readBinaryToEncoded(HCkFileAccess cHandle, const char *filePath, const char *encoding);
+CK_VISIBLE_PUBLIC BOOL CkFileAccess_ReadBlock(HCkFileAccess cHandle, int blockIndex, int blockSize, HCkByteData outBytes);
 CK_VISIBLE_PUBLIC BOOL CkFileAccess_ReadEntireFile(HCkFileAccess cHandle, const char *filePath, HCkByteData outBytes);
 CK_VISIBLE_PUBLIC BOOL CkFileAccess_ReadEntireTextFile(HCkFileAccess cHandle, const char *filePath, const char *charset, HCkString outStrFileContents);
 CK_VISIBLE_PUBLIC const char *CkFileAccess_readEntireTextFile(HCkFileAccess cHandle, const char *filePath, const char *charset);

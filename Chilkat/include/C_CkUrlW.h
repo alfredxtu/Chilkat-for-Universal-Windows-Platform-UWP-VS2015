@@ -19,6 +19,8 @@ CK_VISIBLE_PUBLIC void CkUrlW_getPassword(HCkUrlW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkUrlW_password(HCkUrlW cHandle);
 CK_VISIBLE_PUBLIC void CkUrlW_getPath(HCkUrlW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkUrlW_path(HCkUrlW cHandle);
+CK_VISIBLE_PUBLIC void CkUrlW_getPathWithQueryParams(HCkUrlW cHandle, HCkString retval);
+CK_VISIBLE_PUBLIC const wchar_t *CkUrlW_pathWithQueryParams(HCkUrlW cHandle);
 CK_VISIBLE_PUBLIC int CkUrlW_getPort(HCkUrlW cHandle);
 CK_VISIBLE_PUBLIC void CkUrlW_getQuery(HCkUrlW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkUrlW_query(HCkUrlW cHandle);

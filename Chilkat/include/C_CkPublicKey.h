@@ -26,9 +26,14 @@ CK_VISIBLE_PUBLIC BOOL CkPublicKey_getVerboseLogging(HCkPublicKey cHandle);
 CK_VISIBLE_PUBLIC void CkPublicKey_putVerboseLogging(HCkPublicKey cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkPublicKey_getVersion(HCkPublicKey cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const char *CkPublicKey_version(HCkPublicKey cHandle);
+CK_VISIBLE_PUBLIC BOOL CkPublicKey_GetDer(HCkPublicKey cHandle, BOOL preferPkcs1, HCkByteData outBytes);
+CK_VISIBLE_PUBLIC BOOL CkPublicKey_GetEncoded(HCkPublicKey cHandle, BOOL preferPkcs1, const char *encoding, HCkString outStr);
+CK_VISIBLE_PUBLIC const char *CkPublicKey_getEncoded(HCkPublicKey cHandle, BOOL preferPkcs1, const char *encoding);
 CK_VISIBLE_PUBLIC BOOL CkPublicKey_GetOpenSslDer(HCkPublicKey cHandle, HCkByteData outData);
 CK_VISIBLE_PUBLIC BOOL CkPublicKey_GetOpenSslPem(HCkPublicKey cHandle, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkPublicKey_getOpenSslPem(HCkPublicKey cHandle);
+CK_VISIBLE_PUBLIC BOOL CkPublicKey_GetPem(HCkPublicKey cHandle, BOOL preferPkcs1, HCkString outStr);
+CK_VISIBLE_PUBLIC const char *CkPublicKey_getPem(HCkPublicKey cHandle, BOOL preferPkcs1);
 CK_VISIBLE_PUBLIC BOOL CkPublicKey_GetPkcs1ENC(HCkPublicKey cHandle, const char *encoding, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkPublicKey_getPkcs1ENC(HCkPublicKey cHandle, const char *encoding);
 CK_VISIBLE_PUBLIC BOOL CkPublicKey_GetPkcs8ENC(HCkPublicKey cHandle, const char *encoding, HCkString outStr);
@@ -37,6 +42,9 @@ CK_VISIBLE_PUBLIC BOOL CkPublicKey_GetRsaDer(HCkPublicKey cHandle, HCkByteData o
 CK_VISIBLE_PUBLIC BOOL CkPublicKey_GetXml(HCkPublicKey cHandle, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkPublicKey_getXml(HCkPublicKey cHandle);
 CK_VISIBLE_PUBLIC BOOL CkPublicKey_LoadBase64(HCkPublicKey cHandle, const char *keyStr);
+CK_VISIBLE_PUBLIC BOOL CkPublicKey_LoadFromBinary(HCkPublicKey cHandle, HCkByteData keyBytes);
+CK_VISIBLE_PUBLIC BOOL CkPublicKey_LoadFromFile(HCkPublicKey cHandle, const char *path);
+CK_VISIBLE_PUBLIC BOOL CkPublicKey_LoadFromString(HCkPublicKey cHandle, const char *keyString);
 CK_VISIBLE_PUBLIC BOOL CkPublicKey_LoadOpenSslDer(HCkPublicKey cHandle, HCkByteData data);
 CK_VISIBLE_PUBLIC BOOL CkPublicKey_LoadOpenSslDerFile(HCkPublicKey cHandle, const char *path);
 CK_VISIBLE_PUBLIC BOOL CkPublicKey_LoadOpenSslPem(HCkPublicKey cHandle, const char *str);
@@ -46,9 +54,11 @@ CK_VISIBLE_PUBLIC BOOL CkPublicKey_LoadRsaDer(HCkPublicKey cHandle, HCkByteData 
 CK_VISIBLE_PUBLIC BOOL CkPublicKey_LoadRsaDerFile(HCkPublicKey cHandle, const char *path);
 CK_VISIBLE_PUBLIC BOOL CkPublicKey_LoadXml(HCkPublicKey cHandle, const char *xml);
 CK_VISIBLE_PUBLIC BOOL CkPublicKey_LoadXmlFile(HCkPublicKey cHandle, const char *path);
+CK_VISIBLE_PUBLIC BOOL CkPublicKey_SaveDerFile(HCkPublicKey cHandle, BOOL preferPkcs1, const char *path);
 CK_VISIBLE_PUBLIC BOOL CkPublicKey_SaveLastError(HCkPublicKey cHandle, const char *path);
 CK_VISIBLE_PUBLIC BOOL CkPublicKey_SaveOpenSslDerFile(HCkPublicKey cHandle, const char *path);
 CK_VISIBLE_PUBLIC BOOL CkPublicKey_SaveOpenSslPemFile(HCkPublicKey cHandle, const char *path);
+CK_VISIBLE_PUBLIC BOOL CkPublicKey_SavePemFile(HCkPublicKey cHandle, BOOL preferPkcs1, const char *path);
 CK_VISIBLE_PUBLIC BOOL CkPublicKey_SaveRsaDerFile(HCkPublicKey cHandle, const char *path);
 CK_VISIBLE_PUBLIC BOOL CkPublicKey_SaveXmlFile(HCkPublicKey cHandle, const char *path);
 #endif

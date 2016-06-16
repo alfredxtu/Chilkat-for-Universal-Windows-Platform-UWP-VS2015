@@ -35,6 +35,8 @@ CK_VISIBLE_PUBLIC BOOL CkJsonArray_AddStringAt(HCkJsonArray cHandle, int index, 
 CK_VISIBLE_PUBLIC HCkJsonArray CkJsonArray_ArrayAt(HCkJsonArray cHandle, int index);
 CK_VISIBLE_PUBLIC BOOL CkJsonArray_BoolAt(HCkJsonArray cHandle, int index);
 CK_VISIBLE_PUBLIC BOOL CkJsonArray_DeleteAt(HCkJsonArray cHandle, int index);
+CK_VISIBLE_PUBLIC BOOL CkJsonArray_Emit(HCkJsonArray cHandle, HCkString outStr);
+CK_VISIBLE_PUBLIC const char *CkJsonArray_emit(HCkJsonArray cHandle);
 CK_VISIBLE_PUBLIC int CkJsonArray_IntAt(HCkJsonArray cHandle, int index);
 CK_VISIBLE_PUBLIC BOOL CkJsonArray_IsNullAt(HCkJsonArray cHandle, int index);
 CK_VISIBLE_PUBLIC HCkJsonObject CkJsonArray_ObjectAt(HCkJsonArray cHandle, int index);
@@ -46,4 +48,5 @@ CK_VISIBLE_PUBLIC BOOL CkJsonArray_SetNumberAt(HCkJsonArray cHandle, int index, 
 CK_VISIBLE_PUBLIC BOOL CkJsonArray_SetStringAt(HCkJsonArray cHandle, int index, const char *value);
 CK_VISIBLE_PUBLIC BOOL CkJsonArray_StringAt(HCkJsonArray cHandle, int index, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkJsonArray_stringAt(HCkJsonArray cHandle, int index);
+CK_VISIBLE_PUBLIC int CkJsonArray_TypeAt(HCkJsonArray cHandle, int index);
 #endif

@@ -128,6 +128,14 @@ typedef void *HCkOAuth1;
 typedef void *HCkJsonObject;
 typedef void *HCkJsonArray;
 typedef void *HCkStream;
+typedef void *HCkAuthAws;
+typedef void *HCkAuthGoogle;
+typedef void *HCkAuthAzureStorage;
+typedef void *HCkAuthAzureAD;
+typedef void *HCkRest;
+typedef void *HCkStringBuilder;
+typedef void *HCkJwt;
+typedef void *HCkServerSentEvent;
 
 
 typedef void *HCkByteDataW;
@@ -232,5 +240,12 @@ typedef void *HCkOAuth1W;
 typedef void *HCkJsonObjectW;
 typedef void *HCkJsonArrayW;
 typedef void *HCkStreamW;
-
+typedef void *HCkRestW;
+typedef void *HCkAuthAwsW;
+typedef void *HCkAuthGoogleW;
+typedef void *HCkAuthAzureStorageW;
+typedef void *HCkAuthAzureADW;
+typedef void *HCkStringBuilderW;
+typedef void *HCkJwtW;
+typedef void *HCkServerSentEventW;
 #endif

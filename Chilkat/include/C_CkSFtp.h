@@ -124,6 +124,9 @@ CK_VISIBLE_PUBLIC void CkSFtp_putSocksUsername(HCkSFtp cHandle, const char *newV
 CK_VISIBLE_PUBLIC const char *CkSFtp_socksUsername(HCkSFtp cHandle);
 CK_VISIBLE_PUBLIC int CkSFtp_getSocksVersion(HCkSFtp cHandle);
 CK_VISIBLE_PUBLIC void CkSFtp_putSocksVersion(HCkSFtp cHandle, int newVal);
+CK_VISIBLE_PUBLIC void CkSFtp_getSyncDirectives(HCkSFtp cHandle, HCkString retval);
+CK_VISIBLE_PUBLIC void CkSFtp_putSyncDirectives(HCkSFtp cHandle, const char *newVal);
+CK_VISIBLE_PUBLIC const char *CkSFtp_syncDirectives(HCkSFtp cHandle);
 CK_VISIBLE_PUBLIC void CkSFtp_getSyncMustMatch(HCkSFtp cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void CkSFtp_putSyncMustMatch(HCkSFtp cHandle, const char *newVal);
 CK_VISIBLE_PUBLIC const char *CkSFtp_syncMustMatch(HCkSFtp cHandle);

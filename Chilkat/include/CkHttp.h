@@ -2373,21 +2373,18 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	CkTask *GetServerSslCertAsync(const char *domain, int port);
 
 
-	// Returns the path part of a URL. The syntax of a URL is :// : @
-	// 
-	// : / ; ? # . This method returns the "path" part.
-	// 
+	// Returns the path part of a URL. The syntax of a URL is
+	// _LT_scheme>://_LT_user>:_LT_password>@_LT_host>:_LT_port>/_LT_path>;_LT_params>?_
+	// LT_query>#_LT_frag>. This method returns the "path" part.
 	bool GetUrlPath(const char *url, CkString &outStr);
 
-	// Returns the path part of a URL. The syntax of a URL is :// : @
-	// 
-	// : / ; ? # . This method returns the "path" part.
-	// 
+	// Returns the path part of a URL. The syntax of a URL is
+	// _LT_scheme>://_LT_user>:_LT_password>@_LT_host>:_LT_port>/_LT_path>;_LT_params>?_
+	// LT_query>#_LT_frag>. This method returns the "path" part.
 	const char *getUrlPath(const char *url);
-	// Returns the path part of a URL. The syntax of a URL is :// : @
-	// 
-	// : / ; ? # . This method returns the "path" part.
-	// 
+	// Returns the path part of a URL. The syntax of a URL is
+	// _LT_scheme>://_LT_user>:_LT_password>@_LT_host>:_LT_port>/_LT_path>;_LT_params>?_
+	// LT_query>#_LT_frag>. This method returns the "path" part.
 	const char *urlPath(const char *url);
 
 

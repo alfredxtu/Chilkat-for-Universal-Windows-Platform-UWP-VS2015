@@ -390,6 +390,63 @@ Boolean PrivateKey::SaveXmlFile(Platform::String ^path)
 	// cppType = bool
 	return m_impl->SaveXmlFile(path ? path->Data() : L"");
     }
+Windows::Foundation::Collections::IVector<uint8>^PrivateKey::GetPkcs1(void)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CkByteData outDb;
+	// gType = bytes
+	// cppType = bool
+	bool success = m_impl->GetPkcs1(outDb);
+	const uint8 *pOut = outDb.getData();
+	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
+	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
+    }
+Platform::String ^PrivateKey::GetPkcs1Pem(void)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	// gType = string
+	// cppType = bool
+	const wchar_t *retStr = m_impl->getPkcs1Pem();
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
+Boolean PrivateKey::LoadPkcs1(Windows::Foundation::Collections::IVector<uint8>^data)
+    {
+	if (m_impl == nullptr) { return false; }
+	CkByteData db0; std::vector<uint8> v0;
+        if (data != nullptr) { v0 = to_vector(data);
+            db0.borrowData(&v0[0], (unsigned long)v0.size()); }
+	// --- prep output arg ---
+	// gType = bool
+	// cppType = bool
+	return m_impl->LoadPkcs1(db0);
+    }
+Boolean PrivateKey::LoadPkcs1File(Platform::String ^path)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	// gType = bool
+	// cppType = bool
+	return m_impl->LoadPkcs1File(path ? path->Data() : L"");
+    }
+Boolean PrivateKey::SavePkcs1File(Platform::String ^path)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	// gType = bool
+	// cppType = bool
+	return m_impl->SavePkcs1File(path ? path->Data() : L"");
+    }
+Boolean PrivateKey::SavePemFile(Platform::String ^path)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	// gType = bool
+	// cppType = bool
+	return m_impl->SavePemFile(path ? path->Data() : L"");
+    }
 
 
 

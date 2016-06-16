@@ -59,6 +59,47 @@ class CK_VISIBLE_PUBLIC CkStreamW  : public CkClassWithCallbacksW
 	// ----------------------
 	// Properties
 	// ----------------------
+	// When set to true, causes the currently running method to abort. Methods that
+	// always finish quickly (i.e.have no length file operations or network
+	// communications) are not affected. If no method is running, then this property is
+	// automatically reset to false when the next method is called. When the abort
+	// occurs, this property is reset to false. Both synchronous and asynchronous
+	// method calls can be aborted. (A synchronous method call could be aborted by
+	// setting this property from a separate thread.)
+	bool get_AbortCurrent(void);
+	// When set to true, causes the currently running method to abort. Methods that
+	// always finish quickly (i.e.have no length file operations or network
+	// communications) are not affected. If no method is running, then this property is
+	// automatically reset to false when the next method is called. When the abort
+	// occurs, this property is reset to false. Both synchronous and asynchronous
+	// method calls can be aborted. (A synchronous method call could be aborted by
+	// setting this property from a separate thread.)
+	void put_AbortCurrent(bool newVal);
+
+	// true if the stream supports reading. Otherwise false.
+	// 
+	// Note: A stream that supports reading, which has already reached the
+	// end-of-stream, will still have a CanRead value of true. This property
+	// indicates the stream's inherent ability, and not whether or not the stream can
+	// be read at a particular moment in time.
+	// 
+	bool get_CanRead(void);
+
+	// true if the stream supports writing. Otherwise false.
+	// 
+	// Note: A stream that supports writing, which has already been closed for write,
+	// will still have a CanWrite value of true. This property indicates the stream's
+	// inherent ability, and not whether or not the stream can be written at a
+	// particular moment in time.
+	// 
+	bool get_CanWrite(void);
+
+	// true if it is known for sure that data is ready and waiting to be read.
+	// false if it is not known for sure (it may be that data is immediately
+	// available, but reading the stream with a ReadTimeoutMs of 0, which is to poll
+	// the stream, is the way to find out).
+	bool get_DataAvailable(void);
+
 	// The default internal chunk size for reading or writing. The default value is
 	// 65536. If this property is set to 0, it will cause the default chunk size
 	// (65536) to be used. Note: The chunk size can have significant performance
@@ -80,6 +121,36 @@ class CK_VISIBLE_PUBLIC CkStreamW  : public CkClassWithCallbacksW
 	// true if the stream is closed for writing. Once closed, no more data may be
 	// written to the stream.
 	bool get_IsWriteClosed(void);
+
+	// The length (in bytes) of the stream's source. If unknown, then this property
+	// will have a value of -1. This property may be set by the application if it knows
+	// in advance the length of the stream.
+	__int64 get_Length(void);
+	// The length (in bytes) of the stream's source. If unknown, then this property
+	// will have a value of -1. This property may be set by the application if it knows
+	// in advance the length of the stream.
+	void put_Length(__int64 newVal);
+
+	// The length (in bytes) of the stream's source. If unknown, then this property
+	// will have a value of -1. This property may be set by the application if it knows
+	// in advance the length of the stream.
+	// 
+	// Setting this property also sets the Length property (which is a 64-bit integer).
+	// 
+	int get_Length32(void);
+	// The length (in bytes) of the stream's source. If unknown, then this property
+	// will have a value of -1. This property may be set by the application if it knows
+	// in advance the length of the stream.
+	// 
+	// Setting this property also sets the Length property (which is a 64-bit integer).
+	// 
+	void put_Length32(int newVal);
+
+	// The number of bytes received by the stream.
+	__int64 get_NumReceived(void);
+
+	// The number of bytes sent by the stream.
+	__int64 get_NumSent(void);
 
 	// This property is automatically set when a Read* method is called. It indicates
 	// the reason for failure. Possible values are:
@@ -227,57 +298,6 @@ class CK_VISIBLE_PUBLIC CkStreamW  : public CkClassWithCallbacksW
 	// seconds (i.e. 30000ms). A value of 0 indicates to return immediately if it is
 	// not possible to write to the sink immediately.
 	void put_WriteTimeoutMs(int newVal);
-
-	// true if the stream supports reading. Otherwise false.
-	// 
-	// Note: A stream that supports reading, which has already reached the
-	// end-of-stream, will still have a CanRead value of true. This property
-	// indicates the stream's inherent ability, and not whether or not the stream can
-	// be read at a particular moment in time.
-	// 
-	bool get_CanRead(void);
-
-	// true if the stream supports writing. Otherwise false.
-	// 
-	// Note: A stream that supports writing, which has already been closed for write,
-	// will still have a CanWrite value of true. This property indicates the stream's
-	// inherent ability, and not whether or not the stream can be written at a
-	// particular moment in time.
-	// 
-	bool get_CanWrite(void);
-
-	// true if it is known for sure that data is ready and waiting to be read.
-	// false if it is not known for sure (it may be that data is immediately
-	// available, but reading the stream with a ReadTimeoutMs of 0, which is to poll
-	// the stream, is the way to find out).
-	bool get_DataAvailable(void);
-
-	// The length (in bytes) of the stream's source. If unknown, then this property
-	// will have a value of -1.
-	__int64 get_Length(void);
-
-	// The number of bytes received by the stream.
-	__int64 get_NumReceived(void);
-
-	// The number of bytes sent by the stream.
-	__int64 get_NumSent(void);
-
-	// When set to true, causes the currently running method to abort. Methods that
-	// always finish quickly (i.e.have no length file operations or network
-	// communications) are not affected. If no method is running, then this property is
-	// automatically reset to false when the next method is called. When the abort
-	// occurs, this property is reset to false. Both synchronous and asynchronous
-	// method calls can be aborted. (A synchronous method call could be aborted by
-	// setting this property from a separate thread.)
-	bool get_AbortCurrent(void);
-	// When set to true, causes the currently running method to abort. Methods that
-	// always finish quickly (i.e.have no length file operations or network
-	// communications) are not affected. If no method is running, then this property is
-	// automatically reset to false when the next method is called. When the abort
-	// occurs, this property is reset to false. Both synchronous and asynchronous
-	// method calls can be aborted. (A synchronous method call could be aborted by
-	// setting this property from a separate thread.)
-	void put_AbortCurrent(bool newVal);
 
 
 
@@ -473,6 +493,9 @@ class CK_VISIBLE_PUBLIC CkStreamW  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *WriteBytesENCAsync(const wchar_t *byteData, const wchar_t *encoding);
 
+	// Indicates that no more data will be written to the stream.
+	bool WriteClose(void);
+
 	// Writes a string to a stream. The actual bytes written are the byte
 	// representation of the string as indicated by the StringCharset property. For
 	// example, to write utf-8 bytes, first set StringCharset equal to "utf-8" and then
@@ -483,9 +506,6 @@ class CK_VISIBLE_PUBLIC CkStreamW  : public CkClassWithCallbacksW
 	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *WriteStringAsync(const wchar_t *str);
-
-	// Indicates that no more data will be written to the stream.
-	bool WriteClose(void);
 
 
 

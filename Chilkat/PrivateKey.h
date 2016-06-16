@@ -154,6 +154,18 @@ public ref class PrivateKey sealed
 
 	Boolean SaveXmlFile(Platform::String ^path);
 
+	Windows::Foundation::Collections::IVector<uint8>^GetPkcs1(void);
+
+	Platform::String ^GetPkcs1Pem(void);
+
+	Boolean LoadPkcs1(Windows::Foundation::Collections::IVector<uint8>^data);
+
+	Boolean LoadPkcs1File(Platform::String ^path);
+
+	Boolean SavePkcs1File(Platform::String ^path);
+
+	Boolean SavePemFile(Platform::String ^path);
+
 
 
 };

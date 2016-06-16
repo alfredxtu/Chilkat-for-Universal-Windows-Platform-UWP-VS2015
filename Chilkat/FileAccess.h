@@ -171,6 +171,12 @@ public ref class FileAccess sealed
 
 	Boolean WriteEntireTextFile(Platform::String ^filename, Platform::String ^fileData, Platform::String ^charset, Boolean includePreamble);
 
+	int GetNumBlocks(int blockSize);
+
+	Windows::Foundation::Collections::IVector<uint8>^ReadBlock(int blockIndex, int blockSize);
+
+	Platform::String ^GenBlockId(int index, int length, Platform::String ^encoding);
+
 
 
 };

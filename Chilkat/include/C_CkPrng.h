@@ -31,6 +31,8 @@ CK_VISIBLE_PUBLIC BOOL CkPrng_AddEntropy(HCkPrng cHandle, const char *entropy, c
 CK_VISIBLE_PUBLIC BOOL CkPrng_AddEntropyBytes(HCkPrng cHandle, HCkByteData entropy);
 CK_VISIBLE_PUBLIC BOOL CkPrng_ExportEntropy(HCkPrng cHandle, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkPrng_exportEntropy(HCkPrng cHandle);
+CK_VISIBLE_PUBLIC BOOL CkPrng_FirebasePushId(HCkPrng cHandle, HCkString outStr);
+CK_VISIBLE_PUBLIC const char *CkPrng_firebasePushId(HCkPrng cHandle);
 CK_VISIBLE_PUBLIC BOOL CkPrng_GenRandom(HCkPrng cHandle, int numBytes, const char *encoding, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkPrng_genRandom(HCkPrng cHandle, int numBytes, const char *encoding);
 CK_VISIBLE_PUBLIC BOOL CkPrng_GenRandomBytes(HCkPrng cHandle, int numBytes, HCkByteData outBytes);
