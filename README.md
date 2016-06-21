@@ -5,6 +5,10 @@ This repo is the full version (and trial) of the Chilkat Runtime Component for U
 
 The Chilkat UWP Runtime Component is designed to run on desktop, mobile, and future devices that support the Universal Windows Platform.
 
+## May also be Installed from the NuGet Package Manager
+
+See [Chilkat Runtime Component for Universal Apps](https://www.nuget.org/packages/Chilkat.uwp/) 
+
 ## System requirements
 
 **Client:** Windows 10
