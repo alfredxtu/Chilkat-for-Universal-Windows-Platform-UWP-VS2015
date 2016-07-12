@@ -1629,9 +1629,50 @@ class CK_VISIBLE_PUBLIC CkImap  : public CkClassWithCallbacks
 	CkTask *GetMailboxStatusAsync(const char *mailbox);
 
 
+	// Sends the GETQUOTA command and returns the response in JSON format. This feature
+	// is only possible with IMAP servers that support the QUOTA extension/capability.
+	bool GetQuota(const char *quotaRoot, CkString &outStr);
+
+	// Sends the GETQUOTA command and returns the response in JSON format. This feature
+	// is only possible with IMAP servers that support the QUOTA extension/capability.
+	const char *getQuota(const char *quotaRoot);
+	// Sends the GETQUOTA command and returns the response in JSON format. This feature
+	// is only possible with IMAP servers that support the QUOTA extension/capability.
+	const char *quota(const char *quotaRoot);
+
+	// Sends the GETQUOTA command and returns the response in JSON format. This feature
+	// is only possible with IMAP servers that support the QUOTA extension/capability.
+	CkTask *GetQuotaAsync(const char *quotaRoot);
+
+
+	// Sends the GETQUOTAROOT command and returns the response in JSON format. This
+	// feature is only possible with IMAP servers that support the QUOTA
+	// extension/capability.
+	bool GetQuotaRoot(const char *mailboxName, CkString &outStr);
+
+	// Sends the GETQUOTAROOT command and returns the response in JSON format. This
+	// feature is only possible with IMAP servers that support the QUOTA
+	// extension/capability.
+	const char *getQuotaRoot(const char *mailboxName);
+	// Sends the GETQUOTAROOT command and returns the response in JSON format. This
+	// feature is only possible with IMAP servers that support the QUOTA
+	// extension/capability.
+	const char *quotaRoot(const char *mailboxName);
+
+	// Sends the GETQUOTAROOT command and returns the response in JSON format. This
+	// feature is only possible with IMAP servers that support the QUOTA
+	// extension/capability.
+	CkTask *GetQuotaRootAsync(const char *mailboxName);
+
+
 	// Returns the IMAP server's digital certificate (for SSL / TLS connections).
 	// The caller is responsible for deleting the object returned by this method.
 	CkCert *GetSslServerCert(void);
+
+
+	// Returns true if the capability indicated by ARG1 is found in the ARG2.
+	// Otherwise returns false.
+	bool HasCapability(const char *name, const char *capabilityResponse);
 
 
 	// Polls the connection to see if any real-time updates are available. The ARG1
@@ -2640,6 +2681,33 @@ class CK_VISIBLE_PUBLIC CkImap  : public CkClassWithCallbacks
 	CkTask *SetMailFlagAsync(CkEmail &email, const char *flagName, int value);
 
 
+	// Sets the quota for a ARG1. The ARG2 should be one of two keywords:"STORAGE" or
+	// "MESSAGE". Use "STORAGE" to set the maximum capacity of the combined messages in
+	// ARG1. Use "MESSAGE" to set the maximum number of messages allowed.
+	// 
+	// If setting a STORAGE quota, the ARG3 is in units of 1024 octets. For example, to
+	// specify a limit of 500,000,000 bytes, set ARG3 equal to 500,000.
+	// 
+	// This feature is only possible with IMAP servers that support the QUOTA
+	// extension/capability. If an IMAP server supports the QUOTA extension, it likely
+	// supports the STORAGE resource. The MESSAGE resource is less commonly supported.
+	// 
+	bool SetQuota(const char *quotaRoot, const char *resource, int quota);
+
+	// Sets the quota for a ARG1. The ARG2 should be one of two keywords:"STORAGE" or
+	// "MESSAGE". Use "STORAGE" to set the maximum capacity of the combined messages in
+	// ARG1. Use "MESSAGE" to set the maximum number of messages allowed.
+	// 
+	// If setting a STORAGE quota, the ARG3 is in units of 1024 octets. For example, to
+	// specify a limit of 500,000,000 bytes, set ARG3 equal to 500,000.
+	// 
+	// This feature is only possible with IMAP servers that support the QUOTA
+	// extension/capability. If an IMAP server supports the QUOTA extension, it likely
+	// supports the STORAGE resource. The MESSAGE resource is less commonly supported.
+	// 
+	CkTask *SetQuotaAsync(const char *quotaRoot, const char *resource, int quota);
+
+
 	// Specifies a client-side certificate to be used for the SSL / TLS connection. In
 	// most cases, servers do not require client-side certificates for SSL/TLS. A
 	// client-side certificate is typically used in high-security situations where the
@@ -2859,74 +2927,6 @@ class CK_VISIBLE_PUBLIC CkImap  : public CkClassWithCallbacks
 	// logical channels. IMAP connections can exist simultaneously with other
 	// connection within a single SSH tunnel as SSH channels.)
 	bool UseSshTunnel(CkSocket &tunnel);
-
-
-	// Returns true if the capability indicated by ARG1 is found in the ARG2.
-	// Otherwise returns false.
-	bool HasCapability(const char *name, const char *capabilityResponse);
-
-
-	// Sends the GETQUOTAROOT command and returns the response in JSON format. This
-	// feature is only possible with IMAP servers that support the QUOTA
-	// extension/capability.
-	bool GetQuotaRoot(const char *mailboxName, CkString &outStr);
-
-	// Sends the GETQUOTAROOT command and returns the response in JSON format. This
-	// feature is only possible with IMAP servers that support the QUOTA
-	// extension/capability.
-	const char *getQuotaRoot(const char *mailboxName);
-	// Sends the GETQUOTAROOT command and returns the response in JSON format. This
-	// feature is only possible with IMAP servers that support the QUOTA
-	// extension/capability.
-	const char *quotaRoot(const char *mailboxName);
-
-	// Sends the GETQUOTAROOT command and returns the response in JSON format. This
-	// feature is only possible with IMAP servers that support the QUOTA
-	// extension/capability.
-	CkTask *GetQuotaRootAsync(const char *mailboxName);
-
-
-	// Sends the GETQUOTA command and returns the response in JSON format. This feature
-	// is only possible with IMAP servers that support the QUOTA extension/capability.
-	bool GetQuota(const char *quotaRoot, CkString &outStr);
-
-	// Sends the GETQUOTA command and returns the response in JSON format. This feature
-	// is only possible with IMAP servers that support the QUOTA extension/capability.
-	const char *getQuota(const char *quotaRoot);
-	// Sends the GETQUOTA command and returns the response in JSON format. This feature
-	// is only possible with IMAP servers that support the QUOTA extension/capability.
-	const char *quota(const char *quotaRoot);
-
-	// Sends the GETQUOTA command and returns the response in JSON format. This feature
-	// is only possible with IMAP servers that support the QUOTA extension/capability.
-	CkTask *GetQuotaAsync(const char *quotaRoot);
-
-
-	// Sets the quota for a ARG1. The ARG2 should be one of two keywords:"STORAGE" or
-	// "MESSAGE". Use "STORAGE" to set the maximum capacity of the combined messages in
-	// ARG1. Use "MESSAGE" to set the maximum number of messages allowed.
-	// 
-	// If setting a STORAGE quota, the ARG3 is in units of 1024 octets. For example, to
-	// specify a limit of 500,000,000 bytes, set ARG3 equal to 500,000.
-	// 
-	// This feature is only possible with IMAP servers that support the QUOTA
-	// extension/capability. If an IMAP server supports the QUOTA extension, it likely
-	// supports the STORAGE resource. The MESSAGE resource is less commonly supported.
-	// 
-	bool SetQuota(const char *quotaRoot, const char *resource, int quota);
-
-	// Sets the quota for a ARG1. The ARG2 should be one of two keywords:"STORAGE" or
-	// "MESSAGE". Use "STORAGE" to set the maximum capacity of the combined messages in
-	// ARG1. Use "MESSAGE" to set the maximum number of messages allowed.
-	// 
-	// If setting a STORAGE quota, the ARG3 is in units of 1024 octets. For example, to
-	// specify a limit of 500,000,000 bytes, set ARG3 equal to 500,000.
-	// 
-	// This feature is only possible with IMAP servers that support the QUOTA
-	// extension/capability. If an IMAP server supports the QUOTA extension, it likely
-	// supports the STORAGE resource. The MESSAGE resource is less commonly supported.
-	// 
-	CkTask *SetQuotaAsync(const char *quotaRoot, const char *resource, int quota);
 
 
 

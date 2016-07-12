@@ -73,11 +73,11 @@ public ref class ServerSentEvent sealed
 		Boolean get();
 		void set(Boolean);
 	}
-	property Platform::String ^EventName
+	property Platform::String ^Data
 	{
 		Platform::String ^get();
 	}
-	property Platform::String ^Data
+	property Platform::String ^EventName
 	{
 		Platform::String ^get();
 	}

@@ -83,22 +83,6 @@ void Chilkat::AuthAzureStorage::LastMethodSuccess::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
-String ^Chilkat::AuthAzureStorage::Scheme::get()
-    {
-    return ref new String(m_impl ? m_impl->scheme() : L"");
-    }
-void Chilkat::AuthAzureStorage::Scheme::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_Scheme(newVal ? newVal->Data() : L"");
-    }
-String ^Chilkat::AuthAzureStorage::Service::get()
-    {
-    return ref new String(m_impl ? m_impl->service() : L"");
-    }
-void Chilkat::AuthAzureStorage::Service::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_Service(newVal ? newVal->Data() : L"");
-    }
 String ^Chilkat::AuthAzureStorage::AccessKey::get()
     {
     return ref new String(m_impl ? m_impl->accessKey() : L"");
@@ -114,6 +98,22 @@ String ^Chilkat::AuthAzureStorage::Account::get()
 void Chilkat::AuthAzureStorage::Account::set(String ^newVal)
     {
         if (m_impl) m_impl->put_Account(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::AuthAzureStorage::Scheme::get()
+    {
+    return ref new String(m_impl ? m_impl->scheme() : L"");
+    }
+void Chilkat::AuthAzureStorage::Scheme::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_Scheme(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::AuthAzureStorage::Service::get()
+    {
+    return ref new String(m_impl ? m_impl->service() : L"");
+    }
+void Chilkat::AuthAzureStorage::Service::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_Service(newVal ? newVal->Data() : L"");
     }
 String ^Chilkat::AuthAzureStorage::XMsVersion::get()
     {

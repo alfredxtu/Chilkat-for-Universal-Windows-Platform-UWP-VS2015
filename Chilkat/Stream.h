@@ -105,6 +105,23 @@ public ref class Stream sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Boolean AbortCurrent
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Boolean CanRead
+	{
+		Boolean get();
+	}
+	property Boolean CanWrite
+	{
+		Boolean get();
+	}
+	property Boolean DataAvailable
+	{
+		Boolean get();
+	}
 	property int32 DefaultChunkSize
 	{
 		int32 get();
@@ -117,6 +134,24 @@ public ref class Stream sealed
 	property Boolean IsWriteClosed
 	{
 		Boolean get();
+	}
+	property int64 Length
+	{
+		int64 get();
+		void set(int64);
+	}
+	property int32 Length32
+	{
+		int32 get();
+		void set(int32);
+	}
+	property int64 NumReceived
+	{
+		int64 get();
+	}
+	property int64 NumSent
+	{
+		int64 get();
 	}
 	property int32 ReadFailReason
 	{
@@ -152,41 +187,6 @@ public ref class Stream sealed
 		int32 get();
 	}
 	property int32 WriteTimeoutMs
-	{
-		int32 get();
-		void set(int32);
-	}
-	property Boolean CanRead
-	{
-		Boolean get();
-	}
-	property Boolean CanWrite
-	{
-		Boolean get();
-	}
-	property Boolean DataAvailable
-	{
-		Boolean get();
-	}
-	property int64 Length
-	{
-		int64 get();
-		void set(int64);
-	}
-	property int64 NumReceived
-	{
-		int64 get();
-	}
-	property int64 NumSent
-	{
-		int64 get();
-	}
-	property Boolean AbortCurrent
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property int32 Length32
 	{
 		int32 get();
 		void set(int32);
@@ -230,9 +230,9 @@ public ref class Stream sealed
 
 	IAsyncOperation<Boolean>^ WriteBytesENCAsync(Platform::String ^byteData, Platform::String ^encoding);
 
-	IAsyncOperation<Boolean>^ WriteStringAsync(Platform::String ^str);
-
 	Boolean WriteClose(void);
+
+	IAsyncOperation<Boolean>^ WriteStringAsync(Platform::String ^str);
 
 
 

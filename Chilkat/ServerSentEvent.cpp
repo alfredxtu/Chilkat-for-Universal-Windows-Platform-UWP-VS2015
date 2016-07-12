@@ -83,13 +83,13 @@ void Chilkat::ServerSentEvent::LastMethodSuccess::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
-String ^Chilkat::ServerSentEvent::EventName::get()
-    {
-    return ref new String(m_impl ? m_impl->eventName() : L"");
-    }
 String ^Chilkat::ServerSentEvent::Data::get()
     {
     return ref new String(m_impl ? m_impl->data() : L"");
+    }
+String ^Chilkat::ServerSentEvent::EventName::get()
+    {
+    return ref new String(m_impl ? m_impl->eventName() : L"");
     }
 String ^Chilkat::ServerSentEvent::LastEventId::get()
     {

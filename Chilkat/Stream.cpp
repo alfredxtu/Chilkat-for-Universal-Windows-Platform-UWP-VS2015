@@ -83,6 +83,26 @@ void Chilkat::Stream::LastMethodSuccess::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
+Boolean Chilkat::Stream::AbortCurrent::get()
+    {
+    return m_impl ? m_impl->get_AbortCurrent() : false;
+    }
+void Chilkat::Stream::AbortCurrent::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
+    }
+Boolean Chilkat::Stream::CanRead::get()
+    {
+    return m_impl ? m_impl->get_CanRead() : false;
+    }
+Boolean Chilkat::Stream::CanWrite::get()
+    {
+    return m_impl ? m_impl->get_CanWrite() : false;
+    }
+Boolean Chilkat::Stream::DataAvailable::get()
+    {
+    return m_impl ? m_impl->get_DataAvailable() : false;
+    }
 int Chilkat::Stream::DefaultChunkSize::get()
     {
     return m_impl ? m_impl->get_DefaultChunkSize() : 0;
@@ -98,6 +118,30 @@ Boolean Chilkat::Stream::EndOfStream::get()
 Boolean Chilkat::Stream::IsWriteClosed::get()
     {
     return m_impl ? m_impl->get_IsWriteClosed() : false;
+    }
+int64 Chilkat::Stream::Length::get()
+    {
+    return m_impl ? m_impl->get_Length() : 0;
+    }
+void Chilkat::Stream::Length::set(int64 newVal)
+    {
+        if (m_impl) m_impl->put_Length(newVal);
+    }
+int Chilkat::Stream::Length32::get()
+    {
+    return m_impl ? m_impl->get_Length32() : 0;
+    }
+void Chilkat::Stream::Length32::set(int newVal)
+    {
+        if (m_impl) m_impl->put_Length32(newVal);
+    }
+int64 Chilkat::Stream::NumReceived::get()
+    {
+    return m_impl ? m_impl->get_NumReceived() : 0;
+    }
+int64 Chilkat::Stream::NumSent::get()
+    {
+    return m_impl ? m_impl->get_NumSent() : 0;
     }
 int Chilkat::Stream::ReadFailReason::get()
     {
@@ -154,50 +198,6 @@ int Chilkat::Stream::WriteTimeoutMs::get()
 void Chilkat::Stream::WriteTimeoutMs::set(int newVal)
     {
         if (m_impl) m_impl->put_WriteTimeoutMs(newVal);
-    }
-Boolean Chilkat::Stream::CanRead::get()
-    {
-    return m_impl ? m_impl->get_CanRead() : false;
-    }
-Boolean Chilkat::Stream::CanWrite::get()
-    {
-    return m_impl ? m_impl->get_CanWrite() : false;
-    }
-Boolean Chilkat::Stream::DataAvailable::get()
-    {
-    return m_impl ? m_impl->get_DataAvailable() : false;
-    }
-int64 Chilkat::Stream::Length::get()
-    {
-    return m_impl ? m_impl->get_Length() : 0;
-    }
-void Chilkat::Stream::Length::set(int64 newVal)
-    {
-        if (m_impl) m_impl->put_Length(newVal);
-    }
-int64 Chilkat::Stream::NumReceived::get()
-    {
-    return m_impl ? m_impl->get_NumReceived() : 0;
-    }
-int64 Chilkat::Stream::NumSent::get()
-    {
-    return m_impl ? m_impl->get_NumSent() : 0;
-    }
-Boolean Chilkat::Stream::AbortCurrent::get()
-    {
-    return m_impl ? m_impl->get_AbortCurrent() : false;
-    }
-void Chilkat::Stream::AbortCurrent::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_AbortCurrent(newVal);
-    }
-int Chilkat::Stream::Length32::get()
-    {
-    return m_impl ? m_impl->get_Length32() : 0;
-    }
-void Chilkat::Stream::Length32::set(int newVal)
-    {
-        if (m_impl) m_impl->put_Length32(newVal);
     }
 
 
@@ -467,6 +467,16 @@ return create_async([this, byteData, encoding]() -> Boolean
 
 });
     }
+Boolean Stream::WriteClose(void)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxStreamProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	// gType = bool
+	// cppType = bool
+	return m_impl->WriteClose();
+    }
 IAsyncOperation<Boolean>^ Stream::WriteStringAsync(Platform::String ^str)
     {
 return create_async([this, str]() -> Boolean
@@ -482,16 +492,6 @@ return create_async([this, str]() -> Boolean
 	return m_impl->WriteString(str ? str->Data() : L"");
 
 });
-    }
-Boolean Stream::WriteClose(void)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxStreamProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->WriteClose();
     }
 
 

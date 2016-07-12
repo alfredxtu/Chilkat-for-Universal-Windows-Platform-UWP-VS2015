@@ -78,10 +78,12 @@ class CK_VISIBLE_PUBLIC CkSshTunnelW  : public CkClassWithCallbacksW
 	void put_AcceptLogPath(const wchar_t *newVal);
 
 	// Maximum number of milliseconds to wait when connecting to an SSH server. The
-	// default value is 10000 (i.e. 10 seconds).
+	// default value is 10000 (i.e. 10 seconds). A value of 0 indicates no timeout
+	// (wait forever).
 	int get_ConnectTimeoutMs(void);
 	// Maximum number of milliseconds to wait when connecting to an SSH server. The
-	// default value is 10000 (i.e. 10 seconds).
+	// default value is 10000 (i.e. 10 seconds). A value of 0 indicates no timeout
+	// (wait forever).
 	void put_ConnectTimeoutMs(int newVal);
 
 	// The destination hostname or IP address (in dotted decimal notation) of the

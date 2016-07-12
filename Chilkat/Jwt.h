@@ -91,17 +91,17 @@ public ref class Jwt sealed
 
 	Platform::String ^CreateJwtPk(Platform::String ^header, Platform::String ^payload, PrivateKey ^key);
 
-	Boolean VerifyJwt(Platform::String ^token, Platform::String ^password);
-
-	Boolean VerifyJwtPk(Platform::String ^token, PublicKey ^key);
+	int GenNumericDate(int numSecOffset);
 
 	Platform::String ^GetHeader(Platform::String ^token);
 
 	Platform::String ^GetPayload(Platform::String ^token);
 
-	int GenNumericDate(int numSecOffset);
-
 	Boolean IsTimeValid(Platform::String ^jwt, int leeway);
+
+	Boolean VerifyJwt(Platform::String ^token, Platform::String ^password);
+
+	Boolean VerifyJwtPk(Platform::String ^token, PublicKey ^key);
 
 
 

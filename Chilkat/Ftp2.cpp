@@ -86,6 +86,14 @@ void Chilkat::Ftp2::LastMethodSuccess::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
+Boolean Chilkat::Ftp2::AbortCurrent::get()
+    {
+    return m_impl ? m_impl->get_AbortCurrent() : false;
+    }
+void Chilkat::Ftp2::AbortCurrent::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
+    }
 String ^Chilkat::Ftp2::Account::get()
     {
     return ref new String(m_impl ? m_impl->account() : L"");
@@ -705,14 +713,6 @@ String ^Chilkat::Ftp2::Username::get()
 void Chilkat::Ftp2::Username::set(String ^newVal)
     {
         if (m_impl) m_impl->put_Username(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Ftp2::AbortCurrent::get()
-    {
-    return m_impl ? m_impl->get_AbortCurrent() : false;
-    }
-void Chilkat::Ftp2::AbortCurrent::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_AbortCurrent(newVal);
     }
 
 
@@ -1693,6 +1693,22 @@ Boolean Ftp2::IsUnlocked(void)
 	// cppType = bool
 	return m_impl->IsUnlocked();
     }
+IAsyncOperation<Boolean>^ Ftp2::LargeFileUploadAsync(Platform::String ^localPath, Platform::String ^remotePath, int chunkSize)
+    {
+return create_async([this, localPath, remotePath, chunkSize]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxFtp2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	// gType = bool
+	// cppType = bool
+	return m_impl->LargeFileUpload(localPath ? localPath->Data() : L"",remotePath ? remotePath->Data() : L"",chunkSize);
+
+});
+    }
 IAsyncOperation<Boolean>^ Ftp2::LoginAfterConnectOnlyAsync(void)
     {
 return create_async([this]() -> Boolean
@@ -1949,6 +1965,16 @@ void Ftp2::SetOldestDateStr(Platform::String ^oldestDateTimeStr)
 	// gType = void
 	// cppType = void
 	m_impl->SetOldestDateStr(oldestDateTimeStr ? oldestDateTimeStr->Data() : L"");
+    }
+Boolean Ftp2::SetOption(Platform::String ^option)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxFtp2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	// gType = bool
+	// cppType = bool
+	return m_impl->SetOption(option ? option->Data() : L"");
     }
 IAsyncOperation<Boolean>^ Ftp2::SetRemoteFileDateTimeStrAsync(Platform::String ^dateTimeStr, Platform::String ^remoteFilename)
     {
@@ -2211,32 +2237,6 @@ Boolean Ftp2::UnlockComponent(Platform::String ^unlockCode)
 	// gType = bool
 	// cppType = bool
 	return m_impl->UnlockComponent(unlockCode ? unlockCode->Data() : L"");
-    }
-Boolean Ftp2::SetOption(Platform::String ^option)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxFtp2Progress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SetOption(option ? option->Data() : L"");
-    }
-IAsyncOperation<Boolean>^ Ftp2::LargeFileUploadAsync(Platform::String ^localPath, Platform::String ^remotePath, int chunkSize)
-    {
-return create_async([this, localPath, remotePath, chunkSize]() -> Boolean
-{
-// This runs in a thread pool thread...
-
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxFtp2Progress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->LargeFileUpload(localPath ? localPath->Data() : L"",remotePath ? remotePath->Data() : L"",chunkSize);
-
-});
     }
 
 

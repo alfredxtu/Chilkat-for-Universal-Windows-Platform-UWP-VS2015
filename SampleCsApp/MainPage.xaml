@@ -11,6 +11,9 @@
         <Button x:Name="button" Content="Press to Run Test Encryption" HorizontalAlignment="Left" Height="123" Margin="54,52,0,0" VerticalAlignment="Top" Width="332" Click="button_Click"/>
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="69" Margin="54,239,0,0" TextWrapping="Wrap" Text="The quick brown fox jumped over the lazy dog." VerticalAlignment="Top" Width="1061"/>
         <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="68" Margin="54,364,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="1061"/>
+        <Button x:Name="button1" Content="HTTP Download" HorizontalAlignment="Left" Height="123" Margin="428,52,0,0" VerticalAlignment="Top" Width="284" Click="button1_Click"/>
+        <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="59" Margin="761,116,0,0" TextWrapping="Wrap" Text="Download Speed" VerticalAlignment="Top" Width="307"/>
+        <ProgressBar x:Name="progressBar1" HorizontalAlignment="Left" Height="22" Margin="54,465,0,0" VerticalAlignment="Top" Width="1061"/>
 
 
     </Grid>

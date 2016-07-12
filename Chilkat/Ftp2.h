@@ -162,6 +162,11 @@ public ref class Ftp2 sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Boolean AbortCurrent
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property Platform::String ^Account
 	{
 		Platform::String ^get();
@@ -575,11 +580,6 @@ public ref class Ftp2 sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
-	property Boolean AbortCurrent
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 
 
 	// ----------------------
@@ -701,6 +701,8 @@ public ref class Ftp2 sealed
 
 	Boolean IsUnlocked(void);
 
+	IAsyncOperation<Boolean>^ LargeFileUploadAsync(Platform::String ^localPath, Platform::String ^remotePath, int chunkSize);
+
 	IAsyncOperation<Boolean>^ LoginAfterConnectOnlyAsync(void);
 
 	IAsyncOperation<int>^ MGetFilesAsync(Platform::String ^remotePattern, Platform::String ^localDir);
@@ -732,6 +734,8 @@ public ref class Ftp2 sealed
 	IAsyncOperation<Boolean>^ SetModeZAsync(void);
 
 	void SetOldestDateStr(Platform::String ^oldestDateTimeStr);
+
+	Boolean SetOption(Platform::String ^option);
 
 	IAsyncOperation<Boolean>^ SetRemoteFileDateTimeStrAsync(Platform::String ^dateTimeStr, Platform::String ^remoteFilename);
 
@@ -768,10 +772,6 @@ public ref class Ftp2 sealed
 	IAsyncOperation<Platform::String ^>^ SystAsync(void);
 
 	Boolean UnlockComponent(Platform::String ^unlockCode);
-
-	Boolean SetOption(Platform::String ^option);
-
-	IAsyncOperation<Boolean>^ LargeFileUploadAsync(Platform::String ^localPath, Platform::String ^remotePath, int chunkSize);
 
 
 

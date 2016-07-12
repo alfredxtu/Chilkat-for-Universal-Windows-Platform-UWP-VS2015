@@ -54,6 +54,23 @@ class CK_VISIBLE_PUBLIC CkZip  : public CkClassWithCallbacks
 	// ----------------------
 	// Properties
 	// ----------------------
+	// When set to true, causes the currently running method to abort. Methods that
+	// always finish quickly (i.e.have no length file operations or network
+	// communications) are not affected. If no method is running, then this property is
+	// automatically reset to false when the next method is called. When the abort
+	// occurs, this property is reset to false. Both synchronous and asynchronous
+	// method calls can be aborted. (A synchronous method call could be aborted by
+	// setting this property from a separate thread.)
+	bool get_AbortCurrent(void);
+	// When set to true, causes the currently running method to abort. Methods that
+	// always finish quickly (i.e.have no length file operations or network
+	// communications) are not affected. If no method is running, then this property is
+	// automatically reset to false when the next method is called. When the abort
+	// occurs, this property is reset to false. Both synchronous and asynchronous
+	// method calls can be aborted. (A synchronous method call could be aborted by
+	// setting this property from a separate thread.)
+	void put_AbortCurrent(bool newVal);
+
 	// When files are added to a Zip archive, they are appended from this directory.
 	// For example, to add all the files under c:/abc/123/myAppDir, this property could
 	// be set to "c:/abc/123", and "myAppDir/*" would be passed to AppendFiles. The
@@ -724,9 +741,17 @@ class CK_VISIBLE_PUBLIC CkZip  : public CkClassWithCallbacks
 
 	// true if the Zip should be password-protected using older Zip 2.0 encryption,
 	// commonly referred to as "password-protection".
+	// 
+	// This property is set when a zip archive is opened by any of the Open* methods,
+	// such as OpenZip, OpenFromMemory, etc.
+	// 
 	bool get_PasswordProtect(void);
 	// true if the Zip should be password-protected using older Zip 2.0 encryption,
 	// commonly referred to as "password-protection".
+	// 
+	// This property is set when a zip archive is opened by any of the Open* methods,
+	// such as OpenZip, OpenFromMemory, etc.
+	// 
 	void put_PasswordProtect(bool newVal);
 
 	// A prefix that is added to each filename when zipping. One might set the
@@ -865,23 +890,6 @@ class CK_VISIBLE_PUBLIC CkZip  : public CkClassWithCallbacks
 	// This feature will come at a later date. Currently, this property is ignored.
 	// 
 	void put_ZipxDefaultAlg(const char *newVal);
-
-	// When set to true, causes the currently running method to abort. Methods that
-	// always finish quickly (i.e.have no length file operations or network
-	// communications) are not affected. If no method is running, then this property is
-	// automatically reset to false when the next method is called. When the abort
-	// occurs, this property is reset to false. Both synchronous and asynchronous
-	// method calls can be aborted. (A synchronous method call could be aborted by
-	// setting this property from a separate thread.)
-	bool get_AbortCurrent(void);
-	// When set to true, causes the currently running method to abort. Methods that
-	// always finish quickly (i.e.have no length file operations or network
-	// communications) are not affected. If no method is running, then this property is
-	// automatically reset to false when the next method is called. When the abort
-	// occurs, this property is reset to false. Both synchronous and asynchronous
-	// method calls can be aborted. (A synchronous method call could be aborted by
-	// setting this property from a separate thread.)
-	void put_AbortCurrent(bool newVal);
 
 
 
@@ -1293,11 +1301,25 @@ class CK_VISIBLE_PUBLIC CkZip  : public CkClassWithCallbacks
 #endif
 
 	// Same as OpenFromMemory.
+	// 
+	// When a zip is opened, the PasswordProtect and Encryption properties will be
+	// appropriately set. If the zip is password protected (i.e. uses older Zip 2.0
+	// encrypion), then the PasswordProtect property will be set to true. If the zip
+	// is strong encrypted, the Encryption property will be set to a value 1 through 4,
+	// where 4 indicates WinZip compatible AES encryption.
+	// 
 	bool OpenFromByteData(CkByteData &byteData);
 
 
 	// Open a Zip that is completely in-memory. This allows for Zip files to be opened
 	// from non-filesystem sources, such as a database.
+	// 
+	// When a zip is opened, the PasswordProtect and Encryption properties will be
+	// appropriately set. If the zip is password protected (i.e. uses older Zip 2.0
+	// encrypion), then the PasswordProtect property will be set to true. If the zip
+	// is strong encrypted, the Encryption property will be set to a value 1 through 4,
+	// where 4 indicates WinZip compatible AES encryption.
+	// 
 	bool OpenFromMemory(CkByteData &inData);
 
 

@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.58
+// This is a generated source file for Chilkat version 9.5.0.59
 #ifndef _C_CkFtp2WH
 #define _C_CkFtp2WH
 #include "chilkatDefs.h"

@@ -117,6 +117,9 @@ class CK_VISIBLE_PUBLIC CkString : public CkObject
 	void chopAtStr(CkString &str);
 	void chopAtStr(const char *s);
 
+	// For Q/B encoding, such as "?UTF-8?Q?Chilkat=20Software=2C=20Inc?= <support@chilkatsoft.com>"
+	void qbDecode(void);
+
 	void urlDecode(const char *charset);
 	void urlEncode(const char *charset);
 	void base64Decode(const char *charset);

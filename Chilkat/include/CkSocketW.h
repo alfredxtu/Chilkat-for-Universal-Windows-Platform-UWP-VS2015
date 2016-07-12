@@ -1798,6 +1798,11 @@ class CK_VISIBLE_PUBLIC CkSocketW  : public CkClassWithCallbacksW
 	// data is waiting and false if no data is waiting to be read.
 	bool PollDataAvailable(void);
 
+	// Creates an asynchronous task to call the PollDataAvailable method with the
+	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *PollDataAvailableAsync(void);
+
 	// Receives a single byte. The received byte will be available in the ReceivedInt
 	// property. If ARG1 is true, then a value from 0 to 255 is returned in
 	// ReceivedInt. If ARG1 is false, then a value from -128 to +127 is returned.

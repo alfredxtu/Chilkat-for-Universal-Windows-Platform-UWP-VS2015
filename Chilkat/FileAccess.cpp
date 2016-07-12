@@ -277,6 +277,24 @@ Boolean FileAccess::FileWrite(Windows::Foundation::Collections::IVector<uint8>^d
 	// cppType = bool
 	return m_impl->FileWrite(db0);
     }
+Platform::String ^FileAccess::GenBlockId(int index, int length, Platform::String ^encoding)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	// gType = string
+	// cppType = bool
+	const wchar_t *retStr = m_impl->genBlockId(index,length,encoding ? encoding->Data() : L"");
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
+int FileAccess::GetNumBlocks(int blockSize)
+    {
+	if (m_impl == nullptr) { return -1; }
+	// --- prep output arg ---
+	// gType = int
+	// cppType = int
+	return m_impl->GetNumBlocks(blockSize);
+    }
 Platform::String ^FileAccess::GetTempFilename(Platform::String ^dirName, Platform::String ^prefix)
     {
 	if (m_impl == nullptr) { return nullptr; }
@@ -328,6 +346,18 @@ Platform::String ^FileAccess::ReadBinaryToEncoded(Platform::String ^filename, Pl
 	const wchar_t *retStr = m_impl->readBinaryToEncoded(filename ? filename->Data() : L"",encoding ? encoding->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+    }
+Windows::Foundation::Collections::IVector<uint8>^FileAccess::ReadBlock(int blockIndex, int blockSize)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CkByteData outDb;
+	// gType = bytes
+	// cppType = bool
+	bool success = m_impl->ReadBlock(blockIndex,blockSize,outDb);
+	const uint8 *pOut = outDb.getData();
+	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
+	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
     }
 Windows::Foundation::Collections::IVector<uint8>^FileAccess::ReadEntireFile(Platform::String ^filename)
     {
@@ -437,36 +467,6 @@ Boolean FileAccess::WriteEntireTextFile(Platform::String ^filename, Platform::St
 	// gType = bool
 	// cppType = bool
 	return m_impl->WriteEntireTextFile(filename ? filename->Data() : L"",fileData ? fileData->Data() : L"",charset ? charset->Data() : L"",includePreamble);
-    }
-int FileAccess::GetNumBlocks(int blockSize)
-    {
-	if (m_impl == nullptr) { return -1; }
-	// --- prep output arg ---
-	// gType = int
-	// cppType = int
-	return m_impl->GetNumBlocks(blockSize);
-    }
-Windows::Foundation::Collections::IVector<uint8>^FileAccess::ReadBlock(int blockIndex, int blockSize)
-    {
-	if (m_impl == nullptr) { return nullptr; }
-	// --- prep output arg ---
-	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
-	bool success = m_impl->ReadBlock(blockIndex,blockSize,outDb);
-	const uint8 *pOut = outDb.getData();
-	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
-	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
-    }
-Platform::String ^FileAccess::GenBlockId(int index, int length, Platform::String ^encoding)
-    {
-	if (m_impl == nullptr) { return nullptr; }
-	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->genBlockId(index,length,encoding ? encoding->Data() : L"");
-	if (!retStr) return nullptr;
-	return ref new String(retStr);
     }
 
 

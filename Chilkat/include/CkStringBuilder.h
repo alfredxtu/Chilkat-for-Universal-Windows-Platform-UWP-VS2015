@@ -98,9 +98,8 @@ class CK_VISIBLE_PUBLIC CkStringBuilder  : public CkMultiByteBase
 	bool Equals(const char *str, bool caseSensitive);
 
 
-	// Returns true if the ARG2 is contained within this object. The search begins at
-	// ARG1. To search the entire contents, set ARG1 equal to 0. For case sensitive
-	// matching, set ARG3 equal to true. For case-insensitive, set ARG3 equal to
+	// Returns true if the ARG2 is contained within this object. For case sensitive
+	// matching, set ARG2 equal to true. For case-insensitive, set ARG2 equal to
 	// false.
 	bool Contains(const char *str, bool caseSensitive);
 

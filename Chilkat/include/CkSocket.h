@@ -1873,6 +1873,10 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	// data is waiting and false if no data is waiting to be read.
 	bool PollDataAvailable(void);
 
+	// Check to see if data is available for reading on the socket. Returns true if
+	// data is waiting and false if no data is waiting to be read.
+	CkTask *PollDataAvailableAsync(void);
+
 
 	// Receives a single byte. The received byte will be available in the ReceivedInt
 	// property. If ARG1 is true, then a value from 0 to 255 is returned in

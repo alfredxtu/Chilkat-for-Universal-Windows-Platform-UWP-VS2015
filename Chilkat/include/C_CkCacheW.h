@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.58
+// This is a generated source file for Chilkat version 9.5.0.59
 #ifndef _C_CkCacheWH
 #define _C_CkCacheWH
 #include "chilkatDefs.h"

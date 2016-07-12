@@ -91,6 +91,22 @@ void Chilkat::AuthAws::AccessKey::set(String ^newVal)
     {
         if (m_impl) m_impl->put_AccessKey(newVal ? newVal->Data() : L"");
     }
+String ^Chilkat::AuthAws::CanonicalizedResourceV2::get()
+    {
+    return ref new String(m_impl ? m_impl->canonicalizedResourceV2() : L"");
+    }
+void Chilkat::AuthAws::CanonicalizedResourceV2::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_CanonicalizedResourceV2(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::AuthAws::PrecomputedMd5::get()
+    {
+    return ref new String(m_impl ? m_impl->precomputedMd5() : L"");
+    }
+void Chilkat::AuthAws::PrecomputedMd5::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_PrecomputedMd5(newVal ? newVal->Data() : L"");
+    }
 String ^Chilkat::AuthAws::PrecomputedSha256::get()
     {
     return ref new String(m_impl ? m_impl->precomputedSha256() : L"");
@@ -130,22 +146,6 @@ int Chilkat::AuthAws::SignatureVersion::get()
 void Chilkat::AuthAws::SignatureVersion::set(int newVal)
     {
         if (m_impl) m_impl->put_SignatureVersion(newVal);
-    }
-String ^Chilkat::AuthAws::PrecomputedMd5::get()
-    {
-    return ref new String(m_impl ? m_impl->precomputedMd5() : L"");
-    }
-void Chilkat::AuthAws::PrecomputedMd5::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_PrecomputedMd5(newVal ? newVal->Data() : L"");
-    }
-String ^Chilkat::AuthAws::CanonicalizedResourceV2::get()
-    {
-    return ref new String(m_impl ? m_impl->canonicalizedResourceV2() : L"");
-    }
-void Chilkat::AuthAws::CanonicalizedResourceV2::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_CanonicalizedResourceV2(newVal ? newVal->Data() : L"");
     }
 
 

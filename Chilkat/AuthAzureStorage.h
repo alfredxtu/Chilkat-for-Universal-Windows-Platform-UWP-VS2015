@@ -73,22 +73,22 @@ public ref class AuthAzureStorage sealed
 		Boolean get();
 		void set(Boolean);
 	}
-	property Platform::String ^Scheme
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Platform::String ^Service
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
 	property Platform::String ^AccessKey
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
 	property Platform::String ^Account
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^Scheme
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^Service
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);

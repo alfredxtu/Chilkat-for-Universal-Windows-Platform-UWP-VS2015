@@ -47,19 +47,19 @@ class CK_VISIBLE_PUBLIC CkServerSentEvent  : public CkMultiByteBase
 	// ----------------------
 	// Properties
 	// ----------------------
-	// The name of the server-side event. (If the "event" field was not present, then
-	// this will be empty.)
-	void get_EventName(CkString &str);
-	// The name of the server-side event. (If the "event" field was not present, then
-	// this will be empty.)
-	const char *eventName(void);
-
 	// The data for the server-side event. (If the "data" field was empty, then this
 	// will be empty.)
 	void get_Data(CkString &str);
 	// The data for the server-side event. (If the "data" field was empty, then this
 	// will be empty.)
 	const char *data(void);
+
+	// The name of the server-side event. (If the "event" field was not present, then
+	// this will be empty.)
+	void get_EventName(CkString &str);
+	// The name of the server-side event. (If the "event" field was not present, then
+	// this will be empty.)
+	const char *eventName(void);
 
 	// The content of the "id" field, if present.
 	void get_LastEventId(CkString &str);

@@ -176,6 +176,11 @@ public ref class Rest sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Boolean AllowHeaderQB
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 
 
 	// ----------------------

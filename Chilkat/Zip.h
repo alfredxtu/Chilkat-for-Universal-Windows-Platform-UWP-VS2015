@@ -191,6 +191,11 @@ public ref class Zip sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Boolean AbortCurrent
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property Platform::String ^AppendFromDir
 	{
 		Platform::String ^get();
@@ -312,11 +317,6 @@ public ref class Zip sealed
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
-	}
-	property Boolean AbortCurrent
-	{
-		Boolean get();
-		void set(Boolean);
 	}
 
 

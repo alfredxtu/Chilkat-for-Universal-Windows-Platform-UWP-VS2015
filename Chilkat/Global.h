@@ -117,9 +117,9 @@ public ref class Global sealed
 
 	Boolean DnsClearCache(void);
 
-	Boolean UnlockBundle(Platform::String ^bundleUnlockCode);
-
 	Boolean FinalizeThreadPool(void);
+
+	Boolean UnlockBundle(Platform::String ^bundleUnlockCode);
 
 
 

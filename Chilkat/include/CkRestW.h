@@ -271,6 +271,29 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// 
 	void put_PercentDoneOnSend(bool newVal);
 
+	// Controls whether non us-ascii HTTP request headers are automatically Q/B
+	// encoded. The default value is true.
+	// 
+	// Q/B encoded headers explicitly indicate the charset and byte representation, and
+	// appear as such: =?utf-8?Q?...?= or =?utf-8?B?...?=, where the charset may be
+	// "utf-8" or any other possible charset.
+	// 
+	// If this property is set to false, then no Q/B encoding is applied to any
+	// request header.
+	// 
+	bool get_AllowHeaderQB(void);
+	// Controls whether non us-ascii HTTP request headers are automatically Q/B
+	// encoded. The default value is true.
+	// 
+	// Q/B encoded headers explicitly indicate the charset and byte representation, and
+	// appear as such: =?utf-8?Q?...?= or =?utf-8?B?...?=, where the charset may be
+	// "utf-8" or any other possible charset.
+	// 
+	// If this property is set to false, then no Q/B encoding is applied to any
+	// request header.
+	// 
+	void put_AllowHeaderQB(bool newVal);
+
 
 
 	// ----------------------

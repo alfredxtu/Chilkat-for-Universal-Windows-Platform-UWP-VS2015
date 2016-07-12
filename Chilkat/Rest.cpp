@@ -183,6 +183,14 @@ void Chilkat::Rest::PercentDoneOnSend::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_PercentDoneOnSend(newVal);
     }
+Boolean Chilkat::Rest::AllowHeaderQB::get()
+    {
+    return m_impl ? m_impl->get_AllowHeaderQB() : false;
+    }
+void Chilkat::Rest::AllowHeaderQB::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AllowHeaderQB(newVal);
+    }
 
 
 Boolean Rest::SaveLastError(Platform::String ^path)

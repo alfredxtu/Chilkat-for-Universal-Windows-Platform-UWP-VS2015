@@ -130,6 +130,16 @@ Platform::String ^Prng::ExportEntropy(void)
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
+Platform::String ^Prng::FirebasePushId(void)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	// gType = string
+	// cppType = bool
+	const wchar_t *retStr = m_impl->firebasePushId();
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
 Platform::String ^Prng::GenRandom(int numBytes, Platform::String ^encoding)
     {
 	if (m_impl == nullptr) { return nullptr; }
@@ -207,16 +217,6 @@ Platform::String ^Prng::RandomString(int length, Boolean bDigits, Boolean bLower
 	// gType = string
 	// cppType = bool
 	const wchar_t *retStr = m_impl->randomString(length,bDigits,bLower,bUpper);
-	if (!retStr) return nullptr;
-	return ref new String(retStr);
-    }
-Platform::String ^Prng::FirebasePushId(void)
-    {
-	if (m_impl == nullptr) { return nullptr; }
-	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->firebasePushId();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }

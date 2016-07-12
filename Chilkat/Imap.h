@@ -463,7 +463,13 @@ public ref class Imap sealed
 
 	IAsyncOperation<Platform::String ^>^ GetMailboxStatusAsync(Platform::String ^mailbox);
 
+	IAsyncOperation<Platform::String ^>^ GetQuotaAsync(Platform::String ^quotaRoot);
+
+	IAsyncOperation<Platform::String ^>^ GetQuotaRootAsync(Platform::String ^mailboxName);
+
 	Cert ^GetSslServerCert(void);
+
+	Boolean HasCapability(Platform::String ^name, Platform::String ^capabilityResponse);
 
 	IAsyncOperation<Platform::String ^>^ IdleCheckAsync(int timeoutMs);
 
@@ -511,6 +517,8 @@ public ref class Imap sealed
 
 	IAsyncOperation<Boolean>^ SetMailFlagAsync(Email ^email, Platform::String ^flagName, int value);
 
+	IAsyncOperation<Boolean>^ SetQuotaAsync(Platform::String ^quotaRoot, Platform::String ^resource, int quota);
+
 	Boolean SetSslClientCert(Cert ^cert);
 
 	Boolean SetSslClientCertPem(Platform::String ^pemDataOrFilename, Platform::String ^pemPassword);
@@ -538,14 +546,6 @@ public ref class Imap sealed
 	Boolean UseSsh(Ssh ^ssh);
 
 	Boolean UseSshTunnel(Socket ^tunnel);
-
-	Boolean HasCapability(Platform::String ^name, Platform::String ^capabilityResponse);
-
-	IAsyncOperation<Platform::String ^>^ GetQuotaRootAsync(Platform::String ^mailboxName);
-
-	IAsyncOperation<Platform::String ^>^ GetQuotaAsync(Platform::String ^quotaRoot);
-
-	IAsyncOperation<Boolean>^ SetQuotaAsync(Platform::String ^quotaRoot, Platform::String ^resource, int quota);
 
 
 

@@ -91,6 +91,8 @@ public ref class Prng sealed
 
 	Platform::String ^ExportEntropy(void);
 
+	Platform::String ^FirebasePushId(void);
+
 	Platform::String ^GenRandom(int numBytes, Platform::String ^encoding);
 
 	Windows::Foundation::Collections::IVector<uint8>^GenRandomBytes(int numBytes);
@@ -106,8 +108,6 @@ public ref class Prng sealed
 	Platform::String ^RandomPassword(int length, Boolean mustIncludeDigit, Boolean upperAndLowercase, Platform::String ^mustHaveOneOf, Platform::String ^excludeChars);
 
 	Platform::String ^RandomString(int length, Boolean bDigits, Boolean bLower, Boolean bUpper);
-
-	Platform::String ^FirebasePushId(void);
 
 
 

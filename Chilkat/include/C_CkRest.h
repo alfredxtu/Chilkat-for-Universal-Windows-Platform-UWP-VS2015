@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.58
+// This is a generated source file for Chilkat version 9.5.0.59
 #ifndef _C_CkRest_H
 #define _C_CkRest_H
 #include "chilkatDefs.h"
@@ -13,6 +13,8 @@ CK_VISIBLE_PUBLIC void CkRest_setTaskCompleted(HCkRest cHandle, void (*fnTaskCom
 
 CK_VISIBLE_PUBLIC HCkRest CkRest_Create(void);
 CK_VISIBLE_PUBLIC void CkRest_Dispose(HCkRest handle);
+CK_VISIBLE_PUBLIC BOOL CkRest_getAllowHeaderQB(HCkRest cHandle);
+CK_VISIBLE_PUBLIC void CkRest_putAllowHeaderQB(HCkRest cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkRest_getAuthorization(HCkRest cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void CkRest_putAuthorization(HCkRest cHandle, const char *newVal);
 CK_VISIBLE_PUBLIC const char *CkRest_authorization(HCkRest cHandle);

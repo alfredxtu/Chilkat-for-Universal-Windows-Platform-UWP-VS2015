@@ -157,14 +157,6 @@ Boolean Global::DnsClearCache(void)
 	// cppType = bool
 	return m_impl->DnsClearCache();
     }
-Boolean Global::UnlockBundle(Platform::String ^bundleUnlockCode)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->UnlockBundle(bundleUnlockCode ? bundleUnlockCode->Data() : L"");
-    }
 Boolean Global::FinalizeThreadPool(void)
     {
 	if (m_impl == nullptr) { return false; }
@@ -172,6 +164,14 @@ Boolean Global::FinalizeThreadPool(void)
 	// gType = bool
 	// cppType = bool
 	return m_impl->FinalizeThreadPool();
+    }
+Boolean Global::UnlockBundle(Platform::String ^bundleUnlockCode)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	// gType = bool
+	// cppType = bool
+	return m_impl->UnlockBundle(bundleUnlockCode ? bundleUnlockCode->Data() : L"");
     }
 
 

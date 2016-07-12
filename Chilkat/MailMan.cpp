@@ -101,6 +101,14 @@ void Chilkat::MailMan::LastMethodSuccess::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
+Boolean Chilkat::MailMan::AbortCurrent::get()
+    {
+    return m_impl ? m_impl->get_AbortCurrent() : false;
+    }
+void Chilkat::MailMan::AbortCurrent::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
+    }
 Boolean Chilkat::MailMan::AllOrNone::get()
     {
     return m_impl ? m_impl->get_AllOrNone() : false;
@@ -680,14 +688,6 @@ Boolean Chilkat::MailMan::UseApop::get()
 void Chilkat::MailMan::UseApop::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_UseApop(newVal);
-    }
-Boolean Chilkat::MailMan::AbortCurrent::get()
-    {
-    return m_impl ? m_impl->get_AbortCurrent() : false;
-    }
-void Chilkat::MailMan::AbortCurrent::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_AbortCurrent(newVal);
     }
 
 

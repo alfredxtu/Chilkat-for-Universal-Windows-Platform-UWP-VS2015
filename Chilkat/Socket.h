@@ -430,7 +430,7 @@ public ref class Socket sealed
 
 	Boolean IsUnlocked(void);
 
-	Boolean PollDataAvailable(void);
+	IAsyncOperation<Boolean>^ PollDataAvailableAsync(void);
 
 	IAsyncOperation<Boolean>^ ReceiveByteAsync(Boolean bUnsigned);
 

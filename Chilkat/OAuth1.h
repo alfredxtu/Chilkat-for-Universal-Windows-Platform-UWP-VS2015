@@ -160,13 +160,13 @@ public ref class OAuth1 sealed
 
 	Boolean AddParam(Platform::String ^name, Platform::String ^value);
 
-	Boolean Generate(void);
-
-	Boolean RemoveParam(Platform::String ^name);
-
 	Boolean GenNonce(int numBytes);
 
 	Boolean GenTimestamp(void);
+
+	Boolean Generate(void);
+
+	Boolean RemoveParam(Platform::String ^name);
 
 
 

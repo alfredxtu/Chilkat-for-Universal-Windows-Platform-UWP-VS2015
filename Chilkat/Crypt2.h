@@ -110,6 +110,11 @@ public ref class Crypt2 sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Boolean AbortCurrent
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property int32 BlockSize
 	{
 		int32 get();
@@ -262,11 +267,6 @@ public ref class Crypt2 sealed
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
-	}
-	property Boolean AbortCurrent
-	{
-		Boolean get();
-		void set(Boolean);
 	}
 
 

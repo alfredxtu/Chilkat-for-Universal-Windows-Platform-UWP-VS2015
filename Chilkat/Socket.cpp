@@ -768,8 +768,12 @@ Boolean Socket::IsUnlocked(void)
 	// cppType = bool
 	return m_impl->IsUnlocked();
     }
-Boolean Socket::PollDataAvailable(void)
+IAsyncOperation<Boolean>^ Socket::PollDataAvailableAsync(void)
     {
+return create_async([this]() -> Boolean
+{
+// This runs in a thread pool thread...
+
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
@@ -777,6 +781,8 @@ Boolean Socket::PollDataAvailable(void)
 	// gType = bool
 	// cppType = bool
 	return m_impl->PollDataAvailable();
+
+});
     }
 IAsyncOperation<Boolean>^ Socket::ReceiveByteAsync(Boolean bUnsigned)
     {

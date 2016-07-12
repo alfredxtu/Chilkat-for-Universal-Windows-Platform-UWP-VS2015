@@ -209,22 +209,6 @@ Boolean OAuth1::AddParam(Platform::String ^name, Platform::String ^value)
 	// cppType = bool
 	return m_impl->AddParam(name ? name->Data() : L"",value ? value->Data() : L"");
     }
-Boolean OAuth1::Generate(void)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->Generate();
-    }
-Boolean OAuth1::RemoveParam(Platform::String ^name)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->RemoveParam(name ? name->Data() : L"");
-    }
 Boolean OAuth1::GenNonce(int numBytes)
     {
 	if (m_impl == nullptr) { return false; }
@@ -240,6 +224,22 @@ Boolean OAuth1::GenTimestamp(void)
 	// gType = bool
 	// cppType = bool
 	return m_impl->GenTimestamp();
+    }
+Boolean OAuth1::Generate(void)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	// gType = bool
+	// cppType = bool
+	return m_impl->Generate();
+    }
+Boolean OAuth1::RemoveParam(Platform::String ^name)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	// gType = bool
+	// cppType = bool
+	return m_impl->RemoveParam(name ? name->Data() : L"");
     }
 
 

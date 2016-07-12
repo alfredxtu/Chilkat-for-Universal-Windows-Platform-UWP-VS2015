@@ -137,6 +137,10 @@ public ref class FileAccess sealed
 
 	Boolean FileWrite(Windows::Foundation::Collections::IVector<uint8>^data);
 
+	Platform::String ^GenBlockId(int index, int length, Platform::String ^encoding);
+
+	int GetNumBlocks(int blockSize);
+
 	Platform::String ^GetTempFilename(Platform::String ^dirName, Platform::String ^prefix);
 
 	Boolean OpenForAppend(Platform::String ^filePath);
@@ -148,6 +152,8 @@ public ref class FileAccess sealed
 	Boolean OpenForWrite(Platform::String ^filePath);
 
 	Platform::String ^ReadBinaryToEncoded(Platform::String ^filename, Platform::String ^encoding);
+
+	Windows::Foundation::Collections::IVector<uint8>^ReadBlock(int blockIndex, int blockSize);
 
 	Windows::Foundation::Collections::IVector<uint8>^ReadEntireFile(Platform::String ^filename);
 
@@ -170,12 +176,6 @@ public ref class FileAccess sealed
 	Boolean WriteEntireFile(Platform::String ^filename, Windows::Foundation::Collections::IVector<uint8>^fileData);
 
 	Boolean WriteEntireTextFile(Platform::String ^filename, Platform::String ^fileData, Platform::String ^charset, Boolean includePreamble);
-
-	int GetNumBlocks(int blockSize);
-
-	Windows::Foundation::Collections::IVector<uint8>^ReadBlock(int blockIndex, int blockSize);
-
-	Platform::String ^GenBlockId(int index, int length, Platform::String ^encoding);
 
 
 

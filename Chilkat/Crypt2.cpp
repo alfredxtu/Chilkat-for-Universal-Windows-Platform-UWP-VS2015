@@ -93,6 +93,14 @@ void Chilkat::Crypt2::LastMethodSuccess::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
+Boolean Chilkat::Crypt2::AbortCurrent::get()
+    {
+    return m_impl ? m_impl->get_AbortCurrent() : false;
+    }
+void Chilkat::Crypt2::AbortCurrent::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
+    }
 int Chilkat::Crypt2::BlockSize::get()
     {
     return m_impl ? m_impl->get_BlockSize() : 0;
@@ -353,14 +361,6 @@ String ^Chilkat::Crypt2::UuMode::get()
 void Chilkat::Crypt2::UuMode::set(String ^newVal)
     {
         if (m_impl) m_impl->put_UuMode(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Crypt2::AbortCurrent::get()
-    {
-    return m_impl ? m_impl->get_AbortCurrent() : false;
-    }
-void Chilkat::Crypt2::AbortCurrent::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_AbortCurrent(newVal);
     }
 
 

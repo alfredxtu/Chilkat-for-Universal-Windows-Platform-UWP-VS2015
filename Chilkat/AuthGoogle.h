@@ -24,8 +24,8 @@ using namespace concurrency;
 namespace Chilkat
 {
 
-	ref class Socket;
 	ref class Pfx;
+	ref class Socket;
 
 
 public ref class AuthGoogle sealed
@@ -107,12 +107,12 @@ public ref class AuthGoogle sealed
 		Boolean get();
 		void set(Boolean);
 	}
-	property Platform::String ^EmailAddress
+	property Platform::String ^AccessToken
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
-	property Platform::String ^Scope
+	property Platform::String ^EmailAddress
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
@@ -122,12 +122,21 @@ public ref class AuthGoogle sealed
 		int32 get();
 		void set(int32);
 	}
-	property Platform::String ^SubEmailAddress
+	property Platform::String ^JsonKey
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
-	property Platform::String ^AccessToken
+	property int32 NumSecondsRemaining
+	{
+		int32 get();
+	}
+	property Platform::String ^Scope
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^SubEmailAddress
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
@@ -136,15 +145,6 @@ public ref class AuthGoogle sealed
 	{
 		Boolean get();
 	}
-	property int32 NumSecondsRemaining
-	{
-		int32 get();
-	}
-	property Platform::String ^JsonKey
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
 
 
 	// ----------------------
@@ -152,11 +152,11 @@ public ref class AuthGoogle sealed
 	// ----------------------
 	Boolean SaveLastError(Platform::String ^path);
 
+	Pfx ^GetP12(void);
+
 	IAsyncOperation<Boolean>^ ObtainAccessTokenAsync(Socket ^connection);
 
 	Boolean SetP12(Pfx ^key);
-
-	Pfx ^GetP12(void);
 
 
 

@@ -85,6 +85,14 @@ void Chilkat::Scp::LastMethodSuccess::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
+Boolean Chilkat::Scp::AbortCurrent::get()
+    {
+    return m_impl ? m_impl->get_AbortCurrent() : false;
+    }
+void Chilkat::Scp::AbortCurrent::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
+    }
 int Chilkat::Scp::HeartbeatMs::get()
     {
     return m_impl ? m_impl->get_HeartbeatMs() : 0;
@@ -109,30 +117,6 @@ void Chilkat::Scp::SyncMustMatch::set(String ^newVal)
     {
         if (m_impl) m_impl->put_SyncMustMatch(newVal ? newVal->Data() : L"");
     }
-String ^Chilkat::Scp::SyncMustNotMatch::get()
-    {
-    return ref new String(m_impl ? m_impl->syncMustNotMatch() : L"");
-    }
-void Chilkat::Scp::SyncMustNotMatch::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_SyncMustNotMatch(newVal ? newVal->Data() : L"");
-    }
-String ^Chilkat::Scp::SyncedFiles::get()
-    {
-    return ref new String(m_impl ? m_impl->syncedFiles() : L"");
-    }
-void Chilkat::Scp::SyncedFiles::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_SyncedFiles(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Scp::AbortCurrent::get()
-    {
-    return m_impl ? m_impl->get_AbortCurrent() : false;
-    }
-void Chilkat::Scp::AbortCurrent::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_AbortCurrent(newVal);
-    }
 String ^Chilkat::Scp::SyncMustMatchDir::get()
     {
     return ref new String(m_impl ? m_impl->syncMustMatchDir() : L"");
@@ -141,6 +125,14 @@ void Chilkat::Scp::SyncMustMatchDir::set(String ^newVal)
     {
         if (m_impl) m_impl->put_SyncMustMatchDir(newVal ? newVal->Data() : L"");
     }
+String ^Chilkat::Scp::SyncMustNotMatch::get()
+    {
+    return ref new String(m_impl ? m_impl->syncMustNotMatch() : L"");
+    }
+void Chilkat::Scp::SyncMustNotMatch::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_SyncMustNotMatch(newVal ? newVal->Data() : L"");
+    }
 String ^Chilkat::Scp::SyncMustNotMatchDir::get()
     {
     return ref new String(m_impl ? m_impl->syncMustNotMatchDir() : L"");
@@ -148,6 +140,14 @@ String ^Chilkat::Scp::SyncMustNotMatchDir::get()
 void Chilkat::Scp::SyncMustNotMatchDir::set(String ^newVal)
     {
         if (m_impl) m_impl->put_SyncMustNotMatchDir(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::Scp::SyncedFiles::get()
+    {
+    return ref new String(m_impl ? m_impl->syncedFiles() : L"");
+    }
+void Chilkat::Scp::SyncedFiles::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_SyncedFiles(newVal ? newVal->Data() : L"");
     }
 
 

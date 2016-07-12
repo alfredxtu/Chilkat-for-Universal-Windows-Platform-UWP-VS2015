@@ -120,6 +120,11 @@ public ref class MailMan sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Boolean AbortCurrent
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property Boolean AllOrNone
 	{
 		Boolean get();
@@ -498,11 +503,6 @@ public ref class MailMan sealed
 		Platform::String ^get();
 	}
 	property Boolean UseApop
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean AbortCurrent
 	{
 		Boolean get();
 		void set(Boolean);

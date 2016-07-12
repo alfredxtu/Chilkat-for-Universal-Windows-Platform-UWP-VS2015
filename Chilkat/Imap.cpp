@@ -1229,6 +1229,42 @@ return create_async([this, mailbox]() -> Platform::String ^
 
 });
     }
+IAsyncOperation<Platform::String ^>^ Imap::GetQuotaAsync(Platform::String ^quotaRoot)
+    {
+return create_async([this, quotaRoot]() -> Platform::String ^
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CxImapProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	// gType = string
+	// cppType = bool
+	const wchar_t *retStr = m_impl->getQuota(quotaRoot ? quotaRoot->Data() : L"");
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+
+});
+    }
+IAsyncOperation<Platform::String ^>^ Imap::GetQuotaRootAsync(Platform::String ^mailboxName)
+    {
+return create_async([this, mailboxName]() -> Platform::String ^
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CxImapProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	// gType = string
+	// cppType = bool
+	const wchar_t *retStr = m_impl->getQuotaRoot(mailboxName ? mailboxName->Data() : L"");
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+
+});
+    }
 Cert ^Imap::GetSslServerCert(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
@@ -1242,6 +1278,16 @@ Cert ^Imap::GetSslServerCert(void)
 	Chilkat::Cert ^pCert = ref new Chilkat::Cert();
 	pCert->m_impl = pRetObj;
 	return pCert;
+    }
+Boolean Imap::HasCapability(Platform::String ^name, Platform::String ^capabilityResponse)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxImapProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	// gType = bool
+	// cppType = bool
+	return m_impl->HasCapability(name ? name->Data() : L"",capabilityResponse ? capabilityResponse->Data() : L"");
     }
 IAsyncOperation<Platform::String ^>^ Imap::IdleCheckAsync(int timeoutMs)
     {
@@ -1626,6 +1672,22 @@ return create_async([this, email, flagName, value]() -> Boolean
 
 });
     }
+IAsyncOperation<Boolean>^ Imap::SetQuotaAsync(Platform::String ^quotaRoot, Platform::String ^resource, int quota)
+    {
+return create_async([this, quotaRoot, resource, quota]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxImapProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	// gType = bool
+	// cppType = bool
+	return m_impl->SetQuota(quotaRoot ? quotaRoot->Data() : L"",resource ? resource->Data() : L"",quota);
+
+});
+    }
 Boolean Imap::SetSslClientCert(Cert ^cert)
     {
 	if (m_impl == nullptr) { return false; }
@@ -1822,68 +1884,6 @@ Boolean Imap::UseSshTunnel(Socket ^tunnel)
 	// gType = bool
 	// cppType = bool
 	return m_impl->UseSshTunnel(*pObj0);
-    }
-Boolean Imap::HasCapability(Platform::String ^name, Platform::String ^capabilityResponse)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxImapProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->HasCapability(name ? name->Data() : L"",capabilityResponse ? capabilityResponse->Data() : L"");
-    }
-IAsyncOperation<Platform::String ^>^ Imap::GetQuotaRootAsync(Platform::String ^mailboxName)
-    {
-return create_async([this, mailboxName]() -> Platform::String ^
-{
-// This runs in a thread pool thread...
-
-	if (m_impl == nullptr) { return nullptr; }
-	// --- prep output arg ---
-	CxImapProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->getQuotaRoot(mailboxName ? mailboxName->Data() : L"");
-	if (!retStr) return nullptr;
-	return ref new String(retStr);
-
-});
-    }
-IAsyncOperation<Platform::String ^>^ Imap::GetQuotaAsync(Platform::String ^quotaRoot)
-    {
-return create_async([this, quotaRoot]() -> Platform::String ^
-{
-// This runs in a thread pool thread...
-
-	if (m_impl == nullptr) { return nullptr; }
-	// --- prep output arg ---
-	CxImapProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->getQuota(quotaRoot ? quotaRoot->Data() : L"");
-	if (!retStr) return nullptr;
-	return ref new String(retStr);
-
-});
-    }
-IAsyncOperation<Boolean>^ Imap::SetQuotaAsync(Platform::String ^quotaRoot, Platform::String ^resource, int quota)
-    {
-return create_async([this, quotaRoot, resource, quota]() -> Boolean
-{
-// This runs in a thread pool thread...
-
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxImapProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SetQuota(quotaRoot ? quotaRoot->Data() : L"",resource ? resource->Data() : L"",quota);
-
-});
     }
 
 

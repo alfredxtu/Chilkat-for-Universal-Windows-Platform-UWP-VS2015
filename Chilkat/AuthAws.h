@@ -78,6 +78,16 @@ public ref class AuthAws sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Platform::String ^CanonicalizedResourceV2
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^PrecomputedMd5
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^PrecomputedSha256
 	{
 		Platform::String ^get();
@@ -102,16 +112,6 @@ public ref class AuthAws sealed
 	{
 		int32 get();
 		void set(int32);
-	}
-	property Platform::String ^PrecomputedMd5
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Platform::String ^CanonicalizedResourceV2
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
 	}
 
 

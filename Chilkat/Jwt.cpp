@@ -128,24 +128,13 @@ Platform::String ^Jwt::CreateJwtPk(Platform::String ^header, Platform::String ^p
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-Boolean Jwt::VerifyJwt(Platform::String ^token, Platform::String ^password)
+int Jwt::GenNumericDate(int numSecOffset)
     {
-	if (m_impl == nullptr) { return false; }
+	if (m_impl == nullptr) { return -1; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->VerifyJwt(token ? token->Data() : L"",password ? password->Data() : L"");
-    }
-Boolean Jwt::VerifyJwtPk(Platform::String ^token, PublicKey ^key)
-    {
-	if (m_impl == nullptr) { return false; }
-	if (key == nullptr) { return false; }
-	CkPublicKeyW* pObj1 = key->m_impl;
-	 if (!pObj1) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->VerifyJwtPk(token ? token->Data() : L"",*pObj1);
+	// gType = int
+	// cppType = int
+	return m_impl->GenNumericDate(numSecOffset);
     }
 Platform::String ^Jwt::GetHeader(Platform::String ^token)
     {
@@ -167,14 +156,6 @@ Platform::String ^Jwt::GetPayload(Platform::String ^token)
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-int Jwt::GenNumericDate(int numSecOffset)
-    {
-	if (m_impl == nullptr) { return -1; }
-	// --- prep output arg ---
-	// gType = int
-	// cppType = int
-	return m_impl->GenNumericDate(numSecOffset);
-    }
 Boolean Jwt::IsTimeValid(Platform::String ^jwt, int leeway)
     {
 	if (m_impl == nullptr) { return false; }
@@ -182,6 +163,25 @@ Boolean Jwt::IsTimeValid(Platform::String ^jwt, int leeway)
 	// gType = bool
 	// cppType = bool
 	return m_impl->IsTimeValid(jwt ? jwt->Data() : L"",leeway);
+    }
+Boolean Jwt::VerifyJwt(Platform::String ^token, Platform::String ^password)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	// gType = bool
+	// cppType = bool
+	return m_impl->VerifyJwt(token ? token->Data() : L"",password ? password->Data() : L"");
+    }
+Boolean Jwt::VerifyJwtPk(Platform::String ^token, PublicKey ^key)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (key == nullptr) { return false; }
+	CkPublicKeyW* pObj1 = key->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	// gType = bool
+	// cppType = bool
+	return m_impl->VerifyJwtPk(token ? token->Data() : L"",*pObj1);
     }
 
 

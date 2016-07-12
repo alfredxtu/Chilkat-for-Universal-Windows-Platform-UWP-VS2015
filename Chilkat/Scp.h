@@ -106,6 +106,11 @@ public ref class Scp sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Boolean AbortCurrent
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property int32 HeartbeatMs
 	{
 		int32 get();
@@ -121,27 +126,22 @@ public ref class Scp sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
-	property Platform::String ^SyncMustNotMatch
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Platform::String ^SyncedFiles
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean AbortCurrent
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Platform::String ^SyncMustMatchDir
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Platform::String ^SyncMustNotMatch
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^SyncMustNotMatchDir
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^SyncedFiles
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);

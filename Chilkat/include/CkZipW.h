@@ -748,9 +748,17 @@ class CK_VISIBLE_PUBLIC CkZipW  : public CkClassWithCallbacksW
 
 	// true if the Zip should be password-protected using older Zip 2.0 encryption,
 	// commonly referred to as "password-protection".
+	// 
+	// This property is set when a zip archive is opened by any of the Open* methods,
+	// such as OpenZip, OpenFromMemory, etc.
+	// 
 	bool get_PasswordProtect(void);
 	// true if the Zip should be password-protected using older Zip 2.0 encryption,
 	// commonly referred to as "password-protection".
+	// 
+	// This property is set when a zip archive is opened by any of the Open* methods,
+	// such as OpenZip, OpenFromMemory, etc.
+	// 
 	void put_PasswordProtect(bool newVal);
 
 	// A prefix that is added to each filename when zipping. One might set the
@@ -1233,10 +1241,24 @@ class CK_VISIBLE_PUBLIC CkZipW  : public CkClassWithCallbacksW
 #endif
 
 	// Same as OpenFromMemory.
+	// 
+	// When a zip is opened, the PasswordProtect and Encryption properties will be
+	// appropriately set. If the zip is password protected (i.e. uses older Zip 2.0
+	// encrypion), then the PasswordProtect property will be set to true. If the zip
+	// is strong encrypted, the Encryption property will be set to a value 1 through 4,
+	// where 4 indicates WinZip compatible AES encryption.
+	// 
 	bool OpenFromByteData(CkByteData &byteData);
 
 	// Open a Zip that is completely in-memory. This allows for Zip files to be opened
 	// from non-filesystem sources, such as a database.
+	// 
+	// When a zip is opened, the PasswordProtect and Encryption properties will be
+	// appropriately set. If the zip is password protected (i.e. uses older Zip 2.0
+	// encrypion), then the PasswordProtect property will be set to true. If the zip
+	// is strong encrypted, the Encryption property will be set to a value 1 through 4,
+	// where 4 indicates WinZip compatible AES encryption.
+	// 
 	bool OpenFromMemory(CkByteData &inData);
 
 #if defined(CK_SFX_INCLUDED)

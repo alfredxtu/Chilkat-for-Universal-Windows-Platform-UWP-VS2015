@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.58
+// This is a generated source file for Chilkat version 9.5.0.59
 #ifndef _C_CkSocketWH
 #define _C_CkSocketWH
 #include "chilkatDefs.h"
@@ -235,6 +235,7 @@ CK_VISIBLE_PUBLIC BOOL CkSocketW_InitSslServer(HCkSocketW cHandle, HCkCertW cert
 CK_VISIBLE_PUBLIC BOOL CkSocketW_IsUnlocked(HCkSocketW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkSocketW_LoadTaskResult(HCkSocketW cHandle, HCkTaskW task);
 CK_VISIBLE_PUBLIC BOOL CkSocketW_PollDataAvailable(HCkSocketW cHandle);
+CK_VISIBLE_PUBLIC HCkTaskW CkSocketW_PollDataAvailableAsync(HCkSocketW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkSocketW_ReceiveByte(HCkSocketW cHandle, BOOL bUnsigned);
 CK_VISIBLE_PUBLIC HCkTaskW CkSocketW_ReceiveByteAsync(HCkSocketW cHandle, BOOL bUnsigned);
 CK_VISIBLE_PUBLIC BOOL CkSocketW_ReceiveBytes(HCkSocketW cHandle, HCkByteData outData);

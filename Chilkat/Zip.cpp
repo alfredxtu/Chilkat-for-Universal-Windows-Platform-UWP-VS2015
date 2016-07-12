@@ -87,6 +87,14 @@ void Chilkat::Zip::LastMethodSuccess::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
+Boolean Chilkat::Zip::AbortCurrent::get()
+    {
+    return m_impl ? m_impl->get_AbortCurrent() : false;
+    }
+void Chilkat::Zip::AbortCurrent::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
+    }
 String ^Chilkat::Zip::AppendFromDir::get()
     {
     return ref new String(m_impl ? m_impl->appendFromDir() : L"");
@@ -274,14 +282,6 @@ String ^Chilkat::Zip::ZipxDefaultAlg::get()
 void Chilkat::Zip::ZipxDefaultAlg::set(String ^newVal)
     {
         if (m_impl) m_impl->put_ZipxDefaultAlg(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Zip::AbortCurrent::get()
-    {
-    return m_impl ? m_impl->get_AbortCurrent() : false;
-    }
-void Chilkat::Zip::AbortCurrent::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_AbortCurrent(newVal);
     }
 
 
