@@ -43,6 +43,11 @@ public ref class JsonArray sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
@@ -55,20 +60,6 @@ public ref class JsonArray sealed
 	{
 		Platform::String ^get();
 	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Boolean LastMethodSuccess
 	{
 		Boolean get();
@@ -78,13 +69,20 @@ public ref class JsonArray sealed
 	{
 		int32 get();
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	Boolean AddArrayAt(int index);
 
 	Boolean AddBoolAt(int index, Boolean value);
@@ -105,6 +103,8 @@ public ref class JsonArray sealed
 
 	Boolean DeleteAt(int index);
 
+	Platform::String ^Emit(void);
+
 	int IntAt(int index);
 
 	Boolean IsNullAt(int index);
@@ -122,8 +122,6 @@ public ref class JsonArray sealed
 	Boolean SetStringAt(int index, Platform::String ^value);
 
 	Platform::String ^StringAt(int index);
-
-	Platform::String ^Emit(void);
 
 	int TypeAt(int index);
 

@@ -53,46 +53,6 @@ Chilkat::Mime::Mime(void)
 //}
 
 
-String ^Chilkat::Mime::LastErrorHtml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
-    }
-String ^Chilkat::Mime::LastErrorText::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::Mime::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::Mime::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::Mime::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::Mime::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Mime::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::Mime::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::Mime::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::Mime::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
 String ^Chilkat::Mime::Boundary::get()
     {
     return ref new String(m_impl ? m_impl->boundary() : L"");
@@ -121,6 +81,14 @@ String ^Chilkat::Mime::CurrentDateTime::get()
     {
     return ref new String(m_impl ? m_impl->currentDateTime() : L"");
     }
+String ^Chilkat::Mime::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::Mime::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
 String ^Chilkat::Mime::Disposition::get()
     {
     return ref new String(m_impl ? m_impl->disposition() : L"");
@@ -144,6 +112,26 @@ String ^Chilkat::Mime::Filename::get()
 void Chilkat::Mime::Filename::set(String ^newVal)
     {
         if (m_impl) m_impl->put_Filename(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::Mime::LastErrorHtml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    }
+String ^Chilkat::Mime::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::Mime::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
+Boolean Chilkat::Mime::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::Mime::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
 String ^Chilkat::Mime::Micalg::get()
     {
@@ -233,58 +221,54 @@ void Chilkat::Mime::UseXPkcs7::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_UseXPkcs7(newVal);
     }
-
-
-Boolean Mime::SaveLastError(Platform::String ^path)
+Boolean Chilkat::Mime::VerboseLogging::get()
     {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
+    return m_impl ? m_impl->get_VerboseLogging() : false;
     }
+void Chilkat::Mime::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::Mime::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
+
+
 void Mime::AddContentLength(void)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	// gType = void
-	// cppType = void
 	m_impl->AddContentLength();
     }
-Boolean Mime::AddDecryptCert(Cert ^cert)
+Boolean Mime::AddDecryptCert(Chilkat::Cert ^cert)
     {
 	if (m_impl == nullptr) { return false; }
 	if (cert == nullptr) { return false; }
 	CkCertW* pObj0 = cert->m_impl;
 	 if (!pObj0) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddDecryptCert(*pObj0);
     }
-Boolean Mime::AddDetachedSignature(Cert ^cert)
+Boolean Mime::AddDetachedSignature(Chilkat::Cert ^cert)
     {
 	if (m_impl == nullptr) { return false; }
 	if (cert == nullptr) { return false; }
 	CkCertW* pObj0 = cert->m_impl;
 	 if (!pObj0) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddDetachedSignature(*pObj0);
     }
-Boolean Mime::AddDetachedSignature2(Cert ^cert, Boolean transferHeaderFields)
+Boolean Mime::AddDetachedSignature2(Chilkat::Cert ^cert, Boolean transferHeaderFields)
     {
 	if (m_impl == nullptr) { return false; }
 	if (cert == nullptr) { return false; }
 	CkCertW* pObj0 = cert->m_impl;
 	 if (!pObj0) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddDetachedSignature2(*pObj0,transferHeaderFields);
     }
-Boolean Mime::AddDetachedSignaturePk(Cert ^cert, PrivateKey ^privateKey)
+Boolean Mime::AddDetachedSignaturePk(Chilkat::Cert ^cert, Chilkat::PrivateKey ^privateKey)
     {
 	if (m_impl == nullptr) { return false; }
 	if (cert == nullptr) { return false; }
@@ -294,11 +278,9 @@ Boolean Mime::AddDetachedSignaturePk(Cert ^cert, PrivateKey ^privateKey)
 	CkPrivateKeyW* pObj1 = privateKey->m_impl;
 	 if (!pObj1) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddDetachedSignaturePk(*pObj0,*pObj1);
     }
-Boolean Mime::AddDetachedSignaturePk2(Cert ^cert, PrivateKey ^privateKey, Boolean transferHeaderFields)
+Boolean Mime::AddDetachedSignaturePk2(Chilkat::Cert ^cert, Chilkat::PrivateKey ^privateKey, Boolean transferHeaderFields)
     {
 	if (m_impl == nullptr) { return false; }
 	if (cert == nullptr) { return false; }
@@ -308,73 +290,57 @@ Boolean Mime::AddDetachedSignaturePk2(Cert ^cert, PrivateKey ^privateKey, Boolea
 	CkPrivateKeyW* pObj1 = privateKey->m_impl;
 	 if (!pObj1) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddDetachedSignaturePk2(*pObj0,*pObj1,transferHeaderFields);
     }
-Boolean Mime::AddEncryptCert(Cert ^cert)
+Boolean Mime::AddEncryptCert(Chilkat::Cert ^cert)
     {
 	if (m_impl == nullptr) { return false; }
 	if (cert == nullptr) { return false; }
 	CkCertW* pObj0 = cert->m_impl;
 	 if (!pObj0) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddEncryptCert(*pObj0);
     }
 Boolean Mime::AddHeaderField(Platform::String ^name, Platform::String ^value)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddHeaderField(name ? name->Data() : L"",value ? value->Data() : L"");
     }
-Boolean Mime::AddPfxSourceData(Windows::Foundation::Collections::IVector<uint8>^pfxData, Platform::String ^password)
+Boolean Mime::AddPfxSourceData(Windows::Foundation::Collections::IVector<uint8>^pfxFileData, Platform::String ^pfxPassword)
     {
 	if (m_impl == nullptr) { return false; }
 	CkByteData db0; std::vector<uint8> v0;
-        if (pfxData != nullptr) { v0 = to_vector(pfxData);
+        if (pfxFileData != nullptr) { v0 = to_vector(pfxFileData);
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->AddPfxSourceData(db0,password ? password->Data() : L"");
+	return m_impl->AddPfxSourceData(db0,pfxPassword ? pfxPassword->Data() : L"");
     }
 Boolean Mime::AddPfxSourceFile(Platform::String ^pfxFilePath, Platform::String ^password)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddPfxSourceFile(pfxFilePath ? pfxFilePath->Data() : L"",password ? password->Data() : L"");
     }
-Boolean Mime::AppendPart(Mime ^mime)
+Boolean Mime::AppendPart(Chilkat::Mime ^mime)
     {
 	if (m_impl == nullptr) { return false; }
 	if (mime == nullptr) { return false; }
 	CkMimeW* pObj0 = mime->m_impl;
 	 if (!pObj0) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->AppendPart(*pObj0);
     }
 Boolean Mime::AppendPartFromFile(Platform::String ^filename)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->AppendPartFromFile(filename ? filename->Data() : L"");
     }
 Platform::String ^Mime::AsnBodyToXml(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->asnBodyToXml();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -383,62 +349,48 @@ void Mime::ClearEncryptCerts(void)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	// gType = void
-	// cppType = void
 	m_impl->ClearEncryptCerts();
     }
 Boolean Mime::ContainsEncryptedParts(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->ContainsEncryptedParts();
     }
 Boolean Mime::ContainsSignedParts(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->ContainsSignedParts();
     }
 void Mime::Convert8Bit(void)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	// gType = void
-	// cppType = void
 	m_impl->Convert8Bit();
     }
 Boolean Mime::ConvertToMultipartAlt(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->ConvertToMultipartAlt();
     }
 Boolean Mime::ConvertToMultipartMixed(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->ConvertToMultipartMixed();
     }
-Boolean Mime::ConvertToSigned(Cert ^cert)
+Boolean Mime::ConvertToSigned(Chilkat::Cert ^cert)
     {
 	if (m_impl == nullptr) { return false; }
 	if (cert == nullptr) { return false; }
 	CkCertW* pObj0 = cert->m_impl;
 	 if (!pObj0) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->ConvertToSigned(*pObj0);
     }
-Boolean Mime::ConvertToSignedPk(Cert ^cert, PrivateKey ^privateKey)
+Boolean Mime::ConvertToSignedPk(Chilkat::Cert ^cert, Chilkat::PrivateKey ^privateKey)
     {
 	if (m_impl == nullptr) { return false; }
 	if (cert == nullptr) { return false; }
@@ -448,19 +400,15 @@ Boolean Mime::ConvertToSignedPk(Cert ^cert, PrivateKey ^privateKey)
 	CkPrivateKeyW* pObj1 = privateKey->m_impl;
 	 if (!pObj1) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->ConvertToSignedPk(*pObj0,*pObj1);
     }
 Boolean Mime::Decrypt(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->Decrypt();
     }
-Boolean Mime::Decrypt2(Cert ^cert, PrivateKey ^privateKey)
+Boolean Mime::Decrypt2(Chilkat::Cert ^cert, Chilkat::PrivateKey ^privateKey)
     {
 	if (m_impl == nullptr) { return false; }
 	if (cert == nullptr) { return false; }
@@ -470,19 +418,15 @@ Boolean Mime::Decrypt2(Cert ^cert, PrivateKey ^privateKey)
 	CkPrivateKeyW* pObj1 = privateKey->m_impl;
 	 if (!pObj1) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->Decrypt2(*pObj0,*pObj1);
     }
-Boolean Mime::DecryptUsingCert(Cert ^cert)
+Boolean Mime::DecryptUsingCert(Chilkat::Cert ^cert)
     {
 	if (m_impl == nullptr) { return false; }
 	if (cert == nullptr) { return false; }
 	CkCertW* pObj0 = cert->m_impl;
 	 if (!pObj0) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->DecryptUsingCert(*pObj0);
     }
 Boolean Mime::DecryptUsingPfxData(Windows::Foundation::Collections::IVector<uint8>^pfxData, Platform::String ^password)
@@ -492,58 +436,46 @@ Boolean Mime::DecryptUsingPfxData(Windows::Foundation::Collections::IVector<uint
         if (pfxData != nullptr) { v0 = to_vector(pfxData);
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->DecryptUsingPfxData(db0,password ? password->Data() : L"");
     }
-Boolean Mime::DecryptUsingPfxFile(Platform::String ^pfxFilePath, Platform::String ^password)
+Boolean Mime::DecryptUsingPfxFile(Platform::String ^pfxFilePath, Platform::String ^pfxPassword)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->DecryptUsingPfxFile(pfxFilePath ? pfxFilePath->Data() : L"",password ? password->Data() : L"");
+	return m_impl->DecryptUsingPfxFile(pfxFilePath ? pfxFilePath->Data() : L"",pfxPassword ? pfxPassword->Data() : L"");
     }
-Boolean Mime::Encrypt(Cert ^cert)
+Boolean Mime::Encrypt(Chilkat::Cert ^cert)
     {
 	if (m_impl == nullptr) { return false; }
 	if (cert == nullptr) { return false; }
 	CkCertW* pObj0 = cert->m_impl;
 	 if (!pObj0) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->Encrypt(*pObj0);
     }
 Boolean Mime::EncryptN(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->EncryptN();
     }
 StringArray ^Mime::ExtractPartsToFiles(Platform::String ^dirPath)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = StringArray
-	// cppType = CkStringArray *
 	CkStringArrayW *pRetObj = m_impl->ExtractPartsToFiles(dirPath ? dirPath->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::StringArray ^pStringArray = ref new Chilkat::StringArray();
 	pStringArray->m_impl = pRetObj;
 	return pStringArray;
     }
-Cert ^Mime::FindIssuer(Cert ^cert)
+Cert ^Mime::FindIssuer(Chilkat::Cert ^cert)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	if (cert == nullptr) { return nullptr; }
 	CkCertW* pObj0 = cert->m_impl;
 	 if (!pObj0) { return nullptr; }
 	// --- prep output arg ---
-	// gType = Cert
-	// cppType = CkCert *
 	CkCertW *pRetObj = m_impl->FindIssuer(*pObj0);
 	if (!pRetObj) return nullptr;
 	Chilkat::Cert ^pCert = ref new Chilkat::Cert();
@@ -555,8 +487,6 @@ Windows::Foundation::Collections::IVector<uint8>^Mime::GetBodyBinary(void)
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->GetBodyBinary(outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -566,8 +496,6 @@ Platform::String ^Mime::GetBodyDecoded(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getBodyDecoded();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -576,8 +504,6 @@ Platform::String ^Mime::GetBodyEncoded(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getBodyEncoded();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -586,8 +512,6 @@ Cert ^Mime::GetEncryptCert(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = Cert
-	// cppType = CkCert *
 	CkCertW *pRetObj = m_impl->GetEncryptCert(index);
 	if (!pRetObj) return nullptr;
 	Chilkat::Cert ^pCert = ref new Chilkat::Cert();
@@ -598,8 +522,6 @@ Platform::String ^Mime::GetEntireBody(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getEntireBody();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -608,19 +530,15 @@ Platform::String ^Mime::GetEntireHead(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getEntireHead();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-Platform::String ^Mime::GetHeaderField(Platform::String ^name)
+Platform::String ^Mime::GetHeaderField(Platform::String ^fieldName)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->getHeaderField(name ? name->Data() : L"");
+	const wchar_t *retStr = m_impl->getHeaderField(fieldName ? fieldName->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
@@ -628,8 +546,6 @@ Platform::String ^Mime::GetHeaderFieldAttribute(Platform::String ^name, Platform
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getHeaderFieldAttribute(name ? name->Data() : L"",attrName ? attrName->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -638,8 +554,6 @@ Platform::String ^Mime::GetHeaderFieldName(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getHeaderFieldName(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -648,8 +562,6 @@ Platform::String ^Mime::GetHeaderFieldValue(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getHeaderFieldValue(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -658,8 +570,6 @@ Platform::String ^Mime::GetMime(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getMime();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -669,8 +579,6 @@ Windows::Foundation::Collections::IVector<uint8>^Mime::GetMimeBytes(void)
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->GetMimeBytes(outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -680,8 +588,6 @@ Mime ^Mime::GetPart(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = Mime
-	// cppType = CkMime *
 	CkMimeW *pRetObj = m_impl->GetPart(index);
 	if (!pRetObj) return nullptr;
 	Chilkat::Mime ^pMime = ref new Chilkat::Mime();
@@ -692,8 +598,6 @@ Platform::String ^Mime::GetSignatureSigningTimeStr(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getSignatureSigningTimeStr(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -702,8 +606,6 @@ Cert ^Mime::GetSignerCert(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = Cert
-	// cppType = CkCert *
 	CkCertW *pRetObj = m_impl->GetSignerCert(index);
 	if (!pRetObj) return nullptr;
 	Chilkat::Cert ^pCert = ref new Chilkat::Cert();
@@ -714,20 +616,24 @@ CertChain ^Mime::GetSignerCertChain(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = CertChain
-	// cppType = CkCertChain *
 	CkCertChainW *pRetObj = m_impl->GetSignerCertChain(index);
 	if (!pRetObj) return nullptr;
 	Chilkat::CertChain ^pCertChain = ref new Chilkat::CertChain();
 	pCertChain->m_impl = pRetObj;
 	return pCertChain;
     }
+Platform::String ^Mime::GetStructure(Platform::String ^fmt)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	const wchar_t *retStr = m_impl->getStructure(fmt ? fmt->Data() : L"");
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
 Platform::String ^Mime::GetXml(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getXml();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -736,144 +642,108 @@ Boolean Mime::HasSignatureSigningTime(int index)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->HasSignatureSigningTime(index);
     }
 Boolean Mime::IsApplicationData(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsApplicationData();
     }
 Boolean Mime::IsAttachment(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsAttachment();
     }
 Boolean Mime::IsAudio(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsAudio();
     }
 Boolean Mime::IsEncrypted(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsEncrypted();
     }
 Boolean Mime::IsHtml(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsHtml();
     }
 Boolean Mime::IsImage(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsImage();
     }
 Boolean Mime::IsMultipart(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsMultipart();
     }
 Boolean Mime::IsMultipartAlternative(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsMultipartAlternative();
     }
 Boolean Mime::IsMultipartMixed(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsMultipartMixed();
     }
 Boolean Mime::IsMultipartRelated(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsMultipartRelated();
     }
 Boolean Mime::IsPlainText(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsPlainText();
     }
 Boolean Mime::IsSigned(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsSigned();
     }
 Boolean Mime::IsText(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsText();
     }
 Boolean Mime::IsUnlocked(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsUnlocked();
     }
 Boolean Mime::IsVideo(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsVideo();
     }
 Boolean Mime::IsXml(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsXml();
     }
 Boolean Mime::LoadMime(Platform::String ^mimeMsg)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadMime(mimeMsg ? mimeMsg->Data() : L"");
     }
 Boolean Mime::LoadMimeBytes(Windows::Foundation::Collections::IVector<uint8>^binData)
@@ -883,115 +753,87 @@ Boolean Mime::LoadMimeBytes(Windows::Foundation::Collections::IVector<uint8>^bin
         if (binData != nullptr) { v0 = to_vector(binData);
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadMimeBytes(db0);
     }
 Boolean Mime::LoadMimeFile(Platform::String ^fileName)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadMimeFile(fileName ? fileName->Data() : L"");
     }
 Boolean Mime::LoadXml(Platform::String ^xml)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadXml(xml ? xml->Data() : L"");
     }
 Boolean Mime::LoadXmlFile(Platform::String ^fileName)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadXmlFile(fileName ? fileName->Data() : L"");
     }
-Boolean Mime::NewMessageRfc822(Mime ^mimeObject)
+Boolean Mime::NewMessageRfc822(Chilkat::Mime ^mimeObject)
     {
 	if (m_impl == nullptr) { return false; }
 	if (mimeObject == nullptr) { return false; }
 	CkMimeW* pObj0 = mimeObject->m_impl;
 	 if (!pObj0) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->NewMessageRfc822(*pObj0);
     }
 Boolean Mime::NewMultipartAlternative(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->NewMultipartAlternative();
     }
 Boolean Mime::NewMultipartMixed(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->NewMultipartMixed();
     }
 Boolean Mime::NewMultipartRelated(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->NewMultipartRelated();
     }
-void Mime::RemoveHeaderField(Platform::String ^name, Boolean bAllOccurances)
+void Mime::RemoveHeaderField(Platform::String ^fieldName, Boolean bAllOccurances)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	// gType = void
-	// cppType = void
-	m_impl->RemoveHeaderField(name ? name->Data() : L"",bAllOccurances);
+	m_impl->RemoveHeaderField(fieldName ? fieldName->Data() : L"",bAllOccurances);
     }
 Boolean Mime::RemovePart(int index)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->RemovePart(index);
     }
 Boolean Mime::SaveBody(Platform::String ^filename)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->SaveBody(filename ? filename->Data() : L"");
     }
 Boolean Mime::SaveMime(Platform::String ^filename)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->SaveMime(filename ? filename->Data() : L"");
     }
 Boolean Mime::SaveXml(Platform::String ^filename)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->SaveXml(filename ? filename->Data() : L"");
     }
 void Mime::SetBody(Platform::String ^str)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	// gType = void
-	// cppType = void
 	m_impl->SetBody(str ? str->Data() : L"");
     }
 Boolean Mime::SetBodyFromBinary(Windows::Foundation::Collections::IVector<uint8>^binData)
@@ -1001,121 +843,85 @@ Boolean Mime::SetBodyFromBinary(Windows::Foundation::Collections::IVector<uint8>
         if (binData != nullptr) { v0 = to_vector(binData);
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetBodyFromBinary(db0);
     }
 Boolean Mime::SetBodyFromEncoded(Platform::String ^encoding, Platform::String ^str)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetBodyFromEncoded(encoding ? encoding->Data() : L"",str ? str->Data() : L"");
     }
 Boolean Mime::SetBodyFromFile(Platform::String ^fileName)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetBodyFromFile(fileName ? fileName->Data() : L"");
     }
 Boolean Mime::SetBodyFromHtml(Platform::String ^str)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetBodyFromHtml(str ? str->Data() : L"");
     }
 Boolean Mime::SetBodyFromPlainText(Platform::String ^str)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetBodyFromPlainText(str ? str->Data() : L"");
     }
 Boolean Mime::SetBodyFromXml(Platform::String ^str)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetBodyFromXml(str ? str->Data() : L"");
     }
 Boolean Mime::SetHeaderField(Platform::String ^name, Platform::String ^value)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetHeaderField(name ? name->Data() : L"",value ? value->Data() : L"");
     }
-Boolean Mime::SetVerifyCert(Cert ^cert)
+Boolean Mime::SetVerifyCert(Chilkat::Cert ^cert)
     {
 	if (m_impl == nullptr) { return false; }
 	if (cert == nullptr) { return false; }
 	CkCertW* pObj0 = cert->m_impl;
 	 if (!pObj0) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetVerifyCert(*pObj0);
     }
 Boolean Mime::UnlockComponent(Platform::String ^unlockCode)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->UnlockComponent(unlockCode ? unlockCode->Data() : L"");
     }
 Boolean Mime::UnwrapSecurity(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->UnwrapSecurity();
     }
 void Mime::UrlEncodeBody(Platform::String ^charset)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	// gType = void
-	// cppType = void
 	m_impl->UrlEncodeBody(charset ? charset->Data() : L"");
     }
-Boolean Mime::UseCertVault(XmlCertVault ^vault)
+Boolean Mime::UseCertVault(Chilkat::XmlCertVault ^vault)
     {
 	if (m_impl == nullptr) { return false; }
 	if (vault == nullptr) { return false; }
 	CkXmlCertVaultW* pObj0 = vault->m_impl;
 	 if (!pObj0) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->UseCertVault(*pObj0);
     }
 Boolean Mime::Verify(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->Verify();
-    }
-Platform::String ^Mime::GetStructure(Platform::String ^fmt)
-    {
-	if (m_impl == nullptr) { return nullptr; }
-	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->getStructure(fmt ? fmt->Data() : L"");
-	if (!retStr) return nullptr;
-	return ref new String(retStr);
     }
 
 

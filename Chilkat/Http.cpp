@@ -56,45 +56,13 @@ Chilkat::Http::Http(void)
 //}
 
 
-String ^Chilkat::Http::LastErrorHtml::get()
+Boolean Chilkat::Http::AbortCurrent::get()
     {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    return m_impl ? m_impl->get_AbortCurrent() : false;
     }
-String ^Chilkat::Http::LastErrorText::get()
+void Chilkat::Http::AbortCurrent::set(Boolean newVal)
     {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::Http::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::Http::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::Http::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::Http::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Http::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::Http::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::Http::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::Http::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
     }
 String ^Chilkat::Http::Accept::get()
     {
@@ -204,14 +172,6 @@ int Chilkat::Http::ConnectFailReason::get()
     {
     return m_impl ? m_impl->get_ConnectFailReason() : 0;
     }
-int Chilkat::Http::ConnectTimeout::get()
-    {
-    return m_impl ? m_impl->get_ConnectTimeout() : 0;
-    }
-void Chilkat::Http::ConnectTimeout::set(int newVal)
-    {
-        if (m_impl) m_impl->put_ConnectTimeout(newVal);
-    }
 String ^Chilkat::Http::Connection::get()
     {
     return ref new String(m_impl ? m_impl->connection() : L"");
@@ -220,6 +180,14 @@ void Chilkat::Http::Connection::set(String ^newVal)
     {
         if (m_impl) m_impl->put_Connection(newVal ? newVal->Data() : L"");
     }
+int Chilkat::Http::ConnectTimeout::get()
+    {
+    return m_impl ? m_impl->get_ConnectTimeout() : 0;
+    }
+void Chilkat::Http::ConnectTimeout::set(int newVal)
+    {
+        if (m_impl) m_impl->put_ConnectTimeout(newVal);
+    }
 String ^Chilkat::Http::CookieDir::get()
     {
     return ref new String(m_impl ? m_impl->cookieDir() : L"");
@@ -227,6 +195,14 @@ String ^Chilkat::Http::CookieDir::get()
 void Chilkat::Http::CookieDir::set(String ^newVal)
     {
         if (m_impl) m_impl->put_CookieDir(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::Http::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::Http::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
     }
 int Chilkat::Http::DefaultFreshPeriod::get()
     {
@@ -304,21 +280,33 @@ void Chilkat::Http::KeepResponseBody::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_KeepResponseBody(newVal);
     }
-int Chilkat::Http::LMFactor::get()
-    {
-    return m_impl ? m_impl->get_LMFactor() : 0;
-    }
-void Chilkat::Http::LMFactor::set(int newVal)
-    {
-        if (m_impl) m_impl->put_LMFactor(newVal);
-    }
 String ^Chilkat::Http::LastContentType::get()
     {
     return ref new String(m_impl ? m_impl->lastContentType() : L"");
     }
+String ^Chilkat::Http::LastErrorHtml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    }
+String ^Chilkat::Http::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::Http::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
 String ^Chilkat::Http::LastHeader::get()
     {
     return ref new String(m_impl ? m_impl->lastHeader() : L"");
+    }
+Boolean Chilkat::Http::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::Http::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
 String ^Chilkat::Http::LastModDate::get()
     {
@@ -335,6 +323,14 @@ String ^Chilkat::Http::LastResponseHeader::get()
 int Chilkat::Http::LastStatus::get()
     {
     return m_impl ? m_impl->get_LastStatus() : 0;
+    }
+int Chilkat::Http::LMFactor::get()
+    {
+    return m_impl ? m_impl->get_LMFactor() : 0;
+    }
+void Chilkat::Http::LMFactor::set(int newVal)
+    {
+        if (m_impl) m_impl->put_LMFactor(newVal);
     }
 String ^Chilkat::Http::Login::get()
     {
@@ -604,14 +600,6 @@ void Chilkat::Http::Referer::set(String ^newVal)
     {
         if (m_impl) m_impl->put_Referer(newVal ? newVal->Data() : L"");
     }
-Boolean Chilkat::Http::RequireSslCertVerify::get()
-    {
-    return m_impl ? m_impl->get_RequireSslCertVerify() : false;
-    }
-void Chilkat::Http::RequireSslCertVerify::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_RequireSslCertVerify(newVal);
-    }
 String ^Chilkat::Http::RequiredContentType::get()
     {
     return ref new String(m_impl ? m_impl->requiredContentType() : L"");
@@ -619,6 +607,14 @@ String ^Chilkat::Http::RequiredContentType::get()
 void Chilkat::Http::RequiredContentType::set(String ^newVal)
     {
         if (m_impl) m_impl->put_RequiredContentType(newVal ? newVal->Data() : L"");
+    }
+Boolean Chilkat::Http::RequireSslCertVerify::get()
+    {
+    return m_impl ? m_impl->get_RequireSslCertVerify() : false;
+    }
+void Chilkat::Http::RequireSslCertVerify::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_RequireSslCertVerify(newVal);
     }
 Boolean Chilkat::Http::S3Ssl::get()
     {
@@ -660,22 +656,6 @@ void Chilkat::Http::SessionLogFilename::set(String ^newVal)
     {
         if (m_impl) m_impl->put_SessionLogFilename(newVal ? newVal->Data() : L"");
     }
-int Chilkat::Http::SoRcvBuf::get()
-    {
-    return m_impl ? m_impl->get_SoRcvBuf() : 0;
-    }
-void Chilkat::Http::SoRcvBuf::set(int newVal)
-    {
-        if (m_impl) m_impl->put_SoRcvBuf(newVal);
-    }
-int Chilkat::Http::SoSndBuf::get()
-    {
-    return m_impl ? m_impl->get_SoSndBuf() : 0;
-    }
-void Chilkat::Http::SoSndBuf::set(int newVal)
-    {
-        if (m_impl) m_impl->put_SoSndBuf(newVal);
-    }
 String ^Chilkat::Http::SocksHostname::get()
     {
     return ref new String(m_impl ? m_impl->socksHostname() : L"");
@@ -715,6 +695,22 @@ int Chilkat::Http::SocksVersion::get()
 void Chilkat::Http::SocksVersion::set(int newVal)
     {
         if (m_impl) m_impl->put_SocksVersion(newVal);
+    }
+int Chilkat::Http::SoRcvBuf::get()
+    {
+    return m_impl ? m_impl->get_SoRcvBuf() : 0;
+    }
+void Chilkat::Http::SoRcvBuf::set(int newVal)
+    {
+        if (m_impl) m_impl->put_SoRcvBuf(newVal);
+    }
+int Chilkat::Http::SoSndBuf::get()
+    {
+    return m_impl ? m_impl->get_SoSndBuf() : 0;
+    }
+void Chilkat::Http::SoSndBuf::set(int newVal)
+    {
+        if (m_impl) m_impl->put_SoSndBuf(newVal);
     }
 String ^Chilkat::Http::SslAllowedCiphers::get()
     {
@@ -780,49 +776,39 @@ void Chilkat::Http::UserAgent::set(String ^newVal)
     {
         if (m_impl) m_impl->put_UserAgent(newVal ? newVal->Data() : L"");
     }
+Boolean Chilkat::Http::VerboseLogging::get()
+    {
+    return m_impl ? m_impl->get_VerboseLogging() : false;
+    }
+void Chilkat::Http::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::Http::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
 Boolean Chilkat::Http::WasRedirected::get()
     {
     return m_impl ? m_impl->get_WasRedirected() : false;
     }
-Boolean Chilkat::Http::AbortCurrent::get()
-    {
-    return m_impl ? m_impl->get_AbortCurrent() : false;
-    }
-void Chilkat::Http::AbortCurrent::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_AbortCurrent(newVal);
-    }
 
 
-Boolean Http::SaveLastError(Platform::String ^path)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxHttpProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
-    }
 void Http::AddCacheRoot(Platform::String ^dir)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->AddCacheRoot(dir ? dir->Data() : L"");
     }
-Boolean Http::AddQuickHeader(Platform::String ^name, Platform::String ^value)
+Boolean Http::AddQuickHeader(Platform::String ^headerFieldName, Platform::String ^headerFieldValue)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->AddQuickHeader(name ? name->Data() : L"",value ? value->Data() : L"");
+	return m_impl->AddQuickHeader(headerFieldName ? headerFieldName->Data() : L"",headerFieldValue ? headerFieldValue->Data() : L"");
     }
 void Http::ClearInMemoryCookies(void)
     {
@@ -830,8 +816,6 @@ void Http::ClearInMemoryCookies(void)
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->ClearInMemoryCookies();
     }
 IAsyncOperation<Boolean>^ Http::CloseAllConnectionsAsync(void)
@@ -844,8 +828,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->CloseAllConnections();
 
 });
@@ -856,13 +838,11 @@ void Http::DnsCacheClear(void)
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->DnsCacheClear();
     }
-IAsyncOperation<Boolean>^ Http::DownloadAsync(Platform::String ^url, Platform::String ^filename)
+IAsyncOperation<Boolean>^ Http::DownloadAsync(Platform::String ^url, Platform::String ^localFilePath)
     {
-return create_async([this, url, filename]() -> Boolean
+return create_async([this, url, localFilePath]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -870,9 +850,7 @@ return create_async([this, url, filename]() -> Boolean
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->Download(url ? url->Data() : L"",filename ? filename->Data() : L"");
+	return m_impl->Download(url ? url->Data() : L"",localFilePath ? localFilePath->Data() : L"");
 
 });
     }
@@ -886,8 +864,6 @@ return create_async([this, url, filename]() -> Boolean
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->DownloadAppend(url ? url->Data() : L"",filename ? filename->Data() : L"");
 
 });
@@ -902,27 +878,23 @@ return create_async([this, url, hashAlgorithm, encoding]() -> Platform::String ^
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->downloadHash(url ? url->Data() : L"",hashAlgorithm ? hashAlgorithm->Data() : L"",encoding ? encoding->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
 });
     }
-Platform::String ^Http::ExtractMetaRefreshUrl(Platform::String ^html)
+Platform::String ^Http::ExtractMetaRefreshUrl(Platform::String ^htmlContent)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->extractMetaRefreshUrl(html ? html->Data() : L"");
+	const wchar_t *retStr = m_impl->extractMetaRefreshUrl(htmlContent ? htmlContent->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-IAsyncOperation<Platform::String ^>^ Http::G_SvcOauthAccessTokenAsync(Platform::String ^iss, Platform::String ^scope, Platform::String ^subEmail, int numSec, Cert ^cert)
+IAsyncOperation<Platform::String ^>^ Http::G_SvcOauthAccessTokenAsync(Platform::String ^iss, Platform::String ^scope, Platform::String ^subEmail, int numSec, Chilkat::Cert ^cert)
     {
 return create_async([this, iss, scope, subEmail, numSec, cert]() -> Platform::String ^
 {
@@ -935,15 +907,13 @@ return create_async([this, iss, scope, subEmail, numSec, cert]() -> Platform::St
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->g_SvcOauthAccessToken(iss ? iss->Data() : L"",scope ? scope->Data() : L"",subEmail ? subEmail->Data() : L"",numSec,*pObj4);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
 });
     }
-IAsyncOperation<Platform::String ^>^ Http::G_SvcOauthAccessToken2Async(Hashtable ^claimParams, int numSec, Cert ^cert)
+IAsyncOperation<Platform::String ^>^ Http::G_SvcOauthAccessToken2Async(Chilkat::Hashtable ^claimParams, int numSec, Chilkat::Cert ^cert)
     {
 return create_async([this, claimParams, numSec, cert]() -> Platform::String ^
 {
@@ -959,8 +929,6 @@ return create_async([this, claimParams, numSec, cert]() -> Platform::String ^
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->g_SvcOauthAccessToken2(*pObj0,numSec,*pObj2);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -973,8 +941,6 @@ Platform::String ^Http::GenTimeStamp(void)
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->genTimeStamp();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -985,8 +951,6 @@ Platform::String ^Http::GetCacheRoot(int index)
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getCacheRoot(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -997,8 +961,6 @@ Platform::String ^Http::GetCookieXml(Platform::String ^domain)
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getCookieXml(domain ? domain->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -1009,8 +971,6 @@ Platform::String ^Http::GetDomain(Platform::String ^url)
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getDomain(url ? url->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -1025,8 +985,6 @@ return create_async([this, url]() -> HttpResponse ^
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = HttpResponse
-	// cppType = CkHttpResponse *
 	CkHttpResponseW *pRetObj = m_impl->GetHead(url ? url->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::HttpResponse ^pHttpResponse = ref new Chilkat::HttpResponse();
@@ -1041,8 +999,6 @@ Platform::String ^Http::GetRequestHeader(Platform::String ^name)
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getRequestHeader(name ? name->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -1057,8 +1013,6 @@ return create_async([this, domain, port]() -> Cert ^
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Cert
-	// cppType = CkCert *
 	CkCertW *pRetObj = m_impl->GetServerSslCert(domain ? domain->Data() : L"",port);
 	if (!pRetObj) return nullptr;
 	Chilkat::Cert ^pCert = ref new Chilkat::Cert();
@@ -1073,8 +1027,6 @@ Platform::String ^Http::GetUrlPath(Platform::String ^url)
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getUrlPath(url ? url->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -1085,8 +1037,6 @@ Boolean Http::HasRequestHeader(Platform::String ^name)
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->HasRequestHeader(name ? name->Data() : L"");
     }
 Boolean Http::IsUnlocked(void)
@@ -1095,8 +1045,6 @@ Boolean Http::IsUnlocked(void)
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsUnlocked();
     }
 IAsyncOperation<HttpResponse ^>^ Http::PBinaryAsync(Platform::String ^verb, Platform::String ^url, Windows::Foundation::Collections::IVector<uint8>^byteData, Platform::String ^contentType, Boolean md5, Boolean gzip)
@@ -1112,29 +1060,7 @@ return create_async([this, verb, url, byteData, contentType, md5, gzip]() -> Htt
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = HttpResponse
-	// cppType = CkHttpResponse *
 	CkHttpResponseW *pRetObj = m_impl->PBinary(verb ? verb->Data() : L"",url ? url->Data() : L"",db2,contentType ? contentType->Data() : L"",md5,gzip);
-	if (!pRetObj) return nullptr;
-	Chilkat::HttpResponse ^pHttpResponse = ref new Chilkat::HttpResponse();
-	pHttpResponse->m_impl = pRetObj;
-	return pHttpResponse;
-
-});
-    }
-IAsyncOperation<HttpResponse ^>^ Http::PTextAsync(Platform::String ^verb, Platform::String ^url, Platform::String ^textData, Platform::String ^charset, Platform::String ^contentType, Boolean md5, Boolean gzip)
-    {
-return create_async([this, verb, url, textData, charset, contentType, md5, gzip]() -> HttpResponse ^
-{
-// This runs in a thread pool thread...
-
-	if (m_impl == nullptr) { return nullptr; }
-	// --- prep output arg ---
-	CxHttpProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = HttpResponse
-	// cppType = CkHttpResponse *
-	CkHttpResponseW *pRetObj = m_impl->PText(verb ? verb->Data() : L"",url ? url->Data() : L"",textData ? textData->Data() : L"",charset ? charset->Data() : L"",contentType ? contentType->Data() : L"",md5,gzip);
 	if (!pRetObj) return nullptr;
 	Chilkat::HttpResponse ^pHttpResponse = ref new Chilkat::HttpResponse();
 	pHttpResponse->m_impl = pRetObj;
@@ -1155,8 +1081,6 @@ return create_async([this, url, byteData, contentType, md5, gzip]() -> Platform:
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->postBinary(url ? url->Data() : L"",db1,contentType ? contentType->Data() : L"",md5,gzip);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -1173,8 +1097,6 @@ return create_async([this, url, jsonText]() -> HttpResponse ^
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = HttpResponse
-	// cppType = CkHttpResponse *
 	CkHttpResponseW *pRetObj = m_impl->PostJson(url ? url->Data() : L"",jsonText ? jsonText->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::HttpResponse ^pHttpResponse = ref new Chilkat::HttpResponse();
@@ -1193,8 +1115,6 @@ return create_async([this, url, contentType, jsonText]() -> HttpResponse ^
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = HttpResponse
-	// cppType = CkHttpResponse *
 	CkHttpResponseW *pRetObj = m_impl->PostJson2(url ? url->Data() : L"",contentType ? contentType->Data() : L"",jsonText ? jsonText->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::HttpResponse ^pHttpResponse = ref new Chilkat::HttpResponse();
@@ -1203,7 +1123,7 @@ return create_async([this, url, contentType, jsonText]() -> HttpResponse ^
 
 });
     }
-IAsyncOperation<HttpResponse ^>^ Http::PostUrlEncodedAsync(Platform::String ^url, HttpRequest ^req)
+IAsyncOperation<HttpResponse ^>^ Http::PostUrlEncodedAsync(Platform::String ^url, Chilkat::HttpRequest ^req)
     {
 return create_async([this, url, req]() -> HttpResponse ^
 {
@@ -1216,8 +1136,6 @@ return create_async([this, url, req]() -> HttpResponse ^
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = HttpResponse
-	// cppType = CkHttpResponse *
 	CkHttpResponseW *pRetObj = m_impl->PostUrlEncoded(url ? url->Data() : L"",*pObj1);
 	if (!pRetObj) return nullptr;
 	Chilkat::HttpResponse ^pHttpResponse = ref new Chilkat::HttpResponse();
@@ -1226,9 +1144,9 @@ return create_async([this, url, req]() -> HttpResponse ^
 
 });
     }
-IAsyncOperation<HttpResponse ^>^ Http::PostXmlAsync(Platform::String ^url, Platform::String ^xmlDoc, Platform::String ^charset)
+IAsyncOperation<HttpResponse ^>^ Http::PostXmlAsync(Platform::String ^endpointUrl, Platform::String ^xmlContent, Platform::String ^xmlCharset)
     {
-return create_async([this, url, xmlDoc, charset]() -> HttpResponse ^
+return create_async([this, endpointUrl, xmlContent, xmlCharset]() -> HttpResponse ^
 {
 // This runs in a thread pool thread...
 
@@ -1236,9 +1154,25 @@ return create_async([this, url, xmlDoc, charset]() -> HttpResponse ^
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = HttpResponse
-	// cppType = CkHttpResponse *
-	CkHttpResponseW *pRetObj = m_impl->PostXml(url ? url->Data() : L"",xmlDoc ? xmlDoc->Data() : L"",charset ? charset->Data() : L"");
+	CkHttpResponseW *pRetObj = m_impl->PostXml(endpointUrl ? endpointUrl->Data() : L"",xmlContent ? xmlContent->Data() : L"",xmlCharset ? xmlCharset->Data() : L"");
+	if (!pRetObj) return nullptr;
+	Chilkat::HttpResponse ^pHttpResponse = ref new Chilkat::HttpResponse();
+	pHttpResponse->m_impl = pRetObj;
+	return pHttpResponse;
+
+});
+    }
+IAsyncOperation<HttpResponse ^>^ Http::PTextAsync(Platform::String ^verb, Platform::String ^url, Platform::String ^textData, Platform::String ^charset, Platform::String ^contentType, Boolean md5, Boolean gzip)
+    {
+return create_async([this, verb, url, textData, charset, contentType, md5, gzip]() -> HttpResponse ^
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CxHttpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	CkHttpResponseW *pRetObj = m_impl->PText(verb ? verb->Data() : L"",url ? url->Data() : L"",textData ? textData->Data() : L"",charset ? charset->Data() : L"",contentType ? contentType->Data() : L"",md5,gzip);
 	if (!pRetObj) return nullptr;
 	Chilkat::HttpResponse ^pHttpResponse = ref new Chilkat::HttpResponse();
 	pHttpResponse->m_impl = pRetObj;
@@ -1259,8 +1193,6 @@ return create_async([this, url, byteData, contentType, md5, gzip]() -> Platform:
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->putBinary(url ? url->Data() : L"",db1,contentType ? contentType->Data() : L"",md5,gzip);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -1277,8 +1209,6 @@ return create_async([this, url, textData, charset, contentType, md5, gzip]() -> 
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->putText(url ? url->Data() : L"",textData ? textData->Data() : L"",charset ? charset->Data() : L"",contentType ? contentType->Data() : L"",md5,gzip);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -1295,8 +1225,6 @@ return create_async([this, url]() -> Platform::String ^
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->quickDeleteStr(url ? url->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -1314,8 +1242,6 @@ return create_async([this, url]() -> Windows::Foundation::Collections::IVector<u
 	CkByteData outDb;
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->QuickGet(url ? url->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -1333,8 +1259,6 @@ return create_async([this, url]() -> HttpResponse ^
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = HttpResponse
-	// cppType = CkHttpResponse *
 	CkHttpResponseW *pRetObj = m_impl->QuickGetObj(url ? url->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::HttpResponse ^pHttpResponse = ref new Chilkat::HttpResponse();
@@ -1353,8 +1277,6 @@ return create_async([this, url]() -> Platform::String ^
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->quickGetStr(url ? url->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -1371,23 +1293,19 @@ return create_async([this, url]() -> Platform::String ^
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->quickPutStr(url ? url->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
 });
     }
-Boolean Http::RemoveQuickHeader(Platform::String ^name)
+Boolean Http::RemoveQuickHeader(Platform::String ^headerFieldName)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->RemoveQuickHeader(name ? name->Data() : L"");
+	return m_impl->RemoveQuickHeader(headerFieldName ? headerFieldName->Data() : L"");
     }
 void Http::RemoveRequestHeader(Platform::String ^name)
     {
@@ -1395,8 +1313,6 @@ void Http::RemoveRequestHeader(Platform::String ^name)
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->RemoveRequestHeader(name ? name->Data() : L"");
     }
 Platform::String ^Http::RenderGet(Platform::String ^url)
@@ -1405,15 +1321,13 @@ Platform::String ^Http::RenderGet(Platform::String ^url)
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->renderGet(url ? url->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-IAsyncOperation<Boolean>^ Http::ResumeDownloadAsync(Platform::String ^url, Platform::String ^filename)
+IAsyncOperation<Boolean>^ Http::ResumeDownloadAsync(Platform::String ^url, Platform::String ^targetFilename)
     {
-return create_async([this, url, filename]() -> Boolean
+return create_async([this, url, targetFilename]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -1421,15 +1335,13 @@ return create_async([this, url, filename]() -> Boolean
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->ResumeDownload(url ? url->Data() : L"",filename ? filename->Data() : L"");
+	return m_impl->ResumeDownload(url ? url->Data() : L"",targetFilename ? targetFilename->Data() : L"");
 
 });
     }
-IAsyncOperation<Boolean>^ Http::S3_CreateBucketAsync(Platform::String ^bucketName)
+IAsyncOperation<Boolean>^ Http::S3_CreateBucketAsync(Platform::String ^bucketPath)
     {
-return create_async([this, bucketName]() -> Boolean
+return create_async([this, bucketPath]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -1437,15 +1349,13 @@ return create_async([this, bucketName]() -> Boolean
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->S3_CreateBucket(bucketName ? bucketName->Data() : L"");
+	return m_impl->S3_CreateBucket(bucketPath ? bucketPath->Data() : L"");
 
 });
     }
-IAsyncOperation<Boolean>^ Http::S3_DeleteBucketAsync(Platform::String ^bucketName)
+IAsyncOperation<Boolean>^ Http::S3_DeleteBucketAsync(Platform::String ^bucketPath)
     {
-return create_async([this, bucketName]() -> Boolean
+return create_async([this, bucketPath]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -1453,13 +1363,11 @@ return create_async([this, bucketName]() -> Boolean
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->S3_DeleteBucket(bucketName ? bucketName->Data() : L"");
+	return m_impl->S3_DeleteBucket(bucketPath ? bucketPath->Data() : L"");
 
 });
     }
-IAsyncOperation<HttpResponse ^>^ Http::S3_DeleteMultipleObjectsAsync(Platform::String ^bucketName, StringArray ^objectNames)
+IAsyncOperation<HttpResponse ^>^ Http::S3_DeleteMultipleObjectsAsync(Platform::String ^bucketName, Chilkat::StringArray ^objectNames)
     {
 return create_async([this, bucketName, objectNames]() -> HttpResponse ^
 {
@@ -1472,8 +1380,6 @@ return create_async([this, bucketName, objectNames]() -> HttpResponse ^
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = HttpResponse
-	// cppType = CkHttpResponse *
 	CkHttpResponseW *pRetObj = m_impl->S3_DeleteMultipleObjects(bucketName ? bucketName->Data() : L"",*pObj1);
 	if (!pRetObj) return nullptr;
 	Chilkat::HttpResponse ^pHttpResponse = ref new Chilkat::HttpResponse();
@@ -1482,9 +1388,9 @@ return create_async([this, bucketName, objectNames]() -> HttpResponse ^
 
 });
     }
-IAsyncOperation<Boolean>^ Http::S3_DeleteObjectAsync(Platform::String ^bucketName, Platform::String ^objectName)
+IAsyncOperation<Boolean>^ Http::S3_DeleteObjectAsync(Platform::String ^bucketPath, Platform::String ^objectName)
     {
-return create_async([this, bucketName, objectName]() -> Boolean
+return create_async([this, bucketPath, objectName]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -1492,15 +1398,13 @@ return create_async([this, bucketName, objectName]() -> Boolean
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->S3_DeleteObject(bucketName ? bucketName->Data() : L"",objectName ? objectName->Data() : L"");
+	return m_impl->S3_DeleteObject(bucketPath ? bucketPath->Data() : L"",objectName ? objectName->Data() : L"");
 
 });
     }
-IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ Http::S3_DownloadBytesAsync(Platform::String ^bucketName, Platform::String ^objectName)
+IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ Http::S3_DownloadBytesAsync(Platform::String ^bucketPath, Platform::String ^objectName)
     {
-return create_async([this, bucketName, objectName]() -> Windows::Foundation::Collections::IVector<uint8>^
+return create_async([this, bucketPath, objectName]() -> Windows::Foundation::Collections::IVector<uint8>^
 {
 // This runs in a thread pool thread...
 
@@ -1509,18 +1413,16 @@ return create_async([this, bucketName, objectName]() -> Windows::Foundation::Col
 	CkByteData outDb;
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
-	bool success = m_impl->S3_DownloadBytes(bucketName ? bucketName->Data() : L"",objectName ? objectName->Data() : L"",outDb);
+	bool success = m_impl->S3_DownloadBytes(bucketPath ? bucketPath->Data() : L"",objectName ? objectName->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
 
 });
     }
-IAsyncOperation<Boolean>^ Http::S3_DownloadFileAsync(Platform::String ^bucketName, Platform::String ^objectName, Platform::String ^localFilePath)
+IAsyncOperation<Boolean>^ Http::S3_DownloadFileAsync(Platform::String ^bucketPath, Platform::String ^objectName, Platform::String ^localFilePath)
     {
-return create_async([this, bucketName, objectName, localFilePath]() -> Boolean
+return create_async([this, bucketPath, objectName, localFilePath]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -1528,15 +1430,13 @@ return create_async([this, bucketName, objectName, localFilePath]() -> Boolean
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->S3_DownloadFile(bucketName ? bucketName->Data() : L"",objectName ? objectName->Data() : L"",localFilePath ? localFilePath->Data() : L"");
+	return m_impl->S3_DownloadFile(bucketPath ? bucketPath->Data() : L"",objectName ? objectName->Data() : L"",localFilePath ? localFilePath->Data() : L"");
 
 });
     }
-IAsyncOperation<Platform::String ^>^ Http::S3_DownloadStringAsync(Platform::String ^bucketName, Platform::String ^objectName, Platform::String ^charset)
+IAsyncOperation<Platform::String ^>^ Http::S3_DownloadStringAsync(Platform::String ^bucketPath, Platform::String ^objectName, Platform::String ^charset)
     {
-return create_async([this, bucketName, objectName, charset]() -> Platform::String ^
+return create_async([this, bucketPath, objectName, charset]() -> Platform::String ^
 {
 // This runs in a thread pool thread...
 
@@ -1544,17 +1444,15 @@ return create_async([this, bucketName, objectName, charset]() -> Platform::Strin
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->s3_DownloadString(bucketName ? bucketName->Data() : L"",objectName ? objectName->Data() : L"",charset ? charset->Data() : L"");
+	const wchar_t *retStr = m_impl->s3_DownloadString(bucketPath ? bucketPath->Data() : L"",objectName ? objectName->Data() : L"",charset ? charset->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
 });
     }
-IAsyncOperation<int>^ Http::S3_FileExistsAsync(Platform::String ^bucketName, Platform::String ^objectName)
+IAsyncOperation<int>^ Http::S3_FileExistsAsync(Platform::String ^bucketPath, Platform::String ^objectName)
     {
-return create_async([this, bucketName, objectName]() -> int
+return create_async([this, bucketPath, objectName]() -> int
 {
 // This runs in a thread pool thread...
 
@@ -1562,9 +1460,7 @@ return create_async([this, bucketName, objectName]() -> int
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
-	return m_impl->S3_FileExists(bucketName ? bucketName->Data() : L"",objectName ? objectName->Data() : L"");
+	return m_impl->S3_FileExists(bucketPath ? bucketPath->Data() : L"",objectName ? objectName->Data() : L"");
 
 });
     }
@@ -1577,15 +1473,13 @@ Platform::String ^Http::S3_GenerateUrl(Platform::String ^bucket, Platform::Strin
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->s3_GenerateUrl(bucket ? bucket->Data() : L"",path ? path->Data() : L"",*pObj2);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-IAsyncOperation<Platform::String ^>^ Http::S3_ListBucketObjectsAsync(Platform::String ^bucketName)
+IAsyncOperation<Platform::String ^>^ Http::S3_ListBucketObjectsAsync(Platform::String ^bucketPath)
     {
-return create_async([this, bucketName]() -> Platform::String ^
+return create_async([this, bucketPath]() -> Platform::String ^
 {
 // This runs in a thread pool thread...
 
@@ -1593,9 +1487,7 @@ return create_async([this, bucketName]() -> Platform::String ^
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->s3_ListBucketObjects(bucketName ? bucketName->Data() : L"");
+	const wchar_t *retStr = m_impl->s3_ListBucketObjects(bucketPath ? bucketPath->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
@@ -1611,36 +1503,32 @@ return create_async([this]() -> Platform::String ^
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->s3_ListBuckets();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
 });
     }
-IAsyncOperation<Boolean>^ Http::S3_UploadBytesAsync(Windows::Foundation::Collections::IVector<uint8>^objectContent, Platform::String ^contentType, Platform::String ^bucketName, Platform::String ^objectName)
+IAsyncOperation<Boolean>^ Http::S3_UploadBytesAsync(Windows::Foundation::Collections::IVector<uint8>^contentBytes, Platform::String ^contentType, Platform::String ^bucketPath, Platform::String ^objectName)
     {
-return create_async([this, objectContent, contentType, bucketName, objectName]() -> Boolean
+return create_async([this, contentBytes, contentType, bucketPath, objectName]() -> Boolean
 {
 // This runs in a thread pool thread...
 
 	if (m_impl == nullptr) { return false; }
 	CkByteData db0; std::vector<uint8> v0;
-        if (objectContent != nullptr) { v0 = to_vector(objectContent);
+        if (contentBytes != nullptr) { v0 = to_vector(contentBytes);
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->S3_UploadBytes(db0,contentType ? contentType->Data() : L"",bucketName ? bucketName->Data() : L"",objectName ? objectName->Data() : L"");
+	return m_impl->S3_UploadBytes(db0,contentType ? contentType->Data() : L"",bucketPath ? bucketPath->Data() : L"",objectName ? objectName->Data() : L"");
 
 });
     }
-IAsyncOperation<Boolean>^ Http::S3_UploadFileAsync(Platform::String ^localFilePath, Platform::String ^contentType, Platform::String ^bucketName, Platform::String ^ObjectName)
+IAsyncOperation<Boolean>^ Http::S3_UploadFileAsync(Platform::String ^localFilePath, Platform::String ^contentType, Platform::String ^bucketPath, Platform::String ^objectName)
     {
-return create_async([this, localFilePath, contentType, bucketName, ObjectName]() -> Boolean
+return create_async([this, localFilePath, contentType, bucketPath, objectName]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -1648,15 +1536,13 @@ return create_async([this, localFilePath, contentType, bucketName, ObjectName]()
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->S3_UploadFile(localFilePath ? localFilePath->Data() : L"",contentType ? contentType->Data() : L"",bucketName ? bucketName->Data() : L"",ObjectName ? ObjectName->Data() : L"");
+	return m_impl->S3_UploadFile(localFilePath ? localFilePath->Data() : L"",contentType ? contentType->Data() : L"",bucketPath ? bucketPath->Data() : L"",objectName ? objectName->Data() : L"");
 
 });
     }
-IAsyncOperation<Boolean>^ Http::S3_UploadStringAsync(Platform::String ^objectContent, Platform::String ^charset, Platform::String ^contentType, Platform::String ^bucketName, Platform::String ^ObjectName)
+IAsyncOperation<Boolean>^ Http::S3_UploadStringAsync(Platform::String ^objectContent, Platform::String ^charset, Platform::String ^contentType, Platform::String ^bucketPath, Platform::String ^objectName)
     {
-return create_async([this, objectContent, charset, contentType, bucketName, ObjectName]() -> Boolean
+return create_async([this, objectContent, charset, contentType, bucketPath, objectName]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -1664,9 +1550,7 @@ return create_async([this, objectContent, charset, contentType, bucketName, Obje
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->S3_UploadString(objectContent ? objectContent->Data() : L"",charset ? charset->Data() : L"",contentType ? contentType->Data() : L"",bucketName ? bucketName->Data() : L"",ObjectName ? ObjectName->Data() : L"");
+	return m_impl->S3_UploadString(objectContent ? objectContent->Data() : L"",charset ? charset->Data() : L"",contentType ? contentType->Data() : L"",bucketPath ? bucketPath->Data() : L"",objectName ? objectName->Data() : L"");
 
 });
     }
@@ -1676,11 +1560,9 @@ Boolean Http::SetCookieXml(Platform::String ^domain, Platform::String ^cookieXml
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetCookieXml(domain ? domain->Data() : L"",cookieXml ? cookieXml->Data() : L"");
     }
-Boolean Http::SetOAuthRsaKey(PrivateKey ^privKey)
+Boolean Http::SetOAuthRsaKey(Chilkat::PrivateKey ^privKey)
     {
 	if (m_impl == nullptr) { return false; }
 	if (privKey == nullptr) { return false; }
@@ -1689,21 +1571,17 @@ Boolean Http::SetOAuthRsaKey(PrivateKey ^privKey)
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetOAuthRsaKey(*pObj0);
     }
-void Http::SetRequestHeader(Platform::String ^name, Platform::String ^value)
+void Http::SetRequestHeader(Platform::String ^headerFieldName, Platform::String ^headerFieldValue)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
-	m_impl->SetRequestHeader(name ? name->Data() : L"",value ? value->Data() : L"");
+	m_impl->SetRequestHeader(headerFieldName ? headerFieldName->Data() : L"",headerFieldValue ? headerFieldValue->Data() : L"");
     }
-Boolean Http::SetSslClientCert(Cert ^cert)
+Boolean Http::SetSslClientCert(Chilkat::Cert ^cert)
     {
 	if (m_impl == nullptr) { return false; }
 	if (cert == nullptr) { return false; }
@@ -1712,29 +1590,23 @@ Boolean Http::SetSslClientCert(Cert ^cert)
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetSslClientCert(*pObj0);
     }
-Boolean Http::SetSslClientCertPem(Platform::String ^pemDataOrFilename, Platform::String ^pemPassword)
+Boolean Http::SetSslClientCertPem(Platform::String ^pemDataOrPath, Platform::String ^pemPassword)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SetSslClientCertPem(pemDataOrFilename ? pemDataOrFilename->Data() : L"",pemPassword ? pemPassword->Data() : L"");
+	return m_impl->SetSslClientCertPem(pemDataOrPath ? pemDataOrPath->Data() : L"",pemPassword ? pemPassword->Data() : L"");
     }
-Boolean Http::SetSslClientCertPfx(Platform::String ^pfxFilename, Platform::String ^pfxPassword)
+Boolean Http::SetSslClientCertPfx(Platform::String ^pfxPath, Platform::String ^pfxPassword)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SetSslClientCertPfx(pfxFilename ? pfxFilename->Data() : L"",pfxPassword ? pfxPassword->Data() : L"");
+	return m_impl->SetSslClientCertPfx(pfxPath ? pfxPath->Data() : L"",pfxPassword ? pfxPassword->Data() : L"");
     }
 void Http::SleepMs(int millisec)
     {
@@ -1742,11 +1614,9 @@ void Http::SleepMs(int millisec)
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->SleepMs(millisec);
     }
-IAsyncOperation<HttpResponse ^>^ Http::SynchronousRequestAsync(Platform::String ^domain, int port, Boolean ssl, HttpRequest ^req)
+IAsyncOperation<HttpResponse ^>^ Http::SynchronousRequestAsync(Platform::String ^domain, int port, Boolean ssl, Chilkat::HttpRequest ^req)
     {
 return create_async([this, domain, port, ssl, req]() -> HttpResponse ^
 {
@@ -1759,8 +1629,6 @@ return create_async([this, domain, port, ssl, req]() -> HttpResponse ^
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = HttpResponse
-	// cppType = CkHttpResponse *
 	CkHttpResponseW *pRetObj = m_impl->SynchronousRequest(domain ? domain->Data() : L"",port,ssl,*pObj3);
 	if (!pRetObj) return nullptr;
 	Chilkat::HttpResponse ^pHttpResponse = ref new Chilkat::HttpResponse();
@@ -1775,8 +1643,6 @@ Boolean Http::UnlockComponent(Platform::String ^unlockCode)
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UnlockComponent(unlockCode ? unlockCode->Data() : L"");
     }
 Platform::String ^Http::UrlDecode(Platform::String ^str)
@@ -1785,8 +1651,6 @@ Platform::String ^Http::UrlDecode(Platform::String ^str)
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->urlDecode(str ? str->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -1797,8 +1661,6 @@ Platform::String ^Http::UrlEncode(Platform::String ^str)
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->urlEncode(str ? str->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -1813,8 +1675,6 @@ return create_async([this, urlEndpoint, xmlIn]() -> Platform::String ^
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->xmlRpc(urlEndpoint ? urlEndpoint->Data() : L"",xmlIn ? xmlIn->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -1831,8 +1691,6 @@ return create_async([this, urlEndpoint, xmlIn]() -> Platform::String ^
 	// --- prep output arg ---
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->xmlRpcPut(urlEndpoint ? urlEndpoint->Data() : L"",xmlIn ? xmlIn->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);

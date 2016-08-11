@@ -43,46 +43,6 @@ Chilkat::Tar::Tar(void)
 //}
 
 
-String ^Chilkat::Tar::LastErrorHtml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
-    }
-String ^Chilkat::Tar::LastErrorText::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::Tar::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::Tar::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::Tar::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::Tar::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Tar::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::Tar::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::Tar::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::Tar::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
 Boolean Chilkat::Tar::CaptureXmlListing::get()
     {
     return m_impl ? m_impl->get_CaptureXmlListing() : false;
@@ -98,6 +58,14 @@ String ^Chilkat::Tar::Charset::get()
 void Chilkat::Tar::Charset::set(String ^newVal)
     {
         if (m_impl) m_impl->put_Charset(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::Tar::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::Tar::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
     }
 int Chilkat::Tar::DirMode::get()
     {
@@ -146,6 +114,26 @@ int Chilkat::Tar::HeartbeatMs::get()
 void Chilkat::Tar::HeartbeatMs::set(int newVal)
     {
         if (m_impl) m_impl->put_HeartbeatMs(newVal);
+    }
+String ^Chilkat::Tar::LastErrorHtml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    }
+String ^Chilkat::Tar::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::Tar::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
+Boolean Chilkat::Tar::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::Tar::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
 Boolean Chilkat::Tar::MatchCaseSensitive::get()
     {
@@ -271,6 +259,18 @@ void Chilkat::Tar::UserName::set(String ^newVal)
     {
         if (m_impl) m_impl->put_UserName(newVal ? newVal->Data() : L"");
     }
+Boolean Chilkat::Tar::VerboseLogging::get()
+    {
+    return m_impl ? m_impl->get_VerboseLogging() : false;
+    }
+void Chilkat::Tar::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::Tar::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
 String ^Chilkat::Tar::WriteFormat::get()
     {
     return ref new String(m_impl ? m_impl->writeFormat() : L"");
@@ -289,25 +289,21 @@ void Chilkat::Tar::XmlListing::set(String ^newVal)
     }
 
 
-Boolean Tar::SaveLastError(Platform::String ^path)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxTarProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
-    }
 Boolean Tar::AddDirRoot(Platform::String ^dirPath)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	CxTarProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddDirRoot(dirPath ? dirPath->Data() : L"");
+    }
+Boolean Tar::AddDirRoot2(Platform::String ^rootPrefix, Platform::String ^rootPath)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxTarProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->AddDirRoot2(rootPrefix ? rootPrefix->Data() : L"",rootPath ? rootPath->Data() : L"");
     }
 Boolean Tar::AddFile(Platform::String ^path)
     {
@@ -315,8 +311,6 @@ Boolean Tar::AddFile(Platform::String ^path)
 	// --- prep output arg ---
 	CxTarProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddFile(path ? path->Data() : L"");
     }
 Platform::String ^Tar::GetDirRoot(int index)
@@ -325,8 +319,6 @@ Platform::String ^Tar::GetDirRoot(int index)
 	// --- prep output arg ---
 	CxTarProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getDirRoot(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -341,8 +333,6 @@ return create_async([this, tarPath]() -> Platform::String ^
 	// --- prep output arg ---
 	CxTarProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->listXml(tarPath ? tarPath->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -355,8 +345,6 @@ Boolean Tar::UnlockComponent(Platform::String ^unlockCode)
 	// --- prep output arg ---
 	CxTarProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UnlockComponent(unlockCode ? unlockCode->Data() : L"");
     }
 IAsyncOperation<int>^ Tar::UntarAsync(Platform::String ^tarPath)
@@ -369,8 +357,6 @@ return create_async([this, tarPath]() -> int
 	// --- prep output arg ---
 	CxTarProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
 	return m_impl->Untar(tarPath ? tarPath->Data() : L"");
 
 });
@@ -385,8 +371,6 @@ return create_async([this, tarPath]() -> Boolean
 	// --- prep output arg ---
 	CxTarProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UntarBz2(tarPath ? tarPath->Data() : L"");
 
 });
@@ -401,8 +385,6 @@ Windows::Foundation::Collections::IVector<uint8>^Tar::UntarFirstMatchingToMemory
 	CkByteData outDb;
 	CxTarProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->UntarFirstMatchingToMemory(db0,matchPattern ? matchPattern->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -421,8 +403,6 @@ return create_async([this, tarFileBytes]() -> int
 	// --- prep output arg ---
 	CxTarProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
 	return m_impl->UntarFromMemory(db0);
 
 });
@@ -437,8 +417,6 @@ return create_async([this, tarPath]() -> Boolean
 	// --- prep output arg ---
 	CxTarProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UntarGz(tarPath ? tarPath->Data() : L"");
 
 });
@@ -453,8 +431,6 @@ return create_async([this, tarPath]() -> Boolean
 	// --- prep output arg ---
 	CxTarProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UntarZ(tarPath ? tarPath->Data() : L"");
 
 });
@@ -469,8 +445,6 @@ return create_async([this, tarPath]() -> Boolean
 	// --- prep output arg ---
 	CxTarProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->VerifyTar(tarPath ? tarPath->Data() : L"");
 
 });
@@ -485,8 +459,6 @@ return create_async([this, tarPath]() -> Boolean
 	// --- prep output arg ---
 	CxTarProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->WriteTar(tarPath ? tarPath->Data() : L"");
 
 });
@@ -501,8 +473,6 @@ return create_async([this, bz2Path]() -> Boolean
 	// --- prep output arg ---
 	CxTarProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->WriteTarBz2(bz2Path ? bz2Path->Data() : L"");
 
 });
@@ -517,21 +487,9 @@ return create_async([this, gzPath]() -> Boolean
 	// --- prep output arg ---
 	CxTarProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->WriteTarGz(gzPath ? gzPath->Data() : L"");
 
 });
-    }
-Boolean Tar::AddDirRoot2(Platform::String ^rootPrefix, Platform::String ^rootPath)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxTarProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->AddDirRoot2(rootPrefix ? rootPrefix->Data() : L"",rootPath ? rootPath->Data() : L"");
     }
 
 

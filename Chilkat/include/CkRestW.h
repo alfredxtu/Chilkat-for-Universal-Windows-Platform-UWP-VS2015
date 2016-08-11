@@ -67,12 +67,70 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// ----------------------
 	// Properties
 	// ----------------------
+	// Controls whether non us-ascii HTTP request headers are automatically Q/B
+	// encoded. The default value is true.
+	// 
+	// Q/B encoded headers explicitly indicate the charset and byte representation, and
+	// appear as such: =?utf-8?Q?...?= or =?utf-8?B?...?=, where the charset may be
+	// "utf-8" or any other possible charset.
+	// 
+	// If this property is set to false, then no Q/B encoding is applied to any
+	// request header.
+	// 
+	bool get_AllowHeaderQB(void);
+	// Controls whether non us-ascii HTTP request headers are automatically Q/B
+	// encoded. The default value is true.
+	// 
+	// Q/B encoded headers explicitly indicate the charset and byte representation, and
+	// appear as such: =?utf-8?Q?...?= or =?utf-8?B?...?=, where the charset may be
+	// "utf-8" or any other possible charset.
+	// 
+	// If this property is set to false, then no Q/B encoding is applied to any
+	// request header.
+	// 
+	void put_AllowHeaderQB(bool newVal);
+
 	// The value of the Authorization HTTP request header (if needed).
 	void get_Authorization(CkString &str);
 	// The value of the Authorization HTTP request header (if needed).
 	const wchar_t *authorization(void);
 	// The value of the Authorization HTTP request header (if needed).
 	void put_Authorization(const wchar_t *newVal);
+
+	// If the Connect method fails, this property can be checked to determine the
+	// reason for failure.
+	// 
+	// Possible values are:
+	// 0 = success
+	// 
+	// Normal (non-SSL) sockets:
+	// 1 = empty hostname
+	// 2 = DNS lookup failed
+	// 3 = DNS timeout
+	// 4 = Aborted by application.
+	// 5 = Internal failure.
+	// 6 = Connect Timed Out
+	// 7 = Connect Rejected (or failed for some other reason)
+	// 
+	// SSL/TLS:
+	// 100 = TLS internal error.
+	// 101 = Failed to send client hello.
+	// 102 = Unexpected handshake message.
+	// 103 = Failed to read server hello.
+	// 104 = No server certificate.
+	// 105 = Unexpected TLS protocol version.
+	// 106 = Server certificate verify failed (the server certificate is expired or the cert's signature verification failed).
+	// 107 = Unacceptable TLS protocol version.
+	// 109 = Failed to read handshake messages.
+	// 110 = Failed to send client certificate handshake message.
+	// 111 = Failed to send client key exchange handshake message.
+	// 112 = Client certificate's private key not accessible.
+	// 113 = Failed to send client cert verify handshake message.
+	// 114 = Failed to send change cipher spec handshake message.
+	// 115 = Failed to send finished handshake message.
+	// 116 = Server's Finished message is invalid.
+	// 
+	int get_ConnectFailReason(void);
 
 	// This property is only valid in programming environment and languages that allow
 	// for event callbacks.
@@ -175,71 +233,6 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// 
 	void put_PartSelector(const wchar_t *newVal);
 
-	// The full response MIME header (not including the HTTP start line which contains
-	// the status code and status text).
-	void get_ResponseHeader(CkString &str);
-	// The full response MIME header (not including the HTTP start line which contains
-	// the status code and status text).
-	const wchar_t *responseHeader(void);
-
-	// The response status code.
-	int get_ResponseStatusCode(void);
-
-	// The status message corresponding to the response status code.
-	void get_ResponseStatusText(CkString &str);
-	// The status message corresponding to the response status code.
-	const wchar_t *responseStatusText(void);
-
-	// If true, then methods that upload data are sent non-chunked if possible. For
-	// example, if the FullRequestStream method is called where the stream is a file
-	// stream, then the size of the content is known and the HTTP request will be sent
-	// using a Content-Length header instead of using a Transfer-Encoding: chunked
-	// upload. If false, then the chunked transfer encoding is used. The default
-	// value of this property is true.
-	bool get_StreamNonChunked(void);
-	// If true, then methods that upload data are sent non-chunked if possible. For
-	// example, if the FullRequestStream method is called where the stream is a file
-	// stream, then the size of the content is known and the HTTP request will be sent
-	// using a Content-Length header instead of using a Transfer-Encoding: chunked
-	// upload. If false, then the chunked transfer encoding is used. The default
-	// value of this property is true.
-	void put_StreamNonChunked(bool newVal);
-
-	// If the Connect method fails, this property can be checked to determine the
-	// reason for failure.
-	// 
-	// Possible values are:
-	// 0 = success
-	// 
-	// Normal (non-SSL) sockets:
-	// 1 = empty hostname
-	// 2 = DNS lookup failed
-	// 3 = DNS timeout
-	// 4 = Aborted by application.
-	// 5 = Internal failure.
-	// 6 = Connect Timed Out
-	// 7 = Connect Rejected (or failed for some other reason)
-	// 
-	// SSL/TLS:
-	// 100 = TLS internal error.
-	// 101 = Failed to send client hello.
-	// 102 = Unexpected handshake message.
-	// 103 = Failed to read server hello.
-	// 104 = No server certificate.
-	// 105 = Unexpected TLS protocol version.
-	// 106 = Server certificate verify failed (the server certificate is expired or the cert's signature verification failed).
-	// 107 = Unacceptable TLS protocol version.
-	// 109 = Failed to read handshake messages.
-	// 110 = Failed to send client certificate handshake message.
-	// 111 = Failed to send client key exchange handshake message.
-	// 112 = Client certificate's private key not accessible.
-	// 113 = Failed to send client cert verify handshake message.
-	// 114 = Failed to send change cipher spec handshake message.
-	// 115 = Failed to send finished handshake message.
-	// 116 = Server's Finished message is invalid.
-	// 
-	int get_ConnectFailReason(void);
-
 	// This property only applies to the FullRequest* methods, which are methods that
 	// both send an HTTP request and receive the response. (It also only applies to
 	// programming languages that support event callbacks.) It determines whether
@@ -271,28 +264,35 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// 
 	void put_PercentDoneOnSend(bool newVal);
 
-	// Controls whether non us-ascii HTTP request headers are automatically Q/B
-	// encoded. The default value is true.
-	// 
-	// Q/B encoded headers explicitly indicate the charset and byte representation, and
-	// appear as such: =?utf-8?Q?...?= or =?utf-8?B?...?=, where the charset may be
-	// "utf-8" or any other possible charset.
-	// 
-	// If this property is set to false, then no Q/B encoding is applied to any
-	// request header.
-	// 
-	bool get_AllowHeaderQB(void);
-	// Controls whether non us-ascii HTTP request headers are automatically Q/B
-	// encoded. The default value is true.
-	// 
-	// Q/B encoded headers explicitly indicate the charset and byte representation, and
-	// appear as such: =?utf-8?Q?...?= or =?utf-8?B?...?=, where the charset may be
-	// "utf-8" or any other possible charset.
-	// 
-	// If this property is set to false, then no Q/B encoding is applied to any
-	// request header.
-	// 
-	void put_AllowHeaderQB(bool newVal);
+	// The full response MIME header (not including the HTTP start line which contains
+	// the status code and status text).
+	void get_ResponseHeader(CkString &str);
+	// The full response MIME header (not including the HTTP start line which contains
+	// the status code and status text).
+	const wchar_t *responseHeader(void);
+
+	// The response status code.
+	int get_ResponseStatusCode(void);
+
+	// The status message corresponding to the response status code.
+	void get_ResponseStatusText(CkString &str);
+	// The status message corresponding to the response status code.
+	const wchar_t *responseStatusText(void);
+
+	// If true, then methods that upload data are sent non-chunked if possible. For
+	// example, if the FullRequestStream method is called where the stream is a file
+	// stream, then the size of the content is known and the HTTP request will be sent
+	// using a Content-Length header instead of using a Transfer-Encoding: chunked
+	// upload. If false, then the chunked transfer encoding is used. The default
+	// value of this property is true.
+	bool get_StreamNonChunked(void);
+	// If true, then methods that upload data are sent non-chunked if possible. For
+	// example, if the FullRequestStream method is called where the stream is a file
+	// stream, then the size of the content is known and the HTTP request will be sent
+	// using a Content-Length header instead of using a Transfer-Encoding: chunked
+	// upload. If false, then the chunked transfer encoding is used. The default
+	// value of this property is true.
+	void put_StreamNonChunked(bool newVal);
 
 
 
@@ -307,7 +307,7 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// replaced.
 	bool AddQueryParam(const wchar_t *name, const wchar_t *value);
 
-	// Adds the query parameters from the ARG1. The ARG1 is a query string of the
+	// Adds the query parameters from the queryString. The queryString is a query string of the
 	// format field1=value1&field2=value2&field3=value3... where each value is URL
 	// encoded.
 	bool AddQueryParams(const wchar_t *queryString);
@@ -321,10 +321,10 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// Clears the response body stream set by calling SetResponseBodyStream.
 	void ClearResponseBodyStream(void);
 
-	// Establishes an initial connection to a REST server. The ARG1 can be a domain
-	// name or an IP address. Both IPv4 and IPv6 addresses are supported. The ARG2 is
-	// the port, which is typically 80 or 443. If SSL/TLS is required, then ARG3 should
-	// be set to true. The ARG4 indicates whether connection should automatically be
+	// Establishes an initial connection to a REST server. The hostname can be a domain
+	// name or an IP address. Both IPv4 and IPv6 addresses are supported. The port is
+	// the port, which is typically 80 or 443. If SSL/TLS is required, then tls should
+	// be set to true. The autoReconnect indicates whether connection should automatically be
 	// established as needed for subsequent REST requests.
 	// 
 	// Note: This method is for simple connections that do not require any proxies
@@ -341,7 +341,7 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	CkTaskW *ConnectAsync(const wchar_t *hostname, int port, bool tls, bool autoReconnect);
 
 	// Closes the connection with the HTTP server if one is open. This method can be
-	// called to ensure the connection is closed. The ARG1 is the maximum time in
+	// called to ensure the connection is closed. The maxWaitMs is the maximum time in
 	// milliseconds to wait for a clean close. If the connection is through an SSH
 	// tunnel, this closes the logical channel within the SSH tunnel, and not the
 	// connection with the SSH server itself.
@@ -497,9 +497,9 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *ReadRespBodyBinaryAsync(void);
 
-	// Reads the response body to the ARG1. If ARG2 is true, then the ARG1's
+	// Reads the response body to the stream. If autoSetStreamCharset is true, then the stream's
 	// StringCharset property will automatically get set based on the charset, if any,
-	// indicated in the response header. If the response is binary, then ARG2 is
+	// indicated in the response header. If the response is binary, then autoSetStreamCharset is
 	// ignored.
 	bool ReadRespBodyStream(CkStreamW &stream, bool autoSetStreamCharset);
 
@@ -544,15 +544,15 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkUrlW *RedirectUrl(void);
 
-	// Removes all headers having the given ARG1.
+	// Removes all headers having the given name.
 	bool RemoveHeader(const wchar_t *name);
 
-	// Removes all query params having the given ARG1.
+	// Removes all query params having the given name.
 	bool RemoveQueryParam(const wchar_t *name);
 
-	// Returns the value of the response header indicated by ARG1.
+	// Returns the value of the response header indicated by name.
 	bool ResponseHdrByName(const wchar_t *name, CkString &outStr);
-	// Returns the value of the response header indicated by ARG1.
+	// Returns the value of the response header indicated by name.
 	const wchar_t *responseHdrByName(const wchar_t *name);
 
 	// Returns the name of the Nth response header field. (Chilkat always uses 0-based
@@ -569,9 +569,9 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// indexing. The first header field is at index 0.)
 	const wchar_t *responseHdrValue(int index);
 
-	// Sends a REST request that cotnains a binary body. The ARG1 is the HTTP verb
-	// (also known as the HTTP method), such as "PUT". The ARG2 is the path of the
-	// resource URI. The ARG3 contains the bytes of the HTTP request body.
+	// Sends a REST request that cotnains a binary body. The httpVerb is the HTTP verb
+	// (also known as the HTTP method), such as "PUT". The uriPath is the path of the
+	// resource URI. The body contains the bytes of the HTTP request body.
 	bool SendReqBinaryBody(const wchar_t *httpVerb, const wchar_t *uriPath, CkByteData &body);
 
 	// Creates an asynchronous task to call the SendReqBinaryBody method with the
@@ -580,8 +580,8 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	CkTaskW *SendReqBinaryBodyAsync(const wchar_t *httpVerb, const wchar_t *uriPath, CkByteData &body);
 
 	// Sends an application/x-www-form-urlencoded HTTP request where the body is
-	// composed of the URL encoded query params. The ARG1 is the HTTP verb (also known
-	// as the HTTP method), such as "POST". The ARG2 is the path of the resource URI.
+	// composed of the URL encoded query params. The httpVerb is the HTTP verb (also known
+	// as the HTTP method), such as "POST". The uriPath is the path of the resource URI.
 	// If the Content-Type header was set, it is ignored and instead the Content-Type
 	// of the request will be "application/x-www-form-urlencoded".
 	bool SendReqFormUrlEncoded(const wchar_t *httpVerb, const wchar_t *uriPath);
@@ -591,8 +591,8 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *SendReqFormUrlEncodedAsync(const wchar_t *httpVerb, const wchar_t *uriPath);
 
-	// Sends a multipart REST request. The ARG1 is the HTTP verb (also known as the
-	// HTTP method), such as "GET". The ARG2 is the path of the resource URI.
+	// Sends a multipart REST request. The httpVerb is the HTTP verb (also known as the
+	// HTTP method), such as "GET". The uriPath is the path of the resource URI.
 	bool SendReqMultipart(const wchar_t *httpVerb, const wchar_t *uriPath);
 
 	// Creates an asynchronous task to call the SendReqMultipart method with the
@@ -600,8 +600,8 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *SendReqMultipartAsync(const wchar_t *httpVerb, const wchar_t *uriPath);
 
-	// Sends a REST request that cotnains no body. The ARG1 is the HTTP verb (also
-	// known as the HTTP method), such as "GET". The ARG2 is the path of the resource
+	// Sends a REST request that cotnains no body. The httpVerb is the HTTP verb (also
+	// known as the HTTP method), such as "GET". The uriPath is the path of the resource
 	// URI.
 	bool SendReqNoBody(const wchar_t *httpVerb, const wchar_t *uriPath);
 
@@ -611,8 +611,8 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	CkTaskW *SendReqNoBodyAsync(const wchar_t *httpVerb, const wchar_t *uriPath);
 
 	// Sends a REST request that cotnains a binary or text body that is obtained by
-	// reading from the ARG3. The ARG1 is the HTTP verb (also known as the HTTP
-	// method), such as "PUT". The ARG2 is the path of the resource URI.
+	// reading from the stream. The httpVerb is the HTTP verb (also known as the HTTP
+	// method), such as "PUT". The uriPath is the path of the resource URI.
 	bool SendReqStreamBody(const wchar_t *httpVerb, const wchar_t *uriPath, CkStreamW &stream);
 
 	// Creates an asynchronous task to call the SendReqStreamBody method with the
@@ -620,9 +620,9 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *SendReqStreamBodyAsync(const wchar_t *httpVerb, const wchar_t *uriPath, CkStreamW &stream);
 
-	// Sends a REST request that cotnains a text body, such as XML or JSON. The ARG1 is
-	// the HTTP verb (also known as the HTTP method), such as "PUT". The ARG2 is the
-	// path of the resource URI. The ARG3 contains the text of the HTTP request body.
+	// Sends a REST request that cotnains a text body, such as XML or JSON. The httpVerb is
+	// the HTTP verb (also known as the HTTP method), such as "PUT". The uriPath is the
+	// path of the resource URI. The bodyText contains the text of the HTTP request body.
 	bool SendReqStringBody(const wchar_t *httpVerb, const wchar_t *uriPath, const wchar_t *bodyText);
 
 	// Creates an asynchronous task to call the SendReqStringBody method with the
@@ -633,7 +633,7 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// Sets the authorization service provider for Amazon AWS REST requests. An
 	// application that sets an AWS authentication provider need not explicitly set the
 	// Authorization property. Each REST request is automatically signed and
-	// authenticated using the ARG1.
+	// authenticated using the authProvider.
 	bool SetAuthAws(CkAuthAwsW &authProvider);
 
 	// Sets the Azure AD (Active Directory) authorization service provider.
@@ -642,19 +642,19 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// Sets the authorization service provider for Azure Storage Service requests.
 	bool SetAuthAzureStorage(CkAuthAzureStorageW &authProvider);
 
-	// Sets the ARG1 and ARG2 to be used for Basic authentication. This method should
+	// Sets the username and password to be used for Basic authentication. This method should
 	// be called when Basic authentication is required. It should only be used with
 	// secure SSL/TLS connections. Calling this method will cause the "Authorization:
 	// Basic ..." header to be automatically added to all requests. In many cases, a
-	// REST API will support Basic authentication where the ARG1 is a client ID or
-	// account ID, and the ARG2 is a client secret or token.
+	// REST API will support Basic authentication where the username is a client ID or
+	// account ID, and the password is a client secret or token.
 	bool SetAuthBasic(const wchar_t *username, const wchar_t *password);
 
 	// Sets the authorization service provider for Google API requests.
 	bool SetAuthGoogle(CkAuthGoogleW &authProvider);
 
 	// Sets the authentication provider for REST API requests needing OAuth 1.0 (and
-	// OAuth 1.0a) authentication. If ARG2 is true, then the OAuth1 authentication
+	// OAuth 1.0a) authentication. If useQueryParams is true, then the OAuth1 authentication
 	// information and signature is passed in query parameters. Otherwise it is passed
 	// in an Authorization header.
 	bool SetAuthOAuth1(CkOAuth1W &authProvider, bool useQueryParams);
@@ -673,27 +673,27 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 
 	// Only applies to the Full* methods, such as FullRequestNoBody, FullRequestBinary,
 	// FullRequestStream, etc. When set, the response body is streamed directly to
-	// ARG3, if (and only if) the HTTP response status code equals ARG1.
+	// responseStream, if (and only if) the HTTP response status code equals expectedStatus.
 	// 
-	// If the response body was streamed to ARG3, then the string return value of the
+	// If the response body was streamed to responseStream, then the string return value of the
 	// Full* method instead becomes "OK" for success. If an attempt was made to stream
 	// the response body but it failed, then "FAIL" is returned. If the response body
-	// was not streamed because the response status code was not equal to ARG1, then
+	// was not streamed because the response status code was not equal to expectedStatus, then
 	// the returned string contains the server's error response.
 	// 
-	// If ARG2 is true, then the ARG1's StringCharset property will automatically get
+	// If autoSetStreamCharset is true, then the expectedStatus's StringCharset property will automatically get
 	// set based on the charset, if any, indicated in the response header. If the
-	// response is binary, then ARG2 is ignored.
+	// response is binary, then autoSetStreamCharset is ignored.
 	// 
 	bool SetResponseBodyStream(int expectedStatus, bool autoSetStreamCharset, CkStreamW &responseStream);
 
-	// Sets the connection to be used for sending the REST request. The ARG1 should be
+	// Sets the connection to be used for sending the REST request. The connection should be
 	// an already-connected socket. It may be a TLS connection, an unencrypted
 	// connection, through an HTTP proxy, a SOCKS proxy, or even through SSH tunnels.
 	// All of the connection related functionality is handled by the Chilkat Socket
 	// API.
 	// 
-	// The ARG2 indicates whether connection should automatically be established as
+	// The autoReconnect indicates whether connection should automatically be established as
 	// needed for subsequent REST requests.
 	// 
 	bool UseConnection(CkSocketW &connection, bool autoReconnect);

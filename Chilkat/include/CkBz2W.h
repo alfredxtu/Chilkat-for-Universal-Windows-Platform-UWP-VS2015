@@ -59,11 +59,6 @@ class CK_VISIBLE_PUBLIC CkBz2W  : public CkClassWithCallbacksW
 	// ----------------------
 	// Properties
 	// ----------------------
-
-	int get_HeartbeatMs(void);
-
-	void put_HeartbeatMs(int newVal);
-
 	// When set to true, causes the currently running method to abort. Methods that
 	// always finish quickly (i.e.have no length file operations or network
 	// communications) are not affected. If no method is running, then this property is
@@ -80,6 +75,11 @@ class CK_VISIBLE_PUBLIC CkBz2W  : public CkClassWithCallbacksW
 	// method calls can be aborted. (A synchronous method call could be aborted by
 	// setting this property from a separate thread.)
 	void put_AbortCurrent(bool newVal);
+
+
+	int get_HeartbeatMs(void);
+
+	void put_HeartbeatMs(int newVal);
 
 
 
@@ -102,14 +102,6 @@ class CK_VISIBLE_PUBLIC CkBz2W  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *CompressFileToMemAsync(const wchar_t *inFilename);
 
-	// BZip2 compresses and creates a .bz2 file from in-memory data.
-	bool CompressMemToFile(CkByteData &inData, const wchar_t *toPath);
-
-	// Creates an asynchronous task to call the CompressMemToFile method with the
-	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
-	// The caller is responsible for deleting the object returned by this method.
-	CkTaskW *CompressMemToFileAsync(CkByteData &inData, const wchar_t *toPath);
-
 	// Compresses in-memory data to an in-memory image of a .bz2 file.
 	bool CompressMemory(CkByteData &inData, CkByteData &outBytes);
 
@@ -117,6 +109,14 @@ class CK_VISIBLE_PUBLIC CkBz2W  : public CkClassWithCallbacksW
 	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *CompressMemoryAsync(CkByteData &inData);
+
+	// BZip2 compresses and creates a .bz2 file from in-memory data.
+	bool CompressMemToFile(CkByteData &inData, const wchar_t *toPath);
+
+	// Creates an asynchronous task to call the CompressMemToFile method with the
+	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *CompressMemToFileAsync(CkByteData &inData, const wchar_t *toPath);
 
 	// Unzips a .bz2 file.
 	bool UncompressFile(const wchar_t *inFilename, const wchar_t *toPath);
@@ -134,14 +134,6 @@ class CK_VISIBLE_PUBLIC CkBz2W  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *UncompressFileToMemAsync(const wchar_t *inFilename);
 
-	// Unzips from an in-memory image of a .bz2 file to a file.
-	bool UncompressMemToFile(CkByteData &inData, const wchar_t *toPath);
-
-	// Creates an asynchronous task to call the UncompressMemToFile method with the
-	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
-	// The caller is responsible for deleting the object returned by this method.
-	CkTaskW *UncompressMemToFileAsync(CkByteData &inData, const wchar_t *toPath);
-
 	// Unzips from an in-memory image of a .bz2 file directly into memory.
 	bool UncompressMemory(CkByteData &inData, CkByteData &outBytes);
 
@@ -149,6 +141,14 @@ class CK_VISIBLE_PUBLIC CkBz2W  : public CkClassWithCallbacksW
 	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *UncompressMemoryAsync(CkByteData &inData);
+
+	// Unzips from an in-memory image of a .bz2 file to a file.
+	bool UncompressMemToFile(CkByteData &inData, const wchar_t *toPath);
+
+	// Creates an asynchronous task to call the UncompressMemToFile method with the
+	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *UncompressMemToFileAsync(CkByteData &inData, const wchar_t *toPath);
 
 	// Unlocks the component allowing for the full functionality to be used. If a
 	// permanent (purchased) unlock code is passed, there is no expiration. Any other

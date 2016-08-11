@@ -42,6 +42,21 @@ public ref class HtmlToXml sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Boolean DropCustomTags
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Html
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
@@ -54,39 +69,24 @@ public ref class HtmlToXml sealed
 	{
 		Platform::String ^get();
 	}
-	property Platform::String ^Version
+	property Boolean LastMethodSuccess
 	{
-		Platform::String ^get();
+		Boolean get();
+		void set(Boolean);
 	}
-	property Platform::String ^DebugLogFilePath
+	property int32 Nbsp
 	{
-		Platform::String ^get();
-		void set(Platform::String ^);
+		int32 get();
+		void set(int32);
 	}
 	property Boolean VerboseLogging
 	{
 		Boolean get();
 		void set(Boolean);
 	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean DropCustomTags
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Platform::String ^Html
+	property Platform::String ^Version
 	{
 		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property int32 Nbsp
-	{
-		int32 get();
-		void set(int32);
 	}
 	property Platform::String ^XmlCharset
 	{
@@ -98,8 +98,6 @@ public ref class HtmlToXml sealed
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	Boolean ConvertFile(Platform::String ^inHtmlPath, Platform::String ^destXmlPath);
 
 	void DropTagType(Platform::String ^tagName);
@@ -126,7 +124,7 @@ public ref class HtmlToXml sealed
 
 	Boolean WriteFile(Platform::String ^path, Windows::Foundation::Collections::IVector<uint8>^fileData);
 
-	Boolean WriteStringToFile(Platform::String ^str, Platform::String ^filename, Platform::String ^charset);
+	Boolean WriteStringToFile(Platform::String ^stringToWrite, Platform::String ^filename, Platform::String ^charset);
 
 
 

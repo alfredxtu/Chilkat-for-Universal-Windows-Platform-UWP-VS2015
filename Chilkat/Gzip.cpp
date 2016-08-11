@@ -44,45 +44,13 @@ Chilkat::Gzip::Gzip(void)
 //}
 
 
-String ^Chilkat::Gzip::LastErrorHtml::get()
+Boolean Chilkat::Gzip::AbortCurrent::get()
     {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    return m_impl ? m_impl->get_AbortCurrent() : false;
     }
-String ^Chilkat::Gzip::LastErrorText::get()
+void Chilkat::Gzip::AbortCurrent::set(Boolean newVal)
     {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::Gzip::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::Gzip::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::Gzip::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::Gzip::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Gzip::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::Gzip::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::Gzip::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::Gzip::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
     }
 String ^Chilkat::Gzip::Comment::get()
     {
@@ -99,6 +67,14 @@ int Chilkat::Gzip::CompressionLevel::get()
 void Chilkat::Gzip::CompressionLevel::set(int newVal)
     {
         if (m_impl) m_impl->put_CompressionLevel(newVal);
+    }
+String ^Chilkat::Gzip::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::Gzip::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
     }
 Windows::Foundation::Collections::IVector<uint8> ^Chilkat::Gzip::ExtraData::get()
     {
@@ -131,6 +107,26 @@ void Chilkat::Gzip::HeartbeatMs::set(int newVal)
     {
         if (m_impl) m_impl->put_HeartbeatMs(newVal);
     }
+String ^Chilkat::Gzip::LastErrorHtml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    }
+String ^Chilkat::Gzip::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::Gzip::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
+Boolean Chilkat::Gzip::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::Gzip::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+    }
 String ^Chilkat::Gzip::LastModStr::get()
     {
     return ref new String(m_impl ? m_impl->lastModStr() : L"");
@@ -147,29 +143,23 @@ void Chilkat::Gzip::UseCurrentDate::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_UseCurrentDate(newVal);
     }
-Boolean Chilkat::Gzip::AbortCurrent::get()
+Boolean Chilkat::Gzip::VerboseLogging::get()
     {
-    return m_impl ? m_impl->get_AbortCurrent() : false;
+    return m_impl ? m_impl->get_VerboseLogging() : false;
     }
-void Chilkat::Gzip::AbortCurrent::set(Boolean newVal)
+void Chilkat::Gzip::VerboseLogging::set(Boolean newVal)
     {
-        if (m_impl) m_impl->put_AbortCurrent(newVal);
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::Gzip::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
     }
 
 
-Boolean Gzip::SaveLastError(Platform::String ^path)
+IAsyncOperation<Boolean>^ Gzip::CompressFileAsync(Platform::String ^inFilename, Platform::String ^destPath)
     {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxGzipProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
-    }
-IAsyncOperation<Boolean>^ Gzip::CompressFileAsync(Platform::String ^srcPath, Platform::String ^destPath)
-    {
-return create_async([this, srcPath, destPath]() -> Boolean
+return create_async([this, inFilename, destPath]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -177,15 +167,13 @@ return create_async([this, srcPath, destPath]() -> Boolean
 	// --- prep output arg ---
 	CxGzipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->CompressFile(srcPath ? srcPath->Data() : L"",destPath ? destPath->Data() : L"");
+	return m_impl->CompressFile(inFilename ? inFilename->Data() : L"",destPath ? destPath->Data() : L"");
 
 });
     }
-IAsyncOperation<Boolean>^ Gzip::CompressFile2Async(Platform::String ^srcPath, Platform::String ^embeddedFilename, Platform::String ^destPath)
+IAsyncOperation<Boolean>^ Gzip::CompressFile2Async(Platform::String ^inFilename, Platform::String ^embeddedFilename, Platform::String ^destPath)
     {
-return create_async([this, srcPath, embeddedFilename, destPath]() -> Boolean
+return create_async([this, inFilename, embeddedFilename, destPath]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -193,9 +181,7 @@ return create_async([this, srcPath, embeddedFilename, destPath]() -> Boolean
 	// --- prep output arg ---
 	CxGzipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->CompressFile2(srcPath ? srcPath->Data() : L"",embeddedFilename ? embeddedFilename->Data() : L"",destPath ? destPath->Data() : L"");
+	return m_impl->CompressFile2(inFilename ? inFilename->Data() : L"",embeddedFilename ? embeddedFilename->Data() : L"",destPath ? destPath->Data() : L"");
 
 });
     }
@@ -210,9 +196,28 @@ return create_async([this, inFilename]() -> Windows::Foundation::Collections::IV
 	CkByteData outDb;
 	CxGzipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->CompressFileToMem(inFilename ? inFilename->Data() : L"",outDb);
+	const uint8 *pOut = outDb.getData();
+	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
+	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
+
+});
+    }
+IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ Gzip::CompressMemoryAsync(Windows::Foundation::Collections::IVector<uint8>^inData)
+    {
+return create_async([this, inData]() -> Windows::Foundation::Collections::IVector<uint8>^
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return nullptr; }
+	CkByteData db0; std::vector<uint8> v0;
+        if (inData != nullptr) { v0 = to_vector(inData);
+            db0.borrowData(&v0[0], (unsigned long)v0.size()); }
+	// --- prep output arg ---
+	CkByteData outDb;
+	CxGzipProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	bool success = m_impl->CompressMemory(db0,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
@@ -232,32 +237,7 @@ return create_async([this, inData, destPath]() -> Boolean
 	// --- prep output arg ---
 	CxGzipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->CompressMemToFile(db0,destPath ? destPath->Data() : L"");
-
-});
-    }
-IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ Gzip::CompressMemoryAsync(Windows::Foundation::Collections::IVector<uint8>^inData)
-    {
-return create_async([this, inData]() -> Windows::Foundation::Collections::IVector<uint8>^
-{
-// This runs in a thread pool thread...
-
-	if (m_impl == nullptr) { return nullptr; }
-	CkByteData db0; std::vector<uint8> v0;
-        if (inData != nullptr) { v0 = to_vector(inData);
-            db0.borrowData(&v0[0], (unsigned long)v0.size()); }
-	// --- prep output arg ---
-	CkByteData outDb;
-	CxGzipProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
-	bool success = m_impl->CompressMemory(db0,outDb);
-	const uint8 *pOut = outDb.getData();
-	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
-	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
 
 });
     }
@@ -272,8 +252,6 @@ return create_async([this, inStr, destCharset]() -> Windows::Foundation::Collect
 	CkByteData outDb;
 	CxGzipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->CompressString(inStr ? inStr->Data() : L"",destCharset ? destCharset->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -281,15 +259,13 @@ return create_async([this, inStr, destCharset]() -> Windows::Foundation::Collect
 
 });
     }
-Platform::String ^Gzip::CompressStringENC(Platform::String ^strIn, Platform::String ^charset, Platform::String ^encoding)
+Platform::String ^Gzip::CompressStringENC(Platform::String ^inStr, Platform::String ^charset, Platform::String ^encoding)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CxGzipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->compressStringENC(strIn ? strIn->Data() : L"",charset ? charset->Data() : L"",encoding ? encoding->Data() : L"");
+	const wchar_t *retStr = m_impl->compressStringENC(inStr ? inStr->Data() : L"",charset ? charset->Data() : L"",encoding ? encoding->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
@@ -303,35 +279,29 @@ return create_async([this, inStr, destCharset, destPath]() -> Boolean
 	// --- prep output arg ---
 	CxGzipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->CompressStringToFile(inStr ? inStr->Data() : L"",destCharset ? destCharset->Data() : L"",destPath ? destPath->Data() : L"");
 
 });
     }
-Windows::Foundation::Collections::IVector<uint8>^Gzip::Decode(Platform::String ^str, Platform::String ^encoding)
+Windows::Foundation::Collections::IVector<uint8>^Gzip::Decode(Platform::String ^encodedStr, Platform::String ^encoding)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CkByteData outDb;
 	CxGzipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
-	bool success = m_impl->Decode(str ? str->Data() : L"",encoding ? encoding->Data() : L"",outDb);
+	bool success = m_impl->Decode(encodedStr ? encodedStr->Data() : L"",encoding ? encoding->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
     }
-Platform::String ^Gzip::DeflateStringENC(Platform::String ^strIn, Platform::String ^charset, Platform::String ^encoding)
+Platform::String ^Gzip::DeflateStringENC(Platform::String ^inString, Platform::String ^charsetName, Platform::String ^outputEncoding)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CxGzipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->deflateStringENC(strIn ? strIn->Data() : L"",charset ? charset->Data() : L"",encoding ? encoding->Data() : L"");
+	const wchar_t *retStr = m_impl->deflateStringENC(inString ? inString->Data() : L"",charsetName ? charsetName->Data() : L"",outputEncoding ? outputEncoding->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
@@ -344,21 +314,17 @@ Platform::String ^Gzip::Encode(Windows::Foundation::Collections::IVector<uint8>^
 	// --- prep output arg ---
 	CxGzipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->encode(db0,encoding ? encoding->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-Boolean Gzip::ExamineFile(Platform::String ^inGzPath)
+Boolean Gzip::ExamineFile(Platform::String ^inGzFilename)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	CxGzipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->ExamineFile(inGzPath ? inGzPath->Data() : L"");
+	return m_impl->ExamineFile(inGzFilename ? inGzFilename->Data() : L"");
     }
 Boolean Gzip::ExamineMemory(Windows::Foundation::Collections::IVector<uint8>^inGzData)
     {
@@ -369,8 +335,6 @@ Boolean Gzip::ExamineMemory(Windows::Foundation::Collections::IVector<uint8>^inG
 	// --- prep output arg ---
 	CxGzipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ExamineMemory(db0);
     }
 Chilkat::CkDateTime ^Gzip::GetDt(void)
@@ -379,23 +343,19 @@ Chilkat::CkDateTime ^Gzip::GetDt(void)
 	// --- prep output arg ---
 	CxGzipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = CkDateTime
-	// cppType = CkDateTime *
 	CkDateTimeW *pRetObj = m_impl->GetDt();
 	if (!pRetObj) return nullptr;
 	Chilkat::CkDateTime ^pCkDateTime = ref new Chilkat::CkDateTime();
 	pCkDateTime->m_impl = pRetObj;
 	return pCkDateTime;
     }
-Platform::String ^Gzip::InflateStringENC(Platform::String ^strIn, Platform::String ^charset, Platform::String ^encoding)
+Platform::String ^Gzip::InflateStringENC(Platform::String ^inString, Platform::String ^convertFromCharset, Platform::String ^inputEncoding)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CxGzipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->inflateStringENC(strIn ? strIn->Data() : L"",charset ? charset->Data() : L"",encoding ? encoding->Data() : L"");
+	const wchar_t *retStr = m_impl->inflateStringENC(inString ? inString->Data() : L"",convertFromCharset ? convertFromCharset->Data() : L"",inputEncoding ? inputEncoding->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
@@ -405,8 +365,6 @@ Boolean Gzip::IsUnlocked(void)
 	// --- prep output arg ---
 	CxGzipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsUnlocked();
     }
 Windows::Foundation::Collections::IVector<uint8>^Gzip::ReadFile(Platform::String ^path)
@@ -416,8 +374,6 @@ Windows::Foundation::Collections::IVector<uint8>^Gzip::ReadFile(Platform::String
 	CkByteData outDb;
 	CxGzipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->ReadFile(path ? path->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -432,25 +388,7 @@ Boolean Gzip::SetDt(Chilkat::CkDateTime ^dt)
 	// --- prep output arg ---
 	CxGzipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetDt(*pObj0);
-    }
-IAsyncOperation<Boolean>^ Gzip::UnTarGzAsync(Platform::String ^gzFilename, Platform::String ^destDir, Boolean bNoAbsolute)
-    {
-return create_async([this, gzFilename, destDir, bNoAbsolute]() -> Boolean
-{
-// This runs in a thread pool thread...
-
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxGzipProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->UnTarGz(gzFilename ? gzFilename->Data() : L"",destDir ? destDir->Data() : L"",bNoAbsolute);
-
-});
     }
 IAsyncOperation<Boolean>^ Gzip::UncompressFileAsync(Platform::String ^srcPath, Platform::String ^destPath)
     {
@@ -462,8 +400,6 @@ return create_async([this, srcPath, destPath]() -> Boolean
 	// --- prep output arg ---
 	CxGzipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UncompressFile(srcPath ? srcPath->Data() : L"",destPath ? destPath->Data() : L"");
 
 });
@@ -479,8 +415,6 @@ return create_async([this, inFilename]() -> Windows::Foundation::Collections::IV
 	CkByteData outDb;
 	CxGzipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->UncompressFileToMem(inFilename ? inFilename->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -488,9 +422,9 @@ return create_async([this, inFilename]() -> Windows::Foundation::Collections::IV
 
 });
     }
-IAsyncOperation<Platform::String ^>^ Gzip::UncompressFileToStringAsync(Platform::String ^inFilename, Platform::String ^inCharset)
+IAsyncOperation<Platform::String ^>^ Gzip::UncompressFileToStringAsync(Platform::String ^gzFilename, Platform::String ^charset)
     {
-return create_async([this, inFilename, inCharset]() -> Platform::String ^
+return create_async([this, gzFilename, charset]() -> Platform::String ^
 {
 // This runs in a thread pool thread...
 
@@ -498,30 +432,9 @@ return create_async([this, inFilename, inCharset]() -> Platform::String ^
 	// --- prep output arg ---
 	CxGzipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->uncompressFileToString(inFilename ? inFilename->Data() : L"",inCharset ? inCharset->Data() : L"");
+	const wchar_t *retStr = m_impl->uncompressFileToString(gzFilename ? gzFilename->Data() : L"",charset ? charset->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
-
-});
-    }
-IAsyncOperation<Boolean>^ Gzip::UncompressMemToFileAsync(Windows::Foundation::Collections::IVector<uint8>^inData, Platform::String ^destPath)
-    {
-return create_async([this, inData, destPath]() -> Boolean
-{
-// This runs in a thread pool thread...
-
-	if (m_impl == nullptr) { return false; }
-	CkByteData db0; std::vector<uint8> v0;
-        if (inData != nullptr) { v0 = to_vector(inData);
-            db0.borrowData(&v0[0], (unsigned long)v0.size()); }
-	// --- prep output arg ---
-	CxGzipProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->UncompressMemToFile(db0,destPath ? destPath->Data() : L"");
 
 });
     }
@@ -539,12 +452,27 @@ return create_async([this, inData]() -> Windows::Foundation::Collections::IVecto
 	CkByteData outDb;
 	CxGzipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->UncompressMemory(db0,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
+
+});
+    }
+IAsyncOperation<Boolean>^ Gzip::UncompressMemToFileAsync(Windows::Foundation::Collections::IVector<uint8>^inData, Platform::String ^destPath)
+    {
+return create_async([this, inData, destPath]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	CkByteData db0; std::vector<uint8> v0;
+        if (inData != nullptr) { v0 = to_vector(inData);
+            db0.borrowData(&v0[0], (unsigned long)v0.size()); }
+	// --- prep output arg ---
+	CxGzipProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->UncompressMemToFile(db0,destPath ? destPath->Data() : L"");
 
 });
     }
@@ -561,23 +489,19 @@ return create_async([this, inData, inCharset]() -> Platform::String ^
 	// --- prep output arg ---
 	CxGzipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->uncompressString(db0,inCharset ? inCharset->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
 });
     }
-Platform::String ^Gzip::UncompressStringENC(Platform::String ^strIn, Platform::String ^charset, Platform::String ^encoding)
+Platform::String ^Gzip::UncompressStringENC(Platform::String ^inStr, Platform::String ^charset, Platform::String ^encoding)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CxGzipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->uncompressStringENC(strIn ? strIn->Data() : L"",charset ? charset->Data() : L"",encoding ? encoding->Data() : L"");
+	const wchar_t *retStr = m_impl->uncompressStringENC(inStr ? inStr->Data() : L"",charset ? charset->Data() : L"",encoding ? encoding->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
@@ -587,9 +511,21 @@ Boolean Gzip::UnlockComponent(Platform::String ^unlockCode)
 	// --- prep output arg ---
 	CxGzipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UnlockComponent(unlockCode ? unlockCode->Data() : L"");
+    }
+IAsyncOperation<Boolean>^ Gzip::UnTarGzAsync(Platform::String ^tgzFilename, Platform::String ^destDir, Boolean bNoAbsolute)
+    {
+return create_async([this, tgzFilename, destDir, bNoAbsolute]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxGzipProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->UnTarGz(tgzFilename ? tgzFilename->Data() : L"",destDir ? destDir->Data() : L"",bNoAbsolute);
+
+});
     }
 Boolean Gzip::WriteFile(Platform::String ^path, Windows::Foundation::Collections::IVector<uint8>^binaryData)
     {
@@ -600,19 +536,15 @@ Boolean Gzip::WriteFile(Platform::String ^path, Windows::Foundation::Collections
 	// --- prep output arg ---
 	CxGzipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->WriteFile(path ? path->Data() : L"",db1);
     }
-Platform::String ^Gzip::XfdlToXml(Platform::String ^xfdl)
+Platform::String ^Gzip::XfdlToXml(Platform::String ^xfldData)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CxGzipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->xfdlToXml(xfdl ? xfdl->Data() : L"");
+	const wchar_t *retStr = m_impl->xfdlToXml(xfldData ? xfldData->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }

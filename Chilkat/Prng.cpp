@@ -43,6 +43,14 @@ Chilkat::Prng::Prng(void)
 //}
 
 
+String ^Chilkat::Prng::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::Prng::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
 String ^Chilkat::Prng::LastErrorHtml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
@@ -54,26 +62,6 @@ String ^Chilkat::Prng::LastErrorText::get()
 String ^Chilkat::Prng::LastErrorXml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::Prng::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::Prng::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::Prng::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Prng::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::Prng::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
     }
 Boolean Chilkat::Prng::LastMethodSuccess::get()
     {
@@ -91,22 +79,24 @@ void Chilkat::Prng::PrngName::set(String ^newVal)
     {
         if (m_impl) m_impl->put_PrngName(newVal ? newVal->Data() : L"");
     }
-
-
-Boolean Prng::SaveLastError(Platform::String ^path)
+Boolean Chilkat::Prng::VerboseLogging::get()
     {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
+    return m_impl ? m_impl->get_VerboseLogging() : false;
     }
+void Chilkat::Prng::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::Prng::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
+
+
 Boolean Prng::AddEntropy(Platform::String ^entropy, Platform::String ^encoding)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddEntropy(entropy ? entropy->Data() : L"",encoding ? encoding->Data() : L"");
     }
 Boolean Prng::AddEntropyBytes(Windows::Foundation::Collections::IVector<uint8>^entropy)
@@ -116,16 +106,12 @@ Boolean Prng::AddEntropyBytes(Windows::Foundation::Collections::IVector<uint8>^e
         if (entropy != nullptr) { v0 = to_vector(entropy);
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddEntropyBytes(db0);
     }
 Platform::String ^Prng::ExportEntropy(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->exportEntropy();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -134,8 +120,6 @@ Platform::String ^Prng::FirebasePushId(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->firebasePushId();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -144,8 +128,6 @@ Platform::String ^Prng::GenRandom(int numBytes, Platform::String ^encoding)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->genRandom(numBytes,encoding ? encoding->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -155,8 +137,6 @@ Windows::Foundation::Collections::IVector<uint8>^Prng::GenRandomBytes(int numByt
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->GenRandomBytes(numBytes,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -166,8 +146,6 @@ Platform::String ^Prng::GetEntropy(int numBytes, Platform::String ^encoding)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getEntropy(numBytes,encoding ? encoding->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -177,8 +155,6 @@ Windows::Foundation::Collections::IVector<uint8>^Prng::GetEntropyBytes(int numBy
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->GetEntropyBytes(numBytes,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -188,24 +164,18 @@ Boolean Prng::ImportEntropy(Platform::String ^entropy)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->ImportEntropy(entropy ? entropy->Data() : L"");
     }
 int Prng::RandomInt(int low, int high)
     {
 	if (m_impl == nullptr) { return -1; }
 	// --- prep output arg ---
-	// gType = int
-	// cppType = int
 	return m_impl->RandomInt(low,high);
     }
 Platform::String ^Prng::RandomPassword(int length, Boolean mustIncludeDigit, Boolean upperAndLowercase, Platform::String ^mustHaveOneOf, Platform::String ^excludeChars)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->randomPassword(length,mustIncludeDigit,upperAndLowercase,mustHaveOneOf ? mustHaveOneOf->Data() : L"",excludeChars ? excludeChars->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -214,8 +184,6 @@ Platform::String ^Prng::RandomString(int length, Boolean bDigits, Boolean bLower
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->randomString(length,bDigits,bLower,bUpper);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);

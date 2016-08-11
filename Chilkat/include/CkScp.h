@@ -110,6 +110,22 @@ class CK_VISIBLE_PUBLIC CkScp  : public CkClassWithCallbacks
 	// 
 	void put_PercentDoneScale(int newVal);
 
+	// The paths of the files uploaded or downloaded in the last call to SyncUploadTree
+	// or SyncDownloadTree. The paths are listed one per line. In both cases (for
+	// upload and download) each line contains the full local file path (not the remote
+	// path).
+	void get_SyncedFiles(CkString &str);
+	// The paths of the files uploaded or downloaded in the last call to SyncUploadTree
+	// or SyncDownloadTree. The paths are listed one per line. In both cases (for
+	// upload and download) each line contains the full local file path (not the remote
+	// path).
+	const char *syncedFiles(void);
+	// The paths of the files uploaded or downloaded in the last call to SyncUploadTree
+	// or SyncDownloadTree. The paths are listed one per line. In both cases (for
+	// upload and download) each line contains the full local file path (not the remote
+	// path).
+	void put_SyncedFiles(const char *newVal);
+
 	// Can contain a wildcarded list of filename patterns separated by semicolons. For
 	// example, "*.xml; *.txt; *.csv". If set, the SyncTreeUpload and SyncTreeDownload
 	// methods will only transfer files having a filename that matches any one of these
@@ -173,22 +189,6 @@ class CK_VISIBLE_PUBLIC CkScp  : public CkClassWithCallbacks
 	// SyncTreeDownload methods will not traverse into a directory that matches any one
 	// of these patterns.
 	void put_SyncMustNotMatchDir(const char *newVal);
-
-	// The paths of the files uploaded or downloaded in the last call to SyncUploadTree
-	// or SyncDownloadTree. The paths are listed one per line. In both cases (for
-	// upload and download) each line contains the full local file path (not the remote
-	// path).
-	void get_SyncedFiles(CkString &str);
-	// The paths of the files uploaded or downloaded in the last call to SyncUploadTree
-	// or SyncDownloadTree. The paths are listed one per line. In both cases (for
-	// upload and download) each line contains the full local file path (not the remote
-	// path).
-	const char *syncedFiles(void);
-	// The paths of the files uploaded or downloaded in the last call to SyncUploadTree
-	// or SyncDownloadTree. The paths are listed one per line. In both cases (for
-	// upload and download) each line contains the full local file path (not the remote
-	// path).
-	void put_SyncedFiles(const char *newVal);
 
 
 
@@ -316,7 +316,7 @@ class CK_VISIBLE_PUBLIC CkScp  : public CkClassWithCallbacks
 	CkTask *UploadStringAsync(const char *remotePath, const char *textData, const char *charset);
 
 
-	// Uses the SSH connection of ARG1 for the SCP transfers. All of the connection and
+	// Uses the SSH connection of sshConnection for the SCP transfers. All of the connection and
 	// socket related properties, proxy properites, timeout properties, session log,
 	// etc. set on the SSH object apply to the SCP methods (because internally it is
 	// the SSH object that is used to do the work of the file transfers).

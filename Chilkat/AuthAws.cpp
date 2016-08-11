@@ -43,46 +43,6 @@ Chilkat::AuthAws::AuthAws(void)
 //}
 
 
-String ^Chilkat::AuthAws::LastErrorHtml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
-    }
-String ^Chilkat::AuthAws::LastErrorText::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::AuthAws::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::AuthAws::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::AuthAws::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::AuthAws::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::AuthAws::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::AuthAws::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::AuthAws::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::AuthAws::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
 String ^Chilkat::AuthAws::AccessKey::get()
     {
     return ref new String(m_impl ? m_impl->accessKey() : L"");
@@ -98,6 +58,34 @@ String ^Chilkat::AuthAws::CanonicalizedResourceV2::get()
 void Chilkat::AuthAws::CanonicalizedResourceV2::set(String ^newVal)
     {
         if (m_impl) m_impl->put_CanonicalizedResourceV2(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::AuthAws::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::AuthAws::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::AuthAws::LastErrorHtml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    }
+String ^Chilkat::AuthAws::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::AuthAws::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
+Boolean Chilkat::AuthAws::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::AuthAws::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
 String ^Chilkat::AuthAws::PrecomputedMd5::get()
     {
@@ -147,16 +135,20 @@ void Chilkat::AuthAws::SignatureVersion::set(int newVal)
     {
         if (m_impl) m_impl->put_SignatureVersion(newVal);
     }
-
-
-Boolean AuthAws::SaveLastError(Platform::String ^path)
+Boolean Chilkat::AuthAws::VerboseLogging::get()
     {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
+    return m_impl ? m_impl->get_VerboseLogging() : false;
     }
+void Chilkat::AuthAws::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::AuthAws::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
+
+
 
 
 

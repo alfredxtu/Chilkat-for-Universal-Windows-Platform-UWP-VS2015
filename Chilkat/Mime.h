@@ -47,37 +47,6 @@ public ref class Mime sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Platform::String ^Boundary
 	{
 		Platform::String ^get();
@@ -97,6 +66,11 @@ public ref class Mime sealed
 	{
 		Platform::String ^get();
 	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^Disposition
 	{
 		Platform::String ^get();
@@ -111,6 +85,23 @@ public ref class Mime sealed
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
+	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
 	}
 	property Platform::String ^Micalg
 	{
@@ -173,34 +164,41 @@ public ref class Mime sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	void AddContentLength(void);
 
-	Boolean AddDecryptCert(Cert ^cert);
+	Boolean AddDecryptCert(Chilkat::Cert ^cert);
 
-	Boolean AddDetachedSignature(Cert ^cert);
+	Boolean AddDetachedSignature(Chilkat::Cert ^cert);
 
-	Boolean AddDetachedSignature2(Cert ^cert, Boolean transferHeaderFields);
+	Boolean AddDetachedSignature2(Chilkat::Cert ^cert, Boolean transferHeaderFields);
 
-	Boolean AddDetachedSignaturePk(Cert ^cert, PrivateKey ^privateKey);
+	Boolean AddDetachedSignaturePk(Chilkat::Cert ^cert, Chilkat::PrivateKey ^privateKey);
 
-	Boolean AddDetachedSignaturePk2(Cert ^cert, PrivateKey ^privateKey, Boolean transferHeaderFields);
+	Boolean AddDetachedSignaturePk2(Chilkat::Cert ^cert, Chilkat::PrivateKey ^privateKey, Boolean transferHeaderFields);
 
-	Boolean AddEncryptCert(Cert ^cert);
+	Boolean AddEncryptCert(Chilkat::Cert ^cert);
 
 	Boolean AddHeaderField(Platform::String ^name, Platform::String ^value);
 
-	Boolean AddPfxSourceData(Windows::Foundation::Collections::IVector<uint8>^pfxData, Platform::String ^password);
+	Boolean AddPfxSourceData(Windows::Foundation::Collections::IVector<uint8>^pfxFileData, Platform::String ^pfxPassword);
 
 	Boolean AddPfxSourceFile(Platform::String ^pfxFilePath, Platform::String ^password);
 
-	Boolean AppendPart(Mime ^mime);
+	Boolean AppendPart(Chilkat::Mime ^mime);
 
 	Boolean AppendPartFromFile(Platform::String ^filename);
 
@@ -218,27 +216,27 @@ public ref class Mime sealed
 
 	Boolean ConvertToMultipartMixed(void);
 
-	Boolean ConvertToSigned(Cert ^cert);
+	Boolean ConvertToSigned(Chilkat::Cert ^cert);
 
-	Boolean ConvertToSignedPk(Cert ^cert, PrivateKey ^privateKey);
+	Boolean ConvertToSignedPk(Chilkat::Cert ^cert, Chilkat::PrivateKey ^privateKey);
 
 	Boolean Decrypt(void);
 
-	Boolean Decrypt2(Cert ^cert, PrivateKey ^privateKey);
+	Boolean Decrypt2(Chilkat::Cert ^cert, Chilkat::PrivateKey ^privateKey);
 
-	Boolean DecryptUsingCert(Cert ^cert);
+	Boolean DecryptUsingCert(Chilkat::Cert ^cert);
 
 	Boolean DecryptUsingPfxData(Windows::Foundation::Collections::IVector<uint8>^pfxData, Platform::String ^password);
 
-	Boolean DecryptUsingPfxFile(Platform::String ^pfxFilePath, Platform::String ^password);
+	Boolean DecryptUsingPfxFile(Platform::String ^pfxFilePath, Platform::String ^pfxPassword);
 
-	Boolean Encrypt(Cert ^cert);
+	Boolean Encrypt(Chilkat::Cert ^cert);
 
 	Boolean EncryptN(void);
 
 	StringArray ^ExtractPartsToFiles(Platform::String ^dirPath);
 
-	Cert ^FindIssuer(Cert ^cert);
+	Cert ^FindIssuer(Chilkat::Cert ^cert);
 
 	Windows::Foundation::Collections::IVector<uint8>^GetBodyBinary(void);
 
@@ -252,7 +250,7 @@ public ref class Mime sealed
 
 	Platform::String ^GetEntireHead(void);
 
-	Platform::String ^GetHeaderField(Platform::String ^name);
+	Platform::String ^GetHeaderField(Platform::String ^fieldName);
 
 	Platform::String ^GetHeaderFieldAttribute(Platform::String ^name, Platform::String ^attrName);
 
@@ -271,6 +269,8 @@ public ref class Mime sealed
 	Cert ^GetSignerCert(int index);
 
 	CertChain ^GetSignerCertChain(int index);
+
+	Platform::String ^GetStructure(Platform::String ^fmt);
 
 	Platform::String ^GetXml(void);
 
@@ -318,7 +318,7 @@ public ref class Mime sealed
 
 	Boolean LoadXmlFile(Platform::String ^fileName);
 
-	Boolean NewMessageRfc822(Mime ^mimeObject);
+	Boolean NewMessageRfc822(Chilkat::Mime ^mimeObject);
 
 	Boolean NewMultipartAlternative(void);
 
@@ -326,7 +326,7 @@ public ref class Mime sealed
 
 	Boolean NewMultipartRelated(void);
 
-	void RemoveHeaderField(Platform::String ^name, Boolean bAllOccurances);
+	void RemoveHeaderField(Platform::String ^fieldName, Boolean bAllOccurances);
 
 	Boolean RemovePart(int index);
 
@@ -352,7 +352,7 @@ public ref class Mime sealed
 
 	Boolean SetHeaderField(Platform::String ^name, Platform::String ^value);
 
-	Boolean SetVerifyCert(Cert ^cert);
+	Boolean SetVerifyCert(Chilkat::Cert ^cert);
 
 	Boolean UnlockComponent(Platform::String ^unlockCode);
 
@@ -360,11 +360,9 @@ public ref class Mime sealed
 
 	void UrlEncodeBody(Platform::String ^charset);
 
-	Boolean UseCertVault(XmlCertVault ^vault);
+	Boolean UseCertVault(Chilkat::XmlCertVault ^vault);
 
 	Boolean Verify(void);
-
-	Platform::String ^GetStructure(Platform::String ^fmt);
 
 
 

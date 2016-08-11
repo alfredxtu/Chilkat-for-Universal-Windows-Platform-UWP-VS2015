@@ -307,8 +307,8 @@ class CK_VISIBLE_PUBLIC CkCompressionW  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *CompressFileAsync(const wchar_t *srcPath, const wchar_t *destPath);
 
-	// Compresses a stream. Internally, the ARG1's source is read, compressed, and the
-	// compressed data written to the ARG1's sink. It does this in streaming fashion.
+	// Compresses a stream. Internally, the strm's source is read, compressed, and the
+	// compressed data written to the strm's sink. It does this in streaming fashion.
 	// Extremely large or even infinite streams can be compressed with stable ungrowing
 	// memory usage.
 	bool CompressStream(CkStreamW &strm);
@@ -351,12 +351,12 @@ class CK_VISIBLE_PUBLIC CkCompressionW  : public CkClassWithCallbacksW
 	// The opposite of CompressBytesENC. encodedCompressedData contains the compressed data as an
 	// encoded string (hex, base64, etc) as specified by the EncodingMode property
 	// setting.
-	bool DecompressBytesENC(const wchar_t *str, CkByteData &outData);
+	bool DecompressBytesENC(const wchar_t *encodedCompressedData, CkByteData &outData);
 
 	// Creates an asynchronous task to call the DecompressBytesENC method with the
 	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
 	// The caller is responsible for deleting the object returned by this method.
-	CkTaskW *DecompressBytesENCAsync(const wchar_t *str);
+	CkTaskW *DecompressBytesENCAsync(const wchar_t *encodedCompressedData);
 
 	// Performs file-to-file decompression (the opposite of CompressFile). Internally
 	// the file is decompressed in streaming mode which allows files of any size to be
@@ -368,8 +368,8 @@ class CK_VISIBLE_PUBLIC CkCompressionW  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *DecompressFileAsync(const wchar_t *srcPath, const wchar_t *destPath);
 
-	// Decompresses a stream. Internally, the ARG1's source is read, decompressed, and
-	// the decompressed data written to the ARG1's sink. It does this in streaming
+	// Decompresses a stream. Internally, the strm's source is read, decompressed, and
+	// the decompressed data written to the strm's sink. It does this in streaming
 	// fashion. Extremely large or even infinite streams can be decompressed with
 	// stable ungrowing memory usage.
 	bool DecompressStream(CkStreamW &strm);
@@ -392,16 +392,16 @@ class CK_VISIBLE_PUBLIC CkCompressionW  : public CkClassWithCallbacksW
 	// The opposite of CompressStringENC. encodedCompressedData contains the compressed data as an
 	// encoded string (hex, base64, etc) as specified by the EncodingMode property
 	// setting.
-	bool DecompressStringENC(const wchar_t *str, CkString &outStr);
+	bool DecompressStringENC(const wchar_t *encodedCompressedData, CkString &outStr);
 	// The opposite of CompressStringENC. encodedCompressedData contains the compressed data as an
 	// encoded string (hex, base64, etc) as specified by the EncodingMode property
 	// setting.
-	const wchar_t *decompressStringENC(const wchar_t *str);
+	const wchar_t *decompressStringENC(const wchar_t *encodedCompressedData);
 
 	// Creates an asynchronous task to call the DecompressStringENC method with the
 	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
 	// The caller is responsible for deleting the object returned by this method.
-	CkTaskW *DecompressStringENCAsync(const wchar_t *str);
+	CkTaskW *DecompressStringENCAsync(const wchar_t *encodedCompressedData);
 
 	// Must be callled to finalize a compression stream. Returns any remaining
 	// (buffered) compressed data.

@@ -132,33 +132,7 @@ public ref class Http sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
+	property Boolean AbortCurrent
 	{
 		Boolean get();
 		void set(Boolean);
@@ -232,17 +206,22 @@ public ref class Http sealed
 	{
 		int32 get();
 	}
-	property int32 ConnectTimeout
-	{
-		int32 get();
-		void set(int32);
-	}
 	property Platform::String ^Connection
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property int32 ConnectTimeout
+	{
+		int32 get();
+		void set(int32);
+	}
 	property Platform::String ^CookieDir
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^DebugLogFilePath
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
@@ -296,18 +275,30 @@ public ref class Http sealed
 		Boolean get();
 		void set(Boolean);
 	}
-	property int32 LMFactor
-	{
-		int32 get();
-		void set(int32);
-	}
 	property Platform::String ^LastContentType
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
 	{
 		Platform::String ^get();
 	}
 	property Platform::String ^LastHeader
 	{
 		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
 	}
 	property Platform::String ^LastModDate
 	{
@@ -324,6 +315,11 @@ public ref class Http sealed
 	property int32 LastStatus
 	{
 		int32 get();
+	}
+	property int32 LMFactor
+	{
+		int32 get();
+		void set(int32);
 	}
 	property Platform::String ^Login
 	{
@@ -494,15 +490,15 @@ public ref class Http sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
-	property Boolean RequireSslCertVerify
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Platform::String ^RequiredContentType
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
+	}
+	property Boolean RequireSslCertVerify
+	{
+		Boolean get();
+		void set(Boolean);
 	}
 	property Boolean S3Ssl
 	{
@@ -529,16 +525,6 @@ public ref class Http sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
-	property int32 SoRcvBuf
-	{
-		int32 get();
-		void set(int32);
-	}
-	property int32 SoSndBuf
-	{
-		int32 get();
-		void set(int32);
-	}
 	property Platform::String ^SocksHostname
 	{
 		Platform::String ^get();
@@ -560,6 +546,16 @@ public ref class Http sealed
 		void set(Platform::String ^);
 	}
 	property int32 SocksVersion
+	{
+		int32 get();
+		void set(int32);
+	}
+	property int32 SoRcvBuf
+	{
+		int32 get();
+		void set(int32);
+	}
+	property int32 SoSndBuf
 	{
 		int32 get();
 		void set(int32);
@@ -607,25 +603,27 @@ public ref class Http sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
-	property Boolean WasRedirected
-	{
-		Boolean get();
-	}
-	property Boolean AbortCurrent
+	property Boolean VerboseLogging
 	{
 		Boolean get();
 		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
+	property Boolean WasRedirected
+	{
+		Boolean get();
 	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	void AddCacheRoot(Platform::String ^dir);
 
-	Boolean AddQuickHeader(Platform::String ^name, Platform::String ^value);
+	Boolean AddQuickHeader(Platform::String ^headerFieldName, Platform::String ^headerFieldValue);
 
 	void ClearInMemoryCookies(void);
 
@@ -633,17 +631,17 @@ public ref class Http sealed
 
 	void DnsCacheClear(void);
 
-	IAsyncOperation<Boolean>^ DownloadAsync(Platform::String ^url, Platform::String ^filename);
+	IAsyncOperation<Boolean>^ DownloadAsync(Platform::String ^url, Platform::String ^localFilePath);
 
 	IAsyncOperation<Boolean>^ DownloadAppendAsync(Platform::String ^url, Platform::String ^filename);
 
 	IAsyncOperation<Platform::String ^>^ DownloadHashAsync(Platform::String ^url, Platform::String ^hashAlgorithm, Platform::String ^encoding);
 
-	Platform::String ^ExtractMetaRefreshUrl(Platform::String ^html);
+	Platform::String ^ExtractMetaRefreshUrl(Platform::String ^htmlContent);
 
-	IAsyncOperation<Platform::String ^>^ G_SvcOauthAccessTokenAsync(Platform::String ^iss, Platform::String ^scope, Platform::String ^subEmail, int numSec, Cert ^cert);
+	IAsyncOperation<Platform::String ^>^ G_SvcOauthAccessTokenAsync(Platform::String ^iss, Platform::String ^scope, Platform::String ^subEmail, int numSec, Chilkat::Cert ^cert);
 
-	IAsyncOperation<Platform::String ^>^ G_SvcOauthAccessToken2Async(Hashtable ^claimParams, int numSec, Cert ^cert);
+	IAsyncOperation<Platform::String ^>^ G_SvcOauthAccessToken2Async(Chilkat::Hashtable ^claimParams, int numSec, Chilkat::Cert ^cert);
 
 	Platform::String ^GenTimeStamp(void);
 
@@ -667,17 +665,17 @@ public ref class Http sealed
 
 	IAsyncOperation<HttpResponse ^>^ PBinaryAsync(Platform::String ^verb, Platform::String ^url, Windows::Foundation::Collections::IVector<uint8>^byteData, Platform::String ^contentType, Boolean md5, Boolean gzip);
 
-	IAsyncOperation<HttpResponse ^>^ PTextAsync(Platform::String ^verb, Platform::String ^url, Platform::String ^textData, Platform::String ^charset, Platform::String ^contentType, Boolean md5, Boolean gzip);
-
 	IAsyncOperation<Platform::String ^>^ PostBinaryAsync(Platform::String ^url, Windows::Foundation::Collections::IVector<uint8>^byteData, Platform::String ^contentType, Boolean md5, Boolean gzip);
 
 	IAsyncOperation<HttpResponse ^>^ PostJsonAsync(Platform::String ^url, Platform::String ^jsonText);
 
 	IAsyncOperation<HttpResponse ^>^ PostJson2Async(Platform::String ^url, Platform::String ^contentType, Platform::String ^jsonText);
 
-	IAsyncOperation<HttpResponse ^>^ PostUrlEncodedAsync(Platform::String ^url, HttpRequest ^req);
+	IAsyncOperation<HttpResponse ^>^ PostUrlEncodedAsync(Platform::String ^url, Chilkat::HttpRequest ^req);
 
-	IAsyncOperation<HttpResponse ^>^ PostXmlAsync(Platform::String ^url, Platform::String ^xmlDoc, Platform::String ^charset);
+	IAsyncOperation<HttpResponse ^>^ PostXmlAsync(Platform::String ^endpointUrl, Platform::String ^xmlContent, Platform::String ^xmlCharset);
+
+	IAsyncOperation<HttpResponse ^>^ PTextAsync(Platform::String ^verb, Platform::String ^url, Platform::String ^textData, Platform::String ^charset, Platform::String ^contentType, Boolean md5, Boolean gzip);
 
 	IAsyncOperation<Platform::String ^>^ PutBinaryAsync(Platform::String ^url, Windows::Foundation::Collections::IVector<uint8>^byteData, Platform::String ^contentType, Boolean md5, Boolean gzip);
 
@@ -693,57 +691,57 @@ public ref class Http sealed
 
 	IAsyncOperation<Platform::String ^>^ QuickPutStrAsync(Platform::String ^url);
 
-	Boolean RemoveQuickHeader(Platform::String ^name);
+	Boolean RemoveQuickHeader(Platform::String ^headerFieldName);
 
 	void RemoveRequestHeader(Platform::String ^name);
 
 	Platform::String ^RenderGet(Platform::String ^url);
 
-	IAsyncOperation<Boolean>^ ResumeDownloadAsync(Platform::String ^url, Platform::String ^filename);
+	IAsyncOperation<Boolean>^ ResumeDownloadAsync(Platform::String ^url, Platform::String ^targetFilename);
 
-	IAsyncOperation<Boolean>^ S3_CreateBucketAsync(Platform::String ^bucketName);
+	IAsyncOperation<Boolean>^ S3_CreateBucketAsync(Platform::String ^bucketPath);
 
-	IAsyncOperation<Boolean>^ S3_DeleteBucketAsync(Platform::String ^bucketName);
+	IAsyncOperation<Boolean>^ S3_DeleteBucketAsync(Platform::String ^bucketPath);
 
-	IAsyncOperation<HttpResponse ^>^ S3_DeleteMultipleObjectsAsync(Platform::String ^bucketName, StringArray ^objectNames);
+	IAsyncOperation<HttpResponse ^>^ S3_DeleteMultipleObjectsAsync(Platform::String ^bucketName, Chilkat::StringArray ^objectNames);
 
-	IAsyncOperation<Boolean>^ S3_DeleteObjectAsync(Platform::String ^bucketName, Platform::String ^objectName);
+	IAsyncOperation<Boolean>^ S3_DeleteObjectAsync(Platform::String ^bucketPath, Platform::String ^objectName);
 
-	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ S3_DownloadBytesAsync(Platform::String ^bucketName, Platform::String ^objectName);
+	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ S3_DownloadBytesAsync(Platform::String ^bucketPath, Platform::String ^objectName);
 
-	IAsyncOperation<Boolean>^ S3_DownloadFileAsync(Platform::String ^bucketName, Platform::String ^objectName, Platform::String ^localFilePath);
+	IAsyncOperation<Boolean>^ S3_DownloadFileAsync(Platform::String ^bucketPath, Platform::String ^objectName, Platform::String ^localFilePath);
 
-	IAsyncOperation<Platform::String ^>^ S3_DownloadStringAsync(Platform::String ^bucketName, Platform::String ^objectName, Platform::String ^charset);
+	IAsyncOperation<Platform::String ^>^ S3_DownloadStringAsync(Platform::String ^bucketPath, Platform::String ^objectName, Platform::String ^charset);
 
-	IAsyncOperation<int>^ S3_FileExistsAsync(Platform::String ^bucketName, Platform::String ^objectName);
+	IAsyncOperation<int>^ S3_FileExistsAsync(Platform::String ^bucketPath, Platform::String ^objectName);
 
 	Platform::String ^S3_GenerateUrl(Platform::String ^bucket, Platform::String ^path, Chilkat::CkDateTime ^expire);
 
-	IAsyncOperation<Platform::String ^>^ S3_ListBucketObjectsAsync(Platform::String ^bucketName);
+	IAsyncOperation<Platform::String ^>^ S3_ListBucketObjectsAsync(Platform::String ^bucketPath);
 
 	IAsyncOperation<Platform::String ^>^ S3_ListBucketsAsync(void);
 
-	IAsyncOperation<Boolean>^ S3_UploadBytesAsync(Windows::Foundation::Collections::IVector<uint8>^objectContent, Platform::String ^contentType, Platform::String ^bucketName, Platform::String ^objectName);
+	IAsyncOperation<Boolean>^ S3_UploadBytesAsync(Windows::Foundation::Collections::IVector<uint8>^contentBytes, Platform::String ^contentType, Platform::String ^bucketPath, Platform::String ^objectName);
 
-	IAsyncOperation<Boolean>^ S3_UploadFileAsync(Platform::String ^localFilePath, Platform::String ^contentType, Platform::String ^bucketName, Platform::String ^ObjectName);
+	IAsyncOperation<Boolean>^ S3_UploadFileAsync(Platform::String ^localFilePath, Platform::String ^contentType, Platform::String ^bucketPath, Platform::String ^objectName);
 
-	IAsyncOperation<Boolean>^ S3_UploadStringAsync(Platform::String ^objectContent, Platform::String ^charset, Platform::String ^contentType, Platform::String ^bucketName, Platform::String ^ObjectName);
+	IAsyncOperation<Boolean>^ S3_UploadStringAsync(Platform::String ^objectContent, Platform::String ^charset, Platform::String ^contentType, Platform::String ^bucketPath, Platform::String ^objectName);
 
 	Boolean SetCookieXml(Platform::String ^domain, Platform::String ^cookieXml);
 
-	Boolean SetOAuthRsaKey(PrivateKey ^privKey);
+	Boolean SetOAuthRsaKey(Chilkat::PrivateKey ^privKey);
 
-	void SetRequestHeader(Platform::String ^name, Platform::String ^value);
+	void SetRequestHeader(Platform::String ^headerFieldName, Platform::String ^headerFieldValue);
 
-	Boolean SetSslClientCert(Cert ^cert);
+	Boolean SetSslClientCert(Chilkat::Cert ^cert);
 
-	Boolean SetSslClientCertPem(Platform::String ^pemDataOrFilename, Platform::String ^pemPassword);
+	Boolean SetSslClientCertPem(Platform::String ^pemDataOrPath, Platform::String ^pemPassword);
 
-	Boolean SetSslClientCertPfx(Platform::String ^pfxFilename, Platform::String ^pfxPassword);
+	Boolean SetSslClientCertPfx(Platform::String ^pfxPath, Platform::String ^pfxPassword);
 
 	void SleepMs(int millisec);
 
-	IAsyncOperation<HttpResponse ^>^ SynchronousRequestAsync(Platform::String ^domain, int port, Boolean ssl, HttpRequest ^req);
+	IAsyncOperation<HttpResponse ^>^ SynchronousRequestAsync(Platform::String ^domain, int port, Boolean ssl, Chilkat::HttpRequest ^req);
 
 	Boolean UnlockComponent(Platform::String ^unlockCode);
 

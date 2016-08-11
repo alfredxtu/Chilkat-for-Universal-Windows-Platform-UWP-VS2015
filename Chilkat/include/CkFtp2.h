@@ -1244,6 +1244,60 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 	// This property is deprecated and has no effect.
 	void put_SkipFinalReply(bool newVal);
 
+	// The SOCKS4/SOCKS5 hostname or IPv4 address (in dotted decimal notation). This
+	// property is only used if the SocksVersion property is set to 4 or 5).
+	void get_SocksHostname(CkString &str);
+	// The SOCKS4/SOCKS5 hostname or IPv4 address (in dotted decimal notation). This
+	// property is only used if the SocksVersion property is set to 4 or 5).
+	const char *socksHostname(void);
+	// The SOCKS4/SOCKS5 hostname or IPv4 address (in dotted decimal notation). This
+	// property is only used if the SocksVersion property is set to 4 or 5).
+	void put_SocksHostname(const char *newVal);
+
+	// The SOCKS5 password (if required). The SOCKS4 protocol does not include the use
+	// of a password, so this does not apply to SOCKS4.
+	void get_SocksPassword(CkString &str);
+	// The SOCKS5 password (if required). The SOCKS4 protocol does not include the use
+	// of a password, so this does not apply to SOCKS4.
+	const char *socksPassword(void);
+	// The SOCKS5 password (if required). The SOCKS4 protocol does not include the use
+	// of a password, so this does not apply to SOCKS4.
+	void put_SocksPassword(const char *newVal);
+
+	// The SOCKS4/SOCKS5 proxy port. The default value is 1080. This property only
+	// applies if a SOCKS proxy is used (if the SocksVersion property is set to 4 or
+	// 5).
+	int get_SocksPort(void);
+	// The SOCKS4/SOCKS5 proxy port. The default value is 1080. This property only
+	// applies if a SOCKS proxy is used (if the SocksVersion property is set to 4 or
+	// 5).
+	void put_SocksPort(int newVal);
+
+	// The SOCKS4/SOCKS5 proxy username. This property is only used if the SocksVersion
+	// property is set to 4 or 5).
+	void get_SocksUsername(CkString &str);
+	// The SOCKS4/SOCKS5 proxy username. This property is only used if the SocksVersion
+	// property is set to 4 or 5).
+	const char *socksUsername(void);
+	// The SOCKS4/SOCKS5 proxy username. This property is only used if the SocksVersion
+	// property is set to 4 or 5).
+	void put_SocksUsername(const char *newVal);
+
+	// SocksVersion May be set to one of the following integer values:
+	// 
+	// 0 - No SOCKS proxy is used. This is the default.
+	// 4 - Connect via a SOCKS4 proxy.
+	// 5 - Connect via a SOCKS5 proxy.
+	// 
+	int get_SocksVersion(void);
+	// SocksVersion May be set to one of the following integer values:
+	// 
+	// 0 - No SOCKS proxy is used. This is the default.
+	// 4 - Connect via a SOCKS4 proxy.
+	// 5 - Connect via a SOCKS5 proxy.
+	// 
+	void put_SocksVersion(int newVal);
+
 	// Sets the receive buffer size socket option. Normally, this property should be
 	// left unchanged. The default value is 0, which indicates that the receive buffer
 	// size socket option should not be explicitly set (i.e. the system default value,
@@ -1303,60 +1357,6 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 	// performance, try setting it equal to 2, 3, or 4 times the default value.
 	// 
 	void put_SoSndBuf(int newVal);
-
-	// The SOCKS4/SOCKS5 hostname or IPv4 address (in dotted decimal notation). This
-	// property is only used if the SocksVersion property is set to 4 or 5).
-	void get_SocksHostname(CkString &str);
-	// The SOCKS4/SOCKS5 hostname or IPv4 address (in dotted decimal notation). This
-	// property is only used if the SocksVersion property is set to 4 or 5).
-	const char *socksHostname(void);
-	// The SOCKS4/SOCKS5 hostname or IPv4 address (in dotted decimal notation). This
-	// property is only used if the SocksVersion property is set to 4 or 5).
-	void put_SocksHostname(const char *newVal);
-
-	// The SOCKS5 password (if required). The SOCKS4 protocol does not include the use
-	// of a password, so this does not apply to SOCKS4.
-	void get_SocksPassword(CkString &str);
-	// The SOCKS5 password (if required). The SOCKS4 protocol does not include the use
-	// of a password, so this does not apply to SOCKS4.
-	const char *socksPassword(void);
-	// The SOCKS5 password (if required). The SOCKS4 protocol does not include the use
-	// of a password, so this does not apply to SOCKS4.
-	void put_SocksPassword(const char *newVal);
-
-	// The SOCKS4/SOCKS5 proxy port. The default value is 1080. This property only
-	// applies if a SOCKS proxy is used (if the SocksVersion property is set to 4 or
-	// 5).
-	int get_SocksPort(void);
-	// The SOCKS4/SOCKS5 proxy port. The default value is 1080. This property only
-	// applies if a SOCKS proxy is used (if the SocksVersion property is set to 4 or
-	// 5).
-	void put_SocksPort(int newVal);
-
-	// The SOCKS4/SOCKS5 proxy username. This property is only used if the SocksVersion
-	// property is set to 4 or 5).
-	void get_SocksUsername(CkString &str);
-	// The SOCKS4/SOCKS5 proxy username. This property is only used if the SocksVersion
-	// property is set to 4 or 5).
-	const char *socksUsername(void);
-	// The SOCKS4/SOCKS5 proxy username. This property is only used if the SocksVersion
-	// property is set to 4 or 5).
-	void put_SocksUsername(const char *newVal);
-
-	// SocksVersion May be set to one of the following integer values:
-	// 
-	// 0 - No SOCKS proxy is used. This is the default.
-	// 4 - Connect via a SOCKS4 proxy.
-	// 5 - Connect via a SOCKS5 proxy.
-	// 
-	int get_SocksVersion(void);
-	// SocksVersion May be set to one of the following integer values:
-	// 
-	// 0 - No SOCKS proxy is used. This is the default.
-	// 4 - Connect via a SOCKS4 proxy.
-	// 5 - Connect via a SOCKS5 proxy.
-	// 
-	void put_SocksVersion(int newVal);
 
 	// Use TLS/SSL for FTP connections. You would typically set Ssl = true when
 	// connecting to port 990 on FTP servers that support TLS/SSL mode. Note: It is
@@ -1640,6 +1640,22 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 	// was verified when connecting via SSL / TLS.
 	bool get_SslServerCertVerified(void);
 
+	// The paths of the files uploaded or downloaded in the last call to
+	// SyncDeleteTree, SyncLocalDir, SyncLocalTree, SyncRemoteTree, or SyncRemoteTree2.
+	// The paths are listed one per line. In both cases (for upload and download) each
+	// line contains the paths relative to the root synced directory.
+	void get_SyncedFiles(CkString &str);
+	// The paths of the files uploaded or downloaded in the last call to
+	// SyncDeleteTree, SyncLocalDir, SyncLocalTree, SyncRemoteTree, or SyncRemoteTree2.
+	// The paths are listed one per line. In both cases (for upload and download) each
+	// line contains the paths relative to the root synced directory.
+	const char *syncedFiles(void);
+	// The paths of the files uploaded or downloaded in the last call to
+	// SyncDeleteTree, SyncLocalDir, SyncLocalTree, SyncRemoteTree, or SyncRemoteTree2.
+	// The paths are listed one per line. In both cases (for upload and download) each
+	// line contains the paths relative to the root synced directory.
+	void put_SyncedFiles(const char *newVal);
+
 	// Can contain a wildcarded list of file patterns separated by semicolons. For
 	// example, "*.xml; *.txt; *.csv". If set, the Sync* upload and download methods
 	// will only transfer files that match any one of these patterns. Pattern matching
@@ -1708,22 +1724,6 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 	// SyncRemoteTree2 is called, this property contains the filepaths of the local
 	// files that would be uploaded to the FTP server.
 	const char *syncPreview(void);
-
-	// The paths of the files uploaded or downloaded in the last call to
-	// SyncDeleteTree, SyncLocalDir, SyncLocalTree, SyncRemoteTree, or SyncRemoteTree2.
-	// The paths are listed one per line. In both cases (for upload and download) each
-	// line contains the paths relative to the root synced directory.
-	void get_SyncedFiles(CkString &str);
-	// The paths of the files uploaded or downloaded in the last call to
-	// SyncDeleteTree, SyncLocalDir, SyncLocalTree, SyncRemoteTree, or SyncRemoteTree2.
-	// The paths are listed one per line. In both cases (for upload and download) each
-	// line contains the paths relative to the root synced directory.
-	const char *syncedFiles(void);
-	// The paths of the files uploaded or downloaded in the last call to
-	// SyncDeleteTree, SyncLocalDir, SyncLocalTree, SyncRemoteTree, or SyncRemoteTree2.
-	// The paths are listed one per line. In both cases (for upload and download) each
-	// line contains the paths relative to the root synced directory.
-	void put_SyncedFiles(const char *newVal);
 
 	// Contains the current or last negotiated TLS cipher suite. If no TLS connection
 	// has yet to be established, or if a connection as attempted and failed, then this
@@ -1849,19 +1849,19 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 	// ----------------------
 	// Same as PutFile but the file on the FTP server is appended.
 	// 
-	// If the  remoteFilePath contains non-English characters, it may be necessary to set the
+	// If the remoteFilePath contains non-English characters, it may be necessary to set the
 	// DirListingCharset property equal to "utf-8". Please refer to the documentation
 	// for the DirListingCharset property.
 	// 
-	bool AppendFile(const char *localFilename, const char *remoteFilename);
+	bool AppendFile(const char *localFilePath, const char *remoteFilePath);
 
 	// Same as PutFile but the file on the FTP server is appended.
 	// 
-	// If the  remoteFilePath contains non-English characters, it may be necessary to set the
+	// If the remoteFilePath contains non-English characters, it may be necessary to set the
 	// DirListingCharset property equal to "utf-8". Please refer to the documentation
 	// for the DirListingCharset property.
 	// 
-	CkTask *AppendFileAsync(const char *localFilename, const char *remoteFilename);
+	CkTask *AppendFileAsync(const char *localFilePath, const char *remoteFilePath);
 
 
 	// Same as PutFileFromBinaryData, except the file on the FTP server is appended.
@@ -1950,7 +1950,7 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 	// DirListingCharset property equal to "utf-8". Please refer to the documentation
 	// for the DirListingCharset property.
 	// 
-	bool ChangeRemoteDir(const char *relativeDirPath);
+	bool ChangeRemoteDir(const char *remoteDirPath);
 
 	// Changes the current remote directory. The remoteDirPath should be relative to the current
 	// remote directory, which is initially the HOME directory of the FTP user account.
@@ -1959,7 +1959,7 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 	// DirListingCharset property equal to "utf-8". Please refer to the documentation
 	// for the DirListingCharset property.
 	// 
-	CkTask *ChangeRemoteDirAsync(const char *relativeDirPath);
+	CkTask *ChangeRemoteDirAsync(const char *remoteDirPath);
 
 
 	// Returns true if currently connected and logged into an FTP server, otherwise
@@ -2130,7 +2130,7 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 	// DirListingCharset property equal to "utf-8". Please refer to the documentation
 	// for the DirListingCharset property.
 	// 
-	bool CreateRemoteDir(const char *dir);
+	bool CreateRemoteDir(const char *remoteDirPath);
 
 	// Creates a directory on the FTP server. If the directory already exists, a new
 	// one is not created and false is returned.
@@ -2139,7 +2139,7 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 	// DirListingCharset property equal to "utf-8". Please refer to the documentation
 	// for the DirListingCharset property.
 	// 
-	CkTask *CreateRemoteDirAsync(const char *dir);
+	CkTask *CreateRemoteDirAsync(const char *remoteDirPath);
 
 
 	// Deletes all the files in the current remote FTP directory matching the pattern.
@@ -2161,7 +2161,7 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 	// DirListingCharset property equal to "utf-8". Please refer to the documentation
 	// for the DirListingCharset property.
 	// 
-	bool DeleteRemoteFile(const char *filename);
+	bool DeleteRemoteFile(const char *remoteFilePath);
 
 	// Deletes a file on the FTP server.
 	// 
@@ -2169,7 +2169,7 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 	// DirListingCharset property equal to "utf-8". Please refer to the documentation
 	// for the DirListingCharset property.
 	// 
-	CkTask *DeleteRemoteFileAsync(const char *filename);
+	CkTask *DeleteRemoteFileAsync(const char *remoteFilePath);
 
 
 	// Deletes the entire subtree and all files from the current remote FTP directory.
@@ -2611,7 +2611,7 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 	// DirListingCharset property equal to "utf-8". Please refer to the documentation
 	// for the DirListingCharset property.
 	// 
-	bool GetFile(const char *remoteFilename, const char *localFilename);
+	bool GetFile(const char *remoteFilePath, const char *localFilePath);
 
 	// Downloads a file from the FTP server to the local filesystem.
 	// 
@@ -2619,7 +2619,7 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 	// DirListingCharset property equal to "utf-8". Please refer to the documentation
 	// for the DirListingCharset property.
 	// 
-	CkTask *GetFileAsync(const char *remoteFilename, const char *localFilename);
+	CkTask *GetFileAsync(const char *remoteFilePath, const char *localFilePath);
 
 
 	// Returns the filename for the Nth file or sub-directory in the current remote
@@ -3042,34 +3042,6 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 	// quality and accuracy of the various date/time values that are returned.
 	// 
 	CkTask *GetOwnerAsync(int index);
-
-
-	// Returns the type of permissions information that is available for the Nth file.
-	// If empty, then no permissions information is available. The value returned by
-	// this method defines the content and format of the permissions string returned by
-	// the GetPermissions method. Possible values are "mlsd", "unix", "netware",
-	// "openvms", and "batchStatusFlags".
-	bool GetPermType(int index, CkString &outStr);
-
-	// Returns the type of permissions information that is available for the Nth file.
-	// If empty, then no permissions information is available. The value returned by
-	// this method defines the content and format of the permissions string returned by
-	// the GetPermissions method. Possible values are "mlsd", "unix", "netware",
-	// "openvms", and "batchStatusFlags".
-	const char *getPermType(int index);
-	// Returns the type of permissions information that is available for the Nth file.
-	// If empty, then no permissions information is available. The value returned by
-	// this method defines the content and format of the permissions string returned by
-	// the GetPermissions method. Possible values are "mlsd", "unix", "netware",
-	// "openvms", and "batchStatusFlags".
-	const char *permType(int index);
-
-	// Returns the type of permissions information that is available for the Nth file.
-	// If empty, then no permissions information is available. The value returned by
-	// this method defines the content and format of the permissions string returned by
-	// the GetPermissions method. Possible values are "mlsd", "unix", "netware",
-	// "openvms", and "batchStatusFlags".
-	CkTask *GetPermTypeAsync(int index);
 
 
 	// Returns permissions information, if available, for the Nth file. If empty, then
@@ -3732,6 +3704,34 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 	CkTask *GetPermissionsAsync(int index);
 
 
+	// Returns the type of permissions information that is available for the Nth file.
+	// If empty, then no permissions information is available. The value returned by
+	// this method defines the content and format of the permissions string returned by
+	// the GetPermissions method. Possible values are "mlsd", "unix", "netware",
+	// "openvms", and "batchStatusFlags".
+	bool GetPermType(int index, CkString &outStr);
+
+	// Returns the type of permissions information that is available for the Nth file.
+	// If empty, then no permissions information is available. The value returned by
+	// this method defines the content and format of the permissions string returned by
+	// the GetPermissions method. Possible values are "mlsd", "unix", "netware",
+	// "openvms", and "batchStatusFlags".
+	const char *getPermType(int index);
+	// Returns the type of permissions information that is available for the Nth file.
+	// If empty, then no permissions information is available. The value returned by
+	// this method defines the content and format of the permissions string returned by
+	// the GetPermissions method. Possible values are "mlsd", "unix", "netware",
+	// "openvms", and "batchStatusFlags".
+	const char *permType(int index);
+
+	// Returns the type of permissions information that is available for the Nth file.
+	// If empty, then no permissions information is available. The value returned by
+	// this method defines the content and format of the permissions string returned by
+	// the GetPermissions method. Possible values are "mlsd", "unix", "netware",
+	// "openvms", and "batchStatusFlags".
+	CkTask *GetPermTypeAsync(int index);
+
+
 	// Downloads the contents of a remote file into a byte array.
 	bool GetRemoteFileBinaryData(const char *remoteFilename, CkByteData &outData);
 
@@ -3740,21 +3740,21 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 
 
 	// Downloads a text file directly into a string variable. The character encoding of
-	// the text file is specified by the  charset argument, which is a value such as utf-8,
+	// the text file is specified by the charset argument, which is a value such as utf-8,
 	// iso-8859-1, Shift_JIS, etc.
 	bool GetRemoteFileTextC(const char *remoteFilename, const char *charset, CkString &outStr);
 
 	// Downloads a text file directly into a string variable. The character encoding of
-	// the text file is specified by the  charset argument, which is a value such as utf-8,
+	// the text file is specified by the charset argument, which is a value such as utf-8,
 	// iso-8859-1, Shift_JIS, etc.
 	const char *getRemoteFileTextC(const char *remoteFilename, const char *charset);
 	// Downloads a text file directly into a string variable. The character encoding of
-	// the text file is specified by the  charset argument, which is a value such as utf-8,
+	// the text file is specified by the charset argument, which is a value such as utf-8,
 	// iso-8859-1, Shift_JIS, etc.
 	const char *remoteFileTextC(const char *remoteFilename, const char *charset);
 
 	// Downloads a text file directly into a string variable. The character encoding of
-	// the text file is specified by the  charset argument, which is a value such as utf-8,
+	// the text file is specified by the charset argument, which is a value such as utf-8,
 	// iso-8859-1, Shift_JIS, etc.
 	CkTask *GetRemoteFileTextCAsync(const char *remoteFilename, const char *charset);
 
@@ -3976,13 +3976,13 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 	// 
 	// The Solution: This method uploads the file in chunks, where each chunk appends
 	// to the remote file. This way, each chunk is a separate FTP upload that does not
-	// take too long to complete. The ARG3 specifies the number of bytes to upload in
+	// take too long to complete. The chunkSize specifies the number of bytes to upload in
 	// each chunk. The size should be based on the amount of memory available (because
 	// each chunk will reside in memory as it's being uploaded), the transfer rate, and
 	// the total size of the file being uploaded. For example, if a 4GB file is
-	// uploaded, and the ARG3 is set to 1MB (1,048,576 bytes), then 4000 separate
-	// chunks would be required. This is likely not a good choice for ARG3. A more
-	// appropriate ARG3 might be 20MB, in which case the upload would complete in 200
+	// uploaded, and the chunkSize is set to 1MB (1,048,576 bytes), then 4000 separate
+	// chunks would be required. This is likely not a good choice for chunkSize. A more
+	// appropriate chunkSize might be 20MB, in which case the upload would complete in 200
 	// separate chunks. The application would temporarily be using a 20MB buffer for
 	// uploading chunks. The tradeoff is between the number of chunks (the more chunks,
 	// the larger the overall time to upload), the amount of memory that is reasonable
@@ -4014,13 +4014,13 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 	// 
 	// The Solution: This method uploads the file in chunks, where each chunk appends
 	// to the remote file. This way, each chunk is a separate FTP upload that does not
-	// take too long to complete. The ARG3 specifies the number of bytes to upload in
+	// take too long to complete. The chunkSize specifies the number of bytes to upload in
 	// each chunk. The size should be based on the amount of memory available (because
 	// each chunk will reside in memory as it's being uploaded), the transfer rate, and
 	// the total size of the file being uploaded. For example, if a 4GB file is
-	// uploaded, and the ARG3 is set to 1MB (1,048,576 bytes), then 4000 separate
-	// chunks would be required. This is likely not a good choice for ARG3. A more
-	// appropriate ARG3 might be 20MB, in which case the upload would complete in 200
+	// uploaded, and the chunkSize is set to 1MB (1,048,576 bytes), then 4000 separate
+	// chunks would be required. This is likely not a good choice for chunkSize. A more
+	// appropriate chunkSize might be 20MB, in which case the upload would complete in 200
 	// separate chunks. The application would temporarily be using a 20MB buffer for
 	// uploading chunks. The tradeoff is between the number of chunks (the more chunks,
 	// the larger the overall time to upload), the amount of memory that is reasonable
@@ -4134,7 +4134,7 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 	// ...
 	// </nlst>
 	// 
-	bool NlstXml(const char *pattern, CkString &outStr);
+	bool NlstXml(const char *remoteDirPattern, CkString &outStr);
 
 	// Sends an NLST command to the FTP server and returns the results in XML format.
 	// The NLST command returns a list of filenames in the given directory (matching
@@ -4150,7 +4150,7 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 	// ...
 	// </nlst>
 	// 
-	const char *nlstXml(const char *pattern);
+	const char *nlstXml(const char *remoteDirPattern);
 	// Sends an NLST command to the FTP server and returns the results in XML format.
 	// The NLST command returns a list of filenames in the given directory (matching
 	// the pattern). The remoteDirPattern should be a pattern such as "*", "*.*", "*.txt",
@@ -4165,7 +4165,7 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 	// ...
 	// </nlst>
 	// 
-	CkTask *NlstXmlAsync(const char *pattern);
+	CkTask *NlstXmlAsync(const char *remoteDirPattern);
 
 
 	// Issues a no-op command to the FTP server.
@@ -4177,19 +4177,19 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 
 	// Uploads a local file to the current directory on the FTP server.
 	// 
-	// If the  remoteFilePath contains non-English characters, it may be necessary to set the
+	// If the remoteFilePath contains non-English characters, it may be necessary to set the
 	// DirListingCharset property equal to "utf-8". Please refer to the documentation
 	// for the DirListingCharset property.
 	// 
-	bool PutFile(const char *localFilename, const char *remoteFilename);
+	bool PutFile(const char *localFilePath, const char *remoteFilePath);
 
 	// Uploads a local file to the current directory on the FTP server.
 	// 
-	// If the  remoteFilePath contains non-English characters, it may be necessary to set the
+	// If the remoteFilePath contains non-English characters, it may be necessary to set the
 	// DirListingCharset property equal to "utf-8". Please refer to the documentation
 	// for the DirListingCharset property.
 	// 
-	CkTask *PutFileAsync(const char *localFilename, const char *remoteFilename);
+	CkTask *PutFileAsync(const char *localFilePath, const char *remoteFilePath);
 
 
 	// Creates a file on the remote server containing the data passed in a byte array.
@@ -4247,7 +4247,7 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 	// DirListingCharset property equal to "utf-8". Please refer to the documentation
 	// for the DirListingCharset property.
 	// 
-	bool RemoveRemoteDir(const char *dir);
+	bool RemoveRemoteDir(const char *remoteDirPath);
 
 	// Removes a directory from the FTP server.
 	// 
@@ -4255,28 +4255,28 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 	// DirListingCharset property equal to "utf-8". Please refer to the documentation
 	// for the DirListingCharset property.
 	// 
-	CkTask *RemoveRemoteDirAsync(const char *dir);
+	CkTask *RemoveRemoteDirAsync(const char *remoteDirPath);
 
 
 	// Renames a file or directory on the FTP server. To move a file from one directory
 	// to another on a remote FTP server, call this method and include the source and
 	// destination directory filepath.
 	// 
-	// If the existingRemoteFilePath or  newRemoteFilePath contains non-English characters, it may be necessary to set
+	// If the existingRemoteFilePath or newRemoteFilePath contains non-English characters, it may be necessary to set
 	// the DirListingCharset property equal to "utf-8". Please refer to the
 	// documentation for the DirListingCharset property.
 	// 
-	bool RenameRemoteFile(const char *existingFilename, const char *newFilename);
+	bool RenameRemoteFile(const char *existingRemoteFilePath, const char *newRemoteFilePath);
 
 	// Renames a file or directory on the FTP server. To move a file from one directory
 	// to another on a remote FTP server, call this method and include the source and
 	// destination directory filepath.
 	// 
-	// If the existingRemoteFilePath or  newRemoteFilePath contains non-English characters, it may be necessary to set
+	// If the existingRemoteFilePath or newRemoteFilePath contains non-English characters, it may be necessary to set
 	// the DirListingCharset property equal to "utf-8". Please refer to the
 	// documentation for the DirListingCharset property.
 	// 
-	CkTask *RenameRemoteFileAsync(const char *existingFilename, const char *newFilename);
+	CkTask *RenameRemoteFileAsync(const char *existingRemoteFilePath, const char *newRemoteFilePath);
 
 
 	// Sends an raw command to the FTP server and returns the raw response.
@@ -4324,7 +4324,7 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 
 
 	// This is a general purpose method to set miscellaneous options that might arise
-	// due to buggy or quirky FTP servers. The ARG1 is a string describing the option.
+	// due to buggy or quirky FTP servers. The option is a string describing the option.
 	// The current list of possible options are:
 	//     "Microsoft-TLS-1.2-Workaround" -- This is to force the data connection to
 	//     use TLS 1.0 instead of the default. It works around the Microsoft FTP server bug
@@ -4372,10 +4372,10 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 
 	// Enforces a requirement on the FTP server's certificate. The reqName can be
 	// "SubjectDN", "SubjectCN", "IssuerDN", or "IssuerCN". The reqName specifies the part
-	// of the certificate, and the  reqValue is the value that it must match (exactly). If
+	// of the certificate, and the reqValue is the value that it must match (exactly). If
 	// the FTP server's certificate does not match, the SSL / TLS connection is
 	// aborted.
-	void SetSslCertRequirement(const char *name, const char *value);
+	void SetSslCertRequirement(const char *reqName, const char *reqValue);
 
 
 	// Allows for a client-side certificate to be used for the SSL / TLS connection.
@@ -4383,10 +4383,10 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 
 
 	// Allows for a client-side certificate to be used for the SSL / TLS connection. If
-	// the PEM requires no password, pass an empty string in ARG2. If the PEM is in a
-	// file, pass the path to the file in ARG1. If the PEM is already loaded into a
+	// the PEM requires no password, pass an empty string in pemPassword. If the PEM is in a
+	// file, pass the path to the file in pemDataOrFilename. If the PEM is already loaded into a
 	// string variable, then pass the string containing the contents of the PEM in
-	// ARG1.
+	// pemDataOrFilename.
 	bool SetSslClientCertPem(const char *pemDataOrFilename, const char *pemPassword);
 
 
@@ -4453,7 +4453,7 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 
 	// The same as SyncLocalTree, except the sub-directories are not traversed. The
 	// files in the current remote directory are synchronized (downloaded) with the
-	// files in localRoot. For possible  mode settings, see SyncLocalTree.
+	// files in localRoot. For possible mode settings, see SyncLocalTree.
 	// 
 	// Note: In v9.5.0.51 and higher, the list of downloaded files is available in the
 	// SyncedFiles property.
@@ -4462,7 +4462,7 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 
 	// The same as SyncLocalTree, except the sub-directories are not traversed. The
 	// files in the current remote directory are synchronized (downloaded) with the
-	// files in localRoot. For possible  mode settings, see SyncLocalTree.
+	// files in localRoot. For possible mode settings, see SyncLocalTree.
 	// 
 	// Note: In v9.5.0.51 and higher, the list of downloaded files is available in the
 	// SyncedFiles property.
@@ -4547,32 +4547,32 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 
 
 	// Same as SyncRemoteTree, except two extra arguments are added to allow for more
-	// flexibility. If  bDescend is false, then the directory tree is not descended and
-	// only the files in localDirPath are synchronized. If  bPreviewOnly is true then no files are
-	// transferred and instead the files that would've been transferred (had  bPreviewOnly been
+	// flexibility. If bDescend is false, then the directory tree is not descended and
+	// only the files in localDirPath are synchronized. If bPreviewOnly is true then no files are
+	// transferred and instead the files that would've been transferred (had bPreviewOnly been
 	// set to false) are listed in the SyncPreview property.
 	// 
-	// Note: If  bPreviewOnly is set to true, the remote directories (if they do not exist)
+	// Note: If bPreviewOnly is set to true, the remote directories (if they do not exist)
 	// are created. It is only the files that are not uploaded.
 	// 
 	// Note: In v9.5.0.51 and higher, the list of uploaded files is available in the
 	// SyncedFiles property.
 	// 
-	bool SyncRemoteTree2(const char *localRoot, int mode, bool bDescend, bool bPreviewOnly);
+	bool SyncRemoteTree2(const char *localDirPath, int mode, bool bDescend, bool bPreviewOnly);
 
 	// Same as SyncRemoteTree, except two extra arguments are added to allow for more
-	// flexibility. If  bDescend is false, then the directory tree is not descended and
-	// only the files in localDirPath are synchronized. If  bPreviewOnly is true then no files are
-	// transferred and instead the files that would've been transferred (had  bPreviewOnly been
+	// flexibility. If bDescend is false, then the directory tree is not descended and
+	// only the files in localDirPath are synchronized. If bPreviewOnly is true then no files are
+	// transferred and instead the files that would've been transferred (had bPreviewOnly been
 	// set to false) are listed in the SyncPreview property.
 	// 
-	// Note: If  bPreviewOnly is set to true, the remote directories (if they do not exist)
+	// Note: If bPreviewOnly is set to true, the remote directories (if they do not exist)
 	// are created. It is only the files that are not uploaded.
 	// 
 	// Note: In v9.5.0.51 and higher, the list of uploaded files is available in the
 	// SyncedFiles property.
 	// 
-	CkTask *SyncRemoteTree2Async(const char *localRoot, int mode, bool bDescend, bool bPreviewOnly);
+	CkTask *SyncRemoteTree2Async(const char *localDirPath, int mode, bool bDescend, bool bPreviewOnly);
 
 
 	// Sends a SYST command to the FTP server to find out the type of operating system

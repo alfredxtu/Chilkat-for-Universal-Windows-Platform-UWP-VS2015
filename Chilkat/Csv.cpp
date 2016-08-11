@@ -43,46 +43,6 @@ Chilkat::Csv::Csv(void)
 //}
 
 
-String ^Chilkat::Csv::LastErrorHtml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
-    }
-String ^Chilkat::Csv::LastErrorText::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::Csv::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::Csv::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::Csv::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::Csv::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Csv::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::Csv::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::Csv::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::Csv::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
 Boolean Chilkat::Csv::AutoTrim::get()
     {
     return m_impl ? m_impl->get_AutoTrim() : false;
@@ -98,6 +58,14 @@ Boolean Chilkat::Csv::Crlf::get()
 void Chilkat::Csv::Crlf::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_Crlf(newVal);
+    }
+String ^Chilkat::Csv::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::Csv::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
     }
 String ^Chilkat::Csv::Delimiter::get()
     {
@@ -123,6 +91,26 @@ void Chilkat::Csv::HasColumnNames::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_HasColumnNames(newVal);
     }
+String ^Chilkat::Csv::LastErrorHtml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    }
+String ^Chilkat::Csv::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::Csv::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
+Boolean Chilkat::Csv::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::Csv::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+    }
 int Chilkat::Csv::NumColumns::get()
     {
     return m_impl ? m_impl->get_NumColumns() : 0;
@@ -131,57 +119,51 @@ int Chilkat::Csv::NumRows::get()
     {
     return m_impl ? m_impl->get_NumRows() : 0;
     }
-
-
-Boolean Csv::SaveLastError(Platform::String ^path)
+Boolean Chilkat::Csv::VerboseLogging::get()
     {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
+    return m_impl ? m_impl->get_VerboseLogging() : false;
     }
+void Chilkat::Csv::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::Csv::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
+
+
 Boolean Csv::DeleteColumn(int index)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->DeleteColumn(index);
     }
 Boolean Csv::DeleteColumnByName(Platform::String ^columnName)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->DeleteColumnByName(columnName ? columnName->Data() : L"");
     }
 Boolean Csv::DeleteRow(int index)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->DeleteRow(index);
     }
 Platform::String ^Csv::GetCell(int row, int col)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getCell(row,col);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-Platform::String ^Csv::GetCellByName(int row, Platform::String ^columnName)
+Platform::String ^Csv::GetCellByName(int rowIndex, Platform::String ^columnName)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->getCellByName(row,columnName ? columnName->Data() : L"");
+	const wchar_t *retStr = m_impl->getCellByName(rowIndex,columnName ? columnName->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
@@ -189,8 +171,6 @@ Platform::String ^Csv::GetColumnName(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getColumnName(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -199,72 +179,54 @@ int Csv::GetIndex(Platform::String ^columnName)
     {
 	if (m_impl == nullptr) { return -1; }
 	// --- prep output arg ---
-	// gType = int
-	// cppType = int
 	return m_impl->GetIndex(columnName ? columnName->Data() : L"");
     }
 int Csv::GetNumCols(int row)
     {
 	if (m_impl == nullptr) { return -1; }
 	// --- prep output arg ---
-	// gType = int
-	// cppType = int
 	return m_impl->GetNumCols(row);
     }
 Boolean Csv::LoadFile(Platform::String ^path)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadFile(path ? path->Data() : L"");
     }
-Boolean Csv::LoadFile2(Platform::String ^path, Platform::String ^charset)
+Boolean Csv::LoadFile2(Platform::String ^filename, Platform::String ^charset)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->LoadFile2(path ? path->Data() : L"",charset ? charset->Data() : L"");
+	return m_impl->LoadFile2(filename ? filename->Data() : L"",charset ? charset->Data() : L"");
     }
 Boolean Csv::LoadFromString(Platform::String ^csvData)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadFromString(csvData ? csvData->Data() : L"");
     }
-Boolean Csv::RowMatches(int row, Platform::String ^matchPattern, Boolean bCaseSensitive)
+Boolean Csv::RowMatches(int rowIndex, Platform::String ^matchPattern, Boolean caseSensitive)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->RowMatches(row,matchPattern ? matchPattern->Data() : L"",bCaseSensitive);
+	return m_impl->RowMatches(rowIndex,matchPattern ? matchPattern->Data() : L"",caseSensitive);
     }
 Boolean Csv::SaveFile(Platform::String ^path)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->SaveFile(path ? path->Data() : L"");
     }
-Boolean Csv::SaveFile2(Platform::String ^path, Platform::String ^charset)
+Boolean Csv::SaveFile2(Platform::String ^filename, Platform::String ^charset)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveFile2(path ? path->Data() : L"",charset ? charset->Data() : L"");
+	return m_impl->SaveFile2(filename ? filename->Data() : L"",charset ? charset->Data() : L"");
     }
 Platform::String ^Csv::SaveToString(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->saveToString();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -273,33 +235,25 @@ Boolean Csv::SetCell(int row, int col, Platform::String ^content)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetCell(row,col,content ? content->Data() : L"");
     }
-Boolean Csv::SetCellByName(int row, Platform::String ^columnName, Platform::String ^content)
+Boolean Csv::SetCellByName(int rowIndex, Platform::String ^columnName, Platform::String ^contentStr)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SetCellByName(row,columnName ? columnName->Data() : L"",content ? content->Data() : L"");
+	return m_impl->SetCellByName(rowIndex,columnName ? columnName->Data() : L"",contentStr ? contentStr->Data() : L"");
     }
 Boolean Csv::SetColumnName(int index, Platform::String ^columnName)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetColumnName(index,columnName ? columnName->Data() : L"");
     }
-Boolean Csv::SortByColumn(Platform::String ^columnName, Boolean bAscending, Boolean bCaseSensitive)
+Boolean Csv::SortByColumn(Platform::String ^columnName, Boolean ascending, Boolean caseSensitive)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SortByColumn(columnName ? columnName->Data() : L"",bAscending,bCaseSensitive);
+	return m_impl->SortByColumn(columnName ? columnName->Data() : L"",ascending,caseSensitive);
     }
 
 

@@ -43,45 +43,13 @@ Chilkat::Upload::Upload(void)
 //}
 
 
-String ^Chilkat::Upload::LastErrorHtml::get()
+Boolean Chilkat::Upload::AbortCurrent::get()
     {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    return m_impl ? m_impl->get_AbortCurrent() : false;
     }
-String ^Chilkat::Upload::LastErrorText::get()
+void Chilkat::Upload::AbortCurrent::set(Boolean newVal)
     {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::Upload::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::Upload::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::Upload::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::Upload::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Upload::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::Upload::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::Upload::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::Upload::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
     }
 int Chilkat::Upload::BandwidthThrottleUp::get()
     {
@@ -106,6 +74,14 @@ String ^Chilkat::Upload::ClientIpAddress::get()
 void Chilkat::Upload::ClientIpAddress::set(String ^newVal)
     {
         if (m_impl) m_impl->put_ClientIpAddress(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::Upload::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::Upload::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
     }
 Boolean Chilkat::Upload::Expect100Continue::get()
     {
@@ -138,6 +114,26 @@ int Chilkat::Upload::IdleTimeoutMs::get()
 void Chilkat::Upload::IdleTimeoutMs::set(int newVal)
     {
         if (m_impl) m_impl->put_IdleTimeoutMs(newVal);
+    }
+String ^Chilkat::Upload::LastErrorHtml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    }
+String ^Chilkat::Upload::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::Upload::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
+Boolean Chilkat::Upload::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::Upload::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
 String ^Chilkat::Upload::Login::get()
     {
@@ -251,26 +247,6 @@ void Chilkat::Upload::Ssl::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_Ssl(newVal);
     }
-uint32 Chilkat::Upload::TotalUploadSize::get()
-    {
-    return m_impl ? m_impl->get_TotalUploadSize() : 0;
-    }
-Boolean Chilkat::Upload::UploadInProgress::get()
-    {
-    return m_impl ? m_impl->get_UploadInProgress() : false;
-    }
-Boolean Chilkat::Upload::UploadSuccess::get()
-    {
-    return m_impl ? m_impl->get_UploadSuccess() : false;
-    }
-String ^Chilkat::Upload::TlsPinSet::get()
-    {
-    return ref new String(m_impl ? m_impl->tlsPinSet() : L"");
-    }
-void Chilkat::Upload::TlsPinSet::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_TlsPinSet(newVal ? newVal->Data() : L"");
-    }
 String ^Chilkat::Upload::SslAllowedCiphers::get()
     {
     return ref new String(m_impl ? m_impl->sslAllowedCiphers() : L"");
@@ -287,34 +263,46 @@ void Chilkat::Upload::SslProtocol::set(String ^newVal)
     {
         if (m_impl) m_impl->put_SslProtocol(newVal ? newVal->Data() : L"");
     }
-Boolean Chilkat::Upload::AbortCurrent::get()
+String ^Chilkat::Upload::TlsPinSet::get()
     {
-    return m_impl ? m_impl->get_AbortCurrent() : false;
+    return ref new String(m_impl ? m_impl->tlsPinSet() : L"");
     }
-void Chilkat::Upload::AbortCurrent::set(Boolean newVal)
+void Chilkat::Upload::TlsPinSet::set(String ^newVal)
     {
-        if (m_impl) m_impl->put_AbortCurrent(newVal);
+        if (m_impl) m_impl->put_TlsPinSet(newVal ? newVal->Data() : L"");
+    }
+uint32 Chilkat::Upload::TotalUploadSize::get()
+    {
+    return m_impl ? m_impl->get_TotalUploadSize() : 0;
+    }
+Boolean Chilkat::Upload::UploadInProgress::get()
+    {
+    return m_impl ? m_impl->get_UploadInProgress() : false;
+    }
+Boolean Chilkat::Upload::UploadSuccess::get()
+    {
+    return m_impl ? m_impl->get_UploadSuccess() : false;
+    }
+Boolean Chilkat::Upload::VerboseLogging::get()
+    {
+    return m_impl ? m_impl->get_VerboseLogging() : false;
+    }
+void Chilkat::Upload::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::Upload::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
     }
 
 
-Boolean Upload::SaveLastError(Platform::String ^path)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxUploadProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
-    }
 void Upload::AbortUpload(void)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
 	CxUploadProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->AbortUpload();
     }
 void Upload::AddCustomHeader(Platform::String ^name, Platform::String ^value)
@@ -323,8 +311,6 @@ void Upload::AddCustomHeader(Platform::String ^name, Platform::String ^value)
 	// --- prep output arg ---
 	CxUploadProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->AddCustomHeader(name ? name->Data() : L"",value ? value->Data() : L"");
     }
 void Upload::AddFileReference(Platform::String ^name, Platform::String ^filename)
@@ -333,8 +319,6 @@ void Upload::AddFileReference(Platform::String ^name, Platform::String ^filename
 	// --- prep output arg ---
 	CxUploadProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->AddFileReference(name ? name->Data() : L"",filename ? filename->Data() : L"");
     }
 void Upload::AddParam(Platform::String ^name, Platform::String ^value)
@@ -343,8 +327,6 @@ void Upload::AddParam(Platform::String ^name, Platform::String ^value)
 	// --- prep output arg ---
 	CxUploadProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->AddParam(name ? name->Data() : L"",value ? value->Data() : L"");
     }
 Boolean Upload::BeginUpload(void)
@@ -353,8 +335,6 @@ Boolean Upload::BeginUpload(void)
 	// --- prep output arg ---
 	CxUploadProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->BeginUpload();
     }
 IAsyncOperation<Boolean>^ Upload::BlockingUploadAsync(void)
@@ -367,8 +347,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxUploadProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->BlockingUpload();
 
 });
@@ -379,8 +357,6 @@ void Upload::ClearFileReferences(void)
 	// --- prep output arg ---
 	CxUploadProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->ClearFileReferences();
     }
 void Upload::ClearParams(void)
@@ -389,8 +365,6 @@ void Upload::ClearParams(void)
 	// --- prep output arg ---
 	CxUploadProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->ClearParams();
     }
 void Upload::SleepMs(int millisec)
@@ -399,8 +373,6 @@ void Upload::SleepMs(int millisec)
 	// --- prep output arg ---
 	CxUploadProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->SleepMs(millisec);
     }
 Windows::Foundation::Collections::IVector<uint8>^Upload::UploadToMemory(void)
@@ -410,8 +382,6 @@ Windows::Foundation::Collections::IVector<uint8>^Upload::UploadToMemory(void)
 	CkByteData outDb;
 	CxUploadProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->UploadToMemory(outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());

@@ -43,6 +43,18 @@ Chilkat::Dh::Dh(void)
 //}
 
 
+String ^Chilkat::Dh::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::Dh::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
+int Chilkat::Dh::G::get()
+    {
+    return m_impl ? m_impl->get_G() : 0;
+    }
 String ^Chilkat::Dh::LastErrorHtml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
@@ -55,17 +67,17 @@ String ^Chilkat::Dh::LastErrorXml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
     }
-String ^Chilkat::Dh::Version::get()
+Boolean Chilkat::Dh::LastMethodSuccess::get()
     {
-    return ref new String(m_impl ? m_impl->version() : L"");
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
     }
-String ^Chilkat::Dh::DebugLogFilePath::get()
+void Chilkat::Dh::LastMethodSuccess::set(Boolean newVal)
     {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
-void Chilkat::Dh::DebugLogFilePath::set(String ^newVal)
+String ^Chilkat::Dh::P::get()
     {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    return ref new String(m_impl ? m_impl->p() : L"");
     }
 Boolean Chilkat::Dh::VerboseLogging::get()
     {
@@ -75,82 +87,50 @@ void Chilkat::Dh::VerboseLogging::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_VerboseLogging(newVal);
     }
-Boolean Chilkat::Dh::LastMethodSuccess::get()
+String ^Chilkat::Dh::Version::get()
     {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::Dh::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
-int Chilkat::Dh::G::get()
-    {
-    return m_impl ? m_impl->get_G() : 0;
-    }
-String ^Chilkat::Dh::P::get()
-    {
-    return ref new String(m_impl ? m_impl->p() : L"");
+    return ref new String(m_impl ? m_impl->version() : L"");
     }
 
 
-Boolean Dh::SaveLastError(Platform::String ^path)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
-    }
 Platform::String ^Dh::CreateE(int numBits)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->createE(numBits);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-Platform::String ^Dh::FindK(Platform::String ^e)
+Platform::String ^Dh::FindK(Platform::String ^E)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->findK(e ? e->Data() : L"");
+	const wchar_t *retStr = m_impl->findK(E ? E->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-Boolean Dh::GenPG(int numBits, int g)
+Boolean Dh::GenPG(int numBits, int G)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->GenPG(numBits,g);
+	return m_impl->GenPG(numBits,G);
     }
 Boolean Dh::SetPG(Platform::String ^p, int g)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetPG(p ? p->Data() : L"",g);
     }
 Boolean Dh::UnlockComponent(Platform::String ^unlockCode)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->UnlockComponent(unlockCode ? unlockCode->Data() : L"");
     }
 void Dh::UseKnownPrime(int index)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	// gType = void
-	// cppType = void
 	m_impl->UseKnownPrime(index);
     }
 

@@ -100,13 +100,13 @@ class CK_VISIBLE_PUBLIC CkHtmlToText  : public CkMultiByteBase
 
 
 	// Convenience method for reading a text file into a string. The character encoding
-	// of the text file is specified by  srcCharset. Valid values, such as "iso-8895-1" or
+	// of the text file is specified by srcCharset. Valid values, such as "iso-8895-1" or
 	// "utf-8" are listed at: List of Charsets
 	// <http://blog.chilkatsoft.com/?p=463> .
 	bool ReadFileToString(const char *filename, const char *srcCharset, CkString &outStr);
 
 	// Convenience method for reading a text file into a string. The character encoding
-	// of the text file is specified by  srcCharset. Valid values, such as "iso-8895-1" or
+	// of the text file is specified by srcCharset. Valid values, such as "iso-8895-1" or
 	// "utf-8" are listed at: List of Charsets
 	// <http://blog.chilkatsoft.com/?p=463> .
 	const char *readFileToString(const char *filename, const char *srcCharset);
@@ -128,11 +128,11 @@ class CK_VISIBLE_PUBLIC CkHtmlToText  : public CkMultiByteBase
 
 
 	// Convenience method for saving a string to a file. The character encoding of the
-	// output text file is specified by  charset (the string is converted to this charset
+	// output text file is specified by charset (the string is converted to this charset
 	// when writing). Valid values, such as "iso-8895-1" or "utf-8" are listed at: List
 	// of Charsets
 	// <http://blog.chilkatsoft.com/?p=463> .
-	bool WriteStringToFile(const char *str, const char *filename, const char *charset);
+	bool WriteStringToFile(const char *stringToWrite, const char *filename, const char *charset);
 
 
 

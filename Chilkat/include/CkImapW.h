@@ -216,19 +216,19 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	// 
 	void put_ClientIpAddress(const wchar_t *newVal);
 
-	// Maximum number of seconds to wait when connecting to an IMAP server. The default
-	// value is 30 (units are in seconds).
-	int get_ConnectTimeout(void);
-	// Maximum number of seconds to wait when connecting to an IMAP server. The default
-	// value is 30 (units are in seconds).
-	void put_ConnectTimeout(int newVal);
-
 	// Contains the IMAP server's domain name (or IP address) if currently connected.
 	// Otherwise returns an empty string.
 	void get_ConnectedToHost(CkString &str);
 	// Contains the IMAP server's domain name (or IP address) if currently connected.
 	// Otherwise returns an empty string.
 	const wchar_t *connectedToHost(void);
+
+	// Maximum number of seconds to wait when connecting to an IMAP server. The default
+	// value is 30 (units are in seconds).
+	int get_ConnectTimeout(void);
+	// Maximum number of seconds to wait when connecting to an IMAP server. The default
+	// value is 30 (units are in seconds).
+	void put_ConnectTimeout(int newVal);
 
 	// The Windows Domain to use for Windows Integrated Authentication (also known as
 	// NTLM). This may be empty.
@@ -556,58 +556,6 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	// set to true to enable session logging. Call ClearSessionLog to reset the log.
 	const wchar_t *sessionLog(void);
 
-	// Sets the receive buffer size socket option. Normally, this property should be
-	// left unchanged. The default value is 0, which indicates that the receive buffer
-	// size socket option should not be explicitly set (i.e. the system default value,
-	// which may vary from system to system, should be used).
-	// 
-	// This property can be changed if download performance seems slow. It is
-	// recommended to be a multiple of 4096. To see the current system's default
-	// receive buffer size, examine the LastErrorText property after calling any method
-	// that establishes a connection. It should be reported under the heading
-	// "SO_RCVBUF". To boost performance, try setting it equal to 2, 3, or 4 times the
-	// default value.
-	// 
-	int get_SoRcvBuf(void);
-	// Sets the receive buffer size socket option. Normally, this property should be
-	// left unchanged. The default value is 0, which indicates that the receive buffer
-	// size socket option should not be explicitly set (i.e. the system default value,
-	// which may vary from system to system, should be used).
-	// 
-	// This property can be changed if download performance seems slow. It is
-	// recommended to be a multiple of 4096. To see the current system's default
-	// receive buffer size, examine the LastErrorText property after calling any method
-	// that establishes a connection. It should be reported under the heading
-	// "SO_RCVBUF". To boost performance, try setting it equal to 2, 3, or 4 times the
-	// default value.
-	// 
-	void put_SoRcvBuf(int newVal);
-
-	// Sets the send buffer size socket option. Normally, this property should be left
-	// unchanged. The default value is 0, which indicates that the send buffer size
-	// socket option should not be explicitly set (i.e. the system default value, which
-	// may vary from system to system, should be used).
-	// 
-	// This property can be changed if upload performance seems slow. It is recommended
-	// to be a multiple of 4096. To see the current system's default send buffer size,
-	// examine the LastErrorText property after calling any method that establishes a
-	// connection. It should be reported under the heading "SO_SNDBUF". To boost
-	// performance, try setting it equal to 2, 3, or 4 times the default value.
-	// 
-	int get_SoSndBuf(void);
-	// Sets the send buffer size socket option. Normally, this property should be left
-	// unchanged. The default value is 0, which indicates that the send buffer size
-	// socket option should not be explicitly set (i.e. the system default value, which
-	// may vary from system to system, should be used).
-	// 
-	// This property can be changed if upload performance seems slow. It is recommended
-	// to be a multiple of 4096. To see the current system's default send buffer size,
-	// examine the LastErrorText property after calling any method that establishes a
-	// connection. It should be reported under the heading "SO_SNDBUF". To boost
-	// performance, try setting it equal to 2, 3, or 4 times the default value.
-	// 
-	void put_SoSndBuf(int newVal);
-
 	// The SOCKS4/SOCKS5 hostname or IPv4 address (in dotted decimal notation). This
 	// property is only used if the SocksVersion property is set to 4 or 5).
 	void get_SocksHostname(CkString &str);
@@ -661,6 +609,58 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	// 5 - Connect via a SOCKS5 proxy.
 	// 
 	void put_SocksVersion(int newVal);
+
+	// Sets the receive buffer size socket option. Normally, this property should be
+	// left unchanged. The default value is 0, which indicates that the receive buffer
+	// size socket option should not be explicitly set (i.e. the system default value,
+	// which may vary from system to system, should be used).
+	// 
+	// This property can be changed if download performance seems slow. It is
+	// recommended to be a multiple of 4096. To see the current system's default
+	// receive buffer size, examine the LastErrorText property after calling any method
+	// that establishes a connection. It should be reported under the heading
+	// "SO_RCVBUF". To boost performance, try setting it equal to 2, 3, or 4 times the
+	// default value.
+	// 
+	int get_SoRcvBuf(void);
+	// Sets the receive buffer size socket option. Normally, this property should be
+	// left unchanged. The default value is 0, which indicates that the receive buffer
+	// size socket option should not be explicitly set (i.e. the system default value,
+	// which may vary from system to system, should be used).
+	// 
+	// This property can be changed if download performance seems slow. It is
+	// recommended to be a multiple of 4096. To see the current system's default
+	// receive buffer size, examine the LastErrorText property after calling any method
+	// that establishes a connection. It should be reported under the heading
+	// "SO_RCVBUF". To boost performance, try setting it equal to 2, 3, or 4 times the
+	// default value.
+	// 
+	void put_SoRcvBuf(int newVal);
+
+	// Sets the send buffer size socket option. Normally, this property should be left
+	// unchanged. The default value is 0, which indicates that the send buffer size
+	// socket option should not be explicitly set (i.e. the system default value, which
+	// may vary from system to system, should be used).
+	// 
+	// This property can be changed if upload performance seems slow. It is recommended
+	// to be a multiple of 4096. To see the current system's default send buffer size,
+	// examine the LastErrorText property after calling any method that establishes a
+	// connection. It should be reported under the heading "SO_SNDBUF". To boost
+	// performance, try setting it equal to 2, 3, or 4 times the default value.
+	// 
+	int get_SoSndBuf(void);
+	// Sets the send buffer size socket option. Normally, this property should be left
+	// unchanged. The default value is 0, which indicates that the send buffer size
+	// socket option should not be explicitly set (i.e. the system default value, which
+	// may vary from system to system, should be used).
+	// 
+	// This property can be changed if upload performance seems slow. It is recommended
+	// to be a multiple of 4096. To see the current system's default send buffer size,
+	// examine the LastErrorText property after calling any method that establishes a
+	// connection. It should be reported under the heading "SO_SNDBUF". To boost
+	// performance, try setting it equal to 2, 3, or 4 times the default value.
+	// 
+	void put_SoSndBuf(int newVal);
 
 	// true if the IMAP connection should be TLS/SSL.
 	// 
@@ -1060,7 +1060,7 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	// Methods
 	// ----------------------
 	// Returns true if the underlying TCP socket is connected to the IMAP server.
-	bool AddPfxSourceData(CkByteData &pfxData, const wchar_t *password);
+	bool AddPfxSourceData(CkByteData &pfxBytes, const wchar_t *pfxPassword);
 
 	// Adds a PFX file to the object's internal list of sources to be searched for
 	// certificates and private keys when decrypting. Multiple PFX files can be added
@@ -1070,7 +1070,7 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	// 
 	// The pfxFilePath contains the bytes of a PFX file (also known as PKCS12 or .p12).
 	// 
-	bool AddPfxSourceFile(const wchar_t *pfxFilePath, const wchar_t *password);
+	bool AddPfxSourceFile(const wchar_t *pfxFilePath, const wchar_t *pfxPassword);
 
 	// Appends an email to an IMAP mailbox.
 	bool AppendMail(const wchar_t *mailbox, CkEmailW &email);
@@ -1160,15 +1160,15 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	// block the connection. If the connection fails, make sure to check all potential
 	// external causes of blockage.
 	// 
-	bool Connect(const wchar_t *hostname);
+	bool Connect(const wchar_t *domainName);
 
 	// Creates an asynchronous task to call the Connect method with the arguments
 	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
 	// The caller is responsible for deleting the object returned by this method.
-	CkTaskW *ConnectAsync(const wchar_t *hostname);
+	CkTaskW *ConnectAsync(const wchar_t *domainName);
 
-	// Copies a message from the selected mailbox to  copyToMailbox. If  bUid is true, then msgId
-	// represents a UID. If  bUid is false, then msgId represents a sequence number.
+	// Copies a message from the selected mailbox to copyToMailbox. If bUid is true, then msgId
+	// represents a UID. If bUid is false, then msgId represents a sequence number.
 	bool Copy(int msgId, bool bUid, const wchar_t *copyToMailbox);
 
 	// Creates an asynchronous task to call the Copy method with the arguments
@@ -1253,8 +1253,8 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	// already contains the full email (including the attachments), then no
 	// communication with the IMAP server is necessary because the attachment data is
 	// already contained within the emailObject. In this case, the attachment is simply
-	// extracted and saved to  saveToPath. (As with all Chilkat methods, indexing begins at 0.
-	// The 1st attachment is at  attachmentIndex 0.)
+	// extracted and saved to saveToPath. (As with all Chilkat methods, indexing begins at 0.
+	// The 1st attachment is at attachmentIndex 0.)
 	// 
 	// Additional Notes:
 	// 
@@ -1277,12 +1277,12 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	//     imap.GetMailAttachSize
 	//     
 	// 
-	bool FetchAttachment(CkEmailW &email, int attachIndex, const wchar_t *saveToPath);
+	bool FetchAttachment(CkEmailW &emailObject, int attachmentIndex, const wchar_t *saveToPath);
 
 	// Creates an asynchronous task to call the FetchAttachment method with the
 	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
 	// The caller is responsible for deleting the object returned by this method.
-	CkTaskW *FetchAttachmentAsync(CkEmailW &email, int attachIndex, const wchar_t *saveToPath);
+	CkTaskW *FetchAttachmentAsync(CkEmailW &emailObject, int attachmentIndex, const wchar_t *saveToPath);
 
 	// Downloads one of an email's attachments and returns the attachment data as
 	// in-memory bytes that may be accessed by an application. ***See the
@@ -1297,21 +1297,21 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 
 	// Downloads one of an email's attachments and returns the attachment data as a
 	// string. It only makes sense to call this method for attachments that contain
-	// text data. The  charset indicates the character encoding of the text, such as
+	// text data. The charset indicates the character encoding of the text, such as
 	// "utf-8" or "windows-1252". ***See the FetchAttachment method description for
 	// more information about fetching attachments.
-	bool FetchAttachmentString(CkEmailW &email, int attachIndex, const wchar_t *charset, CkString &outStr);
+	bool FetchAttachmentString(CkEmailW &emailObject, int attachmentIndex, const wchar_t *charset, CkString &outStr);
 	// Downloads one of an email's attachments and returns the attachment data as a
 	// string. It only makes sense to call this method for attachments that contain
-	// text data. The  charset indicates the character encoding of the text, such as
+	// text data. The charset indicates the character encoding of the text, such as
 	// "utf-8" or "windows-1252". ***See the FetchAttachment method description for
 	// more information about fetching attachments.
-	const wchar_t *fetchAttachmentString(CkEmailW &email, int attachIndex, const wchar_t *charset);
+	const wchar_t *fetchAttachmentString(CkEmailW &emailObject, int attachmentIndex, const wchar_t *charset);
 
 	// Creates an asynchronous task to call the FetchAttachmentString method with the
 	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
 	// The caller is responsible for deleting the object returned by this method.
-	CkTaskW *FetchAttachmentStringAsync(CkEmailW &email, int attachIndex, const wchar_t *charset);
+	CkTaskW *FetchAttachmentStringAsync(CkEmailW &emailObject, int attachmentIndex, const wchar_t *charset);
 
 	// Retrieves a set of messages from the IMAP server and returns them in an email
 	// bundle object. If the method fails, it may return a NULL reference.
@@ -1382,7 +1382,7 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 
 	// Downloads email for a range of sequence numbers. The 1st email in a mailbox is
 	// always at sequence number 1. The total number of emails in the currently
-	// selected mailbox is available in the NumMessages property. If the  numMessages is too
+	// selected mailbox is available in the NumMessages property. If the numMessages is too
 	// large, the method will still succeed, but will return a bundle of emails from
 	// startSeqNum to the last email in the mailbox.
 	// The caller is responsible for deleting the object returned by this method.
@@ -1491,20 +1491,7 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	// Returns the Nth attachment size in bytes. Indexing begins at 0.
 	int GetMailAttachSize(CkEmailW &email, int attachIndex);
 
-	// Returns the value of a flag (1 = yes, 0 = no) for an email. Both standard system
-	// flags as well as custom flags may be set. Standard system flags typically begin
-	// with a backslash character, such as "\Seen", "\Answered", "\Flagged", "\Draft",
-	// "\Deleted", and "\Answered". Custom flags can be anything, such as "NonJunk",
-	// "$label1", "$MailFlagBit1", etc. .
-	int GetMailFlag(CkEmailW &email, const wchar_t *flagName);
-
-	// Returns the number of email attachments.
-	int GetMailNumAttach(CkEmailW &email);
-
-	// Returns the size (in bytes) of the entire email including attachments.
-	int GetMailSize(CkEmailW &email);
-
-	// Sends a "Status" command to get the status of a ARG1. Returns an XML string
+	// Sends a "Status" command to get the status of a mailbox. Returns an XML string
 	// containing the status values as named attributes. Possible status values are:
 	//     messages: The number of messages in the mailbox.
 	//     recent: The number of messages with the \Recent flag set.
@@ -1516,7 +1503,7 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	// recent="0" uidnext="3674" uidvalidity="3" unseen="213" /_GT_
 	// 
 	bool GetMailboxStatus(const wchar_t *mailbox, CkString &outStr);
-	// Sends a "Status" command to get the status of a ARG1. Returns an XML string
+	// Sends a "Status" command to get the status of a mailbox. Returns an XML string
 	// containing the status values as named attributes. Possible status values are:
 	//     messages: The number of messages in the mailbox.
 	//     recent: The number of messages with the \Recent flag set.
@@ -1528,7 +1515,7 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	// recent="0" uidnext="3674" uidvalidity="3" unseen="213" /_GT_
 	// 
 	const wchar_t *getMailboxStatus(const wchar_t *mailbox);
-	// Sends a "Status" command to get the status of a ARG1. Returns an XML string
+	// Sends a "Status" command to get the status of a mailbox. Returns an XML string
 	// containing the status values as named attributes. Possible status values are:
 	//     messages: The number of messages in the mailbox.
 	//     recent: The number of messages with the \Recent flag set.
@@ -1545,6 +1532,19 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *GetMailboxStatusAsync(const wchar_t *mailbox);
+
+	// Returns the value of a flag (1 = yes, 0 = no) for an email. Both standard system
+	// flags as well as custom flags may be set. Standard system flags typically begin
+	// with a backslash character, such as "\Seen", "\Answered", "\Flagged", "\Draft",
+	// "\Deleted", and "\Answered". Custom flags can be anything, such as "NonJunk",
+	// "$label1", "$MailFlagBit1", etc. .
+	int GetMailFlag(CkEmailW &email, const wchar_t *flagName);
+
+	// Returns the number of email attachments.
+	int GetMailNumAttach(CkEmailW &email);
+
+	// Returns the size (in bytes) of the entire email including attachments.
+	int GetMailSize(CkEmailW &email);
 
 	// Sends the GETQUOTA command and returns the response in JSON format. This feature
 	// is only possible with IMAP servers that support the QUOTA extension/capability.
@@ -1583,11 +1583,11 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkCertW *GetSslServerCert(void);
 
-	// Returns true if the capability indicated by ARG1 is found in the ARG2.
+	// Returns true if the capability indicated by name is found in the capabilityResponse.
 	// Otherwise returns false.
 	bool HasCapability(const wchar_t *name, const wchar_t *capabilityResponse);
 
-	// Polls the connection to see if any real-time updates are available. The ARG1
+	// Polls the connection to see if any real-time updates are available. The timeoutMs
 	// indicates how long to wait for incoming updates. This method does not send a
 	// command to the IMAP server, it simply checks the connection for already-arrived
 	// messages that the IMAP server sent. This method would only be called after IDLE
@@ -1631,7 +1631,7 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	// available and waiting to be read.
 	// 
 	bool IdleCheck(int timeoutMs, CkString &outStr);
-	// Polls the connection to see if any real-time updates are available. The ARG1
+	// Polls the connection to see if any real-time updates are available. The timeoutMs
 	// indicates how long to wait for incoming updates. This method does not send a
 	// command to the IMAP server, it simply checks the connection for already-arrived
 	// messages that the IMAP server sent. This method would only be called after IDLE
@@ -2155,13 +2155,13 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	// for decrypting S/MIME (PKCS7) email.
 	bool SetDecryptCert2(CkCertW &cert, CkPrivateKeyW &key);
 
-	// Sets a flag for a single message on the IMAP server. If  value = 1, the flag is
-	// turned on, if  value = 0, the flag is turned off. Standard system flags such as
+	// Sets a flag for a single message on the IMAP server. If value = 1, the flag is
+	// turned on, if value = 0, the flag is turned off. Standard system flags such as
 	// "\Deleted", "\Seen", "\Answered", "\Flagged", "\Draft", and "\Answered" may be
 	// set. Custom flags such as "NonJunk", "$label1", "$MailFlagBit1", etc. may also
 	// be set.
 	// 
-	// If  bUid is true, then msgId represents a UID. If  bUid is false, then msgId
+	// If bUid is true, then msgId represents a UID. If bUid is false, then msgId
 	// represents a sequence number.
 	// 
 	bool SetFlag(int msgId, bool bUid, const wchar_t *flagName, int value);
@@ -2171,8 +2171,8 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *SetFlagAsync(int msgId, bool bUid, const wchar_t *flagName, int value);
 
-	// Sets a flag for each message in the message set on the IMAP server. If  value = 1,
-	// the flag is turned on, if  value = 0, the flag is turned off. Standard system
+	// Sets a flag for each message in the message set on the IMAP server. If value = 1,
+	// the flag is turned on, if value = 0, the flag is turned off. Standard system
 	// flags such as "\Deleted", "\Seen", "\Answered", "\Flagged", "\Draft", and
 	// "\Answered" may be set. Custom flags such as "NonJunk", "$label1",
 	// "$MailFlagBit1", etc. may also be set.
@@ -2184,8 +2184,8 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	CkTaskW *SetFlagsAsync(CkMessageSetW &messageSet, const wchar_t *flagName, int value);
 
 	// Sets a flag for a single message on the IMAP server. The UID of the email object
-	// is used to find the message on the IMAP server that is to be affected. If  value =
-	// 1, the flag is turned on, if  value = 0, the flag is turned off.
+	// is used to find the message on the IMAP server that is to be affected. If value =
+	// 1, the flag is turned on, if value = 0, the flag is turned off.
 	// 
 	// Both standard system flags as well as custom flags may be set. Standard system
 	// flags typically begin with a backslash character, such as "\Deleted", "\Seen",
@@ -2210,12 +2210,12 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *SetMailFlagAsync(CkEmailW &email, const wchar_t *flagName, int value);
 
-	// Sets the quota for a ARG1. The ARG2 should be one of two keywords:"STORAGE" or
+	// Sets the quota for a quotaRoot. The resource should be one of two keywords:"STORAGE" or
 	// "MESSAGE". Use "STORAGE" to set the maximum capacity of the combined messages in
-	// ARG1. Use "MESSAGE" to set the maximum number of messages allowed.
+	// quotaRoot. Use "MESSAGE" to set the maximum number of messages allowed.
 	// 
-	// If setting a STORAGE quota, the ARG3 is in units of 1024 octets. For example, to
-	// specify a limit of 500,000,000 bytes, set ARG3 equal to 500,000.
+	// If setting a STORAGE quota, the quota is in units of 1024 octets. For example, to
+	// specify a limit of 500,000,000 bytes, set quota equal to 500,000.
 	// 
 	// This feature is only possible with IMAP servers that support the QUOTA
 	// extension/capability. If an IMAP server supports the QUOTA extension, it likely
@@ -2255,7 +2255,7 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 
 	// Authenticates with the SSH server using public-key authentication. The
 	// corresponding public key must have been installed on the SSH server for the
-	// sshLogin. Authentication will succeed if the matching  privateKey is provided.
+	// sshLogin. Authentication will succeed if the matching privateKey is provided.
 	// 
 	// Important: When reporting problems, please send the full contents of the
 	// LastErrorText property to support@chilkatsoft.com.
@@ -2267,7 +2267,7 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *SshAuthenticatePkAsync(const wchar_t *sshLogin, CkSshKeyW &privateKey);
 
-	// Authenticates with the SSH server using a sshLogin and  sshPassword.
+	// Authenticates with the SSH server using a sshLogin and sshPassword.
 	// 
 	// An SSH tunneling (port forwarding) session always begins by first calling
 	// SshTunnel to connect to the SSH server, then calling either AuthenticatePw or
@@ -2298,8 +2298,8 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *SshCloseTunnelAsync(void);
 
-	// Connects to an SSH server and creates a tunnel for IMAP. The ARG1 is the
-	// hostname (or IP address) of the SSH server. The ARG2 is typically 22, which is
+	// Connects to an SSH server and creates a tunnel for IMAP. The sshHostname is the
+	// hostname (or IP address) of the SSH server. The sshPort is typically 22, which is
 	// the standard SSH port number.
 	// 
 	// An SSH tunneling (port forwarding) session always begins by first calling
@@ -2324,17 +2324,17 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	CkTaskW *SshOpenTunnelAsync(const wchar_t *sshHostname, int sshPort);
 
 	// Sets one or more flags to a specific value for an email. The email is indicated
-	// by either a UID or sequence number, depending on whether  bUid is true (UID) or
+	// by either a UID or sequence number, depending on whether bUid is true (UID) or
 	// false (sequence number).
 	// 
-	//  flagNames should be a space separated string of flag names. Both standard and
+	// flagNames should be a space separated string of flag names. Both standard and
 	// customer flags may be set. Standard flag names typically begin with a backslash
 	// character. For example: "\Seen \Answered". Custom flag names may also be
 	// included. Custom flags often begin with a $ character, such as "$label1", or
 	// "$MailFlagBit0". Other customer flags may begin with any character, such as
 	// "NonJunk".
 	// 
-	//  value should be 1 to turn the flags on, or 0 to turn the flags off.
+	// value should be 1 to turn the flags on, or 0 to turn the flags off.
 	// 
 	bool StoreFlags(int msgId, bool bUid, const wchar_t *flagNames, int value);
 

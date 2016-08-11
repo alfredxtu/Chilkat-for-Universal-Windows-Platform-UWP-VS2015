@@ -85,37 +85,6 @@ public ref class Imap sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Boolean AbortCurrent
 	{
 		Boolean get();
@@ -155,14 +124,19 @@ public ref class Imap sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Platform::String ^ConnectedToHost
+	{
+		Platform::String ^get();
+	}
 	property int32 ConnectTimeout
 	{
 		int32 get();
 		void set(int32);
 	}
-	property Platform::String ^ConnectedToHost
+	property Platform::String ^DebugLogFilePath
 	{
 		Platform::String ^get();
+		void set(Platform::String ^);
 	}
 	property Platform::String ^Domain
 	{
@@ -217,9 +191,26 @@ public ref class Imap sealed
 	{
 		Platform::String ^get();
 	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
 	property Platform::String ^LastIntermediateResponse
 	{
 		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
 	}
 	property Platform::String ^LastResponse
 	{
@@ -290,16 +281,6 @@ public ref class Imap sealed
 	{
 		Platform::String ^get();
 	}
-	property int32 SoRcvBuf
-	{
-		int32 get();
-		void set(int32);
-	}
-	property int32 SoSndBuf
-	{
-		int32 get();
-		void set(int32);
-	}
 	property Platform::String ^SocksHostname
 	{
 		Platform::String ^get();
@@ -321,6 +302,16 @@ public ref class Imap sealed
 		void set(Platform::String ^);
 	}
 	property int32 SocksVersion
+	{
+		int32 get();
+		void set(int32);
+	}
+	property int32 SoRcvBuf
+	{
+		int32 get();
+		void set(int32);
+	}
+	property int32 SoSndBuf
 	{
 		int32 get();
 		void set(int32);
@@ -370,18 +361,25 @@ public ref class Imap sealed
 	{
 		int32 get();
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
+	Boolean AddPfxSourceData(Windows::Foundation::Collections::IVector<uint8>^pfxBytes, Platform::String ^pfxPassword);
 
-	Boolean AddPfxSourceData(Windows::Foundation::Collections::IVector<uint8>^pfxData, Platform::String ^password);
+	Boolean AddPfxSourceFile(Platform::String ^pfxFilePath, Platform::String ^pfxPassword);
 
-	Boolean AddPfxSourceFile(Platform::String ^pfxFilePath, Platform::String ^password);
-
-	IAsyncOperation<Boolean>^ AppendMailAsync(Platform::String ^mailbox, Email ^email);
+	IAsyncOperation<Boolean>^ AppendMailAsync(Platform::String ^mailbox, Chilkat::Email ^email);
 
 	IAsyncOperation<Boolean>^ AppendMimeAsync(Platform::String ^mailbox, Platform::String ^mimeText);
 
@@ -399,11 +397,11 @@ public ref class Imap sealed
 
 	IAsyncOperation<Boolean>^ CloseMailboxAsync(Platform::String ^mailbox);
 
-	IAsyncOperation<Boolean>^ ConnectAsync(Platform::String ^hostname);
+	IAsyncOperation<Boolean>^ ConnectAsync(Platform::String ^domainName);
 
 	IAsyncOperation<Boolean>^ CopyAsync(int msgId, Boolean bUid, Platform::String ^copyToMailbox);
 
-	IAsyncOperation<Boolean>^ CopyMultipleAsync(MessageSet ^messageSet, Platform::String ^copyToMailbox);
+	IAsyncOperation<Boolean>^ CopyMultipleAsync(Chilkat::MessageSet ^messageSet, Platform::String ^copyToMailbox);
 
 	IAsyncOperation<Boolean>^ CopySequenceAsync(int startSeqNum, int count, Platform::String ^copyToMailbox);
 
@@ -419,21 +417,21 @@ public ref class Imap sealed
 
 	IAsyncOperation<Boolean>^ ExpungeAndCloseAsync(void);
 
-	IAsyncOperation<Boolean>^ FetchAttachmentAsync(Email ^email, int attachIndex, Platform::String ^saveToPath);
+	IAsyncOperation<Boolean>^ FetchAttachmentAsync(Chilkat::Email ^emailObject, int attachmentIndex, Platform::String ^saveToPath);
 
-	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ FetchAttachmentBytesAsync(Email ^email, int attachIndex);
+	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ FetchAttachmentBytesAsync(Chilkat::Email ^email, int attachIndex);
 
-	IAsyncOperation<Platform::String ^>^ FetchAttachmentStringAsync(Email ^email, int attachIndex, Platform::String ^charset);
+	IAsyncOperation<Platform::String ^>^ FetchAttachmentStringAsync(Chilkat::Email ^emailObject, int attachmentIndex, Platform::String ^charset);
 
-	IAsyncOperation<EmailBundle ^>^ FetchBundleAsync(MessageSet ^messageSet);
+	IAsyncOperation<EmailBundle ^>^ FetchBundleAsync(Chilkat::MessageSet ^messageSet);
 
-	IAsyncOperation<StringArray ^>^ FetchBundleAsMimeAsync(MessageSet ^messageSet);
+	IAsyncOperation<StringArray ^>^ FetchBundleAsMimeAsync(Chilkat::MessageSet ^messageSet);
 
-	IAsyncOperation<EmailBundle ^>^ FetchChunkAsync(int startSeqNum, int count, MessageSet ^failedSet, MessageSet ^fetchedSet);
+	IAsyncOperation<EmailBundle ^>^ FetchChunkAsync(int startSeqNum, int count, Chilkat::MessageSet ^failedSet, Chilkat::MessageSet ^fetchedSet);
 
 	IAsyncOperation<Platform::String ^>^ FetchFlagsAsync(int msgId, Boolean bUid);
 
-	IAsyncOperation<EmailBundle ^>^ FetchHeadersAsync(MessageSet ^messageSet);
+	IAsyncOperation<EmailBundle ^>^ FetchHeadersAsync(Chilkat::MessageSet ^messageSet);
 
 	IAsyncOperation<EmailBundle ^>^ FetchSequenceAsync(int startSeqNum, int numMessages);
 
@@ -451,17 +449,17 @@ public ref class Imap sealed
 
 	IAsyncOperation<MessageSet ^>^ GetAllUidsAsync(void);
 
-	Platform::String ^GetMailAttachFilename(Email ^email, int attachIndex);
+	Platform::String ^GetMailAttachFilename(Chilkat::Email ^email, int attachIndex);
 
-	int GetMailAttachSize(Email ^email, int attachIndex);
-
-	int GetMailFlag(Email ^email, Platform::String ^flagName);
-
-	int GetMailNumAttach(Email ^email);
-
-	int GetMailSize(Email ^email);
+	int GetMailAttachSize(Chilkat::Email ^email, int attachIndex);
 
 	IAsyncOperation<Platform::String ^>^ GetMailboxStatusAsync(Platform::String ^mailbox);
+
+	int GetMailFlag(Chilkat::Email ^email, Platform::String ^flagName);
+
+	int GetMailNumAttach(Chilkat::Email ^email);
+
+	int GetMailSize(Chilkat::Email ^email);
 
 	IAsyncOperation<Platform::String ^>^ GetQuotaAsync(Platform::String ^quotaRoot);
 
@@ -493,7 +491,7 @@ public ref class Imap sealed
 
 	IAsyncOperation<Boolean>^ NoopAsync(void);
 
-	IAsyncOperation<Boolean>^ RefetchMailFlagsAsync(Email ^email);
+	IAsyncOperation<Boolean>^ RefetchMailFlagsAsync(Chilkat::Email ^email);
 
 	IAsyncOperation<Boolean>^ RenameMailboxAsync(Platform::String ^fromMailbox, Platform::String ^toMailbox);
 
@@ -507,25 +505,25 @@ public ref class Imap sealed
 
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ SendRawCommandCAsync(Windows::Foundation::Collections::IVector<uint8>^cmd);
 
-	Boolean SetDecryptCert(Cert ^cert);
+	Boolean SetDecryptCert(Chilkat::Cert ^cert);
 
-	Boolean SetDecryptCert2(Cert ^cert, PrivateKey ^key);
+	Boolean SetDecryptCert2(Chilkat::Cert ^cert, Chilkat::PrivateKey ^key);
 
 	IAsyncOperation<Boolean>^ SetFlagAsync(int msgId, Boolean bUid, Platform::String ^flagName, int value);
 
-	IAsyncOperation<Boolean>^ SetFlagsAsync(MessageSet ^messageSet, Platform::String ^flagName, int value);
+	IAsyncOperation<Boolean>^ SetFlagsAsync(Chilkat::MessageSet ^messageSet, Platform::String ^flagName, int value);
 
-	IAsyncOperation<Boolean>^ SetMailFlagAsync(Email ^email, Platform::String ^flagName, int value);
+	IAsyncOperation<Boolean>^ SetMailFlagAsync(Chilkat::Email ^email, Platform::String ^flagName, int value);
 
 	IAsyncOperation<Boolean>^ SetQuotaAsync(Platform::String ^quotaRoot, Platform::String ^resource, int quota);
 
-	Boolean SetSslClientCert(Cert ^cert);
+	Boolean SetSslClientCert(Chilkat::Cert ^cert);
 
 	Boolean SetSslClientCertPem(Platform::String ^pemDataOrFilename, Platform::String ^pemPassword);
 
 	Boolean SetSslClientCertPfx(Platform::String ^pfxFilename, Platform::String ^pfxPassword);
 
-	IAsyncOperation<Boolean>^ SshAuthenticatePkAsync(Platform::String ^sshLogin, SshKey ^privateKey);
+	IAsyncOperation<Boolean>^ SshAuthenticatePkAsync(Platform::String ^sshLogin, Chilkat::SshKey ^privateKey);
 
 	IAsyncOperation<Boolean>^ SshAuthenticatePwAsync(Platform::String ^sshLogin, Platform::String ^sshPassword);
 
@@ -541,11 +539,11 @@ public ref class Imap sealed
 
 	IAsyncOperation<Boolean>^ UnsubscribeAsync(Platform::String ^mailbox);
 
-	Boolean UseCertVault(XmlCertVault ^vault);
+	Boolean UseCertVault(Chilkat::XmlCertVault ^vault);
 
-	Boolean UseSsh(Ssh ^ssh);
+	Boolean UseSsh(Chilkat::Ssh ^ssh);
 
-	Boolean UseSshTunnel(Socket ^tunnel);
+	Boolean UseSshTunnel(Chilkat::Socket ^tunnel);
 
 
 

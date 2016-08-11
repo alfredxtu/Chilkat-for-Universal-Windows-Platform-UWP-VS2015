@@ -42,38 +42,12 @@ public ref class DirTree sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
+	property Platform::String ^BaseDir
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Platform::String ^BaseDir
+	property Platform::String ^DebugLogFilePath
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
@@ -102,6 +76,23 @@ public ref class DirTree sealed
 	{
 		Boolean get();
 	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property Boolean Recurse
 	{
 		Boolean get();
@@ -111,13 +102,20 @@ public ref class DirTree sealed
 	{
 		Platform::String ^get();
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	Boolean AdvancePosition(void);
 
 	Boolean BeginIterate(void);

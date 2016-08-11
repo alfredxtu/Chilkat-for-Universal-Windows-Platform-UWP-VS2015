@@ -43,6 +43,15 @@ public ref class CkDateTime sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property int32 IsDst
+	{
+		int32 get();
+	}
 	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
@@ -55,40 +64,29 @@ public ref class CkDateTime sealed
 	{
 		Platform::String ^get();
 	}
-	property Platform::String ^Version
+	property Boolean LastMethodSuccess
 	{
-		Platform::String ^get();
+		Boolean get();
+		void set(Boolean);
 	}
-	property Platform::String ^DebugLogFilePath
+	property int32 UtcOffset
 	{
-		Platform::String ^get();
-		void set(Platform::String ^);
+		int32 get();
 	}
 	property Boolean VerboseLogging
 	{
 		Boolean get();
 		void set(Boolean);
 	}
-	property Boolean LastMethodSuccess
+	property Platform::String ^Version
 	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property int32 IsDst
-	{
-		int32 get();
-	}
-	property int32 UtcOffset
-	{
-		int32 get();
+		Platform::String ^get();
 	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	Boolean AddDays(int numDays);
 
 	void DeSerialize(Platform::String ^serializedDateTime);
@@ -100,6 +98,8 @@ public ref class CkDateTime sealed
 	double GetAsOleDate(Boolean bLocal);
 
 	Platform::String ^GetAsRfc822(Boolean bLocal);
+
+	Platform::String ^GetAsTimestamp(Boolean bLocal);
 
 	int GetAsUnixTime(Boolean bLocal);
 
@@ -115,7 +115,7 @@ public ref class CkDateTime sealed
 
 	void SetFromDosDate(Boolean bLocal, uint32 t);
 
-	Boolean SetFromDtObj(DtObj ^dt);
+	Boolean SetFromDtObj(Chilkat::DtObj ^dt);
 
 	void SetFromNtpTime(int ntpSeconds);
 
@@ -123,13 +123,11 @@ public ref class CkDateTime sealed
 
 	Boolean SetFromRfc822(Platform::String ^rfc822Str);
 
+	Boolean SetFromTimestamp(Platform::String ^timestamp);
+
 	void SetFromUnixTime(Boolean bLocal, int t);
 
 	void SetFromUnixTime64(Boolean bLocal, int64 t);
-
-	Boolean SetFromTimestamp(Platform::String ^timestamp);
-
-	Platform::String ^GetAsTimestamp(Boolean bLocal);
 
 
 

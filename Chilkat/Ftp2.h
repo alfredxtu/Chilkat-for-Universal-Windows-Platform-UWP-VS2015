@@ -131,37 +131,6 @@ public ref class Ftp2 sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Boolean AbortCurrent
 	{
 		Boolean get();
@@ -288,6 +257,11 @@ public ref class Ftp2 sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^DirListingCharset
 	{
 		Platform::String ^get();
@@ -360,6 +334,23 @@ public ref class Ftp2 sealed
 		Boolean get();
 	}
 	property Boolean KeepSessionLog
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
 	{
 		Boolean get();
 		void set(Boolean);
@@ -480,16 +471,6 @@ public ref class Ftp2 sealed
 		Boolean get();
 		void set(Boolean);
 	}
-	property int32 SoRcvBuf
-	{
-		int32 get();
-		void set(int32);
-	}
-	property int32 SoSndBuf
-	{
-		int32 get();
-		void set(int32);
-	}
 	property Platform::String ^SocksHostname
 	{
 		Platform::String ^get();
@@ -515,6 +496,16 @@ public ref class Ftp2 sealed
 		int32 get();
 		void set(int32);
 	}
+	property int32 SoRcvBuf
+	{
+		int32 get();
+		void set(int32);
+	}
+	property int32 SoSndBuf
+	{
+		int32 get();
+		void set(int32);
+	}
 	property Boolean Ssl
 	{
 		Boolean get();
@@ -534,6 +525,11 @@ public ref class Ftp2 sealed
 	{
 		Boolean get();
 	}
+	property Platform::String ^SyncedFiles
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^SyncMustMatch
 	{
 		Platform::String ^get();
@@ -547,11 +543,6 @@ public ref class Ftp2 sealed
 	property Platform::String ^SyncPreview
 	{
 		Platform::String ^get();
-	}
-	property Platform::String ^SyncedFiles
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
 	}
 	property Platform::String ^TlsCipherSuite
 	{
@@ -580,20 +571,27 @@ public ref class Ftp2 sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
-	IAsyncOperation<Boolean>^ AppendFileAsync(Platform::String ^localFilename, Platform::String ^remoteFilename);
+	IAsyncOperation<Boolean>^ AppendFileAsync(Platform::String ^localFilePath, Platform::String ^remoteFilePath);
 
 	IAsyncOperation<Boolean>^ AppendFileFromBinaryDataAsync(Platform::String ^remoteFilename, Windows::Foundation::Collections::IVector<uint8>^content);
 
 	IAsyncOperation<Boolean>^ AppendFileFromTextDataAsync(Platform::String ^remoteFilename, Platform::String ^textData, Platform::String ^charset);
 
-	IAsyncOperation<Boolean>^ ChangeRemoteDirAsync(Platform::String ^relativeDirPath);
+	IAsyncOperation<Boolean>^ ChangeRemoteDirAsync(Platform::String ^remoteDirPath);
 
 	IAsyncOperation<Boolean>^ CheckConnectionAsync(void);
 
@@ -611,11 +609,11 @@ public ref class Ftp2 sealed
 
 	IAsyncOperation<Platform::String ^>^ CreatePlanAsync(Platform::String ^localDir);
 
-	IAsyncOperation<Boolean>^ CreateRemoteDirAsync(Platform::String ^dir);
+	IAsyncOperation<Boolean>^ CreateRemoteDirAsync(Platform::String ^remoteDirPath);
 
 	IAsyncOperation<int>^ DeleteMatchingAsync(Platform::String ^remotePattern);
 
-	IAsyncOperation<Boolean>^ DeleteRemoteFileAsync(Platform::String ^filename);
+	IAsyncOperation<Boolean>^ DeleteRemoteFileAsync(Platform::String ^remoteFilePath);
 
 	IAsyncOperation<Boolean>^ DeleteTreeAsync(void);
 
@@ -643,7 +641,7 @@ public ref class Ftp2 sealed
 
 	IAsyncOperation<int>^ GetDirCountAsync(void);
 
-	IAsyncOperation<Boolean>^ GetFileAsync(Platform::String ^remoteFilename, Platform::String ^localFilename);
+	IAsyncOperation<Boolean>^ GetFileAsync(Platform::String ^remoteFilePath, Platform::String ^localFilePath);
 
 	IAsyncOperation<Platform::String ^>^ GetFilenameAsync(int index);
 
@@ -671,9 +669,9 @@ public ref class Ftp2 sealed
 
 	IAsyncOperation<Platform::String ^>^ GetOwnerAsync(int index);
 
-	IAsyncOperation<Platform::String ^>^ GetPermTypeAsync(int index);
-
 	IAsyncOperation<Platform::String ^>^ GetPermissionsAsync(int index);
+
+	IAsyncOperation<Platform::String ^>^ GetPermTypeAsync(int index);
 
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ GetRemoteFileBinaryDataAsync(Platform::String ^remoteFilename);
 
@@ -709,11 +707,11 @@ public ref class Ftp2 sealed
 
 	IAsyncOperation<int>^ MPutFilesAsync(Platform::String ^pattern);
 
-	IAsyncOperation<Platform::String ^>^ NlstXmlAsync(Platform::String ^pattern);
+	IAsyncOperation<Platform::String ^>^ NlstXmlAsync(Platform::String ^remoteDirPattern);
 
 	IAsyncOperation<Boolean>^ NoopAsync(void);
 
-	IAsyncOperation<Boolean>^ PutFileAsync(Platform::String ^localFilename, Platform::String ^remoteFilename);
+	IAsyncOperation<Boolean>^ PutFileAsync(Platform::String ^localFilePath, Platform::String ^remoteFilePath);
 
 	IAsyncOperation<Boolean>^ PutFileFromBinaryDataAsync(Platform::String ^remoteFilename, Windows::Foundation::Collections::IVector<uint8>^content);
 
@@ -725,9 +723,9 @@ public ref class Ftp2 sealed
 
 	IAsyncOperation<Boolean>^ QuoteAsync(Platform::String ^cmd);
 
-	IAsyncOperation<Boolean>^ RemoveRemoteDirAsync(Platform::String ^dir);
+	IAsyncOperation<Boolean>^ RemoveRemoteDirAsync(Platform::String ^remoteDirPath);
 
-	IAsyncOperation<Boolean>^ RenameRemoteFileAsync(Platform::String ^existingFilename, Platform::String ^newFilename);
+	IAsyncOperation<Boolean>^ RenameRemoteFileAsync(Platform::String ^existingRemoteFilePath, Platform::String ^newRemoteFilePath);
 
 	IAsyncOperation<Platform::String ^>^ SendCommandAsync(Platform::String ^cmd);
 
@@ -741,9 +739,9 @@ public ref class Ftp2 sealed
 
 	IAsyncOperation<Boolean>^ SetRemoteFileDtAsync(Chilkat::CkDateTime ^dt, Platform::String ^remoteFilename);
 
-	void SetSslCertRequirement(Platform::String ^name, Platform::String ^value);
+	void SetSslCertRequirement(Platform::String ^reqName, Platform::String ^reqValue);
 
-	Boolean SetSslClientCert(Cert ^cert);
+	Boolean SetSslClientCert(Chilkat::Cert ^cert);
 
 	Boolean SetSslClientCertPem(Platform::String ^pemDataOrFilename, Platform::String ^pemPassword);
 
@@ -767,7 +765,7 @@ public ref class Ftp2 sealed
 
 	IAsyncOperation<Boolean>^ SyncRemoteTreeAsync(Platform::String ^localRoot, int mode);
 
-	IAsyncOperation<Boolean>^ SyncRemoteTree2Async(Platform::String ^localRoot, int mode, Boolean bDescend, Boolean bPreviewOnly);
+	IAsyncOperation<Boolean>^ SyncRemoteTree2Async(Platform::String ^localDirPath, int mode, Boolean bDescend, Boolean bPreviewOnly);
 
 	IAsyncOperation<Platform::String ^>^ SystAsync(void);
 

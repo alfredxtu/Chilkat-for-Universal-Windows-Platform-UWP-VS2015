@@ -45,53 +45,13 @@ Chilkat::AuthAzureAD::AuthAzureAD(void)
 //}
 
 
-String ^Chilkat::AuthAzureAD::LastErrorHtml::get()
+String ^Chilkat::AuthAzureAD::AccessToken::get()
     {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    return ref new String(m_impl ? m_impl->accessToken() : L"");
     }
-String ^Chilkat::AuthAzureAD::LastErrorText::get()
+void Chilkat::AuthAzureAD::AccessToken::set(String ^newVal)
     {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::AuthAzureAD::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::AuthAzureAD::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::AuthAzureAD::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::AuthAzureAD::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::AuthAzureAD::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::AuthAzureAD::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::AuthAzureAD::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::AuthAzureAD::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
-String ^Chilkat::AuthAzureAD::TenantId::get()
-    {
-    return ref new String(m_impl ? m_impl->tenantId() : L"");
-    }
-void Chilkat::AuthAzureAD::TenantId::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_TenantId(newVal ? newVal->Data() : L"");
+        if (m_impl) m_impl->put_AccessToken(newVal ? newVal->Data() : L"");
     }
 String ^Chilkat::AuthAzureAD::ClientId::get()
     {
@@ -109,6 +69,38 @@ void Chilkat::AuthAzureAD::ClientSecret::set(String ^newVal)
     {
         if (m_impl) m_impl->put_ClientSecret(newVal ? newVal->Data() : L"");
     }
+String ^Chilkat::AuthAzureAD::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::AuthAzureAD::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::AuthAzureAD::LastErrorHtml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    }
+String ^Chilkat::AuthAzureAD::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::AuthAzureAD::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
+Boolean Chilkat::AuthAzureAD::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::AuthAzureAD::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+    }
+int Chilkat::AuthAzureAD::NumSecondsRemaining::get()
+    {
+    return m_impl ? m_impl->get_NumSecondsRemaining() : 0;
+    }
 String ^Chilkat::AuthAzureAD::Resource::get()
     {
     return ref new String(m_impl ? m_impl->resource() : L"");
@@ -117,35 +109,33 @@ void Chilkat::AuthAzureAD::Resource::set(String ^newVal)
     {
         if (m_impl) m_impl->put_Resource(newVal ? newVal->Data() : L"");
     }
-String ^Chilkat::AuthAzureAD::AccessToken::get()
+String ^Chilkat::AuthAzureAD::TenantId::get()
     {
-    return ref new String(m_impl ? m_impl->accessToken() : L"");
+    return ref new String(m_impl ? m_impl->tenantId() : L"");
     }
-void Chilkat::AuthAzureAD::AccessToken::set(String ^newVal)
+void Chilkat::AuthAzureAD::TenantId::set(String ^newVal)
     {
-        if (m_impl) m_impl->put_AccessToken(newVal ? newVal->Data() : L"");
-    }
-int Chilkat::AuthAzureAD::NumSecondsRemaining::get()
-    {
-    return m_impl ? m_impl->get_NumSecondsRemaining() : 0;
+        if (m_impl) m_impl->put_TenantId(newVal ? newVal->Data() : L"");
     }
 Boolean Chilkat::AuthAzureAD::Valid::get()
     {
     return m_impl ? m_impl->get_Valid() : false;
     }
-
-
-Boolean AuthAzureAD::SaveLastError(Platform::String ^path)
+Boolean Chilkat::AuthAzureAD::VerboseLogging::get()
     {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxAuthAzureADProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
+    return m_impl ? m_impl->get_VerboseLogging() : false;
     }
-IAsyncOperation<Boolean>^ AuthAzureAD::ObtainAccessTokenAsync(Socket ^connection)
+void Chilkat::AuthAzureAD::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::AuthAzureAD::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
+
+
+IAsyncOperation<Boolean>^ AuthAzureAD::ObtainAccessTokenAsync(Chilkat::Socket ^connection)
     {
 return create_async([this, connection]() -> Boolean
 {
@@ -158,8 +148,6 @@ return create_async([this, connection]() -> Boolean
 	// --- prep output arg ---
 	CxAuthAzureADProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ObtainAccessToken(*pObj0);
 
 });

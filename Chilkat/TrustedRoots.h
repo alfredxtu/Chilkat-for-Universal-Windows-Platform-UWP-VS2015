@@ -76,6 +76,11 @@ public ref class TrustedRoots sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
@@ -87,20 +92,6 @@ public ref class TrustedRoots sealed
 	property Platform::String ^LastErrorXml
 	{
 		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
 	}
 	property Boolean LastMethodSuccess
 	{
@@ -116,18 +107,25 @@ public ref class TrustedRoots sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	Boolean Activate(void);
 
-	Boolean AddCert(Cert ^cert);
+	Boolean AddCert(Chilkat::Cert ^cert);
 
-	IAsyncOperation<Boolean>^ AddJavaKeyStoreAsync(JavaKeyStore ^keystore);
+	IAsyncOperation<Boolean>^ AddJavaKeyStoreAsync(Chilkat::JavaKeyStore ^keystore);
 
 	Boolean Deactivate(void);
 

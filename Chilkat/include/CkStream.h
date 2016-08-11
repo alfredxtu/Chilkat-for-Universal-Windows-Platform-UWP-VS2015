@@ -235,6 +235,38 @@ class CK_VISIBLE_PUBLIC CkStream  : public CkClassWithCallbacks
 	// 
 	void put_SourceFile(const char *newVal);
 
+	// If the source is a file, then this property can be used to stream one part of
+	// the file. The SourceFilePartSize property defines the size (in bytes) of each
+	// part. The SourceFilePart and SourceFilePartSize have default values of 0, which
+	// means the entire SourceFile is streamed.
+	// 
+	// This property is a 0-based index. For example, if the SourceFilePartSize is
+	// 1000, then part 0 is for bytes 0 to 999, part 1 is for bytes 1000 to 1999, etc.
+	// 
+	int get_SourceFilePart(void);
+	// If the source is a file, then this property can be used to stream one part of
+	// the file. The SourceFilePartSize property defines the size (in bytes) of each
+	// part. The SourceFilePart and SourceFilePartSize have default values of 0, which
+	// means the entire SourceFile is streamed.
+	// 
+	// This property is a 0-based index. For example, if the SourceFilePartSize is
+	// 1000, then part 0 is for bytes 0 to 999, part 1 is for bytes 1000 to 1999, etc.
+	// 
+	void put_SourceFilePart(int newVal);
+
+	// If the source is a file, then this property, in conjunction with the
+	// SourceFilePart property, can be used to stream a single part of the file. This
+	// property defines the size (in bytes) of each part. The SourceFilePart and
+	// SourceFilePartSize have default values of 0, which means that by default, the
+	// entire SourceFile is streamed.
+	int get_SourceFilePartSize(void);
+	// If the source is a file, then this property, in conjunction with the
+	// SourceFilePart property, can be used to stream a single part of the file. This
+	// property defines the size (in bytes) of each part. The SourceFilePart and
+	// SourceFilePartSize have default values of 0, which means that by default, the
+	// entire SourceFile is streamed.
+	void put_SourceFilePartSize(int newVal);
+
 	// If true, then include the BOM when creating a string source via
 	// SetSourceString where the charset is utf-8, utf-16, etc. (The term "BOM" stands
 	// for Byte Order Mark, also known as the preamble.) Also, if true, then include
@@ -309,40 +341,40 @@ class CK_VISIBLE_PUBLIC CkStream  : public CkClassWithCallbacks
 
 
 	// The same as ReadBytes, except returns the received bytes in encoded string form.
-	// The ARG1 argument indicates the encoding, which can be "base64", "hex", or any
+	// The encoding argument indicates the encoding, which can be "base64", "hex", or any
 	// of the multitude of encodings indicated in the link below.
 	bool ReadBytesENC(const char *encoding, CkString &outStr);
 
 	// The same as ReadBytes, except returns the received bytes in encoded string form.
-	// The ARG1 argument indicates the encoding, which can be "base64", "hex", or any
+	// The encoding argument indicates the encoding, which can be "base64", "hex", or any
 	// of the multitude of encodings indicated in the link below.
 	const char *readBytesENC(const char *encoding);
 	// The same as ReadBytes, except returns the received bytes in encoded string form.
-	// The ARG1 argument indicates the encoding, which can be "base64", "hex", or any
+	// The encoding argument indicates the encoding, which can be "base64", "hex", or any
 	// of the multitude of encodings indicated in the link below.
 	CkTask *ReadBytesENCAsync(const char *encoding);
 
 
-	// Reads exactly ARG1 bytes from the stream. If no data is immediately available,
+	// Reads exactly numBytes bytes from the stream. If no data is immediately available,
 	// it waits up to ReadTimeoutMs milliseconds for data to arrive.
 	bool ReadNBytes(int numBytes, CkByteData &outBytes);
 
-	// Reads exactly ARG1 bytes from the stream. If no data is immediately available,
+	// Reads exactly numBytes bytes from the stream. If no data is immediately available,
 	// it waits up to ReadTimeoutMs milliseconds for data to arrive.
 	CkTask *ReadNBytesAsync(int numBytes);
 
 
 	// The same as ReadNBytes, except returns the received bytes in encoded string
-	// form. The ARG2 argument indicates the encoding, which can be "base64", "hex", or
+	// form. The encoding argument indicates the encoding, which can be "base64", "hex", or
 	// any of the multitude of encodings indicated in the link below.
 	bool ReadNBytesENC(int numBytes, const char *encoding, CkString &outStr);
 
 	// The same as ReadNBytes, except returns the received bytes in encoded string
-	// form. The ARG2 argument indicates the encoding, which can be "base64", "hex", or
+	// form. The encoding argument indicates the encoding, which can be "base64", "hex", or
 	// any of the multitude of encodings indicated in the link below.
 	const char *readNBytesENC(int numBytes, const char *encoding);
 	// The same as ReadNBytes, except returns the received bytes in encoded string
-	// form. The ARG2 argument indicates the encoding, which can be "base64", "hex", or
+	// form. The encoding argument indicates the encoding, which can be "base64", "hex", or
 	// any of the multitude of encodings indicated in the link below.
 	CkTask *ReadNBytesENCAsync(int numBytes, const char *encoding);
 
@@ -410,7 +442,7 @@ class CK_VISIBLE_PUBLIC CkStream  : public CkClassWithCallbacks
 	CkTask *ReadToCRLFAsync(void);
 
 
-	// Reads the stream until the string indicated by ARG1 is received. If no data is
+	// Reads the stream until the string indicated by matchStr is received. If no data is
 	// immediately available, it waits up to ReadTimeoutMs milliseconds for data to
 	// arrive. The data is returned as a string. The incoming bytes are interpreted
 	// according to the StringCharset property. For example, if utf-8 bytes are
@@ -424,7 +456,7 @@ class CK_VISIBLE_PUBLIC CkStream  : public CkClassWithCallbacks
 	// 
 	bool ReadUntilMatch(const char *matchStr, CkString &outStr);
 
-	// Reads the stream until the string indicated by ARG1 is received. If no data is
+	// Reads the stream until the string indicated by matchStr is received. If no data is
 	// immediately available, it waits up to ReadTimeoutMs milliseconds for data to
 	// arrive. The data is returned as a string. The incoming bytes are interpreted
 	// according to the StringCharset property. For example, if utf-8 bytes are
@@ -437,7 +469,7 @@ class CK_VISIBLE_PUBLIC CkStream  : public CkClassWithCallbacks
 	// returned that does not end with the desired match string.
 	// 
 	const char *readUntilMatch(const char *matchStr);
-	// Reads the stream until the string indicated by ARG1 is received. If no data is
+	// Reads the stream until the string indicated by matchStr is received. If no data is
 	// immediately available, it waits up to ReadTimeoutMs milliseconds for data to
 	// arrive. The data is returned as a string. The incoming bytes are interpreted
 	// according to the StringCharset property. For example, if utf-8 bytes are
@@ -478,29 +510,29 @@ class CK_VISIBLE_PUBLIC CkStream  : public CkClassWithCallbacks
 	CkTask *RunStreamAsync(void);
 
 
-	// Sets the stream's sink to ARG1. Any data written to this stream's sink will
-	// become available to ARG1 on its source.
+	// Sets the stream's sink to strm. Any data written to this stream's sink will
+	// become available to strm on its source.
 	bool SetSinkStream(CkStream &strm);
 
 
-	// Sets the stream's source to the contents of ARG1.
+	// Sets the stream's source to the contents of sourceData.
 	bool SetSourceBytes(CkByteData &sourceData);
 
 
-	// Sets the stream's source to be the sink of ARG1. Any data written to ARG1's sink
+	// Sets the stream's source to be the sink of strm. Any data written to strm's sink
 	// will become available on this stream's source.
 	bool SetSourceStream(CkStream &strm);
 
 
-	// Sets the stream's source to the contents of ARG1. The ARG2 indicates the
-	// character encoding to be used for the byte representation of the ARG1.
+	// Sets the stream's source to the contents of srcStr. The charset indicates the
+	// character encoding to be used for the byte representation of the srcStr.
 	bool SetSourceString(const char *srcStr, const char *charset);
 
 
-	// Writes a single byte to the stream. The ARG1 must have a value from 0 to 255.
+	// Writes a single byte to the stream. The byteVal must have a value from 0 to 255.
 	bool WriteByte(int byteVal);
 
-	// Writes a single byte to the stream. The ARG1 must have a value from 0 to 255.
+	// Writes a single byte to the stream. The byteVal must have a value from 0 to 255.
 	CkTask *WriteByteAsync(int byteVal);
 
 
@@ -512,12 +544,12 @@ class CK_VISIBLE_PUBLIC CkStream  : public CkClassWithCallbacks
 
 
 	// Writes binary bytes to a stream. The byte data is passed in encoded string form,
-	// where the ARG2 can be "base64", "hex", or any of the supported binary encodings
+	// where the encoding can be "base64", "hex", or any of the supported binary encodings
 	// listed at the link below.
 	bool WriteBytesENC(const char *byteData, const char *encoding);
 
 	// Writes binary bytes to a stream. The byte data is passed in encoded string form,
-	// where the ARG2 can be "base64", "hex", or any of the supported binary encodings
+	// where the encoding can be "base64", "hex", or any of the supported binary encodings
 	// listed at the link below.
 	CkTask *WriteBytesENCAsync(const char *byteData, const char *encoding);
 

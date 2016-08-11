@@ -107,6 +107,21 @@ class CK_VISIBLE_PUBLIC CkUrl  : public CkMultiByteBase
 	// "/gp/product/1476752842/ref=s9_psimh_gw_p14_d0_i3".
 	const char *path(void);
 
+	// The path (and params) part of the URL, including the query params, but excluding
+	// the fragment. If the URL is:
+	// "http://www.amazon.com/gp/product/1476752842/ref=s9_psimh_gw_p14_d0_i3?pf_rd_m=AT
+	// VPDKIKX0DER&pf_rd_s=desktop-1", then then this property returns
+	// "/gp/product/1476752842/ref=s9_psimh_gw_p14_d0_i3?pf_rd_m=ATVPDKIKX0DER&pf_rd_s=d
+	// esktop-1".
+	void get_PathWithQueryParams(CkString &str);
+	// The path (and params) part of the URL, including the query params, but excluding
+	// the fragment. If the URL is:
+	// "http://www.amazon.com/gp/product/1476752842/ref=s9_psimh_gw_p14_d0_i3?pf_rd_m=AT
+	// VPDKIKX0DER&pf_rd_s=desktop-1", then then this property returns
+	// "/gp/product/1476752842/ref=s9_psimh_gw_p14_d0_i3?pf_rd_m=ATVPDKIKX0DER&pf_rd_s=d
+	// esktop-1".
+	const char *pathWithQueryParams(void);
+
 	// The port number of the URL.
 	// 
 	// For example, if the URL is "http://www.contoso.com:8080/", the port number is
@@ -132,21 +147,6 @@ class CK_VISIBLE_PUBLIC CkUrl  : public CkMultiByteBase
 	// true if the URL indicates SSL/TLS, otherwise false. A URL beginning with
 	// "https://" indicates SSL/TLS.
 	bool get_Ssl(void);
-
-	// The path (and params) part of the URL, including the query params, but excluding
-	// the fragment. If the URL is:
-	// "http://www.amazon.com/gp/product/1476752842/ref=s9_psimh_gw_p14_d0_i3?pf_rd_m=AT
-	// VPDKIKX0DER&pf_rd_s=desktop-1", then then this property returns
-	// "/gp/product/1476752842/ref=s9_psimh_gw_p14_d0_i3?pf_rd_m=ATVPDKIKX0DER&pf_rd_s=d
-	// esktop-1".
-	void get_PathWithQueryParams(CkString &str);
-	// The path (and params) part of the URL, including the query params, but excluding
-	// the fragment. If the URL is:
-	// "http://www.amazon.com/gp/product/1476752842/ref=s9_psimh_gw_p14_d0_i3?pf_rd_m=AT
-	// VPDKIKX0DER&pf_rd_s=desktop-1", then then this property returns
-	// "/gp/product/1476752842/ref=s9_psimh_gw_p14_d0_i3?pf_rd_m=ATVPDKIKX0DER&pf_rd_s=d
-	// esktop-1".
-	const char *pathWithQueryParams(void);
 
 
 

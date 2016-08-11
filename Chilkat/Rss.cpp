@@ -43,6 +43,14 @@ Chilkat::Rss::Rss(void)
 //}
 
 
+String ^Chilkat::Rss::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::Rss::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
 String ^Chilkat::Rss::LastErrorHtml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
@@ -54,26 +62,6 @@ String ^Chilkat::Rss::LastErrorText::get()
 String ^Chilkat::Rss::LastErrorXml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::Rss::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::Rss::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::Rss::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Rss::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::Rss::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
     }
 Boolean Chilkat::Rss::LastMethodSuccess::get()
     {
@@ -91,26 +79,26 @@ int Chilkat::Rss::NumItems::get()
     {
     return m_impl ? m_impl->get_NumItems() : 0;
     }
-
-
-Boolean Rss::SaveLastError(Platform::String ^path)
+Boolean Chilkat::Rss::VerboseLogging::get()
     {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxRssProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
+    return m_impl ? m_impl->get_VerboseLogging() : false;
     }
+void Chilkat::Rss::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::Rss::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
+
+
 Rss ^Rss::AddNewChannel(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CxRssProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Rss
-	// cppType = CkRss *
 	CkRssW *pRetObj = m_impl->AddNewChannel();
 	if (!pRetObj) return nullptr;
 	Chilkat::Rss ^pRss = ref new Chilkat::Rss();
@@ -123,8 +111,6 @@ Rss ^Rss::AddNewImage(void)
 	// --- prep output arg ---
 	CxRssProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Rss
-	// cppType = CkRss *
 	CkRssW *pRetObj = m_impl->AddNewImage();
 	if (!pRetObj) return nullptr;
 	Chilkat::Rss ^pRss = ref new Chilkat::Rss();
@@ -137,8 +123,6 @@ Rss ^Rss::AddNewItem(void)
 	// --- prep output arg ---
 	CxRssProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Rss
-	// cppType = CkRss *
 	CkRssW *pRetObj = m_impl->AddNewItem();
 	if (!pRetObj) return nullptr;
 	Chilkat::Rss ^pRss = ref new Chilkat::Rss();
@@ -155,8 +139,6 @@ return create_async([this, url]() -> Boolean
 	// --- prep output arg ---
 	CxRssProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->DownloadRss(url ? url->Data() : L"");
 
 });
@@ -167,8 +149,6 @@ Platform::String ^Rss::GetAttr(Platform::String ^tag, Platform::String ^attrName
 	// --- prep output arg ---
 	CxRssProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getAttr(tag ? tag->Data() : L"",attrName ? attrName->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -179,8 +159,6 @@ Rss ^Rss::GetChannel(int index)
 	// --- prep output arg ---
 	CxRssProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Rss
-	// cppType = CkRss *
 	CkRssW *pRetObj = m_impl->GetChannel(index);
 	if (!pRetObj) return nullptr;
 	Chilkat::Rss ^pRss = ref new Chilkat::Rss();
@@ -193,8 +171,6 @@ int Rss::GetCount(Platform::String ^tag)
 	// --- prep output arg ---
 	CxRssProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
 	return m_impl->GetCount(tag ? tag->Data() : L"");
     }
 Platform::String ^Rss::GetDateStr(Platform::String ^tag)
@@ -203,8 +179,6 @@ Platform::String ^Rss::GetDateStr(Platform::String ^tag)
 	// --- prep output arg ---
 	CxRssProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getDateStr(tag ? tag->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -215,8 +189,6 @@ Rss ^Rss::GetImage(void)
 	// --- prep output arg ---
 	CxRssProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Rss
-	// cppType = CkRss *
 	CkRssW *pRetObj = m_impl->GetImage();
 	if (!pRetObj) return nullptr;
 	Chilkat::Rss ^pRss = ref new Chilkat::Rss();
@@ -229,8 +201,6 @@ int Rss::GetInt(Platform::String ^tag)
 	// --- prep output arg ---
 	CxRssProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
 	return m_impl->GetInt(tag ? tag->Data() : L"");
     }
 Rss ^Rss::GetItem(int index)
@@ -239,8 +209,6 @@ Rss ^Rss::GetItem(int index)
 	// --- prep output arg ---
 	CxRssProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Rss
-	// cppType = CkRss *
 	CkRssW *pRetObj = m_impl->GetItem(index);
 	if (!pRetObj) return nullptr;
 	Chilkat::Rss ^pRss = ref new Chilkat::Rss();
@@ -253,21 +221,17 @@ Platform::String ^Rss::GetString(Platform::String ^tag)
 	// --- prep output arg ---
 	CxRssProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getString(tag ? tag->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-Boolean Rss::LoadRssFile(Platform::String ^filename)
+Boolean Rss::LoadRssFile(Platform::String ^filePath)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	CxRssProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->LoadRssFile(filename ? filename->Data() : L"");
+	return m_impl->LoadRssFile(filePath ? filePath->Data() : L"");
     }
 Boolean Rss::LoadRssString(Platform::String ^rssString)
     {
@@ -275,8 +239,6 @@ Boolean Rss::LoadRssString(Platform::String ^rssString)
 	// --- prep output arg ---
 	CxRssProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadRssString(rssString ? rssString->Data() : L"");
     }
 Platform::String ^Rss::MGetAttr(Platform::String ^tag, int index, Platform::String ^attrName)
@@ -285,8 +247,6 @@ Platform::String ^Rss::MGetAttr(Platform::String ^tag, int index, Platform::Stri
 	// --- prep output arg ---
 	CxRssProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->mGetAttr(tag ? tag->Data() : L"",index,attrName ? attrName->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -297,8 +257,6 @@ Platform::String ^Rss::MGetString(Platform::String ^tag, int index)
 	// --- prep output arg ---
 	CxRssProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->mGetString(tag ? tag->Data() : L"",index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -309,8 +267,6 @@ Boolean Rss::MSetAttr(Platform::String ^tag, int idx, Platform::String ^attrName
 	// --- prep output arg ---
 	CxRssProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->MSetAttr(tag ? tag->Data() : L"",idx,attrName ? attrName->Data() : L"",value ? value->Data() : L"");
     }
 Boolean Rss::MSetString(Platform::String ^tag, int idx, Platform::String ^value)
@@ -319,8 +275,6 @@ Boolean Rss::MSetString(Platform::String ^tag, int idx, Platform::String ^value)
 	// --- prep output arg ---
 	CxRssProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->MSetString(tag ? tag->Data() : L"",idx,value ? value->Data() : L"");
     }
 void Rss::NewRss(void)
@@ -329,8 +283,6 @@ void Rss::NewRss(void)
 	// --- prep output arg ---
 	CxRssProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->NewRss();
     }
 void Rss::Remove(Platform::String ^tag)
@@ -339,8 +291,6 @@ void Rss::Remove(Platform::String ^tag)
 	// --- prep output arg ---
 	CxRssProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->Remove(tag ? tag->Data() : L"");
     }
 void Rss::SetAttr(Platform::String ^tag, Platform::String ^attrName, Platform::String ^value)
@@ -349,8 +299,6 @@ void Rss::SetAttr(Platform::String ^tag, Platform::String ^attrName, Platform::S
 	// --- prep output arg ---
 	CxRssProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->SetAttr(tag ? tag->Data() : L"",attrName ? attrName->Data() : L"",value ? value->Data() : L"");
     }
 void Rss::SetDateNow(Platform::String ^tag)
@@ -359,8 +307,6 @@ void Rss::SetDateNow(Platform::String ^tag)
 	// --- prep output arg ---
 	CxRssProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->SetDateNow(tag ? tag->Data() : L"");
     }
 void Rss::SetDateStr(Platform::String ^tag, Platform::String ^dateTimeStr)
@@ -369,8 +315,6 @@ void Rss::SetDateStr(Platform::String ^tag, Platform::String ^dateTimeStr)
 	// --- prep output arg ---
 	CxRssProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->SetDateStr(tag ? tag->Data() : L"",dateTimeStr ? dateTimeStr->Data() : L"");
     }
 void Rss::SetInt(Platform::String ^tag, int value)
@@ -379,8 +323,6 @@ void Rss::SetInt(Platform::String ^tag, int value)
 	// --- prep output arg ---
 	CxRssProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->SetInt(tag ? tag->Data() : L"",value);
     }
 void Rss::SetString(Platform::String ^tag, Platform::String ^value)
@@ -389,8 +331,6 @@ void Rss::SetString(Platform::String ^tag, Platform::String ^value)
 	// --- prep output arg ---
 	CxRssProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->SetString(tag ? tag->Data() : L"",value ? value->Data() : L"");
     }
 Platform::String ^Rss::ToXmlString(void)
@@ -399,8 +339,6 @@ Platform::String ^Rss::ToXmlString(void)
 	// --- prep output arg ---
 	CxRssProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->toXmlString();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);

@@ -43,21 +43,13 @@ Chilkat::Dkim::Dkim(void)
 //}
 
 
-String ^Chilkat::Dkim::LastErrorHtml::get()
+Boolean Chilkat::Dkim::AbortCurrent::get()
     {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    return m_impl ? m_impl->get_AbortCurrent() : false;
     }
-String ^Chilkat::Dkim::LastErrorText::get()
+void Chilkat::Dkim::AbortCurrent::set(Boolean newVal)
     {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::Dkim::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::Dkim::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
     }
 String ^Chilkat::Dkim::DebugLogFilePath::get()
     {
@@ -66,22 +58,6 @@ String ^Chilkat::Dkim::DebugLogFilePath::get()
 void Chilkat::Dkim::DebugLogFilePath::set(String ^newVal)
     {
         if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Dkim::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::Dkim::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::Dkim::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::Dkim::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
 String ^Chilkat::Dkim::DkimAlg::get()
     {
@@ -179,26 +155,40 @@ void Chilkat::Dkim::HeartbeatMs::set(int newVal)
     {
         if (m_impl) m_impl->put_HeartbeatMs(newVal);
     }
-Boolean Chilkat::Dkim::AbortCurrent::get()
+String ^Chilkat::Dkim::LastErrorHtml::get()
     {
-    return m_impl ? m_impl->get_AbortCurrent() : false;
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
     }
-void Chilkat::Dkim::AbortCurrent::set(Boolean newVal)
+String ^Chilkat::Dkim::LastErrorText::get()
     {
-        if (m_impl) m_impl->put_AbortCurrent(newVal);
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::Dkim::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
+Boolean Chilkat::Dkim::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::Dkim::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+    }
+Boolean Chilkat::Dkim::VerboseLogging::get()
+    {
+    return m_impl ? m_impl->get_VerboseLogging() : false;
+    }
+void Chilkat::Dkim::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::Dkim::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
     }
 
 
-Boolean Dkim::SaveLastError(Platform::String ^path)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxDkimProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
-    }
 Windows::Foundation::Collections::IVector<uint8>^Dkim::AddDkimSignature(Windows::Foundation::Collections::IVector<uint8>^mimeIn)
     {
 	if (m_impl == nullptr) { return nullptr; }
@@ -209,8 +199,6 @@ Windows::Foundation::Collections::IVector<uint8>^Dkim::AddDkimSignature(Windows:
 	CkByteData outDb;
 	CxDkimProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->AddDkimSignature(db0,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -226,8 +214,6 @@ Windows::Foundation::Collections::IVector<uint8>^Dkim::AddDomainKeySignature(Win
 	CkByteData outDb;
 	CxDkimProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->AddDomainKeySignature(db0,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -239,8 +225,6 @@ Boolean Dkim::LoadDkimPk(Platform::String ^privateKey, Platform::String ^optiona
 	// --- prep output arg ---
 	CxDkimProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadDkimPk(privateKey ? privateKey->Data() : L"",optionalPassword ? optionalPassword->Data() : L"");
     }
 Boolean Dkim::LoadDkimPkBytes(Windows::Foundation::Collections::IVector<uint8>^privateKeyDer, Platform::String ^optionalPassword)
@@ -252,19 +236,15 @@ Boolean Dkim::LoadDkimPkBytes(Windows::Foundation::Collections::IVector<uint8>^p
 	// --- prep output arg ---
 	CxDkimProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadDkimPkBytes(db0,optionalPassword ? optionalPassword->Data() : L"");
     }
-Boolean Dkim::LoadDkimPkFile(Platform::String ^privateKeyFilepath, Platform::String ^optionalPassword)
+Boolean Dkim::LoadDkimPkFile(Platform::String ^privateKeyFilePath, Platform::String ^optionalPassword)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	CxDkimProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->LoadDkimPkFile(privateKeyFilepath ? privateKeyFilepath->Data() : L"",optionalPassword ? optionalPassword->Data() : L"");
+	return m_impl->LoadDkimPkFile(privateKeyFilePath ? privateKeyFilePath->Data() : L"",optionalPassword ? optionalPassword->Data() : L"");
     }
 Boolean Dkim::LoadDomainKeyPk(Platform::String ^privateKey, Platform::String ^optionalPassword)
     {
@@ -272,8 +252,6 @@ Boolean Dkim::LoadDomainKeyPk(Platform::String ^privateKey, Platform::String ^op
 	// --- prep output arg ---
 	CxDkimProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadDomainKeyPk(privateKey ? privateKey->Data() : L"",optionalPassword ? optionalPassword->Data() : L"");
     }
 Boolean Dkim::LoadDomainKeyPkBytes(Windows::Foundation::Collections::IVector<uint8>^privateKeyDer, Platform::String ^optionalPassword)
@@ -285,19 +263,15 @@ Boolean Dkim::LoadDomainKeyPkBytes(Windows::Foundation::Collections::IVector<uin
 	// --- prep output arg ---
 	CxDkimProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadDomainKeyPkBytes(db0,optionalPassword ? optionalPassword->Data() : L"");
     }
-Boolean Dkim::LoadDomainKeyPkFile(Platform::String ^privateKeyFilepath, Platform::String ^optionalPassword)
+Boolean Dkim::LoadDomainKeyPkFile(Platform::String ^privateKeyFilePath, Platform::String ^optionalPassword)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	CxDkimProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->LoadDomainKeyPkFile(privateKeyFilepath ? privateKeyFilepath->Data() : L"",optionalPassword ? optionalPassword->Data() : L"");
+	return m_impl->LoadDomainKeyPkFile(privateKeyFilePath ? privateKeyFilePath->Data() : L"",optionalPassword ? optionalPassword->Data() : L"");
     }
 Boolean Dkim::LoadPublicKey(Platform::String ^selector, Platform::String ^domain, Platform::String ^publicKey)
     {
@@ -305,8 +279,6 @@ Boolean Dkim::LoadPublicKey(Platform::String ^selector, Platform::String ^domain
 	// --- prep output arg ---
 	CxDkimProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadPublicKey(selector ? selector->Data() : L"",domain ? domain->Data() : L"",publicKey ? publicKey->Data() : L"");
     }
 Boolean Dkim::LoadPublicKeyFile(Platform::String ^selector, Platform::String ^domain, Platform::String ^publicKeyFilepath)
@@ -315,8 +287,6 @@ Boolean Dkim::LoadPublicKeyFile(Platform::String ^selector, Platform::String ^do
 	// --- prep output arg ---
 	CxDkimProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadPublicKeyFile(selector ? selector->Data() : L"",domain ? domain->Data() : L"",publicKeyFilepath ? publicKeyFilepath->Data() : L"");
     }
 int Dkim::NumDkimSignatures(Windows::Foundation::Collections::IVector<uint8>^mimeData)
@@ -328,8 +298,6 @@ int Dkim::NumDkimSignatures(Windows::Foundation::Collections::IVector<uint8>^mim
 	// --- prep output arg ---
 	CxDkimProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
 	return m_impl->NumDkimSignatures(db0);
     }
 int Dkim::NumDomainKeySignatures(Windows::Foundation::Collections::IVector<uint8>^mimeData)
@@ -341,8 +309,6 @@ int Dkim::NumDomainKeySignatures(Windows::Foundation::Collections::IVector<uint8
 	// --- prep output arg ---
 	CxDkimProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
 	return m_impl->NumDomainKeySignatures(db0);
     }
 IAsyncOperation<Boolean>^ Dkim::PrefetchPublicKeyAsync(Platform::String ^selector, Platform::String ^domain)
@@ -355,8 +321,6 @@ return create_async([this, selector, domain]() -> Boolean
 	// --- prep output arg ---
 	CxDkimProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->PrefetchPublicKey(selector ? selector->Data() : L"",domain ? domain->Data() : L"");
 
 });
@@ -367,13 +331,11 @@ Boolean Dkim::UnlockComponent(Platform::String ^unlockCode)
 	// --- prep output arg ---
 	CxDkimProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UnlockComponent(unlockCode ? unlockCode->Data() : L"");
     }
-IAsyncOperation<Boolean>^ Dkim::VerifyDkimSignatureAsync(int sigIdx, Windows::Foundation::Collections::IVector<uint8>^mimeData)
+IAsyncOperation<Boolean>^ Dkim::VerifyDkimSignatureAsync(int sigIndex, Windows::Foundation::Collections::IVector<uint8>^mimeData)
     {
-return create_async([this, sigIdx, mimeData]() -> Boolean
+return create_async([this, sigIndex, mimeData]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -384,15 +346,13 @@ return create_async([this, sigIdx, mimeData]() -> Boolean
 	// --- prep output arg ---
 	CxDkimProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->VerifyDkimSignature(sigIdx,db1);
+	return m_impl->VerifyDkimSignature(sigIndex,db1);
 
 });
     }
-IAsyncOperation<Boolean>^ Dkim::VerifyDomainKeySignatureAsync(int sigIdx, Windows::Foundation::Collections::IVector<uint8>^mimeData)
+IAsyncOperation<Boolean>^ Dkim::VerifyDomainKeySignatureAsync(int sigIndex, Windows::Foundation::Collections::IVector<uint8>^mimeData)
     {
-return create_async([this, sigIdx, mimeData]() -> Boolean
+return create_async([this, sigIndex, mimeData]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -403,9 +363,7 @@ return create_async([this, sigIdx, mimeData]() -> Boolean
 	// --- prep output arg ---
 	CxDkimProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->VerifyDomainKeySignature(sigIdx,db1);
+	return m_impl->VerifyDomainKeySignature(sigIndex,db1);
 
 });
     }

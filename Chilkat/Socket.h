@@ -77,37 +77,6 @@ public ref class Socket sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Boolean AbortCurrent
 	{
 		Boolean get();
@@ -145,6 +114,11 @@ public ref class Socket sealed
 	property int32 ConnectFailReason
 	{
 		int32 get();
+	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
 	}
 	property int32 ElapsedSeconds
 	{
@@ -199,9 +173,26 @@ public ref class Socket sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
 	property Boolean LastMethodFailed
 	{
 		Boolean get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
 	}
 	property Boolean ListenIpv6
 	{
@@ -252,21 +243,21 @@ public ref class Socket sealed
 		Boolean get();
 		void set(Boolean);
 	}
-	property int32 ReceiveFailReason
-	{
-		int32 get();
-	}
-	property int32 ReceivePacketSize
-	{
-		int32 get();
-		void set(int32);
-	}
 	property int32 ReceivedCount
 	{
 		int32 get();
 		void set(int32);
 	}
 	property int32 ReceivedInt
+	{
+		int32 get();
+		void set(int32);
+	}
+	property int32 ReceiveFailReason
+	{
+		int32 get();
+	}
+	property int32 ReceivePacketSize
 	{
 		int32 get();
 		void set(int32);
@@ -302,21 +293,6 @@ public ref class Socket sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
-	property int32 SoRcvBuf
-	{
-		int32 get();
-		void set(int32);
-	}
-	property Boolean SoReuseAddr
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property int32 SoSndBuf
-	{
-		int32 get();
-		void set(int32);
-	}
 	property Platform::String ^SocksHostname
 	{
 		Platform::String ^get();
@@ -338,6 +314,21 @@ public ref class Socket sealed
 		void set(Platform::String ^);
 	}
 	property int32 SocksVersion
+	{
+		int32 get();
+		void set(int32);
+	}
+	property int32 SoRcvBuf
+	{
+		int32 get();
+		void set(int32);
+	}
+	property Boolean SoReuseAddr
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property int32 SoSndBuf
 	{
 		int32 get();
 		void set(int32);
@@ -385,18 +376,25 @@ public ref class Socket sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	IAsyncOperation<Socket ^>^ AcceptNextConnectionAsync(int maxWaitMs);
 
 	Boolean AddSslAcceptableClientCaDn(Platform::String ^certAuthDN);
 
-	IAsyncOperation<Boolean>^ BindAndListenAsync(int port, int backlog);
+	IAsyncOperation<Boolean>^ BindAndListenAsync(int port, int backLog);
 
 	Platform::String ^BuildHttpGetRequest(Platform::String ^url);
 
@@ -426,7 +424,7 @@ public ref class Socket sealed
 
 	Cert ^GetSslServerCert(void);
 
-	Boolean InitSslServer(Cert ^cert);
+	Boolean InitSslServer(Chilkat::Cert ^cert);
 
 	Boolean IsUnlocked(void);
 
@@ -452,13 +450,13 @@ public ref class Socket sealed
 
 	IAsyncOperation<Platform::String ^>^ ReceiveStringAsync(void);
 
-	IAsyncOperation<Platform::String ^>^ ReceiveStringMaxNAsync(int maxBytes);
+	IAsyncOperation<Platform::String ^>^ ReceiveStringMaxNAsync(int maxByteCount);
 
-	IAsyncOperation<Platform::String ^>^ ReceiveStringUntilByteAsync(int byteValue);
+	IAsyncOperation<Platform::String ^>^ ReceiveStringUntilByteAsync(int lookForByte);
 
 	IAsyncOperation<Platform::String ^>^ ReceiveToCRLFAsync(void);
 
-	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ ReceiveUntilByteAsync(int byteValue);
+	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ ReceiveUntilByteAsync(int lookForByte);
 
 	IAsyncOperation<Platform::String ^>^ ReceiveUntilMatchAsync(Platform::String ^matchStr);
 
@@ -474,9 +472,9 @@ public ref class Socket sealed
 
 	IAsyncOperation<Boolean>^ SendInt32Async(int value, Boolean bigEndian);
 
-	IAsyncOperation<Boolean>^ SendStringAsync(Platform::String ^str);
+	IAsyncOperation<Boolean>^ SendStringAsync(Platform::String ^stringToSend);
 
-	Boolean SetSslClientCert(Cert ^cert);
+	Boolean SetSslClientCert(Chilkat::Cert ^cert);
 
 	Boolean SetSslClientCertPem(Platform::String ^pemDataOrFilename, Platform::String ^pemPassword);
 
@@ -484,7 +482,7 @@ public ref class Socket sealed
 
 	void SleepMs(int millisec);
 
-	IAsyncOperation<Boolean>^ SshAuthenticatePkAsync(Platform::String ^sshLogin, SshKey ^privateKey);
+	IAsyncOperation<Boolean>^ SshAuthenticatePkAsync(Platform::String ^sshLogin, Chilkat::SshKey ^privateKey);
 
 	IAsyncOperation<Boolean>^ SshAuthenticatePwAsync(Platform::String ^sshLogin, Platform::String ^sshPassword);
 
@@ -496,13 +494,13 @@ public ref class Socket sealed
 
 	void StartTiming(void);
 
-	Boolean TakeSocket(Socket ^sock);
+	Boolean TakeSocket(Chilkat::Socket ^sock);
 
 	IAsyncOperation<Boolean>^ TlsRenegotiateAsync(void);
 
 	Boolean UnlockComponent(Platform::String ^unlockCode);
 
-	Boolean UseSsh(Ssh ^ssh);
+	Boolean UseSsh(Chilkat::Ssh ^ssh);
 
 
 

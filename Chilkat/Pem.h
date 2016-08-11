@@ -80,6 +80,21 @@ public ref class Pem sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Boolean AppendMode
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property int32 HeartbeatMs
+	{
+		int32 get();
+		void set(int32);
+	}
 	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
@@ -92,34 +107,10 @@ public ref class Pem sealed
 	{
 		Platform::String ^get();
 	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Boolean LastMethodSuccess
 	{
 		Boolean get();
 		void set(Boolean);
-	}
-	property Boolean AppendMode
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property int32 HeartbeatMs
-	{
-		int32 get();
-		void set(int32);
 	}
 	property int32 NumCerts
 	{
@@ -147,20 +138,29 @@ public ref class Pem sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
+	Boolean AddCert(Chilkat::Cert ^cert, Boolean includeChain);
 
-	Boolean AddCert(Cert ^cert, Boolean includeChain);
+	Boolean AddItem(Platform::String ^itemType, Platform::String ^encoding, Platform::String ^itemData);
 
-	Boolean AddPrivateKey(PrivateKey ^privateKey);
+	Boolean AddPrivateKey(Chilkat::PrivateKey ^privateKey);
 
-	Boolean AddPrivateKey2(PrivateKey ^privKey, CertChain ^certChain);
+	Boolean AddPrivateKey2(Chilkat::PrivateKey ^privKey, Chilkat::CertChain ^certChain);
 
-	Boolean AddPublicKey(PublicKey ^pubkey);
+	Boolean AddPublicKey(Chilkat::PublicKey ^pubkey);
 
 	Boolean Clear(void);
 

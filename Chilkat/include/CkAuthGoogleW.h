@@ -137,7 +137,7 @@ class CK_VISIBLE_PUBLIC CkAuthGoogleW  : public CkClassWithCallbacksW
 
 	// Sends the HTTP request to fetch the access token. When this method completes
 	// successfully, the access token is available in the AccessToken property. The
-	// ARG1 is an existing connection to www.googleapis.com.
+	// connection is an existing connection to www.googleapis.com.
 	bool ObtainAccessToken(CkSocketW &connection);
 
 	// Creates an asynchronous task to call the ObtainAccessToken method with the

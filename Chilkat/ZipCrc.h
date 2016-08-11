@@ -74,51 +74,18 @@ public ref class ZipCrc sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	void BeginStream(void);
 
-	int CalculateCrc(Windows::Foundation::Collections::IVector<uint8>^data);
+	uint32 CalculateCrc(Windows::Foundation::Collections::IVector<uint8>^data);
 
-	int EndStream(void);
+	uint32 EndStream(void);
 
-	IAsyncOperation<int>^ FileCrcAsync(Platform::String ^path);
+	IAsyncOperation<uint32>^ FileCrcAsync(Platform::String ^path);
 
 	void MoreData(Windows::Foundation::Collections::IVector<uint8>^data);
 

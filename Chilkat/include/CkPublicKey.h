@@ -58,6 +58,30 @@ class CK_VISIBLE_PUBLIC CkPublicKey  : public CkMultiByteBase
 	// ----------------------
 	// Methods
 	// ----------------------
+	// Returns the public key in binary DER format. If the key type (such as RSA)
+	// supports both PKCS1 and PKCS8 formats, then preferPkcs1 determine which format is
+	// returned.
+	bool GetDer(bool preferPkcs1, CkByteData &outBytes);
+
+
+	// Returns the public key in DER format as an encoded string (such as base64 or
+	// hex). If the key type (such as RSA) supports both PKCS1 and PKCS8 formats, then
+	// preferPkcs1 determine which format is returned. The encoding specifies the encoding, which
+	// is typically "base64".
+	bool GetEncoded(bool preferPkcs1, const char *encoding, CkString &outStr);
+
+	// Returns the public key in DER format as an encoded string (such as base64 or
+	// hex). If the key type (such as RSA) supports both PKCS1 and PKCS8 formats, then
+	// preferPkcs1 determine which format is returned. The encoding specifies the encoding, which
+	// is typically "base64".
+	const char *getEncoded(bool preferPkcs1, const char *encoding);
+	// Returns the public key in DER format as an encoded string (such as base64 or
+	// hex). If the key type (such as RSA) supports both PKCS1 and PKCS8 formats, then
+	// preferPkcs1 determine which format is returned. The encoding specifies the encoding, which
+	// is typically "base64".
+	const char *encoded(bool preferPkcs1, const char *encoding);
+
+
 	// This method is deprecated. Applications should call GetDer with preference for
 	// PKCS8 instead.
 	// 
@@ -87,11 +111,23 @@ class CK_VISIBLE_PUBLIC CkPublicKey  : public CkMultiByteBase
 	const char *openSslPem(void);
 
 
+	// Returns the public key in PEM format. If the key type (such as RSA) supports
+	// both PKCS1 and PKCS8 formats, then preferPkcs1 determine which format is returned.
+	bool GetPem(bool preferPkcs1, CkString &outStr);
+
+	// Returns the public key in PEM format. If the key type (such as RSA) supports
+	// both PKCS1 and PKCS8 formats, then preferPkcs1 determine which format is returned.
+	const char *getPem(bool preferPkcs1);
+	// Returns the public key in PEM format. If the key type (such as RSA) supports
+	// both PKCS1 and PKCS8 formats, then preferPkcs1 determine which format is returned.
+	const char *pem(bool preferPkcs1);
+
+
 	// This method is deprecated. Applications should call GetEncoded with preference
 	// for PKCS1 instead.
 	// 
 	// Gets the public key in PKCS1 format and returns in an encoded string, as
-	// specified by the ARG1 argument.
+	// specified by the encoding argument.
 	// 
 	bool GetPkcs1ENC(const char *encoding, CkString &outStr);
 
@@ -99,14 +135,14 @@ class CK_VISIBLE_PUBLIC CkPublicKey  : public CkMultiByteBase
 	// for PKCS1 instead.
 	// 
 	// Gets the public key in PKCS1 format and returns in an encoded string, as
-	// specified by the ARG1 argument.
+	// specified by the encoding argument.
 	// 
 	const char *getPkcs1ENC(const char *encoding);
 	// This method is deprecated. Applications should call GetEncoded with preference
 	// for PKCS1 instead.
 	// 
 	// Gets the public key in PKCS1 format and returns in an encoded string, as
-	// specified by the ARG1 argument.
+	// specified by the encoding argument.
 	// 
 	const char *pkcs1ENC(const char *encoding);
 
@@ -115,7 +151,7 @@ class CK_VISIBLE_PUBLIC CkPublicKey  : public CkMultiByteBase
 	// for PKCS8 instead.
 	// 
 	// Gets the public key in PKCS8 format and returns in an encoded string, as
-	// specified by the ARG1 argument.
+	// specified by the encoding argument.
 	// 
 	bool GetPkcs8ENC(const char *encoding, CkString &outStr);
 
@@ -123,14 +159,14 @@ class CK_VISIBLE_PUBLIC CkPublicKey  : public CkMultiByteBase
 	// for PKCS8 instead.
 	// 
 	// Gets the public key in PKCS8 format and returns in an encoded string, as
-	// specified by the ARG1 argument.
+	// specified by the encoding argument.
 	// 
 	const char *getPkcs8ENC(const char *encoding);
 	// This method is deprecated. Applications should call GetEncoded with preference
 	// for PKCS8 instead.
 	// 
 	// Gets the public key in PKCS8 format and returns in an encoded string, as
-	// specified by the ARG1 argument.
+	// specified by the encoding argument.
 	// 
 	const char *pkcs8ENC(const char *encoding);
 
@@ -213,6 +249,24 @@ class CK_VISIBLE_PUBLIC CkPublicKey  : public CkMultiByteBase
 	bool LoadBase64(const char *keyStr);
 
 
+	// Loads a public key from binary DER. Auto-recognizes both PKCS1 and PKCS8
+	// formats.
+	bool LoadFromBinary(CkByteData &keyBytes);
+
+
+	// Loads a public key from a file. The file can be in any string or binary format
+	// such as binary DER (PKCS1 or PKCS8), PEM, XML, or encoded binary DER (such as
+	// base64 encoded binary DER). The format of the contents of the file is
+	// auto-recognized.
+	bool LoadFromFile(const char *path);
+
+
+	// Loads a public key from any string format, such as PEM, XML, or encoded binary
+	// DER (such as base64 encoded binary DER). The format of the keyString is
+	// auto-recognized.
+	bool LoadFromString(const char *keyString);
+
+
 	// This method is deprecated. Applications should call LoadFromBinary instead.
 	// 
 	// Loads a public key from in-memory PKCS8 DER formatted byte data.
@@ -276,6 +330,12 @@ class CK_VISIBLE_PUBLIC CkPublicKey  : public CkMultiByteBase
 	bool LoadXmlFile(const char *path);
 
 
+	// Saves the public key to a file in binary DER format. If the key type (such as
+	// RSA) supports both PKCS1 and PKCS8 formats, then preferPkcs1 determine which format is
+	// returned.
+	bool SaveDerFile(bool preferPkcs1, const char *path);
+
+
 	// This method is deprecated. Applications should call SaveDerFile with preference
 	// for PKCS8 instead.
 	// 
@@ -292,6 +352,12 @@ class CK_VISIBLE_PUBLIC CkPublicKey  : public CkMultiByteBase
 	bool SaveOpenSslPemFile(const char *path);
 
 
+	// Saves the public key to a file in PEM format. If the key type (such as RSA)
+	// supports both PKCS1 and PKCS8 formats, then preferPkcs1 determine which format is
+	// returned.
+	bool SavePemFile(bool preferPkcs1, const char *path);
+
+
 	// This method is deprecated. Applications should call SaveDerFile with preference
 	// for PKCS1 instead.
 	// 
@@ -302,72 +368,6 @@ class CK_VISIBLE_PUBLIC CkPublicKey  : public CkMultiByteBase
 
 	// Saves the public key to an XML file.
 	bool SaveXmlFile(const char *path);
-
-
-	// Loads a public key from binary DER. Auto-recognizes both PKCS1 and PKCS8
-	// formats.
-	bool LoadFromBinary(CkByteData &keyBytes);
-
-
-	// Loads a public key from any string format, such as PEM, XML, or encoded binary
-	// DER (such as base64 encoded binary DER). The format of the ARG1 is
-	// auto-recognized.
-	bool LoadFromString(const char *keyString);
-
-
-	// Loads a public key from a file. The file can be in any string or binary format
-	// such as binary DER (PKCS1 or PKCS8), PEM, XML, or encoded binary DER (such as
-	// base64 encoded binary DER). The format of the contents of the file is
-	// auto-recognized.
-	bool LoadFromFile(const char *path);
-
-
-	// Returns the public key in binary DER format. If the key type (such as RSA)
-	// supports both PKCS1 and PKCS8 formats, then ARG1 determine which format is
-	// returned.
-	bool GetDer(bool preferPkcs1, CkByteData &outBytes);
-
-
-	// Returns the public key in PEM format. If the key type (such as RSA) supports
-	// both PKCS1 and PKCS8 formats, then ARG1 determine which format is returned.
-	bool GetPem(bool preferPkcs1, CkString &outStr);
-
-	// Returns the public key in PEM format. If the key type (such as RSA) supports
-	// both PKCS1 and PKCS8 formats, then ARG1 determine which format is returned.
-	const char *getPem(bool preferPkcs1);
-	// Returns the public key in PEM format. If the key type (such as RSA) supports
-	// both PKCS1 and PKCS8 formats, then ARG1 determine which format is returned.
-	const char *pem(bool preferPkcs1);
-
-
-	// Returns the public key in DER format as an encoded string (such as base64 or
-	// hex). If the key type (such as RSA) supports both PKCS1 and PKCS8 formats, then
-	// ARG1 determine which format is returned. The ARG2 specifies the encoding, which
-	// is typically "base64".
-	bool GetEncoded(bool preferPkcs1, const char *encoding, CkString &outStr);
-
-	// Returns the public key in DER format as an encoded string (such as base64 or
-	// hex). If the key type (such as RSA) supports both PKCS1 and PKCS8 formats, then
-	// ARG1 determine which format is returned. The ARG2 specifies the encoding, which
-	// is typically "base64".
-	const char *getEncoded(bool preferPkcs1, const char *encoding);
-	// Returns the public key in DER format as an encoded string (such as base64 or
-	// hex). If the key type (such as RSA) supports both PKCS1 and PKCS8 formats, then
-	// ARG1 determine which format is returned. The ARG2 specifies the encoding, which
-	// is typically "base64".
-	const char *encoded(bool preferPkcs1, const char *encoding);
-
-
-	// Saves the public key to a file in binary DER format. If the key type (such as
-	// RSA) supports both PKCS1 and PKCS8 formats, then ARG1 determine which format is
-	// returned.
-	bool SaveDerFile(bool preferPkcs1, const char *path);
-
-
-	// Saves the public key to a file in PEM format. If the key type (such as RSA)
-	// supports both PKCS1 and PKCS8 formats, then ARG1 determine which format is
-	// returned.
-	bool SavePemFile(bool preferPkcs1, const char *path);
 
 
 

@@ -74,33 +74,7 @@ public ref class Mht sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
+	property Boolean AbortCurrent
 	{
 		Boolean get();
 		void set(Boolean);
@@ -121,6 +95,11 @@ public ref class Mht sealed
 		void set(Platform::String ^);
 	}
 	property Platform::String ^DebugHtmlBefore
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^DebugLogFilePath
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
@@ -156,6 +135,23 @@ public ref class Mht sealed
 		void set(Boolean);
 	}
 	property Boolean IgnoreNoCache
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
 	{
 		Boolean get();
 		void set(Boolean);
@@ -274,6 +270,15 @@ public ref class Mht sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 	property Platform::String ^WebSiteLogin
 	{
 		Platform::String ^get();
@@ -289,18 +294,11 @@ public ref class Mht sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
-	property Boolean AbortCurrent
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	void AddCacheRoot(Platform::String ^dir);
 
 	void AddCustomHeader(Platform::String ^name, Platform::String ^value);
@@ -311,19 +309,19 @@ public ref class Mht sealed
 
 	void ExcludeImagesMatching(Platform::String ^pattern);
 
-	IAsyncOperation<Boolean>^ GetAndSaveEMLAsync(Platform::String ^url, Platform::String ^emlFilename);
+	IAsyncOperation<Boolean>^ GetAndSaveEMLAsync(Platform::String ^url_or_htmlFilepath, Platform::String ^emlPath);
 
-	IAsyncOperation<Boolean>^ GetAndSaveMHTAsync(Platform::String ^url, Platform::String ^mhtFilename);
+	IAsyncOperation<Boolean>^ GetAndSaveMHTAsync(Platform::String ^url_or_htmlFilepath, Platform::String ^mhtPath);
 
-	IAsyncOperation<Boolean>^ GetAndZipEMLAsync(Platform::String ^url, Platform::String ^zipEntryFilename, Platform::String ^zipFilename);
+	IAsyncOperation<Boolean>^ GetAndZipEMLAsync(Platform::String ^url_or_htmlFilepath, Platform::String ^zipEntryFilename, Platform::String ^zipFilename);
 
-	IAsyncOperation<Boolean>^ GetAndZipMHTAsync(Platform::String ^url, Platform::String ^zipEntryFilename, Platform::String ^zipFilename);
+	IAsyncOperation<Boolean>^ GetAndZipMHTAsync(Platform::String ^url_or_htmlFilepath, Platform::String ^zipEntryFilename, Platform::String ^zipFilename);
 
 	Platform::String ^GetCacheRoot(int index);
 
-	IAsyncOperation<Platform::String ^>^ GetEMLAsync(Platform::String ^url);
+	IAsyncOperation<Platform::String ^>^ GetEMLAsync(Platform::String ^url_or_htmlFilepath);
 
-	IAsyncOperation<Platform::String ^>^ GetMHTAsync(Platform::String ^url);
+	IAsyncOperation<Platform::String ^>^ GetMHTAsync(Platform::String ^url_or_htmlFilepath);
 
 	IAsyncOperation<Platform::String ^>^ HtmlToEMLAsync(Platform::String ^htmlText);
 

@@ -44,6 +44,7 @@ CK_VISIBLE_PUBLIC void CkPemW_putVerboseLogging(HCkPemW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkPemW_getVersion(HCkPemW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkPemW_version(HCkPemW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkPemW_AddCert(HCkPemW cHandle, HCkCertW cert, BOOL includeChain);
+CK_VISIBLE_PUBLIC BOOL CkPemW_AddItem(HCkPemW cHandle, const wchar_t *itemType, const wchar_t *encoding, const wchar_t *itemData);
 CK_VISIBLE_PUBLIC BOOL CkPemW_AddPrivateKey(HCkPemW cHandle, HCkPrivateKeyW privateKey);
 CK_VISIBLE_PUBLIC BOOL CkPemW_AddPrivateKey2(HCkPemW cHandle, HCkPrivateKeyW privKey, HCkCertChainW certChain);
 CK_VISIBLE_PUBLIC BOOL CkPemW_AddPublicKey(HCkPemW cHandle, HCkPublicKeyW pubkey);

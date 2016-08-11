@@ -75,37 +75,6 @@ public ref class ZipEntry sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Platform::String ^Comment
 	{
 		Platform::String ^get();
@@ -118,6 +87,10 @@ public ref class ZipEntry sealed
 	property int64 CompressedLength64
 	{
 		int64 get();
+	}
+	property Platform::String ^CompressedLengthStr
+	{
+		Platform::String ^get();
 	}
 	property int32 CompressionLevel
 	{
@@ -132,6 +105,11 @@ public ref class ZipEntry sealed
 	property int32 Crc
 	{
 		int32 get();
+	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
 	}
 	property int32 EntryID
 	{
@@ -164,6 +142,23 @@ public ref class ZipEntry sealed
 	{
 		Boolean get();
 	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property Boolean TextFlag
 	{
 		Boolean get();
@@ -177,16 +172,27 @@ public ref class ZipEntry sealed
 	{
 		int64 get();
 	}
+	property Platform::String ^UncompressedLengthStr
+	{
+		Platform::String ^get();
+	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	IAsyncOperation<Boolean>^ AppendDataAsync(Windows::Foundation::Collections::IVector<uint8>^inData);
 
-	IAsyncOperation<Boolean>^ AppendStringAsync(Platform::String ^inStr, Platform::String ^charset);
+	IAsyncOperation<Boolean>^ AppendStringAsync(Platform::String ^strContent, Platform::String ^charset);
 
 	Windows::Foundation::Collections::IVector<uint8>^Copy(void);
 
@@ -208,7 +214,7 @@ public ref class ZipEntry sealed
 
 	Boolean ReplaceData(Windows::Foundation::Collections::IVector<uint8>^inData);
 
-	Boolean ReplaceString(Platform::String ^inStr, Platform::String ^charset);
+	Boolean ReplaceString(Platform::String ^strContent, Platform::String ^charset);
 
 	void SetDt(Chilkat::CkDateTime ^dt);
 

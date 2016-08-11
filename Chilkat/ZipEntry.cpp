@@ -44,46 +44,6 @@ Chilkat::ZipEntry::ZipEntry(void)
 //}
 
 
-String ^Chilkat::ZipEntry::LastErrorHtml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
-    }
-String ^Chilkat::ZipEntry::LastErrorText::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::ZipEntry::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::ZipEntry::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::ZipEntry::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::ZipEntry::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::ZipEntry::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::ZipEntry::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::ZipEntry::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::ZipEntry::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
 String ^Chilkat::ZipEntry::Comment::get()
     {
     return ref new String(m_impl ? m_impl->comment() : L"");
@@ -99,6 +59,10 @@ uint32 Chilkat::ZipEntry::CompressedLength::get()
 int64 Chilkat::ZipEntry::CompressedLength64::get()
     {
     return m_impl ? m_impl->get_CompressedLength64() : 0;
+    }
+String ^Chilkat::ZipEntry::CompressedLengthStr::get()
+    {
+    return ref new String(m_impl ? m_impl->compressedLengthStr() : L"");
     }
 int Chilkat::ZipEntry::CompressionLevel::get()
     {
@@ -119,6 +83,14 @@ void Chilkat::ZipEntry::CompressionMethod::set(int newVal)
 int Chilkat::ZipEntry::Crc::get()
     {
     return m_impl ? m_impl->get_Crc() : 0;
+    }
+String ^Chilkat::ZipEntry::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::ZipEntry::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
     }
 int Chilkat::ZipEntry::EntryID::get()
     {
@@ -160,6 +132,26 @@ Boolean Chilkat::ZipEntry::IsDirectory::get()
     {
     return m_impl ? m_impl->get_IsDirectory() : false;
     }
+String ^Chilkat::ZipEntry::LastErrorHtml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    }
+String ^Chilkat::ZipEntry::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::ZipEntry::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
+Boolean Chilkat::ZipEntry::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::ZipEntry::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+    }
 Boolean Chilkat::ZipEntry::TextFlag::get()
     {
     return m_impl ? m_impl->get_TextFlag() : false;
@@ -176,18 +168,24 @@ int64 Chilkat::ZipEntry::UncompressedLength64::get()
     {
     return m_impl ? m_impl->get_UncompressedLength64() : 0;
     }
-
-
-Boolean ZipEntry::SaveLastError(Platform::String ^path)
+String ^Chilkat::ZipEntry::UncompressedLengthStr::get()
     {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxZipEntryProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
+    return ref new String(m_impl ? m_impl->uncompressedLengthStr() : L"");
     }
+Boolean Chilkat::ZipEntry::VerboseLogging::get()
+    {
+    return m_impl ? m_impl->get_VerboseLogging() : false;
+    }
+void Chilkat::ZipEntry::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::ZipEntry::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
+
+
 IAsyncOperation<Boolean>^ ZipEntry::AppendDataAsync(Windows::Foundation::Collections::IVector<uint8>^inData)
     {
 return create_async([this, inData]() -> Boolean
@@ -201,15 +199,13 @@ return create_async([this, inData]() -> Boolean
 	// --- prep output arg ---
 	CxZipEntryProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->AppendData(db0);
 
 });
     }
-IAsyncOperation<Boolean>^ ZipEntry::AppendStringAsync(Platform::String ^inStr, Platform::String ^charset)
+IAsyncOperation<Boolean>^ ZipEntry::AppendStringAsync(Platform::String ^strContent, Platform::String ^charset)
     {
-return create_async([this, inStr, charset]() -> Boolean
+return create_async([this, strContent, charset]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -217,9 +213,7 @@ return create_async([this, inStr, charset]() -> Boolean
 	// --- prep output arg ---
 	CxZipEntryProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->AppendString(inStr ? inStr->Data() : L"",charset ? charset->Data() : L"");
+	return m_impl->AppendString(strContent ? strContent->Data() : L"",charset ? charset->Data() : L"");
 
 });
     }
@@ -230,8 +224,6 @@ Windows::Foundation::Collections::IVector<uint8>^ZipEntry::Copy(void)
 	CkByteData outDb;
 	CxZipEntryProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->Copy(outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -243,8 +235,6 @@ Platform::String ^ZipEntry::CopyToBase64(void)
 	// --- prep output arg ---
 	CxZipEntryProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->copyToBase64();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -255,8 +245,6 @@ Platform::String ^ZipEntry::CopyToHex(void)
 	// --- prep output arg ---
 	CxZipEntryProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->copyToHex();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -271,8 +259,6 @@ return create_async([this, dirPath]() -> Boolean
 	// --- prep output arg ---
 	CxZipEntryProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->Extract(dirPath ? dirPath->Data() : L"");
 
 });
@@ -287,8 +273,6 @@ return create_async([this, dirPath]() -> Boolean
 	// --- prep output arg ---
 	CxZipEntryProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ExtractInto(dirPath ? dirPath->Data() : L"");
 
 });
@@ -299,8 +283,6 @@ Chilkat::CkDateTime ^ZipEntry::GetDt(void)
 	// --- prep output arg ---
 	CxZipEntryProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = CkDateTime
-	// cppType = CkDateTime *
 	CkDateTimeW *pRetObj = m_impl->GetDt();
 	if (!pRetObj) return nullptr;
 	Chilkat::CkDateTime ^pCkDateTime = ref new Chilkat::CkDateTime();
@@ -318,8 +300,6 @@ return create_async([this]() -> Windows::Foundation::Collections::IVector<uint8>
 	CkByteData outDb;
 	CxZipEntryProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->Inflate(outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -333,8 +313,6 @@ ZipEntry ^ZipEntry::NextEntry(void)
 	// --- prep output arg ---
 	CxZipEntryProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = ZipEntry
-	// cppType = CkZipEntry *
 	CkZipEntryW *pRetObj = m_impl->NextEntry();
 	if (!pRetObj) return nullptr;
 	Chilkat::ZipEntry ^pZipEntry = ref new Chilkat::ZipEntry();
@@ -347,8 +325,6 @@ ZipEntry ^ZipEntry::NextMatchingEntry(Platform::String ^matchStr)
 	// --- prep output arg ---
 	CxZipEntryProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = ZipEntry
-	// cppType = CkZipEntry *
 	CkZipEntryW *pRetObj = m_impl->NextMatchingEntry(matchStr ? matchStr->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::ZipEntry ^pZipEntry = ref new Chilkat::ZipEntry();
@@ -364,19 +340,15 @@ Boolean ZipEntry::ReplaceData(Windows::Foundation::Collections::IVector<uint8>^i
 	// --- prep output arg ---
 	CxZipEntryProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ReplaceData(db0);
     }
-Boolean ZipEntry::ReplaceString(Platform::String ^inStr, Platform::String ^charset)
+Boolean ZipEntry::ReplaceString(Platform::String ^strContent, Platform::String ^charset)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	CxZipEntryProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->ReplaceString(inStr ? inStr->Data() : L"",charset ? charset->Data() : L"");
+	return m_impl->ReplaceString(strContent ? strContent->Data() : L"",charset ? charset->Data() : L"");
     }
 void ZipEntry::SetDt(Chilkat::CkDateTime ^dt)
     {
@@ -387,8 +359,6 @@ void ZipEntry::SetDt(Chilkat::CkDateTime ^dt)
 	// --- prep output arg ---
 	CxZipEntryProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->SetDt(*pObj0);
     }
 IAsyncOperation<Platform::String ^>^ ZipEntry::UnzipToStringAsync(int lineEndingBehavior, Platform::String ^srcCharset)
@@ -401,8 +371,6 @@ return create_async([this, lineEndingBehavior, srcCharset]() -> Platform::String
 	// --- prep output arg ---
 	CxZipEntryProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->unzipToString(lineEndingBehavior,srcCharset ? srcCharset->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);

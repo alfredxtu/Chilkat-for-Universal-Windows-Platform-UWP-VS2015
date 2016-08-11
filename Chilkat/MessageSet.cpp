@@ -43,46 +43,6 @@ Chilkat::MessageSet::MessageSet(void)
 //}
 
 
-String ^Chilkat::MessageSet::LastErrorHtml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
-    }
-String ^Chilkat::MessageSet::LastErrorText::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::MessageSet::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::MessageSet::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::MessageSet::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::MessageSet::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::MessageSet::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::MessageSet::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::MessageSet::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::MessageSet::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
 int Chilkat::MessageSet::Count::get()
     {
     return m_impl ? m_impl->get_Count() : 0;
@@ -97,60 +57,40 @@ void Chilkat::MessageSet::HasUids::set(Boolean newVal)
     }
 
 
-Boolean MessageSet::SaveLastError(Platform::String ^path)
+Boolean MessageSet::ContainsId(int msgId)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
-    }
-Boolean MessageSet::ContainsId(int id)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->ContainsId(id);
+	return m_impl->ContainsId(msgId);
     }
 Boolean MessageSet::FromCompactString(Platform::String ^str)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->FromCompactString(str ? str->Data() : L"");
     }
 int MessageSet::GetId(int index)
     {
 	if (m_impl == nullptr) { return -1; }
 	// --- prep output arg ---
-	// gType = int
-	// cppType = int
 	return m_impl->GetId(index);
     }
 void MessageSet::InsertId(int id)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	// gType = void
-	// cppType = void
 	m_impl->InsertId(id);
     }
 void MessageSet::RemoveId(int id)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	// gType = void
-	// cppType = void
 	m_impl->RemoveId(id);
     }
 Platform::String ^MessageSet::ToCommaSeparatedStr(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->toCommaSeparatedStr();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -159,8 +99,6 @@ Platform::String ^MessageSet::ToCompactString(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->toCompactString();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);

@@ -75,6 +75,21 @@ public ref class Scp sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Boolean AbortCurrent
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property int32 HeartbeatMs
+	{
+		int32 get();
+		void set(int32);
+	}
 	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
@@ -87,39 +102,20 @@ public ref class Scp sealed
 	{
 		Platform::String ^get();
 	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Boolean LastMethodSuccess
 	{
 		Boolean get();
 		void set(Boolean);
 	}
-	property Boolean AbortCurrent
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property int32 HeartbeatMs
-	{
-		int32 get();
-		void set(int32);
-	}
 	property int32 PercentDoneScale
 	{
 		int32 get();
 		void set(int32);
+	}
+	property Platform::String ^SyncedFiles
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
 	}
 	property Platform::String ^SyncMustMatch
 	{
@@ -141,18 +137,20 @@ public ref class Scp sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
-	property Platform::String ^SyncedFiles
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
 	{
 		Platform::String ^get();
-		void set(Platform::String ^);
 	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ DownloadBinaryAsync(Platform::String ^remotePath);
 
 	IAsyncOperation<Platform::String ^>^ DownloadBinaryEncodedAsync(Platform::String ^remotePath, Platform::String ^encoding);
@@ -173,7 +171,7 @@ public ref class Scp sealed
 
 	IAsyncOperation<Boolean>^ UploadStringAsync(Platform::String ^remotePath, Platform::String ^textData, Platform::String ^charset);
 
-	Boolean UseSsh(Ssh ^sshConnection);
+	Boolean UseSsh(Chilkat::Ssh ^sshConnection);
 
 
 

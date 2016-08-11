@@ -45,46 +45,6 @@ Chilkat::Compression::Compression(void)
 //}
 
 
-String ^Chilkat::Compression::LastErrorHtml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
-    }
-String ^Chilkat::Compression::LastErrorText::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::Compression::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::Compression::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::Compression::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::Compression::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Compression::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::Compression::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::Compression::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::Compression::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
 String ^Chilkat::Compression::Algorithm::get()
     {
     return ref new String(m_impl ? m_impl->algorithm() : L"");
@@ -100,6 +60,14 @@ String ^Chilkat::Compression::Charset::get()
 void Chilkat::Compression::Charset::set(String ^newVal)
     {
         if (m_impl) m_impl->put_Charset(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::Compression::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::Compression::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
     }
 String ^Chilkat::Compression::EncodingMode::get()
     {
@@ -117,18 +85,40 @@ void Chilkat::Compression::HeartbeatMs::set(int newVal)
     {
         if (m_impl) m_impl->put_HeartbeatMs(newVal);
     }
-
-
-Boolean Compression::SaveLastError(Platform::String ^path)
+String ^Chilkat::Compression::LastErrorHtml::get()
     {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxCompressionProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
     }
+String ^Chilkat::Compression::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::Compression::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
+Boolean Chilkat::Compression::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::Compression::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+    }
+Boolean Chilkat::Compression::VerboseLogging::get()
+    {
+    return m_impl ? m_impl->get_VerboseLogging() : false;
+    }
+void Chilkat::Compression::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::Compression::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
+
+
 IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ Compression::BeginCompressBytesAsync(Windows::Foundation::Collections::IVector<uint8>^data)
     {
 return create_async([this, data]() -> Windows::Foundation::Collections::IVector<uint8>^
@@ -143,8 +133,6 @@ return create_async([this, data]() -> Windows::Foundation::Collections::IVector<
 	CkByteData outDb;
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->BeginCompressBytes(db0,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -165,8 +153,6 @@ return create_async([this, data]() -> Platform::String ^
 	// --- prep output arg ---
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->beginCompressBytesENC(db0);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -184,8 +170,6 @@ return create_async([this, str]() -> Windows::Foundation::Collections::IVector<u
 	CkByteData outDb;
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->BeginCompressString(str ? str->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -203,8 +187,6 @@ return create_async([this, str]() -> Platform::String ^
 	// --- prep output arg ---
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->beginCompressStringENC(str ? str->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -225,8 +207,6 @@ return create_async([this, data]() -> Windows::Foundation::Collections::IVector<
 	CkByteData outDb;
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->BeginDecompressBytes(db0,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -245,8 +225,6 @@ return create_async([this, str]() -> Windows::Foundation::Collections::IVector<u
 	CkByteData outDb;
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->BeginDecompressBytesENC(str ? str->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -267,8 +245,6 @@ return create_async([this, data]() -> Platform::String ^
 	// --- prep output arg ---
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->beginDecompressString(db0);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -285,8 +261,6 @@ return create_async([this, str]() -> Platform::String ^
 	// --- prep output arg ---
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->beginDecompressStringENC(str ? str->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -307,8 +281,6 @@ return create_async([this, data]() -> Windows::Foundation::Collections::IVector<
 	CkByteData outDb;
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->CompressBytes(db0,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -329,8 +301,6 @@ return create_async([this, data]() -> Platform::String ^
 	// --- prep output arg ---
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->compressBytesENC(db0);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -347,13 +317,11 @@ return create_async([this, srcPath, destPath]() -> Boolean
 	// --- prep output arg ---
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->CompressFile(srcPath ? srcPath->Data() : L"",destPath ? destPath->Data() : L"");
 
 });
     }
-IAsyncOperation<Boolean>^ Compression::CompressStreamAsync(Stream ^strm)
+IAsyncOperation<Boolean>^ Compression::CompressStreamAsync(Chilkat::Stream ^strm)
     {
 return create_async([this, strm]() -> Boolean
 {
@@ -366,8 +334,6 @@ return create_async([this, strm]() -> Boolean
 	// --- prep output arg ---
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->CompressStream(*pObj0);
 
 });
@@ -383,8 +349,6 @@ return create_async([this, str]() -> Windows::Foundation::Collections::IVector<u
 	CkByteData outDb;
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->CompressString(str ? str->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -402,8 +366,6 @@ return create_async([this, str]() -> Platform::String ^
 	// --- prep output arg ---
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->compressStringENC(str ? str->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -424,8 +386,6 @@ return create_async([this, data]() -> Windows::Foundation::Collections::IVector<
 	CkByteData outDb;
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->DecompressBytes(db0,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -433,9 +393,9 @@ return create_async([this, data]() -> Windows::Foundation::Collections::IVector<
 
 });
     }
-IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ Compression::DecompressBytesENCAsync(Platform::String ^str)
+IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ Compression::DecompressBytesENCAsync(Platform::String ^encodedCompressedData)
     {
-return create_async([this, str]() -> Windows::Foundation::Collections::IVector<uint8>^
+return create_async([this, encodedCompressedData]() -> Windows::Foundation::Collections::IVector<uint8>^
 {
 // This runs in a thread pool thread...
 
@@ -444,9 +404,7 @@ return create_async([this, str]() -> Windows::Foundation::Collections::IVector<u
 	CkByteData outDb;
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
-	bool success = m_impl->DecompressBytesENC(str ? str->Data() : L"",outDb);
+	bool success = m_impl->DecompressBytesENC(encodedCompressedData ? encodedCompressedData->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
@@ -463,13 +421,11 @@ return create_async([this, srcPath, destPath]() -> Boolean
 	// --- prep output arg ---
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->DecompressFile(srcPath ? srcPath->Data() : L"",destPath ? destPath->Data() : L"");
 
 });
     }
-IAsyncOperation<Boolean>^ Compression::DecompressStreamAsync(Stream ^strm)
+IAsyncOperation<Boolean>^ Compression::DecompressStreamAsync(Chilkat::Stream ^strm)
     {
 return create_async([this, strm]() -> Boolean
 {
@@ -482,8 +438,6 @@ return create_async([this, strm]() -> Boolean
 	// --- prep output arg ---
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->DecompressStream(*pObj0);
 
 });
@@ -501,17 +455,15 @@ return create_async([this, data]() -> Platform::String ^
 	// --- prep output arg ---
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->decompressString(db0);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
 });
     }
-IAsyncOperation<Platform::String ^>^ Compression::DecompressStringENCAsync(Platform::String ^str)
+IAsyncOperation<Platform::String ^>^ Compression::DecompressStringENCAsync(Platform::String ^encodedCompressedData)
     {
-return create_async([this, str]() -> Platform::String ^
+return create_async([this, encodedCompressedData]() -> Platform::String ^
 {
 // This runs in a thread pool thread...
 
@@ -519,9 +471,7 @@ return create_async([this, str]() -> Platform::String ^
 	// --- prep output arg ---
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->decompressStringENC(str ? str->Data() : L"");
+	const wchar_t *retStr = m_impl->decompressStringENC(encodedCompressedData ? encodedCompressedData->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
@@ -538,8 +488,6 @@ return create_async([this]() -> Windows::Foundation::Collections::IVector<uint8>
 	CkByteData outDb;
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->EndCompressBytes(outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -557,8 +505,6 @@ return create_async([this]() -> Platform::String ^
 	// --- prep output arg ---
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->endCompressBytesENC();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -576,8 +522,6 @@ return create_async([this]() -> Windows::Foundation::Collections::IVector<uint8>
 	CkByteData outDb;
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->EndCompressString(outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -595,8 +539,6 @@ return create_async([this]() -> Platform::String ^
 	// --- prep output arg ---
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->endCompressStringENC();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -614,8 +556,6 @@ return create_async([this]() -> Windows::Foundation::Collections::IVector<uint8>
 	CkByteData outDb;
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->EndDecompressBytes(outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -634,8 +574,6 @@ return create_async([this]() -> Windows::Foundation::Collections::IVector<uint8>
 	CkByteData outDb;
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->EndDecompressBytesENC(outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -653,8 +591,6 @@ return create_async([this]() -> Platform::String ^
 	// --- prep output arg ---
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->endDecompressString();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -671,8 +607,6 @@ return create_async([this]() -> Platform::String ^
 	// --- prep output arg ---
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->endDecompressStringENC();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -693,8 +627,6 @@ return create_async([this, data]() -> Windows::Foundation::Collections::IVector<
 	CkByteData outDb;
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->MoreCompressBytes(db0,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -715,8 +647,6 @@ return create_async([this, data]() -> Platform::String ^
 	// --- prep output arg ---
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->moreCompressBytesENC(db0);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -734,8 +664,6 @@ return create_async([this, str]() -> Windows::Foundation::Collections::IVector<u
 	CkByteData outDb;
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->MoreCompressString(str ? str->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -753,8 +681,6 @@ return create_async([this, str]() -> Platform::String ^
 	// --- prep output arg ---
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->moreCompressStringENC(str ? str->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -775,8 +701,6 @@ return create_async([this, data]() -> Windows::Foundation::Collections::IVector<
 	CkByteData outDb;
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->MoreDecompressBytes(db0,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -795,8 +719,6 @@ return create_async([this, str]() -> Windows::Foundation::Collections::IVector<u
 	CkByteData outDb;
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->MoreDecompressBytesENC(str ? str->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -817,8 +739,6 @@ return create_async([this, data]() -> Platform::String ^
 	// --- prep output arg ---
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->moreDecompressString(db0);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -835,8 +755,6 @@ return create_async([this, str]() -> Platform::String ^
 	// --- prep output arg ---
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->moreDecompressStringENC(str ? str->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -849,8 +767,6 @@ Boolean Compression::UnlockComponent(Platform::String ^unlockCode)
 	// --- prep output arg ---
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UnlockComponent(unlockCode ? unlockCode->Data() : L"");
     }
 

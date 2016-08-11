@@ -74,6 +74,21 @@ public ref class Bz2 sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Boolean AbortCurrent
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property int32 HeartbeatMs
+	{
+		int32 get();
+		void set(int32);
+	}
 	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
@@ -86,57 +101,40 @@ public ref class Bz2 sealed
 	{
 		Platform::String ^get();
 	}
-	property Platform::String ^Version
+	property Boolean LastMethodSuccess
 	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
+		Boolean get();
+		void set(Boolean);
 	}
 	property Boolean VerboseLogging
 	{
 		Boolean get();
 		void set(Boolean);
 	}
-	property Boolean LastMethodSuccess
+	property Platform::String ^Version
 	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property int32 HeartbeatMs
-	{
-		int32 get();
-		void set(int32);
-	}
-	property Boolean AbortCurrent
-	{
-		Boolean get();
-		void set(Boolean);
+		Platform::String ^get();
 	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	IAsyncOperation<Boolean>^ CompressFileAsync(Platform::String ^inFilename, Platform::String ^toPath);
 
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ CompressFileToMemAsync(Platform::String ^inFilename);
 
-	IAsyncOperation<Boolean>^ CompressMemToFileAsync(Windows::Foundation::Collections::IVector<uint8>^inData, Platform::String ^toPath);
-
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ CompressMemoryAsync(Windows::Foundation::Collections::IVector<uint8>^inData);
+
+	IAsyncOperation<Boolean>^ CompressMemToFileAsync(Windows::Foundation::Collections::IVector<uint8>^inData, Platform::String ^toPath);
 
 	IAsyncOperation<Boolean>^ UncompressFileAsync(Platform::String ^inFilename, Platform::String ^toPath);
 
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ UncompressFileToMemAsync(Platform::String ^inFilename);
 
-	IAsyncOperation<Boolean>^ UncompressMemToFileAsync(Windows::Foundation::Collections::IVector<uint8>^inData, Platform::String ^toPath);
-
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ UncompressMemoryAsync(Windows::Foundation::Collections::IVector<uint8>^inData);
+
+	IAsyncOperation<Boolean>^ UncompressMemToFileAsync(Windows::Foundation::Collections::IVector<uint8>^inData, Platform::String ^toPath);
 
 	Boolean UnlockComponent(Platform::String ^regCode);
 

@@ -42,37 +42,6 @@ public ref class Xml sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Boolean Cdata
 	{
 		Boolean get();
@@ -87,6 +56,11 @@ public ref class Xml sealed
 	{
 		int32 get();
 		void set(int32);
+	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
 	}
 	property Platform::String ^DocType
 	{
@@ -107,6 +81,23 @@ public ref class Xml sealed
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
+	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
 	}
 	property int32 NumAttributes
 	{
@@ -135,20 +126,27 @@ public ref class Xml sealed
 	{
 		int32 get();
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	Platform::String ^AccumulateTagContent(Platform::String ^tag, Platform::String ^skipTags);
 
 	Boolean AddAttribute(Platform::String ^name, Platform::String ^value);
 
 	Boolean AddAttributeInt(Platform::String ^name, int value);
 
-	Boolean AddChildTree(Xml ^tree);
+	Boolean AddChildTree(Chilkat::Xml ^tree);
 
 	void AddOrUpdateAttribute(Platform::String ^name, Platform::String ^value);
 
@@ -174,9 +172,9 @@ public ref class Xml sealed
 
 	Boolean ContentMatches(Platform::String ^pattern, Boolean caseSensitive);
 
-	void Copy(Xml ^node);
+	void Copy(Chilkat::Xml ^node);
 
-	void CopyRef(Xml ^node);
+	void CopyRef(Chilkat::Xml ^copyFromNode);
 
 	Windows::Foundation::Collections::IVector<uint8>^DecodeContent(void);
 
@@ -202,15 +200,15 @@ public ref class Xml sealed
 
 	Boolean FirstChild2(void);
 
-	Platform::String ^GetAttrValue(Platform::String ^name);
-
-	int GetAttrValueInt(Platform::String ^name);
-
 	Platform::String ^GetAttributeName(int index);
 
 	Platform::String ^GetAttributeValue(int index);
 
 	int GetAttributeValueInt(int index);
+
+	Platform::String ^GetAttrValue(Platform::String ^name);
+
+	int GetAttrValueInt(Platform::String ^name);
 
 	Windows::Foundation::Collections::IVector<uint8>^GetBinaryContent(Boolean unzipFlag, Boolean decryptFlag, Platform::String ^password);
 
@@ -254,9 +252,9 @@ public ref class Xml sealed
 
 	Platform::String ^GetXml(void);
 
-	Boolean HasAttrWithValue(Platform::String ^name, Platform::String ^value);
-
 	Boolean HasAttribute(Platform::String ^name);
+
+	Boolean HasAttrWithValue(Platform::String ^name, Platform::String ^value);
 
 	Boolean HasChildWithContent(Platform::String ^content);
 
@@ -264,9 +262,9 @@ public ref class Xml sealed
 
 	Boolean HasChildWithTagAndContent(Platform::String ^tag, Platform::String ^content);
 
-	void InsertChildTreeAfter(int index, Xml ^tree);
+	void InsertChildTreeAfter(int index, Chilkat::Xml ^tree);
 
-	void InsertChildTreeBefore(int index, Xml ^tree);
+	void InsertChildTreeBefore(int index, Chilkat::Xml ^tree);
 
 	Xml ^LastChild(void);
 
@@ -320,21 +318,21 @@ public ref class Xml sealed
 
 	Boolean SaveXml(Platform::String ^fileName);
 
-	Xml ^SearchAllForContent(Xml ^afterPtr, Platform::String ^contentPattern);
+	Xml ^SearchAllForContent(Chilkat::Xml ^afterPtr, Platform::String ^contentPattern);
 
-	Boolean SearchAllForContent2(Xml ^afterPtr, Platform::String ^contentPattern);
+	Boolean SearchAllForContent2(Chilkat::Xml ^afterPtr, Platform::String ^contentPattern);
 
-	Xml ^SearchForAttribute(Xml ^afterPtr, Platform::String ^tag, Platform::String ^attr, Platform::String ^valuePattern);
+	Xml ^SearchForAttribute(Chilkat::Xml ^afterPtr, Platform::String ^tag, Platform::String ^attr, Platform::String ^valuePattern);
 
-	Boolean SearchForAttribute2(Xml ^afterPtr, Platform::String ^tag, Platform::String ^attr, Platform::String ^valuePattern);
+	Boolean SearchForAttribute2(Chilkat::Xml ^afterPtr, Platform::String ^tag, Platform::String ^attr, Platform::String ^valuePattern);
 
-	Xml ^SearchForContent(Xml ^afterPtr, Platform::String ^tag, Platform::String ^contentPattern);
+	Xml ^SearchForContent(Chilkat::Xml ^afterPtr, Platform::String ^tag, Platform::String ^contentPattern);
 
-	Boolean SearchForContent2(Xml ^afterPtr, Platform::String ^tag, Platform::String ^contentPattern);
+	Boolean SearchForContent2(Chilkat::Xml ^afterPtr, Platform::String ^tag, Platform::String ^contentPattern);
 
-	Xml ^SearchForTag(Xml ^afterPtr, Platform::String ^tag);
+	Xml ^SearchForTag(Chilkat::Xml ^afterPtr, Platform::String ^tag);
 
-	Boolean SearchForTag2(Xml ^afterPtr, Platform::String ^tag);
+	Boolean SearchForTag2(Chilkat::Xml ^afterPtr, Platform::String ^tag);
 
 	Boolean SetBinaryContent(Windows::Foundation::Collections::IVector<uint8>^inData, Boolean zipFlag, Boolean encryptFlag, Platform::String ^password);
 
@@ -354,11 +352,11 @@ public ref class Xml sealed
 
 	void SortRecordsByContentInt(Platform::String ^sortTag, Boolean ascending);
 
-	Boolean SwapNode(Xml ^node);
+	Boolean SwapNode(Chilkat::Xml ^node);
 
-	Boolean SwapTree(Xml ^tree);
+	Boolean SwapTree(Chilkat::Xml ^tree);
 
-	Platform::String ^TagContent(Platform::String ^tag);
+	Platform::String ^TagContent(Platform::String ^tagName);
 
 	Boolean TagEquals(Platform::String ^tag);
 

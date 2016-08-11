@@ -75,6 +75,15 @@ public ref class Atom sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Boolean AbortCurrent
+	{
+		Boolean get();
+	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
@@ -87,20 +96,6 @@ public ref class Atom sealed
 	{
 		Platform::String ^get();
 	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Boolean LastMethodSuccess
 	{
 		Boolean get();
@@ -110,17 +105,20 @@ public ref class Atom sealed
 	{
 		int32 get();
 	}
-	property Boolean AbortCurrent
+	property Boolean VerboseLogging
 	{
 		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
 	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	int AddElement(Platform::String ^tag, Platform::String ^value);
 
 	int AddElementDateStr(Platform::String ^tag, Platform::String ^dateTimeStr);

@@ -74,33 +74,7 @@ public ref class Upload sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
+	property Boolean AbortCurrent
 	{
 		Boolean get();
 		void set(Boolean);
@@ -116,6 +90,11 @@ public ref class Upload sealed
 		void set(int32);
 	}
 	property Platform::String ^ClientIpAddress
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^DebugLogFilePath
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
@@ -139,6 +118,23 @@ public ref class Upload sealed
 	{
 		int32 get();
 		void set(int32);
+	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
 	}
 	property Platform::String ^Login
 	{
@@ -215,6 +211,21 @@ public ref class Upload sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Platform::String ^SslAllowedCiphers
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^SslProtocol
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^TlsPinSet
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property uint32 TotalUploadSize
 	{
 		uint32 get();
@@ -227,33 +238,20 @@ public ref class Upload sealed
 	{
 		Boolean get();
 	}
-	property Platform::String ^TlsPinSet
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Platform::String ^SslAllowedCiphers
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Platform::String ^SslProtocol
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean AbortCurrent
+	property Boolean VerboseLogging
 	{
 		Boolean get();
 		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
 	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	void AbortUpload(void);
 
 	void AddCustomHeader(Platform::String ^name, Platform::String ^value);

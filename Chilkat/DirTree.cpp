@@ -43,21 +43,13 @@ Chilkat::DirTree::DirTree(void)
 //}
 
 
-String ^Chilkat::DirTree::LastErrorHtml::get()
+String ^Chilkat::DirTree::BaseDir::get()
     {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    return ref new String(m_impl ? m_impl->baseDir() : L"");
     }
-String ^Chilkat::DirTree::LastErrorText::get()
+void Chilkat::DirTree::BaseDir::set(String ^newVal)
     {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::DirTree::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::DirTree::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
+        if (m_impl) m_impl->put_BaseDir(newVal ? newVal->Data() : L"");
     }
 String ^Chilkat::DirTree::DebugLogFilePath::get()
     {
@@ -66,30 +58,6 @@ String ^Chilkat::DirTree::DebugLogFilePath::get()
 void Chilkat::DirTree::DebugLogFilePath::set(String ^newVal)
     {
         if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::DirTree::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::DirTree::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::DirTree::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::DirTree::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
-String ^Chilkat::DirTree::BaseDir::get()
-    {
-    return ref new String(m_impl ? m_impl->baseDir() : L"");
-    }
-void Chilkat::DirTree::BaseDir::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_BaseDir(newVal ? newVal->Data() : L"");
     }
 Boolean Chilkat::DirTree::DoneIterating::get()
     {
@@ -115,6 +83,26 @@ Boolean Chilkat::DirTree::IsDirectory::get()
     {
     return m_impl ? m_impl->get_IsDirectory() : false;
     }
+String ^Chilkat::DirTree::LastErrorHtml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    }
+String ^Chilkat::DirTree::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::DirTree::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
+Boolean Chilkat::DirTree::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::DirTree::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+    }
 Boolean Chilkat::DirTree::Recurse::get()
     {
     return m_impl ? m_impl->get_Recurse() : false;
@@ -127,30 +115,30 @@ String ^Chilkat::DirTree::RelativePath::get()
     {
     return ref new String(m_impl ? m_impl->relativePath() : L"");
     }
-
-
-Boolean DirTree::SaveLastError(Platform::String ^path)
+Boolean Chilkat::DirTree::VerboseLogging::get()
     {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
+    return m_impl ? m_impl->get_VerboseLogging() : false;
     }
+void Chilkat::DirTree::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::DirTree::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
+
+
 Boolean DirTree::AdvancePosition(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->AdvancePosition();
     }
 Boolean DirTree::BeginIterate(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->BeginIterate();
     }
 

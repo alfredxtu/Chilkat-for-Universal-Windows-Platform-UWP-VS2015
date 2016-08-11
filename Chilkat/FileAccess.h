@@ -43,19 +43,7 @@ public ref class FileAccess sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
+	property Platform::String ^CurrentDir
 	{
 		Platform::String ^get();
 	}
@@ -63,20 +51,6 @@ public ref class FileAccess sealed
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Platform::String ^CurrentDir
-	{
-		Platform::String ^get();
 	}
 	property Boolean EndOfFile
 	{
@@ -90,50 +64,74 @@ public ref class FileAccess sealed
 	{
 		Platform::String ^get();
 	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	Boolean AppendAnsi(Platform::String ^text);
 
-	Boolean AppendText(Platform::String ^text, Platform::String ^charset);
+	Boolean AppendText(Platform::String ^str, Platform::String ^charset);
 
 	Boolean AppendUnicodeBOM(void);
 
 	Boolean AppendUtf8BOM(void);
 
-	Boolean DirAutoCreate(Platform::String ^path);
+	Boolean DirAutoCreate(Platform::String ^dirPath);
 
-	Boolean DirCreate(Platform::String ^path);
+	Boolean DirCreate(Platform::String ^dirPath);
 
-	Boolean DirDelete(Platform::String ^path);
+	Boolean DirDelete(Platform::String ^dirPath);
 
 	Boolean DirEnsureExists(Platform::String ^filePath);
 
 	void FileClose(void);
 
-	Boolean FileContentsEqual(Platform::String ^path1, Platform::String ^path2);
+	Boolean FileContentsEqual(Platform::String ^filePath1, Platform::String ^filePath2);
 
-	Boolean FileCopy(Platform::String ^existing, Platform::String ^newFilename, Boolean failIfExists);
+	Boolean FileCopy(Platform::String ^existingFilepath, Platform::String ^newFilepath, Boolean failIfExists);
 
-	Boolean FileDelete(Platform::String ^filename);
+	Boolean FileDelete(Platform::String ^filePath);
 
-	Boolean FileExists(Platform::String ^path);
+	Boolean FileExists(Platform::String ^filePath);
 
 	int FileExists3(Platform::String ^path);
 
-	Boolean FileOpen(Platform::String ^filename, uint32 accessMode, uint32 shareMode, uint32 createDisp, uint32 attr);
+	Boolean FileOpen(Platform::String ^filePath, uint32 accessMode, uint32 shareMode, uint32 createDisposition, uint32 attributes);
 
-	Windows::Foundation::Collections::IVector<uint8>^FileRead(int numBytes);
+	Windows::Foundation::Collections::IVector<uint8>^FileRead(int maxNumBytes);
 
-	Boolean FileRename(Platform::String ^existing, Platform::String ^newFilename);
+	Boolean FileRename(Platform::String ^existingFilepath, Platform::String ^newFilepath);
 
 	Boolean FileSeek(int offset, int origin);
 
-	int FileSize(Platform::String ^filename);
+	int FileSize(Platform::String ^filePath);
 
 	Boolean FileWrite(Windows::Foundation::Collections::IVector<uint8>^data);
 
@@ -141,7 +139,7 @@ public ref class FileAccess sealed
 
 	int GetNumBlocks(int blockSize);
 
-	Platform::String ^GetTempFilename(Platform::String ^dirName, Platform::String ^prefix);
+	Platform::String ^GetTempFilename(Platform::String ^dirPath, Platform::String ^prefix);
 
 	Boolean OpenForAppend(Platform::String ^filePath);
 
@@ -151,31 +149,31 @@ public ref class FileAccess sealed
 
 	Boolean OpenForWrite(Platform::String ^filePath);
 
-	Platform::String ^ReadBinaryToEncoded(Platform::String ^filename, Platform::String ^encoding);
+	Platform::String ^ReadBinaryToEncoded(Platform::String ^filePath, Platform::String ^encoding);
 
 	Windows::Foundation::Collections::IVector<uint8>^ReadBlock(int blockIndex, int blockSize);
 
-	Windows::Foundation::Collections::IVector<uint8>^ReadEntireFile(Platform::String ^filename);
+	Windows::Foundation::Collections::IVector<uint8>^ReadEntireFile(Platform::String ^filePath);
 
-	Platform::String ^ReadEntireTextFile(Platform::String ^filename, Platform::String ^charset);
+	Platform::String ^ReadEntireTextFile(Platform::String ^filePath, Platform::String ^charset);
 
 	Boolean ReassembleFile(Platform::String ^partsDirPath, Platform::String ^partPrefix, Platform::String ^partExtension, Platform::String ^reassembledFilename);
 
-	int ReplaceStrings(Platform::String ^path, Platform::String ^charset, Platform::String ^existingString, Platform::String ^replacementString);
+	int ReplaceStrings(Platform::String ^filePath, Platform::String ^charset, Platform::String ^existingString, Platform::String ^replacementString);
 
-	Boolean SetCurrentDir(Platform::String ^path);
+	Boolean SetCurrentDir(Platform::String ^dirPath);
 
-	Boolean SetFileTimes(Platform::String ^path, Chilkat::CkDateTime ^create, Chilkat::CkDateTime ^lastAccess, Chilkat::CkDateTime ^lastModified);
+	Boolean SetFileTimes(Platform::String ^filePath, Chilkat::CkDateTime ^createTime, Chilkat::CkDateTime ^lastAccessTime, Chilkat::CkDateTime ^lastModTime);
 
-	Boolean SetLastModified(Platform::String ^path, Chilkat::CkDateTime ^lastModified);
+	Boolean SetLastModified(Platform::String ^filePath, Chilkat::CkDateTime ^lastModified);
 
 	Boolean SplitFile(Platform::String ^fileToSplit, Platform::String ^partPrefix, Platform::String ^partExtension, int partSize, Platform::String ^destDir);
 
 	Boolean TreeDelete(Platform::String ^path);
 
-	Boolean WriteEntireFile(Platform::String ^filename, Windows::Foundation::Collections::IVector<uint8>^fileData);
+	Boolean WriteEntireFile(Platform::String ^filePath, Windows::Foundation::Collections::IVector<uint8>^fileData);
 
-	Boolean WriteEntireTextFile(Platform::String ^filename, Platform::String ^fileData, Platform::String ^charset, Boolean includePreamble);
+	Boolean WriteEntireTextFile(Platform::String ^filePath, Platform::String ^textData, Platform::String ^charset, Boolean includedPreamble);
 
 
 

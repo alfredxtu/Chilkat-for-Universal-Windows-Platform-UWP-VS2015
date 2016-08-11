@@ -44,6 +44,14 @@ Chilkat::Cache::Cache(void)
 //}
 
 
+String ^Chilkat::Cache::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::Cache::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
 String ^Chilkat::Cache::LastErrorHtml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
@@ -55,34 +63,6 @@ String ^Chilkat::Cache::LastErrorText::get()
 String ^Chilkat::Cache::LastErrorXml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::Cache::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::Cache::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::Cache::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Cache::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::Cache::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::Cache::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::Cache::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
 String ^Chilkat::Cache::LastEtagFetched::get()
     {
@@ -100,6 +80,14 @@ String ^Chilkat::Cache::LastKeyFetched::get()
     {
     return ref new String(m_impl ? m_impl->lastKeyFetched() : L"");
     }
+Boolean Chilkat::Cache::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::Cache::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+    }
 int Chilkat::Cache::Level::get()
     {
     return m_impl ? m_impl->get_Level() : 0;
@@ -112,75 +100,65 @@ int Chilkat::Cache::NumRoots::get()
     {
     return m_impl ? m_impl->get_NumRoots() : 0;
     }
-
-
-Boolean Cache::SaveLastError(Platform::String ^path)
+Boolean Chilkat::Cache::VerboseLogging::get()
     {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
+    return m_impl ? m_impl->get_VerboseLogging() : false;
     }
+void Chilkat::Cache::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::Cache::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
+
+
 void Cache::AddRoot(Platform::String ^path)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	// gType = void
-	// cppType = void
 	m_impl->AddRoot(path ? path->Data() : L"");
     }
 int Cache::DeleteAll(void)
     {
 	if (m_impl == nullptr) { return -1; }
 	// --- prep output arg ---
-	// gType = int
-	// cppType = int
 	return m_impl->DeleteAll();
     }
 int Cache::DeleteAllExpired(void)
     {
 	if (m_impl == nullptr) { return -1; }
 	// --- prep output arg ---
-	// gType = int
-	// cppType = int
 	return m_impl->DeleteAllExpired();
     }
-Boolean Cache::DeleteFromCache(Platform::String ^url)
+Boolean Cache::DeleteFromCache(Platform::String ^key)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->DeleteFromCache(url ? url->Data() : L"");
+	return m_impl->DeleteFromCache(key ? key->Data() : L"");
     }
-int Cache::DeleteOlderDt(Chilkat::CkDateTime ^dt)
+int Cache::DeleteOlderDt(Chilkat::CkDateTime ^dateTime)
     {
 	if (m_impl == nullptr) { return -1; }
-	if (dt == nullptr) { return -1; }
-	CkDateTimeW* pObj0 = dt->m_impl;
+	if (dateTime == nullptr) { return -1; }
+	CkDateTimeW* pObj0 = dateTime->m_impl;
 	 if (!pObj0) { return -1; }
 	// --- prep output arg ---
-	// gType = int
-	// cppType = int
 	return m_impl->DeleteOlderDt(*pObj0);
     }
 int Cache::DeleteOlderStr(Platform::String ^dateTimeStr)
     {
 	if (m_impl == nullptr) { return -1; }
 	// --- prep output arg ---
-	// gType = int
-	// cppType = int
 	return m_impl->DeleteOlderStr(dateTimeStr ? dateTimeStr->Data() : L"");
     }
-Windows::Foundation::Collections::IVector<uint8>^Cache::FetchFromCache(Platform::String ^url)
+Windows::Foundation::Collections::IVector<uint8>^Cache::FetchFromCache(Platform::String ^key)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
-	bool success = m_impl->FetchFromCache(url ? url->Data() : L"",outDb);
+	bool success = m_impl->FetchFromCache(key ? key->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
@@ -189,19 +167,15 @@ Platform::String ^Cache::FetchText(Platform::String ^key)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->fetchText(key ? key->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-Platform::String ^Cache::GetEtag(Platform::String ^url)
+Platform::String ^Cache::GetEtag(Platform::String ^key)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->getEtag(url ? url->Data() : L"");
+	const wchar_t *retStr = m_impl->getEtag(key ? key->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
@@ -209,8 +183,6 @@ Chilkat::CkDateTime ^Cache::GetExpirationDt(Platform::String ^key)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = CkDateTime
-	// cppType = CkDateTime *
 	CkDateTimeW *pRetObj = m_impl->GetExpirationDt(key ? key->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::CkDateTime ^pCkDateTime = ref new Chilkat::CkDateTime();
@@ -221,19 +193,15 @@ Platform::String ^Cache::GetExpirationStr(Platform::String ^url)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getExpirationStr(url ? url->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-Platform::String ^Cache::GetFilename(Platform::String ^url)
+Platform::String ^Cache::GetFilename(Platform::String ^key)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->getFilename(url ? url->Data() : L"");
+	const wchar_t *retStr = m_impl->getFilename(key ? key->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
@@ -241,101 +209,81 @@ Platform::String ^Cache::GetRoot(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getRoot(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-Boolean Cache::IsCached(Platform::String ^url)
+Boolean Cache::IsCached(Platform::String ^key)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->IsCached(url ? url->Data() : L"");
+	return m_impl->IsCached(key ? key->Data() : L"");
     }
-Boolean Cache::SaveTextDt(Platform::String ^key, Chilkat::CkDateTime ^expire, Platform::String ^eTag, Platform::String ^strData)
+Boolean Cache::SaveTextDt(Platform::String ^key, Chilkat::CkDateTime ^expireDateTime, Platform::String ^eTag, Platform::String ^itemTextData)
     {
 	if (m_impl == nullptr) { return false; }
-	if (expire == nullptr) { return false; }
-	CkDateTimeW* pObj1 = expire->m_impl;
+	if (expireDateTime == nullptr) { return false; }
+	CkDateTimeW* pObj1 = expireDateTime->m_impl;
 	 if (!pObj1) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveTextDt(key ? key->Data() : L"",*pObj1,eTag ? eTag->Data() : L"",strData ? strData->Data() : L"");
+	return m_impl->SaveTextDt(key ? key->Data() : L"",*pObj1,eTag ? eTag->Data() : L"",itemTextData ? itemTextData->Data() : L"");
     }
-Boolean Cache::SaveTextNoExpire(Platform::String ^key, Platform::String ^eTag, Platform::String ^strData)
+Boolean Cache::SaveTextNoExpire(Platform::String ^key, Platform::String ^eTag, Platform::String ^itemTextData)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveTextNoExpire(key ? key->Data() : L"",eTag ? eTag->Data() : L"",strData ? strData->Data() : L"");
+	return m_impl->SaveTextNoExpire(key ? key->Data() : L"",eTag ? eTag->Data() : L"",itemTextData ? itemTextData->Data() : L"");
     }
-Boolean Cache::SaveTextStr(Platform::String ^key, Platform::String ^expireDateTimeStr, Platform::String ^eTag, Platform::String ^strData)
+Boolean Cache::SaveTextStr(Platform::String ^key, Platform::String ^expireDateTime, Platform::String ^eTag, Platform::String ^itemTextData)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveTextStr(key ? key->Data() : L"",expireDateTimeStr ? expireDateTimeStr->Data() : L"",eTag ? eTag->Data() : L"",strData ? strData->Data() : L"");
+	return m_impl->SaveTextStr(key ? key->Data() : L"",expireDateTime ? expireDateTime->Data() : L"",eTag ? eTag->Data() : L"",itemTextData ? itemTextData->Data() : L"");
     }
-Boolean Cache::SaveToCacheDt(Platform::String ^url, Chilkat::CkDateTime ^expire, Platform::String ^eTag, Windows::Foundation::Collections::IVector<uint8>^data)
+Boolean Cache::SaveToCacheDt(Platform::String ^key, Chilkat::CkDateTime ^expireDateTime, Platform::String ^eTag, Windows::Foundation::Collections::IVector<uint8>^itemData)
     {
 	if (m_impl == nullptr) { return false; }
-	if (expire == nullptr) { return false; }
-	CkDateTimeW* pObj1 = expire->m_impl;
+	if (expireDateTime == nullptr) { return false; }
+	CkDateTimeW* pObj1 = expireDateTime->m_impl;
 	 if (!pObj1) { return false; }
 	CkByteData db3; std::vector<uint8> v3;
-        if (data != nullptr) { v3 = to_vector(data);
+        if (itemData != nullptr) { v3 = to_vector(itemData);
             db3.borrowData(&v3[0], (unsigned long)v3.size()); }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveToCacheDt(url ? url->Data() : L"",*pObj1,eTag ? eTag->Data() : L"",db3);
+	return m_impl->SaveToCacheDt(key ? key->Data() : L"",*pObj1,eTag ? eTag->Data() : L"",db3);
     }
-Boolean Cache::SaveToCacheNoExpire(Platform::String ^url, Platform::String ^eTag, Windows::Foundation::Collections::IVector<uint8>^data)
+Boolean Cache::SaveToCacheNoExpire(Platform::String ^key, Platform::String ^eTag, Windows::Foundation::Collections::IVector<uint8>^itemData)
     {
 	if (m_impl == nullptr) { return false; }
 	CkByteData db2; std::vector<uint8> v2;
-        if (data != nullptr) { v2 = to_vector(data);
+        if (itemData != nullptr) { v2 = to_vector(itemData);
             db2.borrowData(&v2[0], (unsigned long)v2.size()); }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveToCacheNoExpire(url ? url->Data() : L"",eTag ? eTag->Data() : L"",db2);
+	return m_impl->SaveToCacheNoExpire(key ? key->Data() : L"",eTag ? eTag->Data() : L"",db2);
     }
-Boolean Cache::SaveToCacheStr(Platform::String ^url, Platform::String ^expireDateTimeStr, Platform::String ^eTag, Windows::Foundation::Collections::IVector<uint8>^data)
+Boolean Cache::SaveToCacheStr(Platform::String ^key, Platform::String ^expireDateTime, Platform::String ^eTag, Windows::Foundation::Collections::IVector<uint8>^itemData)
     {
 	if (m_impl == nullptr) { return false; }
 	CkByteData db3; std::vector<uint8> v3;
-        if (data != nullptr) { v3 = to_vector(data);
+        if (itemData != nullptr) { v3 = to_vector(itemData);
             db3.borrowData(&v3[0], (unsigned long)v3.size()); }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveToCacheStr(url ? url->Data() : L"",expireDateTimeStr ? expireDateTimeStr->Data() : L"",eTag ? eTag->Data() : L"",db3);
+	return m_impl->SaveToCacheStr(key ? key->Data() : L"",expireDateTime ? expireDateTime->Data() : L"",eTag ? eTag->Data() : L"",db3);
     }
-Boolean Cache::UpdateExpirationDt(Platform::String ^url, Chilkat::CkDateTime ^dt)
+Boolean Cache::UpdateExpirationDt(Platform::String ^key, Chilkat::CkDateTime ^expireDateTime)
     {
 	if (m_impl == nullptr) { return false; }
-	if (dt == nullptr) { return false; }
-	CkDateTimeW* pObj1 = dt->m_impl;
+	if (expireDateTime == nullptr) { return false; }
+	CkDateTimeW* pObj1 = expireDateTime->m_impl;
 	 if (!pObj1) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->UpdateExpirationDt(url ? url->Data() : L"",*pObj1);
+	return m_impl->UpdateExpirationDt(key ? key->Data() : L"",*pObj1);
     }
-Boolean Cache::UpdateExpirationStr(Platform::String ^url, Platform::String ^dateTimeStr)
+Boolean Cache::UpdateExpirationStr(Platform::String ^key, Platform::String ^expireDateTime)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->UpdateExpirationStr(url ? url->Data() : L"",dateTimeStr ? dateTimeStr->Data() : L"");
+	return m_impl->UpdateExpirationStr(key ? key->Data() : L"",expireDateTime ? expireDateTime->Data() : L"");
     }
 
 

@@ -65,46 +65,6 @@ Chilkat::Imap::Imap(void)
 //}
 
 
-String ^Chilkat::Imap::LastErrorHtml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
-    }
-String ^Chilkat::Imap::LastErrorText::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::Imap::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::Imap::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::Imap::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::Imap::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Imap::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::Imap::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::Imap::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::Imap::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
 Boolean Chilkat::Imap::AbortCurrent::get()
     {
     return m_impl ? m_impl->get_AbortCurrent() : false;
@@ -165,6 +125,10 @@ void Chilkat::Imap::ClientIpAddress::set(String ^newVal)
     {
         if (m_impl) m_impl->put_ClientIpAddress(newVal ? newVal->Data() : L"");
     }
+String ^Chilkat::Imap::ConnectedToHost::get()
+    {
+    return ref new String(m_impl ? m_impl->connectedToHost() : L"");
+    }
 int Chilkat::Imap::ConnectTimeout::get()
     {
     return m_impl ? m_impl->get_ConnectTimeout() : 0;
@@ -173,9 +137,13 @@ void Chilkat::Imap::ConnectTimeout::set(int newVal)
     {
         if (m_impl) m_impl->put_ConnectTimeout(newVal);
     }
-String ^Chilkat::Imap::ConnectedToHost::get()
+String ^Chilkat::Imap::DebugLogFilePath::get()
     {
-    return ref new String(m_impl ? m_impl->connectedToHost() : L"");
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::Imap::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
     }
 String ^Chilkat::Imap::Domain::get()
     {
@@ -257,9 +225,29 @@ String ^Chilkat::Imap::LastCommand::get()
     {
     return ref new String(m_impl ? m_impl->lastCommand() : L"");
     }
+String ^Chilkat::Imap::LastErrorHtml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    }
+String ^Chilkat::Imap::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::Imap::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
 String ^Chilkat::Imap::LastIntermediateResponse::get()
     {
     return ref new String(m_impl ? m_impl->lastIntermediateResponse() : L"");
+    }
+Boolean Chilkat::Imap::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::Imap::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
 String ^Chilkat::Imap::LastResponse::get()
     {
@@ -357,22 +345,6 @@ String ^Chilkat::Imap::SessionLog::get()
     {
     return ref new String(m_impl ? m_impl->sessionLog() : L"");
     }
-int Chilkat::Imap::SoRcvBuf::get()
-    {
-    return m_impl ? m_impl->get_SoRcvBuf() : 0;
-    }
-void Chilkat::Imap::SoRcvBuf::set(int newVal)
-    {
-        if (m_impl) m_impl->put_SoRcvBuf(newVal);
-    }
-int Chilkat::Imap::SoSndBuf::get()
-    {
-    return m_impl ? m_impl->get_SoSndBuf() : 0;
-    }
-void Chilkat::Imap::SoSndBuf::set(int newVal)
-    {
-        if (m_impl) m_impl->put_SoSndBuf(newVal);
-    }
 String ^Chilkat::Imap::SocksHostname::get()
     {
     return ref new String(m_impl ? m_impl->socksHostname() : L"");
@@ -412,6 +384,22 @@ int Chilkat::Imap::SocksVersion::get()
 void Chilkat::Imap::SocksVersion::set(int newVal)
     {
         if (m_impl) m_impl->put_SocksVersion(newVal);
+    }
+int Chilkat::Imap::SoRcvBuf::get()
+    {
+    return m_impl ? m_impl->get_SoRcvBuf() : 0;
+    }
+void Chilkat::Imap::SoRcvBuf::set(int newVal)
+    {
+        if (m_impl) m_impl->put_SoRcvBuf(newVal);
+    }
+int Chilkat::Imap::SoSndBuf::get()
+    {
+    return m_impl ? m_impl->get_SoSndBuf() : 0;
+    }
+void Chilkat::Imap::SoSndBuf::set(int newVal)
+    {
+        if (m_impl) m_impl->put_SoSndBuf(newVal);
     }
 Boolean Chilkat::Imap::Ssl::get()
     {
@@ -473,42 +461,40 @@ int Chilkat::Imap::UidValidity::get()
     {
     return m_impl ? m_impl->get_UidValidity() : 0;
     }
-
-
-Boolean Imap::SaveLastError(Platform::String ^path)
+Boolean Chilkat::Imap::VerboseLogging::get()
     {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxImapProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
+    return m_impl ? m_impl->get_VerboseLogging() : false;
     }
-Boolean Imap::AddPfxSourceData(Windows::Foundation::Collections::IVector<uint8>^pfxData, Platform::String ^password)
+void Chilkat::Imap::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::Imap::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
+
+
+Boolean Imap::AddPfxSourceData(Windows::Foundation::Collections::IVector<uint8>^pfxBytes, Platform::String ^pfxPassword)
     {
 	if (m_impl == nullptr) { return false; }
 	CkByteData db0; std::vector<uint8> v0;
-        if (pfxData != nullptr) { v0 = to_vector(pfxData);
+        if (pfxBytes != nullptr) { v0 = to_vector(pfxBytes);
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->AddPfxSourceData(db0,password ? password->Data() : L"");
+	return m_impl->AddPfxSourceData(db0,pfxPassword ? pfxPassword->Data() : L"");
     }
-Boolean Imap::AddPfxSourceFile(Platform::String ^pfxFilePath, Platform::String ^password)
+Boolean Imap::AddPfxSourceFile(Platform::String ^pfxFilePath, Platform::String ^pfxPassword)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->AddPfxSourceFile(pfxFilePath ? pfxFilePath->Data() : L"",password ? password->Data() : L"");
+	return m_impl->AddPfxSourceFile(pfxFilePath ? pfxFilePath->Data() : L"",pfxPassword ? pfxPassword->Data() : L"");
     }
-IAsyncOperation<Boolean>^ Imap::AppendMailAsync(Platform::String ^mailbox, Email ^email)
+IAsyncOperation<Boolean>^ Imap::AppendMailAsync(Platform::String ^mailbox, Chilkat::Email ^email)
     {
 return create_async([this, mailbox, email]() -> Boolean
 {
@@ -521,8 +507,6 @@ return create_async([this, mailbox, email]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->AppendMail(mailbox ? mailbox->Data() : L"",*pObj1);
 
 });
@@ -537,8 +521,6 @@ return create_async([this, mailbox, mimeText]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->AppendMime(mailbox ? mailbox->Data() : L"",mimeText ? mimeText->Data() : L"");
 
 });
@@ -553,8 +535,6 @@ return create_async([this, mailbox, mimeText, internalDateStr]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->AppendMimeWithDateStr(mailbox ? mailbox->Data() : L"",mimeText ? mimeText->Data() : L"",internalDateStr ? internalDateStr->Data() : L"");
 
 });
@@ -569,8 +549,6 @@ return create_async([this, mailbox, mimeText, seen, flagged, answered, draft]() 
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->AppendMimeWithFlags(mailbox ? mailbox->Data() : L"",mimeText ? mimeText->Data() : L"",seen,flagged,answered,draft);
 
 });
@@ -585,8 +563,6 @@ return create_async([this]() -> Platform::String ^
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->capability();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -599,8 +575,6 @@ Boolean Imap::CheckConnection(void)
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->CheckConnection();
     }
 IAsyncOperation<MessageSet ^>^ Imap::CheckForNewEmailAsync(void)
@@ -613,8 +587,6 @@ return create_async([this]() -> MessageSet ^
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = MessageSet
-	// cppType = CkMessageSet *
 	CkMessageSetW *pRetObj = m_impl->CheckForNewEmail();
 	if (!pRetObj) return nullptr;
 	Chilkat::MessageSet ^pMessageSet = ref new Chilkat::MessageSet();
@@ -629,8 +601,6 @@ void Imap::ClearSessionLog(void)
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->ClearSessionLog();
     }
 IAsyncOperation<Boolean>^ Imap::CloseMailboxAsync(Platform::String ^mailbox)
@@ -643,15 +613,13 @@ return create_async([this, mailbox]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->CloseMailbox(mailbox ? mailbox->Data() : L"");
 
 });
     }
-IAsyncOperation<Boolean>^ Imap::ConnectAsync(Platform::String ^hostname)
+IAsyncOperation<Boolean>^ Imap::ConnectAsync(Platform::String ^domainName)
     {
-return create_async([this, hostname]() -> Boolean
+return create_async([this, domainName]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -659,9 +627,7 @@ return create_async([this, hostname]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->Connect(hostname ? hostname->Data() : L"");
+	return m_impl->Connect(domainName ? domainName->Data() : L"");
 
 });
     }
@@ -675,13 +641,11 @@ return create_async([this, msgId, bUid, copyToMailbox]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->Copy(msgId,bUid,copyToMailbox ? copyToMailbox->Data() : L"");
 
 });
     }
-IAsyncOperation<Boolean>^ Imap::CopyMultipleAsync(MessageSet ^messageSet, Platform::String ^copyToMailbox)
+IAsyncOperation<Boolean>^ Imap::CopyMultipleAsync(Chilkat::MessageSet ^messageSet, Platform::String ^copyToMailbox)
     {
 return create_async([this, messageSet, copyToMailbox]() -> Boolean
 {
@@ -694,8 +658,6 @@ return create_async([this, messageSet, copyToMailbox]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->CopyMultiple(*pObj0,copyToMailbox ? copyToMailbox->Data() : L"");
 
 });
@@ -710,8 +672,6 @@ return create_async([this, startSeqNum, count, copyToMailbox]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->CopySequence(startSeqNum,count,copyToMailbox ? copyToMailbox->Data() : L"");
 
 });
@@ -726,8 +686,6 @@ return create_async([this, mailbox]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->CreateMailbox(mailbox ? mailbox->Data() : L"");
 
 });
@@ -742,8 +700,6 @@ return create_async([this, mailbox]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->DeleteMailbox(mailbox ? mailbox->Data() : L"");
 
 });
@@ -758,8 +714,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->Disconnect();
 
 });
@@ -774,8 +728,6 @@ return create_async([this, mailbox]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ExamineMailbox(mailbox ? mailbox->Data() : L"");
 
 });
@@ -790,8 +742,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->Expunge();
 
 });
@@ -806,32 +756,28 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ExpungeAndClose();
 
 });
     }
-IAsyncOperation<Boolean>^ Imap::FetchAttachmentAsync(Email ^email, int attachIndex, Platform::String ^saveToPath)
+IAsyncOperation<Boolean>^ Imap::FetchAttachmentAsync(Chilkat::Email ^emailObject, int attachmentIndex, Platform::String ^saveToPath)
     {
-return create_async([this, email, attachIndex, saveToPath]() -> Boolean
+return create_async([this, emailObject, attachmentIndex, saveToPath]() -> Boolean
 {
 // This runs in a thread pool thread...
 
 	if (m_impl == nullptr) { return false; }
-	if (email == nullptr) { return false; }
-	CkEmailW* pObj0 = email->m_impl;
+	if (emailObject == nullptr) { return false; }
+	CkEmailW* pObj0 = emailObject->m_impl;
 	 if (!pObj0) { return false; }
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->FetchAttachment(*pObj0,attachIndex,saveToPath ? saveToPath->Data() : L"");
+	return m_impl->FetchAttachment(*pObj0,attachmentIndex,saveToPath ? saveToPath->Data() : L"");
 
 });
     }
-IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ Imap::FetchAttachmentBytesAsync(Email ^email, int attachIndex)
+IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ Imap::FetchAttachmentBytesAsync(Chilkat::Email ^email, int attachIndex)
     {
 return create_async([this, email, attachIndex]() -> Windows::Foundation::Collections::IVector<uint8>^
 {
@@ -845,8 +791,6 @@ return create_async([this, email, attachIndex]() -> Windows::Foundation::Collect
 	CkByteData outDb;
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->FetchAttachmentBytes(*pObj0,attachIndex,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -854,28 +798,26 @@ return create_async([this, email, attachIndex]() -> Windows::Foundation::Collect
 
 });
     }
-IAsyncOperation<Platform::String ^>^ Imap::FetchAttachmentStringAsync(Email ^email, int attachIndex, Platform::String ^charset)
+IAsyncOperation<Platform::String ^>^ Imap::FetchAttachmentStringAsync(Chilkat::Email ^emailObject, int attachmentIndex, Platform::String ^charset)
     {
-return create_async([this, email, attachIndex, charset]() -> Platform::String ^
+return create_async([this, emailObject, attachmentIndex, charset]() -> Platform::String ^
 {
 // This runs in a thread pool thread...
 
 	if (m_impl == nullptr) { return nullptr; }
-	if (email == nullptr) { return nullptr; }
-	CkEmailW* pObj0 = email->m_impl;
+	if (emailObject == nullptr) { return nullptr; }
+	CkEmailW* pObj0 = emailObject->m_impl;
 	 if (!pObj0) { return nullptr; }
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->fetchAttachmentString(*pObj0,attachIndex,charset ? charset->Data() : L"");
+	const wchar_t *retStr = m_impl->fetchAttachmentString(*pObj0,attachmentIndex,charset ? charset->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
 });
     }
-IAsyncOperation<EmailBundle ^>^ Imap::FetchBundleAsync(MessageSet ^messageSet)
+IAsyncOperation<EmailBundle ^>^ Imap::FetchBundleAsync(Chilkat::MessageSet ^messageSet)
     {
 return create_async([this, messageSet]() -> EmailBundle ^
 {
@@ -888,8 +830,6 @@ return create_async([this, messageSet]() -> EmailBundle ^
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = EmailBundle
-	// cppType = CkEmailBundle *
 	CkEmailBundleW *pRetObj = m_impl->FetchBundle(*pObj0);
 	if (!pRetObj) return nullptr;
 	Chilkat::EmailBundle ^pEmailBundle = ref new Chilkat::EmailBundle();
@@ -898,7 +838,7 @@ return create_async([this, messageSet]() -> EmailBundle ^
 
 });
     }
-IAsyncOperation<StringArray ^>^ Imap::FetchBundleAsMimeAsync(MessageSet ^messageSet)
+IAsyncOperation<StringArray ^>^ Imap::FetchBundleAsMimeAsync(Chilkat::MessageSet ^messageSet)
     {
 return create_async([this, messageSet]() -> StringArray ^
 {
@@ -911,8 +851,6 @@ return create_async([this, messageSet]() -> StringArray ^
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = StringArray
-	// cppType = CkStringArray *
 	CkStringArrayW *pRetObj = m_impl->FetchBundleAsMime(*pObj0);
 	if (!pRetObj) return nullptr;
 	Chilkat::StringArray ^pStringArray = ref new Chilkat::StringArray();
@@ -921,7 +859,7 @@ return create_async([this, messageSet]() -> StringArray ^
 
 });
     }
-IAsyncOperation<EmailBundle ^>^ Imap::FetchChunkAsync(int startSeqNum, int count, MessageSet ^failedSet, MessageSet ^fetchedSet)
+IAsyncOperation<EmailBundle ^>^ Imap::FetchChunkAsync(int startSeqNum, int count, Chilkat::MessageSet ^failedSet, Chilkat::MessageSet ^fetchedSet)
     {
 return create_async([this, startSeqNum, count, failedSet, fetchedSet]() -> EmailBundle ^
 {
@@ -937,8 +875,6 @@ return create_async([this, startSeqNum, count, failedSet, fetchedSet]() -> Email
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = EmailBundle
-	// cppType = CkEmailBundle *
 	CkEmailBundleW *pRetObj = m_impl->FetchChunk(startSeqNum,count,*pObj2,*pObj3);
 	if (!pRetObj) return nullptr;
 	Chilkat::EmailBundle ^pEmailBundle = ref new Chilkat::EmailBundle();
@@ -957,15 +893,13 @@ return create_async([this, msgId, bUid]() -> Platform::String ^
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->fetchFlags(msgId,bUid);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
 });
     }
-IAsyncOperation<EmailBundle ^>^ Imap::FetchHeadersAsync(MessageSet ^messageSet)
+IAsyncOperation<EmailBundle ^>^ Imap::FetchHeadersAsync(Chilkat::MessageSet ^messageSet)
     {
 return create_async([this, messageSet]() -> EmailBundle ^
 {
@@ -978,8 +912,6 @@ return create_async([this, messageSet]() -> EmailBundle ^
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = EmailBundle
-	// cppType = CkEmailBundle *
 	CkEmailBundleW *pRetObj = m_impl->FetchHeaders(*pObj0);
 	if (!pRetObj) return nullptr;
 	Chilkat::EmailBundle ^pEmailBundle = ref new Chilkat::EmailBundle();
@@ -998,8 +930,6 @@ return create_async([this, startSeqNum, numMessages]() -> EmailBundle ^
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = EmailBundle
-	// cppType = CkEmailBundle *
 	CkEmailBundleW *pRetObj = m_impl->FetchSequence(startSeqNum,numMessages);
 	if (!pRetObj) return nullptr;
 	Chilkat::EmailBundle ^pEmailBundle = ref new Chilkat::EmailBundle();
@@ -1018,8 +948,6 @@ return create_async([this, startSeqNum, numMessages]() -> StringArray ^
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = StringArray
-	// cppType = CkStringArray *
 	CkStringArrayW *pRetObj = m_impl->FetchSequenceAsMime(startSeqNum,numMessages);
 	if (!pRetObj) return nullptr;
 	Chilkat::StringArray ^pStringArray = ref new Chilkat::StringArray();
@@ -1038,8 +966,6 @@ return create_async([this, startSeqNum, numMessages]() -> EmailBundle ^
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = EmailBundle
-	// cppType = CkEmailBundle *
 	CkEmailBundleW *pRetObj = m_impl->FetchSequenceHeaders(startSeqNum,numMessages);
 	if (!pRetObj) return nullptr;
 	Chilkat::EmailBundle ^pEmailBundle = ref new Chilkat::EmailBundle();
@@ -1058,8 +984,6 @@ return create_async([this, msgId, bUid]() -> Email ^
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Email
-	// cppType = CkEmail *
 	CkEmailW *pRetObj = m_impl->FetchSingle(msgId,bUid);
 	if (!pRetObj) return nullptr;
 	Chilkat::Email ^pEmail = ref new Chilkat::Email();
@@ -1078,8 +1002,6 @@ return create_async([this, msgId, bUid]() -> Platform::String ^
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->fetchSingleAsMime(msgId,bUid);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -1096,8 +1018,6 @@ return create_async([this, msgId, bUid]() -> Email ^
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Email
-	// cppType = CkEmail *
 	CkEmailW *pRetObj = m_impl->FetchSingleHeader(msgId,bUid);
 	if (!pRetObj) return nullptr;
 	Chilkat::Email ^pEmail = ref new Chilkat::Email();
@@ -1116,8 +1036,6 @@ return create_async([this, msgId, bUID]() -> Platform::String ^
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->fetchSingleHeaderAsMime(msgId,bUID);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -1134,8 +1052,6 @@ return create_async([this]() -> MessageSet ^
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = MessageSet
-	// cppType = CkMessageSet *
 	CkMessageSetW *pRetObj = m_impl->GetAllUids();
 	if (!pRetObj) return nullptr;
 	Chilkat::MessageSet ^pMessageSet = ref new Chilkat::MessageSet();
@@ -1144,7 +1060,7 @@ return create_async([this]() -> MessageSet ^
 
 });
     }
-Platform::String ^Imap::GetMailAttachFilename(Email ^email, int attachIndex)
+Platform::String ^Imap::GetMailAttachFilename(Chilkat::Email ^email, int attachIndex)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	if (email == nullptr) { return nullptr; }
@@ -1153,13 +1069,11 @@ Platform::String ^Imap::GetMailAttachFilename(Email ^email, int attachIndex)
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getMailAttachFilename(*pObj0,attachIndex);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-int Imap::GetMailAttachSize(Email ^email, int attachIndex)
+int Imap::GetMailAttachSize(Chilkat::Email ^email, int attachIndex)
     {
 	if (m_impl == nullptr) { return -1; }
 	if (email == nullptr) { return -1; }
@@ -1168,48 +1082,7 @@ int Imap::GetMailAttachSize(Email ^email, int attachIndex)
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
 	return m_impl->GetMailAttachSize(*pObj0,attachIndex);
-    }
-int Imap::GetMailFlag(Email ^email, Platform::String ^flagName)
-    {
-	if (m_impl == nullptr) { return -1; }
-	if (email == nullptr) { return -1; }
-	CkEmailW* pObj0 = email->m_impl;
-	 if (!pObj0) { return -1; }
-	// --- prep output arg ---
-	CxImapProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
-	return m_impl->GetMailFlag(*pObj0,flagName ? flagName->Data() : L"");
-    }
-int Imap::GetMailNumAttach(Email ^email)
-    {
-	if (m_impl == nullptr) { return -1; }
-	if (email == nullptr) { return -1; }
-	CkEmailW* pObj0 = email->m_impl;
-	 if (!pObj0) { return -1; }
-	// --- prep output arg ---
-	CxImapProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
-	return m_impl->GetMailNumAttach(*pObj0);
-    }
-int Imap::GetMailSize(Email ^email)
-    {
-	if (m_impl == nullptr) { return -1; }
-	if (email == nullptr) { return -1; }
-	CkEmailW* pObj0 = email->m_impl;
-	 if (!pObj0) { return -1; }
-	// --- prep output arg ---
-	CxImapProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
-	return m_impl->GetMailSize(*pObj0);
     }
 IAsyncOperation<Platform::String ^>^ Imap::GetMailboxStatusAsync(Platform::String ^mailbox)
     {
@@ -1221,13 +1094,44 @@ return create_async([this, mailbox]() -> Platform::String ^
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getMailboxStatus(mailbox ? mailbox->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
 });
+    }
+int Imap::GetMailFlag(Chilkat::Email ^email, Platform::String ^flagName)
+    {
+	if (m_impl == nullptr) { return -1; }
+	if (email == nullptr) { return -1; }
+	CkEmailW* pObj0 = email->m_impl;
+	 if (!pObj0) { return -1; }
+	// --- prep output arg ---
+	CxImapProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->GetMailFlag(*pObj0,flagName ? flagName->Data() : L"");
+    }
+int Imap::GetMailNumAttach(Chilkat::Email ^email)
+    {
+	if (m_impl == nullptr) { return -1; }
+	if (email == nullptr) { return -1; }
+	CkEmailW* pObj0 = email->m_impl;
+	 if (!pObj0) { return -1; }
+	// --- prep output arg ---
+	CxImapProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->GetMailNumAttach(*pObj0);
+    }
+int Imap::GetMailSize(Chilkat::Email ^email)
+    {
+	if (m_impl == nullptr) { return -1; }
+	if (email == nullptr) { return -1; }
+	CkEmailW* pObj0 = email->m_impl;
+	 if (!pObj0) { return -1; }
+	// --- prep output arg ---
+	CxImapProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->GetMailSize(*pObj0);
     }
 IAsyncOperation<Platform::String ^>^ Imap::GetQuotaAsync(Platform::String ^quotaRoot)
     {
@@ -1239,8 +1143,6 @@ return create_async([this, quotaRoot]() -> Platform::String ^
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getQuota(quotaRoot ? quotaRoot->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -1257,8 +1159,6 @@ return create_async([this, mailboxName]() -> Platform::String ^
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getQuotaRoot(mailboxName ? mailboxName->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -1271,8 +1171,6 @@ Cert ^Imap::GetSslServerCert(void)
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Cert
-	// cppType = CkCert *
 	CkCertW *pRetObj = m_impl->GetSslServerCert();
 	if (!pRetObj) return nullptr;
 	Chilkat::Cert ^pCert = ref new Chilkat::Cert();
@@ -1285,8 +1183,6 @@ Boolean Imap::HasCapability(Platform::String ^name, Platform::String ^capability
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->HasCapability(name ? name->Data() : L"",capabilityResponse ? capabilityResponse->Data() : L"");
     }
 IAsyncOperation<Platform::String ^>^ Imap::IdleCheckAsync(int timeoutMs)
@@ -1299,8 +1195,6 @@ return create_async([this, timeoutMs]() -> Platform::String ^
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->idleCheck(timeoutMs);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -1317,8 +1211,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->IdleDone();
 
 });
@@ -1333,8 +1225,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->IdleStart();
 
 });
@@ -1345,8 +1235,6 @@ Boolean Imap::IsConnected(void)
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsConnected();
     }
 Boolean Imap::IsLoggedIn(void)
@@ -1355,8 +1243,6 @@ Boolean Imap::IsLoggedIn(void)
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsLoggedIn();
     }
 Boolean Imap::IsUnlocked(void)
@@ -1365,8 +1251,6 @@ Boolean Imap::IsUnlocked(void)
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsUnlocked();
     }
 IAsyncOperation<Mailboxes ^>^ Imap::ListMailboxesAsync(Platform::String ^reference, Platform::String ^wildcardedMailbox)
@@ -1379,8 +1263,6 @@ return create_async([this, reference, wildcardedMailbox]() -> Mailboxes ^
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Mailboxes
-	// cppType = CkMailboxes *
 	CkMailboxesW *pRetObj = m_impl->ListMailboxes(reference ? reference->Data() : L"",wildcardedMailbox ? wildcardedMailbox->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::Mailboxes ^pMailboxes = ref new Chilkat::Mailboxes();
@@ -1399,8 +1281,6 @@ return create_async([this, reference, wildcardedMailbox]() -> Mailboxes ^
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Mailboxes
-	// cppType = CkMailboxes *
 	CkMailboxesW *pRetObj = m_impl->ListSubscribed(reference ? reference->Data() : L"",wildcardedMailbox ? wildcardedMailbox->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::Mailboxes ^pMailboxes = ref new Chilkat::Mailboxes();
@@ -1419,8 +1299,6 @@ return create_async([this, login, password]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->Login(login ? login->Data() : L"",password ? password->Data() : L"");
 
 });
@@ -1435,8 +1313,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->Logout();
 
 });
@@ -1451,13 +1327,11 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->Noop();
 
 });
     }
-IAsyncOperation<Boolean>^ Imap::RefetchMailFlagsAsync(Email ^email)
+IAsyncOperation<Boolean>^ Imap::RefetchMailFlagsAsync(Chilkat::Email ^email)
     {
 return create_async([this, email]() -> Boolean
 {
@@ -1470,8 +1344,6 @@ return create_async([this, email]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->RefetchMailFlags(*pObj0);
 
 });
@@ -1486,8 +1358,6 @@ return create_async([this, fromMailbox, toMailbox]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->RenameMailbox(fromMailbox ? fromMailbox->Data() : L"",toMailbox ? toMailbox->Data() : L"");
 
 });
@@ -1502,8 +1372,6 @@ return create_async([this, criteria, bUid]() -> MessageSet ^
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = MessageSet
-	// cppType = CkMessageSet *
 	CkMessageSetW *pRetObj = m_impl->Search(criteria ? criteria->Data() : L"",bUid);
 	if (!pRetObj) return nullptr;
 	Chilkat::MessageSet ^pMessageSet = ref new Chilkat::MessageSet();
@@ -1522,8 +1390,6 @@ return create_async([this, mailbox]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SelectMailbox(mailbox ? mailbox->Data() : L"");
 
 });
@@ -1538,8 +1404,6 @@ return create_async([this, cmd]() -> Platform::String ^
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->sendRawCommand(cmd ? cmd->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -1557,8 +1421,6 @@ return create_async([this, cmd]() -> Windows::Foundation::Collections::IVector<u
 	CkByteData outDb;
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->SendRawCommandB(cmd ? cmd->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -1580,8 +1442,6 @@ return create_async([this, cmd]() -> Windows::Foundation::Collections::IVector<u
 	CkByteData outDb;
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->SendRawCommandC(db0,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -1589,7 +1449,7 @@ return create_async([this, cmd]() -> Windows::Foundation::Collections::IVector<u
 
 });
     }
-Boolean Imap::SetDecryptCert(Cert ^cert)
+Boolean Imap::SetDecryptCert(Chilkat::Cert ^cert)
     {
 	if (m_impl == nullptr) { return false; }
 	if (cert == nullptr) { return false; }
@@ -1598,11 +1458,9 @@ Boolean Imap::SetDecryptCert(Cert ^cert)
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetDecryptCert(*pObj0);
     }
-Boolean Imap::SetDecryptCert2(Cert ^cert, PrivateKey ^key)
+Boolean Imap::SetDecryptCert2(Chilkat::Cert ^cert, Chilkat::PrivateKey ^key)
     {
 	if (m_impl == nullptr) { return false; }
 	if (cert == nullptr) { return false; }
@@ -1614,8 +1472,6 @@ Boolean Imap::SetDecryptCert2(Cert ^cert, PrivateKey ^key)
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetDecryptCert2(*pObj0,*pObj1);
     }
 IAsyncOperation<Boolean>^ Imap::SetFlagAsync(int msgId, Boolean bUid, Platform::String ^flagName, int value)
@@ -1628,13 +1484,11 @@ return create_async([this, msgId, bUid, flagName, value]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetFlag(msgId,bUid,flagName ? flagName->Data() : L"",value);
 
 });
     }
-IAsyncOperation<Boolean>^ Imap::SetFlagsAsync(MessageSet ^messageSet, Platform::String ^flagName, int value)
+IAsyncOperation<Boolean>^ Imap::SetFlagsAsync(Chilkat::MessageSet ^messageSet, Platform::String ^flagName, int value)
     {
 return create_async([this, messageSet, flagName, value]() -> Boolean
 {
@@ -1647,13 +1501,11 @@ return create_async([this, messageSet, flagName, value]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetFlags(*pObj0,flagName ? flagName->Data() : L"",value);
 
 });
     }
-IAsyncOperation<Boolean>^ Imap::SetMailFlagAsync(Email ^email, Platform::String ^flagName, int value)
+IAsyncOperation<Boolean>^ Imap::SetMailFlagAsync(Chilkat::Email ^email, Platform::String ^flagName, int value)
     {
 return create_async([this, email, flagName, value]() -> Boolean
 {
@@ -1666,8 +1518,6 @@ return create_async([this, email, flagName, value]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetMailFlag(*pObj0,flagName ? flagName->Data() : L"",value);
 
 });
@@ -1682,13 +1532,11 @@ return create_async([this, quotaRoot, resource, quota]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetQuota(quotaRoot ? quotaRoot->Data() : L"",resource ? resource->Data() : L"",quota);
 
 });
     }
-Boolean Imap::SetSslClientCert(Cert ^cert)
+Boolean Imap::SetSslClientCert(Chilkat::Cert ^cert)
     {
 	if (m_impl == nullptr) { return false; }
 	if (cert == nullptr) { return false; }
@@ -1697,8 +1545,6 @@ Boolean Imap::SetSslClientCert(Cert ^cert)
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetSslClientCert(*pObj0);
     }
 Boolean Imap::SetSslClientCertPem(Platform::String ^pemDataOrFilename, Platform::String ^pemPassword)
@@ -1707,8 +1553,6 @@ Boolean Imap::SetSslClientCertPem(Platform::String ^pemDataOrFilename, Platform:
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetSslClientCertPem(pemDataOrFilename ? pemDataOrFilename->Data() : L"",pemPassword ? pemPassword->Data() : L"");
     }
 Boolean Imap::SetSslClientCertPfx(Platform::String ^pfxFilename, Platform::String ^pfxPassword)
@@ -1717,11 +1561,9 @@ Boolean Imap::SetSslClientCertPfx(Platform::String ^pfxFilename, Platform::Strin
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetSslClientCertPfx(pfxFilename ? pfxFilename->Data() : L"",pfxPassword ? pfxPassword->Data() : L"");
     }
-IAsyncOperation<Boolean>^ Imap::SshAuthenticatePkAsync(Platform::String ^sshLogin, SshKey ^privateKey)
+IAsyncOperation<Boolean>^ Imap::SshAuthenticatePkAsync(Platform::String ^sshLogin, Chilkat::SshKey ^privateKey)
     {
 return create_async([this, sshLogin, privateKey]() -> Boolean
 {
@@ -1734,8 +1576,6 @@ return create_async([this, sshLogin, privateKey]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SshAuthenticatePk(sshLogin ? sshLogin->Data() : L"",*pObj1);
 
 });
@@ -1750,8 +1590,6 @@ return create_async([this, sshLogin, sshPassword]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SshAuthenticatePw(sshLogin ? sshLogin->Data() : L"",sshPassword ? sshPassword->Data() : L"");
 
 });
@@ -1766,8 +1604,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SshCloseTunnel();
 
 });
@@ -1782,8 +1618,6 @@ return create_async([this, sshHostname, sshPort]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SshOpenTunnel(sshHostname ? sshHostname->Data() : L"",sshPort);
 
 });
@@ -1798,8 +1632,6 @@ return create_async([this, msgId, bUid, flagNames, value]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->StoreFlags(msgId,bUid,flagNames ? flagNames->Data() : L"",value);
 
 });
@@ -1814,8 +1646,6 @@ return create_async([this, mailbox]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->Subscribe(mailbox ? mailbox->Data() : L"");
 
 });
@@ -1826,8 +1656,6 @@ Boolean Imap::UnlockComponent(Platform::String ^unlockCode)
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UnlockComponent(unlockCode ? unlockCode->Data() : L"");
     }
 IAsyncOperation<Boolean>^ Imap::UnsubscribeAsync(Platform::String ^mailbox)
@@ -1840,13 +1668,11 @@ return create_async([this, mailbox]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->Unsubscribe(mailbox ? mailbox->Data() : L"");
 
 });
     }
-Boolean Imap::UseCertVault(XmlCertVault ^vault)
+Boolean Imap::UseCertVault(Chilkat::XmlCertVault ^vault)
     {
 	if (m_impl == nullptr) { return false; }
 	if (vault == nullptr) { return false; }
@@ -1855,11 +1681,9 @@ Boolean Imap::UseCertVault(XmlCertVault ^vault)
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UseCertVault(*pObj0);
     }
-Boolean Imap::UseSsh(Ssh ^ssh)
+Boolean Imap::UseSsh(Chilkat::Ssh ^ssh)
     {
 	if (m_impl == nullptr) { return false; }
 	if (ssh == nullptr) { return false; }
@@ -1868,11 +1692,9 @@ Boolean Imap::UseSsh(Ssh ^ssh)
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UseSsh(*pObj0);
     }
-Boolean Imap::UseSshTunnel(Socket ^tunnel)
+Boolean Imap::UseSshTunnel(Chilkat::Socket ^tunnel)
     {
 	if (m_impl == nullptr) { return false; }
 	if (tunnel == nullptr) { return false; }
@@ -1881,8 +1703,6 @@ Boolean Imap::UseSshTunnel(Socket ^tunnel)
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UseSshTunnel(*pObj0);
     }
 

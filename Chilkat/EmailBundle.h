@@ -44,6 +44,11 @@ public ref class EmailBundle sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
@@ -56,20 +61,6 @@ public ref class EmailBundle sealed
 	{
 		Platform::String ^get();
 	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Boolean LastMethodSuccess
 	{
 		Boolean get();
@@ -79,16 +70,23 @@ public ref class EmailBundle sealed
 	{
 		int32 get();
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
+	Boolean AddEmail(Chilkat::Email ^email);
 
-	Boolean AddEmail(Email ^email);
-
-	Email ^FindByHeader(Platform::String ^name, Platform::String ^value);
+	Email ^FindByHeader(Platform::String ^headerFieldName, Platform::String ^headerFieldValue);
 
 	Email ^GetEmail(int index);
 
@@ -100,7 +98,7 @@ public ref class EmailBundle sealed
 
 	Boolean LoadXmlString(Platform::String ^xmlStr);
 
-	Boolean RemoveEmail(Email ^email);
+	Boolean RemoveEmail(Chilkat::Email ^email);
 
 	Boolean RemoveEmailByIndex(int index);
 

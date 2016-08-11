@@ -43,46 +43,15 @@ public ref class SFtpFile sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Platform::String ^CreateTimeStr
 	{
 		Platform::String ^get();
 	}
-	property Platform::String ^FileType
+	property Platform::String ^Filename
 	{
 		Platform::String ^get();
 	}
-	property Platform::String ^Filename
+	property Platform::String ^FileType
 	{
 		Platform::String ^get();
 	}
@@ -187,8 +156,6 @@ public ref class SFtpFile sealed
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	CkDateTime ^GetCreateDt(void);
 
 	CkDateTime ^GetLastAccessDt(void);

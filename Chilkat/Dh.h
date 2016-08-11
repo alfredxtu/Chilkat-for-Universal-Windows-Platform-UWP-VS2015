@@ -42,6 +42,15 @@ public ref class Dh sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property int32 G
+	{
+		int32 get();
+	}
 	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
@@ -54,30 +63,21 @@ public ref class Dh sealed
 	{
 		Platform::String ^get();
 	}
-	property Platform::String ^Version
+	property Boolean LastMethodSuccess
 	{
-		Platform::String ^get();
+		Boolean get();
+		void set(Boolean);
 	}
-	property Platform::String ^DebugLogFilePath
+	property Platform::String ^P
 	{
 		Platform::String ^get();
-		void set(Platform::String ^);
 	}
 	property Boolean VerboseLogging
 	{
 		Boolean get();
 		void set(Boolean);
 	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property int32 G
-	{
-		int32 get();
-	}
-	property Platform::String ^P
+	property Platform::String ^Version
 	{
 		Platform::String ^get();
 	}
@@ -86,13 +86,11 @@ public ref class Dh sealed
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	Platform::String ^CreateE(int numBits);
 
-	Platform::String ^FindK(Platform::String ^e);
+	Platform::String ^FindK(Platform::String ^E);
 
-	Boolean GenPG(int numBits, int g);
+	Boolean GenPG(int numBits, int G);
 
 	Boolean SetPG(Platform::String ^p, int g);
 

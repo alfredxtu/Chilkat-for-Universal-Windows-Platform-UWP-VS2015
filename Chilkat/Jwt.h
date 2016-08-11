@@ -44,6 +44,16 @@ public ref class Jwt sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Boolean AutoCompact
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
@@ -56,40 +66,28 @@ public ref class Jwt sealed
 	{
 		Platform::String ^get();
 	}
-	property Platform::String ^Version
+	property Boolean LastMethodSuccess
 	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
+		Boolean get();
+		void set(Boolean);
 	}
 	property Boolean VerboseLogging
 	{
 		Boolean get();
 		void set(Boolean);
 	}
-	property Boolean LastMethodSuccess
+	property Platform::String ^Version
 	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean AutoCompact
-	{
-		Boolean get();
-		void set(Boolean);
+		Platform::String ^get();
 	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	Platform::String ^CreateJwt(Platform::String ^header, Platform::String ^payload, Platform::String ^password);
 
-	Platform::String ^CreateJwtPk(Platform::String ^header, Platform::String ^payload, PrivateKey ^key);
+	Platform::String ^CreateJwtPk(Platform::String ^header, Platform::String ^payload, Chilkat::PrivateKey ^key);
 
 	int GenNumericDate(int numSecOffset);
 
@@ -101,7 +99,7 @@ public ref class Jwt sealed
 
 	Boolean VerifyJwt(Platform::String ^token, Platform::String ^password);
 
-	Boolean VerifyJwtPk(Platform::String ^token, PublicKey ^key);
+	Boolean VerifyJwtPk(Platform::String ^token, Chilkat::PublicKey ^key);
 
 
 

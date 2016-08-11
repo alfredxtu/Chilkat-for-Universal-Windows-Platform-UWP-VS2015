@@ -42,6 +42,20 @@ public ref class StringArray sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property int32 Count
+	{
+		int32 get();
+	}
+	property Boolean Crlf
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
@@ -54,30 +68,7 @@ public ref class StringArray sealed
 	{
 		Platform::String ^get();
 	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property int32 Count
-	{
-		int32 get();
-	}
-	property Boolean Crlf
 	{
 		Boolean get();
 		void set(Boolean);
@@ -96,13 +87,20 @@ public ref class StringArray sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	Boolean Append(Platform::String ^str);
 
 	Boolean AppendSerialized(Platform::String ^encodedStr);
@@ -111,9 +109,9 @@ public ref class StringArray sealed
 
 	Boolean Contains(Platform::String ^str);
 
-	int Find(Platform::String ^str, int firstIndex);
+	int Find(Platform::String ^findStr, int startIndex);
 
-	int FindFirstMatch(Platform::String ^str, int firstIndex);
+	int FindFirstMatch(Platform::String ^matchPattern, int startIndex);
 
 	Platform::String ^GetString(int index);
 
@@ -123,9 +121,9 @@ public ref class StringArray sealed
 
 	Platform::String ^LastString(void);
 
-	Boolean LoadFromFile(Platform::String ^filename);
+	Boolean LoadFromFile(Platform::String ^path);
 
-	Boolean LoadFromFile2(Platform::String ^filename, Platform::String ^charset);
+	Boolean LoadFromFile2(Platform::String ^path, Platform::String ^charset);
 
 	void LoadFromText(Platform::String ^str);
 
@@ -139,11 +137,11 @@ public ref class StringArray sealed
 
 	void ReplaceAt(int index, Platform::String ^str);
 
-	Boolean SaveNthToFile(int index, Platform::String ^filename);
+	Boolean SaveNthToFile(int index, Platform::String ^saveToPath);
 
-	Boolean SaveToFile(Platform::String ^filename);
+	Boolean SaveToFile(Platform::String ^path);
 
-	Boolean SaveToFile2(Platform::String ^filename, Platform::String ^charset);
+	Boolean SaveToFile2(Platform::String ^saveToPath, Platform::String ^charset);
 
 	Platform::String ^SaveToText(void);
 
@@ -153,9 +151,9 @@ public ref class StringArray sealed
 
 	void SplitAndAppend(Platform::String ^str, Platform::String ^boundary);
 
-	void Subtract(StringArray ^sa);
+	void Subtract(Chilkat::StringArray ^stringArrayObj);
 
-	void Union(StringArray ^sa);
+	void Union(Chilkat::StringArray ^stringArrayObj);
 
 
 

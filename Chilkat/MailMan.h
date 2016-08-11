@@ -89,37 +89,6 @@ public ref class MailMan sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Boolean AbortCurrent
 	{
 		Boolean get();
@@ -163,6 +132,11 @@ public ref class MailMan sealed
 	{
 		int32 get();
 		void set(int32);
+	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
 	}
 	property Platform::String ^DsnEnvid
 	{
@@ -247,6 +221,23 @@ public ref class MailMan sealed
 	{
 		Boolean get();
 	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property Platform::String ^LastSendQFilename
 	{
 		Platform::String ^get();
@@ -310,11 +301,6 @@ public ref class MailMan sealed
 		int32 get();
 		void set(int32);
 	}
-	property Boolean Pop3SPA
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property int32 Pop3SessionId
 	{
 		int32 get();
@@ -322,6 +308,11 @@ public ref class MailMan sealed
 	property Platform::String ^Pop3SessionLog
 	{
 		Platform::String ^get();
+	}
+	property Boolean Pop3SPA
+	{
+		Boolean get();
+		void set(Boolean);
 	}
 	property Boolean Pop3SslServerCertVerified
 	{
@@ -439,16 +430,6 @@ public ref class MailMan sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
-	property int32 SoRcvBuf
-	{
-		int32 get();
-		void set(int32);
-	}
-	property int32 SoSndBuf
-	{
-		int32 get();
-		void set(int32);
-	}
 	property Platform::String ^SocksHostname
 	{
 		Platform::String ^get();
@@ -470,6 +451,16 @@ public ref class MailMan sealed
 		void set(Platform::String ^);
 	}
 	property int32 SocksVersion
+	{
+		int32 get();
+		void set(int32);
+	}
+	property int32 SoRcvBuf
+	{
+		int32 get();
+		void set(int32);
+	}
+	property int32 SoSndBuf
 	{
 		int32 get();
 		void set(int32);
@@ -507,13 +498,20 @@ public ref class MailMan sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	Boolean AddPfxSourceData(Windows::Foundation::Collections::IVector<uint8>^pfxData, Platform::String ^password);
 
 	Boolean AddPfxSourceFile(Platform::String ^pfxFilePath, Platform::String ^password);
@@ -530,15 +528,15 @@ public ref class MailMan sealed
 
 	IAsyncOperation<EmailBundle ^>^ CopyMailAsync(void);
 
-	IAsyncOperation<Boolean>^ DeleteBundleAsync(EmailBundle ^bundle);
+	IAsyncOperation<Boolean>^ DeleteBundleAsync(Chilkat::EmailBundle ^emailBundle);
 
 	IAsyncOperation<Boolean>^ DeleteByMsgnumAsync(int msgnum);
 
 	IAsyncOperation<Boolean>^ DeleteByUidlAsync(Platform::String ^uidl);
 
-	IAsyncOperation<Boolean>^ DeleteEmailAsync(Email ^email);
+	IAsyncOperation<Boolean>^ DeleteEmailAsync(Chilkat::Email ^email);
 
-	IAsyncOperation<Boolean>^ DeleteMultipleAsync(StringArray ^uidlArray);
+	IAsyncOperation<Boolean>^ DeleteMultipleAsync(Chilkat::StringArray ^uidlArray);
 
 	IAsyncOperation<Email ^>^ FetchByMsgnumAsync(int msgnum);
 
@@ -548,13 +546,13 @@ public ref class MailMan sealed
 
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ FetchMimeByMsgnumAsync(int msgnum);
 
-	IAsyncOperation<EmailBundle ^>^ FetchMultipleAsync(StringArray ^uidlArray);
+	IAsyncOperation<EmailBundle ^>^ FetchMultipleAsync(Chilkat::StringArray ^uidlArray);
 
-	IAsyncOperation<EmailBundle ^>^ FetchMultipleHeadersAsync(StringArray ^uidlArray, int numBodyLines);
+	IAsyncOperation<EmailBundle ^>^ FetchMultipleHeadersAsync(Chilkat::StringArray ^uidlArray, int numBodyLines);
 
-	IAsyncOperation<StringArray ^>^ FetchMultipleMimeAsync(StringArray ^uidlArray);
+	IAsyncOperation<StringArray ^>^ FetchMultipleMimeAsync(Chilkat::StringArray ^uidlArray);
 
-	IAsyncOperation<Email ^>^ FetchSingleHeaderAsync(int numBodyLines, int index);
+	IAsyncOperation<Email ^>^ FetchSingleHeaderAsync(int numBodyLines, int messageNumber);
 
 	IAsyncOperation<Email ^>^ FetchSingleHeaderByUidlAsync(int numBodyLines, Platform::String ^uidl);
 
@@ -562,7 +560,7 @@ public ref class MailMan sealed
 
 	StringArray ^GetBadEmailAddrs(void);
 
-	IAsyncOperation<Email ^>^ GetFullEmailAsync(Email ^email);
+	IAsyncOperation<Email ^>^ GetFullEmailAsync(Chilkat::Email ^email);
 
 	IAsyncOperation<EmailBundle ^>^ GetHeadersAsync(int numBodyLines, int fromIndex, int toIndex);
 
@@ -620,27 +618,27 @@ public ref class MailMan sealed
 
 	IAsyncOperation<Boolean>^ QuickSendAsync(Platform::String ^fromAddr, Platform::String ^toAddr, Platform::String ^subject, Platform::String ^body, Platform::String ^smtpServer);
 
-	Platform::String ^RenderToMime(Email ^email);
+	Platform::String ^RenderToMime(Chilkat::Email ^email);
 
-	Windows::Foundation::Collections::IVector<uint8>^RenderToMimeBytes(Email ^email);
+	Windows::Foundation::Collections::IVector<uint8>^RenderToMimeBytes(Chilkat::Email ^email);
 
-	IAsyncOperation<Boolean>^ SendBundleAsync(EmailBundle ^bundle);
+	IAsyncOperation<Boolean>^ SendBundleAsync(Chilkat::EmailBundle ^bundle);
 
-	IAsyncOperation<Boolean>^ SendEmailAsync(Email ^email);
+	IAsyncOperation<Boolean>^ SendEmailAsync(Chilkat::Email ^email);
 
-	IAsyncOperation<Boolean>^ SendMimeAsync(Platform::String ^from, Platform::String ^recipients, Platform::String ^mimeText);
+	IAsyncOperation<Boolean>^ SendMimeAsync(Platform::String ^fromAddr, Platform::String ^recipients, Platform::String ^mimeSource);
 
-	IAsyncOperation<Boolean>^ SendMimeBytesAsync(Platform::String ^from, Platform::String ^recipients, Windows::Foundation::Collections::IVector<uint8>^mimeData);
+	IAsyncOperation<Boolean>^ SendMimeBytesAsync(Platform::String ^fromAddr, Platform::String ^recipients, Windows::Foundation::Collections::IVector<uint8>^mimeSource);
 
-	IAsyncOperation<Boolean>^ SendMimeToListAsync(Platform::String ^from, Platform::String ^distListFile, Platform::String ^mimeText);
+	IAsyncOperation<Boolean>^ SendMimeToListAsync(Platform::String ^fromAddr, Platform::String ^distListFilename, Platform::String ^mimeSource);
 
-	IAsyncOperation<Boolean>^ SendToDistributionListAsync(Email ^email, StringArray ^sa);
+	IAsyncOperation<Boolean>^ SendToDistributionListAsync(Chilkat::Email ^emailObj, Chilkat::StringArray ^recipientList);
 
-	Boolean SetDecryptCert(Cert ^cert);
+	Boolean SetDecryptCert(Chilkat::Cert ^cert);
 
-	Boolean SetDecryptCert2(Cert ^cert, PrivateKey ^key);
+	Boolean SetDecryptCert2(Chilkat::Cert ^cert, Chilkat::PrivateKey ^privateKey);
 
-	Boolean SetSslClientCert(Cert ^cert);
+	Boolean SetSslClientCert(Chilkat::Cert ^cert);
 
 	Boolean SetSslClientCertPem(Platform::String ^pemDataOrFilename, Platform::String ^pemPassword);
 
@@ -656,9 +654,9 @@ public ref class MailMan sealed
 
 	IAsyncOperation<Platform::String ^>^ SmtpSendRawCommandAsync(Platform::String ^command, Platform::String ^charset, Boolean bEncodeBase64);
 
-	IAsyncOperation<Boolean>^ SshAuthenticatePkAsync(Platform::String ^sshLogin, SshKey ^privateKey);
+	IAsyncOperation<Boolean>^ SshAuthenticatePkAsync(Platform::String ^bSmtp, Chilkat::SshKey ^sshUsername);
 
-	IAsyncOperation<Boolean>^ SshAuthenticatePwAsync(Platform::String ^sshLogin, Platform::String ^sshPassword);
+	IAsyncOperation<Boolean>^ SshAuthenticatePwAsync(Platform::String ^bSmtp, Platform::String ^sshLogin);
 
 	IAsyncOperation<Boolean>^ SshCloseTunnelAsync(void);
 
@@ -666,21 +664,21 @@ public ref class MailMan sealed
 
 	IAsyncOperation<EmailBundle ^>^ TransferMailAsync(void);
 
-	IAsyncOperation<StringArray ^>^ TransferMultipleMimeAsync(StringArray ^uidlArray);
+	IAsyncOperation<StringArray ^>^ TransferMultipleMimeAsync(Chilkat::StringArray ^uidlArray);
 
 	Boolean UnlockComponent(Platform::String ^code);
 
-	Boolean UseCertVault(XmlCertVault ^vault);
+	Boolean UseCertVault(Chilkat::XmlCertVault ^vault);
 
-	Boolean UseSsh(Ssh ^ssh);
+	Boolean UseSsh(Chilkat::Ssh ^ssh);
 
-	Boolean UseSshTunnel(Socket ^tunnel);
+	Boolean UseSshTunnel(Chilkat::Socket ^tunnel);
 
 	IAsyncOperation<Boolean>^ VerifyPopConnectionAsync(void);
 
 	IAsyncOperation<Boolean>^ VerifyPopLoginAsync(void);
 
-	IAsyncOperation<Boolean>^ VerifyRecipsAsync(Email ^email, StringArray ^badAddrs);
+	IAsyncOperation<Boolean>^ VerifyRecipsAsync(Chilkat::Email ^email, Chilkat::StringArray ^badAddrs);
 
 	IAsyncOperation<Boolean>^ VerifySmtpConnectionAsync(void);
 

@@ -48,6 +48,11 @@ public ref class JavaKeyStore sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
@@ -59,20 +64,6 @@ public ref class JavaKeyStore sealed
 	property Platform::String ^LastErrorXml
 	{
 		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
 	}
 	property Boolean LastMethodSuccess
 	{
@@ -92,23 +83,30 @@ public ref class JavaKeyStore sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property Boolean VerifyKeyedDigest
 	{
 		Boolean get();
 		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
 	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
+	Boolean AddPfx(Chilkat::Pfx ^pfx, Platform::String ^alias, Platform::String ^password);
 
-	Boolean AddPfx(Pfx ^pfx, Platform::String ^alias, Platform::String ^password);
+	Boolean AddPrivateKey(Chilkat::Cert ^cert, Platform::String ^alias, Platform::String ^password);
 
-	Boolean AddPrivateKey(Cert ^cert, Platform::String ^alias, Platform::String ^password);
-
-	Boolean AddTrustedCert(Cert ^cert, Platform::String ^alias);
+	Boolean AddTrustedCert(Chilkat::Cert ^cert, Platform::String ^alias);
 
 	Boolean ChangePassword(int index, Platform::String ^oldPassword, Platform::String ^newPassword);
 
@@ -150,7 +148,7 @@ public ref class JavaKeyStore sealed
 
 	Boolean UnlockComponent(Platform::String ^unlockCode);
 
-	Boolean UseCertVault(XmlCertVault ^vault);
+	Boolean UseCertVault(Chilkat::XmlCertVault ^vault);
 
 
 

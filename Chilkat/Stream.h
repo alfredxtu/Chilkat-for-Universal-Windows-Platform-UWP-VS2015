@@ -74,37 +74,6 @@ public ref class Stream sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Boolean AbortCurrent
 	{
 		Boolean get();
@@ -122,6 +91,11 @@ public ref class Stream sealed
 	{
 		Boolean get();
 	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property int32 DefaultChunkSize
 	{
 		int32 get();
@@ -134,6 +108,23 @@ public ref class Stream sealed
 	property Boolean IsWriteClosed
 	{
 		Boolean get();
+	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
 	}
 	property int64 Length
 	{
@@ -172,6 +163,16 @@ public ref class Stream sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property int32 SourceFilePart
+	{
+		int32 get();
+		void set(int32);
+	}
+	property int32 SourceFilePartSize
+	{
+		int32 get();
+		void set(int32);
+	}
 	property Boolean StringBom
 	{
 		Boolean get();
@@ -181,6 +182,15 @@ public ref class Stream sealed
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
+	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
 	}
 	property int32 WriteFailReason
 	{
@@ -196,8 +206,6 @@ public ref class Stream sealed
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ ReadBytesAsync(void);
 
 	IAsyncOperation<Platform::String ^>^ ReadBytesENCAsync(Platform::String ^encoding);
@@ -216,11 +224,11 @@ public ref class Stream sealed
 
 	IAsyncOperation<Boolean>^ RunStreamAsync(void);
 
-	Boolean SetSinkStream(Stream ^strm);
+	Boolean SetSinkStream(Chilkat::Stream ^strm);
 
 	Boolean SetSourceBytes(Windows::Foundation::Collections::IVector<uint8>^sourceData);
 
-	Boolean SetSourceStream(Stream ^strm);
+	Boolean SetSourceStream(Chilkat::Stream ^strm);
 
 	Boolean SetSourceString(Platform::String ^srcStr, Platform::String ^charset);
 

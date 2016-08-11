@@ -42,37 +42,6 @@ public ref class OAuth1 sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Platform::String ^AuthorizationHeader
 	{
 		Platform::String ^get();
@@ -91,6 +60,11 @@ public ref class OAuth1 sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^EncodedSignature
 	{
 		Platform::String ^get();
@@ -102,6 +76,23 @@ public ref class OAuth1 sealed
 	property Platform::String ^HmacKey
 	{
 		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
 	}
 	property Platform::String ^Nonce
 	{
@@ -151,20 +142,27 @@ public ref class OAuth1 sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	Boolean AddParam(Platform::String ^name, Platform::String ^value);
+
+	Boolean Generate(void);
 
 	Boolean GenNonce(int numBytes);
 
 	Boolean GenTimestamp(void);
-
-	Boolean Generate(void);
 
 	Boolean RemoveParam(Platform::String ^name);
 

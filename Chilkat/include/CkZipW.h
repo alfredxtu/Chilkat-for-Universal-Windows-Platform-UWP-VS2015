@@ -251,43 +251,6 @@ class CK_VISIBLE_PUBLIC CkZipW  : public CkClassWithCallbacksW
 	// false.
 	void put_DiscardPaths(bool newVal);
 
-	// The encryption key length if AES, Blowfish, Twofish, or WinZip-compatible AES
-	// encryption is used. This value must be 128, 192, or 256. The default value is
-	// 128.
-	int get_EncryptKeyLength(void);
-	// The encryption key length if AES, Blowfish, Twofish, or WinZip-compatible AES
-	// encryption is used. This value must be 128, 192, or 256. The default value is
-	// 128.
-	void put_EncryptKeyLength(int newVal);
-
-	// The password used when writing a password-protected or strong-encrytped Zip.
-	// 
-	// Note:The SetPassword method has the effect of setting both this property as well
-	// as the DecryptPassword property. The SetPassword method should no longer be
-	// used. It has been replaced by the DecryptPassword and EncryptPassword properties
-	// to make it possible to open an encrypted zip and re-write it with a new
-	// password.
-	// 
-	void get_EncryptPassword(CkString &str);
-	// The password used when writing a password-protected or strong-encrytped Zip.
-	// 
-	// Note:The SetPassword method has the effect of setting both this property as well
-	// as the DecryptPassword property. The SetPassword method should no longer be
-	// used. It has been replaced by the DecryptPassword and EncryptPassword properties
-	// to make it possible to open an encrypted zip and re-write it with a new
-	// password.
-	// 
-	const wchar_t *encryptPassword(void);
-	// The password used when writing a password-protected or strong-encrytped Zip.
-	// 
-	// Note:The SetPassword method has the effect of setting both this property as well
-	// as the DecryptPassword property. The SetPassword method should no longer be
-	// used. It has been replaced by the DecryptPassword and EncryptPassword properties
-	// to make it possible to open an encrypted zip and re-write it with a new
-	// password.
-	// 
-	void put_EncryptPassword(const wchar_t *newVal);
-
 	// Indicate whether the Zip is to be strong encrypted or not. Valid values are 0
 	// (not encrypted) or 4 (AES encrypted). When this property is set to the value 4,
 	// WinZip AES compatible encrypted zip archives are produced.
@@ -332,6 +295,43 @@ class CK_VISIBLE_PUBLIC CkZipW  : public CkClassWithCallbacksW
 	// both password-protected and strong-encrypted.
 	// 
 	void put_Encryption(int newVal);
+
+	// The encryption key length if AES, Blowfish, Twofish, or WinZip-compatible AES
+	// encryption is used. This value must be 128, 192, or 256. The default value is
+	// 128.
+	int get_EncryptKeyLength(void);
+	// The encryption key length if AES, Blowfish, Twofish, or WinZip-compatible AES
+	// encryption is used. This value must be 128, 192, or 256. The default value is
+	// 128.
+	void put_EncryptKeyLength(int newVal);
+
+	// The password used when writing a password-protected or strong-encrytped Zip.
+	// 
+	// Note:The SetPassword method has the effect of setting both this property as well
+	// as the DecryptPassword property. The SetPassword method should no longer be
+	// used. It has been replaced by the DecryptPassword and EncryptPassword properties
+	// to make it possible to open an encrypted zip and re-write it with a new
+	// password.
+	// 
+	void get_EncryptPassword(CkString &str);
+	// The password used when writing a password-protected or strong-encrytped Zip.
+	// 
+	// Note:The SetPassword method has the effect of setting both this property as well
+	// as the DecryptPassword property. The SetPassword method should no longer be
+	// used. It has been replaced by the DecryptPassword and EncryptPassword properties
+	// to make it possible to open an encrypted zip and re-write it with a new
+	// password.
+	// 
+	const wchar_t *encryptPassword(void);
+	// The password used when writing a password-protected or strong-encrytped Zip.
+	// 
+	// Note:The SetPassword method has the effect of setting both this property as well
+	// as the DecryptPassword property. The SetPassword method should no longer be
+	// used. It has been replaced by the DecryptPassword and EncryptPassword properties
+	// to make it possible to open an encrypted zip and re-write it with a new
+	// password.
+	// 
+	void put_EncryptPassword(const wchar_t *newVal);
 
 #if defined(CK_SFX_INCLUDED)
 	// (Relevant only when running on a Microsoft Windows operating system.) Specifies
@@ -962,7 +962,7 @@ class CK_VISIBLE_PUBLIC CkZipW  : public CkClassWithCallbacksW
 	// (Meaning data compressed using the "deflate" compression algorithm.)
 	// 
 	// The caller is responsible for deleting the object returned by this method.
-	CkZipEntryW *AppendCompressed(const wchar_t *fileName, CkByteData &inData);
+	CkZipEntryW *AppendCompressed(const wchar_t *filename, CkByteData &inData);
 
 	// Appends in-memory data as a new entry to a Zip object. The ZipEntry object
 	// containing the data is returned.
@@ -972,6 +972,19 @@ class CK_VISIBLE_PUBLIC CkZipW  : public CkClassWithCallbacksW
 	// 
 	// The caller is responsible for deleting the object returned by this method.
 	CkZipEntryW *AppendData(const wchar_t *fileName, CkByteData &inData);
+
+	// Appends in-memory data as a new entry to a Zip object. The filename is the filename
+	// of the entry as it will appear within the zip. The encoding is the encoding of the
+	// data, such as "base64", "hex", etc. The full list of encodings is listed at the
+	// web page linked below.
+	// 
+	// Returns the zip entry object.
+	// 
+	// Note: This method only updates the zip object. To update (rewrite) a zip file,
+	// either the WriteZip or WriteZipAndClose method would need to be called.
+	// 
+	// The caller is responsible for deleting the object returned by this method.
+	CkZipEntryW *AppendDataEncoded(const wchar_t *filename, const wchar_t *encoding, const wchar_t *data);
 
 	// Appends one or more files to the Zip object. The filePattern can use the "*"
 	// wildcard character for 0 or more of any characterSet recurse equal to True to
@@ -988,18 +1001,18 @@ class CK_VISIBLE_PUBLIC CkZipW  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *AppendFilesAsync(const wchar_t *filePattern, bool recurse);
 
-	// Appends one or more files to the Zip object. The ARG1 can use the "*" and "?"
+	// Appends one or more files to the Zip object. The filePattern can use the "*" and "?"
 	// wildcard characters where "*" means 0 or more of any character and "?" means any
-	// single character. The ARG2 controls whether directories are recursively
-	// traversed. Set ARG2 equal to true to append files and subdirectories in the
-	// directory tree. Set ARG2 equal to false to add files only from the indicated
+	// single character. The recurse controls whether directories are recursively
+	// traversed. Set recurse equal to true to append files and subdirectories in the
+	// directory tree. Set recurse equal to false to add files only from the indicated
 	// directory.
 	// 
-	// The ARG3 only applies when the ARG1 is an absolute path pattern, such as
-	// "C:/temp/abc/*.txt". If ARG3 is true, then the absolute path will be included
+	// The saveExtraPath only applies when the filePattern is an absolute path pattern, such as
+	// "C:/temp/abc/*.txt". If saveExtraPath is true, then the absolute path will be included
 	// in the zip entry filenames as relative paths. For example, "temp/abc/xyz.txt".
 	// 
-	// The ARG4, ARG4, and ARG5 flags only apply when on the Windows operating system.
+	// The archiveOnly, archiveOnly, and includeHidden flags only apply when on the Windows operating system.
 	// These flags control whether files with the Archive, Hidden, or System attributes
 	// are included.
 	// 
@@ -1068,20 +1081,20 @@ class CK_VISIBLE_PUBLIC CkZipW  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkZipEntryW *AppendNewDir(const wchar_t *dirName);
 
-	// Appends a single file or directory to the Zip object. The  saveExtraPath applies when fileOrDirPath
-	// is an absolute (non-relative) path. If  saveExtraPath is true, then the absolute path is
+	// Appends a single file or directory to the Zip object. The saveExtraPath applies when fileOrDirPath
+	// is an absolute (non-relative) path. If saveExtraPath is true, then the absolute path is
 	// made relative and saved in the zip. For example, if the fileOrDirPath is
-	// "C:/temp/xyz/test.txt" and  saveExtraPath is true, then the path in the zip will be
-	// "./temp/xyz/test.txt". If however, fileOrDirPath contains a relative path, then  saveExtraPath has
+	// "C:/temp/xyz/test.txt" and saveExtraPath is true, then the path in the zip will be
+	// "./temp/xyz/test.txt". If however, fileOrDirPath contains a relative path, then saveExtraPath has
 	// no effect.
-	bool AppendOneFileOrDir(const wchar_t *fileOrDirName, bool saveExtraPath);
+	bool AppendOneFileOrDir(const wchar_t *fileOrDirPath, bool saveExtraPath);
 
 	// Creates an asynchronous task to call the AppendOneFileOrDir method with the
 	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
 	// The caller is responsible for deleting the object returned by this method.
-	CkTaskW *AppendOneFileOrDirAsync(const wchar_t *fileOrDirName, bool saveExtraPath);
+	CkTaskW *AppendOneFileOrDirAsync(const wchar_t *fileOrDirPath, bool saveExtraPath);
 
-	// Adds an in-memory string to the Zip object. The  textData argument is converted to
+	// Adds an in-memory string to the Zip object. The textData argument is converted to
 	// the ANSI charset before being added to the Zip. If the Zip were written to disk
 	// by calling WriteZip, and later unzipped, the entry would unzip to an ANSI text
 	// file.
@@ -1090,17 +1103,17 @@ class CK_VISIBLE_PUBLIC CkZipW  : public CkClassWithCallbacksW
 	// either the WriteZip or WriteZipAndClose method would need to be called.
 	// 
 	// The caller is responsible for deleting the object returned by this method.
-	CkZipEntryW *AppendString(const wchar_t *fileName, const wchar_t *str);
+	CkZipEntryW *AppendString(const wchar_t *internalZipFilepath, const wchar_t *textData);
 
-	// Same as AppendString, but allows the charset to be specified. The  textData is
-	// converted to  charset before being added to the zip. The internalZipFilepath is the path of the
+	// Same as AppendString, but allows the charset to be specified. The textData is
+	// converted to charset before being added to the zip. The internalZipFilepath is the path of the
 	// file that will be stored within the zip.
 	// 
 	// Note: This method only updates the zip object. To update (rewrite) a zip file,
 	// either the WriteZip or WriteZipAndClose method would need to be called.
 	// 
 	// The caller is responsible for deleting the object returned by this method.
-	CkZipEntryW *AppendString2(const wchar_t *fileName, const wchar_t *str, const wchar_t *charset);
+	CkZipEntryW *AppendString2(const wchar_t *internalZipFilepath, const wchar_t *textData, const wchar_t *charset);
 
 	// Adds the contents of another existing Zip file to this Zip object.
 	bool AppendZip(const wchar_t *zipFileName);
@@ -1232,7 +1245,7 @@ class CK_VISIBLE_PUBLIC CkZipW  : public CkClassWithCallbacksW
 	// Clears and initializes the contents of the Zip object. If a Zip file was open,
 	// it is closed and all entries are removed from the object. The FileName property
 	// is set to the zipFilePath argument.
-	bool NewZip(const wchar_t *ZipFileName);
+	bool NewZip(const wchar_t *zipFilePath);
 
 #if defined(CK_SFX_INCLUDED)
 	// (Relevant only when running on a Microsoft Windows operating system.) Opens a
@@ -1337,7 +1350,7 @@ class CK_VISIBLE_PUBLIC CkZipW  : public CkClassWithCallbacksW
 	// For example, to specify the text for the self-extractor's main dialog unzip
 	// button, paramName would be "MainUnzipBtn".
 	// 
-	void SetExeConfigParam(const wchar_t *name, const wchar_t *value);
+	void SetExeConfigParam(const wchar_t *paramName, const wchar_t *paramValue);
 #endif
 
 	// Set the password for an encrypted or password-protected Zip.

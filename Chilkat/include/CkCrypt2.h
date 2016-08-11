@@ -747,13 +747,6 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	// 
 	void put_HeartbeatMs(int newVal);
 
-	// The initialization vector to be used with symmetric encryption algorithms (AES,
-	// Blowfish, Twofish, etc.). If left unset, no initialization vector is used.
-	void get_IV(CkByteData &outBytes);
-	// The initialization vector to be used with symmetric encryption algorithms (AES,
-	// Blowfish, Twofish, etc.). If left unset, no initialization vector is used.
-	void put_IV(const CkByteData &inBytes);
-
 	// Only applies when creating digital signatures. If true (the default), then
 	// additional certificates (if any) in the chain of authentication are included in
 	// the PKCS7 digital signature.
@@ -788,6 +781,13 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	// search more difficult. The default value is 1024.
 	// 
 	void put_IterationCount(int newVal);
+
+	// The initialization vector to be used with symmetric encryption algorithms (AES,
+	// Blowfish, Twofish, etc.). If left unset, no initialization vector is used.
+	void get_IV(CkByteData &outBytes);
+	// The initialization vector to be used with symmetric encryption algorithms (AES,
+	// Blowfish, Twofish, etc.). If left unset, no initialization vector is used.
+	void put_IV(const CkByteData &inBytes);
 
 	// The key length in bits for symmetric encryption algorithms. The default value is
 	// 256.
@@ -1008,7 +1008,7 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	// 
 	// The pfxBytes contains the bytes of a PFX file (also known as PKCS12 or .p12).
 	// 
-	bool AddPfxSourceData(CkByteData &pfxData, const char *password);
+	bool AddPfxSourceData(CkByteData &pfxBytes, const char *pfxPassword);
 
 
 	// Adds a PFX file to the object's internal list of sources to be searched for
@@ -1019,12 +1019,7 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	// 
 	// The pfxFilePath contains the bytes of a PFX file (also known as PKCS12 or .p12).
 	// 
-	bool AddPfxSourceFile(const char *pfxFilePath, const char *password);
-
-
-	// Convenience method for byte swapping between little-endian byte ordering and
-	// big-endian byte ordering.
-	bool ByteSwap4321(CkByteData &data, CkByteData &outBytes);
+	bool AddPfxSourceFile(const char *pfxFilePath, const char *pfxPassword);
 
 
 	// Utility method to convert bytes to a string -- interpreting the bytes according
@@ -1034,6 +1029,11 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	// Utility method to convert bytes to a string -- interpreting the bytes according
 	// to the charset specified.
 	const char *bytesToString(CkByteData &inData, const char *charset);
+
+	// Convenience method for byte swapping between little-endian byte ordering and
+	// big-endian byte ordering.
+	bool ByteSwap4321(CkByteData &data, CkByteData &outBytes);
+
 
 	// File-to-file decryption. There is no limit to the size of the file that can be
 	// decrypted because the component will operate in streaming mode internally.
@@ -1121,14 +1121,14 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	const char *compressStringENC(const char *str);
 
 	// Calculates a CRC for in-memory byte data. To compute the CRC used in the Zip
-	// file format, pass "CRC-32" for the ARG1. (The ARG1 argument provides the
+	// file format, pass "CRC-32" for the crcAlg. (The crcAlg argument provides the
 	// flexibility to add additional CRC algorithms on an as-needed basis in the
 	// future.)
 	unsigned long CrcBytes(const char *crcAlg, CkByteData &byteData);
 
 
 	// Calculates a CRC for the contents of a file. To compute the CRC used in the Zip
-	// file format, pass "CRC-32" for the ARG1. (The ARG1 argument provides the
+	// file format, pass "CRC-32" for the crcAlg. (The crcAlg argument provides the
 	// flexibility to add additional CRC algorithms on an as-needed basis in the
 	// future.) A value of 0 is returned if the file is unable to be read. Given that
 	// there is a 1 in 4 billion chance of having an actual CRC of 0, an application
@@ -1137,7 +1137,7 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	unsigned long CrcFile(const char *crcAlg, const char *path);
 
 	// Calculates a CRC for the contents of a file. To compute the CRC used in the Zip
-	// file format, pass "CRC-32" for the ARG1. (The ARG1 argument provides the
+	// file format, pass "CRC-32" for the crcAlg. (The crcAlg argument provides the
 	// flexibility to add additional CRC algorithms on an as-needed basis in the
 	// future.) A value of 0 is returned if the file is unable to be read. Given that
 	// there is a 1 in 4 billion chance of having an actual CRC of 0, an application
@@ -1154,37 +1154,37 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	// This method is equivalent to CreateP7S. The CreateP7S method was added to
 	// clarify the format of the signature file that is created.
 	// 
-	bool CreateDetachedSignature(const char *filename, const char *sigFile);
+	bool CreateDetachedSignature(const char *inFilePath, const char *sigFilePath);
 
 
 	// Digitally signs a file and creates a .p7m (PKCS #7 Message) file that contains
-	// both the signature and original file content. The input file (ARG1) is
+	// both the signature and original file content. The input file (inFilename) is
 	// unmodified. A certificate for signing must be specified by calling
 	// SetSigningCert or SetSigningCert2 prior to calling this method.
 	bool CreateP7M(const char *inFilename, const char *p7mPath);
 
 
 	// Digitally signs a file and creates a .p7s (PKCS #7 Signature) signature file.
-	// The input file (inFilename) is unmodified. The output file ( p7sPath) contains only the
+	// The input file (inFilename) is unmodified. The output file (p7sPath) contains only the
 	// signature and not the original data. A certificate for signing must be specified
 	// by calling SetSigningCert or SetSigningCert2 prior to calling this method.
-	bool CreateP7S(const char *inFilename, const char *p7sFilename);
+	bool CreateP7S(const char *inFilename, const char *p7sPath);
 
 
-	// Decode binary data from an encoded string. The  encoding can be set to any of the
+	// Decode binary data from an encoded string. The encoding can be set to any of the
 	// following strings: "base64", "hex", "quoted-printable", "url", "base32", "Q",
 	// "B", "url_rc1738", "url_rfc2396", "url_rfc3986", "url_oauth", "uu", "modBase64",
 	// or "html" (for HTML entity encoding).
 	bool Decode(const char *str, const char *encoding, CkByteData &outData);
 
 
-	// Decodes from an encoding back to the original string. The  encoding can be set to any
+	// Decodes from an encoding back to the original string. The encoding can be set to any
 	// of the following strings: "base64", "hex", "quoted-printable", "url", "base32",
 	// "Q", "B", "url_rc1738", "url_rfc2396", "url_rfc3986", "url_oauth", "uu",
 	// "modBase64", or "html" (for HTML entity encoding).
 	bool DecodeString(const char *inStr, const char *charset, const char *encoding, CkString &outStr);
 
-	// Decodes from an encoding back to the original string. The  encoding can be set to any
+	// Decodes from an encoding back to the original string. The encoding can be set to any
 	// of the following strings: "base64", "hex", "quoted-printable", "url", "base32",
 	// "Q", "B", "url_rc1738", "url_rfc2396", "url_rfc3986", "url_oauth", "uu",
 	// "modBase64", or "html" (for HTML entity encoding).
@@ -1209,22 +1209,22 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	// etc.). This method first decodes the input data according to the EncodingMode
 	// property setting. It then decrypts and re-encodes using the EncodingMode
 	// setting, and returns the decrypted data in encoded string form.
-	bool DecryptEncoded(const char *str, CkString &outStr);
+	bool DecryptEncoded(const char *encodedEncryptedData, CkString &outStr);
 
 	// Encrypted data is passed to this method as an encoded string (base64, hex,
 	// etc.). This method first decodes the input data according to the EncodingMode
 	// property setting. It then decrypts and re-encodes using the EncodingMode
 	// setting, and returns the decrypted data in encoded string form.
-	const char *decryptEncoded(const char *str);
+	const char *decryptEncoded(const char *encodedEncryptedData);
 
-	// Decrypts a stream. Internally, the ARG1's source is read, decrypted, and the
-	// decrypted data written to the ARG1's sink. It does this in streaming fashion.
+	// Decrypts a stream. Internally, the strm's source is read, decrypted, and the
+	// decrypted data written to the strm's sink. It does this in streaming fashion.
 	// Extremely large or even infinite streams can be decrypted with stable ungrowing
 	// memory usage.
 	bool DecryptStream(CkStream &strm);
 
-	// Decrypts a stream. Internally, the ARG1's source is read, decrypted, and the
-	// decrypted data written to the ARG1's sink. It does this in streaming fashion.
+	// Decrypts a stream. Internally, the strm's source is read, decrypted, and the
+	// decrypted data written to the strm's sink. It does this in streaming fashion.
 	// Extremely large or even infinite streams can be decrypted with stable ungrowing
 	// memory usage.
 	CkTask *DecryptStreamAsync(CkStream &strm);
@@ -1266,57 +1266,57 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	// 
 	const char *decryptStringENC(const char *str);
 
-	// Encode binary data to base64, hex, quoted-printable, or URL-encoding. The  encoding
+	// Encode binary data to base64, hex, quoted-printable, or URL-encoding. The encoding
 	// can be set to any of the following strings: "base64", "hex", "quoted-printable"
 	// (or "qp"), "url", "base32", "Q", "B", "url_rc1738", "url_rfc2396",
 	// "url_rfc3986", "url_oauth", "uu", "modBase64", or "html" (for HTML entity
 	// encoding).
-	bool Encode(CkByteData &data, const char *encoding, CkString &outStr);
+	bool Encode(CkByteData &byteData, const char *encoding, CkString &outStr);
 
-	// Encode binary data to base64, hex, quoted-printable, or URL-encoding. The  encoding
+	// Encode binary data to base64, hex, quoted-printable, or URL-encoding. The encoding
 	// can be set to any of the following strings: "base64", "hex", "quoted-printable"
 	// (or "qp"), "url", "base32", "Q", "B", "url_rc1738", "url_rfc2396",
 	// "url_rfc3986", "url_oauth", "uu", "modBase64", or "html" (for HTML entity
 	// encoding).
-	const char *encode(CkByteData &data, const char *encoding);
+	const char *encode(CkByteData &byteData, const char *encoding);
 
-	// Encode binary data to base64, hex, quoted-printable, or URL-encoding. The  encoding
+	// Encode binary data to base64, hex, quoted-printable, or URL-encoding. The encoding
 	// can be set to any of the following strings: "base64", "hex", "quoted-printable",
 	// "url", "base32", "Q", "B", "url_rc1738", "url_rfc2396", "url_rfc3986",
 	// "url_oauth", "uu", "modBase64", or "html" (for HTML entity encoding).
 	// 
-	// The pByteData points to the bytes to be encoded. The  szByteData specifies the number of
+	// The pByteData points to the bytes to be encoded. The szByteData specifies the number of
 	// bytes to encode.
 	// 
 	bool EncodeBytes(const void *pByteData, unsigned long szByteData, const char *encoding, CkString &outStr);
 
-	// Encode binary data to base64, hex, quoted-printable, or URL-encoding. The  encoding
+	// Encode binary data to base64, hex, quoted-printable, or URL-encoding. The encoding
 	// can be set to any of the following strings: "base64", "hex", "quoted-printable",
 	// "url", "base32", "Q", "B", "url_rc1738", "url_rfc2396", "url_rfc3986",
 	// "url_oauth", "uu", "modBase64", or "html" (for HTML entity encoding).
 	// 
-	// The pByteData points to the bytes to be encoded. The  szByteData specifies the number of
+	// The pByteData points to the bytes to be encoded. The szByteData specifies the number of
 	// bytes to encode.
 	// 
 	const char *encodeBytes(const void *pByteData, unsigned long szByteData, const char *encoding);
 
-	// Encodes a string. The  toEncodingName can be set to any of the following strings: "base64",
+	// Encodes a string. The toEncodingName can be set to any of the following strings: "base64",
 	// "hex", "quoted-printable", "url", "base32", "Q", "B", "url_rc1738",
 	// "url_rfc2396", "url_rfc3986", "url_oauth", "uu", "modBase64", or "html" (for
-	// HTML entity encoding). The  charsetName is important, and usually you'll want to specify
+	// HTML entity encoding). The charsetName is important, and usually you'll want to specify
 	// "ansi". For example, if the string "ABC" is to be encoded to "hex" using ANSI,
 	// the result will be "414243". However, if "unicode" is used, the result is
 	// "410042004300".
-	bool EncodeString(const char *inStr, const char *charset, const char *encoding, CkString &outStr);
+	bool EncodeString(const char *strToEncode, const char *charsetName, const char *toEncodingName, CkString &outStr);
 
-	// Encodes a string. The  toEncodingName can be set to any of the following strings: "base64",
+	// Encodes a string. The toEncodingName can be set to any of the following strings: "base64",
 	// "hex", "quoted-printable", "url", "base32", "Q", "B", "url_rc1738",
 	// "url_rfc2396", "url_rfc3986", "url_oauth", "uu", "modBase64", or "html" (for
-	// HTML entity encoding). The  charsetName is important, and usually you'll want to specify
+	// HTML entity encoding). The charsetName is important, and usually you'll want to specify
 	// "ansi". For example, if the string "ABC" is to be encoded to "hex" using ANSI,
 	// the result will be "414243". However, if "unicode" is used, the result is
 	// "410042004300".
-	const char *encodeString(const char *inStr, const char *charset, const char *encoding);
+	const char *encodeString(const char *strToEncode, const char *charsetName, const char *toEncodingName);
 
 	// Encrypts a byte array. The minimal set of properties that should be set before
 	// encrypting are: CryptAlgorithm, SecretKey. Other properties that control
@@ -1355,14 +1355,14 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	// encrypted data is encoded (using EncodingMode) and returned.
 	const char *encryptEncoded(const char *str);
 
-	// Encrypts a stream. Internally, the ARG1's source is read, encrypted, and the
-	// encrypted data written to the ARG1's sink. It does this in streaming fashion.
+	// Encrypts a stream. Internally, the strm's source is read, encrypted, and the
+	// encrypted data written to the strm's sink. It does this in streaming fashion.
 	// Extremely large or even infinite streams can be encrypted with stable ungrowing
 	// memory usage.
 	bool EncryptStream(CkStream &strm);
 
-	// Encrypts a stream. Internally, the ARG1's source is read, encrypted, and the
-	// encrypted data written to the ARG1's sink. It does this in streaming fashion.
+	// Encrypts a stream. Internally, the strm's source is read, encrypted, and the
+	// encrypted data written to the strm's sink. It does this in streaming fashion.
 	// Extremely large or even infinite streams can be encrypted with stable ungrowing
 	// memory usage.
 	CkTask *EncryptStreamAsync(CkStream &strm);
@@ -1496,36 +1496,28 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	const char *encryptStringENC(const char *str);
 
 	// Important: In the v9.5.0.49 release, a bug involving this method was introduced:
-	// The  encoding is ignored and instead the encoding used is the current value of the
+	// The encoding is ignored and instead the encoding used is the current value of the
 	// EncodingMode property. The workaround is to make sure the EncodingMode property
 	// is set to the value of the desired output encoding. This problem will be fixed
 	// in v9.5.0.50.
 	// 
 	// Identical to the GenerateSecretKey method, except it returns the binary secret
-	// key as a string encoded according to  encoding, which may be "base64", "hex", "url",
+	// key as a string encoded according to encoding, which may be "base64", "hex", "url",
 	// etc. Please see the documentation for GenerateSecretKey for more information.
 	// 
 	bool GenEncodedSecretKey(const char *password, const char *encoding, CkString &outStr);
 
 	// Important: In the v9.5.0.49 release, a bug involving this method was introduced:
-	// The  encoding is ignored and instead the encoding used is the current value of the
+	// The encoding is ignored and instead the encoding used is the current value of the
 	// EncodingMode property. The workaround is to make sure the EncodingMode property
 	// is set to the value of the desired output encoding. This problem will be fixed
 	// in v9.5.0.50.
 	// 
 	// Identical to the GenerateSecretKey method, except it returns the binary secret
-	// key as a string encoded according to  encoding, which may be "base64", "hex", "url",
+	// key as a string encoded according to encoding, which may be "base64", "hex", "url",
 	// etc. Please see the documentation for GenerateSecretKey for more information.
 	// 
 	const char *genEncodedSecretKey(const char *password, const char *encoding);
-
-	// Generates numBytes random bytes and returns them as an encoded string. The encoding,
-	// such as base64, hex, etc. is controlled by the EncodingMode property.
-	bool GenRandomBytesENC(int numBytes, CkString &outStr);
-
-	// Generates numBytes random bytes and returns them as an encoded string. The encoding,
-	// such as base64, hex, etc. is controlled by the EncodingMode property.
-	const char *genRandomBytesENC(int numBytes);
 
 	// Hashes a string to a byte array that has the same number of bits as the current
 	// value of the KeyLength property. For example, if KeyLength is equal to 128 bits,
@@ -1551,6 +1543,14 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	// Generates a random UUID string having standard UUID format, such as
 	// "de305d54-75b4-431b-adb2-eb6b9e546014".
 	const char *generateUuid(void);
+
+	// Generates numBytes random bytes and returns them as an encoded string. The encoding,
+	// such as base64, hex, etc. is controlled by the EncodingMode property.
+	bool GenRandomBytesENC(int numBytes, CkString &outStr);
+
+	// Generates numBytes random bytes and returns them as an encoded string. The encoding,
+	// such as base64, hex, etc. is controlled by the EncodingMode property.
+	const char *genRandomBytesENC(int numBytes);
 
 	// Returns the last certificate used for public-key decryption.
 	// The caller is responsible for deleting the object returned by this method.
@@ -1587,7 +1587,7 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	const char *encodedAad(const char *encoding);
 
 
-	// Returns the authentication tag as an encoded string. The ARG1 argument may be
+	// Returns the authentication tag as an encoded string. The encoding argument may be
 	// set to any of the following strings: "base64", "hex", "quoted-printable", or
 	// "url". The authentication tag is an output of authenticated encryption modes
 	// such as GCM when encrypting. When GCM mode decrypting, the authenticate tag is
@@ -1599,7 +1599,7 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	// 
 	bool GetEncodedAuthTag(const char *encoding, CkString &outStr);
 
-	// Returns the authentication tag as an encoded string. The ARG1 argument may be
+	// Returns the authentication tag as an encoded string. The encoding argument may be
 	// set to any of the following strings: "base64", "hex", "quoted-printable", or
 	// "url". The authentication tag is an output of authenticated encryption modes
 	// such as GCM when encrypting. When GCM mode decrypting, the authenticate tag is
@@ -1610,7 +1610,7 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	// of 16 bytes, such as AES or Twofish.
 	// 
 	const char *getEncodedAuthTag(const char *encoding);
-	// Returns the authentication tag as an encoded string. The ARG1 argument may be
+	// Returns the authentication tag as an encoded string. The encoding argument may be
 	// set to any of the following strings: "base64", "hex", "quoted-printable", or
 	// "url". The authentication tag is an output of authenticated encryption modes
 	// such as GCM when encrypting. When GCM mode decrypting, the authenticate tag is
@@ -1709,13 +1709,6 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	// message. Indexing begins at 0.
 	// The caller is responsible for deleting the object returned by this method.
 	CkCertChain *GetSignerCertChain(int index);
-
-
-	// This method can be called after a digital signature has been verified by one of
-	// the Verify* methods. Returns true if a signing time for the Nth certificate is
-	// available and can be retrieved by either the GetSignatureSigningTime or
-	// GetSignatureSigningTimeStr methods.
-	bool HasSignatureSigningTime(int index);
 
 
 	// Begin hashing a byte stream. Call this method to hash the 1st chunk. Additional
@@ -1891,6 +1884,13 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	// 
 	const char *hashStringENC(const char *str);
 
+	// This method can be called after a digital signature has been verified by one of
+	// the Verify* methods. Returns true if a signing time for the Nth certificate is
+	// available and can be retrieved by either the GetSignatureSigningTime or
+	// GetSignatureSigningTimeStr methods.
+	bool HasSignatureSigningTime(int index);
+
+
 	// Computes a keyed-Hash Message Authentication Code (HMAC or KHMAC), which is a
 	// type of message authentication code (MAC) calculated using a specific algorithm
 	// involving a cryptographic hash function in combination with a secret key. As
@@ -2044,21 +2044,21 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 
 	// Matches MySQL's AES_DECRYPT function. strEncryptedHex is a hex-encoded string of the AES
 	// encrypted data. The return value is the original unencrypted string.
-	bool MySqlAesDecrypt(const char *strEncrypted, const char *strKey, CkString &outStr);
+	bool MySqlAesDecrypt(const char *strEncryptedHex, const char *strPassword, CkString &outStr);
 
 	// Matches MySQL's AES_DECRYPT function. strEncryptedHex is a hex-encoded string of the AES
 	// encrypted data. The return value is the original unencrypted string.
-	const char *mySqlAesDecrypt(const char *strEncrypted, const char *strKey);
+	const char *mySqlAesDecrypt(const char *strEncryptedHex, const char *strPassword);
 
 	// Matches MySQL's AES_ENCRYPT function. The return value is a hex-encoded string
 	// of the encrypted data. The equivalent call in MySQL would look like this:
 	// HEX(AES_ENCRYPT('The quick brown fox jumps over the lazy dog','password'))
-	bool MySqlAesEncrypt(const char *strData, const char *strKey, CkString &outStr);
+	bool MySqlAesEncrypt(const char *strData, const char *strPassword, CkString &outStr);
 
 	// Matches MySQL's AES_ENCRYPT function. The return value is a hex-encoded string
 	// of the encrypted data. The equivalent call in MySQL would look like this:
 	// HEX(AES_ENCRYPT('The quick brown fox jumps over the lazy dog','password'))
-	const char *mySqlAesEncrypt(const char *strData, const char *strKey);
+	const char *mySqlAesEncrypt(const char *strData, const char *strPassword);
 
 	// Digitally signs a byte array and returns a PKCS7/CMS format signature. This is a
 	// signature that contains both the original data as well as the signature. A
@@ -2157,16 +2157,16 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	const char *opaqueVerifyStringENC(const char *p7s);
 
 	// Implements the PBKDF1 algorithm (Password Based Key Derivation Function #1). The
-	// password is converted to the character encoding represented by  charset before being
-	// passed (internally) to the key derivation function. The  hashAlg may be "md5",
-	// "sha1", "md2", etc. The  salt should be random data at least 8 bytes (64 bits) in
+	// password is converted to the character encoding represented by charset before being
+	// passed (internally) to the key derivation function. The hashAlg may be "md5",
+	// "sha1", "md2", etc. The salt should be random data at least 8 bytes (64 bits) in
 	// length. (The GenRandomBytesENC method is good for generating a random salt
-	// value.) The  iterationCount should be no less than 1000. The length (in bits) of the
-	// derived key output by this method is controlled by  outputKeyBitLen. The  encoding argument may
+	// value.) The iterationCount should be no less than 1000. The length (in bits) of the
+	// derived key output by this method is controlled by outputKeyBitLen. The encoding argument may
 	// be "base64", "hex", etc. It controls the encoding of the output, and the
-	// expected encoding of the  salt. The derived key is returned.
+	// expected encoding of the salt. The derived key is returned.
 	// 
-	// Note: Starting in version 9.5.0.47, if the  charset is set to one of the keywords
+	// Note: Starting in version 9.5.0.47, if the charset is set to one of the keywords
 	// "hex" or "base64", then the password will be considered binary data that is hex
 	// or base64 encoded. The bytes will be decoded and used directly as a binary
 	// password.
@@ -2174,16 +2174,16 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	bool Pbkdf1(const char *password, const char *charset, const char *hashAlg, const char *salt, int iterationCount, int outputKeyBitLen, const char *encoding, CkString &outStr);
 
 	// Implements the PBKDF1 algorithm (Password Based Key Derivation Function #1). The
-	// password is converted to the character encoding represented by  charset before being
-	// passed (internally) to the key derivation function. The  hashAlg may be "md5",
-	// "sha1", "md2", etc. The  salt should be random data at least 8 bytes (64 bits) in
+	// password is converted to the character encoding represented by charset before being
+	// passed (internally) to the key derivation function. The hashAlg may be "md5",
+	// "sha1", "md2", etc. The salt should be random data at least 8 bytes (64 bits) in
 	// length. (The GenRandomBytesENC method is good for generating a random salt
-	// value.) The  iterationCount should be no less than 1000. The length (in bits) of the
-	// derived key output by this method is controlled by  outputKeyBitLen. The  encoding argument may
+	// value.) The iterationCount should be no less than 1000. The length (in bits) of the
+	// derived key output by this method is controlled by outputKeyBitLen. The encoding argument may
 	// be "base64", "hex", etc. It controls the encoding of the output, and the
-	// expected encoding of the  salt. The derived key is returned.
+	// expected encoding of the salt. The derived key is returned.
 	// 
-	// Note: Starting in version 9.5.0.47, if the  charset is set to one of the keywords
+	// Note: Starting in version 9.5.0.47, if the charset is set to one of the keywords
 	// "hex" or "base64", then the password will be considered binary data that is hex
 	// or base64 encoded. The bytes will be decoded and used directly as a binary
 	// password.
@@ -2191,23 +2191,23 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	const char *pbkdf1(const char *password, const char *charset, const char *hashAlg, const char *salt, int iterationCount, int outputKeyBitLen, const char *encoding);
 
 	// Implements the PBKDF2 algorithm (Password Based Key Derivation Function #2). The
-	// password is converted to the character encoding represented by  charset before being
-	// passed (internally) to the key derivation function. The  hashAlg may be "sha256",
+	// password is converted to the character encoding represented by charset before being
+	// passed (internally) to the key derivation function. The hashAlg may be "sha256",
 	// "sha384", "sha512", "md5", "sha1", "md2", or any hash algorithm listed in the
-	// HashAlgorithm property. The  salt should be random data at least 8 bytes (64
+	// HashAlgorithm property. The salt should be random data at least 8 bytes (64
 	// bits) in length. (The GenRandomBytesENC method is good for generating a random
-	// salt value.) The  iterationCount should be no less than 1000. The length (in bits) of the
-	// derived key output by this method is controlled by  outputKeyBitLen. The  encoding argument may
+	// salt value.) The iterationCount should be no less than 1000. The length (in bits) of the
+	// derived key output by this method is controlled by outputKeyBitLen. The encoding argument may
 	// be "base64", "hex", etc. It controls the encoding of the output, and the
-	// expected encoding of the  salt. The derived key is returned.
+	// expected encoding of the salt. The derived key is returned.
 	// 
 	// Note: The PBKDF2 function (internally) utilizes a PRF that is a pseudorandom
-	// function that is a keyed HMAC. The hash algorithm specified by  hashAlg determines
-	// this PRF. If  hashAlg is "SHA256", then HMAC-SHA256 is used for the PRF. Likewise,
+	// function that is a keyed HMAC. The hash algorithm specified by hashAlg determines
+	// this PRF. If hashAlg is "SHA256", then HMAC-SHA256 is used for the PRF. Likewise,
 	// if the hash function is "SHA1", then HMAC-SHA1 is used. HMAC can be used with
 	// any hash algorithm.
 	// 
-	// Note: Starting in version 9.5.0.47, if the  charset is set to one of the keywords
+	// Note: Starting in version 9.5.0.47, if the charset is set to one of the keywords
 	// "hex" or "base64", then the password will be considered binary data that is hex
 	// or base64 encoded. The bytes will be decoded and used directly as a binary
 	// password.
@@ -2215,23 +2215,23 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	bool Pbkdf2(const char *password, const char *charset, const char *hashAlg, const char *salt, int iterationCount, int outputKeyBitLen, const char *encoding, CkString &outStr);
 
 	// Implements the PBKDF2 algorithm (Password Based Key Derivation Function #2). The
-	// password is converted to the character encoding represented by  charset before being
-	// passed (internally) to the key derivation function. The  hashAlg may be "sha256",
+	// password is converted to the character encoding represented by charset before being
+	// passed (internally) to the key derivation function. The hashAlg may be "sha256",
 	// "sha384", "sha512", "md5", "sha1", "md2", or any hash algorithm listed in the
-	// HashAlgorithm property. The  salt should be random data at least 8 bytes (64
+	// HashAlgorithm property. The salt should be random data at least 8 bytes (64
 	// bits) in length. (The GenRandomBytesENC method is good for generating a random
-	// salt value.) The  iterationCount should be no less than 1000. The length (in bits) of the
-	// derived key output by this method is controlled by  outputKeyBitLen. The  encoding argument may
+	// salt value.) The iterationCount should be no less than 1000. The length (in bits) of the
+	// derived key output by this method is controlled by outputKeyBitLen. The encoding argument may
 	// be "base64", "hex", etc. It controls the encoding of the output, and the
-	// expected encoding of the  salt. The derived key is returned.
+	// expected encoding of the salt. The derived key is returned.
 	// 
 	// Note: The PBKDF2 function (internally) utilizes a PRF that is a pseudorandom
-	// function that is a keyed HMAC. The hash algorithm specified by  hashAlg determines
-	// this PRF. If  hashAlg is "SHA256", then HMAC-SHA256 is used for the PRF. Likewise,
+	// function that is a keyed HMAC. The hash algorithm specified by hashAlg determines
+	// this PRF. If hashAlg is "SHA256", then HMAC-SHA256 is used for the PRF. Likewise,
 	// if the hash function is "SHA1", then HMAC-SHA1 is used. HMAC can be used with
 	// any hash algorithm.
 	// 
-	// Note: Starting in version 9.5.0.47, if the  charset is set to one of the keywords
+	// Note: Starting in version 9.5.0.47, if the charset is set to one of the keywords
 	// "hex" or "base64", then the password will be considered binary data that is hex
 	// or base64 encoded. The bytes will be decoded and used directly as a binary
 	// password.
@@ -2256,25 +2256,25 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	void RandomizeKey(void);
 
 
-	// Provides a means for converting from one encoding to another (such as base64 to
-	// hex). This is helpful for programming environments where byte arrays are a real
-	// pain-in-the-***. The  fromEncoding and  toEncoding may be (case-insensitive) "Base64",
-	// "modBase64", "Base32", "Base58", "UU", "QP" (for quoted-printable), "URL" (for
-	// url-encoding), "Hex", "Q", "B", "url_oauth", "url_rfc1738", "url_rfc2396", and
-	// "url_rfc3986".
-	bool ReEncode(const char *data, const char *fromEncoding, const char *toEncoding, CkString &outStr);
-
-	// Provides a means for converting from one encoding to another (such as base64 to
-	// hex). This is helpful for programming environments where byte arrays are a real
-	// pain-in-the-***. The  fromEncoding and  toEncoding may be (case-insensitive) "Base64",
-	// "modBase64", "Base32", "Base58", "UU", "QP" (for quoted-printable), "URL" (for
-	// url-encoding), "Hex", "Q", "B", "url_oauth", "url_rfc1738", "url_rfc2396", and
-	// "url_rfc3986".
-	const char *reEncode(const char *data, const char *fromEncoding, const char *toEncoding);
-
 	// Convenience method to read an entire file and return as a byte array.
 	bool ReadFile(const char *filename, CkByteData &outBytes);
 
+
+	// Provides a means for converting from one encoding to another (such as base64 to
+	// hex). This is helpful for programming environments where byte arrays are a real
+	// pain-in-the-***. The fromEncoding and toEncoding may be (case-insensitive) "Base64",
+	// "modBase64", "Base32", "Base58", "UU", "QP" (for quoted-printable), "URL" (for
+	// url-encoding), "Hex", "Q", "B", "url_oauth", "url_rfc1738", "url_rfc2396", and
+	// "url_rfc3986".
+	bool ReEncode(const char *encodedData, const char *fromEncoding, const char *toEncoding, CkString &outStr);
+
+	// Provides a means for converting from one encoding to another (such as base64 to
+	// hex). This is helpful for programming environments where byte arrays are a real
+	// pain-in-the-***. The fromEncoding and toEncoding may be (case-insensitive) "Base64",
+	// "modBase64", "Base32", "Base58", "UU", "QP" (for quoted-printable), "URL" (for
+	// url-encoding), "Hex", "Q", "B", "url_oauth", "url_rfc1738", "url_rfc2396", and
+	// "url_rfc3986".
+	const char *reEncode(const char *encodedData, const char *fromEncoding, const char *toEncoding);
 
 #if defined(CK_CSP_INCLUDED)
 	// (Only applies to the Microsoft Windows OS) Sets the Cryptographic Service
@@ -2309,7 +2309,7 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 
 	// Sets the authenticated additional data from an encoded string. The authenticated
 	// additional data (AAD), if any, is used in authenticated encryption modes such as
-	// GCM. The ARG1 argument can be set to any of the following strings: "base64",
+	// GCM. The aadStr argument can be set to any of the following strings: "base64",
 	// "hex", "quoted-printable", "ascii", or "url".
 	// 
 	// The Aad is used when the CipherMode is "gcm" (Galois/Counter Mode), which is a
@@ -2321,7 +2321,7 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 
 	// Sets the expected authenticated tag from an encoded string. The authenticated
 	// tag is used in authenticated encryption modes such as GCM. An application would
-	// set the expected authenticated tag prior to decrypting. The ARG1 argument can be
+	// set the expected authenticated tag prior to decrypting. The authTagStr argument can be
 	// set to any of the following strings: "base64", "hex", "quoted-printable",
 	// "ascii", or "url".
 	// 
@@ -2365,7 +2365,7 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	void SetHmacKeyBytes(CkByteData &keyBytes);
 
 
-	// Sets the secret key to be used for one of the HMAC methods. The  encoding can be set
+	// Sets the secret key to be used for one of the HMAC methods. The encoding can be set
 	// to any of the following strings: "base64", "hex", "quoted-printable", or "url".
 	// 
 	// Note: If using Chilkat v9.5.0.55 or later, update your programs to use
@@ -2388,14 +2388,14 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	// length of the IV should equal the block size of the algorithm. (It is not equal
 	// to the key length). For AES and TwoFish, the block size (and thus IV size) is
 	// always 16 bytes. For Blowfish it's 8 bytes. For DES and 3DES it's 8 bytes.
-	void SetIV(const unsigned char *pByteData, unsigned long szByteData);
+	void SetIV(const void *pByteData, unsigned long szByteData);
 
 
 	// Sets the MAC key to be used for one of the Mac methods.
 	bool SetMacKeyBytes(CkByteData &keyBytes);
 
 
-	// Sets the MAC key to be used for one of the Mac methods. The ARG2 can be set to
+	// Sets the MAC key to be used for one of the Mac methods. The encoding can be set to
 	// any of the following strings: "base64", "hex", "quoted-printable", or "url".
 	bool SetMacKeyEncoded(const char *key, const char *encoding);
 
@@ -2405,7 +2405,7 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 
 
 	// Sets the value of the SecretKey property.
-	void SetSecretKey(const unsigned char *pByteData, unsigned long szByteData);
+	void SetSecretKey(const void *pByteData, unsigned long szByteData);
 
 
 	// Accepts a password string and (internally) generates a binary secret key of the
@@ -2427,7 +2427,7 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 
 	// Specifies a digital certificate and private key to be used for creating PKCS7
 	// digital signatures.
-	bool SetSigningCert2(CkCert &cert, CkPrivateKey &key);
+	bool SetSigningCert2(CkCert &cert, CkPrivateKey &privateKey);
 
 
 	// Sets the digital certificate to be used in verifying a signature.
@@ -2536,7 +2536,7 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	// Verifies a .p7s (PKCS #7 Signature) against the original file (or exact copy of
 	// it). If the inFilename has not been modified, the return value is true, otherwise it
 	// is false. This method is equivalent to VerifyP7S.
-	bool VerifyDetachedSignature(const char *filename, const char *sigFile);
+	bool VerifyDetachedSignature(const char *inFilename, const char *p7sFilename);
 
 
 	// Verifies a .p7m file and extracts the original file from the .p7m. Returns

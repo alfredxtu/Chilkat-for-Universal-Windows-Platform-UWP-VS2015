@@ -47,6 +47,30 @@ Chilkat::Rsa::Rsa(void)
 //}
 
 
+String ^Chilkat::Rsa::Charset::get()
+    {
+    return ref new String(m_impl ? m_impl->charset() : L"");
+    }
+void Chilkat::Rsa::Charset::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_Charset(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::Rsa::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::Rsa::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::Rsa::EncodingMode::get()
+    {
+    return ref new String(m_impl ? m_impl->encodingMode() : L"");
+    }
+void Chilkat::Rsa::EncodingMode::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_EncodingMode(newVal ? newVal->Data() : L"");
+    }
 String ^Chilkat::Rsa::LastErrorHtml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
@@ -59,26 +83,6 @@ String ^Chilkat::Rsa::LastErrorXml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
     }
-String ^Chilkat::Rsa::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::Rsa::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::Rsa::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Rsa::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::Rsa::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
 Boolean Chilkat::Rsa::LastMethodSuccess::get()
     {
     return m_impl ? m_impl->get_LastMethodSuccess() : false;
@@ -86,22 +90,6 @@ Boolean Chilkat::Rsa::LastMethodSuccess::get()
 void Chilkat::Rsa::LastMethodSuccess::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
-String ^Chilkat::Rsa::Charset::get()
-    {
-    return ref new String(m_impl ? m_impl->charset() : L"");
-    }
-void Chilkat::Rsa::Charset::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_Charset(newVal ? newVal->Data() : L"");
-    }
-String ^Chilkat::Rsa::EncodingMode::get()
-    {
-    return ref new String(m_impl ? m_impl->encodingMode() : L"");
-    }
-void Chilkat::Rsa::EncodingMode::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_EncodingMode(newVal ? newVal->Data() : L"");
     }
 Boolean Chilkat::Rsa::LittleEndian::get()
     {
@@ -139,27 +127,29 @@ void Chilkat::Rsa::OaepPadding::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_OaepPadding(newVal);
     }
-
-
-Boolean Rsa::SaveLastError(Platform::String ^path)
+Boolean Chilkat::Rsa::VerboseLogging::get()
     {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
+    return m_impl ? m_impl->get_VerboseLogging() : false;
     }
-Windows::Foundation::Collections::IVector<uint8>^Rsa::DecryptBytes(Windows::Foundation::Collections::IVector<uint8>^data, Boolean bUsePrivateKey)
+void Chilkat::Rsa::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::Rsa::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
+
+
+Windows::Foundation::Collections::IVector<uint8>^Rsa::DecryptBytes(Windows::Foundation::Collections::IVector<uint8>^inData, Boolean usePrivateKey)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	CkByteData db0; std::vector<uint8> v0;
-        if (data != nullptr) { v0 = to_vector(data);
+        if (inData != nullptr) { v0 = to_vector(inData);
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
-	bool success = m_impl->DecryptBytes(db0,bUsePrivateKey,outDb);
+	bool success = m_impl->DecryptBytes(db0,usePrivateKey,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
@@ -169,47 +159,39 @@ Windows::Foundation::Collections::IVector<uint8>^Rsa::DecryptBytesENC(Platform::
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->DecryptBytesENC(str ? str->Data() : L"",bUsePrivateKey,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
     }
-Platform::String ^Rsa::DecryptString(Windows::Foundation::Collections::IVector<uint8>^data, Boolean bUsePrivateKey)
+Platform::String ^Rsa::DecryptString(Windows::Foundation::Collections::IVector<uint8>^binarySig, Boolean usePrivateKey)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	CkByteData db0; std::vector<uint8> v0;
-        if (data != nullptr) { v0 = to_vector(data);
+        if (binarySig != nullptr) { v0 = to_vector(binarySig);
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->decryptString(db0,bUsePrivateKey);
+	const wchar_t *retStr = m_impl->decryptString(db0,usePrivateKey);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-Platform::String ^Rsa::DecryptStringENC(Platform::String ^str, Boolean bUsePrivateKey)
+Platform::String ^Rsa::DecryptStringENC(Platform::String ^encodedSig, Boolean usePrivateKey)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->decryptStringENC(str ? str->Data() : L"",bUsePrivateKey);
+	const wchar_t *retStr = m_impl->decryptStringENC(encodedSig ? encodedSig->Data() : L"",usePrivateKey);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-Windows::Foundation::Collections::IVector<uint8>^Rsa::EncryptBytes(Windows::Foundation::Collections::IVector<uint8>^data, Boolean bUsePrivateKey)
+Windows::Foundation::Collections::IVector<uint8>^Rsa::EncryptBytes(Windows::Foundation::Collections::IVector<uint8>^binaryData, Boolean usePrivateKey)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	CkByteData db0; std::vector<uint8> v0;
-        if (data != nullptr) { v0 = to_vector(data);
+        if (binaryData != nullptr) { v0 = to_vector(binaryData);
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
-	bool success = m_impl->EncryptBytes(db0,bUsePrivateKey,outDb);
+	bool success = m_impl->EncryptBytes(db0,usePrivateKey,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
@@ -221,20 +203,16 @@ Platform::String ^Rsa::EncryptBytesENC(Windows::Foundation::Collections::IVector
         if (data != nullptr) { v0 = to_vector(data);
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->encryptBytesENC(db0,bUsePrivateKey);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-Windows::Foundation::Collections::IVector<uint8>^Rsa::EncryptString(Platform::String ^str, Boolean bUsePrivateKey)
+Windows::Foundation::Collections::IVector<uint8>^Rsa::EncryptString(Platform::String ^stringToSign, Boolean usePrivateKey)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
-	bool success = m_impl->EncryptString(str ? str->Data() : L"",bUsePrivateKey,outDb);
+	bool success = m_impl->EncryptString(stringToSign ? stringToSign->Data() : L"",usePrivateKey,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
@@ -243,8 +221,6 @@ Platform::String ^Rsa::EncryptStringENC(Platform::String ^str, Boolean bUsePriva
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->encryptStringENC(str ? str->Data() : L"",bUsePrivateKey);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -253,8 +229,6 @@ Platform::String ^Rsa::ExportPrivateKey(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->exportPrivateKey();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -263,8 +237,6 @@ PrivateKey ^Rsa::ExportPrivateKeyObj(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = PrivateKey
-	// cppType = CkPrivateKey *
 	CkPrivateKeyW *pRetObj = m_impl->ExportPrivateKeyObj();
 	if (!pRetObj) return nullptr;
 	Chilkat::PrivateKey ^pPrivateKey = ref new Chilkat::PrivateKey();
@@ -275,8 +247,6 @@ Platform::String ^Rsa::ExportPublicKey(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->exportPublicKey();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -285,8 +255,6 @@ PublicKey ^Rsa::ExportPublicKeyObj(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = PublicKey
-	// cppType = CkPublicKey *
 	CkPublicKeyW *pRetObj = m_impl->ExportPublicKeyObj();
 	if (!pRetObj) return nullptr;
 	Chilkat::PublicKey ^pPublicKey = ref new Chilkat::PublicKey();
@@ -297,46 +265,36 @@ Boolean Rsa::GenerateKey(int numBits)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->GenerateKey(numBits);
     }
-Boolean Rsa::ImportPrivateKey(Platform::String ^xml)
+Boolean Rsa::ImportPrivateKey(Platform::String ^xmlKey)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->ImportPrivateKey(xml ? xml->Data() : L"");
+	return m_impl->ImportPrivateKey(xmlKey ? xmlKey->Data() : L"");
     }
-Boolean Rsa::ImportPrivateKeyObj(PrivateKey ^key)
+Boolean Rsa::ImportPrivateKeyObj(Chilkat::PrivateKey ^key)
     {
 	if (m_impl == nullptr) { return false; }
 	if (key == nullptr) { return false; }
 	CkPrivateKeyW* pObj0 = key->m_impl;
 	 if (!pObj0) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->ImportPrivateKeyObj(*pObj0);
     }
-Boolean Rsa::ImportPublicKey(Platform::String ^xml)
+Boolean Rsa::ImportPublicKey(Platform::String ^xmlKey)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->ImportPublicKey(xml ? xml->Data() : L"");
+	return m_impl->ImportPublicKey(xmlKey ? xmlKey->Data() : L"");
     }
-Boolean Rsa::ImportPublicKeyObj(PublicKey ^key)
+Boolean Rsa::ImportPublicKeyObj(Chilkat::PublicKey ^key)
     {
 	if (m_impl == nullptr) { return false; }
 	if (key == nullptr) { return false; }
 	CkPublicKeyW* pObj0 = key->m_impl;
 	 if (!pObj0) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->ImportPublicKeyObj(*pObj0);
     }
 Windows::Foundation::Collections::IVector<uint8>^Rsa::OpenSslSignBytes(Windows::Foundation::Collections::IVector<uint8>^data)
@@ -347,8 +305,6 @@ Windows::Foundation::Collections::IVector<uint8>^Rsa::OpenSslSignBytes(Windows::
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->OpenSslSignBytes(db0,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -361,8 +317,6 @@ Platform::String ^Rsa::OpenSslSignBytesENC(Windows::Foundation::Collections::IVe
         if (data != nullptr) { v0 = to_vector(data);
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->openSslSignBytesENC(db0);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -372,8 +326,6 @@ Windows::Foundation::Collections::IVector<uint8>^Rsa::OpenSslSignString(Platform
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->OpenSslSignString(str ? str->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -383,8 +335,6 @@ Platform::String ^Rsa::OpenSslSignStringENC(Platform::String ^str)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->openSslSignStringENC(str ? str->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -397,8 +347,6 @@ Windows::Foundation::Collections::IVector<uint8>^Rsa::OpenSslVerifyBytes(Windows
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->OpenSslVerifyBytes(db0,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -409,8 +357,6 @@ Windows::Foundation::Collections::IVector<uint8>^Rsa::OpenSslVerifyBytesENC(Plat
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->OpenSslVerifyBytesENC(str ? str->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -423,8 +369,6 @@ Platform::String ^Rsa::OpenSslVerifyString(Windows::Foundation::Collections::IVe
         if (data != nullptr) { v0 = to_vector(data);
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->openSslVerifyString(db0);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -433,37 +377,31 @@ Platform::String ^Rsa::OpenSslVerifyStringENC(Platform::String ^str)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->openSslVerifyStringENC(str ? str->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-Windows::Foundation::Collections::IVector<uint8>^Rsa::SignBytes(Windows::Foundation::Collections::IVector<uint8>^data, Platform::String ^hashAlg)
+Windows::Foundation::Collections::IVector<uint8>^Rsa::SignBytes(Windows::Foundation::Collections::IVector<uint8>^binaryData, Platform::String ^hashAlgorithm)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	CkByteData db0; std::vector<uint8> v0;
-        if (data != nullptr) { v0 = to_vector(data);
+        if (binaryData != nullptr) { v0 = to_vector(binaryData);
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
-	bool success = m_impl->SignBytes(db0,hashAlg ? hashAlg->Data() : L"",outDb);
+	bool success = m_impl->SignBytes(db0,hashAlgorithm ? hashAlgorithm->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
     }
-Platform::String ^Rsa::SignBytesENC(Windows::Foundation::Collections::IVector<uint8>^data, Platform::String ^hashAlg)
+Platform::String ^Rsa::SignBytesENC(Windows::Foundation::Collections::IVector<uint8>^binaryData, Platform::String ^hashAlgorithm)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	CkByteData db0; std::vector<uint8> v0;
-        if (data != nullptr) { v0 = to_vector(data);
+        if (binaryData != nullptr) { v0 = to_vector(binaryData);
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->signBytesENC(db0,hashAlg ? hashAlg->Data() : L"");
+	const wchar_t *retStr = m_impl->signBytesENC(db0,hashAlgorithm ? hashAlgorithm->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
@@ -475,8 +413,6 @@ Windows::Foundation::Collections::IVector<uint8>^Rsa::SignHash(Windows::Foundati
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->SignHash(db0,hashAlg ? hashAlg->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -486,31 +422,25 @@ Platform::String ^Rsa::SignHashENC(Platform::String ^encodedHash, Platform::Stri
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->signHashENC(encodedHash ? encodedHash->Data() : L"",hashAlg ? hashAlg->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-Windows::Foundation::Collections::IVector<uint8>^Rsa::SignString(Platform::String ^str, Platform::String ^hashAlg)
+Windows::Foundation::Collections::IVector<uint8>^Rsa::SignString(Platform::String ^strToBeHashed, Platform::String ^hashAlgorithm)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
-	bool success = m_impl->SignString(str ? str->Data() : L"",hashAlg ? hashAlg->Data() : L"",outDb);
+	bool success = m_impl->SignString(strToBeHashed ? strToBeHashed->Data() : L"",hashAlgorithm ? hashAlgorithm->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
     }
-Platform::String ^Rsa::SignStringENC(Platform::String ^str, Platform::String ^hashAlg)
+Platform::String ^Rsa::SignStringENC(Platform::String ^strToBeHashed, Platform::String ^hashAlgorithm)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->signStringENC(str ? str->Data() : L"",hashAlg ? hashAlg->Data() : L"");
+	const wchar_t *retStr = m_impl->signStringENC(strToBeHashed ? strToBeHashed->Data() : L"",hashAlgorithm ? hashAlgorithm->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
@@ -518,8 +448,6 @@ Platform::String ^Rsa::SnkToXml(Platform::String ^filename)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->snkToXml(filename ? filename->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -528,34 +456,28 @@ Boolean Rsa::UnlockComponent(Platform::String ^unlockCode)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->UnlockComponent(unlockCode ? unlockCode->Data() : L"");
     }
-Boolean Rsa::VerifyBytes(Windows::Foundation::Collections::IVector<uint8>^data, Platform::String ^hashAlg, Windows::Foundation::Collections::IVector<uint8>^sig)
+Boolean Rsa::VerifyBytes(Windows::Foundation::Collections::IVector<uint8>^originalData, Platform::String ^hashAlgorithm, Windows::Foundation::Collections::IVector<uint8>^signatureBytes)
     {
 	if (m_impl == nullptr) { return false; }
 	CkByteData db0; std::vector<uint8> v0;
-        if (data != nullptr) { v0 = to_vector(data);
+        if (originalData != nullptr) { v0 = to_vector(originalData);
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	CkByteData db2; std::vector<uint8> v2;
-        if (sig != nullptr) { v2 = to_vector(sig);
+        if (signatureBytes != nullptr) { v2 = to_vector(signatureBytes);
             db2.borrowData(&v2[0], (unsigned long)v2.size()); }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->VerifyBytes(db0,hashAlg ? hashAlg->Data() : L"",db2);
+	return m_impl->VerifyBytes(db0,hashAlgorithm ? hashAlgorithm->Data() : L"",db2);
     }
-Boolean Rsa::VerifyBytesENC(Windows::Foundation::Collections::IVector<uint8>^data, Platform::String ^hashAlg, Platform::String ^encodedSig)
+Boolean Rsa::VerifyBytesENC(Windows::Foundation::Collections::IVector<uint8>^originalData, Platform::String ^hashAlgorithm, Platform::String ^encodedSig)
     {
 	if (m_impl == nullptr) { return false; }
 	CkByteData db0; std::vector<uint8> v0;
-        if (data != nullptr) { v0 = to_vector(data);
+        if (originalData != nullptr) { v0 = to_vector(originalData);
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->VerifyBytesENC(db0,hashAlg ? hashAlg->Data() : L"",encodedSig ? encodedSig->Data() : L"");
+	return m_impl->VerifyBytesENC(db0,hashAlgorithm ? hashAlgorithm->Data() : L"",encodedSig ? encodedSig->Data() : L"");
     }
 Boolean Rsa::VerifyHash(Windows::Foundation::Collections::IVector<uint8>^hashBytes, Platform::String ^hashAlg, Windows::Foundation::Collections::IVector<uint8>^sigBytes)
     {
@@ -567,44 +489,34 @@ Boolean Rsa::VerifyHash(Windows::Foundation::Collections::IVector<uint8>^hashByt
         if (sigBytes != nullptr) { v2 = to_vector(sigBytes);
             db2.borrowData(&v2[0], (unsigned long)v2.size()); }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->VerifyHash(db0,hashAlg ? hashAlg->Data() : L"",db2);
     }
 Boolean Rsa::VerifyHashENC(Platform::String ^encodedHash, Platform::String ^hashAlg, Platform::String ^encodedSig)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->VerifyHashENC(encodedHash ? encodedHash->Data() : L"",hashAlg ? hashAlg->Data() : L"",encodedSig ? encodedSig->Data() : L"");
     }
 Boolean Rsa::VerifyPrivateKey(Platform::String ^xml)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->VerifyPrivateKey(xml ? xml->Data() : L"");
     }
-Boolean Rsa::VerifyString(Platform::String ^str, Platform::String ^hashAlg, Windows::Foundation::Collections::IVector<uint8>^sig)
+Boolean Rsa::VerifyString(Platform::String ^originalString, Platform::String ^hashAlgorithm, Windows::Foundation::Collections::IVector<uint8>^binarySig)
     {
 	if (m_impl == nullptr) { return false; }
 	CkByteData db2; std::vector<uint8> v2;
-        if (sig != nullptr) { v2 = to_vector(sig);
+        if (binarySig != nullptr) { v2 = to_vector(binarySig);
             db2.borrowData(&v2[0], (unsigned long)v2.size()); }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->VerifyString(str ? str->Data() : L"",hashAlg ? hashAlg->Data() : L"",db2);
+	return m_impl->VerifyString(originalString ? originalString->Data() : L"",hashAlgorithm ? hashAlgorithm->Data() : L"",db2);
     }
-Boolean Rsa::VerifyStringENC(Platform::String ^str, Platform::String ^hashAlg, Platform::String ^sig)
+Boolean Rsa::VerifyStringENC(Platform::String ^originalString, Platform::String ^hashAlgorithm, Platform::String ^encodedSig)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->VerifyStringENC(str ? str->Data() : L"",hashAlg ? hashAlg->Data() : L"",sig ? sig->Data() : L"");
+	return m_impl->VerifyStringENC(originalString ? originalString->Data() : L"",hashAlgorithm ? hashAlgorithm->Data() : L"",encodedSig ? encodedSig->Data() : L"");
     }
 
 

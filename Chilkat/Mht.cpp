@@ -43,45 +43,13 @@ Chilkat::Mht::Mht(void)
 //}
 
 
-String ^Chilkat::Mht::LastErrorHtml::get()
+Boolean Chilkat::Mht::AbortCurrent::get()
     {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    return m_impl ? m_impl->get_AbortCurrent() : false;
     }
-String ^Chilkat::Mht::LastErrorText::get()
+void Chilkat::Mht::AbortCurrent::set(Boolean newVal)
     {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::Mht::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::Mht::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::Mht::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::Mht::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Mht::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::Mht::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::Mht::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::Mht::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
     }
 String ^Chilkat::Mht::BaseUrl::get()
     {
@@ -114,6 +82,14 @@ String ^Chilkat::Mht::DebugHtmlBefore::get()
 void Chilkat::Mht::DebugHtmlBefore::set(String ^newVal)
     {
         if (m_impl) m_impl->put_DebugHtmlBefore(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::Mht::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::Mht::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
     }
 Boolean Chilkat::Mht::DebugTagCleaning::get()
     {
@@ -170,6 +146,26 @@ Boolean Chilkat::Mht::IgnoreNoCache::get()
 void Chilkat::Mht::IgnoreNoCache::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_IgnoreNoCache(newVal);
+    }
+String ^Chilkat::Mht::LastErrorHtml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    }
+String ^Chilkat::Mht::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::Mht::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
+Boolean Chilkat::Mht::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::Mht::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
 Boolean Chilkat::Mht::NoScripts::get()
     {
@@ -351,6 +347,18 @@ void Chilkat::Mht::UseInline::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_UseInline(newVal);
     }
+Boolean Chilkat::Mht::VerboseLogging::get()
+    {
+    return m_impl ? m_impl->get_VerboseLogging() : false;
+    }
+void Chilkat::Mht::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::Mht::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
 String ^Chilkat::Mht::WebSiteLogin::get()
     {
     return ref new String(m_impl ? m_impl->webSiteLogin() : L"");
@@ -375,34 +383,14 @@ void Chilkat::Mht::WebSitePassword::set(String ^newVal)
     {
         if (m_impl) m_impl->put_WebSitePassword(newVal ? newVal->Data() : L"");
     }
-Boolean Chilkat::Mht::AbortCurrent::get()
-    {
-    return m_impl ? m_impl->get_AbortCurrent() : false;
-    }
-void Chilkat::Mht::AbortCurrent::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_AbortCurrent(newVal);
-    }
 
 
-Boolean Mht::SaveLastError(Platform::String ^path)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxMhtProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
-    }
 void Mht::AddCacheRoot(Platform::String ^dir)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
 	CxMhtProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->AddCacheRoot(dir ? dir->Data() : L"");
     }
 void Mht::AddCustomHeader(Platform::String ^name, Platform::String ^value)
@@ -411,8 +399,6 @@ void Mht::AddCustomHeader(Platform::String ^name, Platform::String ^value)
 	// --- prep output arg ---
 	CxMhtProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->AddCustomHeader(name ? name->Data() : L"",value ? value->Data() : L"");
     }
 void Mht::AddExternalStyleSheet(Platform::String ^url)
@@ -421,8 +407,6 @@ void Mht::AddExternalStyleSheet(Platform::String ^url)
 	// --- prep output arg ---
 	CxMhtProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->AddExternalStyleSheet(url ? url->Data() : L"");
     }
 void Mht::ClearCustomHeaders(void)
@@ -431,8 +415,6 @@ void Mht::ClearCustomHeaders(void)
 	// --- prep output arg ---
 	CxMhtProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->ClearCustomHeaders();
     }
 void Mht::ExcludeImagesMatching(Platform::String ^pattern)
@@ -441,13 +423,11 @@ void Mht::ExcludeImagesMatching(Platform::String ^pattern)
 	// --- prep output arg ---
 	CxMhtProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->ExcludeImagesMatching(pattern ? pattern->Data() : L"");
     }
-IAsyncOperation<Boolean>^ Mht::GetAndSaveEMLAsync(Platform::String ^url, Platform::String ^emlFilename)
+IAsyncOperation<Boolean>^ Mht::GetAndSaveEMLAsync(Platform::String ^url_or_htmlFilepath, Platform::String ^emlPath)
     {
-return create_async([this, url, emlFilename]() -> Boolean
+return create_async([this, url_or_htmlFilepath, emlPath]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -455,15 +435,13 @@ return create_async([this, url, emlFilename]() -> Boolean
 	// --- prep output arg ---
 	CxMhtProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->GetAndSaveEML(url ? url->Data() : L"",emlFilename ? emlFilename->Data() : L"");
+	return m_impl->GetAndSaveEML(url_or_htmlFilepath ? url_or_htmlFilepath->Data() : L"",emlPath ? emlPath->Data() : L"");
 
 });
     }
-IAsyncOperation<Boolean>^ Mht::GetAndSaveMHTAsync(Platform::String ^url, Platform::String ^mhtFilename)
+IAsyncOperation<Boolean>^ Mht::GetAndSaveMHTAsync(Platform::String ^url_or_htmlFilepath, Platform::String ^mhtPath)
     {
-return create_async([this, url, mhtFilename]() -> Boolean
+return create_async([this, url_or_htmlFilepath, mhtPath]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -471,15 +449,13 @@ return create_async([this, url, mhtFilename]() -> Boolean
 	// --- prep output arg ---
 	CxMhtProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->GetAndSaveMHT(url ? url->Data() : L"",mhtFilename ? mhtFilename->Data() : L"");
+	return m_impl->GetAndSaveMHT(url_or_htmlFilepath ? url_or_htmlFilepath->Data() : L"",mhtPath ? mhtPath->Data() : L"");
 
 });
     }
-IAsyncOperation<Boolean>^ Mht::GetAndZipEMLAsync(Platform::String ^url, Platform::String ^zipEntryFilename, Platform::String ^zipFilename)
+IAsyncOperation<Boolean>^ Mht::GetAndZipEMLAsync(Platform::String ^url_or_htmlFilepath, Platform::String ^zipEntryFilename, Platform::String ^zipFilename)
     {
-return create_async([this, url, zipEntryFilename, zipFilename]() -> Boolean
+return create_async([this, url_or_htmlFilepath, zipEntryFilename, zipFilename]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -487,15 +463,13 @@ return create_async([this, url, zipEntryFilename, zipFilename]() -> Boolean
 	// --- prep output arg ---
 	CxMhtProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->GetAndZipEML(url ? url->Data() : L"",zipEntryFilename ? zipEntryFilename->Data() : L"",zipFilename ? zipFilename->Data() : L"");
+	return m_impl->GetAndZipEML(url_or_htmlFilepath ? url_or_htmlFilepath->Data() : L"",zipEntryFilename ? zipEntryFilename->Data() : L"",zipFilename ? zipFilename->Data() : L"");
 
 });
     }
-IAsyncOperation<Boolean>^ Mht::GetAndZipMHTAsync(Platform::String ^url, Platform::String ^zipEntryFilename, Platform::String ^zipFilename)
+IAsyncOperation<Boolean>^ Mht::GetAndZipMHTAsync(Platform::String ^url_or_htmlFilepath, Platform::String ^zipEntryFilename, Platform::String ^zipFilename)
     {
-return create_async([this, url, zipEntryFilename, zipFilename]() -> Boolean
+return create_async([this, url_or_htmlFilepath, zipEntryFilename, zipFilename]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -503,9 +477,7 @@ return create_async([this, url, zipEntryFilename, zipFilename]() -> Boolean
 	// --- prep output arg ---
 	CxMhtProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->GetAndZipMHT(url ? url->Data() : L"",zipEntryFilename ? zipEntryFilename->Data() : L"",zipFilename ? zipFilename->Data() : L"");
+	return m_impl->GetAndZipMHT(url_or_htmlFilepath ? url_or_htmlFilepath->Data() : L"",zipEntryFilename ? zipEntryFilename->Data() : L"",zipFilename ? zipFilename->Data() : L"");
 
 });
     }
@@ -515,15 +487,13 @@ Platform::String ^Mht::GetCacheRoot(int index)
 	// --- prep output arg ---
 	CxMhtProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getCacheRoot(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-IAsyncOperation<Platform::String ^>^ Mht::GetEMLAsync(Platform::String ^url)
+IAsyncOperation<Platform::String ^>^ Mht::GetEMLAsync(Platform::String ^url_or_htmlFilepath)
     {
-return create_async([this, url]() -> Platform::String ^
+return create_async([this, url_or_htmlFilepath]() -> Platform::String ^
 {
 // This runs in a thread pool thread...
 
@@ -531,17 +501,15 @@ return create_async([this, url]() -> Platform::String ^
 	// --- prep output arg ---
 	CxMhtProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->getEML(url ? url->Data() : L"");
+	const wchar_t *retStr = m_impl->getEML(url_or_htmlFilepath ? url_or_htmlFilepath->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
 });
     }
-IAsyncOperation<Platform::String ^>^ Mht::GetMHTAsync(Platform::String ^url)
+IAsyncOperation<Platform::String ^>^ Mht::GetMHTAsync(Platform::String ^url_or_htmlFilepath)
     {
-return create_async([this, url]() -> Platform::String ^
+return create_async([this, url_or_htmlFilepath]() -> Platform::String ^
 {
 // This runs in a thread pool thread...
 
@@ -549,9 +517,7 @@ return create_async([this, url]() -> Platform::String ^
 	// --- prep output arg ---
 	CxMhtProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->getMHT(url ? url->Data() : L"");
+	const wchar_t *retStr = m_impl->getMHT(url_or_htmlFilepath ? url_or_htmlFilepath->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
@@ -567,8 +533,6 @@ return create_async([this, htmlText]() -> Platform::String ^
 	// --- prep output arg ---
 	CxMhtProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->htmlToEML(htmlText ? htmlText->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -585,8 +549,6 @@ return create_async([this, html, emlFilename]() -> Boolean
 	// --- prep output arg ---
 	CxMhtProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->HtmlToEMLFile(html ? html->Data() : L"",emlFilename ? emlFilename->Data() : L"");
 
 });
@@ -601,8 +563,6 @@ return create_async([this, htmlText]() -> Platform::String ^
 	// --- prep output arg ---
 	CxMhtProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->htmlToMHT(htmlText ? htmlText->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -619,8 +579,6 @@ return create_async([this, html, mhtFilename]() -> Boolean
 	// --- prep output arg ---
 	CxMhtProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->HtmlToMHTFile(html ? html->Data() : L"",mhtFilename ? mhtFilename->Data() : L"");
 
 });
@@ -631,8 +589,6 @@ Boolean Mht::IsUnlocked(void)
 	// --- prep output arg ---
 	CxMhtProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsUnlocked();
     }
 void Mht::RemoveCustomHeader(Platform::String ^name)
@@ -641,8 +597,6 @@ void Mht::RemoveCustomHeader(Platform::String ^name)
 	// --- prep output arg ---
 	CxMhtProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->RemoveCustomHeader(name ? name->Data() : L"");
     }
 void Mht::RestoreDefaults(void)
@@ -651,8 +605,6 @@ void Mht::RestoreDefaults(void)
 	// --- prep output arg ---
 	CxMhtProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->RestoreDefaults();
     }
 Boolean Mht::UnlockComponent(Platform::String ^unlockCode)
@@ -661,8 +613,6 @@ Boolean Mht::UnlockComponent(Platform::String ^unlockCode)
 	// --- prep output arg ---
 	CxMhtProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UnlockComponent(unlockCode ? unlockCode->Data() : L"");
     }
 Boolean Mht::UnpackMHT(Platform::String ^mhtFilename, Platform::String ^unpackDir, Platform::String ^htmlFilename, Platform::String ^partsSubDir)
@@ -671,8 +621,6 @@ Boolean Mht::UnpackMHT(Platform::String ^mhtFilename, Platform::String ^unpackDi
 	// --- prep output arg ---
 	CxMhtProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UnpackMHT(mhtFilename ? mhtFilename->Data() : L"",unpackDir ? unpackDir->Data() : L"",htmlFilename ? htmlFilename->Data() : L"",partsSubDir ? partsSubDir->Data() : L"");
     }
 Boolean Mht::UnpackMHTString(Platform::String ^mhtString, Platform::String ^unpackDir, Platform::String ^htmlFilename, Platform::String ^partsSubDir)
@@ -681,8 +629,6 @@ Boolean Mht::UnpackMHTString(Platform::String ^mhtString, Platform::String ^unpa
 	// --- prep output arg ---
 	CxMhtProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UnpackMHTString(mhtString ? mhtString->Data() : L"",unpackDir ? unpackDir->Data() : L"",htmlFilename ? htmlFilename->Data() : L"",partsSubDir ? partsSubDir->Data() : L"");
     }
 

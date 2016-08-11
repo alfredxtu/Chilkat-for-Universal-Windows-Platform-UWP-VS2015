@@ -42,6 +42,16 @@ public ref class HtmlToText sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Boolean DecodeHtmlEntities
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
@@ -54,26 +64,7 @@ public ref class HtmlToText sealed
 	{
 		Platform::String ^get();
 	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean DecodeHtmlEntities
 	{
 		Boolean get();
 		void set(Boolean);
@@ -88,13 +79,20 @@ public ref class HtmlToText sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	Boolean IsUnlocked(void);
 
 	Platform::String ^ReadFileToString(Platform::String ^filename, Platform::String ^srcCharset);
@@ -103,7 +101,7 @@ public ref class HtmlToText sealed
 
 	Boolean UnlockComponent(Platform::String ^code);
 
-	Boolean WriteStringToFile(Platform::String ^str, Platform::String ^filename, Platform::String ^charset);
+	Boolean WriteStringToFile(Platform::String ^stringToWrite, Platform::String ^filename, Platform::String ^charset);
 
 
 

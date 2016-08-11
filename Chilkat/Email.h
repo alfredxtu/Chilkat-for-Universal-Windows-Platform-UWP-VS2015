@@ -48,37 +48,6 @@ public ref class Email sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Platform::String ^Body
 	{
 		Platform::String ^get();
@@ -90,6 +59,11 @@ public ref class Email sealed
 		void set(Platform::String ^);
 	}
 	property Platform::String ^Charset
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^DebugLogFilePath
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
@@ -134,6 +108,23 @@ public ref class Email sealed
 	property Platform::String ^Language
 	{
 		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
 	}
 	property Platform::String ^LocalDateStr
 	{
@@ -237,15 +228,15 @@ public ref class Email sealed
 		Boolean get();
 		void set(Boolean);
 	}
-	property Boolean SendSigned
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Platform::String ^Sender
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
+	}
+	property Boolean SendSigned
+	{
+		Boolean get();
+		void set(Boolean);
 	}
 	property Boolean SignaturesValid
 	{
@@ -278,13 +269,20 @@ public ref class Email sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	void AddAttachmentHeader(int index, Platform::String ^fieldName, Platform::String ^fieldValue);
 
 	Boolean AddBcc(Platform::String ^friendlyName, Platform::String ^emailAddress);
@@ -295,7 +293,7 @@ public ref class Email sealed
 
 	Boolean AddDataAttachment2(Platform::String ^path, Windows::Foundation::Collections::IVector<uint8>^content, Platform::String ^contentType);
 
-	Boolean AddEncryptCert(Cert ^cert);
+	Boolean AddEncryptCert(Chilkat::Cert ^cert);
 
 	Platform::String ^AddFileAttachment(Platform::String ^path);
 
@@ -307,15 +305,17 @@ public ref class Email sealed
 
 	Boolean AddHtmlAlternativeBody(Platform::String ^body);
 
+	Boolean AddiCalendarAlternativeBody(Platform::String ^icalContent, Platform::String ^methodName);
+
 	Boolean AddMultipleBcc(Platform::String ^commaSeparatedAddresses);
 
 	Boolean AddMultipleCC(Platform::String ^commaSeparatedAddresses);
 
 	Boolean AddMultipleTo(Platform::String ^commaSeparatedAddresses);
 
-	Boolean AddPfxSourceData(Windows::Foundation::Collections::IVector<uint8>^pfxData, Platform::String ^password);
+	Boolean AddPfxSourceData(Windows::Foundation::Collections::IVector<uint8>^pfxBytes, Platform::String ^pfxPassword);
 
-	Boolean AddPfxSourceFile(Platform::String ^pfxFilePath, Platform::String ^password);
+	Boolean AddPfxSourceFile(Platform::String ^pfxFilePath, Platform::String ^pfxPassword);
 
 	Boolean AddPlainTextAlternativeBody(Platform::String ^body);
 
@@ -338,8 +338,6 @@ public ref class Email sealed
 	Boolean AddStringAttachment2(Platform::String ^path, Platform::String ^content, Platform::String ^charset);
 
 	Boolean AddTo(Platform::String ^friendlyName, Platform::String ^emailAddress);
-
-	Boolean AddiCalendarAlternativeBody(Platform::String ^body, Platform::String ^methodName);
 
 	Boolean AesDecrypt(Platform::String ^password);
 
@@ -369,11 +367,11 @@ public ref class Email sealed
 
 	Platform::String ^ComputeGlobalKey(Platform::String ^encoding, Boolean bFold);
 
-	Email ^CreateDsn(Platform::String ^explanation, Platform::String ^xmlDeliveryStatus, Boolean bHeaderOnly);
+	Email ^CreateDsn(Platform::String ^humanReadableMessage, Platform::String ^xmlStatusFields, Boolean bHeaderOnly);
 
 	Email ^CreateForward(void);
 
-	Email ^CreateMdn(Platform::String ^explanation, Platform::String ^xmlMdnFields, Boolean bHeaderOnly);
+	Email ^CreateMdn(Platform::String ^humanReadableMessage, Platform::String ^xmlStatusFields, Boolean bHeaderOnly);
 
 	Email ^CreateReply(void);
 
@@ -387,17 +385,17 @@ public ref class Email sealed
 
 	Boolean DropSingleAttachment(int index);
 
-	Cert ^FindIssuer(Cert ^cert);
+	Cert ^FindIssuer(Chilkat::Cert ^cert);
 
 	Platform::String ^GenerateFilename(void);
-
-	Platform::String ^GetAltHeaderField(int index, Platform::String ^fieldName);
 
 	Platform::String ^GetAlternativeBody(int index);
 
 	Platform::String ^GetAlternativeBodyByContentType(Platform::String ^contentType);
 
 	Platform::String ^GetAlternativeContentType(int index);
+
+	Platform::String ^GetAltHeaderField(int index, Platform::String ^fieldName);
 
 	Email ^GetAttachedMessage(int index);
 
@@ -515,7 +513,7 @@ public ref class Email sealed
 
 	Platform::String ^GetXml(void);
 
-	Boolean HasHeaderMatching(Platform::String ^fieldName, Platform::String ^valuePattern, Boolean caseInsensitive);
+	Boolean HasHeaderMatching(Platform::String ^fieldName, Platform::String ^valuePattern, Boolean caseSensitive);
 
 	Boolean HasHtmlBody(void);
 
@@ -545,13 +543,13 @@ public ref class Email sealed
 
 	void RemovePlainTextAlternative(void);
 
-	Boolean SaveAllAttachments(Platform::String ^directory);
+	Boolean SaveAllAttachments(Platform::String ^dirPath);
 
-	Boolean SaveAttachedFile(int index, Platform::String ^directory);
+	Boolean SaveAttachedFile(int index, Platform::String ^dirPath);
 
-	Boolean SaveEml(Platform::String ^path);
+	Boolean SaveEml(Platform::String ^emlFilePath);
 
-	Boolean SaveRelatedItem(int index, Platform::String ^directory);
+	Boolean SaveRelatedItem(int index, Platform::String ^dirPath);
 
 	Boolean SaveXml(Platform::String ^path);
 
@@ -559,7 +557,7 @@ public ref class Email sealed
 
 	Boolean SetAttachmentDisposition(int index, Platform::String ^disposition);
 
-	Boolean SetAttachmentFilename(int index, Platform::String ^path);
+	Boolean SetAttachmentFilename(int index, Platform::String ^filename);
 
 	Boolean SetBinaryBody(Windows::Foundation::Collections::IVector<uint8>^byteData, Platform::String ^contentType, Platform::String ^disposition, Platform::String ^filename);
 
@@ -567,7 +565,7 @@ public ref class Email sealed
 
 	void SetEdifactBody(Platform::String ^message, Platform::String ^name, Platform::String ^filename, Platform::String ^charset);
 
-	Boolean SetEncryptCert(Cert ^cert);
+	Boolean SetEncryptCert(Chilkat::Cert ^cert);
 
 	Boolean SetFromMimeBytes(Windows::Foundation::Collections::IVector<uint8>^mimeBytes);
 
@@ -587,21 +585,21 @@ public ref class Email sealed
 
 	Boolean SetReplacePattern(Platform::String ^pattern, Platform::String ^replaceString);
 
-	Boolean SetSigningCert(Cert ^cert);
+	Boolean SetSigningCert(Chilkat::Cert ^cert);
 
-	Boolean SetSigningCert2(Cert ^cert, PrivateKey ^key);
+	Boolean SetSigningCert2(Chilkat::Cert ^cert, Chilkat::PrivateKey ^key);
 
 	void SetTextBody(Platform::String ^bodyText, Platform::String ^contentType);
 
-	Boolean UidlEquals(Email ^e);
-
-	void UnSpamify(void);
+	Boolean UidlEquals(Chilkat::Email ^e);
 
 	Boolean UnpackHtml(Platform::String ^unpackDir, Platform::String ^htmlFilename, Platform::String ^partsSubdir);
 
+	void UnSpamify(void);
+
 	Boolean UnzipAttachments(void);
 
-	Boolean UseCertVault(XmlCertVault ^vault);
+	Boolean UseCertVault(Chilkat::XmlCertVault ^vault);
 
 	Boolean ZipAttachments(Platform::String ^zipFilename);
 

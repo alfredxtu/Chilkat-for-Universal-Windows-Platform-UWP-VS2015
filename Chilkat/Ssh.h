@@ -76,33 +76,7 @@ public ref class Ssh sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
+	property Boolean AbortCurrent
 	{
 		Boolean get();
 		void set(Boolean);
@@ -139,6 +113,11 @@ public ref class Ssh sealed
 		int32 get();
 		void set(int32);
 	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property int32 DisconnectCode
 	{
 		int32 get();
@@ -146,6 +125,11 @@ public ref class Ssh sealed
 	property Platform::String ^DisconnectReason
 	{
 		Platform::String ^get();
+	}
+	property Boolean EnableCompression
+	{
+		Boolean get();
+		void set(Boolean);
 	}
 	property Platform::String ^ForceCipher
 	{
@@ -210,6 +194,23 @@ public ref class Ssh sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property int32 MaxPacketSize
 	{
 		int32 get();
@@ -242,16 +243,6 @@ public ref class Ssh sealed
 	{
 		Platform::String ^get();
 	}
-	property int32 SoRcvBuf
-	{
-		int32 get();
-		void set(int32);
-	}
-	property int32 SoSndBuf
-	{
-		int32 get();
-		void set(int32);
-	}
 	property Platform::String ^SocksHostname
 	{
 		Platform::String ^get();
@@ -277,6 +268,16 @@ public ref class Ssh sealed
 		int32 get();
 		void set(int32);
 	}
+	property int32 SoRcvBuf
+	{
+		int32 get();
+		void set(int32);
+	}
+	property int32 SoSndBuf
+	{
+		int32 get();
+		void set(int32);
+	}
 	property Boolean StderrToStdout
 	{
 		Boolean get();
@@ -292,28 +293,25 @@ public ref class Ssh sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
-	property Boolean EnableCompression
+	property Boolean VerboseLogging
 	{
 		Boolean get();
 		void set(Boolean);
 	}
-	property Boolean AbortCurrent
+	property Platform::String ^Version
 	{
-		Boolean get();
-		void set(Boolean);
+		Platform::String ^get();
 	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
-	IAsyncOperation<Boolean>^ AuthenticatePkAsync(Platform::String ^username, SshKey ^privateKey);
+	IAsyncOperation<Boolean>^ AuthenticatePkAsync(Platform::String ^username, Chilkat::SshKey ^privateKey);
 
 	IAsyncOperation<Boolean>^ AuthenticatePwAsync(Platform::String ^login, Platform::String ^password);
 
-	IAsyncOperation<Boolean>^ AuthenticatePwPkAsync(Platform::String ^username, Platform::String ^password, SshKey ^privateKey);
+	IAsyncOperation<Boolean>^ AuthenticatePwPkAsync(Platform::String ^username, Platform::String ^password, Chilkat::SshKey ^privateKey);
 
 	Boolean ChannelIsOpen(int channelNum);
 
@@ -325,35 +323,35 @@ public ref class Ssh sealed
 
 	IAsyncOperation<int>^ ChannelReadAndPoll2Async(int channelNum, int pollTimeoutMs, int maxNumBytes);
 
-	IAsyncOperation<Boolean>^ ChannelReceiveToCloseAsync(int channelNum);
-
-	IAsyncOperation<Boolean>^ ChannelReceiveUntilMatchAsync(int channelNum, Platform::String ^matchPattern, Platform::String ^charset, Boolean caseSensitive);
-
-	IAsyncOperation<Boolean>^ ChannelReceiveUntilMatchNAsync(int channelNum, StringArray ^matchPatterns, Platform::String ^charset, Boolean caseSensitive);
-
 	Boolean ChannelReceivedClose(int channelNum);
 
 	Boolean ChannelReceivedEof(int channelNum);
 
 	Boolean ChannelReceivedExitStatus(int channelNum);
 
+	IAsyncOperation<Boolean>^ ChannelReceiveToCloseAsync(int channelNum);
+
+	IAsyncOperation<Boolean>^ ChannelReceiveUntilMatchAsync(int channelNum, Platform::String ^matchPattern, Platform::String ^charset, Boolean caseSensitive);
+
+	IAsyncOperation<Boolean>^ ChannelReceiveUntilMatchNAsync(int channelNum, Chilkat::StringArray ^matchPatterns, Platform::String ^charset, Boolean caseSensitive);
+
 	void ChannelRelease(int channelNum);
 
 	IAsyncOperation<Boolean>^ ChannelSendCloseAsync(int channelNum);
 
-	IAsyncOperation<Boolean>^ ChannelSendDataAsync(int channelNum, Windows::Foundation::Collections::IVector<uint8>^data);
+	IAsyncOperation<Boolean>^ ChannelSendDataAsync(int channelNum, Windows::Foundation::Collections::IVector<uint8>^byteData);
 
 	IAsyncOperation<Boolean>^ ChannelSendEofAsync(int channelNum);
 
-	IAsyncOperation<Boolean>^ ChannelSendStringAsync(int channelNum, Platform::String ^strData, Platform::String ^charset);
+	IAsyncOperation<Boolean>^ ChannelSendStringAsync(int channelNum, Platform::String ^textData, Platform::String ^charset);
 
 	Boolean CheckConnection(void);
 
 	void ClearTtyModes(void);
 
-	IAsyncOperation<Boolean>^ ConnectAsync(Platform::String ^hostname, int port);
+	IAsyncOperation<Boolean>^ ConnectAsync(Platform::String ^domainName, int port);
 
-	IAsyncOperation<Boolean>^ ConnectThroughSshAsync(Ssh ^ssh, Platform::String ^hostname, int port);
+	IAsyncOperation<Boolean>^ ConnectThroughSshAsync(Chilkat::Ssh ^ssh, Platform::String ^hostname, int port);
 
 	IAsyncOperation<Platform::String ^>^ ContinueKeyboardAuthAsync(Platform::String ^response);
 
@@ -367,7 +365,7 @@ public ref class Ssh sealed
 
 	Windows::Foundation::Collections::IVector<uint8>^GetReceivedData(int channelNum);
 
-	Windows::Foundation::Collections::IVector<uint8>^GetReceivedDataN(int channelNum, int numBytes);
+	Windows::Foundation::Collections::IVector<uint8>^GetReceivedDataN(int channelNum, int maxNumBytes);
 
 	int GetReceivedNumBytes(int channelNum);
 
@@ -381,7 +379,7 @@ public ref class Ssh sealed
 
 	IAsyncOperation<int>^ OpenCustomChannelAsync(Platform::String ^channelType);
 
-	IAsyncOperation<int>^ OpenDirectTcpIpChannelAsync(Platform::String ^hostname, int port);
+	IAsyncOperation<int>^ OpenDirectTcpIpChannelAsync(Platform::String ^targetHostname, int targetPort);
 
 	IAsyncOperation<int>^ OpenSessionChannelAsync(void);
 
@@ -391,9 +389,9 @@ public ref class Ssh sealed
 
 	IAsyncOperation<Boolean>^ SendIgnoreAsync(void);
 
-	IAsyncOperation<Boolean>^ SendReqExecAsync(int channelNum, Platform::String ^command);
+	IAsyncOperation<Boolean>^ SendReqExecAsync(int channelNum, Platform::String ^commandLine);
 
-	IAsyncOperation<Boolean>^ SendReqPtyAsync(int channelNum, Platform::String ^xTermEnvVar, int widthInChars, int heightInRows, int pixWidth, int pixHeight);
+	IAsyncOperation<Boolean>^ SendReqPtyAsync(int channelNum, Platform::String ^termType, int widthInChars, int heightInChars, int widthInPixels, int heightInPixels);
 
 	IAsyncOperation<Boolean>^ SendReqSetEnvAsync(int channelNum, Platform::String ^name, Platform::String ^value);
 
@@ -409,7 +407,7 @@ public ref class Ssh sealed
 
 	IAsyncOperation<Boolean>^ SendReqXonXoffAsync(int channelNum, Boolean clientCanDo);
 
-	Boolean SetTtyMode(Platform::String ^name, int value);
+	Boolean SetTtyMode(Platform::String ^ttyName, int ttyValue);
 
 	IAsyncOperation<Platform::String ^>^ StartKeyboardAuthAsync(Platform::String ^login);
 

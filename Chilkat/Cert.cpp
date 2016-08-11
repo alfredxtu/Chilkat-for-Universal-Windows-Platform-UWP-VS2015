@@ -52,46 +52,6 @@ Chilkat::Cert::Cert(void)
 //}
 
 
-String ^Chilkat::Cert::LastErrorHtml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
-    }
-String ^Chilkat::Cert::LastErrorText::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::Cert::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::Cert::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::Cert::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::Cert::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Cert::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::Cert::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::Cert::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::Cert::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
 String ^Chilkat::Cert::AuthorityKeyId::get()
     {
     return ref new String(m_impl ? m_impl->authorityKeyId() : L"");
@@ -111,6 +71,14 @@ int Chilkat::Cert::CertVersion::get()
 String ^Chilkat::Cert::CspName::get()
     {
     return ref new String(m_impl ? m_impl->cspName() : L"");
+    }
+String ^Chilkat::Cert::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::Cert::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
     }
 Boolean Chilkat::Cert::Expired::get()
     {
@@ -140,7 +108,7 @@ Boolean Chilkat::Cert::HasKeyContainer::get()
     {
     return m_impl ? m_impl->get_HasKeyContainer() : false;
     }
-uint32 Chilkat::Cert::IntendedKeyUsage::get()
+int Chilkat::Cert::IntendedKeyUsage::get()
     {
     return m_impl ? m_impl->get_IntendedKeyUsage() : 0;
     }
@@ -183,6 +151,26 @@ String ^Chilkat::Cert::IssuerS::get()
 String ^Chilkat::Cert::KeyContainerName::get()
     {
     return ref new String(m_impl ? m_impl->keyContainerName() : L"");
+    }
+String ^Chilkat::Cert::LastErrorHtml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    }
+String ^Chilkat::Cert::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::Cert::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
+Boolean Chilkat::Cert::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::Cert::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
 Boolean Chilkat::Cert::MachineKeyset::get()
     {
@@ -272,22 +260,24 @@ String ^Chilkat::Cert::ValidToStr::get()
     {
     return ref new String(m_impl ? m_impl->validToStr() : L"");
     }
-
-
-Boolean Cert::SaveLastError(Platform::String ^path)
+Boolean Chilkat::Cert::VerboseLogging::get()
     {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
+    return m_impl ? m_impl->get_VerboseLogging() : false;
     }
+void Chilkat::Cert::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::Cert::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
+
+
 int Cert::CheckRevoked(void)
     {
 	if (m_impl == nullptr) { return -1; }
 	// --- prep output arg ---
-	// gType = int
-	// cppType = int
 	return m_impl->CheckRevoked();
     }
 Windows::Foundation::Collections::IVector<uint8>^Cert::ExportCertDer(void)
@@ -295,8 +285,6 @@ Windows::Foundation::Collections::IVector<uint8>^Cert::ExportCertDer(void)
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->ExportCertDer(outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -306,16 +294,12 @@ Boolean Cert::ExportCertDerFile(Platform::String ^path)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->ExportCertDerFile(path ? path->Data() : L"");
     }
 Platform::String ^Cert::ExportCertPem(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->exportCertPem();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -324,16 +308,12 @@ Boolean Cert::ExportCertPemFile(Platform::String ^path)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->ExportCertPemFile(path ? path->Data() : L"");
     }
 Platform::String ^Cert::ExportCertXml(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->exportCertXml();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -342,8 +322,6 @@ PrivateKey ^Cert::ExportPrivateKey(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = PrivateKey
-	// cppType = CkPrivateKey *
 	CkPrivateKeyW *pRetObj = m_impl->ExportPrivateKey();
 	if (!pRetObj) return nullptr;
 	Chilkat::PrivateKey ^pPrivateKey = ref new Chilkat::PrivateKey();
@@ -354,8 +332,6 @@ PublicKey ^Cert::ExportPublicKey(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = PublicKey
-	// cppType = CkPublicKey *
 	CkPublicKeyW *pRetObj = m_impl->ExportPublicKey();
 	if (!pRetObj) return nullptr;
 	Chilkat::PublicKey ^pPublicKey = ref new Chilkat::PublicKey();
@@ -367,27 +343,21 @@ Windows::Foundation::Collections::IVector<uint8>^Cert::ExportToPfxData(Platform:
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->ExportToPfxData(password ? password->Data() : L"",includeCertChain,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
     }
-Boolean Cert::ExportToPfxFile(Platform::String ^pfxFilename, Platform::String ^password, Boolean bIncludeChain)
+Boolean Cert::ExportToPfxFile(Platform::String ^pfxFilename, Platform::String ^pfxPassword, Boolean bIncludeCertChain)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->ExportToPfxFile(pfxFilename ? pfxFilename->Data() : L"",password ? password->Data() : L"",bIncludeChain);
+	return m_impl->ExportToPfxFile(pfxFilename ? pfxFilename->Data() : L"",pfxPassword ? pfxPassword->Data() : L"",bIncludeCertChain);
     }
 Cert ^Cert::FindIssuer(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = Cert
-	// cppType = CkCert *
 	CkCertW *pRetObj = m_impl->FindIssuer();
 	if (!pRetObj) return nullptr;
 	Chilkat::Cert ^pCert = ref new Chilkat::Cert();
@@ -398,8 +368,6 @@ CertChain ^Cert::GetCertChain(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = CertChain
-	// cppType = CkCertChain *
 	CkCertChainW *pRetObj = m_impl->GetCertChain();
 	if (!pRetObj) return nullptr;
 	Chilkat::CertChain ^pCertChain = ref new Chilkat::CertChain();
@@ -410,8 +378,6 @@ Platform::String ^Cert::GetEncoded(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getEncoded();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -420,8 +386,6 @@ Platform::String ^Cert::GetExtensionAsXml(Platform::String ^oid)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getExtensionAsXml(oid ? oid->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -430,8 +394,6 @@ Platform::String ^Cert::GetPrivateKeyPem(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getPrivateKeyPem();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -440,8 +402,6 @@ Platform::String ^Cert::GetSpkiFingerprint(Platform::String ^hashAlg, Platform::
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getSpkiFingerprint(hashAlg ? hashAlg->Data() : L"",encoding ? encoding->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -450,8 +410,6 @@ Chilkat::CkDateTime ^Cert::GetValidFromDt(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = CkDateTime
-	// cppType = CkDateTime *
 	CkDateTimeW *pRetObj = m_impl->GetValidFromDt();
 	if (!pRetObj) return nullptr;
 	Chilkat::CkDateTime ^pCkDateTime = ref new Chilkat::CkDateTime();
@@ -462,8 +420,6 @@ Chilkat::CkDateTime ^Cert::GetValidToDt(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = CkDateTime
-	// cppType = CkDateTime *
 	CkDateTimeW *pRetObj = m_impl->GetValidToDt();
 	if (!pRetObj) return nullptr;
 	Chilkat::CkDateTime ^pCkDateTime = ref new Chilkat::CkDateTime();
@@ -474,40 +430,30 @@ Boolean Cert::HasPrivateKey(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->HasPrivateKey();
     }
 Boolean Cert::LoadByCommonName(Platform::String ^cn)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadByCommonName(cn ? cn->Data() : L"");
     }
 Boolean Cert::LoadByEmailAddress(Platform::String ^emailAddress)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadByEmailAddress(emailAddress ? emailAddress->Data() : L"");
     }
-Boolean Cert::LoadByIssuerAndSerialNumber(Platform::String ^issuerCN, Platform::String ^serialNum)
+Boolean Cert::LoadByIssuerAndSerialNumber(Platform::String ^issuerCN, Platform::String ^serialNumber)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->LoadByIssuerAndSerialNumber(issuerCN ? issuerCN->Data() : L"",serialNum ? serialNum->Data() : L"");
+	return m_impl->LoadByIssuerAndSerialNumber(issuerCN ? issuerCN->Data() : L"",serialNumber ? serialNumber->Data() : L"");
     }
 Boolean Cert::LoadFromBase64(Platform::String ^encodedCert)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadFromBase64(encodedCert ? encodedCert->Data() : L"");
     }
 Boolean Cert::LoadFromBinary(Windows::Foundation::Collections::IVector<uint8>^data)
@@ -517,24 +463,18 @@ Boolean Cert::LoadFromBinary(Windows::Foundation::Collections::IVector<uint8>^da
         if (data != nullptr) { v0 = to_vector(data);
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadFromBinary(db0);
     }
 Boolean Cert::LoadFromFile(Platform::String ^path)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadFromFile(path ? path->Data() : L"");
     }
 Boolean Cert::LoadPem(Platform::String ^strPem)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadPem(strPem ? strPem->Data() : L"");
     }
 Boolean Cert::LoadPfxData(Windows::Foundation::Collections::IVector<uint8>^pfxData, Platform::String ^password)
@@ -544,78 +484,60 @@ Boolean Cert::LoadPfxData(Windows::Foundation::Collections::IVector<uint8>^pfxDa
         if (pfxData != nullptr) { v0 = to_vector(pfxData);
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadPfxData(db0,password ? password->Data() : L"");
     }
 Boolean Cert::LoadPfxFile(Platform::String ^pfxPath, Platform::String ^password)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadPfxFile(pfxPath ? pfxPath->Data() : L"",password ? password->Data() : L"");
     }
 Boolean Cert::PemFileToDerFile(Platform::String ^fromPath, Platform::String ^toPath)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->PemFileToDerFile(fromPath ? fromPath->Data() : L"",toPath ? toPath->Data() : L"");
     }
 Boolean Cert::SaveToFile(Platform::String ^path)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->SaveToFile(path ? path->Data() : L"");
     }
 Boolean Cert::SetFromEncoded(Platform::String ^encodedCert)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetFromEncoded(encodedCert ? encodedCert->Data() : L"");
     }
-Boolean Cert::SetPrivateKey(PrivateKey ^privKey)
+Boolean Cert::SetPrivateKey(Chilkat::PrivateKey ^privKey)
     {
 	if (m_impl == nullptr) { return false; }
 	if (privKey == nullptr) { return false; }
 	CkPrivateKeyW* pObj0 = privKey->m_impl;
 	 if (!pObj0) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetPrivateKey(*pObj0);
     }
 Boolean Cert::SetPrivateKeyPem(Platform::String ^privKeyPem)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetPrivateKeyPem(privKeyPem ? privKeyPem->Data() : L"");
     }
-Boolean Cert::UseCertVault(XmlCertVault ^vault)
+Boolean Cert::UseCertVault(Chilkat::XmlCertVault ^vault)
     {
 	if (m_impl == nullptr) { return false; }
 	if (vault == nullptr) { return false; }
 	CkXmlCertVaultW* pObj0 = vault->m_impl;
 	 if (!pObj0) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->UseCertVault(*pObj0);
     }
 Boolean Cert::VerifySignature(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->VerifySignature();
     }
 

@@ -56,45 +56,45 @@ class CK_VISIBLE_PUBLIC CkJsonArray  : public CkMultiByteBase
 	// ----------------------
 	// Methods
 	// ----------------------
-	// Inserts a new and empty JSON array member to the position indicated by ARG1. To
-	// prepend, pass an ARG1 of 0. To append, pass an ARG1 of -1. Indexing is 0-based
+	// Inserts a new and empty JSON array member to the position indicated by index. To
+	// prepend, pass an index of 0. To append, pass an index of -1. Indexing is 0-based
 	// (the 1st member is at index 0).
 	bool AddArrayAt(int index);
 
 
-	// Inserts a new boolean member to the position indicated by ARG1. To prepend, pass
-	// an ARG1 of 0. To append, pass an ARG1 of -1. Indexing is 0-based (the 1st member
+	// Inserts a new boolean member to the position indicated by index. To prepend, pass
+	// an index of 0. To append, pass an index of -1. Indexing is 0-based (the 1st member
 	// is at index 0).
 	bool AddBoolAt(int index, bool value);
 
 
-	// Inserts a new integer member to the position indicated by ARG1. To prepend, pass
-	// an ARG1 of 0. To append, pass an ARG1 of -1. Indexing is 0-based (the 1st member
+	// Inserts a new integer member to the position indicated by index. To prepend, pass
+	// an index of 0. To append, pass an index of -1. Indexing is 0-based (the 1st member
 	// is at index 0).
 	bool AddIntAt(int index, int value);
 
 
-	// Inserts a new null member to the position indicated by ARG1. To prepend, pass an
-	// ARG1 of 0. To append, pass an ARG1 of -1. Indexing is 0-based (the 1st member is
+	// Inserts a new null member to the position indicated by index. To prepend, pass an
+	// index of 0. To append, pass an index of -1. Indexing is 0-based (the 1st member is
 	// at index 0).
 	bool AddNullAt(int index);
 
 
-	// Inserts a new numeric member to the position indicated by ARG1. The ARG2 is an
+	// Inserts a new numeric member to the position indicated by index. The numericStr is an
 	// integer, float, or double already converted to a string in the format desired by
-	// the application. To prepend, pass an ARG1 of 0. To append, pass an ARG1 of -1.
+	// the application. To prepend, pass an index of 0. To append, pass an index of -1.
 	// Indexing is 0-based (the 1st member is at index 0).
 	bool AddNumberAt(int index, const char *numericStr);
 
 
-	// Inserts a new and empty JSON object member to the position indicated by ARG1. To
-	// prepend, pass an ARG1 of 0. To append, pass an ARG1 of -1. Indexing is 0-based
+	// Inserts a new and empty JSON object member to the position indicated by index. To
+	// prepend, pass an index of 0. To append, pass an index of -1. Indexing is 0-based
 	// (the 1st member is at index 0).
 	bool AddObjectAt(int index);
 
 
-	// Inserts a new string at the position indicated by ARG1. To prepend, pass an ARG1
-	// of 0. To append, pass an ARG1 of -1. Indexing is 0-based (the 1st member is at
+	// Inserts a new string at the position indicated by index. To prepend, pass an index
+	// of 0. To append, pass an index of -1. Indexing is 0-based (the 1st member is at
 	// index 0).
 	bool AddStringAt(int index, const char *value);
 
@@ -110,10 +110,26 @@ class CK_VISIBLE_PUBLIC CkJsonArray  : public CkMultiByteBase
 	bool BoolAt(int index);
 
 
-	// Deletes the array element at the given ARG1. Indexing is 0-based (the 1st member
+	// Deletes the array element at the given index. Indexing is 0-based (the 1st member
 	// is at index 0).
 	bool DeleteAt(int index);
 
+
+	// Writes the JSON array (rooted at the caller) and returns as a string.
+	// 
+	// Note: To control the compact/non-compact format, and to control the LF/CRLF
+	// line-endings, set the EmitCompact and EmitCrlf properties of the JSON object
+	// prior to getting the CLASS_NAME object.
+	// 
+	bool Emit(CkString &outStr);
+
+	// Writes the JSON array (rooted at the caller) and returns as a string.
+	// 
+	// Note: To control the compact/non-compact format, and to control the LF/CRLF
+	// line-endings, set the EmitCompact and EmitCrlf properties of the JSON object
+	// prior to getting the CLASS_NAME object.
+	// 
+	const char *emit(void);
 
 	// Returns the integer value of the Nth array element. Indexing is 0-based (the 1st
 	// member is at index 0).
@@ -146,7 +162,7 @@ class CK_VISIBLE_PUBLIC CkJsonArray  : public CkMultiByteBase
 	bool SetNullAt(int index);
 
 
-	// Sets the numeric value of the Nth array element. The ARG2 is an integer, float,
+	// Sets the numeric value of the Nth array element. The value is an integer, float,
 	// or double already converted to a string in the format desired by the
 	// application. Indexing is 0-based (the 1st member is at index 0).
 	bool SetNumberAt(int index, const char *value);
@@ -165,30 +181,14 @@ class CK_VISIBLE_PUBLIC CkJsonArray  : public CkMultiByteBase
 	// member is at index 0).
 	const char *stringAt(int index);
 
-	// Writes the JSON array (rooted at the caller) and returns as a string.
-	// 
-	// Note: To control the compact/non-compact format, and to control the LF/CRLF
-	// line-endings, set the EmitCompact and EmitCrlf properties of the JSON object
-	// prior to getting the CLASS_NAME object.
-	// 
-	bool Emit(CkString &outStr);
-
-	// Writes the JSON array (rooted at the caller) and returns as a string.
-	// 
-	// Note: To control the compact/non-compact format, and to control the LF/CRLF
-	// line-endings, set the EmitCompact and EmitCrlf properties of the JSON object
-	// prior to getting the CLASS_NAME object.
-	// 
-	const char *emit(void);
-
-	// Returns the type of data at the given ARG1. Possible return values are:
+	// Returns the type of data at the given index. Possible return values are:
 	//     string
 	//     number
 	//     object
 	//     array
 	//     boolean
 	//     null
-	// Returns -1 if no member exists at the given ARG1.
+	// Returns -1 if no member exists at the given index.
 	int TypeAt(int index);
 
 

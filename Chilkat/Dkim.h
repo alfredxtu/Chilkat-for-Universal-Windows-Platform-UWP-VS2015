@@ -74,36 +74,15 @@ public ref class Dkim sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
+	property Boolean AbortCurrent
 	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
+		Boolean get();
+		void set(Boolean);
 	}
 	property Platform::String ^DebugLogFilePath
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
 	}
 	property Platform::String ^DkimAlg
 	{
@@ -165,18 +144,37 @@ public ref class Dkim sealed
 		int32 get();
 		void set(int32);
 	}
-	property Boolean AbortCurrent
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
 	{
 		Boolean get();
 		void set(Boolean);
+	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
 	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	Windows::Foundation::Collections::IVector<uint8>^AddDkimSignature(Windows::Foundation::Collections::IVector<uint8>^mimeIn);
 
 	Windows::Foundation::Collections::IVector<uint8>^AddDomainKeySignature(Windows::Foundation::Collections::IVector<uint8>^mimeIn);
@@ -185,13 +183,13 @@ public ref class Dkim sealed
 
 	Boolean LoadDkimPkBytes(Windows::Foundation::Collections::IVector<uint8>^privateKeyDer, Platform::String ^optionalPassword);
 
-	Boolean LoadDkimPkFile(Platform::String ^privateKeyFilepath, Platform::String ^optionalPassword);
+	Boolean LoadDkimPkFile(Platform::String ^privateKeyFilePath, Platform::String ^optionalPassword);
 
 	Boolean LoadDomainKeyPk(Platform::String ^privateKey, Platform::String ^optionalPassword);
 
 	Boolean LoadDomainKeyPkBytes(Windows::Foundation::Collections::IVector<uint8>^privateKeyDer, Platform::String ^optionalPassword);
 
-	Boolean LoadDomainKeyPkFile(Platform::String ^privateKeyFilepath, Platform::String ^optionalPassword);
+	Boolean LoadDomainKeyPkFile(Platform::String ^privateKeyFilePath, Platform::String ^optionalPassword);
 
 	Boolean LoadPublicKey(Platform::String ^selector, Platform::String ^domain, Platform::String ^publicKey);
 
@@ -205,9 +203,9 @@ public ref class Dkim sealed
 
 	Boolean UnlockComponent(Platform::String ^unlockCode);
 
-	IAsyncOperation<Boolean>^ VerifyDkimSignatureAsync(int sigIdx, Windows::Foundation::Collections::IVector<uint8>^mimeData);
+	IAsyncOperation<Boolean>^ VerifyDkimSignatureAsync(int sigIndex, Windows::Foundation::Collections::IVector<uint8>^mimeData);
 
-	IAsyncOperation<Boolean>^ VerifyDomainKeySignatureAsync(int sigIdx, Windows::Foundation::Collections::IVector<uint8>^mimeData);
+	IAsyncOperation<Boolean>^ VerifyDomainKeySignatureAsync(int sigIndex, Windows::Foundation::Collections::IVector<uint8>^mimeData);
 
 
 

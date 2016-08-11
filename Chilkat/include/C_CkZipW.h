@@ -195,6 +195,7 @@ CK_VISIBLE_PUBLIC void CkZipW_AddNoCompressExtension(HCkZipW cHandle, const wcha
 CK_VISIBLE_PUBLIC HCkZipEntryW CkZipW_AppendBase64(HCkZipW cHandle, const wchar_t *fileName, const wchar_t *encodedCompressedData);
 CK_VISIBLE_PUBLIC HCkZipEntryW CkZipW_AppendCompressed(HCkZipW cHandle, const wchar_t *filename, HCkByteData inData);
 CK_VISIBLE_PUBLIC HCkZipEntryW CkZipW_AppendData(HCkZipW cHandle, const wchar_t *fileName, HCkByteData inData);
+CK_VISIBLE_PUBLIC HCkZipEntryW CkZipW_AppendDataEncoded(HCkZipW cHandle, const wchar_t *filename, const wchar_t *encoding, const wchar_t *data);
 CK_VISIBLE_PUBLIC BOOL CkZipW_AppendFiles(HCkZipW cHandle, const wchar_t *filePattern, BOOL recurse);
 CK_VISIBLE_PUBLIC HCkTaskW CkZipW_AppendFilesAsync(HCkZipW cHandle, const wchar_t *filePattern, BOOL recurse);
 CK_VISIBLE_PUBLIC BOOL CkZipW_AppendFilesEx(HCkZipW cHandle, const wchar_t *filePattern, BOOL recurse, BOOL saveExtraPath, BOOL archiveOnly, BOOL includeHidden, BOOL includeSystem);

@@ -43,46 +43,6 @@ Chilkat::HttpRequest::HttpRequest(void)
 //}
 
 
-String ^Chilkat::HttpRequest::LastErrorHtml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
-    }
-String ^Chilkat::HttpRequest::LastErrorText::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::HttpRequest::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::HttpRequest::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::HttpRequest::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::HttpRequest::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::HttpRequest::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::HttpRequest::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::HttpRequest::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::HttpRequest::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
 String ^Chilkat::HttpRequest::Boundary::get()
     {
     return ref new String(m_impl ? m_impl->boundary() : L"");
@@ -106,6 +66,14 @@ String ^Chilkat::HttpRequest::ContentType::get()
 void Chilkat::HttpRequest::ContentType::set(String ^newVal)
     {
         if (m_impl) m_impl->put_ContentType(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::HttpRequest::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::HttpRequest::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
     }
 String ^Chilkat::HttpRequest::EntireHeader::get()
     {
@@ -131,6 +99,26 @@ void Chilkat::HttpRequest::HttpVersion::set(String ^newVal)
     {
         if (m_impl) m_impl->put_HttpVersion(newVal ? newVal->Data() : L"");
     }
+String ^Chilkat::HttpRequest::LastErrorHtml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    }
+String ^Chilkat::HttpRequest::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::HttpRequest::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
+Boolean Chilkat::HttpRequest::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::HttpRequest::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+    }
 int Chilkat::HttpRequest::NumHeaderFields::get()
     {
     return m_impl ? m_impl->get_NumHeaderFields() : 0;
@@ -155,100 +143,84 @@ void Chilkat::HttpRequest::SendCharset::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_SendCharset(newVal);
     }
-
-
-Boolean HttpRequest::SaveLastError(Platform::String ^path)
+Boolean Chilkat::HttpRequest::VerboseLogging::get()
     {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
+    return m_impl ? m_impl->get_VerboseLogging() : false;
     }
-Boolean HttpRequest::AddBytesForUpload(Platform::String ^name, Platform::String ^filename, Windows::Foundation::Collections::IVector<uint8>^byteData)
+void Chilkat::HttpRequest::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::HttpRequest::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
+
+
+Boolean HttpRequest::AddBytesForUpload(Platform::String ^name, Platform::String ^remoteFileName, Windows::Foundation::Collections::IVector<uint8>^byteData)
     {
 	if (m_impl == nullptr) { return false; }
 	CkByteData db2; std::vector<uint8> v2;
         if (byteData != nullptr) { v2 = to_vector(byteData);
             db2.borrowData(&v2[0], (unsigned long)v2.size()); }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->AddBytesForUpload(name ? name->Data() : L"",filename ? filename->Data() : L"",db2);
+	return m_impl->AddBytesForUpload(name ? name->Data() : L"",remoteFileName ? remoteFileName->Data() : L"",db2);
     }
-Boolean HttpRequest::AddBytesForUpload2(Platform::String ^name, Platform::String ^filename, Windows::Foundation::Collections::IVector<uint8>^byteData, Platform::String ^contentType)
+Boolean HttpRequest::AddBytesForUpload2(Platform::String ^name, Platform::String ^remoteFileName, Windows::Foundation::Collections::IVector<uint8>^byteData, Platform::String ^contentType)
     {
 	if (m_impl == nullptr) { return false; }
 	CkByteData db2; std::vector<uint8> v2;
         if (byteData != nullptr) { v2 = to_vector(byteData);
             db2.borrowData(&v2[0], (unsigned long)v2.size()); }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->AddBytesForUpload2(name ? name->Data() : L"",filename ? filename->Data() : L"",db2,contentType ? contentType->Data() : L"");
+	return m_impl->AddBytesForUpload2(name ? name->Data() : L"",remoteFileName ? remoteFileName->Data() : L"",db2,contentType ? contentType->Data() : L"");
     }
-Boolean HttpRequest::AddFileForUpload(Platform::String ^name, Platform::String ^filename)
+Boolean HttpRequest::AddFileForUpload(Platform::String ^name, Platform::String ^filePath)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->AddFileForUpload(name ? name->Data() : L"",filename ? filename->Data() : L"");
+	return m_impl->AddFileForUpload(name ? name->Data() : L"",filePath ? filePath->Data() : L"");
     }
-Boolean HttpRequest::AddFileForUpload2(Platform::String ^name, Platform::String ^filename, Platform::String ^contentType)
+Boolean HttpRequest::AddFileForUpload2(Platform::String ^name, Platform::String ^filePath, Platform::String ^contentType)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->AddFileForUpload2(name ? name->Data() : L"",filename ? filename->Data() : L"",contentType ? contentType->Data() : L"");
+	return m_impl->AddFileForUpload2(name ? name->Data() : L"",filePath ? filePath->Data() : L"",contentType ? contentType->Data() : L"");
     }
 void HttpRequest::AddHeader(Platform::String ^name, Platform::String ^value)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	// gType = void
-	// cppType = void
 	m_impl->AddHeader(name ? name->Data() : L"",value ? value->Data() : L"");
     }
 void HttpRequest::AddParam(Platform::String ^name, Platform::String ^value)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	// gType = void
-	// cppType = void
 	m_impl->AddParam(name ? name->Data() : L"",value ? value->Data() : L"");
     }
 Boolean HttpRequest::AddStringForUpload(Platform::String ^name, Platform::String ^filename, Platform::String ^strData, Platform::String ^charset)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddStringForUpload(name ? name->Data() : L"",filename ? filename->Data() : L"",strData ? strData->Data() : L"",charset ? charset->Data() : L"");
     }
 Boolean HttpRequest::AddStringForUpload2(Platform::String ^name, Platform::String ^filename, Platform::String ^strData, Platform::String ^charset, Platform::String ^contentType)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddStringForUpload2(name ? name->Data() : L"",filename ? filename->Data() : L"",strData ? strData->Data() : L"",charset ? charset->Data() : L"",contentType ? contentType->Data() : L"");
     }
 Boolean HttpRequest::AddSubHeader(int index, Platform::String ^name, Platform::String ^value)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddSubHeader(index,name ? name->Data() : L"",value ? value->Data() : L"");
     }
 Platform::String ^HttpRequest::GenerateRequestText(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->generateRequestText();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -257,8 +229,6 @@ Platform::String ^HttpRequest::GetHeaderField(Platform::String ^name)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getHeaderField(name ? name->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -267,8 +237,6 @@ Platform::String ^HttpRequest::GetHeaderName(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getHeaderName(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -277,8 +245,6 @@ Platform::String ^HttpRequest::GetHeaderValue(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getHeaderValue(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -287,8 +253,6 @@ Platform::String ^HttpRequest::GetParam(Platform::String ^name)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getParam(name ? name->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -297,8 +261,6 @@ Platform::String ^HttpRequest::GetParamName(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getParamName(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -307,8 +269,6 @@ Platform::String ^HttpRequest::GetParamValue(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getParamValue(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -317,149 +277,113 @@ Platform::String ^HttpRequest::GetUrlEncodedParams(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getUrlEncodedParams();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-Boolean HttpRequest::LoadBodyFromBytes(Windows::Foundation::Collections::IVector<uint8>^binaryData)
+Boolean HttpRequest::LoadBodyFromBytes(Windows::Foundation::Collections::IVector<uint8>^byteData)
     {
 	if (m_impl == nullptr) { return false; }
 	CkByteData db0; std::vector<uint8> v0;
-        if (binaryData != nullptr) { v0 = to_vector(binaryData);
+        if (byteData != nullptr) { v0 = to_vector(byteData);
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadBodyFromBytes(db0);
     }
-Boolean HttpRequest::LoadBodyFromFile(Platform::String ^filename)
+Boolean HttpRequest::LoadBodyFromFile(Platform::String ^filePath)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->LoadBodyFromFile(filename ? filename->Data() : L"");
+	return m_impl->LoadBodyFromFile(filePath ? filePath->Data() : L"");
     }
 Boolean HttpRequest::LoadBodyFromString(Platform::String ^bodyStr, Platform::String ^charset)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadBodyFromString(bodyStr ? bodyStr->Data() : L"",charset ? charset->Data() : L"");
     }
 void HttpRequest::RemoveAllParams(void)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	// gType = void
-	// cppType = void
 	m_impl->RemoveAllParams();
     }
 Boolean HttpRequest::RemoveHeader(Platform::String ^name)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->RemoveHeader(name ? name->Data() : L"");
     }
 void HttpRequest::RemoveParam(Platform::String ^name)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	// gType = void
-	// cppType = void
 	m_impl->RemoveParam(name ? name->Data() : L"");
     }
 void HttpRequest::SetFromUrl(Platform::String ^url)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	// gType = void
-	// cppType = void
 	m_impl->SetFromUrl(url ? url->Data() : L"");
     }
-Boolean HttpRequest::StreamBodyFromFile(Platform::String ^filename)
+Boolean HttpRequest::StreamBodyFromFile(Platform::String ^filePath)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->StreamBodyFromFile(filename ? filename->Data() : L"");
+	return m_impl->StreamBodyFromFile(filePath ? filePath->Data() : L"");
     }
 Boolean HttpRequest::StreamChunkFromFile(Platform::String ^path, Platform::String ^offset, Platform::String ^numBytes)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->StreamChunkFromFile(path ? path->Data() : L"",offset ? offset->Data() : L"",numBytes ? numBytes->Data() : L"");
     }
 void HttpRequest::UseGet(void)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	// gType = void
-	// cppType = void
 	m_impl->UseGet();
     }
 void HttpRequest::UseHead(void)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	// gType = void
-	// cppType = void
 	m_impl->UseHead();
     }
 void HttpRequest::UsePost(void)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	// gType = void
-	// cppType = void
 	m_impl->UsePost();
     }
 void HttpRequest::UsePostMultipartForm(void)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	// gType = void
-	// cppType = void
 	m_impl->UsePostMultipartForm();
     }
 void HttpRequest::UsePut(void)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	// gType = void
-	// cppType = void
 	m_impl->UsePut();
     }
 void HttpRequest::UseUpload(void)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	// gType = void
-	// cppType = void
 	m_impl->UseUpload();
     }
 void HttpRequest::UseUploadPut(void)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	// gType = void
-	// cppType = void
 	m_impl->UseUploadPut();
     }
 void HttpRequest::UseXmlHttp(Platform::String ^xmlBody)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	// gType = void
-	// cppType = void
 	m_impl->UseXmlHttp(xmlBody ? xmlBody->Data() : L"");
     }
 

@@ -43,46 +43,6 @@ Chilkat::Url::Url(void)
 //}
 
 
-String ^Chilkat::Url::LastErrorHtml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
-    }
-String ^Chilkat::Url::LastErrorText::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::Url::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::Url::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::Url::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::Url::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Url::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::Url::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::Url::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::Url::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
 String ^Chilkat::Url::Frag::get()
     {
     return ref new String(m_impl ? m_impl->frag() : L"");
@@ -107,6 +67,10 @@ String ^Chilkat::Url::Path::get()
     {
     return ref new String(m_impl ? m_impl->path() : L"");
     }
+String ^Chilkat::Url::PathWithQueryParams::get()
+    {
+    return ref new String(m_impl ? m_impl->pathWithQueryParams() : L"");
+    }
 int Chilkat::Url::Port::get()
     {
     return m_impl ? m_impl->get_Port() : 0;
@@ -119,26 +83,12 @@ Boolean Chilkat::Url::Ssl::get()
     {
     return m_impl ? m_impl->get_Ssl() : false;
     }
-String ^Chilkat::Url::PathWithQueryParams::get()
-    {
-    return ref new String(m_impl ? m_impl->pathWithQueryParams() : L"");
-    }
 
 
-Boolean Url::SaveLastError(Platform::String ^path)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
-    }
 Boolean Url::ParseUrl(Platform::String ^url)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->ParseUrl(url ? url->Data() : L"");
     }
 

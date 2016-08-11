@@ -74,6 +74,11 @@ public ref class Rss sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
@@ -85,20 +90,6 @@ public ref class Rss sealed
 	property Platform::String ^LastErrorXml
 	{
 		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
 	}
 	property Boolean LastMethodSuccess
 	{
@@ -113,13 +104,20 @@ public ref class Rss sealed
 	{
 		int32 get();
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	Rss ^AddNewChannel(void);
 
 	Rss ^AddNewImage(void);
@@ -144,7 +142,7 @@ public ref class Rss sealed
 
 	Platform::String ^GetString(Platform::String ^tag);
 
-	Boolean LoadRssFile(Platform::String ^filename);
+	Boolean LoadRssFile(Platform::String ^filePath);
 
 	Boolean LoadRssString(Platform::String ^rssString);
 

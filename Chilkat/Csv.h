@@ -42,37 +42,6 @@ public ref class Csv sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Boolean AutoTrim
 	{
 		Boolean get();
@@ -82,6 +51,11 @@ public ref class Csv sealed
 	{
 		Boolean get();
 		void set(Boolean);
+	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
 	}
 	property Platform::String ^Delimiter
 	{
@@ -98,6 +72,23 @@ public ref class Csv sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property int32 NumColumns
 	{
 		int32 get();
@@ -106,13 +97,20 @@ public ref class Csv sealed
 	{
 		int32 get();
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	Boolean DeleteColumn(int index);
 
 	Boolean DeleteColumnByName(Platform::String ^columnName);
@@ -121,7 +119,7 @@ public ref class Csv sealed
 
 	Platform::String ^GetCell(int row, int col);
 
-	Platform::String ^GetCellByName(int row, Platform::String ^columnName);
+	Platform::String ^GetCellByName(int rowIndex, Platform::String ^columnName);
 
 	Platform::String ^GetColumnName(int index);
 
@@ -131,25 +129,25 @@ public ref class Csv sealed
 
 	Boolean LoadFile(Platform::String ^path);
 
-	Boolean LoadFile2(Platform::String ^path, Platform::String ^charset);
+	Boolean LoadFile2(Platform::String ^filename, Platform::String ^charset);
 
 	Boolean LoadFromString(Platform::String ^csvData);
 
-	Boolean RowMatches(int row, Platform::String ^matchPattern, Boolean bCaseSensitive);
+	Boolean RowMatches(int rowIndex, Platform::String ^matchPattern, Boolean caseSensitive);
 
 	Boolean SaveFile(Platform::String ^path);
 
-	Boolean SaveFile2(Platform::String ^path, Platform::String ^charset);
+	Boolean SaveFile2(Platform::String ^filename, Platform::String ^charset);
 
 	Platform::String ^SaveToString(void);
 
 	Boolean SetCell(int row, int col, Platform::String ^content);
 
-	Boolean SetCellByName(int row, Platform::String ^columnName, Platform::String ^content);
+	Boolean SetCellByName(int rowIndex, Platform::String ^columnName, Platform::String ^contentStr);
 
 	Boolean SetColumnName(int index, Platform::String ^columnName);
 
-	Boolean SortByColumn(Platform::String ^columnName, Boolean bAscending, Boolean bCaseSensitive);
+	Boolean SortByColumn(Platform::String ^columnName, Boolean ascending, Boolean caseSensitive);
 
 
 

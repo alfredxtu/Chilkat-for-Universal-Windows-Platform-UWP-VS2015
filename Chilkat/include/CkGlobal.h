@@ -176,7 +176,7 @@ class CK_VISIBLE_PUBLIC CkGlobal  : public CkMultiByteBase
 	// Unlocks the entire Chilkat API for all classes. This should be called once at
 	// the beginning of a program. Once unlocked, objects of any Chilkat class may be
 	// instantiated and used. To unlock in fully-functional 30-day trial mode, pass any
-	// string, such as "Hello", in ARG1. If a license is purchased, then replace the
+	// string, such as "Hello", in bundleUnlockCode. If a license is purchased, then replace the
 	// "Hello" with the purchased unlock code.
 	// 
 	// After calling UnlockComponent once, the instance of the CLASS_NAME object may be

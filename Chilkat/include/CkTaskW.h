@@ -286,10 +286,10 @@ class CK_VISIBLE_PUBLIC CkTaskW  : public CkClassWithCallbacksW
 	// milliseconds. (This does not cause the task's background thread to sleep.)
 	void SleepMs(int numMs);
 
-	// Waits for the task to complete. Returns when task has completed, or after ARG1
-	// milliseconds have elapsed. (A ARG1 value of 0 is to wait indefinitely.) Returns
+	// Waits for the task to complete. Returns when task has completed, or after maxWaitMs
+	// milliseconds have elapsed. (A maxWaitMs value of 0 is to wait indefinitely.) Returns
 	// (false) if the task has not yet been started by calling the Run method, or if
-	// the ARG1 expired. If the task completed, was already completed, was canceled or
+	// the maxWaitMs expired. If the task completed, was already completed, was canceled or
 	// aborted, then this method returns true.
 	bool Wait(int maxWaitMs);
 

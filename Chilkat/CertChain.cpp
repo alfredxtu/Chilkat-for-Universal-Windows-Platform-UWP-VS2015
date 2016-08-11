@@ -47,6 +47,14 @@ Chilkat::CertChain::CertChain(void)
 //}
 
 
+String ^Chilkat::CertChain::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::CertChain::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
 String ^Chilkat::CertChain::LastErrorHtml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
@@ -58,26 +66,6 @@ String ^Chilkat::CertChain::LastErrorText::get()
 String ^Chilkat::CertChain::LastErrorXml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::CertChain::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::CertChain::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::CertChain::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::CertChain::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::CertChain::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
     }
 Boolean Chilkat::CertChain::LastMethodSuccess::get()
     {
@@ -99,45 +87,43 @@ Boolean Chilkat::CertChain::ReachesRoot::get()
     {
     return m_impl ? m_impl->get_ReachesRoot() : false;
     }
-
-
-Boolean CertChain::SaveLastError(Platform::String ^path)
+Boolean Chilkat::CertChain::VerboseLogging::get()
     {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
+    return m_impl ? m_impl->get_VerboseLogging() : false;
     }
+void Chilkat::CertChain::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::CertChain::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
+
+
 Cert ^CertChain::GetCert(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = Cert
-	// cppType = CkCert *
 	CkCertW *pRetObj = m_impl->GetCert(index);
 	if (!pRetObj) return nullptr;
 	Chilkat::Cert ^pCert = ref new Chilkat::Cert();
 	pCert->m_impl = pRetObj;
 	return pCert;
     }
-Boolean CertChain::IsRootTrusted(TrustedRoots ^trustedRoots)
+Boolean CertChain::IsRootTrusted(Chilkat::TrustedRoots ^trustedRoots)
     {
 	if (m_impl == nullptr) { return false; }
 	if (trustedRoots == nullptr) { return false; }
 	CkTrustedRootsW* pObj0 = trustedRoots->m_impl;
 	 if (!pObj0) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsRootTrusted(*pObj0);
     }
 Boolean CertChain::VerifyCertSignatures(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->VerifyCertSignatures();
     }
 

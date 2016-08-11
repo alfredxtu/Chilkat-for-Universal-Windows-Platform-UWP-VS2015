@@ -276,14 +276,14 @@ class CK_VISIBLE_PUBLIC CkHttpResponse  : public CkMultiByteBase
 	// Convenience method for parsing a param's value out of a URL-encoded param
 	// string. For example, if a caller passes the following string in
 	// encodedParamString:oauth_token=ABC&oauth_token_secret=123&oauth_callback_confirmed=true and
-	// "oauth_token_secret" in  paramName, then the return value would be "123".
-	bool UrlEncParamValue(const char *encodedParams, const char *paramName, CkString &outStr);
+	// "oauth_token_secret" in paramName, then the return value would be "123".
+	bool UrlEncParamValue(const char *encodedParamString, const char *paramName, CkString &outStr);
 
 	// Convenience method for parsing a param's value out of a URL-encoded param
 	// string. For example, if a caller passes the following string in
 	// encodedParamString:oauth_token=ABC&oauth_token_secret=123&oauth_callback_confirmed=true and
-	// "oauth_token_secret" in  paramName, then the return value would be "123".
-	const char *urlEncParamValue(const char *encodedParams, const char *paramName);
+	// "oauth_token_secret" in paramName, then the return value would be "123".
+	const char *urlEncParamValue(const char *encodedParamString, const char *paramName);
 
 
 

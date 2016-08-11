@@ -45,6 +45,30 @@ Chilkat::Scp::Scp(void)
 //}
 
 
+Boolean Chilkat::Scp::AbortCurrent::get()
+    {
+    return m_impl ? m_impl->get_AbortCurrent() : false;
+    }
+void Chilkat::Scp::AbortCurrent::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
+    }
+String ^Chilkat::Scp::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::Scp::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
+int Chilkat::Scp::HeartbeatMs::get()
+    {
+    return m_impl ? m_impl->get_HeartbeatMs() : 0;
+    }
+void Chilkat::Scp::HeartbeatMs::set(int newVal)
+    {
+        if (m_impl) m_impl->put_HeartbeatMs(newVal);
+    }
 String ^Chilkat::Scp::LastErrorHtml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
@@ -57,26 +81,6 @@ String ^Chilkat::Scp::LastErrorXml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
     }
-String ^Chilkat::Scp::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::Scp::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::Scp::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Scp::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::Scp::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
 Boolean Chilkat::Scp::LastMethodSuccess::get()
     {
     return m_impl ? m_impl->get_LastMethodSuccess() : false;
@@ -85,22 +89,6 @@ void Chilkat::Scp::LastMethodSuccess::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
-Boolean Chilkat::Scp::AbortCurrent::get()
-    {
-    return m_impl ? m_impl->get_AbortCurrent() : false;
-    }
-void Chilkat::Scp::AbortCurrent::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_AbortCurrent(newVal);
-    }
-int Chilkat::Scp::HeartbeatMs::get()
-    {
-    return m_impl ? m_impl->get_HeartbeatMs() : 0;
-    }
-void Chilkat::Scp::HeartbeatMs::set(int newVal)
-    {
-        if (m_impl) m_impl->put_HeartbeatMs(newVal);
-    }
 int Chilkat::Scp::PercentDoneScale::get()
     {
     return m_impl ? m_impl->get_PercentDoneScale() : 0;
@@ -108,6 +96,14 @@ int Chilkat::Scp::PercentDoneScale::get()
 void Chilkat::Scp::PercentDoneScale::set(int newVal)
     {
         if (m_impl) m_impl->put_PercentDoneScale(newVal);
+    }
+String ^Chilkat::Scp::SyncedFiles::get()
+    {
+    return ref new String(m_impl ? m_impl->syncedFiles() : L"");
+    }
+void Chilkat::Scp::SyncedFiles::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_SyncedFiles(newVal ? newVal->Data() : L"");
     }
 String ^Chilkat::Scp::SyncMustMatch::get()
     {
@@ -141,26 +137,20 @@ void Chilkat::Scp::SyncMustNotMatchDir::set(String ^newVal)
     {
         if (m_impl) m_impl->put_SyncMustNotMatchDir(newVal ? newVal->Data() : L"");
     }
-String ^Chilkat::Scp::SyncedFiles::get()
+Boolean Chilkat::Scp::VerboseLogging::get()
     {
-    return ref new String(m_impl ? m_impl->syncedFiles() : L"");
+    return m_impl ? m_impl->get_VerboseLogging() : false;
     }
-void Chilkat::Scp::SyncedFiles::set(String ^newVal)
+void Chilkat::Scp::VerboseLogging::set(Boolean newVal)
     {
-        if (m_impl) m_impl->put_SyncedFiles(newVal ? newVal->Data() : L"");
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::Scp::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
     }
 
 
-Boolean Scp::SaveLastError(Platform::String ^path)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxScpProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
-    }
 IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ Scp::DownloadBinaryAsync(Platform::String ^remotePath)
     {
 return create_async([this, remotePath]() -> Windows::Foundation::Collections::IVector<uint8>^
@@ -172,8 +162,6 @@ return create_async([this, remotePath]() -> Windows::Foundation::Collections::IV
 	CkByteData outDb;
 	CxScpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->DownloadBinary(remotePath ? remotePath->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -191,8 +179,6 @@ return create_async([this, remotePath, encoding]() -> Platform::String ^
 	// --- prep output arg ---
 	CxScpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->downloadBinaryEncoded(remotePath ? remotePath->Data() : L"",encoding ? encoding->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -209,8 +195,6 @@ return create_async([this, remotePath, localPath]() -> Boolean
 	// --- prep output arg ---
 	CxScpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->DownloadFile(remotePath ? remotePath->Data() : L"",localPath ? localPath->Data() : L"");
 
 });
@@ -225,8 +209,6 @@ return create_async([this, remotePath, charset]() -> Platform::String ^
 	// --- prep output arg ---
 	CxScpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->downloadString(remotePath ? remotePath->Data() : L"",charset ? charset->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -243,8 +225,6 @@ return create_async([this, remoteRoot, localRoot, mode, bRecurse]() -> Boolean
 	// --- prep output arg ---
 	CxScpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SyncTreeDownload(remoteRoot ? remoteRoot->Data() : L"",localRoot ? localRoot->Data() : L"",mode,bRecurse);
 
 });
@@ -259,8 +239,6 @@ return create_async([this, localBaseDir, remoteBaseDir, mode, bRecurse]() -> Boo
 	// --- prep output arg ---
 	CxScpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SyncTreeUpload(localBaseDir ? localBaseDir->Data() : L"",remoteBaseDir ? remoteBaseDir->Data() : L"",mode,bRecurse);
 
 });
@@ -278,8 +256,6 @@ return create_async([this, remotePath, binData]() -> Boolean
 	// --- prep output arg ---
 	CxScpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UploadBinary(remotePath ? remotePath->Data() : L"",db1);
 
 });
@@ -294,8 +270,6 @@ return create_async([this, remotePath, encodedData, encoding]() -> Boolean
 	// --- prep output arg ---
 	CxScpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UploadBinaryEncoded(remotePath ? remotePath->Data() : L"",encodedData ? encodedData->Data() : L"",encoding ? encoding->Data() : L"");
 
 });
@@ -310,8 +284,6 @@ return create_async([this, localPath, remotePath]() -> Boolean
 	// --- prep output arg ---
 	CxScpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UploadFile(localPath ? localPath->Data() : L"",remotePath ? remotePath->Data() : L"");
 
 });
@@ -326,13 +298,11 @@ return create_async([this, remotePath, textData, charset]() -> Boolean
 	// --- prep output arg ---
 	CxScpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UploadString(remotePath ? remotePath->Data() : L"",textData ? textData->Data() : L"",charset ? charset->Data() : L"");
 
 });
     }
-Boolean Scp::UseSsh(Ssh ^sshConnection)
+Boolean Scp::UseSsh(Chilkat::Ssh ^sshConnection)
     {
 	if (m_impl == nullptr) { return false; }
 	if (sshConnection == nullptr) { return false; }
@@ -341,8 +311,6 @@ Boolean Scp::UseSsh(Ssh ^sshConnection)
 	// --- prep output arg ---
 	CxScpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UseSsh(*pObj0);
     }
 

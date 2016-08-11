@@ -75,38 +75,7 @@ public ref class AuthAzureAD sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Platform::String ^TenantId
+	property Platform::String ^AccessToken
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
@@ -121,32 +90,61 @@ public ref class AuthAzureAD sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
-	property Platform::String ^Resource
+	property Platform::String ^DebugLogFilePath
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
-	property Platform::String ^AccessToken
+	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
-		void set(Platform::String ^);
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
 	}
 	property int32 NumSecondsRemaining
 	{
 		int32 get();
 	}
+	property Platform::String ^Resource
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^TenantId
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Boolean Valid
 	{
 		Boolean get();
+	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
 	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
-	IAsyncOperation<Boolean>^ ObtainAccessTokenAsync(Socket ^connection);
+	IAsyncOperation<Boolean>^ ObtainAccessTokenAsync(Chilkat::Socket ^connection);
 
 
 

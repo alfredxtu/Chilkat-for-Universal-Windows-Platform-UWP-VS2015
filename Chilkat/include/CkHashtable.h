@@ -68,7 +68,7 @@ class CK_VISIBLE_PUBLIC CkHashtable  : public CkMultiByteBase
 	void Clear(void);
 
 
-	// Removes all elements from the Hashtable and re-sizes with the specified ARG1.
+	// Removes all elements from the Hashtable and re-sizes with the specified capacity.
 	// 
 	// The capacity is the number of buckets in the hash table. In the case of a "hash
 	// collision", a single bucket stores multiple entries, which must be searched

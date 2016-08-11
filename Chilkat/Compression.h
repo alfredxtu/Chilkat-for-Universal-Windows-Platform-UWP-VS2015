@@ -75,43 +75,17 @@ public ref class Compression sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Platform::String ^Algorithm
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
 	property Platform::String ^Charset
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^DebugLogFilePath
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
@@ -126,13 +100,37 @@ public ref class Compression sealed
 		int32 get();
 		void set(int32);
 	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ BeginCompressBytesAsync(Windows::Foundation::Collections::IVector<uint8>^data);
 
 	IAsyncOperation<Platform::String ^>^ BeginCompressBytesENCAsync(Windows::Foundation::Collections::IVector<uint8>^data);
@@ -155,7 +153,7 @@ public ref class Compression sealed
 
 	IAsyncOperation<Boolean>^ CompressFileAsync(Platform::String ^srcPath, Platform::String ^destPath);
 
-	IAsyncOperation<Boolean>^ CompressStreamAsync(Stream ^strm);
+	IAsyncOperation<Boolean>^ CompressStreamAsync(Chilkat::Stream ^strm);
 
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ CompressStringAsync(Platform::String ^str);
 
@@ -163,15 +161,15 @@ public ref class Compression sealed
 
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ DecompressBytesAsync(Windows::Foundation::Collections::IVector<uint8>^data);
 
-	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ DecompressBytesENCAsync(Platform::String ^str);
+	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ DecompressBytesENCAsync(Platform::String ^encodedCompressedData);
 
 	IAsyncOperation<Boolean>^ DecompressFileAsync(Platform::String ^srcPath, Platform::String ^destPath);
 
-	IAsyncOperation<Boolean>^ DecompressStreamAsync(Stream ^strm);
+	IAsyncOperation<Boolean>^ DecompressStreamAsync(Chilkat::Stream ^strm);
 
 	IAsyncOperation<Platform::String ^>^ DecompressStringAsync(Windows::Foundation::Collections::IVector<uint8>^data);
 
-	IAsyncOperation<Platform::String ^>^ DecompressStringENCAsync(Platform::String ^str);
+	IAsyncOperation<Platform::String ^>^ DecompressStringENCAsync(Platform::String ^encodedCompressedData);
 
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ EndCompressBytesAsync(void);
 

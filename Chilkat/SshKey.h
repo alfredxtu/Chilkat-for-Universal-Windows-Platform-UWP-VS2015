@@ -42,38 +42,12 @@ public ref class SshKey sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
+	property Platform::String ^Comment
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Platform::String ^Comment
+	property Platform::String ^DebugLogFilePath
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
@@ -90,18 +64,42 @@ public ref class SshKey sealed
 	{
 		Boolean get();
 	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property Platform::String ^Password
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
+	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
 	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	Boolean FromOpenSshPrivateKey(Platform::String ^keyStr);
 
 	Boolean FromOpenSshPublicKey(Platform::String ^keyStr);
@@ -112,11 +110,11 @@ public ref class SshKey sealed
 
 	Boolean FromXml(Platform::String ^xmlKey);
 
-	Platform::String ^GenFingerprint(void);
-
 	Boolean GenerateDsaKey(int numBits);
 
 	Boolean GenerateRsaKey(int numBits, int exponent);
+
+	Platform::String ^GenFingerprint(void);
 
 	Platform::String ^LoadText(Platform::String ^filename);
 

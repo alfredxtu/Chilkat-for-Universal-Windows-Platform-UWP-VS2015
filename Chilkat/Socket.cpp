@@ -49,46 +49,6 @@ Chilkat::Socket::Socket(void)
 //}
 
 
-String ^Chilkat::Socket::LastErrorHtml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
-    }
-String ^Chilkat::Socket::LastErrorText::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::Socket::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::Socket::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::Socket::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::Socket::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Socket::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::Socket::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::Socket::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::Socket::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
 Boolean Chilkat::Socket::AbortCurrent::get()
     {
     return m_impl ? m_impl->get_AbortCurrent() : false;
@@ -144,6 +104,14 @@ void Chilkat::Socket::ClientPort::set(int newVal)
 int Chilkat::Socket::ConnectFailReason::get()
     {
     return m_impl ? m_impl->get_ConnectFailReason() : 0;
+    }
+String ^Chilkat::Socket::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::Socket::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
     }
 int Chilkat::Socket::ElapsedSeconds::get()
     {
@@ -225,9 +193,29 @@ void Chilkat::Socket::KeepSessionLog::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_KeepSessionLog(newVal);
     }
+String ^Chilkat::Socket::LastErrorHtml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    }
+String ^Chilkat::Socket::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::Socket::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
 Boolean Chilkat::Socket::LastMethodFailed::get()
     {
     return m_impl ? m_impl->get_LastMethodFailed() : false;
+    }
+Boolean Chilkat::Socket::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::Socket::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
 Boolean Chilkat::Socket::ListenIpv6::get()
     {
@@ -293,18 +281,6 @@ void Chilkat::Socket::PreferIpv6::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_PreferIpv6(newVal);
     }
-int Chilkat::Socket::ReceiveFailReason::get()
-    {
-    return m_impl ? m_impl->get_ReceiveFailReason() : 0;
-    }
-int Chilkat::Socket::ReceivePacketSize::get()
-    {
-    return m_impl ? m_impl->get_ReceivePacketSize() : 0;
-    }
-void Chilkat::Socket::ReceivePacketSize::set(int newVal)
-    {
-        if (m_impl) m_impl->put_ReceivePacketSize(newVal);
-    }
 int Chilkat::Socket::ReceivedCount::get()
     {
     return m_impl ? m_impl->get_ReceivedCount() : 0;
@@ -320,6 +296,18 @@ int Chilkat::Socket::ReceivedInt::get()
 void Chilkat::Socket::ReceivedInt::set(int newVal)
     {
         if (m_impl) m_impl->put_ReceivedInt(newVal);
+    }
+int Chilkat::Socket::ReceiveFailReason::get()
+    {
+    return m_impl ? m_impl->get_ReceiveFailReason() : 0;
+    }
+int Chilkat::Socket::ReceivePacketSize::get()
+    {
+    return m_impl ? m_impl->get_ReceivePacketSize() : 0;
+    }
+void Chilkat::Socket::ReceivePacketSize::set(int newVal)
+    {
+        if (m_impl) m_impl->put_ReceivePacketSize(newVal);
     }
 String ^Chilkat::Socket::RemoteIpAddress::get()
     {
@@ -361,30 +349,6 @@ void Chilkat::Socket::SessionLogEncoding::set(String ^newVal)
     {
         if (m_impl) m_impl->put_SessionLogEncoding(newVal ? newVal->Data() : L"");
     }
-int Chilkat::Socket::SoRcvBuf::get()
-    {
-    return m_impl ? m_impl->get_SoRcvBuf() : 0;
-    }
-void Chilkat::Socket::SoRcvBuf::set(int newVal)
-    {
-        if (m_impl) m_impl->put_SoRcvBuf(newVal);
-    }
-Boolean Chilkat::Socket::SoReuseAddr::get()
-    {
-    return m_impl ? m_impl->get_SoReuseAddr() : false;
-    }
-void Chilkat::Socket::SoReuseAddr::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_SoReuseAddr(newVal);
-    }
-int Chilkat::Socket::SoSndBuf::get()
-    {
-    return m_impl ? m_impl->get_SoSndBuf() : 0;
-    }
-void Chilkat::Socket::SoSndBuf::set(int newVal)
-    {
-        if (m_impl) m_impl->put_SoSndBuf(newVal);
-    }
 String ^Chilkat::Socket::SocksHostname::get()
     {
     return ref new String(m_impl ? m_impl->socksHostname() : L"");
@@ -424,6 +388,30 @@ int Chilkat::Socket::SocksVersion::get()
 void Chilkat::Socket::SocksVersion::set(int newVal)
     {
         if (m_impl) m_impl->put_SocksVersion(newVal);
+    }
+int Chilkat::Socket::SoRcvBuf::get()
+    {
+    return m_impl ? m_impl->get_SoRcvBuf() : 0;
+    }
+void Chilkat::Socket::SoRcvBuf::set(int newVal)
+    {
+        if (m_impl) m_impl->put_SoRcvBuf(newVal);
+    }
+Boolean Chilkat::Socket::SoReuseAddr::get()
+    {
+    return m_impl ? m_impl->get_SoReuseAddr() : false;
+    }
+void Chilkat::Socket::SoReuseAddr::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_SoReuseAddr(newVal);
+    }
+int Chilkat::Socket::SoSndBuf::get()
+    {
+    return m_impl ? m_impl->get_SoSndBuf() : 0;
+    }
+void Chilkat::Socket::SoSndBuf::set(int newVal)
+    {
+        if (m_impl) m_impl->put_SoSndBuf(newVal);
     }
 Boolean Chilkat::Socket::Ssl::get()
     {
@@ -489,18 +477,20 @@ void Chilkat::Socket::UserData::set(String ^newVal)
     {
         if (m_impl) m_impl->put_UserData(newVal ? newVal->Data() : L"");
     }
-
-
-Boolean Socket::SaveLastError(Platform::String ^path)
+Boolean Chilkat::Socket::VerboseLogging::get()
     {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxSocketProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
+    return m_impl ? m_impl->get_VerboseLogging() : false;
     }
+void Chilkat::Socket::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::Socket::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
+
+
 IAsyncOperation<Socket ^>^ Socket::AcceptNextConnectionAsync(int maxWaitMs)
     {
 return create_async([this, maxWaitMs]() -> Socket ^
@@ -511,8 +501,6 @@ return create_async([this, maxWaitMs]() -> Socket ^
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Socket
-	// cppType = CkSocket *
 	CkSocketW *pRetObj = m_impl->AcceptNextConnection(maxWaitMs);
 	if (!pRetObj) return nullptr;
 	Chilkat::Socket ^pSocket = ref new Chilkat::Socket();
@@ -527,13 +515,11 @@ Boolean Socket::AddSslAcceptableClientCaDn(Platform::String ^certAuthDN)
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddSslAcceptableClientCaDn(certAuthDN ? certAuthDN->Data() : L"");
     }
-IAsyncOperation<Boolean>^ Socket::BindAndListenAsync(int port, int backlog)
+IAsyncOperation<Boolean>^ Socket::BindAndListenAsync(int port, int backLog)
     {
-return create_async([this, port, backlog]() -> Boolean
+return create_async([this, port, backLog]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -541,9 +527,7 @@ return create_async([this, port, backlog]() -> Boolean
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->BindAndListen(port,backlog);
+	return m_impl->BindAndListen(port,backLog);
 
 });
     }
@@ -553,8 +537,6 @@ Platform::String ^Socket::BuildHttpGetRequest(Platform::String ^url)
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->buildHttpGetRequest(url ? url->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -569,8 +551,6 @@ return create_async([this, maxWaitMs]() -> int
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
 	return m_impl->CheckWriteable(maxWaitMs);
 
 });
@@ -581,8 +561,6 @@ void Socket::ClearSessionLog(void)
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->ClearSessionLog();
     }
 Socket ^Socket::CloneSocket(void)
@@ -591,8 +569,6 @@ Socket ^Socket::CloneSocket(void)
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Socket
-	// cppType = CkSocket *
 	CkSocketW *pRetObj = m_impl->CloneSocket();
 	if (!pRetObj) return nullptr;
 	Chilkat::Socket ^pSocket = ref new Chilkat::Socket();
@@ -609,8 +585,6 @@ return create_async([this, maxWaitMs]() -> Boolean
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->Close(maxWaitMs);
 
 });
@@ -625,8 +599,6 @@ return create_async([this, hostname, port, ssl, maxWaitMs]() -> Boolean
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->Connect(hostname ? hostname->Data() : L"",port,ssl,maxWaitMs);
 
 });
@@ -641,8 +613,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ConvertFromSsl();
 
 });
@@ -657,8 +627,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ConvertToSsl();
 
 });
@@ -669,8 +637,6 @@ void Socket::DnsCacheClear(void)
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->DnsCacheClear();
     }
 IAsyncOperation<Platform::String ^>^ Socket::DnsLookupAsync(Platform::String ^hostname, int maxWaitMs)
@@ -683,8 +649,6 @@ return create_async([this, hostname, maxWaitMs]() -> Platform::String ^
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->dnsLookup(hostname ? hostname->Data() : L"",maxWaitMs);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -697,8 +661,6 @@ Cert ^Socket::GetMyCert(void)
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Cert
-	// cppType = CkCert *
 	CkCertW *pRetObj = m_impl->GetMyCert();
 	if (!pRetObj) return nullptr;
 	Chilkat::Cert ^pCert = ref new Chilkat::Cert();
@@ -711,8 +673,6 @@ Cert ^Socket::GetReceivedClientCert(int index)
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Cert
-	// cppType = CkCert *
 	CkCertW *pRetObj = m_impl->GetReceivedClientCert(index);
 	if (!pRetObj) return nullptr;
 	Chilkat::Cert ^pCert = ref new Chilkat::Cert();
@@ -725,8 +685,6 @@ Platform::String ^Socket::GetSslAcceptableClientCaDn(int index)
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getSslAcceptableClientCaDn(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -737,15 +695,13 @@ Cert ^Socket::GetSslServerCert(void)
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Cert
-	// cppType = CkCert *
 	CkCertW *pRetObj = m_impl->GetSslServerCert();
 	if (!pRetObj) return nullptr;
 	Chilkat::Cert ^pCert = ref new Chilkat::Cert();
 	pCert->m_impl = pRetObj;
 	return pCert;
     }
-Boolean Socket::InitSslServer(Cert ^cert)
+Boolean Socket::InitSslServer(Chilkat::Cert ^cert)
     {
 	if (m_impl == nullptr) { return false; }
 	if (cert == nullptr) { return false; }
@@ -754,8 +710,6 @@ Boolean Socket::InitSslServer(Cert ^cert)
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->InitSslServer(*pObj0);
     }
 Boolean Socket::IsUnlocked(void)
@@ -764,8 +718,6 @@ Boolean Socket::IsUnlocked(void)
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsUnlocked();
     }
 IAsyncOperation<Boolean>^ Socket::PollDataAvailableAsync(void)
@@ -778,8 +730,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->PollDataAvailable();
 
 });
@@ -794,8 +744,6 @@ return create_async([this, bUnsigned]() -> Boolean
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ReceiveByte(bUnsigned);
 
 });
@@ -811,8 +759,6 @@ return create_async([this]() -> Windows::Foundation::Collections::IVector<uint8>
 	CkByteData outDb;
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->ReceiveBytes(outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -830,8 +776,6 @@ return create_async([this, encodingAlg]() -> Platform::String ^
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->receiveBytesENC(encodingAlg ? encodingAlg->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -849,8 +793,6 @@ return create_async([this, numBytes]() -> Windows::Foundation::Collections::IVec
 	CkByteData outDb;
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->ReceiveBytesN(numBytes,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -868,8 +810,6 @@ return create_async([this, appendFilename]() -> Boolean
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ReceiveBytesToFile(appendFilename ? appendFilename->Data() : L"");
 
 });
@@ -884,8 +824,6 @@ return create_async([this]() -> int
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
 	return m_impl->ReceiveCount();
 
 });
@@ -900,8 +838,6 @@ return create_async([this, bigEndian, bUnsigned]() -> Boolean
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ReceiveInt16(bigEndian,bUnsigned);
 
 });
@@ -916,8 +852,6 @@ return create_async([this, bigEndian]() -> Boolean
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ReceiveInt32(bigEndian);
 
 });
@@ -932,8 +866,6 @@ return create_async([this, numBytes, encodingAlg]() -> Platform::String ^
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->receiveNBytesENC(numBytes,encodingAlg ? encodingAlg->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -950,17 +882,15 @@ return create_async([this]() -> Platform::String ^
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->receiveString();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
 });
     }
-IAsyncOperation<Platform::String ^>^ Socket::ReceiveStringMaxNAsync(int maxBytes)
+IAsyncOperation<Platform::String ^>^ Socket::ReceiveStringMaxNAsync(int maxByteCount)
     {
-return create_async([this, maxBytes]() -> Platform::String ^
+return create_async([this, maxByteCount]() -> Platform::String ^
 {
 // This runs in a thread pool thread...
 
@@ -968,17 +898,15 @@ return create_async([this, maxBytes]() -> Platform::String ^
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->receiveStringMaxN(maxBytes);
+	const wchar_t *retStr = m_impl->receiveStringMaxN(maxByteCount);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
 });
     }
-IAsyncOperation<Platform::String ^>^ Socket::ReceiveStringUntilByteAsync(int byteValue)
+IAsyncOperation<Platform::String ^>^ Socket::ReceiveStringUntilByteAsync(int lookForByte)
     {
-return create_async([this, byteValue]() -> Platform::String ^
+return create_async([this, lookForByte]() -> Platform::String ^
 {
 // This runs in a thread pool thread...
 
@@ -986,9 +914,7 @@ return create_async([this, byteValue]() -> Platform::String ^
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->receiveStringUntilByte(byteValue);
+	const wchar_t *retStr = m_impl->receiveStringUntilByte(lookForByte);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
@@ -1004,17 +930,15 @@ return create_async([this]() -> Platform::String ^
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->receiveToCRLF();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
 });
     }
-IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ Socket::ReceiveUntilByteAsync(int byteValue)
+IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ Socket::ReceiveUntilByteAsync(int lookForByte)
     {
-return create_async([this, byteValue]() -> Windows::Foundation::Collections::IVector<uint8>^
+return create_async([this, lookForByte]() -> Windows::Foundation::Collections::IVector<uint8>^
 {
 // This runs in a thread pool thread...
 
@@ -1023,9 +947,7 @@ return create_async([this, byteValue]() -> Windows::Foundation::Collections::IVe
 	CkByteData outDb;
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
-	bool success = m_impl->ReceiveUntilByte(byteValue,outDb);
+	bool success = m_impl->ReceiveUntilByte(lookForByte,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
@@ -1042,8 +964,6 @@ return create_async([this, matchStr]() -> Platform::String ^
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->receiveUntilMatch(matchStr ? matchStr->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -1060,8 +980,6 @@ return create_async([this, value]() -> Boolean
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SendByte(value);
 
 });
@@ -1079,8 +997,6 @@ return create_async([this, data]() -> Boolean
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SendBytes(db0);
 
 });
@@ -1095,8 +1011,6 @@ return create_async([this, encodedBytes, encodingAlg]() -> Boolean
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SendBytesENC(encodedBytes ? encodedBytes->Data() : L"",encodingAlg ? encodingAlg->Data() : L"");
 
 });
@@ -1111,8 +1025,6 @@ return create_async([this, byteCount]() -> Boolean
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SendCount(byteCount);
 
 });
@@ -1127,8 +1039,6 @@ return create_async([this, value, bigEndian]() -> Boolean
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SendInt16(value,bigEndian);
 
 });
@@ -1143,15 +1053,13 @@ return create_async([this, value, bigEndian]() -> Boolean
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SendInt32(value,bigEndian);
 
 });
     }
-IAsyncOperation<Boolean>^ Socket::SendStringAsync(Platform::String ^str)
+IAsyncOperation<Boolean>^ Socket::SendStringAsync(Platform::String ^stringToSend)
     {
-return create_async([this, str]() -> Boolean
+return create_async([this, stringToSend]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -1159,13 +1067,11 @@ return create_async([this, str]() -> Boolean
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SendString(str ? str->Data() : L"");
+	return m_impl->SendString(stringToSend ? stringToSend->Data() : L"");
 
 });
     }
-Boolean Socket::SetSslClientCert(Cert ^cert)
+Boolean Socket::SetSslClientCert(Chilkat::Cert ^cert)
     {
 	if (m_impl == nullptr) { return false; }
 	if (cert == nullptr) { return false; }
@@ -1174,8 +1080,6 @@ Boolean Socket::SetSslClientCert(Cert ^cert)
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetSslClientCert(*pObj0);
     }
 Boolean Socket::SetSslClientCertPem(Platform::String ^pemDataOrFilename, Platform::String ^pemPassword)
@@ -1184,8 +1088,6 @@ Boolean Socket::SetSslClientCertPem(Platform::String ^pemDataOrFilename, Platfor
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetSslClientCertPem(pemDataOrFilename ? pemDataOrFilename->Data() : L"",pemPassword ? pemPassword->Data() : L"");
     }
 Boolean Socket::SetSslClientCertPfx(Platform::String ^pfxFilename, Platform::String ^pfxPassword)
@@ -1194,8 +1096,6 @@ Boolean Socket::SetSslClientCertPfx(Platform::String ^pfxFilename, Platform::Str
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetSslClientCertPfx(pfxFilename ? pfxFilename->Data() : L"",pfxPassword ? pfxPassword->Data() : L"");
     }
 void Socket::SleepMs(int millisec)
@@ -1204,11 +1104,9 @@ void Socket::SleepMs(int millisec)
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->SleepMs(millisec);
     }
-IAsyncOperation<Boolean>^ Socket::SshAuthenticatePkAsync(Platform::String ^sshLogin, SshKey ^privateKey)
+IAsyncOperation<Boolean>^ Socket::SshAuthenticatePkAsync(Platform::String ^sshLogin, Chilkat::SshKey ^privateKey)
     {
 return create_async([this, sshLogin, privateKey]() -> Boolean
 {
@@ -1221,8 +1119,6 @@ return create_async([this, sshLogin, privateKey]() -> Boolean
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SshAuthenticatePk(sshLogin ? sshLogin->Data() : L"",*pObj1);
 
 });
@@ -1237,8 +1133,6 @@ return create_async([this, sshLogin, sshPassword]() -> Boolean
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SshAuthenticatePw(sshLogin ? sshLogin->Data() : L"",sshPassword ? sshPassword->Data() : L"");
 
 });
@@ -1253,8 +1147,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SshCloseTunnel();
 
 });
@@ -1269,8 +1161,6 @@ return create_async([this, hostname, port, ssl, maxWaitMs]() -> Socket ^
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Socket
-	// cppType = CkSocket *
 	CkSocketW *pRetObj = m_impl->SshOpenChannel(hostname ? hostname->Data() : L"",port,ssl,maxWaitMs);
 	if (!pRetObj) return nullptr;
 	Chilkat::Socket ^pSocket = ref new Chilkat::Socket();
@@ -1289,8 +1179,6 @@ return create_async([this, sshHostname, sshPort]() -> Boolean
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SshOpenTunnel(sshHostname ? sshHostname->Data() : L"",sshPort);
 
 });
@@ -1301,11 +1189,9 @@ void Socket::StartTiming(void)
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->StartTiming();
     }
-Boolean Socket::TakeSocket(Socket ^sock)
+Boolean Socket::TakeSocket(Chilkat::Socket ^sock)
     {
 	if (m_impl == nullptr) { return false; }
 	if (sock == nullptr) { return false; }
@@ -1314,8 +1200,6 @@ Boolean Socket::TakeSocket(Socket ^sock)
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->TakeSocket(*pObj0);
     }
 IAsyncOperation<Boolean>^ Socket::TlsRenegotiateAsync(void)
@@ -1328,8 +1212,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->TlsRenegotiate();
 
 });
@@ -1340,11 +1222,9 @@ Boolean Socket::UnlockComponent(Platform::String ^unlockCode)
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UnlockComponent(unlockCode ? unlockCode->Data() : L"");
     }
-Boolean Socket::UseSsh(Ssh ^ssh)
+Boolean Socket::UseSsh(Chilkat::Ssh ^ssh)
     {
 	if (m_impl == nullptr) { return false; }
 	if (ssh == nullptr) { return false; }
@@ -1353,8 +1233,6 @@ Boolean Socket::UseSsh(Ssh ^ssh)
 	// --- prep output arg ---
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UseSsh(*pObj0);
     }
 

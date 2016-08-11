@@ -60,6 +60,11 @@ class CK_VISIBLE_PUBLIC CkStringBuilder  : public CkMultiByteBase
 	bool Append(const char *value);
 
 
+	// Appends binary data using the encoding specified by encoding, such as "base64",
+	// "hex", etc.
+	bool AppendEncoded(CkByteData &binaryData, const char *encoding);
+
+
 	// Appends the string representation of a specified 32-bit signed integer to this
 	// instance.
 	bool AppendInt(int value);
@@ -70,18 +75,19 @@ class CK_VISIBLE_PUBLIC CkStringBuilder  : public CkMultiByteBase
 	bool AppendInt64(__int64 value);
 
 
-	// Appends binary data using the encoding specified by ARG2, such as "base64",
-	// "hex", etc.
-	bool AppendEncoded(CkByteData &binaryData, const char *encoding);
-
-
 	// Removes all characters from the current StringBuilder instance.
 	void Clear(void);
 
 
-	// Replaces all occurrences of a specified string in this instance with another
-	// specified string.
-	void Replace(const char *value, const char *replacement);
+	// Returns true if the caseSensitive is contained within this object. For case sensitive
+	// matching, set caseSensitive equal to true. For case-insensitive, set caseSensitive equal to
+	// false.
+	bool Contains(const char *str, bool caseSensitive);
+
+
+	// Returns true if the contents of this object equals the str. Returns false
+	// if unequal. For case insensitive equality, set caseSensitive equal to false.
+	bool Equals(const char *str, bool caseSensitive);
 
 
 	// Returns the contents as a string.
@@ -93,15 +99,9 @@ class CK_VISIBLE_PUBLIC CkStringBuilder  : public CkMultiByteBase
 	const char *asString(void);
 
 
-	// Returns true if the contents of this object equals the ARG1. Returns false
-	// if unequal. For case insensitive equality, set ARG2 equal to false.
-	bool Equals(const char *str, bool caseSensitive);
-
-
-	// Returns true if the ARG2 is contained within this object. For case sensitive
-	// matching, set ARG2 equal to true. For case-insensitive, set ARG2 equal to
-	// false.
-	bool Contains(const char *str, bool caseSensitive);
+	// Replaces all occurrences of a specified string in this instance with another
+	// specified string.
+	void Replace(const char *value, const char *replacement);
 
 
 

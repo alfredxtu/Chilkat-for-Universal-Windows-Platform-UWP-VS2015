@@ -43,6 +43,30 @@ Chilkat::DtObj::DtObj(void)
 //}
 
 
+int Chilkat::DtObj::Day::get()
+    {
+    return m_impl ? m_impl->get_Day() : 0;
+    }
+void Chilkat::DtObj::Day::set(int newVal)
+    {
+        if (m_impl) m_impl->put_Day(newVal);
+    }
+String ^Chilkat::DtObj::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::DtObj::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
+int Chilkat::DtObj::Hour::get()
+    {
+    return m_impl ? m_impl->get_Hour() : 0;
+    }
+void Chilkat::DtObj::Hour::set(int newVal)
+    {
+        if (m_impl) m_impl->put_Hour(newVal);
+    }
 String ^Chilkat::DtObj::LastErrorHtml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
@@ -55,26 +79,6 @@ String ^Chilkat::DtObj::LastErrorXml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
     }
-String ^Chilkat::DtObj::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::DtObj::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::DtObj::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::DtObj::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::DtObj::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
 Boolean Chilkat::DtObj::LastMethodSuccess::get()
     {
     return m_impl ? m_impl->get_LastMethodSuccess() : false;
@@ -82,22 +86,6 @@ Boolean Chilkat::DtObj::LastMethodSuccess::get()
 void Chilkat::DtObj::LastMethodSuccess::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
-int Chilkat::DtObj::Day::get()
-    {
-    return m_impl ? m_impl->get_Day() : 0;
-    }
-void Chilkat::DtObj::Day::set(int newVal)
-    {
-        if (m_impl) m_impl->put_Day(newVal);
-    }
-int Chilkat::DtObj::Hour::get()
-    {
-    return m_impl ? m_impl->get_Hour() : 0;
-    }
-void Chilkat::DtObj::Hour::set(int newVal)
-    {
-        if (m_impl) m_impl->put_Hour(newVal);
     }
 int Chilkat::DtObj::Minute::get()
     {
@@ -147,6 +135,18 @@ void Chilkat::DtObj::Utc::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_Utc(newVal);
     }
+Boolean Chilkat::DtObj::VerboseLogging::get()
+    {
+    return m_impl ? m_impl->get_VerboseLogging() : false;
+    }
+void Chilkat::DtObj::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::DtObj::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
 int Chilkat::DtObj::Year::get()
     {
     return m_impl ? m_impl->get_Year() : 0;
@@ -157,28 +157,16 @@ void Chilkat::DtObj::Year::set(int newVal)
     }
 
 
-Boolean DtObj::SaveLastError(Platform::String ^path)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
-    }
 void DtObj::DeSerialize(Platform::String ^serializedDtObj)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	// gType = void
-	// cppType = void
 	m_impl->DeSerialize(serializedDtObj ? serializedDtObj->Data() : L"");
     }
 Platform::String ^DtObj::Serialize(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->serialize();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);

@@ -119,7 +119,7 @@ namespace SampleCsApp
         {
             await m_dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
-                textBox2.Text = eventArgs.PercentDone.ToString();
+                //textBox2.Text = eventArgs.PercentDone.ToString();
                 progressBar1.Value = eventArgs.PercentDone;
 
             });
@@ -129,7 +129,7 @@ namespace SampleCsApp
         {
             await m_dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
-                textBox2.Text = eventArgs.Name;
+                //textBox2.Text = eventArgs.Name;
             });
 
         }

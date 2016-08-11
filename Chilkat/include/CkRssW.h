@@ -143,7 +143,7 @@ class CK_VISIBLE_PUBLIC CkRssW  : public CkClassWithCallbacksW
 	const wchar_t *string(const wchar_t *tag);
 
 	// Load an RSS document from a file.
-	bool LoadRssFile(const wchar_t *filename);
+	bool LoadRssFile(const wchar_t *filePath);
 
 	// Loads an RSS feed document from an in-memory string.
 	bool LoadRssString(const wchar_t *rssString);

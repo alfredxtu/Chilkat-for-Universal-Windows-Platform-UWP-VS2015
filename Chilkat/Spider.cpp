@@ -43,45 +43,13 @@ Chilkat::Spider::Spider(void)
 //}
 
 
-String ^Chilkat::Spider::LastErrorHtml::get()
+Boolean Chilkat::Spider::AbortCurrent::get()
     {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    return m_impl ? m_impl->get_AbortCurrent() : false;
     }
-String ^Chilkat::Spider::LastErrorText::get()
+void Chilkat::Spider::AbortCurrent::set(Boolean newVal)
     {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::Spider::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::Spider::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::Spider::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::Spider::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Spider::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::Spider::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::Spider::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::Spider::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
     }
 Boolean Chilkat::Spider::AvoidHttps::get()
     {
@@ -115,6 +83,14 @@ void Chilkat::Spider::ConnectTimeout::set(int newVal)
     {
         if (m_impl) m_impl->put_ConnectTimeout(newVal);
     }
+String ^Chilkat::Spider::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::Spider::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
 String ^Chilkat::Spider::Domain::get()
     {
     return ref new String(m_impl ? m_impl->domain() : L"");
@@ -135,6 +111,18 @@ void Chilkat::Spider::HeartbeatMs::set(int newVal)
     {
         if (m_impl) m_impl->put_HeartbeatMs(newVal);
     }
+String ^Chilkat::Spider::LastErrorHtml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    }
+String ^Chilkat::Spider::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::Spider::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
 Boolean Chilkat::Spider::LastFromCache::get()
     {
     return m_impl ? m_impl->get_LastFromCache() : false;
@@ -154,6 +142,14 @@ String ^Chilkat::Spider::LastHtmlKeywords::get()
 String ^Chilkat::Spider::LastHtmlTitle::get()
     {
     return ref new String(m_impl ? m_impl->lastHtmlTitle() : L"");
+    }
+Boolean Chilkat::Spider::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::Spider::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
 String ^Chilkat::Spider::LastModDateStr::get()
     {
@@ -263,6 +259,18 @@ void Chilkat::Spider::UserAgent::set(String ^newVal)
     {
         if (m_impl) m_impl->put_UserAgent(newVal ? newVal->Data() : L"");
     }
+Boolean Chilkat::Spider::VerboseLogging::get()
+    {
+    return m_impl ? m_impl->get_VerboseLogging() : false;
+    }
+void Chilkat::Spider::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::Spider::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
 int Chilkat::Spider::WindDownCount::get()
     {
     return m_impl ? m_impl->get_WindDownCount() : 0;
@@ -271,34 +279,14 @@ void Chilkat::Spider::WindDownCount::set(int newVal)
     {
         if (m_impl) m_impl->put_WindDownCount(newVal);
     }
-Boolean Chilkat::Spider::AbortCurrent::get()
-    {
-    return m_impl ? m_impl->get_AbortCurrent() : false;
-    }
-void Chilkat::Spider::AbortCurrent::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_AbortCurrent(newVal);
-    }
 
 
-Boolean Spider::SaveLastError(Platform::String ^path)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxSpiderProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
-    }
 void Spider::AddAvoidOutboundLinkPattern(Platform::String ^pattern)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
 	CxSpiderProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->AddAvoidOutboundLinkPattern(pattern ? pattern->Data() : L"");
     }
 void Spider::AddAvoidPattern(Platform::String ^pattern)
@@ -307,8 +295,6 @@ void Spider::AddAvoidPattern(Platform::String ^pattern)
 	// --- prep output arg ---
 	CxSpiderProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->AddAvoidPattern(pattern ? pattern->Data() : L"");
     }
 void Spider::AddMustMatchPattern(Platform::String ^pattern)
@@ -317,8 +303,6 @@ void Spider::AddMustMatchPattern(Platform::String ^pattern)
 	// --- prep output arg ---
 	CxSpiderProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->AddMustMatchPattern(pattern ? pattern->Data() : L"");
     }
 void Spider::AddUnspidered(Platform::String ^url)
@@ -327,8 +311,6 @@ void Spider::AddUnspidered(Platform::String ^url)
 	// --- prep output arg ---
 	CxSpiderProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->AddUnspidered(url ? url->Data() : L"");
     }
 Platform::String ^Spider::CanonicalizeUrl(Platform::String ^url)
@@ -337,8 +319,6 @@ Platform::String ^Spider::CanonicalizeUrl(Platform::String ^url)
 	// --- prep output arg ---
 	CxSpiderProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->canonicalizeUrl(url ? url->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -349,8 +329,6 @@ void Spider::ClearFailedUrls(void)
 	// --- prep output arg ---
 	CxSpiderProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->ClearFailedUrls();
     }
 void Spider::ClearOutboundLinks(void)
@@ -359,8 +337,6 @@ void Spider::ClearOutboundLinks(void)
 	// --- prep output arg ---
 	CxSpiderProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->ClearOutboundLinks();
     }
 void Spider::ClearSpideredUrls(void)
@@ -369,8 +345,6 @@ void Spider::ClearSpideredUrls(void)
 	// --- prep output arg ---
 	CxSpiderProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->ClearSpideredUrls();
     }
 IAsyncOperation<Boolean>^ Spider::CrawlNextAsync(void)
@@ -383,8 +357,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxSpiderProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->CrawlNext();
 
 });
@@ -399,8 +371,6 @@ return create_async([this]() -> Platform::String ^
 	// --- prep output arg ---
 	CxSpiderProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->fetchRobotsText();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -413,8 +383,6 @@ Platform::String ^Spider::GetAvoidPattern(int index)
 	// --- prep output arg ---
 	CxSpiderProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getAvoidPattern(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -425,8 +393,6 @@ Platform::String ^Spider::GetBaseDomain(Platform::String ^domain)
 	// --- prep output arg ---
 	CxSpiderProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getBaseDomain(domain ? domain->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -437,8 +403,6 @@ Platform::String ^Spider::GetFailedUrl(int index)
 	// --- prep output arg ---
 	CxSpiderProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getFailedUrl(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -449,8 +413,6 @@ Platform::String ^Spider::GetOutboundLink(int index)
 	// --- prep output arg ---
 	CxSpiderProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getOutboundLink(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -461,8 +423,6 @@ Platform::String ^Spider::GetSpideredUrl(int index)
 	// --- prep output arg ---
 	CxSpiderProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getSpideredUrl(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -473,8 +433,6 @@ Platform::String ^Spider::GetUnspideredUrl(int index)
 	// --- prep output arg ---
 	CxSpiderProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getUnspideredUrl(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -485,8 +443,6 @@ Platform::String ^Spider::GetUrlDomain(Platform::String ^url)
 	// --- prep output arg ---
 	CxSpiderProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getUrlDomain(url ? url->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -497,8 +453,6 @@ void Spider::Initialize(Platform::String ^domain)
 	// --- prep output arg ---
 	CxSpiderProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->Initialize(domain ? domain->Data() : L"");
     }
 IAsyncOperation<Boolean>^ Spider::RecrawlLastAsync(void)
@@ -511,8 +465,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxSpiderProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->RecrawlLast();
 
 });
@@ -523,19 +475,15 @@ void Spider::SkipUnspidered(int index)
 	// --- prep output arg ---
 	CxSpiderProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->SkipUnspidered(index);
     }
-void Spider::SleepMs(int millisec)
+void Spider::SleepMs(int numMilliseconds)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
 	CxSpiderProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
-	m_impl->SleepMs(millisec);
+	m_impl->SleepMs(numMilliseconds);
     }
 
 

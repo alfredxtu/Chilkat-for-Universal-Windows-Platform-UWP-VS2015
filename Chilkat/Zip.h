@@ -160,37 +160,6 @@ public ref class Zip sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Boolean AbortCurrent
 	{
 		Boolean get();
@@ -221,6 +190,11 @@ public ref class Zip sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^DecryptPassword
 	{
 		Platform::String ^get();
@@ -231,6 +205,11 @@ public ref class Zip sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property int32 Encryption
+	{
+		int32 get();
+		void set(int32);
+	}
 	property int32 EncryptKeyLength
 	{
 		int32 get();
@@ -240,11 +219,6 @@ public ref class Zip sealed
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
-	}
-	property int32 Encryption
-	{
-		int32 get();
-		void set(int32);
 	}
 	property int32 FileCount
 	{
@@ -265,6 +239,23 @@ public ref class Zip sealed
 		void set(int32);
 	}
 	property Boolean IgnoreAccessDenied
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
 	{
 		Boolean get();
 		void set(Boolean);
@@ -308,6 +299,15 @@ public ref class Zip sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 	property Boolean Zipx
 	{
 		Boolean get();
@@ -323,15 +323,15 @@ public ref class Zip sealed
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	void AddNoCompressExtension(Platform::String ^fileExtension);
 
 	ZipEntry ^AppendBase64(Platform::String ^fileName, Platform::String ^encodedCompressedData);
 
-	ZipEntry ^AppendCompressed(Platform::String ^fileName, Windows::Foundation::Collections::IVector<uint8>^inData);
+	ZipEntry ^AppendCompressed(Platform::String ^filename, Windows::Foundation::Collections::IVector<uint8>^inData);
 
 	ZipEntry ^AppendData(Platform::String ^fileName, Windows::Foundation::Collections::IVector<uint8>^inData);
+
+	ZipEntry ^AppendDataEncoded(Platform::String ^filename, Platform::String ^encoding, Platform::String ^data);
 
 	IAsyncOperation<Boolean>^ AppendFilesAsync(Platform::String ^filePattern, Boolean recurse);
 
@@ -339,23 +339,23 @@ public ref class Zip sealed
 
 	ZipEntry ^AppendHex(Platform::String ^fileName, Platform::String ^encodedCompressedData);
 
-	IAsyncOperation<Boolean>^ AppendMultipleAsync(StringArray ^fileSpecs, Boolean recurse);
+	IAsyncOperation<Boolean>^ AppendMultipleAsync(Chilkat::StringArray ^fileSpecs, Boolean recurse);
 
 	ZipEntry ^AppendNew(Platform::String ^fileName);
 
 	ZipEntry ^AppendNewDir(Platform::String ^dirName);
 
-	IAsyncOperation<Boolean>^ AppendOneFileOrDirAsync(Platform::String ^fileOrDirName, Boolean saveExtraPath);
+	IAsyncOperation<Boolean>^ AppendOneFileOrDirAsync(Platform::String ^fileOrDirPath, Boolean saveExtraPath);
 
-	ZipEntry ^AppendString(Platform::String ^fileName, Platform::String ^str);
+	ZipEntry ^AppendString(Platform::String ^internalZipFilepath, Platform::String ^textData);
 
-	ZipEntry ^AppendString2(Platform::String ^fileName, Platform::String ^str, Platform::String ^charset);
+	ZipEntry ^AppendString2(Platform::String ^internalZipFilepath, Platform::String ^textData, Platform::String ^charset);
 
 	Boolean AppendZip(Platform::String ^zipFileName);
 
 	void CloseZip(void);
 
-	Boolean DeleteEntry(ZipEntry ^entry);
+	Boolean DeleteEntry(Chilkat::ZipEntry ^entry);
 
 	void ExcludeDir(Platform::String ^dirName);
 
@@ -367,7 +367,7 @@ public ref class Zip sealed
 
 	IAsyncOperation<Boolean>^ ExtractNewerAsync(Platform::String ^dirPath);
 
-	IAsyncOperation<Boolean>^ ExtractOneAsync(ZipEntry ^entry, Platform::String ^dirPath);
+	IAsyncOperation<Boolean>^ ExtractOneAsync(Chilkat::ZipEntry ^entry, Platform::String ^dirPath);
 
 	ZipEntry ^FirstEntry(void);
 
@@ -391,7 +391,7 @@ public ref class Zip sealed
 
 	Boolean IsUnlocked(void);
 
-	Boolean NewZip(Platform::String ^ZipFileName);
+	Boolean NewZip(Platform::String ^zipFilePath);
 
 	Boolean OpenFromByteData(Windows::Foundation::Collections::IVector<uint8>^byteData);
 
@@ -405,7 +405,7 @@ public ref class Zip sealed
 
 	void SetCompressionLevel(int level);
 
-	void SetExclusions(StringArray ^excludePatterns);
+	void SetExclusions(Chilkat::StringArray ^excludePatterns);
 
 	void SetPassword(Platform::String ^password);
 

@@ -42,6 +42,21 @@ public ref class AuthAzureStorage sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Platform::String ^AccessKey
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^Account
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
@@ -54,34 +69,10 @@ public ref class AuthAzureStorage sealed
 	{
 		Platform::String ^get();
 	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Boolean LastMethodSuccess
 	{
 		Boolean get();
 		void set(Boolean);
-	}
-	property Platform::String ^AccessKey
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Platform::String ^Account
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
 	}
 	property Platform::String ^Scheme
 	{
@@ -93,6 +84,15 @@ public ref class AuthAzureStorage sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 	property Platform::String ^XMsVersion
 	{
 		Platform::String ^get();
@@ -103,8 +103,6 @@ public ref class AuthAzureStorage sealed
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 
 
 };

@@ -43,21 +43,13 @@ Chilkat::Ntlm::Ntlm(void)
 //}
 
 
-String ^Chilkat::Ntlm::LastErrorHtml::get()
+String ^Chilkat::Ntlm::ClientChallenge::get()
     {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    return ref new String(m_impl ? m_impl->clientChallenge() : L"");
     }
-String ^Chilkat::Ntlm::LastErrorText::get()
+void Chilkat::Ntlm::ClientChallenge::set(String ^newVal)
     {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::Ntlm::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::Ntlm::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
+        if (m_impl) m_impl->put_ClientChallenge(newVal ? newVal->Data() : L"");
     }
 String ^Chilkat::Ntlm::DebugLogFilePath::get()
     {
@@ -66,30 +58,6 @@ String ^Chilkat::Ntlm::DebugLogFilePath::get()
 void Chilkat::Ntlm::DebugLogFilePath::set(String ^newVal)
     {
         if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Ntlm::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::Ntlm::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::Ntlm::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::Ntlm::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
-String ^Chilkat::Ntlm::ClientChallenge::get()
-    {
-    return ref new String(m_impl ? m_impl->clientChallenge() : L"");
-    }
-void Chilkat::Ntlm::ClientChallenge::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_ClientChallenge(newVal ? newVal->Data() : L"");
     }
 String ^Chilkat::Ntlm::DnsComputerName::get()
     {
@@ -130,6 +98,26 @@ String ^Chilkat::Ntlm::Flags::get()
 void Chilkat::Ntlm::Flags::set(String ^newVal)
     {
         if (m_impl) m_impl->put_Flags(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::Ntlm::LastErrorHtml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    }
+String ^Chilkat::Ntlm::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::Ntlm::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
+Boolean Chilkat::Ntlm::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::Ntlm::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
 String ^Chilkat::Ntlm::NetBiosComputerName::get()
     {
@@ -195,6 +183,18 @@ void Chilkat::Ntlm::UserName::set(String ^newVal)
     {
         if (m_impl) m_impl->put_UserName(newVal ? newVal->Data() : L"");
     }
+Boolean Chilkat::Ntlm::VerboseLogging::get()
+    {
+    return m_impl ? m_impl->get_VerboseLogging() : false;
+    }
+void Chilkat::Ntlm::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::Ntlm::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
 String ^Chilkat::Ntlm::Workstation::get()
     {
     return ref new String(m_impl ? m_impl->workstation() : L"");
@@ -205,28 +205,16 @@ void Chilkat::Ntlm::Workstation::set(String ^newVal)
     }
 
 
-Boolean Ntlm::SaveLastError(Platform::String ^path)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
-    }
 Boolean Ntlm::CompareType3(Platform::String ^msg1, Platform::String ^msg2)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->CompareType3(msg1 ? msg1->Data() : L"",msg2 ? msg2->Data() : L"");
     }
 Platform::String ^Ntlm::GenType1(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->genType1();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -235,8 +223,6 @@ Platform::String ^Ntlm::GenType2(Platform::String ^type1Msg)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->genType2(type1Msg ? type1Msg->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -245,8 +231,6 @@ Platform::String ^Ntlm::GenType3(Platform::String ^type2Msg)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->genType3(type2Msg ? type2Msg->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -255,16 +239,12 @@ Boolean Ntlm::LoadType3(Platform::String ^type3Msg)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadType3(type3Msg ? type3Msg->Data() : L"");
     }
 Platform::String ^Ntlm::ParseType1(Platform::String ^type1Msg)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->parseType1(type1Msg ? type1Msg->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -273,8 +253,6 @@ Platform::String ^Ntlm::ParseType2(Platform::String ^type2Msg)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->parseType2(type2Msg ? type2Msg->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -283,8 +261,6 @@ Platform::String ^Ntlm::ParseType3(Platform::String ^type3Msg)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->parseType3(type3Msg ? type3Msg->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -293,16 +269,12 @@ Boolean Ntlm::SetFlag(Platform::String ^flagLetter, Boolean onOrOff)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetFlag(flagLetter ? flagLetter->Data() : L"",onOrOff);
     }
 Boolean Ntlm::UnlockComponent(Platform::String ^unlockCode)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->UnlockComponent(unlockCode ? unlockCode->Data() : L"");
     }
 

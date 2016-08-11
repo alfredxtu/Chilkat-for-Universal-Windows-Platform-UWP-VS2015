@@ -47,37 +47,6 @@ public ref class Cert sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Platform::String ^AuthorityKeyId
 	{
 		Platform::String ^get();
@@ -94,6 +63,11 @@ public ref class Cert sealed
 	property Platform::String ^CspName
 	{
 		Platform::String ^get();
+	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
 	}
 	property Boolean Expired
 	{
@@ -123,9 +97,9 @@ public ref class Cert sealed
 	{
 		Boolean get();
 	}
-	property uint32 IntendedKeyUsage
+	property int32 IntendedKeyUsage
 	{
-		uint32 get();
+		int32 get();
 	}
 	property Boolean IsRoot
 	{
@@ -166,6 +140,23 @@ public ref class Cert sealed
 	property Platform::String ^KeyContainerName
 	{
 		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
 	}
 	property Boolean MachineKeyset
 	{
@@ -255,13 +246,20 @@ public ref class Cert sealed
 	{
 		Platform::String ^get();
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	int CheckRevoked(void);
 
 	Windows::Foundation::Collections::IVector<uint8>^ExportCertDer(void);
@@ -280,7 +278,7 @@ public ref class Cert sealed
 
 	Windows::Foundation::Collections::IVector<uint8>^ExportToPfxData(Platform::String ^password, Boolean includeCertChain);
 
-	Boolean ExportToPfxFile(Platform::String ^pfxFilename, Platform::String ^password, Boolean bIncludeChain);
+	Boolean ExportToPfxFile(Platform::String ^pfxFilename, Platform::String ^pfxPassword, Boolean bIncludeCertChain);
 
 	Cert ^FindIssuer(void);
 
@@ -304,7 +302,7 @@ public ref class Cert sealed
 
 	Boolean LoadByEmailAddress(Platform::String ^emailAddress);
 
-	Boolean LoadByIssuerAndSerialNumber(Platform::String ^issuerCN, Platform::String ^serialNum);
+	Boolean LoadByIssuerAndSerialNumber(Platform::String ^issuerCN, Platform::String ^serialNumber);
 
 	Boolean LoadFromBase64(Platform::String ^encodedCert);
 
@@ -324,11 +322,11 @@ public ref class Cert sealed
 
 	Boolean SetFromEncoded(Platform::String ^encodedCert);
 
-	Boolean SetPrivateKey(PrivateKey ^privKey);
+	Boolean SetPrivateKey(Chilkat::PrivateKey ^privKey);
 
 	Boolean SetPrivateKeyPem(Platform::String ^privKeyPem);
 
-	Boolean UseCertVault(XmlCertVault ^vault);
+	Boolean UseCertVault(Chilkat::XmlCertVault ^vault);
 
 	Boolean VerifySignature(void);
 

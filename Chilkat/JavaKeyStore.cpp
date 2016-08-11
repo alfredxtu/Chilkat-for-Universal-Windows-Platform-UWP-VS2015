@@ -55,6 +55,14 @@ Chilkat::JavaKeyStore::JavaKeyStore(void)
 //}
 
 
+String ^Chilkat::JavaKeyStore::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::JavaKeyStore::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
 String ^Chilkat::JavaKeyStore::LastErrorHtml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
@@ -66,26 +74,6 @@ String ^Chilkat::JavaKeyStore::LastErrorText::get()
 String ^Chilkat::JavaKeyStore::LastErrorXml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::JavaKeyStore::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::JavaKeyStore::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::JavaKeyStore::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::JavaKeyStore::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::JavaKeyStore::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
     }
 Boolean Chilkat::JavaKeyStore::LastMethodSuccess::get()
     {
@@ -111,6 +99,14 @@ void Chilkat::JavaKeyStore::RequireCompleteChain::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_RequireCompleteChain(newVal);
     }
+Boolean Chilkat::JavaKeyStore::VerboseLogging::get()
+    {
+    return m_impl ? m_impl->get_VerboseLogging() : false;
+    }
+void Chilkat::JavaKeyStore::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
 Boolean Chilkat::JavaKeyStore::VerifyKeyedDigest::get()
     {
     return m_impl ? m_impl->get_VerifyKeyedDigest() : false;
@@ -119,63 +115,49 @@ void Chilkat::JavaKeyStore::VerifyKeyedDigest::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_VerifyKeyedDigest(newVal);
     }
-
-
-Boolean JavaKeyStore::SaveLastError(Platform::String ^path)
+String ^Chilkat::JavaKeyStore::Version::get()
     {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
+    return ref new String(m_impl ? m_impl->version() : L"");
     }
-Boolean JavaKeyStore::AddPfx(Pfx ^pfx, Platform::String ^alias, Platform::String ^password)
+
+
+Boolean JavaKeyStore::AddPfx(Chilkat::Pfx ^pfx, Platform::String ^alias, Platform::String ^password)
     {
 	if (m_impl == nullptr) { return false; }
 	if (pfx == nullptr) { return false; }
 	CkPfxW* pObj0 = pfx->m_impl;
 	 if (!pObj0) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddPfx(*pObj0,alias ? alias->Data() : L"",password ? password->Data() : L"");
     }
-Boolean JavaKeyStore::AddPrivateKey(Cert ^cert, Platform::String ^alias, Platform::String ^password)
+Boolean JavaKeyStore::AddPrivateKey(Chilkat::Cert ^cert, Platform::String ^alias, Platform::String ^password)
     {
 	if (m_impl == nullptr) { return false; }
 	if (cert == nullptr) { return false; }
 	CkCertW* pObj0 = cert->m_impl;
 	 if (!pObj0) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddPrivateKey(*pObj0,alias ? alias->Data() : L"",password ? password->Data() : L"");
     }
-Boolean JavaKeyStore::AddTrustedCert(Cert ^cert, Platform::String ^alias)
+Boolean JavaKeyStore::AddTrustedCert(Chilkat::Cert ^cert, Platform::String ^alias)
     {
 	if (m_impl == nullptr) { return false; }
 	if (cert == nullptr) { return false; }
 	CkCertW* pObj0 = cert->m_impl;
 	 if (!pObj0) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddTrustedCert(*pObj0,alias ? alias->Data() : L"");
     }
 Boolean JavaKeyStore::ChangePassword(int index, Platform::String ^oldPassword, Platform::String ^newPassword)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->ChangePassword(index,oldPassword ? oldPassword->Data() : L"",newPassword ? newPassword->Data() : L"");
     }
 CertChain ^JavaKeyStore::FindCertChain(Platform::String ^alias, Boolean caseSensitive)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = CertChain
-	// cppType = CkCertChain *
 	CkCertChainW *pRetObj = m_impl->FindCertChain(alias ? alias->Data() : L"",caseSensitive);
 	if (!pRetObj) return nullptr;
 	Chilkat::CertChain ^pCertChain = ref new Chilkat::CertChain();
@@ -186,8 +168,6 @@ PrivateKey ^JavaKeyStore::FindPrivateKey(Platform::String ^password, Platform::S
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = PrivateKey
-	// cppType = CkPrivateKey *
 	CkPrivateKeyW *pRetObj = m_impl->FindPrivateKey(password ? password->Data() : L"",alias ? alias->Data() : L"",caseSensitive);
 	if (!pRetObj) return nullptr;
 	Chilkat::PrivateKey ^pPrivateKey = ref new Chilkat::PrivateKey();
@@ -198,8 +178,6 @@ Cert ^JavaKeyStore::FindTrustedCert(Platform::String ^alias, Boolean caseSensiti
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = Cert
-	// cppType = CkCert *
 	CkCertW *pRetObj = m_impl->FindTrustedCert(alias ? alias->Data() : L"",caseSensitive);
 	if (!pRetObj) return nullptr;
 	Chilkat::Cert ^pCert = ref new Chilkat::Cert();
@@ -210,8 +188,6 @@ CertChain ^JavaKeyStore::GetCertChain(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = CertChain
-	// cppType = CkCertChain *
 	CkCertChainW *pRetObj = m_impl->GetCertChain(index);
 	if (!pRetObj) return nullptr;
 	Chilkat::CertChain ^pCertChain = ref new Chilkat::CertChain();
@@ -222,8 +198,6 @@ PrivateKey ^JavaKeyStore::GetPrivateKey(Platform::String ^password, int index)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = PrivateKey
-	// cppType = CkPrivateKey *
 	CkPrivateKeyW *pRetObj = m_impl->GetPrivateKey(password ? password->Data() : L"",index);
 	if (!pRetObj) return nullptr;
 	Chilkat::PrivateKey ^pPrivateKey = ref new Chilkat::PrivateKey();
@@ -234,8 +208,6 @@ Platform::String ^JavaKeyStore::GetPrivateKeyAlias(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getPrivateKeyAlias(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -244,8 +216,6 @@ Cert ^JavaKeyStore::GetTrustedCert(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = Cert
-	// cppType = CkCert *
 	CkCertW *pRetObj = m_impl->GetTrustedCert(index);
 	if (!pRetObj) return nullptr;
 	Chilkat::Cert ^pCert = ref new Chilkat::Cert();
@@ -256,8 +226,6 @@ Platform::String ^JavaKeyStore::GetTrustedCertAlias(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getTrustedCertAlias(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -269,40 +237,30 @@ Boolean JavaKeyStore::LoadBinary(Platform::String ^password, Windows::Foundation
         if (jksData != nullptr) { v1 = to_vector(jksData);
             db1.borrowData(&v1[0], (unsigned long)v1.size()); }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadBinary(password ? password->Data() : L"",db1);
     }
 Boolean JavaKeyStore::LoadEncoded(Platform::String ^password, Platform::String ^jksEncData, Platform::String ^encoding)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadEncoded(password ? password->Data() : L"",jksEncData ? jksEncData->Data() : L"",encoding ? encoding->Data() : L"");
     }
 Boolean JavaKeyStore::LoadFile(Platform::String ^password, Platform::String ^path)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadFile(password ? password->Data() : L"",path ? path->Data() : L"");
     }
 Boolean JavaKeyStore::RemoveEntry(int entryType, int index)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->RemoveEntry(entryType,index);
     }
 Boolean JavaKeyStore::SetAlias(int entryType, int index, Platform::String ^alias)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetAlias(entryType,index,alias ? alias->Data() : L"");
     }
 Windows::Foundation::Collections::IVector<uint8>^JavaKeyStore::ToBinary(Platform::String ^password)
@@ -310,8 +268,6 @@ Windows::Foundation::Collections::IVector<uint8>^JavaKeyStore::ToBinary(Platform
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->ToBinary(password ? password->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -321,8 +277,6 @@ Platform::String ^JavaKeyStore::ToEncodedString(Platform::String ^password, Plat
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->toEncodedString(password ? password->Data() : L"",encoding ? encoding->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -331,16 +285,12 @@ Boolean JavaKeyStore::ToFile(Platform::String ^password, Platform::String ^path)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->ToFile(password ? password->Data() : L"",path ? path->Data() : L"");
     }
 Pem ^JavaKeyStore::ToPem(Platform::String ^password)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = Pem
-	// cppType = CkPem *
 	CkPemW *pRetObj = m_impl->ToPem(password ? password->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::Pem ^pPem = ref new Chilkat::Pem();
@@ -351,8 +301,6 @@ Pfx ^JavaKeyStore::ToPfx(Platform::String ^password)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = Pfx
-	// cppType = CkPfx *
 	CkPfxW *pRetObj = m_impl->ToPfx(password ? password->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::Pfx ^pPfx = ref new Chilkat::Pfx();
@@ -363,19 +311,15 @@ Boolean JavaKeyStore::UnlockComponent(Platform::String ^unlockCode)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->UnlockComponent(unlockCode ? unlockCode->Data() : L"");
     }
-Boolean JavaKeyStore::UseCertVault(XmlCertVault ^vault)
+Boolean JavaKeyStore::UseCertVault(Chilkat::XmlCertVault ^vault)
     {
 	if (m_impl == nullptr) { return false; }
 	if (vault == nullptr) { return false; }
 	CkXmlCertVaultW* pObj0 = vault->m_impl;
 	 if (!pObj0) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->UseCertVault(*pObj0);
     }
 

@@ -78,7 +78,7 @@ class CK_VISIBLE_PUBLIC CkServerSentEventW  : public CkWideCharBase
 	// ----------------------
 	// Methods
 	// ----------------------
-	// Loads the multi-line event text into this object. For example, the ARG1 for a
+	// Loads the multi-line event text into this object. For example, the eventText for a
 	// Firebase event might look like this:
 	// event: put
 	// data: {"path": "/c", "data": {"foo": true, "bar": false}}

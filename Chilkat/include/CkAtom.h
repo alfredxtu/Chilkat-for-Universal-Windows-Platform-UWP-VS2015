@@ -52,9 +52,6 @@ class CK_VISIBLE_PUBLIC CkAtom  : public CkClassWithCallbacks
 	// ----------------------
 	// Properties
 	// ----------------------
-	// Number of entries in the Atom document.
-	int get_NumEntries(void);
-
 	// When set to true, causes the currently running method to abort. Methods that
 	// always finish quickly (i.e.have no length file operations or network
 	// communications) are not affected. If no method is running, then this property is
@@ -63,6 +60,9 @@ class CK_VISIBLE_PUBLIC CkAtom  : public CkClassWithCallbacks
 	// method calls can be aborted. (A synchronous method call could be aborted by
 	// setting this property from a separate thread.)
 	bool get_AbortCurrent(void);
+
+	// Number of entries in the Atom document.
+	int get_NumEntries(void);
 
 
 
@@ -82,7 +82,7 @@ class CK_VISIBLE_PUBLIC CkAtom  : public CkClassWithCallbacks
 
 
 	// Adds a new date-formatted element to the Atom document. The tag is a string
-	// such as "created", "modified", "issued", etc. The  dateTimeStr should be an RFC822
+	// such as "created", "modified", "issued", etc. The dateTimeStr should be an RFC822
 	// formatted date/time string such as "Tue, 25 Sep 2012 12:25:32 -0500". Returns
 	// the index of the element added, or -1 for failure.
 	int AddElementDateStr(const char *tag, const char *dateTimeStr);
@@ -280,7 +280,7 @@ class CK_VISIBLE_PUBLIC CkAtom  : public CkClassWithCallbacks
 	void UpdateElementDate(const char *tag, int index, SYSTEMTIME &dateTime);
 
 
-	// Replaces the content of a date-formatted element. The  index should be an RFC822
+	// Replaces the content of a date-formatted element. The index should be an RFC822
 	// formatted date/time string.
 	void UpdateElementDateStr(const char *tag, int index, const char *dateTimeStr);
 

@@ -151,7 +151,7 @@ class CK_VISIBLE_PUBLIC CkRss  : public CkClassWithCallbacks
 
 
 	// Load an RSS document from a file.
-	bool LoadRssFile(const char *filename);
+	bool LoadRssFile(const char *filePath);
 
 
 	// Loads an RSS feed document from an in-memory string.

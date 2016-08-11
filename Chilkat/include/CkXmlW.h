@@ -344,7 +344,7 @@ class CK_VISIBLE_PUBLIC CkXmlW  : public CkWideCharBase
 	// Discards the caller's current internal reference and copies the internal
 	// reference from copyFromNode. Effectively updates the caller node to point to the same
 	// node in the XML document as copyFromNode.
-	void CopyRef(CkXmlW &node);
+	void CopyRef(CkXmlW &copyFromNode);
 
 	// Decodes a node's Q or B-encoded content string and returns the byte data.
 	bool DecodeContent(CkByteData &outData);
@@ -406,16 +406,6 @@ class CK_VISIBLE_PUBLIC CkXmlW  : public CkWideCharBase
 	// Updates the internal reference of the caller to point to its first child.
 	bool FirstChild2(void);
 
-	// Find and return the value of an attribute having a specified name.
-	bool GetAttrValue(const wchar_t *name, CkString &outStr);
-	// Find and return the value of an attribute having a specified name.
-	const wchar_t *getAttrValue(const wchar_t *name);
-	// Find and return the value of an attribute having a specified name.
-	const wchar_t *attrValue(const wchar_t *name);
-
-	// Returns an attribute as an integer.
-	int GetAttrValueInt(const wchar_t *name);
-
 	// Returns the name of the Nth attribute of an XML node. The first attribute is at
 	// index 0.
 	bool GetAttributeName(int index, CkString &outStr);
@@ -438,6 +428,16 @@ class CK_VISIBLE_PUBLIC CkXmlW  : public CkWideCharBase
 
 	// Returns an attribute as an integer.
 	int GetAttributeValueInt(int index);
+
+	// Find and return the value of an attribute having a specified name.
+	bool GetAttrValue(const wchar_t *name, CkString &outStr);
+	// Find and return the value of an attribute having a specified name.
+	const wchar_t *getAttrValue(const wchar_t *name);
+	// Find and return the value of an attribute having a specified name.
+	const wchar_t *attrValue(const wchar_t *name);
+
+	// Returns an attribute as an integer.
+	int GetAttrValueInt(const wchar_t *name);
 
 	// Returns binary content of an XML node as a byte array. The content may have been
 	// Zip compressed, AES encrypted, or both. Unzip compression and AES decryption
@@ -548,11 +548,11 @@ class CK_VISIBLE_PUBLIC CkXmlW  : public CkWideCharBase
 	// Otherwise, it is not included.
 	const wchar_t *xml(void);
 
-	// Returns true if the node contains attribute with the name and value.
-	bool HasAttrWithValue(const wchar_t *name, const wchar_t *value);
-
 	// Returns true if the node contains an attribute with the specified name.
 	bool HasAttribute(const wchar_t *name);
+
+	// Returns true if the node contains attribute with the name and value.
+	bool HasAttrWithValue(const wchar_t *name, const wchar_t *value);
 
 	// Returns true if the node has a direct child node containing the exact content
 	// string specified.
@@ -678,15 +678,15 @@ class CK_VISIBLE_PUBLIC CkXmlW  : public CkWideCharBase
 	// to a file.
 	bool SaveXml(const wchar_t *fileName);
 
-	// Returns the first node having content matching the ARG2. The ARG2 is a
+	// Returns the first node having content matching the contentPattern. The contentPattern is a
 	// case-sensitive string that may contain any number of '*'s, each representing 0
 	// or more occurances of any character. The search is breadth-first over the
 	// sub-tree rooted at the caller. A match is returned only after the search has
-	// traversed past the node indicated by ARG1. To find the 1st occurance, set ARG1
-	// equal to _NULL_. (For the ActiveX implementation, the ARG1 should never be
+	// traversed past the node indicated by afterPtr. To find the 1st occurance, set afterPtr
+	// equal to _NULL_. (For the ActiveX implementation, the afterPtr should never be
 	// _NULL_. A reference to the caller's node should be passed instead.)
 	// 
-	// To iterate over matching nodes, the returned node can be passed in ARG1 for the
+	// To iterate over matching nodes, the returned node can be passed in afterPtr for the
 	// next call to SearchAllForContent, until the method returns _NULL_.
 	// 
 	// The caller is responsible for deleting the object returned by this method.
@@ -696,16 +696,16 @@ class CK_VISIBLE_PUBLIC CkXmlW  : public CkWideCharBase
 	// updated to point to the search result (instead of returning a new object).
 	bool SearchAllForContent2(CkXmlW *afterPtr, const wchar_t *contentPattern);
 
-	// Returns the first node having a tag equal to ARG2, an attribute named ARG3,
-	// whose value matches ARG4. The ARG4 is a case-sensitive string that may contain
+	// Returns the first node having a tag equal to tag, an attribute named attr,
+	// whose value matches valuePattern. The valuePattern is a case-sensitive string that may contain
 	// any number of '*'s, each representing 0 or more occurances of any character. The
 	// search is breadth-first over the sub-tree rooted at the caller. A match is
-	// returned only after the search has traversed past the node indicated by ARG1. To
-	// find the 1st occurance, set ARG1 equal to _NULL_. (For the ActiveX
-	// implementation, the ARG1 should never be _NULL_. A reference to the caller's
+	// returned only after the search has traversed past the node indicated by afterPtr. To
+	// find the 1st occurance, set afterPtr equal to _NULL_. (For the ActiveX
+	// implementation, the afterPtr should never be _NULL_. A reference to the caller's
 	// node should be passed instead.)
 	// 
-	// To iterate over matching nodes, the returned node can be passed in ARG1 for the
+	// To iterate over matching nodes, the returned node can be passed in afterPtr for the
 	// next call to SearchForAttribute, until the method returns _NULL_.
 	// 
 	// The caller is responsible for deleting the object returned by this method.
@@ -715,15 +715,15 @@ class CK_VISIBLE_PUBLIC CkXmlW  : public CkWideCharBase
 	// updated to point to the search result (instead of returning a new object).
 	bool SearchForAttribute2(CkXmlW *afterPtr, const wchar_t *tag, const wchar_t *attr, const wchar_t *valuePattern);
 
-	// Returns the first node having a tag equal to ARG2, whose content matches ARG3.
-	// The ARG3 is a case-sensitive string that may contain any number of '*'s, each
+	// Returns the first node having a tag equal to tag, whose content matches contentPattern.
+	// The contentPattern is a case-sensitive string that may contain any number of '*'s, each
 	// representing 0 or more occurances of any character. The search is breadth-first
 	// over the sub-tree rooted at the caller. A match is returned only after the
-	// search has traversed past the node indicated by ARG1. To find the 1st occurance,
-	// set ARG1 equal to _NULL_. (For the ActiveX implementation, the ARG1 should never
+	// search has traversed past the node indicated by afterPtr. To find the 1st occurance,
+	// set afterPtr equal to _NULL_. (For the ActiveX implementation, the afterPtr should never
 	// be _NULL_. A reference to the caller's node should be passed instead.)
 	// 
-	// To iterate over matching nodes, the returned node can be passed in ARG1 for the
+	// To iterate over matching nodes, the returned node can be passed in afterPtr for the
 	// next call to SearchForContent, until the method returns _NULL_.
 	// 
 	// The caller is responsible for deleting the object returned by this method.
@@ -733,13 +733,13 @@ class CK_VISIBLE_PUBLIC CkXmlW  : public CkWideCharBase
 	// to point to the search result (instead of returning a new object).
 	bool SearchForContent2(CkXmlW *afterPtr, const wchar_t *tag, const wchar_t *contentPattern);
 
-	// Returns the first node having a tag equal to ARG2. The search is breadth-first
+	// Returns the first node having a tag equal to tag. The search is breadth-first
 	// over the sub-tree rooted at the caller. A match is returned only after the
-	// search has traversed past the node indicated by ARG1. To find the 1st occurance,
-	// set ARG1 equal to _NULL_. (For the ActiveX implementation, the ARG1 should never
+	// search has traversed past the node indicated by afterPtr. To find the 1st occurance,
+	// set afterPtr equal to _NULL_. (For the ActiveX implementation, the afterPtr should never
 	// be _NULL_. A reference to the caller's node should be passed instead.)
 	// 
-	// To iterate over matching nodes, the returned node can be passed in ARG1 for the
+	// To iterate over matching nodes, the returned node can be passed in afterPtr for the
 	// next call to SearchForTag, until the method returns _NULL_.
 	// 
 	// The caller is responsible for deleting the object returned by this method.
@@ -759,7 +759,7 @@ class CK_VISIBLE_PUBLIC CkXmlW  : public CkWideCharBase
 #if !defined(CHILKAT_MONO)
 	// The same as SetBinaryContent but the data is provided via a pointer and byte
 	// count.
-	bool SetBinaryContent2(const unsigned char *pByteData, unsigned long szByteData, bool zipFlag, bool encryptFlag, const wchar_t *password);
+	bool SetBinaryContent2(const void *pByteData, unsigned long szByteData, bool zipFlag, bool encryptFlag, const wchar_t *password);
 #endif
 
 	// Sets the node's content with binary (or text) data from a file. The file
@@ -801,11 +801,11 @@ class CK_VISIBLE_PUBLIC CkXmlW  : public CkWideCharBase
 	// Returns the content of the 1st node found in the sub-tree rooted at the caller
 	// that has a given tag. (Note: The search for the node having tag ARG is not
 	// limited to the direct children of the caller.)
-	bool TagContent(const wchar_t *tag, CkString &outStr);
+	bool TagContent(const wchar_t *tagName, CkString &outStr);
 	// Returns the content of the 1st node found in the sub-tree rooted at the caller
 	// that has a given tag. (Note: The search for the node having tag ARG is not
 	// limited to the direct children of the caller.)
-	const wchar_t *tagContent(const wchar_t *tag);
+	const wchar_t *tagContent(const wchar_t *tagName);
 
 	// Returns true if the node's tag equals the specified string.
 	bool TagEquals(const wchar_t *tag);

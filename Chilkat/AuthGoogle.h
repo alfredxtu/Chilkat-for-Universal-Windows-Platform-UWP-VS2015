@@ -76,38 +76,12 @@ public ref class AuthGoogle sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
+	property Platform::String ^AccessToken
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Platform::String ^AccessToken
+	property Platform::String ^DebugLogFilePath
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
@@ -127,6 +101,23 @@ public ref class AuthGoogle sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property int32 NumSecondsRemaining
 	{
 		int32 get();
@@ -145,18 +136,25 @@ public ref class AuthGoogle sealed
 	{
 		Boolean get();
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	Pfx ^GetP12(void);
 
-	IAsyncOperation<Boolean>^ ObtainAccessTokenAsync(Socket ^connection);
+	IAsyncOperation<Boolean>^ ObtainAccessTokenAsync(Chilkat::Socket ^connection);
 
-	Boolean SetP12(Pfx ^key);
+	Boolean SetP12(Chilkat::Pfx ^key);
 
 
 

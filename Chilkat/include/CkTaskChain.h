@@ -173,9 +173,9 @@ class CK_VISIBLE_PUBLIC CkTaskChain  : public CkClassWithCallbacks
 
 
 	// Waits for the task chain to complete. Returns when all of the tasks in the chain
-	// have completed, or after ARG1 milliseconds have elapsed. (A ARG1 value of 0 is
+	// have completed, or after maxWaitMs milliseconds have elapsed. (A maxWaitMs value of 0 is
 	// to wait indefinitely.) Returns (false) if the task chain has not yet been
-	// started by calling the Run method, or if the ARG1 expired. If the task chain
+	// started by calling the Run method, or if the maxWaitMs expired. If the task chain
 	// completed, was already completed, was canceled, or aborted, then this method
 	// returns true.
 	bool Wait(int maxWaitMs);

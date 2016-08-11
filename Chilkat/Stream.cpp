@@ -43,46 +43,6 @@ Chilkat::Stream::Stream(void)
 //}
 
 
-String ^Chilkat::Stream::LastErrorHtml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
-    }
-String ^Chilkat::Stream::LastErrorText::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::Stream::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::Stream::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::Stream::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::Stream::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Stream::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::Stream::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::Stream::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::Stream::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
 Boolean Chilkat::Stream::AbortCurrent::get()
     {
     return m_impl ? m_impl->get_AbortCurrent() : false;
@@ -103,6 +63,14 @@ Boolean Chilkat::Stream::DataAvailable::get()
     {
     return m_impl ? m_impl->get_DataAvailable() : false;
     }
+String ^Chilkat::Stream::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::Stream::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
 int Chilkat::Stream::DefaultChunkSize::get()
     {
     return m_impl ? m_impl->get_DefaultChunkSize() : 0;
@@ -118,6 +86,26 @@ Boolean Chilkat::Stream::EndOfStream::get()
 Boolean Chilkat::Stream::IsWriteClosed::get()
     {
     return m_impl ? m_impl->get_IsWriteClosed() : false;
+    }
+String ^Chilkat::Stream::LastErrorHtml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    }
+String ^Chilkat::Stream::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::Stream::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
+Boolean Chilkat::Stream::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::Stream::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
 int64 Chilkat::Stream::Length::get()
     {
@@ -171,6 +159,22 @@ void Chilkat::Stream::SourceFile::set(String ^newVal)
     {
         if (m_impl) m_impl->put_SourceFile(newVal ? newVal->Data() : L"");
     }
+int Chilkat::Stream::SourceFilePart::get()
+    {
+    return m_impl ? m_impl->get_SourceFilePart() : 0;
+    }
+void Chilkat::Stream::SourceFilePart::set(int newVal)
+    {
+        if (m_impl) m_impl->put_SourceFilePart(newVal);
+    }
+int Chilkat::Stream::SourceFilePartSize::get()
+    {
+    return m_impl ? m_impl->get_SourceFilePartSize() : 0;
+    }
+void Chilkat::Stream::SourceFilePartSize::set(int newVal)
+    {
+        if (m_impl) m_impl->put_SourceFilePartSize(newVal);
+    }
 Boolean Chilkat::Stream::StringBom::get()
     {
     return m_impl ? m_impl->get_StringBom() : false;
@@ -187,6 +191,18 @@ void Chilkat::Stream::StringCharset::set(String ^newVal)
     {
         if (m_impl) m_impl->put_StringCharset(newVal ? newVal->Data() : L"");
     }
+Boolean Chilkat::Stream::VerboseLogging::get()
+    {
+    return m_impl ? m_impl->get_VerboseLogging() : false;
+    }
+void Chilkat::Stream::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::Stream::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
 int Chilkat::Stream::WriteFailReason::get()
     {
     return m_impl ? m_impl->get_WriteFailReason() : 0;
@@ -201,16 +217,6 @@ void Chilkat::Stream::WriteTimeoutMs::set(int newVal)
     }
 
 
-Boolean Stream::SaveLastError(Platform::String ^path)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxStreamProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
-    }
 IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ Stream::ReadBytesAsync(void)
     {
 return create_async([this]() -> Windows::Foundation::Collections::IVector<uint8>^
@@ -222,8 +228,6 @@ return create_async([this]() -> Windows::Foundation::Collections::IVector<uint8>
 	CkByteData outDb;
 	CxStreamProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->ReadBytes(outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -241,8 +245,6 @@ return create_async([this, encoding]() -> Platform::String ^
 	// --- prep output arg ---
 	CxStreamProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->readBytesENC(encoding ? encoding->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -260,8 +262,6 @@ return create_async([this, numBytes]() -> Windows::Foundation::Collections::IVec
 	CkByteData outDb;
 	CxStreamProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->ReadNBytes(numBytes,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -279,8 +279,6 @@ return create_async([this, numBytes, encoding]() -> Platform::String ^
 	// --- prep output arg ---
 	CxStreamProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->readNBytesENC(numBytes,encoding ? encoding->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -297,8 +295,6 @@ return create_async([this]() -> Platform::String ^
 	// --- prep output arg ---
 	CxStreamProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->readString();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -315,8 +311,6 @@ return create_async([this]() -> Platform::String ^
 	// --- prep output arg ---
 	CxStreamProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->readToCRLF();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -333,8 +327,6 @@ return create_async([this, matchStr]() -> Platform::String ^
 	// --- prep output arg ---
 	CxStreamProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->readUntilMatch(matchStr ? matchStr->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -347,8 +339,6 @@ void Stream::Reset(void)
 	// --- prep output arg ---
 	CxStreamProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->Reset();
     }
 IAsyncOperation<Boolean>^ Stream::RunStreamAsync(void)
@@ -361,13 +351,11 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxStreamProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->RunStream();
 
 });
     }
-Boolean Stream::SetSinkStream(Stream ^strm)
+Boolean Stream::SetSinkStream(Chilkat::Stream ^strm)
     {
 	if (m_impl == nullptr) { return false; }
 	if (strm == nullptr) { return false; }
@@ -376,8 +364,6 @@ Boolean Stream::SetSinkStream(Stream ^strm)
 	// --- prep output arg ---
 	CxStreamProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetSinkStream(*pObj0);
     }
 Boolean Stream::SetSourceBytes(Windows::Foundation::Collections::IVector<uint8>^sourceData)
@@ -389,11 +375,9 @@ Boolean Stream::SetSourceBytes(Windows::Foundation::Collections::IVector<uint8>^
 	// --- prep output arg ---
 	CxStreamProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetSourceBytes(db0);
     }
-Boolean Stream::SetSourceStream(Stream ^strm)
+Boolean Stream::SetSourceStream(Chilkat::Stream ^strm)
     {
 	if (m_impl == nullptr) { return false; }
 	if (strm == nullptr) { return false; }
@@ -402,8 +386,6 @@ Boolean Stream::SetSourceStream(Stream ^strm)
 	// --- prep output arg ---
 	CxStreamProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetSourceStream(*pObj0);
     }
 Boolean Stream::SetSourceString(Platform::String ^srcStr, Platform::String ^charset)
@@ -412,8 +394,6 @@ Boolean Stream::SetSourceString(Platform::String ^srcStr, Platform::String ^char
 	// --- prep output arg ---
 	CxStreamProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetSourceString(srcStr ? srcStr->Data() : L"",charset ? charset->Data() : L"");
     }
 IAsyncOperation<Boolean>^ Stream::WriteByteAsync(int byteVal)
@@ -426,8 +406,6 @@ return create_async([this, byteVal]() -> Boolean
 	// --- prep output arg ---
 	CxStreamProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->WriteByte(byteVal);
 
 });
@@ -445,8 +423,6 @@ return create_async([this, byteData]() -> Boolean
 	// --- prep output arg ---
 	CxStreamProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->WriteBytes(db0);
 
 });
@@ -461,8 +437,6 @@ return create_async([this, byteData, encoding]() -> Boolean
 	// --- prep output arg ---
 	CxStreamProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->WriteBytesENC(byteData ? byteData->Data() : L"",encoding ? encoding->Data() : L"");
 
 });
@@ -473,8 +447,6 @@ Boolean Stream::WriteClose(void)
 	// --- prep output arg ---
 	CxStreamProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->WriteClose();
     }
 IAsyncOperation<Boolean>^ Stream::WriteStringAsync(Platform::String ^str)
@@ -487,8 +459,6 @@ return create_async([this, str]() -> Boolean
 	// --- prep output arg ---
 	CxStreamProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->WriteString(str ? str->Data() : L"");
 
 });

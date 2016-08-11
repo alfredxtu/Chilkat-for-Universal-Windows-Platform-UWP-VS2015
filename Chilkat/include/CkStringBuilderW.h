@@ -63,6 +63,10 @@ class CK_VISIBLE_PUBLIC CkStringBuilderW  : public CkWideCharBase
 	// Appends a copy of the specified string to this instance.
 	bool Append(const wchar_t *value);
 
+	// Appends binary data using the encoding specified by encoding, such as "base64",
+	// "hex", etc.
+	bool AppendEncoded(CkByteData &binaryData, const wchar_t *encoding);
+
 	// Appends the string representation of a specified 32-bit signed integer to this
 	// instance.
 	bool AppendInt(int value);
@@ -71,16 +75,17 @@ class CK_VISIBLE_PUBLIC CkStringBuilderW  : public CkWideCharBase
 	// instance.
 	bool AppendInt64(__int64 value);
 
-	// Appends binary data using the encoding specified by ARG2, such as "base64",
-	// "hex", etc.
-	bool AppendEncoded(CkByteData &binaryData, const wchar_t *encoding);
-
 	// Removes all characters from the current StringBuilder instance.
 	void Clear(void);
 
-	// Replaces all occurrences of a specified string in this instance with another
-	// specified string.
-	void Replace(const wchar_t *value, const wchar_t *replacement);
+	// Returns true if the caseSensitive is contained within this object. For case sensitive
+	// matching, set caseSensitive equal to true. For case-insensitive, set caseSensitive equal to
+	// false.
+	bool Contains(const wchar_t *str, bool caseSensitive);
+
+	// Returns true if the contents of this object equals the str. Returns false
+	// if unequal. For case insensitive equality, set caseSensitive equal to false.
+	bool Equals(const wchar_t *str, bool caseSensitive);
 
 	// Returns the contents as a string.
 	bool GetAsString(CkString &outStr);
@@ -89,14 +94,9 @@ class CK_VISIBLE_PUBLIC CkStringBuilderW  : public CkWideCharBase
 	// Returns the contents as a string.
 	const wchar_t *asString(void);
 
-	// Returns true if the contents of this object equals the ARG1. Returns false
-	// if unequal. For case insensitive equality, set ARG2 equal to false.
-	bool Equals(const wchar_t *str, bool caseSensitive);
-
-	// Returns true if the ARG2 is contained within this object. For case sensitive
-	// matching, set ARG2 equal to true. For case-insensitive, set ARG2 equal to
-	// false.
-	bool Contains(const wchar_t *str, bool caseSensitive);
+	// Replaces all occurrences of a specified string in this instance with another
+	// specified string.
+	void Replace(const wchar_t *value, const wchar_t *replacement);
 
 
 

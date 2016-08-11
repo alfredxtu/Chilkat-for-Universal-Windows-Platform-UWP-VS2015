@@ -45,6 +45,11 @@ public ref class XmlCertVault sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
@@ -57,20 +62,6 @@ public ref class XmlCertVault sealed
 	{
 		Platform::String ^get();
 	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Boolean LastMethodSuccess
 	{
 		Boolean get();
@@ -81,18 +72,25 @@ public ref class XmlCertVault sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
-	Boolean AddCert(Cert ^cert);
+	Boolean AddCert(Chilkat::Cert ^cert);
 
 	Boolean AddCertBinary(Windows::Foundation::Collections::IVector<uint8>^certBytes);
 
-	Boolean AddCertChain(CertChain ^certChain);
+	Boolean AddCertChain(Chilkat::CertChain ^certChain);
 
 	Boolean AddCertEncoded(Platform::String ^encodedBytes, Platform::String ^encoding);
 
@@ -102,7 +100,7 @@ public ref class XmlCertVault sealed
 
 	Boolean AddPemFile(Platform::String ^path, Platform::String ^password);
 
-	Boolean AddPfx(Pfx ^pfx);
+	Boolean AddPfx(Chilkat::Pfx ^pfx);
 
 	Boolean AddPfxBinary(Windows::Foundation::Collections::IVector<uint8>^pfxBytes, Platform::String ^password);
 

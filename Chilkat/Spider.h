@@ -74,33 +74,7 @@ public ref class Spider sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
+	property Boolean AbortCurrent
 	{
 		Boolean get();
 		void set(Boolean);
@@ -125,6 +99,11 @@ public ref class Spider sealed
 		int32 get();
 		void set(int32);
 	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^Domain
 	{
 		Platform::String ^get();
@@ -138,6 +117,18 @@ public ref class Spider sealed
 	{
 		int32 get();
 		void set(int32);
+	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
 	}
 	property Boolean LastFromCache
 	{
@@ -158,6 +149,11 @@ public ref class Spider sealed
 	property Platform::String ^LastHtmlTitle
 	{
 		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
 	}
 	property Platform::String ^LastModDateStr
 	{
@@ -237,23 +233,25 @@ public ref class Spider sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 	property int32 WindDownCount
 	{
 		int32 get();
 		void set(int32);
-	}
-	property Boolean AbortCurrent
-	{
-		Boolean get();
-		void set(Boolean);
 	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	void AddAvoidOutboundLinkPattern(Platform::String ^pattern);
 
 	void AddAvoidPattern(Platform::String ^pattern);
@@ -294,7 +292,7 @@ public ref class Spider sealed
 
 	void SkipUnspidered(int index);
 
-	void SleepMs(int millisec);
+	void SleepMs(int numMilliseconds);
 
 
 

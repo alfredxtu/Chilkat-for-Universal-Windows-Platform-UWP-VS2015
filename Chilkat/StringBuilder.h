@@ -42,37 +42,6 @@ public ref class StringBuilder sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property int32 Length
 	{
 		int32 get();
@@ -82,25 +51,23 @@ public ref class StringBuilder sealed
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	Boolean Append(Platform::String ^value);
+
+	Boolean AppendEncoded(Windows::Foundation::Collections::IVector<uint8>^binaryData, Platform::String ^encoding);
 
 	Boolean AppendInt(int value);
 
 	Boolean AppendInt64(int64 value);
 
-	Boolean AppendEncoded(Windows::Foundation::Collections::IVector<uint8>^binaryData, Platform::String ^encoding);
-
 	void Clear(void);
 
-	void Replace(Platform::String ^value, Platform::String ^replacement);
-
-	Platform::String ^GetAsString(void);
+	Boolean Contains(Platform::String ^str, Boolean caseSensitive);
 
 	Boolean Equals(Platform::String ^str, Boolean caseSensitive);
 
-	Boolean Contains(Platform::String ^str, Boolean caseSensitive);
+	Platform::String ^GetAsString(void);
+
+	void Replace(Platform::String ^value, Platform::String ^replacement);
 
 
 

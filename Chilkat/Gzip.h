@@ -75,33 +75,7 @@ public ref class Gzip sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
+	property Boolean AbortCurrent
 	{
 		Boolean get();
 		void set(Boolean);
@@ -115,6 +89,11 @@ public ref class Gzip sealed
 	{
 		int32 get();
 		void set(int32);
+	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
 	}
 	property Windows::Foundation::Collections::IVector<uint8> ^ExtraData
 	{
@@ -131,6 +110,23 @@ public ref class Gzip sealed
 		int32 get();
 		void set(int32);
 	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property Platform::String ^LastModStr
 	{
 		Platform::String ^get();
@@ -141,47 +137,49 @@ public ref class Gzip sealed
 		Boolean get();
 		void set(Boolean);
 	}
-	property Boolean AbortCurrent
+	property Boolean VerboseLogging
 	{
 		Boolean get();
 		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
 	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
+	IAsyncOperation<Boolean>^ CompressFileAsync(Platform::String ^inFilename, Platform::String ^destPath);
 
-	IAsyncOperation<Boolean>^ CompressFileAsync(Platform::String ^srcPath, Platform::String ^destPath);
-
-	IAsyncOperation<Boolean>^ CompressFile2Async(Platform::String ^srcPath, Platform::String ^embeddedFilename, Platform::String ^destPath);
+	IAsyncOperation<Boolean>^ CompressFile2Async(Platform::String ^inFilename, Platform::String ^embeddedFilename, Platform::String ^destPath);
 
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ CompressFileToMemAsync(Platform::String ^inFilename);
 
-	IAsyncOperation<Boolean>^ CompressMemToFileAsync(Windows::Foundation::Collections::IVector<uint8>^inData, Platform::String ^destPath);
-
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ CompressMemoryAsync(Windows::Foundation::Collections::IVector<uint8>^inData);
+
+	IAsyncOperation<Boolean>^ CompressMemToFileAsync(Windows::Foundation::Collections::IVector<uint8>^inData, Platform::String ^destPath);
 
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ CompressStringAsync(Platform::String ^inStr, Platform::String ^destCharset);
 
-	Platform::String ^CompressStringENC(Platform::String ^strIn, Platform::String ^charset, Platform::String ^encoding);
+	Platform::String ^CompressStringENC(Platform::String ^inStr, Platform::String ^charset, Platform::String ^encoding);
 
 	IAsyncOperation<Boolean>^ CompressStringToFileAsync(Platform::String ^inStr, Platform::String ^destCharset, Platform::String ^destPath);
 
-	Windows::Foundation::Collections::IVector<uint8>^Decode(Platform::String ^str, Platform::String ^encoding);
+	Windows::Foundation::Collections::IVector<uint8>^Decode(Platform::String ^encodedStr, Platform::String ^encoding);
 
-	Platform::String ^DeflateStringENC(Platform::String ^strIn, Platform::String ^charset, Platform::String ^encoding);
+	Platform::String ^DeflateStringENC(Platform::String ^inString, Platform::String ^charsetName, Platform::String ^outputEncoding);
 
 	Platform::String ^Encode(Windows::Foundation::Collections::IVector<uint8>^byteData, Platform::String ^encoding);
 
-	Boolean ExamineFile(Platform::String ^inGzPath);
+	Boolean ExamineFile(Platform::String ^inGzFilename);
 
 	Boolean ExamineMemory(Windows::Foundation::Collections::IVector<uint8>^inGzData);
 
 	CkDateTime ^GetDt(void);
 
-	Platform::String ^InflateStringENC(Platform::String ^strIn, Platform::String ^charset, Platform::String ^encoding);
+	Platform::String ^InflateStringENC(Platform::String ^inString, Platform::String ^convertFromCharset, Platform::String ^inputEncoding);
 
 	Boolean IsUnlocked(void);
 
@@ -189,27 +187,27 @@ public ref class Gzip sealed
 
 	Boolean SetDt(Chilkat::CkDateTime ^dt);
 
-	IAsyncOperation<Boolean>^ UnTarGzAsync(Platform::String ^gzFilename, Platform::String ^destDir, Boolean bNoAbsolute);
-
 	IAsyncOperation<Boolean>^ UncompressFileAsync(Platform::String ^srcPath, Platform::String ^destPath);
 
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ UncompressFileToMemAsync(Platform::String ^inFilename);
 
-	IAsyncOperation<Platform::String ^>^ UncompressFileToStringAsync(Platform::String ^inFilename, Platform::String ^inCharset);
-
-	IAsyncOperation<Boolean>^ UncompressMemToFileAsync(Windows::Foundation::Collections::IVector<uint8>^inData, Platform::String ^destPath);
+	IAsyncOperation<Platform::String ^>^ UncompressFileToStringAsync(Platform::String ^gzFilename, Platform::String ^charset);
 
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ UncompressMemoryAsync(Windows::Foundation::Collections::IVector<uint8>^inData);
 
+	IAsyncOperation<Boolean>^ UncompressMemToFileAsync(Windows::Foundation::Collections::IVector<uint8>^inData, Platform::String ^destPath);
+
 	IAsyncOperation<Platform::String ^>^ UncompressStringAsync(Windows::Foundation::Collections::IVector<uint8>^inData, Platform::String ^inCharset);
 
-	Platform::String ^UncompressStringENC(Platform::String ^strIn, Platform::String ^charset, Platform::String ^encoding);
+	Platform::String ^UncompressStringENC(Platform::String ^inStr, Platform::String ^charset, Platform::String ^encoding);
 
 	Boolean UnlockComponent(Platform::String ^unlockCode);
 
+	IAsyncOperation<Boolean>^ UnTarGzAsync(Platform::String ^tgzFilename, Platform::String ^destDir, Boolean bNoAbsolute);
+
 	Boolean WriteFile(Platform::String ^path, Windows::Foundation::Collections::IVector<uint8>^binaryData);
 
-	Platform::String ^XfdlToXml(Platform::String ^xfdl);
+	Platform::String ^XfdlToXml(Platform::String ^xfldData);
 
 
 

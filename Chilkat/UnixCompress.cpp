@@ -43,6 +43,30 @@ Chilkat::UnixCompress::UnixCompress(void)
 //}
 
 
+Boolean Chilkat::UnixCompress::AbortCurrent::get()
+    {
+    return m_impl ? m_impl->get_AbortCurrent() : false;
+    }
+void Chilkat::UnixCompress::AbortCurrent::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
+    }
+String ^Chilkat::UnixCompress::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::UnixCompress::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
+int Chilkat::UnixCompress::HeartbeatMs::get()
+    {
+    return m_impl ? m_impl->get_HeartbeatMs() : 0;
+    }
+void Chilkat::UnixCompress::HeartbeatMs::set(int newVal)
+    {
+        if (m_impl) m_impl->put_HeartbeatMs(newVal);
+    }
 String ^Chilkat::UnixCompress::LastErrorHtml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
@@ -55,17 +79,13 @@ String ^Chilkat::UnixCompress::LastErrorXml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
     }
-String ^Chilkat::UnixCompress::Version::get()
+Boolean Chilkat::UnixCompress::LastMethodSuccess::get()
     {
-    return ref new String(m_impl ? m_impl->version() : L"");
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
     }
-String ^Chilkat::UnixCompress::DebugLogFilePath::get()
+void Chilkat::UnixCompress::LastMethodSuccess::set(Boolean newVal)
     {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::UnixCompress::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
 Boolean Chilkat::UnixCompress::VerboseLogging::get()
     {
@@ -75,42 +95,12 @@ void Chilkat::UnixCompress::VerboseLogging::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_VerboseLogging(newVal);
     }
-Boolean Chilkat::UnixCompress::LastMethodSuccess::get()
+String ^Chilkat::UnixCompress::Version::get()
     {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::UnixCompress::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
-int Chilkat::UnixCompress::HeartbeatMs::get()
-    {
-    return m_impl ? m_impl->get_HeartbeatMs() : 0;
-    }
-void Chilkat::UnixCompress::HeartbeatMs::set(int newVal)
-    {
-        if (m_impl) m_impl->put_HeartbeatMs(newVal);
-    }
-Boolean Chilkat::UnixCompress::AbortCurrent::get()
-    {
-    return m_impl ? m_impl->get_AbortCurrent() : false;
-    }
-void Chilkat::UnixCompress::AbortCurrent::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_AbortCurrent(newVal);
+    return ref new String(m_impl ? m_impl->version() : L"");
     }
 
 
-Boolean UnixCompress::SaveLastError(Platform::String ^path)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxUnixCompressProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
-    }
 IAsyncOperation<Boolean>^ UnixCompress::CompressFileAsync(Platform::String ^inFilename, Platform::String ^destPath)
     {
 return create_async([this, inFilename, destPath]() -> Boolean
@@ -121,8 +111,6 @@ return create_async([this, inFilename, destPath]() -> Boolean
 	// --- prep output arg ---
 	CxUnixCompressProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->CompressFile(inFilename ? inFilename->Data() : L"",destPath ? destPath->Data() : L"");
 
 });
@@ -138,27 +126,12 @@ return create_async([this, inFilename]() -> Windows::Foundation::Collections::IV
 	CkByteData outDb;
 	CxUnixCompressProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->CompressFileToMem(inFilename ? inFilename->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
 
 });
-    }
-Boolean UnixCompress::CompressMemToFile(Windows::Foundation::Collections::IVector<uint8>^inData, Platform::String ^destPath)
-    {
-	if (m_impl == nullptr) { return false; }
-	CkByteData db0; std::vector<uint8> v0;
-        if (inData != nullptr) { v0 = to_vector(inData);
-            db0.borrowData(&v0[0], (unsigned long)v0.size()); }
-	// --- prep output arg ---
-	CxUnixCompressProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->CompressMemToFile(db0,destPath ? destPath->Data() : L"");
     }
 Windows::Foundation::Collections::IVector<uint8>^UnixCompress::CompressMemory(Windows::Foundation::Collections::IVector<uint8>^inData)
     {
@@ -170,12 +143,21 @@ Windows::Foundation::Collections::IVector<uint8>^UnixCompress::CompressMemory(Wi
 	CkByteData outDb;
 	CxUnixCompressProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->CompressMemory(db0,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
+    }
+Boolean UnixCompress::CompressMemToFile(Windows::Foundation::Collections::IVector<uint8>^inData, Platform::String ^destPath)
+    {
+	if (m_impl == nullptr) { return false; }
+	CkByteData db0; std::vector<uint8> v0;
+        if (inData != nullptr) { v0 = to_vector(inData);
+            db0.borrowData(&v0[0], (unsigned long)v0.size()); }
+	// --- prep output arg ---
+	CxUnixCompressProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->CompressMemToFile(db0,destPath ? destPath->Data() : L"");
     }
 Windows::Foundation::Collections::IVector<uint8>^UnixCompress::CompressString(Platform::String ^inStr, Platform::String ^charset)
     {
@@ -184,8 +166,6 @@ Windows::Foundation::Collections::IVector<uint8>^UnixCompress::CompressString(Pl
 	CkByteData outDb;
 	CxUnixCompressProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->CompressString(inStr ? inStr->Data() : L"",charset ? charset->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -197,8 +177,6 @@ Boolean UnixCompress::CompressStringToFile(Platform::String ^inStr, Platform::St
 	// --- prep output arg ---
 	CxUnixCompressProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->CompressStringToFile(inStr ? inStr->Data() : L"",charset ? charset->Data() : L"",destPath ? destPath->Data() : L"");
     }
 Boolean UnixCompress::IsUnlocked(void)
@@ -207,25 +185,7 @@ Boolean UnixCompress::IsUnlocked(void)
 	// --- prep output arg ---
 	CxUnixCompressProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsUnlocked();
-    }
-IAsyncOperation<Boolean>^ UnixCompress::UnTarZAsync(Platform::String ^zFilename, Platform::String ^destDir, Boolean bNoAbsolute)
-    {
-return create_async([this, zFilename, destDir, bNoAbsolute]() -> Boolean
-{
-// This runs in a thread pool thread...
-
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxUnixCompressProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->UnTarZ(zFilename ? zFilename->Data() : L"",destDir ? destDir->Data() : L"",bNoAbsolute);
-
-});
     }
 IAsyncOperation<Boolean>^ UnixCompress::UncompressFileAsync(Platform::String ^inFilename, Platform::String ^destPath)
     {
@@ -237,8 +197,6 @@ return create_async([this, inFilename, destPath]() -> Boolean
 	// --- prep output arg ---
 	CxUnixCompressProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UncompressFile(inFilename ? inFilename->Data() : L"",destPath ? destPath->Data() : L"");
 
 });
@@ -254,8 +212,6 @@ return create_async([this, inFilename]() -> Windows::Foundation::Collections::IV
 	CkByteData outDb;
 	CxUnixCompressProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->UncompressFileToMem(inFilename ? inFilename->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -263,9 +219,9 @@ return create_async([this, inFilename]() -> Windows::Foundation::Collections::IV
 
 });
     }
-IAsyncOperation<Platform::String ^>^ UnixCompress::UncompressFileToStringAsync(Platform::String ^inFilename, Platform::String ^inCharset)
+IAsyncOperation<Platform::String ^>^ UnixCompress::UncompressFileToStringAsync(Platform::String ^zFilename, Platform::String ^charset)
     {
-return create_async([this, inFilename, inCharset]() -> Platform::String ^
+return create_async([this, zFilename, charset]() -> Platform::String ^
 {
 // This runs in a thread pool thread...
 
@@ -273,26 +229,11 @@ return create_async([this, inFilename, inCharset]() -> Platform::String ^
 	// --- prep output arg ---
 	CxUnixCompressProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->uncompressFileToString(inFilename ? inFilename->Data() : L"",inCharset ? inCharset->Data() : L"");
+	const wchar_t *retStr = m_impl->uncompressFileToString(zFilename ? zFilename->Data() : L"",charset ? charset->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
 });
-    }
-Boolean UnixCompress::UncompressMemToFile(Windows::Foundation::Collections::IVector<uint8>^inData, Platform::String ^destPath)
-    {
-	if (m_impl == nullptr) { return false; }
-	CkByteData db0; std::vector<uint8> v0;
-        if (inData != nullptr) { v0 = to_vector(inData);
-            db0.borrowData(&v0[0], (unsigned long)v0.size()); }
-	// --- prep output arg ---
-	CxUnixCompressProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->UncompressMemToFile(db0,destPath ? destPath->Data() : L"");
     }
 Windows::Foundation::Collections::IVector<uint8>^UnixCompress::UncompressMemory(Windows::Foundation::Collections::IVector<uint8>^inData)
     {
@@ -304,25 +245,32 @@ Windows::Foundation::Collections::IVector<uint8>^UnixCompress::UncompressMemory(
 	CkByteData outDb;
 	CxUnixCompressProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->UncompressMemory(db0,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
     }
-Platform::String ^UnixCompress::UncompressString(Windows::Foundation::Collections::IVector<uint8>^inData, Platform::String ^inCharset)
+Boolean UnixCompress::UncompressMemToFile(Windows::Foundation::Collections::IVector<uint8>^inData, Platform::String ^destPath)
     {
-	if (m_impl == nullptr) { return nullptr; }
+	if (m_impl == nullptr) { return false; }
 	CkByteData db0; std::vector<uint8> v0;
         if (inData != nullptr) { v0 = to_vector(inData);
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
 	CxUnixCompressProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->uncompressString(db0,inCharset ? inCharset->Data() : L"");
+	return m_impl->UncompressMemToFile(db0,destPath ? destPath->Data() : L"");
+    }
+Platform::String ^UnixCompress::UncompressString(Windows::Foundation::Collections::IVector<uint8>^inCompressedData, Platform::String ^charset)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	CkByteData db0; std::vector<uint8> v0;
+        if (inCompressedData != nullptr) { v0 = to_vector(inCompressedData);
+            db0.borrowData(&v0[0], (unsigned long)v0.size()); }
+	// --- prep output arg ---
+	CxUnixCompressProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	const wchar_t *retStr = m_impl->uncompressString(db0,charset ? charset->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
@@ -332,9 +280,21 @@ Boolean UnixCompress::UnlockComponent(Platform::String ^unlockCode)
 	// --- prep output arg ---
 	CxUnixCompressProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UnlockComponent(unlockCode ? unlockCode->Data() : L"");
+    }
+IAsyncOperation<Boolean>^ UnixCompress::UnTarZAsync(Platform::String ^zFilename, Platform::String ^destDir, Boolean bNoAbsolute)
+    {
+return create_async([this, zFilename, destDir, bNoAbsolute]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxUnixCompressProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->UnTarZ(zFilename ? zFilename->Data() : L"",destDir ? destDir->Data() : L"",bNoAbsolute);
+
+});
     }
 
 

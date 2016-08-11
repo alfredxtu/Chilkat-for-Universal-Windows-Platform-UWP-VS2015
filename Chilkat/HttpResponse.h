@@ -42,37 +42,6 @@ public ref class HttpResponse sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Windows::Foundation::Collections::IVector<uint8> ^Body
 	{
 		Windows::Foundation::Collections::IVector<uint8> ^get();
@@ -93,9 +62,18 @@ public ref class HttpResponse sealed
 	{
 		uint32 get();
 	}
+	property int64 ContentLength64
+	{
+		int64 get();
+	}
 	property Platform::String ^DateStr
 	{
 		Platform::String ^get();
+	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
 	}
 	property Platform::String ^Domain
 	{
@@ -112,6 +90,23 @@ public ref class HttpResponse sealed
 	property Platform::String ^Header
 	{
 		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
 	}
 	property int32 NumCookies
 	{
@@ -133,13 +128,20 @@ public ref class HttpResponse sealed
 	{
 		Platform::String ^get();
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	Platform::String ^GetCookieDomain(int index);
 
 	Platform::String ^GetCookieExpiresStr(int index);
@@ -162,7 +164,7 @@ public ref class HttpResponse sealed
 
 	Boolean SaveBodyText(Boolean bCrlf, Platform::String ^path);
 
-	Platform::String ^UrlEncParamValue(Platform::String ^encodedParams, Platform::String ^paramName);
+	Platform::String ^UrlEncParamValue(Platform::String ^encodedParamString, Platform::String ^paramName);
 
 
 

@@ -71,17 +71,17 @@ class CK_VISIBLE_PUBLIC CkZipCrcW  : public CkClassWithCallbacksW
 	void BeginStream(void);
 
 	// Calculates a 32-bit CRC for in-memory byte data. This is the 32-bit CRC that
-	// would be found in a Zip file header if a file containing the ARG1 was added to a
+	// would be found in a Zip file header if a file containing the data was added to a
 	// zip archive.
-	int CalculateCrc(CkByteData &data);
+	unsigned long CalculateCrc(CkByteData &data);
 
 	// Finalizes and returns the Zip CRC value calculated by calling BeginStream
 	// followed by multiple calls to MoreData.
-	int EndStream(void);
+	unsigned long EndStream(void);
 
 	// Adds additional data to the CRC currently being calculated. (See BeginStream for
 	// more information.)
-	int FileCrc(const wchar_t *path);
+	unsigned long FileCrc(const wchar_t *path);
 
 	// Creates an asynchronous task to call the FileCrc method with the arguments
 	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)

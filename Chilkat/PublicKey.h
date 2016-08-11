@@ -42,6 +42,15 @@ public ref class PublicKey sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^KeyType
+	{
+		Platform::String ^get();
+	}
 	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
@@ -54,26 +63,17 @@ public ref class PublicKey sealed
 	{
 		Platform::String ^get();
 	}
-	property Platform::String ^Version
+	property Boolean LastMethodSuccess
 	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
+		Boolean get();
+		void set(Boolean);
 	}
 	property Boolean VerboseLogging
 	{
 		Boolean get();
 		void set(Boolean);
 	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Platform::String ^KeyType
+	property Platform::String ^Version
 	{
 		Platform::String ^get();
 	}
@@ -82,11 +82,15 @@ public ref class PublicKey sealed
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
+	Windows::Foundation::Collections::IVector<uint8>^GetDer(Boolean preferPkcs1);
+
+	Platform::String ^GetEncoded(Boolean preferPkcs1, Platform::String ^encoding);
 
 	Windows::Foundation::Collections::IVector<uint8>^GetOpenSslDer(void);
 
 	Platform::String ^GetOpenSslPem(void);
+
+	Platform::String ^GetPem(Boolean preferPkcs1);
 
 	Platform::String ^GetPkcs1ENC(Platform::String ^encoding);
 
@@ -97,6 +101,12 @@ public ref class PublicKey sealed
 	Platform::String ^GetXml(void);
 
 	Boolean LoadBase64(Platform::String ^keyStr);
+
+	Boolean LoadFromBinary(Windows::Foundation::Collections::IVector<uint8>^keyBytes);
+
+	Boolean LoadFromFile(Platform::String ^path);
+
+	Boolean LoadFromString(Platform::String ^keyString);
 
 	Boolean LoadOpenSslDer(Windows::Foundation::Collections::IVector<uint8>^data);
 
@@ -116,29 +126,17 @@ public ref class PublicKey sealed
 
 	Boolean LoadXmlFile(Platform::String ^path);
 
+	Boolean SaveDerFile(Boolean preferPkcs1, Platform::String ^path);
+
 	Boolean SaveOpenSslDerFile(Platform::String ^path);
 
 	Boolean SaveOpenSslPemFile(Platform::String ^path);
 
+	Boolean SavePemFile(Boolean preferPkcs1, Platform::String ^path);
+
 	Boolean SaveRsaDerFile(Platform::String ^path);
 
 	Boolean SaveXmlFile(Platform::String ^path);
-
-	Boolean LoadFromBinary(Windows::Foundation::Collections::IVector<uint8>^keyBytes);
-
-	Boolean LoadFromString(Platform::String ^keyString);
-
-	Boolean LoadFromFile(Platform::String ^path);
-
-	Windows::Foundation::Collections::IVector<uint8>^GetDer(Boolean preferPkcs1);
-
-	Platform::String ^GetPem(Boolean preferPkcs1);
-
-	Platform::String ^GetEncoded(Boolean preferPkcs1, Platform::String ^encoding);
-
-	Boolean SaveDerFile(Boolean preferPkcs1, Platform::String ^path);
-
-	Boolean SavePemFile(Boolean preferPkcs1, Platform::String ^path);
 
 
 

@@ -44,6 +44,11 @@ public ref class Xmp sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
@@ -55,20 +60,6 @@ public ref class Xmp sealed
 	property Platform::String ^LastErrorXml
 	{
 		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
 	}
 	property Boolean LastMethodSuccess
 	{
@@ -84,38 +75,45 @@ public ref class Xmp sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
-	Boolean AddArray(Xml ^xml, Platform::String ^arrType, Platform::String ^propName, StringArray ^values);
+	Boolean AddArray(Chilkat::Xml ^xml, Platform::String ^arrType, Platform::String ^propName, Chilkat::StringArray ^values);
 
 	void AddNsMapping(Platform::String ^ns, Platform::String ^uri);
 
-	Boolean AddSimpleInt(Xml ^iXml, Platform::String ^propName, int propVal);
+	Boolean AddSimpleInt(Chilkat::Xml ^iXml, Platform::String ^propName, int propVal);
 
-	Boolean AddSimpleStr(Xml ^iXml, Platform::String ^propName, Platform::String ^propVal);
+	Boolean AddSimpleStr(Chilkat::Xml ^iXml, Platform::String ^propName, Platform::String ^propVal);
 
-	Boolean AddStructProp(Xml ^iChilkatXml, Platform::String ^structName, Platform::String ^propName, Platform::String ^propValue);
+	Boolean AddStructProp(Chilkat::Xml ^iChilkatXml, Platform::String ^structName, Platform::String ^propName, Platform::String ^propValue);
 
-	Boolean Append(Xml ^iXml);
+	Boolean Append(Chilkat::Xml ^iXml);
 
-	StringArray ^GetArray(Xml ^iXml, Platform::String ^propName);
+	StringArray ^GetArray(Chilkat::Xml ^iXml, Platform::String ^propName);
 
 	Xml ^GetEmbedded(int index);
 
-	Xml ^GetProperty(Xml ^iXml, Platform::String ^propName);
+	Xml ^GetProperty(Chilkat::Xml ^iXml, Platform::String ^propName);
 
-	int GetSimpleInt(Xml ^iXml, Platform::String ^propName);
+	int GetSimpleInt(Chilkat::Xml ^iXml, Platform::String ^propName);
 
-	Platform::String ^GetSimpleStr(Xml ^iXml, Platform::String ^propName);
+	Platform::String ^GetSimpleStr(Chilkat::Xml ^iXml, Platform::String ^propName);
 
-	StringArray ^GetStructPropNames(Xml ^iXml, Platform::String ^structName);
+	StringArray ^GetStructPropNames(Chilkat::Xml ^iXml, Platform::String ^structName);
 
-	Platform::String ^GetStructValue(Xml ^iXml, Platform::String ^structName, Platform::String ^propName);
+	Platform::String ^GetStructValue(Chilkat::Xml ^iXml, Platform::String ^structName, Platform::String ^propName);
 
 	Boolean LoadAppFile(Platform::String ^filename);
 
@@ -125,17 +123,17 @@ public ref class Xmp sealed
 
 	Boolean RemoveAllEmbedded(void);
 
-	Boolean RemoveArray(Xml ^iXml, Platform::String ^propName);
+	Boolean RemoveArray(Chilkat::Xml ^iXml, Platform::String ^propName);
 
 	Boolean RemoveEmbedded(int index);
 
 	void RemoveNsMapping(Platform::String ^ns);
 
-	Boolean RemoveSimple(Xml ^iXml, Platform::String ^propName);
+	Boolean RemoveSimple(Chilkat::Xml ^iXml, Platform::String ^propName);
 
-	Boolean RemoveStruct(Xml ^iXml, Platform::String ^structName);
+	Boolean RemoveStruct(Chilkat::Xml ^iXml, Platform::String ^structName);
 
-	Boolean RemoveStructProp(Xml ^iXml, Platform::String ^structName, Platform::String ^propName);
+	Boolean RemoveStructProp(Chilkat::Xml ^iXml, Platform::String ^structName, Platform::String ^propName);
 
 	Boolean SaveAppFile(Platform::String ^filename);
 

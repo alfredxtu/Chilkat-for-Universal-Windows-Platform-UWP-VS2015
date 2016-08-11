@@ -43,21 +43,13 @@ Chilkat::Charset::Charset(void)
 //}
 
 
-String ^Chilkat::Charset::LastErrorHtml::get()
+String ^Chilkat::Charset::AltToCharset::get()
     {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    return ref new String(m_impl ? m_impl->altToCharset() : L"");
     }
-String ^Chilkat::Charset::LastErrorText::get()
+void Chilkat::Charset::AltToCharset::set(String ^newVal)
     {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::Charset::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::Charset::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
+        if (m_impl) m_impl->put_AltToCharset(newVal ? newVal->Data() : L"");
     }
 String ^Chilkat::Charset::DebugLogFilePath::get()
     {
@@ -66,30 +58,6 @@ String ^Chilkat::Charset::DebugLogFilePath::get()
 void Chilkat::Charset::DebugLogFilePath::set(String ^newVal)
     {
         if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Charset::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::Charset::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::Charset::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::Charset::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
-String ^Chilkat::Charset::AltToCharset::get()
-    {
-    return ref new String(m_impl ? m_impl->altToCharset() : L"");
-    }
-void Chilkat::Charset::AltToCharset::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_AltToCharset(newVal ? newVal->Data() : L"");
     }
 int Chilkat::Charset::ErrorAction::get()
     {
@@ -107,6 +75,18 @@ void Chilkat::Charset::FromCharset::set(String ^newVal)
     {
         if (m_impl) m_impl->put_FromCharset(newVal ? newVal->Data() : L"");
     }
+String ^Chilkat::Charset::LastErrorHtml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    }
+String ^Chilkat::Charset::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::Charset::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
 String ^Chilkat::Charset::LastInputAsHex::get()
     {
     return ref new String(m_impl ? m_impl->lastInputAsHex() : L"");
@@ -114,6 +94,14 @@ String ^Chilkat::Charset::LastInputAsHex::get()
 String ^Chilkat::Charset::LastInputAsQP::get()
     {
     return ref new String(m_impl ? m_impl->lastInputAsQP() : L"");
+    }
+Boolean Chilkat::Charset::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::Charset::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
 String ^Chilkat::Charset::LastOutputAsHex::get()
     {
@@ -139,30 +127,30 @@ void Chilkat::Charset::ToCharset::set(String ^newVal)
     {
         if (m_impl) m_impl->put_ToCharset(newVal ? newVal->Data() : L"");
     }
-
-
-Boolean Charset::SaveLastError(Platform::String ^path)
+Boolean Chilkat::Charset::VerboseLogging::get()
     {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
+    return m_impl ? m_impl->get_VerboseLogging() : false;
     }
+void Chilkat::Charset::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::Charset::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
+
+
 int Charset::CharsetToCodePage(Platform::String ^charsetName)
     {
 	if (m_impl == nullptr) { return -1; }
 	// --- prep output arg ---
-	// gType = int
-	// cppType = int
 	return m_impl->CharsetToCodePage(charsetName ? charsetName->Data() : L"");
     }
 Platform::String ^Charset::CodePageToCharset(int codePage)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->codePageToCharset(codePage);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -175,36 +163,28 @@ Windows::Foundation::Collections::IVector<uint8>^Charset::ConvertData(Windows::F
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->ConvertData(db0,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
     }
-Boolean Charset::ConvertFile(Platform::String ^srcPath, Platform::String ^destPath)
+Boolean Charset::ConvertFile(Platform::String ^inPath, Platform::String ^destPath)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->ConvertFile(srcPath ? srcPath->Data() : L"",destPath ? destPath->Data() : L"");
+	return m_impl->ConvertFile(inPath ? inPath->Data() : L"",destPath ? destPath->Data() : L"");
     }
-Boolean Charset::ConvertFileNoPreamble(Platform::String ^srcPath, Platform::String ^destPath)
+Boolean Charset::ConvertFileNoPreamble(Platform::String ^inPath, Platform::String ^destPath)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->ConvertFileNoPreamble(srcPath ? srcPath->Data() : L"",destPath ? destPath->Data() : L"");
+	return m_impl->ConvertFileNoPreamble(inPath ? inPath->Data() : L"",destPath ? destPath->Data() : L"");
     }
 Windows::Foundation::Collections::IVector<uint8>^Charset::ConvertFromUnicode(Platform::String ^inData)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->ConvertFromUnicode(inData ? inData->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -218,8 +198,6 @@ Windows::Foundation::Collections::IVector<uint8>^Charset::ConvertFromUtf16(Windo
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->ConvertFromUtf16(db0,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -233,20 +211,16 @@ Windows::Foundation::Collections::IVector<uint8>^Charset::ConvertHtml(Windows::F
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->ConvertHtml(db0,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
     }
-Boolean Charset::ConvertHtmlFile(Platform::String ^srcPath, Platform::String ^destPath)
+Boolean Charset::ConvertHtmlFile(Platform::String ^inPath, Platform::String ^destPath)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->ConvertHtmlFile(srcPath ? srcPath->Data() : L"",destPath ? destPath->Data() : L"");
+	return m_impl->ConvertHtmlFile(inPath ? inPath->Data() : L"",destPath ? destPath->Data() : L"");
     }
 Platform::String ^Charset::ConvertToUnicode(Windows::Foundation::Collections::IVector<uint8>^inData)
     {
@@ -255,8 +229,6 @@ Platform::String ^Charset::ConvertToUnicode(Windows::Foundation::Collections::IV
         if (inData != nullptr) { v0 = to_vector(inData);
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->convertToUnicode(db0);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -269,8 +241,6 @@ Windows::Foundation::Collections::IVector<uint8>^Charset::ConvertToUtf16(Windows
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->ConvertToUtf16(db0,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -280,8 +250,6 @@ Platform::String ^Charset::EntityEncodeDec(Platform::String ^str)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->entityEncodeDec(str ? str->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -290,8 +258,6 @@ Platform::String ^Charset::EntityEncodeHex(Platform::String ^str)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->entityEncodeHex(str ? str->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -303,19 +269,15 @@ Platform::String ^Charset::GetHtmlCharset(Windows::Foundation::Collections::IVec
         if (inData != nullptr) { v0 = to_vector(inData);
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getHtmlCharset(db0);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-Platform::String ^Charset::GetHtmlFileCharset(Platform::String ^htmlFilename)
+Platform::String ^Charset::GetHtmlFileCharset(Platform::String ^htmlFilePath)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->getHtmlFileCharset(htmlFilename ? htmlFilename->Data() : L"");
+	const wchar_t *retStr = m_impl->getHtmlFileCharset(htmlFilePath ? htmlFilePath->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
@@ -323,8 +285,6 @@ Platform::String ^Charset::HtmlDecodeToStr(Platform::String ^inStr)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->htmlDecodeToStr(inStr ? inStr->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -337,58 +297,46 @@ Windows::Foundation::Collections::IVector<uint8>^Charset::HtmlEntityDecode(Windo
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->HtmlEntityDecode(db0,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
     }
-Boolean Charset::HtmlEntityDecodeFile(Platform::String ^inFilename, Platform::String ^destPath)
+Boolean Charset::HtmlEntityDecodeFile(Platform::String ^inPath, Platform::String ^destPath)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->HtmlEntityDecodeFile(inFilename ? inFilename->Data() : L"",destPath ? destPath->Data() : L"");
+	return m_impl->HtmlEntityDecodeFile(inPath ? inPath->Data() : L"",destPath ? destPath->Data() : L"");
     }
 Boolean Charset::IsUnlocked(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsUnlocked();
     }
 Platform::String ^Charset::LowerCase(Platform::String ^inStr)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->lowerCase(inStr ? inStr->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-Windows::Foundation::Collections::IVector<uint8>^Charset::ReadFile(Platform::String ^filename)
+Windows::Foundation::Collections::IVector<uint8>^Charset::ReadFile(Platform::String ^path)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
-	bool success = m_impl->ReadFile(filename ? filename->Data() : L"",outDb);
+	bool success = m_impl->ReadFile(path ? path->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
     }
-Platform::String ^Charset::ReadFileToString(Platform::String ^filename, Platform::String ^srcCharset)
+Platform::String ^Charset::ReadFileToString(Platform::String ^path, Platform::String ^charset)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->readFileToString(filename ? filename->Data() : L"",srcCharset ? srcCharset->Data() : L"");
+	const wchar_t *retStr = m_impl->readFileToString(path ? path->Data() : L"",charset ? charset->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
@@ -399,32 +347,24 @@ void Charset::SetErrorBytes(Windows::Foundation::Collections::IVector<uint8>^dat
         if (data != nullptr) { v0 = to_vector(data);
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
-	// gType = void
-	// cppType = void
 	m_impl->SetErrorBytes(db0);
     }
 void Charset::SetErrorString(Platform::String ^str, Platform::String ^charset)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	// gType = void
-	// cppType = void
 	m_impl->SetErrorString(str ? str->Data() : L"",charset ? charset->Data() : L"");
     }
 Boolean Charset::UnlockComponent(Platform::String ^unlockCode)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->UnlockComponent(unlockCode ? unlockCode->Data() : L"");
     }
 Platform::String ^Charset::UpperCase(Platform::String ^inStr)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->upperCase(inStr ? inStr->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -433,8 +373,6 @@ Platform::String ^Charset::UrlDecodeStr(Platform::String ^inStr)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->urlDecodeStr(inStr ? inStr->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -446,36 +384,28 @@ Boolean Charset::VerifyData(Platform::String ^charset, Windows::Foundation::Coll
         if (inData != nullptr) { v1 = to_vector(inData);
             db1.borrowData(&v1[0], (unsigned long)v1.size()); }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->VerifyData(charset ? charset->Data() : L"",db1);
     }
-Boolean Charset::VerifyFile(Platform::String ^charset, Platform::String ^filename)
+Boolean Charset::VerifyFile(Platform::String ^charset, Platform::String ^path)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->VerifyFile(charset ? charset->Data() : L"",filename ? filename->Data() : L"");
+	return m_impl->VerifyFile(charset ? charset->Data() : L"",path ? path->Data() : L"");
     }
-Boolean Charset::WriteFile(Platform::String ^filename, Windows::Foundation::Collections::IVector<uint8>^fileData)
+Boolean Charset::WriteFile(Platform::String ^path, Windows::Foundation::Collections::IVector<uint8>^byteData)
     {
 	if (m_impl == nullptr) { return false; }
 	CkByteData db1; std::vector<uint8> v1;
-        if (fileData != nullptr) { v1 = to_vector(fileData);
+        if (byteData != nullptr) { v1 = to_vector(byteData);
             db1.borrowData(&v1[0], (unsigned long)v1.size()); }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->WriteFile(filename ? filename->Data() : L"",db1);
+	return m_impl->WriteFile(path ? path->Data() : L"",db1);
     }
-Boolean Charset::WriteStringToFile(Platform::String ^str, Platform::String ^filename, Platform::String ^charset)
+Boolean Charset::WriteStringToFile(Platform::String ^textData, Platform::String ^path, Platform::String ^charset)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->WriteStringToFile(str ? str->Data() : L"",filename ? filename->Data() : L"",charset ? charset->Data() : L"");
+	return m_impl->WriteStringToFile(textData ? textData->Data() : L"",path ? path->Data() : L"",charset ? charset->Data() : L"");
     }
 
 

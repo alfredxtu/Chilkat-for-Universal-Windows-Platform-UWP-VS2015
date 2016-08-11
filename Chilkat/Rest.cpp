@@ -59,45 +59,13 @@ Chilkat::Rest::Rest(void)
 //}
 
 
-String ^Chilkat::Rest::LastErrorHtml::get()
+Boolean Chilkat::Rest::AllowHeaderQB::get()
     {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    return m_impl ? m_impl->get_AllowHeaderQB() : false;
     }
-String ^Chilkat::Rest::LastErrorText::get()
+void Chilkat::Rest::AllowHeaderQB::set(Boolean newVal)
     {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::Rest::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::Rest::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::Rest::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::Rest::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Rest::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::Rest::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::Rest::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::Rest::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+        if (m_impl) m_impl->put_AllowHeaderQB(newVal);
     }
 String ^Chilkat::Rest::Authorization::get()
     {
@@ -106,6 +74,18 @@ String ^Chilkat::Rest::Authorization::get()
 void Chilkat::Rest::Authorization::set(String ^newVal)
     {
         if (m_impl) m_impl->put_Authorization(newVal ? newVal->Data() : L"");
+    }
+int Chilkat::Rest::ConnectFailReason::get()
+    {
+    return m_impl ? m_impl->get_ConnectFailReason() : 0;
+    }
+String ^Chilkat::Rest::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::Rest::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
     }
 int Chilkat::Rest::HeartbeatMs::get()
     {
@@ -131,6 +111,26 @@ void Chilkat::Rest::IdleTimeoutMs::set(int newVal)
     {
         if (m_impl) m_impl->put_IdleTimeoutMs(newVal);
     }
+String ^Chilkat::Rest::LastErrorHtml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    }
+String ^Chilkat::Rest::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::Rest::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
+Boolean Chilkat::Rest::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::Rest::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+    }
 String ^Chilkat::Rest::LastRequestHeader::get()
     {
     return ref new String(m_impl ? m_impl->lastRequestHeader() : L"");
@@ -150,6 +150,14 @@ String ^Chilkat::Rest::PartSelector::get()
 void Chilkat::Rest::PartSelector::set(String ^newVal)
     {
         if (m_impl) m_impl->put_PartSelector(newVal ? newVal->Data() : L"");
+    }
+Boolean Chilkat::Rest::PercentDoneOnSend::get()
+    {
+    return m_impl ? m_impl->get_PercentDoneOnSend() : false;
+    }
+void Chilkat::Rest::PercentDoneOnSend::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_PercentDoneOnSend(newVal);
     }
 String ^Chilkat::Rest::ResponseHeader::get()
     {
@@ -171,46 +179,26 @@ void Chilkat::Rest::StreamNonChunked::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_StreamNonChunked(newVal);
     }
-int Chilkat::Rest::ConnectFailReason::get()
+Boolean Chilkat::Rest::VerboseLogging::get()
     {
-    return m_impl ? m_impl->get_ConnectFailReason() : 0;
+    return m_impl ? m_impl->get_VerboseLogging() : false;
     }
-Boolean Chilkat::Rest::PercentDoneOnSend::get()
+void Chilkat::Rest::VerboseLogging::set(Boolean newVal)
     {
-    return m_impl ? m_impl->get_PercentDoneOnSend() : false;
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
     }
-void Chilkat::Rest::PercentDoneOnSend::set(Boolean newVal)
+String ^Chilkat::Rest::Version::get()
     {
-        if (m_impl) m_impl->put_PercentDoneOnSend(newVal);
-    }
-Boolean Chilkat::Rest::AllowHeaderQB::get()
-    {
-    return m_impl ? m_impl->get_AllowHeaderQB() : false;
-    }
-void Chilkat::Rest::AllowHeaderQB::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_AllowHeaderQB(newVal);
+    return ref new String(m_impl ? m_impl->version() : L"");
     }
 
 
-Boolean Rest::SaveLastError(Platform::String ^path)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxRestProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
-    }
 Boolean Rest::AddHeader(Platform::String ^name, Platform::String ^value)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddHeader(name ? name->Data() : L"",value ? value->Data() : L"");
     }
 Boolean Rest::AddQueryParam(Platform::String ^name, Platform::String ^value)
@@ -219,8 +207,6 @@ Boolean Rest::AddQueryParam(Platform::String ^name, Platform::String ^value)
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddQueryParam(name ? name->Data() : L"",value ? value->Data() : L"");
     }
 Boolean Rest::AddQueryParams(Platform::String ^queryString)
@@ -229,8 +215,6 @@ Boolean Rest::AddQueryParams(Platform::String ^queryString)
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddQueryParams(queryString ? queryString->Data() : L"");
     }
 Boolean Rest::ClearAllHeaders(void)
@@ -239,8 +223,6 @@ Boolean Rest::ClearAllHeaders(void)
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ClearAllHeaders();
     }
 Boolean Rest::ClearAllQueryParams(void)
@@ -249,8 +231,6 @@ Boolean Rest::ClearAllQueryParams(void)
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ClearAllQueryParams();
     }
 void Rest::ClearResponseBodyStream(void)
@@ -259,8 +239,6 @@ void Rest::ClearResponseBodyStream(void)
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->ClearResponseBodyStream();
     }
 IAsyncOperation<Boolean>^ Rest::ConnectAsync(Platform::String ^hostname, int port, Boolean tls, Boolean autoReconnect)
@@ -273,8 +251,6 @@ return create_async([this, hostname, port, tls, autoReconnect]() -> Boolean
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->Connect(hostname ? hostname->Data() : L"",port,tls,autoReconnect);
 
 });
@@ -289,8 +265,6 @@ return create_async([this, maxWaitMs]() -> Boolean
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->Disconnect(maxWaitMs);
 
 });
@@ -308,8 +282,6 @@ return create_async([this, httpVerb, uriPath, bodyBytes]() -> Platform::String ^
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->fullRequestBinary(httpVerb ? httpVerb->Data() : L"",uriPath ? uriPath->Data() : L"",db2);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -326,8 +298,6 @@ return create_async([this, httpVerb, uriPath]() -> Platform::String ^
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->fullRequestFormUrlEncoded(httpVerb ? httpVerb->Data() : L"",uriPath ? uriPath->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -344,8 +314,6 @@ return create_async([this, httpVerb, uriPath]() -> Platform::String ^
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->fullRequestMultipart(httpVerb ? httpVerb->Data() : L"",uriPath ? uriPath->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -362,15 +330,13 @@ return create_async([this, httpVerb, uriPath]() -> Platform::String ^
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->fullRequestNoBody(httpVerb ? httpVerb->Data() : L"",uriPath ? uriPath->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
 });
     }
-IAsyncOperation<Platform::String ^>^ Rest::FullRequestStreamAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Stream ^stream)
+IAsyncOperation<Platform::String ^>^ Rest::FullRequestStreamAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Chilkat::Stream ^stream)
     {
 return create_async([this, httpVerb, uriPath, stream]() -> Platform::String ^
 {
@@ -383,8 +349,6 @@ return create_async([this, httpVerb, uriPath, stream]() -> Platform::String ^
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->fullRequestStream(httpVerb ? httpVerb->Data() : L"",uriPath ? uriPath->Data() : L"",*pObj2);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -401,8 +365,6 @@ return create_async([this, httpVerb, uriPath, bodyText]() -> Platform::String ^
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->fullRequestString(httpVerb ? httpVerb->Data() : L"",uriPath ? uriPath->Data() : L"",bodyText ? bodyText->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -420,8 +382,6 @@ return create_async([this]() -> Windows::Foundation::Collections::IVector<uint8>
 	CkByteData outDb;
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->ReadRespBodyBinary(outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -429,7 +389,7 @@ return create_async([this]() -> Windows::Foundation::Collections::IVector<uint8>
 
 });
     }
-IAsyncOperation<Boolean>^ Rest::ReadRespBodyStreamAsync(Stream ^stream, Boolean autoSetStreamCharset)
+IAsyncOperation<Boolean>^ Rest::ReadRespBodyStreamAsync(Chilkat::Stream ^stream, Boolean autoSetStreamCharset)
     {
 return create_async([this, stream, autoSetStreamCharset]() -> Boolean
 {
@@ -442,8 +402,6 @@ return create_async([this, stream, autoSetStreamCharset]() -> Boolean
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ReadRespBodyStream(*pObj0,autoSetStreamCharset);
 
 });
@@ -458,8 +416,6 @@ return create_async([this]() -> Platform::String ^
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->readRespBodyString();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -476,8 +432,6 @@ return create_async([this]() -> int
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
 	return m_impl->ReadResponseHeader();
 
 });
@@ -488,8 +442,6 @@ Url ^Rest::RedirectUrl(void)
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Url
-	// cppType = CkUrl *
 	CkUrlW *pRetObj = m_impl->RedirectUrl();
 	if (!pRetObj) return nullptr;
 	Chilkat::Url ^pUrl = ref new Chilkat::Url();
@@ -502,8 +454,6 @@ Boolean Rest::RemoveHeader(Platform::String ^name)
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->RemoveHeader(name ? name->Data() : L"");
     }
 Boolean Rest::RemoveQueryParam(Platform::String ^name)
@@ -512,8 +462,6 @@ Boolean Rest::RemoveQueryParam(Platform::String ^name)
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->RemoveQueryParam(name ? name->Data() : L"");
     }
 Platform::String ^Rest::ResponseHdrByName(Platform::String ^name)
@@ -522,8 +470,6 @@ Platform::String ^Rest::ResponseHdrByName(Platform::String ^name)
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->responseHdrByName(name ? name->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -534,8 +480,6 @@ Platform::String ^Rest::ResponseHdrName(int index)
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->responseHdrName(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -546,8 +490,6 @@ Platform::String ^Rest::ResponseHdrValue(int index)
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->responseHdrValue(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -565,8 +507,6 @@ return create_async([this, httpVerb, uriPath, body]() -> Boolean
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SendReqBinaryBody(httpVerb ? httpVerb->Data() : L"",uriPath ? uriPath->Data() : L"",db2);
 
 });
@@ -581,8 +521,6 @@ return create_async([this, httpVerb, uriPath]() -> Boolean
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SendReqFormUrlEncoded(httpVerb ? httpVerb->Data() : L"",uriPath ? uriPath->Data() : L"");
 
 });
@@ -597,8 +535,6 @@ return create_async([this, httpVerb, uriPath]() -> Boolean
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SendReqMultipart(httpVerb ? httpVerb->Data() : L"",uriPath ? uriPath->Data() : L"");
 
 });
@@ -613,13 +549,11 @@ return create_async([this, httpVerb, uriPath]() -> Boolean
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SendReqNoBody(httpVerb ? httpVerb->Data() : L"",uriPath ? uriPath->Data() : L"");
 
 });
     }
-IAsyncOperation<Boolean>^ Rest::SendReqStreamBodyAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Stream ^stream)
+IAsyncOperation<Boolean>^ Rest::SendReqStreamBodyAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Chilkat::Stream ^stream)
     {
 return create_async([this, httpVerb, uriPath, stream]() -> Boolean
 {
@@ -632,8 +566,6 @@ return create_async([this, httpVerb, uriPath, stream]() -> Boolean
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SendReqStreamBody(httpVerb ? httpVerb->Data() : L"",uriPath ? uriPath->Data() : L"",*pObj2);
 
 });
@@ -648,13 +580,11 @@ return create_async([this, httpVerb, uriPath, bodyText]() -> Boolean
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SendReqStringBody(httpVerb ? httpVerb->Data() : L"",uriPath ? uriPath->Data() : L"",bodyText ? bodyText->Data() : L"");
 
 });
     }
-Boolean Rest::SetAuthAws(AuthAws ^authProvider)
+Boolean Rest::SetAuthAws(Chilkat::AuthAws ^authProvider)
     {
 	if (m_impl == nullptr) { return false; }
 	if (authProvider == nullptr) { return false; }
@@ -663,11 +593,9 @@ Boolean Rest::SetAuthAws(AuthAws ^authProvider)
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetAuthAws(*pObj0);
     }
-Boolean Rest::SetAuthAzureAD(AuthAzureAD ^authProvider)
+Boolean Rest::SetAuthAzureAD(Chilkat::AuthAzureAD ^authProvider)
     {
 	if (m_impl == nullptr) { return false; }
 	if (authProvider == nullptr) { return false; }
@@ -676,11 +604,9 @@ Boolean Rest::SetAuthAzureAD(AuthAzureAD ^authProvider)
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetAuthAzureAD(*pObj0);
     }
-Boolean Rest::SetAuthAzureStorage(AuthAzureStorage ^authProvider)
+Boolean Rest::SetAuthAzureStorage(Chilkat::AuthAzureStorage ^authProvider)
     {
 	if (m_impl == nullptr) { return false; }
 	if (authProvider == nullptr) { return false; }
@@ -689,8 +615,6 @@ Boolean Rest::SetAuthAzureStorage(AuthAzureStorage ^authProvider)
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetAuthAzureStorage(*pObj0);
     }
 Boolean Rest::SetAuthBasic(Platform::String ^username, Platform::String ^password)
@@ -699,11 +623,9 @@ Boolean Rest::SetAuthBasic(Platform::String ^username, Platform::String ^passwor
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetAuthBasic(username ? username->Data() : L"",password ? password->Data() : L"");
     }
-Boolean Rest::SetAuthGoogle(AuthGoogle ^authProvider)
+Boolean Rest::SetAuthGoogle(Chilkat::AuthGoogle ^authProvider)
     {
 	if (m_impl == nullptr) { return false; }
 	if (authProvider == nullptr) { return false; }
@@ -712,11 +634,9 @@ Boolean Rest::SetAuthGoogle(AuthGoogle ^authProvider)
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetAuthGoogle(*pObj0);
     }
-Boolean Rest::SetAuthOAuth1(OAuth1 ^authProvider, Boolean useQueryParams)
+Boolean Rest::SetAuthOAuth1(Chilkat::OAuth1 ^authProvider, Boolean useQueryParams)
     {
 	if (m_impl == nullptr) { return false; }
 	if (authProvider == nullptr) { return false; }
@@ -725,8 +645,6 @@ Boolean Rest::SetAuthOAuth1(OAuth1 ^authProvider, Boolean useQueryParams)
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetAuthOAuth1(*pObj0,useQueryParams);
     }
 Boolean Rest::SetMultipartBodyBinary(Windows::Foundation::Collections::IVector<uint8>^bodyData)
@@ -738,11 +656,9 @@ Boolean Rest::SetMultipartBodyBinary(Windows::Foundation::Collections::IVector<u
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetMultipartBodyBinary(db0);
     }
-Boolean Rest::SetMultipartBodyStream(Stream ^stream)
+Boolean Rest::SetMultipartBodyStream(Chilkat::Stream ^stream)
     {
 	if (m_impl == nullptr) { return false; }
 	if (stream == nullptr) { return false; }
@@ -751,8 +667,6 @@ Boolean Rest::SetMultipartBodyStream(Stream ^stream)
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetMultipartBodyStream(*pObj0);
     }
 Boolean Rest::SetMultipartBodyString(Platform::String ^bodyText)
@@ -761,11 +675,9 @@ Boolean Rest::SetMultipartBodyString(Platform::String ^bodyText)
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetMultipartBodyString(bodyText ? bodyText->Data() : L"");
     }
-Boolean Rest::SetResponseBodyStream(int expectedStatus, Boolean autoSetStreamCharset, Stream ^responseStream)
+Boolean Rest::SetResponseBodyStream(int expectedStatus, Boolean autoSetStreamCharset, Chilkat::Stream ^responseStream)
     {
 	if (m_impl == nullptr) { return false; }
 	if (responseStream == nullptr) { return false; }
@@ -774,11 +686,9 @@ Boolean Rest::SetResponseBodyStream(int expectedStatus, Boolean autoSetStreamCha
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetResponseBodyStream(expectedStatus,autoSetStreamCharset,*pObj2);
     }
-Boolean Rest::UseConnection(Socket ^connection, Boolean autoReconnect)
+Boolean Rest::UseConnection(Chilkat::Socket ^connection, Boolean autoReconnect)
     {
 	if (m_impl == nullptr) { return false; }
 	if (connection == nullptr) { return false; }
@@ -787,8 +697,6 @@ Boolean Rest::UseConnection(Socket ^connection, Boolean autoReconnect)
 	// --- prep output arg ---
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UseConnection(*pObj0,autoReconnect);
     }
 

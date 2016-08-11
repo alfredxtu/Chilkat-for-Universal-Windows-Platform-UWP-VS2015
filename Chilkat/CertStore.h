@@ -43,6 +43,16 @@ public ref class CertStore sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Boolean AvoidWindowsPkAccess
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
@@ -55,26 +65,7 @@ public ref class CertStore sealed
 	{
 		Platform::String ^get();
 	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean AvoidWindowsPkAccess
 	{
 		Boolean get();
 		void set(Boolean);
@@ -83,13 +74,20 @@ public ref class CertStore sealed
 	{
 		int32 get();
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	Cert ^FindCertByRfc822Name(Platform::String ^name);
 
 	Cert ^FindCertBySerial(Platform::String ^str);

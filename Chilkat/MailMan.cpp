@@ -61,46 +61,6 @@ Chilkat::MailMan::MailMan(void)
 //}
 
 
-String ^Chilkat::MailMan::LastErrorHtml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
-    }
-String ^Chilkat::MailMan::LastErrorText::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::MailMan::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::MailMan::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::MailMan::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::MailMan::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::MailMan::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::MailMan::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::MailMan::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::MailMan::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
 Boolean Chilkat::MailMan::AbortCurrent::get()
     {
     return m_impl ? m_impl->get_AbortCurrent() : false;
@@ -168,6 +128,14 @@ int Chilkat::MailMan::ConnectTimeout::get()
 void Chilkat::MailMan::ConnectTimeout::set(int newVal)
     {
         if (m_impl) m_impl->put_ConnectTimeout(newVal);
+    }
+String ^Chilkat::MailMan::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::MailMan::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
     }
 String ^Chilkat::MailMan::DsnEnvid::get()
     {
@@ -297,6 +265,26 @@ Boolean Chilkat::MailMan::IsSmtpConnected::get()
     {
     return m_impl ? m_impl->get_IsSmtpConnected() : false;
     }
+String ^Chilkat::MailMan::LastErrorHtml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    }
+String ^Chilkat::MailMan::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::MailMan::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
+Boolean Chilkat::MailMan::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::MailMan::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+    }
 String ^Chilkat::MailMan::LastSendQFilename::get()
     {
     return ref new String(m_impl ? m_impl->lastSendQFilename() : L"");
@@ -393,14 +381,6 @@ void Chilkat::MailMan::PercentDoneScale::set(int newVal)
     {
         if (m_impl) m_impl->put_PercentDoneScale(newVal);
     }
-Boolean Chilkat::MailMan::Pop3SPA::get()
-    {
-    return m_impl ? m_impl->get_Pop3SPA() : false;
-    }
-void Chilkat::MailMan::Pop3SPA::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_Pop3SPA(newVal);
-    }
 int Chilkat::MailMan::Pop3SessionId::get()
     {
     return m_impl ? m_impl->get_Pop3SessionId() : 0;
@@ -408,6 +388,14 @@ int Chilkat::MailMan::Pop3SessionId::get()
 String ^Chilkat::MailMan::Pop3SessionLog::get()
     {
     return ref new String(m_impl ? m_impl->pop3SessionLog() : L"");
+    }
+Boolean Chilkat::MailMan::Pop3SPA::get()
+    {
+    return m_impl ? m_impl->get_Pop3SPA() : false;
+    }
+void Chilkat::MailMan::Pop3SPA::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_Pop3SPA(newVal);
     }
 Boolean Chilkat::MailMan::Pop3SslServerCertVerified::get()
     {
@@ -585,22 +573,6 @@ void Chilkat::MailMan::SmtpUsername::set(String ^newVal)
     {
         if (m_impl) m_impl->put_SmtpUsername(newVal ? newVal->Data() : L"");
     }
-int Chilkat::MailMan::SoRcvBuf::get()
-    {
-    return m_impl ? m_impl->get_SoRcvBuf() : 0;
-    }
-void Chilkat::MailMan::SoRcvBuf::set(int newVal)
-    {
-        if (m_impl) m_impl->put_SoRcvBuf(newVal);
-    }
-int Chilkat::MailMan::SoSndBuf::get()
-    {
-    return m_impl ? m_impl->get_SoSndBuf() : 0;
-    }
-void Chilkat::MailMan::SoSndBuf::set(int newVal)
-    {
-        if (m_impl) m_impl->put_SoSndBuf(newVal);
-    }
 String ^Chilkat::MailMan::SocksHostname::get()
     {
     return ref new String(m_impl ? m_impl->socksHostname() : L"");
@@ -640,6 +612,22 @@ int Chilkat::MailMan::SocksVersion::get()
 void Chilkat::MailMan::SocksVersion::set(int newVal)
     {
         if (m_impl) m_impl->put_SocksVersion(newVal);
+    }
+int Chilkat::MailMan::SoRcvBuf::get()
+    {
+    return m_impl ? m_impl->get_SoRcvBuf() : 0;
+    }
+void Chilkat::MailMan::SoRcvBuf::set(int newVal)
+    {
+        if (m_impl) m_impl->put_SoRcvBuf(newVal);
+    }
+int Chilkat::MailMan::SoSndBuf::get()
+    {
+    return m_impl ? m_impl->get_SoSndBuf() : 0;
+    }
+void Chilkat::MailMan::SoSndBuf::set(int newVal)
+    {
+        if (m_impl) m_impl->put_SoSndBuf(newVal);
     }
 String ^Chilkat::MailMan::SslAllowedCiphers::get()
     {
@@ -689,18 +677,20 @@ void Chilkat::MailMan::UseApop::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_UseApop(newVal);
     }
-
-
-Boolean MailMan::SaveLastError(Platform::String ^path)
+Boolean Chilkat::MailMan::VerboseLogging::get()
     {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxMailManProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
+    return m_impl ? m_impl->get_VerboseLogging() : false;
     }
+void Chilkat::MailMan::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::MailMan::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
+
+
 Boolean MailMan::AddPfxSourceData(Windows::Foundation::Collections::IVector<uint8>^pfxData, Platform::String ^password)
     {
 	if (m_impl == nullptr) { return false; }
@@ -710,8 +700,6 @@ Boolean MailMan::AddPfxSourceData(Windows::Foundation::Collections::IVector<uint
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddPfxSourceData(db0,password ? password->Data() : L"");
     }
 Boolean MailMan::AddPfxSourceFile(Platform::String ^pfxFilePath, Platform::String ^password)
@@ -720,8 +708,6 @@ Boolean MailMan::AddPfxSourceFile(Platform::String ^pfxFilePath, Platform::Strin
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddPfxSourceFile(pfxFilePath ? pfxFilePath->Data() : L"",password ? password->Data() : L"");
     }
 IAsyncOperation<int>^ MailMan::CheckMailAsync(void)
@@ -734,8 +720,6 @@ return create_async([this]() -> int
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
 	return m_impl->CheckMail();
 
 });
@@ -746,8 +730,6 @@ void MailMan::ClearBadEmailAddresses(void)
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->ClearBadEmailAddresses();
     }
 void MailMan::ClearPop3SessionLog(void)
@@ -756,8 +738,6 @@ void MailMan::ClearPop3SessionLog(void)
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->ClearPop3SessionLog();
     }
 void MailMan::ClearSmtpSessionLog(void)
@@ -766,8 +746,6 @@ void MailMan::ClearSmtpSessionLog(void)
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->ClearSmtpSessionLog();
     }
 IAsyncOperation<Boolean>^ MailMan::CloseSmtpConnectionAsync(void)
@@ -780,8 +758,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->CloseSmtpConnection();
 
 });
@@ -796,8 +772,6 @@ return create_async([this]() -> EmailBundle ^
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = EmailBundle
-	// cppType = CkEmailBundle *
 	CkEmailBundleW *pRetObj = m_impl->CopyMail();
 	if (!pRetObj) return nullptr;
 	Chilkat::EmailBundle ^pEmailBundle = ref new Chilkat::EmailBundle();
@@ -806,21 +780,19 @@ return create_async([this]() -> EmailBundle ^
 
 });
     }
-IAsyncOperation<Boolean>^ MailMan::DeleteBundleAsync(EmailBundle ^bundle)
+IAsyncOperation<Boolean>^ MailMan::DeleteBundleAsync(Chilkat::EmailBundle ^emailBundle)
     {
-return create_async([this, bundle]() -> Boolean
+return create_async([this, emailBundle]() -> Boolean
 {
 // This runs in a thread pool thread...
 
 	if (m_impl == nullptr) { return false; }
-	if (bundle == nullptr) { return false; }
-	CkEmailBundleW* pObj0 = bundle->m_impl;
+	if (emailBundle == nullptr) { return false; }
+	CkEmailBundleW* pObj0 = emailBundle->m_impl;
 	 if (!pObj0) { return false; }
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->DeleteBundle(*pObj0);
 
 });
@@ -835,8 +807,6 @@ return create_async([this, msgnum]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->DeleteByMsgnum(msgnum);
 
 });
@@ -851,13 +821,11 @@ return create_async([this, uidl]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->DeleteByUidl(uidl ? uidl->Data() : L"");
 
 });
     }
-IAsyncOperation<Boolean>^ MailMan::DeleteEmailAsync(Email ^email)
+IAsyncOperation<Boolean>^ MailMan::DeleteEmailAsync(Chilkat::Email ^email)
     {
 return create_async([this, email]() -> Boolean
 {
@@ -870,13 +838,11 @@ return create_async([this, email]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->DeleteEmail(*pObj0);
 
 });
     }
-IAsyncOperation<Boolean>^ MailMan::DeleteMultipleAsync(StringArray ^uidlArray)
+IAsyncOperation<Boolean>^ MailMan::DeleteMultipleAsync(Chilkat::StringArray ^uidlArray)
     {
 return create_async([this, uidlArray]() -> Boolean
 {
@@ -889,8 +855,6 @@ return create_async([this, uidlArray]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->DeleteMultiple(*pObj0);
 
 });
@@ -905,8 +869,6 @@ return create_async([this, msgnum]() -> Email ^
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Email
-	// cppType = CkEmail *
 	CkEmailW *pRetObj = m_impl->FetchByMsgnum(msgnum);
 	if (!pRetObj) return nullptr;
 	Chilkat::Email ^pEmail = ref new Chilkat::Email();
@@ -925,8 +887,6 @@ return create_async([this, uidl]() -> Email ^
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Email
-	// cppType = CkEmail *
 	CkEmailW *pRetObj = m_impl->FetchEmail(uidl ? uidl->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::Email ^pEmail = ref new Chilkat::Email();
@@ -946,8 +906,6 @@ return create_async([this, uidl]() -> Windows::Foundation::Collections::IVector<
 	CkByteData outDb;
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->FetchMime(uidl ? uidl->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -966,8 +924,6 @@ return create_async([this, msgnum]() -> Windows::Foundation::Collections::IVecto
 	CkByteData outDb;
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->FetchMimeByMsgnum(msgnum,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -975,7 +931,7 @@ return create_async([this, msgnum]() -> Windows::Foundation::Collections::IVecto
 
 });
     }
-IAsyncOperation<EmailBundle ^>^ MailMan::FetchMultipleAsync(StringArray ^uidlArray)
+IAsyncOperation<EmailBundle ^>^ MailMan::FetchMultipleAsync(Chilkat::StringArray ^uidlArray)
     {
 return create_async([this, uidlArray]() -> EmailBundle ^
 {
@@ -988,8 +944,6 @@ return create_async([this, uidlArray]() -> EmailBundle ^
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = EmailBundle
-	// cppType = CkEmailBundle *
 	CkEmailBundleW *pRetObj = m_impl->FetchMultiple(*pObj0);
 	if (!pRetObj) return nullptr;
 	Chilkat::EmailBundle ^pEmailBundle = ref new Chilkat::EmailBundle();
@@ -998,7 +952,7 @@ return create_async([this, uidlArray]() -> EmailBundle ^
 
 });
     }
-IAsyncOperation<EmailBundle ^>^ MailMan::FetchMultipleHeadersAsync(StringArray ^uidlArray, int numBodyLines)
+IAsyncOperation<EmailBundle ^>^ MailMan::FetchMultipleHeadersAsync(Chilkat::StringArray ^uidlArray, int numBodyLines)
     {
 return create_async([this, uidlArray, numBodyLines]() -> EmailBundle ^
 {
@@ -1011,8 +965,6 @@ return create_async([this, uidlArray, numBodyLines]() -> EmailBundle ^
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = EmailBundle
-	// cppType = CkEmailBundle *
 	CkEmailBundleW *pRetObj = m_impl->FetchMultipleHeaders(*pObj0,numBodyLines);
 	if (!pRetObj) return nullptr;
 	Chilkat::EmailBundle ^pEmailBundle = ref new Chilkat::EmailBundle();
@@ -1021,7 +973,7 @@ return create_async([this, uidlArray, numBodyLines]() -> EmailBundle ^
 
 });
     }
-IAsyncOperation<StringArray ^>^ MailMan::FetchMultipleMimeAsync(StringArray ^uidlArray)
+IAsyncOperation<StringArray ^>^ MailMan::FetchMultipleMimeAsync(Chilkat::StringArray ^uidlArray)
     {
 return create_async([this, uidlArray]() -> StringArray ^
 {
@@ -1034,8 +986,6 @@ return create_async([this, uidlArray]() -> StringArray ^
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = StringArray
-	// cppType = CkStringArray *
 	CkStringArrayW *pRetObj = m_impl->FetchMultipleMime(*pObj0);
 	if (!pRetObj) return nullptr;
 	Chilkat::StringArray ^pStringArray = ref new Chilkat::StringArray();
@@ -1044,9 +994,9 @@ return create_async([this, uidlArray]() -> StringArray ^
 
 });
     }
-IAsyncOperation<Email ^>^ MailMan::FetchSingleHeaderAsync(int numBodyLines, int index)
+IAsyncOperation<Email ^>^ MailMan::FetchSingleHeaderAsync(int numBodyLines, int messageNumber)
     {
-return create_async([this, numBodyLines, index]() -> Email ^
+return create_async([this, numBodyLines, messageNumber]() -> Email ^
 {
 // This runs in a thread pool thread...
 
@@ -1054,9 +1004,7 @@ return create_async([this, numBodyLines, index]() -> Email ^
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Email
-	// cppType = CkEmail *
-	CkEmailW *pRetObj = m_impl->FetchSingleHeader(numBodyLines,index);
+	CkEmailW *pRetObj = m_impl->FetchSingleHeader(numBodyLines,messageNumber);
 	if (!pRetObj) return nullptr;
 	Chilkat::Email ^pEmail = ref new Chilkat::Email();
 	pEmail->m_impl = pRetObj;
@@ -1074,8 +1022,6 @@ return create_async([this, numBodyLines, uidl]() -> Email ^
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Email
-	// cppType = CkEmail *
 	CkEmailW *pRetObj = m_impl->FetchSingleHeaderByUidl(numBodyLines,uidl ? uidl->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::Email ^pEmail = ref new Chilkat::Email();
@@ -1094,8 +1040,6 @@ return create_async([this, numBodyLines]() -> EmailBundle ^
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = EmailBundle
-	// cppType = CkEmailBundle *
 	CkEmailBundleW *pRetObj = m_impl->GetAllHeaders(numBodyLines);
 	if (!pRetObj) return nullptr;
 	Chilkat::EmailBundle ^pEmailBundle = ref new Chilkat::EmailBundle();
@@ -1110,15 +1054,13 @@ StringArray ^MailMan::GetBadEmailAddrs(void)
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = StringArray
-	// cppType = CkStringArray *
 	CkStringArrayW *pRetObj = m_impl->GetBadEmailAddrs();
 	if (!pRetObj) return nullptr;
 	Chilkat::StringArray ^pStringArray = ref new Chilkat::StringArray();
 	pStringArray->m_impl = pRetObj;
 	return pStringArray;
     }
-IAsyncOperation<Email ^>^ MailMan::GetFullEmailAsync(Email ^email)
+IAsyncOperation<Email ^>^ MailMan::GetFullEmailAsync(Chilkat::Email ^email)
     {
 return create_async([this, email]() -> Email ^
 {
@@ -1131,8 +1073,6 @@ return create_async([this, email]() -> Email ^
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Email
-	// cppType = CkEmail *
 	CkEmailW *pRetObj = m_impl->GetFullEmail(*pObj0);
 	if (!pRetObj) return nullptr;
 	Chilkat::Email ^pEmail = ref new Chilkat::Email();
@@ -1151,8 +1091,6 @@ return create_async([this, numBodyLines, fromIndex, toIndex]() -> EmailBundle ^
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = EmailBundle
-	// cppType = CkEmailBundle *
 	CkEmailBundleW *pRetObj = m_impl->GetHeaders(numBodyLines,fromIndex,toIndex);
 	if (!pRetObj) return nullptr;
 	Chilkat::EmailBundle ^pEmailBundle = ref new Chilkat::EmailBundle();
@@ -1171,8 +1109,6 @@ return create_async([this]() -> int
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
 	return m_impl->GetMailboxCount();
 
 });
@@ -1187,8 +1123,6 @@ return create_async([this]() -> Platform::String ^
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getMailboxInfoXml();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -1205,8 +1139,6 @@ return create_async([this]() -> uint32
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = unsigned long
-	// cppType = unsigned long
 	return m_impl->GetMailboxSize();
 
 });
@@ -1217,8 +1149,6 @@ Cert ^MailMan::GetPop3SslServerCert(void)
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Cert
-	// cppType = CkCert *
 	CkCertW *pRetObj = m_impl->GetPop3SslServerCert();
 	if (!pRetObj) return nullptr;
 	Chilkat::Cert ^pCert = ref new Chilkat::Cert();
@@ -1231,8 +1161,6 @@ StringArray ^MailMan::GetSentToEmailAddrs(void)
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = StringArray
-	// cppType = CkStringArray *
 	CkStringArrayW *pRetObj = m_impl->GetSentToEmailAddrs();
 	if (!pRetObj) return nullptr;
 	Chilkat::StringArray ^pStringArray = ref new Chilkat::StringArray();
@@ -1249,8 +1177,6 @@ return create_async([this, uidl]() -> int
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
 	return m_impl->GetSizeByUidl(uidl ? uidl->Data() : L"");
 
 });
@@ -1261,8 +1187,6 @@ Cert ^MailMan::GetSmtpSslServerCert(void)
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Cert
-	// cppType = CkCert *
 	CkCertW *pRetObj = m_impl->GetSmtpSslServerCert();
 	if (!pRetObj) return nullptr;
 	Chilkat::Cert ^pCert = ref new Chilkat::Cert();
@@ -1279,8 +1203,6 @@ return create_async([this]() -> StringArray ^
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = StringArray
-	// cppType = CkStringArray *
 	CkStringArrayW *pRetObj = m_impl->GetUidls();
 	if (!pRetObj) return nullptr;
 	Chilkat::StringArray ^pStringArray = ref new Chilkat::StringArray();
@@ -1299,8 +1221,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsSmtpDsnCapable();
 
 });
@@ -1311,8 +1231,6 @@ Boolean MailMan::IsUnlocked(void)
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsUnlocked();
     }
 Email ^MailMan::LoadEml(Platform::String ^emlFilename)
@@ -1321,8 +1239,6 @@ Email ^MailMan::LoadEml(Platform::String ^emlFilename)
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Email
-	// cppType = CkEmail *
 	CkEmailW *pRetObj = m_impl->LoadEml(emlFilename ? emlFilename->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::Email ^pEmail = ref new Chilkat::Email();
@@ -1335,8 +1251,6 @@ EmailBundle ^MailMan::LoadMbx(Platform::String ^mbxFileName)
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = EmailBundle
-	// cppType = CkEmailBundle *
 	CkEmailBundleW *pRetObj = m_impl->LoadMbx(mbxFileName ? mbxFileName->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::EmailBundle ^pEmailBundle = ref new Chilkat::EmailBundle();
@@ -1349,8 +1263,6 @@ Email ^MailMan::LoadMime(Platform::String ^mimeText)
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Email
-	// cppType = CkEmail *
 	CkEmailW *pRetObj = m_impl->LoadMime(mimeText ? mimeText->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::Email ^pEmail = ref new Chilkat::Email();
@@ -1363,8 +1275,6 @@ Email ^MailMan::LoadXmlEmail(Platform::String ^filename)
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Email
-	// cppType = CkEmail *
 	CkEmailW *pRetObj = m_impl->LoadXmlEmail(filename ? filename->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::Email ^pEmail = ref new Chilkat::Email();
@@ -1377,8 +1287,6 @@ Email ^MailMan::LoadXmlEmailString(Platform::String ^xmlString)
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Email
-	// cppType = CkEmail *
 	CkEmailW *pRetObj = m_impl->LoadXmlEmailString(xmlString ? xmlString->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::Email ^pEmail = ref new Chilkat::Email();
@@ -1391,8 +1299,6 @@ EmailBundle ^MailMan::LoadXmlFile(Platform::String ^filename)
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = EmailBundle
-	// cppType = CkEmailBundle *
 	CkEmailBundleW *pRetObj = m_impl->LoadXmlFile(filename ? filename->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::EmailBundle ^pEmailBundle = ref new Chilkat::EmailBundle();
@@ -1405,8 +1311,6 @@ EmailBundle ^MailMan::LoadXmlString(Platform::String ^xmlString)
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = EmailBundle
-	// cppType = CkEmailBundle *
 	CkEmailBundleW *pRetObj = m_impl->LoadXmlString(xmlString ? xmlString->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::EmailBundle ^pEmailBundle = ref new Chilkat::EmailBundle();
@@ -1423,8 +1327,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->OpenSmtpConnection();
 
 });
@@ -1439,8 +1341,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->Pop3Authenticate();
 
 });
@@ -1455,8 +1355,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->Pop3BeginSession();
 
 });
@@ -1471,8 +1369,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->Pop3Connect();
 
 });
@@ -1487,8 +1383,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->Pop3EndSession();
 
 });
@@ -1503,8 +1397,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->Pop3EndSessionNoQuit();
 
 });
@@ -1519,8 +1411,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->Pop3Noop();
 
 });
@@ -1535,8 +1425,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->Pop3Reset();
 
 });
@@ -1551,8 +1439,6 @@ return create_async([this, command, charset]() -> Platform::String ^
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->pop3SendRawCommand(command ? command->Data() : L"",charset ? charset->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -1569,13 +1455,11 @@ return create_async([this, fromAddr, toAddr, subject, body, smtpServer]() -> Boo
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->QuickSend(fromAddr ? fromAddr->Data() : L"",toAddr ? toAddr->Data() : L"",subject ? subject->Data() : L"",body ? body->Data() : L"",smtpServer ? smtpServer->Data() : L"");
 
 });
     }
-Platform::String ^MailMan::RenderToMime(Email ^email)
+Platform::String ^MailMan::RenderToMime(Chilkat::Email ^email)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	if (email == nullptr) { return nullptr; }
@@ -1584,13 +1468,11 @@ Platform::String ^MailMan::RenderToMime(Email ^email)
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->renderToMime(*pObj0);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-Windows::Foundation::Collections::IVector<uint8>^MailMan::RenderToMimeBytes(Email ^email)
+Windows::Foundation::Collections::IVector<uint8>^MailMan::RenderToMimeBytes(Chilkat::Email ^email)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	if (email == nullptr) { return nullptr; }
@@ -1600,14 +1482,12 @@ Windows::Foundation::Collections::IVector<uint8>^MailMan::RenderToMimeBytes(Emai
 	CkByteData outDb;
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->RenderToMimeBytes(*pObj0,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
     }
-IAsyncOperation<Boolean>^ MailMan::SendBundleAsync(EmailBundle ^bundle)
+IAsyncOperation<Boolean>^ MailMan::SendBundleAsync(Chilkat::EmailBundle ^bundle)
     {
 return create_async([this, bundle]() -> Boolean
 {
@@ -1620,13 +1500,11 @@ return create_async([this, bundle]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SendBundle(*pObj0);
 
 });
     }
-IAsyncOperation<Boolean>^ MailMan::SendEmailAsync(Email ^email)
+IAsyncOperation<Boolean>^ MailMan::SendEmailAsync(Chilkat::Email ^email)
     {
 return create_async([this, email]() -> Boolean
 {
@@ -1639,15 +1517,13 @@ return create_async([this, email]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SendEmail(*pObj0);
 
 });
     }
-IAsyncOperation<Boolean>^ MailMan::SendMimeAsync(Platform::String ^from, Platform::String ^recipients, Platform::String ^mimeText)
+IAsyncOperation<Boolean>^ MailMan::SendMimeAsync(Platform::String ^fromAddr, Platform::String ^recipients, Platform::String ^mimeSource)
     {
-return create_async([this, from, recipients, mimeText]() -> Boolean
+return create_async([this, fromAddr, recipients, mimeSource]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -1655,34 +1531,30 @@ return create_async([this, from, recipients, mimeText]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SendMime(from ? from->Data() : L"",recipients ? recipients->Data() : L"",mimeText ? mimeText->Data() : L"");
+	return m_impl->SendMime(fromAddr ? fromAddr->Data() : L"",recipients ? recipients->Data() : L"",mimeSource ? mimeSource->Data() : L"");
 
 });
     }
-IAsyncOperation<Boolean>^ MailMan::SendMimeBytesAsync(Platform::String ^from, Platform::String ^recipients, Windows::Foundation::Collections::IVector<uint8>^mimeData)
+IAsyncOperation<Boolean>^ MailMan::SendMimeBytesAsync(Platform::String ^fromAddr, Platform::String ^recipients, Windows::Foundation::Collections::IVector<uint8>^mimeSource)
     {
-return create_async([this, from, recipients, mimeData]() -> Boolean
+return create_async([this, fromAddr, recipients, mimeSource]() -> Boolean
 {
 // This runs in a thread pool thread...
 
 	if (m_impl == nullptr) { return false; }
 	CkByteData db2; std::vector<uint8> v2;
-        if (mimeData != nullptr) { v2 = to_vector(mimeData);
+        if (mimeSource != nullptr) { v2 = to_vector(mimeSource);
             db2.borrowData(&v2[0], (unsigned long)v2.size()); }
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SendMimeBytes(from ? from->Data() : L"",recipients ? recipients->Data() : L"",db2);
+	return m_impl->SendMimeBytes(fromAddr ? fromAddr->Data() : L"",recipients ? recipients->Data() : L"",db2);
 
 });
     }
-IAsyncOperation<Boolean>^ MailMan::SendMimeToListAsync(Platform::String ^from, Platform::String ^distListFile, Platform::String ^mimeText)
+IAsyncOperation<Boolean>^ MailMan::SendMimeToListAsync(Platform::String ^fromAddr, Platform::String ^distListFilename, Platform::String ^mimeSource)
     {
-return create_async([this, from, distListFile, mimeText]() -> Boolean
+return create_async([this, fromAddr, distListFilename, mimeSource]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -1690,35 +1562,31 @@ return create_async([this, from, distListFile, mimeText]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SendMimeToList(from ? from->Data() : L"",distListFile ? distListFile->Data() : L"",mimeText ? mimeText->Data() : L"");
+	return m_impl->SendMimeToList(fromAddr ? fromAddr->Data() : L"",distListFilename ? distListFilename->Data() : L"",mimeSource ? mimeSource->Data() : L"");
 
 });
     }
-IAsyncOperation<Boolean>^ MailMan::SendToDistributionListAsync(Email ^email, StringArray ^sa)
+IAsyncOperation<Boolean>^ MailMan::SendToDistributionListAsync(Chilkat::Email ^emailObj, Chilkat::StringArray ^recipientList)
     {
-return create_async([this, email, sa]() -> Boolean
+return create_async([this, emailObj, recipientList]() -> Boolean
 {
 // This runs in a thread pool thread...
 
 	if (m_impl == nullptr) { return false; }
-	if (email == nullptr) { return false; }
-	CkEmailW* pObj0 = email->m_impl;
+	if (emailObj == nullptr) { return false; }
+	CkEmailW* pObj0 = emailObj->m_impl;
 	 if (!pObj0) { return false; }
-	if (sa == nullptr) { return false; }
-	CkStringArrayW* pObj1 = sa->m_impl;
+	if (recipientList == nullptr) { return false; }
+	CkStringArrayW* pObj1 = recipientList->m_impl;
 	 if (!pObj1) { return false; }
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SendToDistributionList(*pObj0,*pObj1);
 
 });
     }
-Boolean MailMan::SetDecryptCert(Cert ^cert)
+Boolean MailMan::SetDecryptCert(Chilkat::Cert ^cert)
     {
 	if (m_impl == nullptr) { return false; }
 	if (cert == nullptr) { return false; }
@@ -1727,27 +1595,23 @@ Boolean MailMan::SetDecryptCert(Cert ^cert)
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetDecryptCert(*pObj0);
     }
-Boolean MailMan::SetDecryptCert2(Cert ^cert, PrivateKey ^key)
+Boolean MailMan::SetDecryptCert2(Chilkat::Cert ^cert, Chilkat::PrivateKey ^privateKey)
     {
 	if (m_impl == nullptr) { return false; }
 	if (cert == nullptr) { return false; }
 	CkCertW* pObj0 = cert->m_impl;
 	 if (!pObj0) { return false; }
-	if (key == nullptr) { return false; }
-	CkPrivateKeyW* pObj1 = key->m_impl;
+	if (privateKey == nullptr) { return false; }
+	CkPrivateKeyW* pObj1 = privateKey->m_impl;
 	 if (!pObj1) { return false; }
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetDecryptCert2(*pObj0,*pObj1);
     }
-Boolean MailMan::SetSslClientCert(Cert ^cert)
+Boolean MailMan::SetSslClientCert(Chilkat::Cert ^cert)
     {
 	if (m_impl == nullptr) { return false; }
 	if (cert == nullptr) { return false; }
@@ -1756,8 +1620,6 @@ Boolean MailMan::SetSslClientCert(Cert ^cert)
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetSslClientCert(*pObj0);
     }
 Boolean MailMan::SetSslClientCertPem(Platform::String ^pemDataOrFilename, Platform::String ^pemPassword)
@@ -1766,8 +1628,6 @@ Boolean MailMan::SetSslClientCertPem(Platform::String ^pemDataOrFilename, Platfo
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetSslClientCertPem(pemDataOrFilename ? pemDataOrFilename->Data() : L"",pemPassword ? pemPassword->Data() : L"");
     }
 Boolean MailMan::SetSslClientCertPfx(Platform::String ^pfxFilename, Platform::String ^pfxPassword)
@@ -1776,8 +1636,6 @@ Boolean MailMan::SetSslClientCertPfx(Platform::String ^pfxFilename, Platform::St
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetSslClientCertPfx(pfxFilename ? pfxFilename->Data() : L"",pfxPassword ? pfxPassword->Data() : L"");
     }
 IAsyncOperation<Boolean>^ MailMan::SmtpAuthenticateAsync(void)
@@ -1790,8 +1648,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SmtpAuthenticate();
 
 });
@@ -1806,8 +1662,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SmtpConnect();
 
 });
@@ -1822,8 +1676,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SmtpNoop();
 
 });
@@ -1838,8 +1690,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SmtpReset();
 
 });
@@ -1854,36 +1704,32 @@ return create_async([this, command, charset, bEncodeBase64]() -> Platform::Strin
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->smtpSendRawCommand(command ? command->Data() : L"",charset ? charset->Data() : L"",bEncodeBase64);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
 });
     }
-IAsyncOperation<Boolean>^ MailMan::SshAuthenticatePkAsync(Platform::String ^sshLogin, SshKey ^privateKey)
+IAsyncOperation<Boolean>^ MailMan::SshAuthenticatePkAsync(Platform::String ^bSmtp, Chilkat::SshKey ^sshUsername)
     {
-return create_async([this, sshLogin, privateKey]() -> Boolean
+return create_async([this, bSmtp, sshUsername]() -> Boolean
 {
 // This runs in a thread pool thread...
 
 	if (m_impl == nullptr) { return false; }
-	if (privateKey == nullptr) { return false; }
-	CkSshKeyW* pObj1 = privateKey->m_impl;
+	if (sshUsername == nullptr) { return false; }
+	CkSshKeyW* pObj1 = sshUsername->m_impl;
 	 if (!pObj1) { return false; }
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SshAuthenticatePk(sshLogin ? sshLogin->Data() : L"",*pObj1);
+	return m_impl->SshAuthenticatePk(bSmtp ? bSmtp->Data() : L"",*pObj1);
 
 });
     }
-IAsyncOperation<Boolean>^ MailMan::SshAuthenticatePwAsync(Platform::String ^sshLogin, Platform::String ^sshPassword)
+IAsyncOperation<Boolean>^ MailMan::SshAuthenticatePwAsync(Platform::String ^bSmtp, Platform::String ^sshLogin)
     {
-return create_async([this, sshLogin, sshPassword]() -> Boolean
+return create_async([this, bSmtp, sshLogin]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -1891,9 +1737,7 @@ return create_async([this, sshLogin, sshPassword]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SshAuthenticatePw(sshLogin ? sshLogin->Data() : L"",sshPassword ? sshPassword->Data() : L"");
+	return m_impl->SshAuthenticatePw(bSmtp ? bSmtp->Data() : L"",sshLogin ? sshLogin->Data() : L"");
 
 });
     }
@@ -1907,8 +1751,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SshCloseTunnel();
 
 });
@@ -1923,8 +1765,6 @@ return create_async([this, sshHostname, sshPort]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SshOpenTunnel(sshHostname ? sshHostname->Data() : L"",sshPort);
 
 });
@@ -1939,8 +1779,6 @@ return create_async([this]() -> EmailBundle ^
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = EmailBundle
-	// cppType = CkEmailBundle *
 	CkEmailBundleW *pRetObj = m_impl->TransferMail();
 	if (!pRetObj) return nullptr;
 	Chilkat::EmailBundle ^pEmailBundle = ref new Chilkat::EmailBundle();
@@ -1949,7 +1787,7 @@ return create_async([this]() -> EmailBundle ^
 
 });
     }
-IAsyncOperation<StringArray ^>^ MailMan::TransferMultipleMimeAsync(StringArray ^uidlArray)
+IAsyncOperation<StringArray ^>^ MailMan::TransferMultipleMimeAsync(Chilkat::StringArray ^uidlArray)
     {
 return create_async([this, uidlArray]() -> StringArray ^
 {
@@ -1962,8 +1800,6 @@ return create_async([this, uidlArray]() -> StringArray ^
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = StringArray
-	// cppType = CkStringArray *
 	CkStringArrayW *pRetObj = m_impl->TransferMultipleMime(*pObj0);
 	if (!pRetObj) return nullptr;
 	Chilkat::StringArray ^pStringArray = ref new Chilkat::StringArray();
@@ -1978,11 +1814,9 @@ Boolean MailMan::UnlockComponent(Platform::String ^code)
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UnlockComponent(code ? code->Data() : L"");
     }
-Boolean MailMan::UseCertVault(XmlCertVault ^vault)
+Boolean MailMan::UseCertVault(Chilkat::XmlCertVault ^vault)
     {
 	if (m_impl == nullptr) { return false; }
 	if (vault == nullptr) { return false; }
@@ -1991,11 +1825,9 @@ Boolean MailMan::UseCertVault(XmlCertVault ^vault)
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UseCertVault(*pObj0);
     }
-Boolean MailMan::UseSsh(Ssh ^ssh)
+Boolean MailMan::UseSsh(Chilkat::Ssh ^ssh)
     {
 	if (m_impl == nullptr) { return false; }
 	if (ssh == nullptr) { return false; }
@@ -2004,11 +1836,9 @@ Boolean MailMan::UseSsh(Ssh ^ssh)
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UseSsh(*pObj0);
     }
-Boolean MailMan::UseSshTunnel(Socket ^tunnel)
+Boolean MailMan::UseSshTunnel(Chilkat::Socket ^tunnel)
     {
 	if (m_impl == nullptr) { return false; }
 	if (tunnel == nullptr) { return false; }
@@ -2017,8 +1847,6 @@ Boolean MailMan::UseSshTunnel(Socket ^tunnel)
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UseSshTunnel(*pObj0);
     }
 IAsyncOperation<Boolean>^ MailMan::VerifyPopConnectionAsync(void)
@@ -2031,8 +1859,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->VerifyPopConnection();
 
 });
@@ -2047,13 +1873,11 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->VerifyPopLogin();
 
 });
     }
-IAsyncOperation<Boolean>^ MailMan::VerifyRecipsAsync(Email ^email, StringArray ^badAddrs)
+IAsyncOperation<Boolean>^ MailMan::VerifyRecipsAsync(Chilkat::Email ^email, Chilkat::StringArray ^badAddrs)
     {
 return create_async([this, email, badAddrs]() -> Boolean
 {
@@ -2069,8 +1893,6 @@ return create_async([this, email, badAddrs]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->VerifyRecips(*pObj0,*pObj1);
 
 });
@@ -2085,8 +1907,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->VerifySmtpConnection();
 
 });
@@ -2101,8 +1921,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->VerifySmtpLogin();
 
 });

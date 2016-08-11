@@ -333,14 +333,14 @@ class CK_VISIBLE_PUBLIC CkCompression  : public CkClassWithCallbacks
 	CkTask *CompressFileAsync(const char *srcPath, const char *destPath);
 
 
-	// Compresses a stream. Internally, the ARG1's source is read, compressed, and the
-	// compressed data written to the ARG1's sink. It does this in streaming fashion.
+	// Compresses a stream. Internally, the strm's source is read, compressed, and the
+	// compressed data written to the strm's sink. It does this in streaming fashion.
 	// Extremely large or even infinite streams can be compressed with stable ungrowing
 	// memory usage.
 	bool CompressStream(CkStream &strm);
 
-	// Compresses a stream. Internally, the ARG1's source is read, compressed, and the
-	// compressed data written to the ARG1's sink. It does this in streaming fashion.
+	// Compresses a stream. Internally, the strm's source is read, compressed, and the
+	// compressed data written to the strm's sink. It does this in streaming fashion.
 	// Extremely large or even infinite streams can be compressed with stable ungrowing
 	// memory usage.
 	CkTask *CompressStreamAsync(CkStream &strm);
@@ -378,12 +378,12 @@ class CK_VISIBLE_PUBLIC CkCompression  : public CkClassWithCallbacks
 	// The opposite of CompressBytesENC. encodedCompressedData contains the compressed data as an
 	// encoded string (hex, base64, etc) as specified by the EncodingMode property
 	// setting.
-	bool DecompressBytesENC(const char *str, CkByteData &outData);
+	bool DecompressBytesENC(const char *encodedCompressedData, CkByteData &outData);
 
 	// The opposite of CompressBytesENC. encodedCompressedData contains the compressed data as an
 	// encoded string (hex, base64, etc) as specified by the EncodingMode property
 	// setting.
-	CkTask *DecompressBytesENCAsync(const char *str);
+	CkTask *DecompressBytesENCAsync(const char *encodedCompressedData);
 
 
 	// Performs file-to-file decompression (the opposite of CompressFile). Internally
@@ -397,14 +397,14 @@ class CK_VISIBLE_PUBLIC CkCompression  : public CkClassWithCallbacks
 	CkTask *DecompressFileAsync(const char *srcPath, const char *destPath);
 
 
-	// Decompresses a stream. Internally, the ARG1's source is read, decompressed, and
-	// the decompressed data written to the ARG1's sink. It does this in streaming
+	// Decompresses a stream. Internally, the strm's source is read, decompressed, and
+	// the decompressed data written to the strm's sink. It does this in streaming
 	// fashion. Extremely large or even infinite streams can be decompressed with
 	// stable ungrowing memory usage.
 	bool DecompressStream(CkStream &strm);
 
-	// Decompresses a stream. Internally, the ARG1's source is read, decompressed, and
-	// the decompressed data written to the ARG1's sink. It does this in streaming
+	// Decompresses a stream. Internally, the strm's source is read, decompressed, and
+	// the decompressed data written to the strm's sink. It does this in streaming
 	// fashion. Extremely large or even infinite streams can be decompressed with
 	// stable ungrowing memory usage.
 	CkTask *DecompressStreamAsync(CkStream &strm);
@@ -422,16 +422,16 @@ class CK_VISIBLE_PUBLIC CkCompression  : public CkClassWithCallbacks
 	// The opposite of CompressStringENC. encodedCompressedData contains the compressed data as an
 	// encoded string (hex, base64, etc) as specified by the EncodingMode property
 	// setting.
-	bool DecompressStringENC(const char *str, CkString &outStr);
+	bool DecompressStringENC(const char *encodedCompressedData, CkString &outStr);
 
 	// The opposite of CompressStringENC. encodedCompressedData contains the compressed data as an
 	// encoded string (hex, base64, etc) as specified by the EncodingMode property
 	// setting.
-	const char *decompressStringENC(const char *str);
+	const char *decompressStringENC(const char *encodedCompressedData);
 	// The opposite of CompressStringENC. encodedCompressedData contains the compressed data as an
 	// encoded string (hex, base64, etc) as specified by the EncodingMode property
 	// setting.
-	CkTask *DecompressStringENCAsync(const char *str);
+	CkTask *DecompressStringENCAsync(const char *encodedCompressedData);
 
 
 	// Must be callled to finalize a compression stream. Returns any remaining

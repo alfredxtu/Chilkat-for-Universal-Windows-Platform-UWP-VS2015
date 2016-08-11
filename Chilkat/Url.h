@@ -42,37 +42,6 @@ public ref class Url sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Platform::String ^Frag
 	{
 		Platform::String ^get();
@@ -97,6 +66,10 @@ public ref class Url sealed
 	{
 		Platform::String ^get();
 	}
+	property Platform::String ^PathWithQueryParams
+	{
+		Platform::String ^get();
+	}
 	property int32 Port
 	{
 		int32 get();
@@ -109,17 +82,11 @@ public ref class Url sealed
 	{
 		Boolean get();
 	}
-	property Platform::String ^PathWithQueryParams
-	{
-		Platform::String ^get();
-	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	Boolean ParseUrl(Platform::String ^url);
 
 

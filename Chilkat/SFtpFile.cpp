@@ -44,57 +44,17 @@ Chilkat::SFtpFile::SFtpFile(void)
 //}
 
 
-String ^Chilkat::SFtpFile::LastErrorHtml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
-    }
-String ^Chilkat::SFtpFile::LastErrorText::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::SFtpFile::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::SFtpFile::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::SFtpFile::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::SFtpFile::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::SFtpFile::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::SFtpFile::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::SFtpFile::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::SFtpFile::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
 String ^Chilkat::SFtpFile::CreateTimeStr::get()
     {
     return ref new String(m_impl ? m_impl->createTimeStr() : L"");
     }
-String ^Chilkat::SFtpFile::FileType::get()
-    {
-    return ref new String(m_impl ? m_impl->fileType() : L"");
-    }
 String ^Chilkat::SFtpFile::Filename::get()
     {
     return ref new String(m_impl ? m_impl->filename() : L"");
+    }
+String ^Chilkat::SFtpFile::FileType::get()
+    {
+    return ref new String(m_impl ? m_impl->fileType() : L"");
     }
 int Chilkat::SFtpFile::Gid::get()
     {
@@ -194,20 +154,10 @@ int Chilkat::SFtpFile::Uid::get()
     }
 
 
-Boolean SFtpFile::SaveLastError(Platform::String ^path)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
-    }
 Chilkat::CkDateTime ^SFtpFile::GetCreateDt(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = CkDateTime
-	// cppType = CkDateTime *
 	CkDateTimeW *pRetObj = m_impl->GetCreateDt();
 	if (!pRetObj) return nullptr;
 	Chilkat::CkDateTime ^pCkDateTime = ref new Chilkat::CkDateTime();
@@ -218,8 +168,6 @@ Chilkat::CkDateTime ^SFtpFile::GetLastAccessDt(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = CkDateTime
-	// cppType = CkDateTime *
 	CkDateTimeW *pRetObj = m_impl->GetLastAccessDt();
 	if (!pRetObj) return nullptr;
 	Chilkat::CkDateTime ^pCkDateTime = ref new Chilkat::CkDateTime();
@@ -230,8 +178,6 @@ Chilkat::CkDateTime ^SFtpFile::GetLastModifiedDt(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = CkDateTime
-	// cppType = CkDateTime *
 	CkDateTimeW *pRetObj = m_impl->GetLastModifiedDt();
 	if (!pRetObj) return nullptr;
 	Chilkat::CkDateTime ^pCkDateTime = ref new Chilkat::CkDateTime();

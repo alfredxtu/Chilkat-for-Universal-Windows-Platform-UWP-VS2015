@@ -80,43 +80,17 @@ public ref class Tar sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Boolean CaptureXmlListing
 	{
 		Boolean get();
 		void set(Boolean);
 	}
 	property Platform::String ^Charset
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^DebugLogFilePath
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
@@ -150,6 +124,23 @@ public ref class Tar sealed
 	{
 		int32 get();
 		void set(int32);
+	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
 	}
 	property Boolean MatchCaseSensitive
 	{
@@ -230,6 +221,15 @@ public ref class Tar sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 	property Platform::String ^WriteFormat
 	{
 		Platform::String ^get();
@@ -245,9 +245,9 @@ public ref class Tar sealed
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	Boolean AddDirRoot(Platform::String ^dirPath);
+
+	Boolean AddDirRoot2(Platform::String ^rootPrefix, Platform::String ^rootPath);
 
 	Boolean AddFile(Platform::String ^path);
 
@@ -276,8 +276,6 @@ public ref class Tar sealed
 	IAsyncOperation<Boolean>^ WriteTarBz2Async(Platform::String ^bz2Path);
 
 	IAsyncOperation<Boolean>^ WriteTarGzAsync(Platform::String ^gzPath);
-
-	Boolean AddDirRoot2(Platform::String ^rootPrefix, Platform::String ^rootPath);
 
 
 

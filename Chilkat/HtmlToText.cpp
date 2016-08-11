@@ -43,6 +43,22 @@ Chilkat::HtmlToText::HtmlToText(void)
 //}
 
 
+String ^Chilkat::HtmlToText::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::HtmlToText::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
+Boolean Chilkat::HtmlToText::DecodeHtmlEntities::get()
+    {
+    return m_impl ? m_impl->get_DecodeHtmlEntities() : false;
+    }
+void Chilkat::HtmlToText::DecodeHtmlEntities::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_DecodeHtmlEntities(newVal);
+    }
 String ^Chilkat::HtmlToText::LastErrorHtml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
@@ -55,26 +71,6 @@ String ^Chilkat::HtmlToText::LastErrorXml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
     }
-String ^Chilkat::HtmlToText::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::HtmlToText::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::HtmlToText::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::HtmlToText::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::HtmlToText::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
 Boolean Chilkat::HtmlToText::LastMethodSuccess::get()
     {
     return m_impl ? m_impl->get_LastMethodSuccess() : false;
@@ -82,14 +78,6 @@ Boolean Chilkat::HtmlToText::LastMethodSuccess::get()
 void Chilkat::HtmlToText::LastMethodSuccess::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
-Boolean Chilkat::HtmlToText::DecodeHtmlEntities::get()
-    {
-    return m_impl ? m_impl->get_DecodeHtmlEntities() : false;
-    }
-void Chilkat::HtmlToText::DecodeHtmlEntities::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_DecodeHtmlEntities(newVal);
     }
 int Chilkat::HtmlToText::RightMargin::get()
     {
@@ -107,30 +95,30 @@ void Chilkat::HtmlToText::SuppressLinks::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_SuppressLinks(newVal);
     }
-
-
-Boolean HtmlToText::SaveLastError(Platform::String ^path)
+Boolean Chilkat::HtmlToText::VerboseLogging::get()
     {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
+    return m_impl ? m_impl->get_VerboseLogging() : false;
     }
+void Chilkat::HtmlToText::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::HtmlToText::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
+
+
 Boolean HtmlToText::IsUnlocked(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsUnlocked();
     }
 Platform::String ^HtmlToText::ReadFileToString(Platform::String ^filename, Platform::String ^srcCharset)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->readFileToString(filename ? filename->Data() : L"",srcCharset ? srcCharset->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -139,8 +127,6 @@ Platform::String ^HtmlToText::ToText(Platform::String ^html)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->toText(html ? html->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -149,17 +135,13 @@ Boolean HtmlToText::UnlockComponent(Platform::String ^code)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->UnlockComponent(code ? code->Data() : L"");
     }
-Boolean HtmlToText::WriteStringToFile(Platform::String ^str, Platform::String ^filename, Platform::String ^charset)
+Boolean HtmlToText::WriteStringToFile(Platform::String ^stringToWrite, Platform::String ^filename, Platform::String ^charset)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->WriteStringToFile(str ? str->Data() : L"",filename ? filename->Data() : L"",charset ? charset->Data() : L"");
+	return m_impl->WriteStringToFile(stringToWrite ? stringToWrite->Data() : L"",filename ? filename->Data() : L"",charset ? charset->Data() : L"");
     }
 
 

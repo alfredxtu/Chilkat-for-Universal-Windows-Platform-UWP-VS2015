@@ -47,6 +47,14 @@ Chilkat::TrustedRoots::TrustedRoots(void)
 //}
 
 
+String ^Chilkat::TrustedRoots::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::TrustedRoots::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
 String ^Chilkat::TrustedRoots::LastErrorHtml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
@@ -58,26 +66,6 @@ String ^Chilkat::TrustedRoots::LastErrorText::get()
 String ^Chilkat::TrustedRoots::LastErrorXml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::TrustedRoots::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::TrustedRoots::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::TrustedRoots::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::TrustedRoots::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::TrustedRoots::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
     }
 Boolean Chilkat::TrustedRoots::LastMethodSuccess::get()
     {
@@ -99,29 +87,29 @@ void Chilkat::TrustedRoots::TrustSystemCaRoots::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_TrustSystemCaRoots(newVal);
     }
-
-
-Boolean TrustedRoots::SaveLastError(Platform::String ^path)
+Boolean Chilkat::TrustedRoots::VerboseLogging::get()
     {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxTrustedRootsProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
+    return m_impl ? m_impl->get_VerboseLogging() : false;
     }
+void Chilkat::TrustedRoots::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::TrustedRoots::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
+
+
 Boolean TrustedRoots::Activate(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	CxTrustedRootsProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->Activate();
     }
-Boolean TrustedRoots::AddCert(Cert ^cert)
+Boolean TrustedRoots::AddCert(Chilkat::Cert ^cert)
     {
 	if (m_impl == nullptr) { return false; }
 	if (cert == nullptr) { return false; }
@@ -130,11 +118,9 @@ Boolean TrustedRoots::AddCert(Cert ^cert)
 	// --- prep output arg ---
 	CxTrustedRootsProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddCert(*pObj0);
     }
-IAsyncOperation<Boolean>^ TrustedRoots::AddJavaKeyStoreAsync(JavaKeyStore ^keystore)
+IAsyncOperation<Boolean>^ TrustedRoots::AddJavaKeyStoreAsync(Chilkat::JavaKeyStore ^keystore)
     {
 return create_async([this, keystore]() -> Boolean
 {
@@ -147,8 +133,6 @@ return create_async([this, keystore]() -> Boolean
 	// --- prep output arg ---
 	CxTrustedRootsProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddJavaKeyStore(*pObj0);
 
 });
@@ -159,8 +143,6 @@ Boolean TrustedRoots::Deactivate(void)
 	// --- prep output arg ---
 	CxTrustedRootsProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->Deactivate();
     }
 Cert ^TrustedRoots::GetCert(int index)
@@ -169,8 +151,6 @@ Cert ^TrustedRoots::GetCert(int index)
 	// --- prep output arg ---
 	CxTrustedRootsProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Cert
-	// cppType = CkCert *
 	CkCertW *pRetObj = m_impl->GetCert(index);
 	if (!pRetObj) return nullptr;
 	Chilkat::Cert ^pCert = ref new Chilkat::Cert();
@@ -187,8 +167,6 @@ return create_async([this, path]() -> Boolean
 	// --- prep output arg ---
 	CxTrustedRootsProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadCaCertsPem(path ? path->Data() : L"");
 
 });

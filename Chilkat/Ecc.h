@@ -45,6 +45,11 @@ public ref class Ecc sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
@@ -57,41 +62,34 @@ public ref class Ecc sealed
 	{
 		Platform::String ^get();
 	}
-	property Platform::String ^Version
+	property Boolean LastMethodSuccess
 	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
+		Boolean get();
+		void set(Boolean);
 	}
 	property Boolean VerboseLogging
 	{
 		Boolean get();
 		void set(Boolean);
 	}
-	property Boolean LastMethodSuccess
+	property Platform::String ^Version
 	{
-		Boolean get();
-		void set(Boolean);
+		Platform::String ^get();
 	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
-	PrivateKey ^GenEccKey(Platform::String ^curveName, Prng ^prng);
-
-	Platform::String ^SharedSecretENC(PrivateKey ^privKey, PublicKey ^pubKey, Platform::String ^encoding);
-
-	Platform::String ^SignHashENC(Platform::String ^encodedHash, Platform::String ^encoding, PrivateKey ^privkey, Prng ^prng);
-
-	int VerifyHashENC(Platform::String ^encodedHash, Platform::String ^encodedSig, Platform::String ^encoding, PublicKey ^pubkey);
+	PrivateKey ^GenEccKey(Platform::String ^curveName, Chilkat::Prng ^prng);
 
 	PrivateKey ^GenEccKey2(Platform::String ^curveName, Platform::String ^encodedK, Platform::String ^encoding);
+
+	Platform::String ^SharedSecretENC(Chilkat::PrivateKey ^privKey, Chilkat::PublicKey ^pubKey, Platform::String ^encoding);
+
+	Platform::String ^SignHashENC(Platform::String ^encodedHash, Platform::String ^encoding, Chilkat::PrivateKey ^privkey, Chilkat::Prng ^prng);
+
+	int VerifyHashENC(Platform::String ^encodedHash, Platform::String ^encodedSig, Platform::String ^encoding, Chilkat::PublicKey ^pubkey);
 
 
 

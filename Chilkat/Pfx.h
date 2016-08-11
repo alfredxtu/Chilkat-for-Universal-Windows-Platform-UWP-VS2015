@@ -47,6 +47,11 @@ public ref class Pfx sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
@@ -58,20 +63,6 @@ public ref class Pfx sealed
 	property Platform::String ^LastErrorXml
 	{
 		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
 	}
 	property Boolean LastMethodSuccess
 	{
@@ -86,16 +77,23 @@ public ref class Pfx sealed
 	{
 		int32 get();
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
+	Boolean AddCert(Chilkat::Cert ^cert, Boolean includeChain);
 
-	Boolean AddCert(Cert ^cert, Boolean includeChain);
-
-	Boolean AddPrivateKey(PrivateKey ^privKey, CertChain ^certChain);
+	Boolean AddPrivateKey(Chilkat::PrivateKey ^privKey, Chilkat::CertChain ^certChain);
 
 	Cert ^GetCert(int index);
 
@@ -121,7 +119,7 @@ public ref class Pfx sealed
 
 	Platform::String ^ToPemEx(Boolean extendedAttrs, Boolean noKeys, Boolean noCerts, Boolean noCaCerts, Platform::String ^encryptAlg, Platform::String ^password);
 
-	Boolean UseCertVault(XmlCertVault ^vault);
+	Boolean UseCertVault(Chilkat::XmlCertVault ^vault);
 
 
 

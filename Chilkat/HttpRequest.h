@@ -42,37 +42,6 @@ public ref class HttpRequest sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Platform::String ^Boundary
 	{
 		Platform::String ^get();
@@ -84,6 +53,11 @@ public ref class HttpRequest sealed
 		void set(Platform::String ^);
 	}
 	property Platform::String ^ContentType
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^DebugLogFilePath
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
@@ -103,6 +77,23 @@ public ref class HttpRequest sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property int32 NumHeaderFields
 	{
 		int32 get();
@@ -121,20 +112,27 @@ public ref class HttpRequest sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
+	Boolean AddBytesForUpload(Platform::String ^name, Platform::String ^remoteFileName, Windows::Foundation::Collections::IVector<uint8>^byteData);
 
-	Boolean AddBytesForUpload(Platform::String ^name, Platform::String ^filename, Windows::Foundation::Collections::IVector<uint8>^byteData);
+	Boolean AddBytesForUpload2(Platform::String ^name, Platform::String ^remoteFileName, Windows::Foundation::Collections::IVector<uint8>^byteData, Platform::String ^contentType);
 
-	Boolean AddBytesForUpload2(Platform::String ^name, Platform::String ^filename, Windows::Foundation::Collections::IVector<uint8>^byteData, Platform::String ^contentType);
+	Boolean AddFileForUpload(Platform::String ^name, Platform::String ^filePath);
 
-	Boolean AddFileForUpload(Platform::String ^name, Platform::String ^filename);
-
-	Boolean AddFileForUpload2(Platform::String ^name, Platform::String ^filename, Platform::String ^contentType);
+	Boolean AddFileForUpload2(Platform::String ^name, Platform::String ^filePath, Platform::String ^contentType);
 
 	void AddHeader(Platform::String ^name, Platform::String ^value);
 
@@ -162,9 +160,9 @@ public ref class HttpRequest sealed
 
 	Platform::String ^GetUrlEncodedParams(void);
 
-	Boolean LoadBodyFromBytes(Windows::Foundation::Collections::IVector<uint8>^binaryData);
+	Boolean LoadBodyFromBytes(Windows::Foundation::Collections::IVector<uint8>^byteData);
 
-	Boolean LoadBodyFromFile(Platform::String ^filename);
+	Boolean LoadBodyFromFile(Platform::String ^filePath);
 
 	Boolean LoadBodyFromString(Platform::String ^bodyStr, Platform::String ^charset);
 
@@ -176,7 +174,7 @@ public ref class HttpRequest sealed
 
 	void SetFromUrl(Platform::String ^url);
 
-	Boolean StreamBodyFromFile(Platform::String ^filename);
+	Boolean StreamBodyFromFile(Platform::String ^filePath);
 
 	Boolean StreamChunkFromFile(Platform::String ^path, Platform::String ^offset, Platform::String ^numBytes);
 

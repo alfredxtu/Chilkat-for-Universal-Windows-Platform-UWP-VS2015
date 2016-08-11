@@ -42,38 +42,12 @@ public ref class Charset sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
+	property Platform::String ^AltToCharset
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Platform::String ^AltToCharset
+	property Platform::String ^DebugLogFilePath
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
@@ -88,6 +62,18 @@ public ref class Charset sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
 	property Platform::String ^LastInputAsHex
 	{
 		Platform::String ^get();
@@ -95,6 +81,11 @@ public ref class Charset sealed
 	property Platform::String ^LastInputAsQP
 	{
 		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
 	}
 	property Platform::String ^LastOutputAsHex
 	{
@@ -114,22 +105,29 @@ public ref class Charset sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	int CharsetToCodePage(Platform::String ^charsetName);
 
 	Platform::String ^CodePageToCharset(int codePage);
 
 	Windows::Foundation::Collections::IVector<uint8>^ConvertData(Windows::Foundation::Collections::IVector<uint8>^inData);
 
-	Boolean ConvertFile(Platform::String ^srcPath, Platform::String ^destPath);
+	Boolean ConvertFile(Platform::String ^inPath, Platform::String ^destPath);
 
-	Boolean ConvertFileNoPreamble(Platform::String ^srcPath, Platform::String ^destPath);
+	Boolean ConvertFileNoPreamble(Platform::String ^inPath, Platform::String ^destPath);
 
 	Windows::Foundation::Collections::IVector<uint8>^ConvertFromUnicode(Platform::String ^inData);
 
@@ -137,7 +135,7 @@ public ref class Charset sealed
 
 	Windows::Foundation::Collections::IVector<uint8>^ConvertHtml(Windows::Foundation::Collections::IVector<uint8>^inData);
 
-	Boolean ConvertHtmlFile(Platform::String ^srcPath, Platform::String ^destPath);
+	Boolean ConvertHtmlFile(Platform::String ^inPath, Platform::String ^destPath);
 
 	Platform::String ^ConvertToUnicode(Windows::Foundation::Collections::IVector<uint8>^inData);
 
@@ -149,21 +147,21 @@ public ref class Charset sealed
 
 	Platform::String ^GetHtmlCharset(Windows::Foundation::Collections::IVector<uint8>^inData);
 
-	Platform::String ^GetHtmlFileCharset(Platform::String ^htmlFilename);
+	Platform::String ^GetHtmlFileCharset(Platform::String ^htmlFilePath);
 
 	Platform::String ^HtmlDecodeToStr(Platform::String ^inStr);
 
 	Windows::Foundation::Collections::IVector<uint8>^HtmlEntityDecode(Windows::Foundation::Collections::IVector<uint8>^inHtml);
 
-	Boolean HtmlEntityDecodeFile(Platform::String ^inFilename, Platform::String ^destPath);
+	Boolean HtmlEntityDecodeFile(Platform::String ^inPath, Platform::String ^destPath);
 
 	Boolean IsUnlocked(void);
 
 	Platform::String ^LowerCase(Platform::String ^inStr);
 
-	Windows::Foundation::Collections::IVector<uint8>^ReadFile(Platform::String ^filename);
+	Windows::Foundation::Collections::IVector<uint8>^ReadFile(Platform::String ^path);
 
-	Platform::String ^ReadFileToString(Platform::String ^filename, Platform::String ^srcCharset);
+	Platform::String ^ReadFileToString(Platform::String ^path, Platform::String ^charset);
 
 	void SetErrorBytes(Windows::Foundation::Collections::IVector<uint8>^data);
 
@@ -177,11 +175,11 @@ public ref class Charset sealed
 
 	Boolean VerifyData(Platform::String ^charset, Windows::Foundation::Collections::IVector<uint8>^inData);
 
-	Boolean VerifyFile(Platform::String ^charset, Platform::String ^filename);
+	Boolean VerifyFile(Platform::String ^charset, Platform::String ^path);
 
-	Boolean WriteFile(Platform::String ^filename, Windows::Foundation::Collections::IVector<uint8>^fileData);
+	Boolean WriteFile(Platform::String ^path, Windows::Foundation::Collections::IVector<uint8>^byteData);
 
-	Boolean WriteStringToFile(Platform::String ^str, Platform::String ^filename, Platform::String ^charset);
+	Boolean WriteStringToFile(Platform::String ^textData, Platform::String ^path, Platform::String ^charset);
 
 
 

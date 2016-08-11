@@ -43,46 +43,6 @@ Chilkat::AuthAzureStorage::AuthAzureStorage(void)
 //}
 
 
-String ^Chilkat::AuthAzureStorage::LastErrorHtml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
-    }
-String ^Chilkat::AuthAzureStorage::LastErrorText::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::AuthAzureStorage::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::AuthAzureStorage::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::AuthAzureStorage::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::AuthAzureStorage::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::AuthAzureStorage::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::AuthAzureStorage::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::AuthAzureStorage::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::AuthAzureStorage::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
 String ^Chilkat::AuthAzureStorage::AccessKey::get()
     {
     return ref new String(m_impl ? m_impl->accessKey() : L"");
@@ -98,6 +58,34 @@ String ^Chilkat::AuthAzureStorage::Account::get()
 void Chilkat::AuthAzureStorage::Account::set(String ^newVal)
     {
         if (m_impl) m_impl->put_Account(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::AuthAzureStorage::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::AuthAzureStorage::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::AuthAzureStorage::LastErrorHtml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    }
+String ^Chilkat::AuthAzureStorage::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::AuthAzureStorage::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
+Boolean Chilkat::AuthAzureStorage::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::AuthAzureStorage::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
 String ^Chilkat::AuthAzureStorage::Scheme::get()
     {
@@ -115,6 +103,18 @@ void Chilkat::AuthAzureStorage::Service::set(String ^newVal)
     {
         if (m_impl) m_impl->put_Service(newVal ? newVal->Data() : L"");
     }
+Boolean Chilkat::AuthAzureStorage::VerboseLogging::get()
+    {
+    return m_impl ? m_impl->get_VerboseLogging() : false;
+    }
+void Chilkat::AuthAzureStorage::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::AuthAzureStorage::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
 String ^Chilkat::AuthAzureStorage::XMsVersion::get()
     {
     return ref new String(m_impl ? m_impl->xMsVersion() : L"");
@@ -125,14 +125,6 @@ void Chilkat::AuthAzureStorage::XMsVersion::set(String ^newVal)
     }
 
 
-Boolean AuthAzureStorage::SaveLastError(Platform::String ^path)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
-    }
 
 
 

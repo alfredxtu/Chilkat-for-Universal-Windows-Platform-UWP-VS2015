@@ -42,6 +42,21 @@ public ref class AuthAws sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Platform::String ^AccessKey
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^CanonicalizedResourceV2
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
@@ -54,34 +69,10 @@ public ref class AuthAws sealed
 	{
 		Platform::String ^get();
 	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Boolean LastMethodSuccess
 	{
 		Boolean get();
 		void set(Boolean);
-	}
-	property Platform::String ^AccessKey
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Platform::String ^CanonicalizedResourceV2
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
 	}
 	property Platform::String ^PrecomputedMd5
 	{
@@ -113,13 +104,20 @@ public ref class AuthAws sealed
 		int32 get();
 		void set(int32);
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 
 
 };

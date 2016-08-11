@@ -50,45 +50,13 @@ Chilkat::SFtp::SFtp(void)
 //}
 
 
-String ^Chilkat::SFtp::LastErrorHtml::get()
+Boolean Chilkat::SFtp::AbortCurrent::get()
     {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    return m_impl ? m_impl->get_AbortCurrent() : false;
     }
-String ^Chilkat::SFtp::LastErrorText::get()
+void Chilkat::SFtp::AbortCurrent::set(Boolean newVal)
     {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::SFtp::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::SFtp::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::SFtp::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::SFtp::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::SFtp::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::SFtp::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::SFtp::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::SFtp::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
     }
 Windows::Foundation::Collections::IVector<uint8> ^Chilkat::SFtp::AccumulateBuffer::get()
     {
@@ -141,6 +109,14 @@ int Chilkat::SFtp::ConnectTimeoutMs::get()
 void Chilkat::SFtp::ConnectTimeoutMs::set(int newVal)
     {
         if (m_impl) m_impl->put_ConnectTimeoutMs(newVal);
+    }
+String ^Chilkat::SFtp::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::SFtp::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
     }
 int Chilkat::SFtp::DisconnectCode::get()
     {
@@ -294,6 +270,26 @@ void Chilkat::SFtp::KeepSessionLog::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_KeepSessionLog(newVal);
     }
+String ^Chilkat::SFtp::LastErrorHtml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    }
+String ^Chilkat::SFtp::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::SFtp::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
+Boolean Chilkat::SFtp::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::SFtp::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+    }
 int Chilkat::SFtp::MaxPacketSize::get()
     {
     return m_impl ? m_impl->get_MaxPacketSize() : 0;
@@ -354,22 +350,6 @@ String ^Chilkat::SFtp::SessionLog::get()
     {
     return ref new String(m_impl ? m_impl->sessionLog() : L"");
     }
-int Chilkat::SFtp::SoRcvBuf::get()
-    {
-    return m_impl ? m_impl->get_SoRcvBuf() : 0;
-    }
-void Chilkat::SFtp::SoRcvBuf::set(int newVal)
-    {
-        if (m_impl) m_impl->put_SoRcvBuf(newVal);
-    }
-int Chilkat::SFtp::SoSndBuf::get()
-    {
-    return m_impl ? m_impl->get_SoSndBuf() : 0;
-    }
-void Chilkat::SFtp::SoSndBuf::set(int newVal)
-    {
-        if (m_impl) m_impl->put_SoSndBuf(newVal);
-    }
 String ^Chilkat::SFtp::SocksHostname::get()
     {
     return ref new String(m_impl ? m_impl->socksHostname() : L"");
@@ -410,6 +390,38 @@ void Chilkat::SFtp::SocksVersion::set(int newVal)
     {
         if (m_impl) m_impl->put_SocksVersion(newVal);
     }
+int Chilkat::SFtp::SoRcvBuf::get()
+    {
+    return m_impl ? m_impl->get_SoRcvBuf() : 0;
+    }
+void Chilkat::SFtp::SoRcvBuf::set(int newVal)
+    {
+        if (m_impl) m_impl->put_SoRcvBuf(newVal);
+    }
+int Chilkat::SFtp::SoSndBuf::get()
+    {
+    return m_impl ? m_impl->get_SoSndBuf() : 0;
+    }
+void Chilkat::SFtp::SoSndBuf::set(int newVal)
+    {
+        if (m_impl) m_impl->put_SoSndBuf(newVal);
+    }
+String ^Chilkat::SFtp::SyncDirectives::get()
+    {
+    return ref new String(m_impl ? m_impl->syncDirectives() : L"");
+    }
+void Chilkat::SFtp::SyncDirectives::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_SyncDirectives(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::SFtp::SyncedFiles::get()
+    {
+    return ref new String(m_impl ? m_impl->syncedFiles() : L"");
+    }
+void Chilkat::SFtp::SyncedFiles::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_SyncedFiles(newVal ? newVal->Data() : L"");
+    }
 String ^Chilkat::SFtp::SyncMustMatch::get()
     {
     return ref new String(m_impl ? m_impl->syncMustMatch() : L"");
@@ -425,14 +437,6 @@ String ^Chilkat::SFtp::SyncMustNotMatch::get()
 void Chilkat::SFtp::SyncMustNotMatch::set(String ^newVal)
     {
         if (m_impl) m_impl->put_SyncMustNotMatch(newVal ? newVal->Data() : L"");
-    }
-String ^Chilkat::SFtp::SyncedFiles::get()
-    {
-    return ref new String(m_impl ? m_impl->syncedFiles() : L"");
-    }
-void Chilkat::SFtp::SyncedFiles::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_SyncedFiles(newVal ? newVal->Data() : L"");
     }
 Boolean Chilkat::SFtp::TcpNoDelay::get()
     {
@@ -458,34 +462,20 @@ void Chilkat::SFtp::UtcMode::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_UtcMode(newVal);
     }
-Boolean Chilkat::SFtp::AbortCurrent::get()
+Boolean Chilkat::SFtp::VerboseLogging::get()
     {
-    return m_impl ? m_impl->get_AbortCurrent() : false;
+    return m_impl ? m_impl->get_VerboseLogging() : false;
     }
-void Chilkat::SFtp::AbortCurrent::set(Boolean newVal)
+void Chilkat::SFtp::VerboseLogging::set(Boolean newVal)
     {
-        if (m_impl) m_impl->put_AbortCurrent(newVal);
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
     }
-String ^Chilkat::SFtp::SyncDirectives::get()
+String ^Chilkat::SFtp::Version::get()
     {
-    return ref new String(m_impl ? m_impl->syncDirectives() : L"");
-    }
-void Chilkat::SFtp::SyncDirectives::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_SyncDirectives(newVal ? newVal->Data() : L"");
+    return ref new String(m_impl ? m_impl->version() : L"");
     }
 
 
-Boolean SFtp::SaveLastError(Platform::String ^path)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxSFtpProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
-    }
 IAsyncOperation<int>^ SFtp::AccumulateBytesAsync(Platform::String ^handle, int maxBytes)
     {
 return create_async([this, handle, maxBytes]() -> int
@@ -496,8 +486,6 @@ return create_async([this, handle, maxBytes]() -> int
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
 	return m_impl->AccumulateBytes(handle ? handle->Data() : L"",maxBytes);
 
 });
@@ -508,13 +496,11 @@ Platform::String ^SFtp::Add64(Platform::String ^n1, Platform::String ^n2)
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->add64(n1 ? n1->Data() : L"",n2 ? n2->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-IAsyncOperation<Boolean>^ SFtp::AuthenticatePkAsync(Platform::String ^username, SshKey ^privateKey)
+IAsyncOperation<Boolean>^ SFtp::AuthenticatePkAsync(Platform::String ^username, Chilkat::SshKey ^privateKey)
     {
 return create_async([this, username, privateKey]() -> Boolean
 {
@@ -527,8 +513,6 @@ return create_async([this, username, privateKey]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->AuthenticatePk(username ? username->Data() : L"",*pObj1);
 
 });
@@ -543,13 +527,11 @@ return create_async([this, login, password]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->AuthenticatePw(login ? login->Data() : L"",password ? password->Data() : L"");
 
 });
     }
-IAsyncOperation<Boolean>^ SFtp::AuthenticatePwPkAsync(Platform::String ^username, Platform::String ^password, SshKey ^privateKey)
+IAsyncOperation<Boolean>^ SFtp::AuthenticatePwPkAsync(Platform::String ^username, Platform::String ^password, Chilkat::SshKey ^privateKey)
     {
 return create_async([this, username, password, privateKey]() -> Boolean
 {
@@ -562,8 +544,6 @@ return create_async([this, username, password, privateKey]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->AuthenticatePwPk(username ? username->Data() : L"",password ? password->Data() : L"",*pObj2);
 
 });
@@ -574,8 +554,6 @@ void SFtp::ClearAccumulateBuffer(void)
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->ClearAccumulateBuffer();
     }
 void SFtp::ClearCache(void)
@@ -584,8 +562,6 @@ void SFtp::ClearCache(void)
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->ClearCache();
     }
 void SFtp::ClearSessionLog(void)
@@ -594,8 +570,6 @@ void SFtp::ClearSessionLog(void)
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->ClearSessionLog();
     }
 IAsyncOperation<Boolean>^ SFtp::CloseHandleAsync(Platform::String ^handle)
@@ -608,15 +582,13 @@ return create_async([this, handle]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->CloseHandle(handle ? handle->Data() : L"");
 
 });
     }
-IAsyncOperation<Boolean>^ SFtp::ConnectAsync(Platform::String ^hostname, int port)
+IAsyncOperation<Boolean>^ SFtp::ConnectAsync(Platform::String ^domainName, int port)
     {
-return create_async([this, hostname, port]() -> Boolean
+return create_async([this, domainName, port]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -624,13 +596,11 @@ return create_async([this, hostname, port]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->Connect(hostname ? hostname->Data() : L"",port);
+	return m_impl->Connect(domainName ? domainName->Data() : L"",port);
 
 });
     }
-IAsyncOperation<Boolean>^ SFtp::ConnectThroughSshAsync(Ssh ^sshConn, Platform::String ^hostname, int port)
+IAsyncOperation<Boolean>^ SFtp::ConnectThroughSshAsync(Chilkat::Ssh ^sshConn, Platform::String ^hostname, int port)
     {
 return create_async([this, sshConn, hostname, port]() -> Boolean
 {
@@ -643,15 +613,13 @@ return create_async([this, sshConn, hostname, port]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ConnectThroughSsh(*pObj0,hostname ? hostname->Data() : L"",port);
 
 });
     }
-IAsyncOperation<Boolean>^ SFtp::CopyFileAttrAsync(Platform::String ^localFilename, Platform::String ^remoteFilename, Boolean bIsHandle)
+IAsyncOperation<Boolean>^ SFtp::CopyFileAttrAsync(Platform::String ^localFilename, Platform::String ^remoteFilename, Boolean isHandle)
     {
-return create_async([this, localFilename, remoteFilename, bIsHandle]() -> Boolean
+return create_async([this, localFilename, remoteFilename, isHandle]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -659,9 +627,7 @@ return create_async([this, localFilename, remoteFilename, bIsHandle]() -> Boolea
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->CopyFileAttr(localFilename ? localFilename->Data() : L"",remoteFilename ? remoteFilename->Data() : L"",bIsHandle);
+	return m_impl->CopyFileAttr(localFilename ? localFilename->Data() : L"",remoteFilename ? remoteFilename->Data() : L"",isHandle);
 
 });
     }
@@ -675,8 +641,6 @@ return create_async([this, path]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->CreateDir(path ? path->Data() : L"");
 
 });
@@ -687,8 +651,6 @@ void SFtp::Disconnect(void)
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->Disconnect();
     }
 IAsyncOperation<Boolean>^ SFtp::DownloadFileAsync(Platform::String ^handle, Platform::String ^toFilename)
@@ -701,8 +663,6 @@ return create_async([this, handle, toFilename]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->DownloadFile(handle ? handle->Data() : L"",toFilename ? toFilename->Data() : L"");
 
 });
@@ -717,8 +677,6 @@ return create_async([this, remoteFilePath, localFilePath]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->DownloadFileByName(remoteFilePath ? remoteFilePath->Data() : L"",localFilePath ? localFilePath->Data() : L"");
 
 });
@@ -729,13 +687,11 @@ Boolean SFtp::Eof(Platform::String ^handle)
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->Eof(handle ? handle->Data() : L"");
     }
-IAsyncOperation<Chilkat::CkDateTime ^>^ SFtp::GetFileCreateDtAsync(Platform::String ^filenameOrHandle, Boolean bFollowLinks, Boolean bIsHandle)
+IAsyncOperation<Chilkat::CkDateTime ^>^ SFtp::GetFileCreateDtAsync(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle)
     {
-return create_async([this, filenameOrHandle, bFollowLinks, bIsHandle]() -> CkDateTime ^
+return create_async([this, pathOrHandle, bFollowLinks, bIsHandle]() -> CkDateTime ^
 {
 // This runs in a thread pool thread...
 
@@ -743,9 +699,7 @@ return create_async([this, filenameOrHandle, bFollowLinks, bIsHandle]() -> CkDat
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = CkDateTime
-	// cppType = CkDateTime *
-	CkDateTimeW *pRetObj = m_impl->GetFileCreateDt(filenameOrHandle ? filenameOrHandle->Data() : L"",bFollowLinks,bIsHandle);
+	CkDateTimeW *pRetObj = m_impl->GetFileCreateDt(pathOrHandle ? pathOrHandle->Data() : L"",bFollowLinks,bIsHandle);
 	if (!pRetObj) return nullptr;
 	Chilkat::CkDateTime ^pCkDateTime = ref new Chilkat::CkDateTime();
 	pCkDateTime->m_impl = pRetObj;
@@ -753,9 +707,9 @@ return create_async([this, filenameOrHandle, bFollowLinks, bIsHandle]() -> CkDat
 
 });
     }
-IAsyncOperation<Platform::String ^>^ SFtp::GetFileCreateTimeStrAsync(Platform::String ^filenameOrHandle, Boolean bFollowLinks, Boolean bIsHandle)
+IAsyncOperation<Platform::String ^>^ SFtp::GetFileCreateTimeStrAsync(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle)
     {
-return create_async([this, filenameOrHandle, bFollowLinks, bIsHandle]() -> Platform::String ^
+return create_async([this, pathOrHandle, bFollowLinks, bIsHandle]() -> Platform::String ^
 {
 // This runs in a thread pool thread...
 
@@ -763,17 +717,15 @@ return create_async([this, filenameOrHandle, bFollowLinks, bIsHandle]() -> Platf
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->getFileCreateTimeStr(filenameOrHandle ? filenameOrHandle->Data() : L"",bFollowLinks,bIsHandle);
+	const wchar_t *retStr = m_impl->getFileCreateTimeStr(pathOrHandle ? pathOrHandle->Data() : L"",bFollowLinks,bIsHandle);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
 });
     }
-IAsyncOperation<Platform::String ^>^ SFtp::GetFileGroupAsync(Platform::String ^filenameOrHandle, Boolean bFollowLinks, Boolean bIsHandle)
+IAsyncOperation<Platform::String ^>^ SFtp::GetFileGroupAsync(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle)
     {
-return create_async([this, filenameOrHandle, bFollowLinks, bIsHandle]() -> Platform::String ^
+return create_async([this, pathOrHandle, bFollowLinks, bIsHandle]() -> Platform::String ^
 {
 // This runs in a thread pool thread...
 
@@ -781,17 +733,15 @@ return create_async([this, filenameOrHandle, bFollowLinks, bIsHandle]() -> Platf
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->getFileGroup(filenameOrHandle ? filenameOrHandle->Data() : L"",bFollowLinks,bIsHandle);
+	const wchar_t *retStr = m_impl->getFileGroup(pathOrHandle ? pathOrHandle->Data() : L"",bFollowLinks,bIsHandle);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
 });
     }
-IAsyncOperation<Chilkat::CkDateTime ^>^ SFtp::GetFileLastAccessDtAsync(Platform::String ^filenameOrHandle, Boolean bFollowLinks, Boolean bIsHandle)
+IAsyncOperation<Chilkat::CkDateTime ^>^ SFtp::GetFileLastAccessDtAsync(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle)
     {
-return create_async([this, filenameOrHandle, bFollowLinks, bIsHandle]() -> CkDateTime ^
+return create_async([this, pathOrHandle, bFollowLinks, bIsHandle]() -> CkDateTime ^
 {
 // This runs in a thread pool thread...
 
@@ -799,9 +749,7 @@ return create_async([this, filenameOrHandle, bFollowLinks, bIsHandle]() -> CkDat
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = CkDateTime
-	// cppType = CkDateTime *
-	CkDateTimeW *pRetObj = m_impl->GetFileLastAccessDt(filenameOrHandle ? filenameOrHandle->Data() : L"",bFollowLinks,bIsHandle);
+	CkDateTimeW *pRetObj = m_impl->GetFileLastAccessDt(pathOrHandle ? pathOrHandle->Data() : L"",bFollowLinks,bIsHandle);
 	if (!pRetObj) return nullptr;
 	Chilkat::CkDateTime ^pCkDateTime = ref new Chilkat::CkDateTime();
 	pCkDateTime->m_impl = pRetObj;
@@ -809,9 +757,9 @@ return create_async([this, filenameOrHandle, bFollowLinks, bIsHandle]() -> CkDat
 
 });
     }
-IAsyncOperation<Platform::String ^>^ SFtp::GetFileLastAccessStrAsync(Platform::String ^filenameOrHandle, Boolean bFollowLinks, Boolean bIsHandle)
+IAsyncOperation<Platform::String ^>^ SFtp::GetFileLastAccessStrAsync(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle)
     {
-return create_async([this, filenameOrHandle, bFollowLinks, bIsHandle]() -> Platform::String ^
+return create_async([this, pathOrHandle, bFollowLinks, bIsHandle]() -> Platform::String ^
 {
 // This runs in a thread pool thread...
 
@@ -819,17 +767,15 @@ return create_async([this, filenameOrHandle, bFollowLinks, bIsHandle]() -> Platf
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->getFileLastAccessStr(filenameOrHandle ? filenameOrHandle->Data() : L"",bFollowLinks,bIsHandle);
+	const wchar_t *retStr = m_impl->getFileLastAccessStr(pathOrHandle ? pathOrHandle->Data() : L"",bFollowLinks,bIsHandle);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
 });
     }
-IAsyncOperation<Chilkat::CkDateTime ^>^ SFtp::GetFileLastModifiedDtAsync(Platform::String ^filenameOrHandle, Boolean bFollowLinks, Boolean bIsHandle)
+IAsyncOperation<Chilkat::CkDateTime ^>^ SFtp::GetFileLastModifiedDtAsync(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle)
     {
-return create_async([this, filenameOrHandle, bFollowLinks, bIsHandle]() -> CkDateTime ^
+return create_async([this, pathOrHandle, bFollowLinks, bIsHandle]() -> CkDateTime ^
 {
 // This runs in a thread pool thread...
 
@@ -837,9 +783,7 @@ return create_async([this, filenameOrHandle, bFollowLinks, bIsHandle]() -> CkDat
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = CkDateTime
-	// cppType = CkDateTime *
-	CkDateTimeW *pRetObj = m_impl->GetFileLastModifiedDt(filenameOrHandle ? filenameOrHandle->Data() : L"",bFollowLinks,bIsHandle);
+	CkDateTimeW *pRetObj = m_impl->GetFileLastModifiedDt(pathOrHandle ? pathOrHandle->Data() : L"",bFollowLinks,bIsHandle);
 	if (!pRetObj) return nullptr;
 	Chilkat::CkDateTime ^pCkDateTime = ref new Chilkat::CkDateTime();
 	pCkDateTime->m_impl = pRetObj;
@@ -847,9 +791,9 @@ return create_async([this, filenameOrHandle, bFollowLinks, bIsHandle]() -> CkDat
 
 });
     }
-IAsyncOperation<Platform::String ^>^ SFtp::GetFileLastModifiedStrAsync(Platform::String ^filenameOrHandle, Boolean bFollowLinks, Boolean bIsHandle)
+IAsyncOperation<Platform::String ^>^ SFtp::GetFileLastModifiedStrAsync(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle)
     {
-return create_async([this, filenameOrHandle, bFollowLinks, bIsHandle]() -> Platform::String ^
+return create_async([this, pathOrHandle, bFollowLinks, bIsHandle]() -> Platform::String ^
 {
 // This runs in a thread pool thread...
 
@@ -857,17 +801,15 @@ return create_async([this, filenameOrHandle, bFollowLinks, bIsHandle]() -> Platf
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->getFileLastModifiedStr(filenameOrHandle ? filenameOrHandle->Data() : L"",bFollowLinks,bIsHandle);
+	const wchar_t *retStr = m_impl->getFileLastModifiedStr(pathOrHandle ? pathOrHandle->Data() : L"",bFollowLinks,bIsHandle);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
 });
     }
-IAsyncOperation<Platform::String ^>^ SFtp::GetFileOwnerAsync(Platform::String ^filenameOrHandle, Boolean bFollowLinks, Boolean bIsHandle)
+IAsyncOperation<Platform::String ^>^ SFtp::GetFileOwnerAsync(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle)
     {
-return create_async([this, filenameOrHandle, bFollowLinks, bIsHandle]() -> Platform::String ^
+return create_async([this, pathOrHandle, bFollowLinks, bIsHandle]() -> Platform::String ^
 {
 // This runs in a thread pool thread...
 
@@ -875,17 +817,15 @@ return create_async([this, filenameOrHandle, bFollowLinks, bIsHandle]() -> Platf
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->getFileOwner(filenameOrHandle ? filenameOrHandle->Data() : L"",bFollowLinks,bIsHandle);
+	const wchar_t *retStr = m_impl->getFileOwner(pathOrHandle ? pathOrHandle->Data() : L"",bFollowLinks,bIsHandle);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
 });
     }
-IAsyncOperation<int>^ SFtp::GetFilePermissionsAsync(Platform::String ^filenameOrHandle, Boolean bFollowLinks, Boolean bIsHandle)
+IAsyncOperation<int>^ SFtp::GetFilePermissionsAsync(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle)
     {
-return create_async([this, filenameOrHandle, bFollowLinks, bIsHandle]() -> int
+return create_async([this, pathOrHandle, bFollowLinks, bIsHandle]() -> int
 {
 // This runs in a thread pool thread...
 
@@ -893,15 +833,13 @@ return create_async([this, filenameOrHandle, bFollowLinks, bIsHandle]() -> int
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
-	return m_impl->GetFilePermissions(filenameOrHandle ? filenameOrHandle->Data() : L"",bFollowLinks,bIsHandle);
+	return m_impl->GetFilePermissions(pathOrHandle ? pathOrHandle->Data() : L"",bFollowLinks,bIsHandle);
 
 });
     }
-IAsyncOperation<int>^ SFtp::GetFileSize32Async(Platform::String ^filenameOrHandle, Boolean bFollowLinks, Boolean bIsHandle)
+IAsyncOperation<int>^ SFtp::GetFileSize32Async(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle)
     {
-return create_async([this, filenameOrHandle, bFollowLinks, bIsHandle]() -> int
+return create_async([this, pathOrHandle, bFollowLinks, bIsHandle]() -> int
 {
 // This runs in a thread pool thread...
 
@@ -909,15 +847,13 @@ return create_async([this, filenameOrHandle, bFollowLinks, bIsHandle]() -> int
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
-	return m_impl->GetFileSize32(filenameOrHandle ? filenameOrHandle->Data() : L"",bFollowLinks,bIsHandle);
+	return m_impl->GetFileSize32(pathOrHandle ? pathOrHandle->Data() : L"",bFollowLinks,bIsHandle);
 
 });
     }
-IAsyncOperation<int64>^ SFtp::GetFileSize64Async(Platform::String ^filenameOrHandle, Boolean bFollowLinks, Boolean bIsHandle)
+IAsyncOperation<int64>^ SFtp::GetFileSize64Async(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle)
     {
-return create_async([this, filenameOrHandle, bFollowLinks, bIsHandle]() -> int64
+return create_async([this, pathOrHandle, bFollowLinks, bIsHandle]() -> int64
 {
 // This runs in a thread pool thread...
 
@@ -925,15 +861,13 @@ return create_async([this, filenameOrHandle, bFollowLinks, bIsHandle]() -> int64
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int64
-	// cppType = __int64
-	return m_impl->GetFileSize64(filenameOrHandle ? filenameOrHandle->Data() : L"",bFollowLinks,bIsHandle);
+	return m_impl->GetFileSize64(pathOrHandle ? pathOrHandle->Data() : L"",bFollowLinks,bIsHandle);
 
 });
     }
-IAsyncOperation<Platform::String ^>^ SFtp::GetFileSizeStrAsync(Platform::String ^filenameOrHandle, Boolean bFollowLinks, Boolean bIsHandle)
+IAsyncOperation<Platform::String ^>^ SFtp::GetFileSizeStrAsync(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle)
     {
-return create_async([this, filenameOrHandle, bFollowLinks, bIsHandle]() -> Platform::String ^
+return create_async([this, pathOrHandle, bFollowLinks, bIsHandle]() -> Platform::String ^
 {
 // This runs in a thread pool thread...
 
@@ -941,9 +875,7 @@ return create_async([this, filenameOrHandle, bFollowLinks, bIsHandle]() -> Platf
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->getFileSizeStr(filenameOrHandle ? filenameOrHandle->Data() : L"",bFollowLinks,bIsHandle);
+	const wchar_t *retStr = m_impl->getFileSizeStr(pathOrHandle ? pathOrHandle->Data() : L"",bFollowLinks,bIsHandle);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
@@ -959,8 +891,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->InitializeSftp();
 
 });
@@ -971,8 +901,6 @@ Boolean SFtp::LastReadFailed(Platform::String ^handle)
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->LastReadFailed(handle ? handle->Data() : L"");
     }
 int SFtp::LastReadNumBytes(Platform::String ^handle)
@@ -981,8 +909,6 @@ int SFtp::LastReadNumBytes(Platform::String ^handle)
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
 	return m_impl->LastReadNumBytes(handle ? handle->Data() : L"");
     }
 IAsyncOperation<Platform::String ^>^ SFtp::OpenDirAsync(Platform::String ^path)
@@ -995,17 +921,15 @@ return create_async([this, path]() -> Platform::String ^
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->openDir(path ? path->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
 });
     }
-IAsyncOperation<Platform::String ^>^ SFtp::OpenFileAsync(Platform::String ^remoteFilePath, Platform::String ^access, Platform::String ^createDisp)
+IAsyncOperation<Platform::String ^>^ SFtp::OpenFileAsync(Platform::String ^remotePath, Platform::String ^access, Platform::String ^createDisposition)
     {
-return create_async([this, remoteFilePath, access, createDisp]() -> Platform::String ^
+return create_async([this, remotePath, access, createDisposition]() -> Platform::String ^
 {
 // This runs in a thread pool thread...
 
@@ -1013,9 +937,7 @@ return create_async([this, remoteFilePath, access, createDisp]() -> Platform::St
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->openFile(remoteFilePath ? remoteFilePath->Data() : L"",access ? access->Data() : L"",createDisp ? createDisp->Data() : L"");
+	const wchar_t *retStr = m_impl->openFile(remotePath ? remotePath->Data() : L"",access ? access->Data() : L"",createDisposition ? createDisposition->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
@@ -1031,8 +953,6 @@ return create_async([this, handle]() -> SFtpDir ^
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = SFtpDir
-	// cppType = CkSFtpDir *
 	CkSFtpDirW *pRetObj = m_impl->ReadDir(handle ? handle->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::SFtpDir ^pSFtpDir = ref new Chilkat::SFtpDir();
@@ -1052,8 +972,6 @@ return create_async([this, handle, numBytes]() -> Windows::Foundation::Collectio
 	CkByteData outDb;
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->ReadFileBytes(handle ? handle->Data() : L"",numBytes,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -1072,8 +990,6 @@ return create_async([this, handle, offset, numBytes]() -> Windows::Foundation::C
 	CkByteData outDb;
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->ReadFileBytes32(handle ? handle->Data() : L"",offset,numBytes,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -1081,9 +997,9 @@ return create_async([this, handle, offset, numBytes]() -> Windows::Foundation::C
 
 });
     }
-IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ SFtp::ReadFileBytes64Async(Platform::String ^handle, int64 offset64, int numBytes)
+IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ SFtp::ReadFileBytes64Async(Platform::String ^handle, int64 offset, int numBytes)
     {
-return create_async([this, handle, offset64, numBytes]() -> Windows::Foundation::Collections::IVector<uint8>^
+return create_async([this, handle, offset, numBytes]() -> Windows::Foundation::Collections::IVector<uint8>^
 {
 // This runs in a thread pool thread...
 
@@ -1092,18 +1008,16 @@ return create_async([this, handle, offset64, numBytes]() -> Windows::Foundation:
 	CkByteData outDb;
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
-	bool success = m_impl->ReadFileBytes64(handle ? handle->Data() : L"",offset64,numBytes,outDb);
+	bool success = m_impl->ReadFileBytes64(handle ? handle->Data() : L"",offset,numBytes,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
 
 });
     }
-IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ SFtp::ReadFileBytes64sAsync(Platform::String ^handle, Platform::String ^offset64, int numBytes)
+IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ SFtp::ReadFileBytes64sAsync(Platform::String ^handle, Platform::String ^offset, int numBytes)
     {
-return create_async([this, handle, offset64, numBytes]() -> Windows::Foundation::Collections::IVector<uint8>^
+return create_async([this, handle, offset, numBytes]() -> Windows::Foundation::Collections::IVector<uint8>^
 {
 // This runs in a thread pool thread...
 
@@ -1112,9 +1026,7 @@ return create_async([this, handle, offset64, numBytes]() -> Windows::Foundation:
 	CkByteData outDb;
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
-	bool success = m_impl->ReadFileBytes64s(handle ? handle->Data() : L"",offset64 ? offset64->Data() : L"",numBytes,outDb);
+	bool success = m_impl->ReadFileBytes64s(handle ? handle->Data() : L"",offset ? offset->Data() : L"",numBytes,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
@@ -1131,17 +1043,15 @@ return create_async([this, handle, numBytes, charset]() -> Platform::String ^
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->readFileText(handle ? handle->Data() : L"",numBytes,charset ? charset->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
 });
     }
-IAsyncOperation<Platform::String ^>^ SFtp::ReadFileText32Async(Platform::String ^handle, int offset32, int numBytes, Platform::String ^charset)
+IAsyncOperation<Platform::String ^>^ SFtp::ReadFileText32Async(Platform::String ^handle, int offset, int numBytes, Platform::String ^charset)
     {
-return create_async([this, handle, offset32, numBytes, charset]() -> Platform::String ^
+return create_async([this, handle, offset, numBytes, charset]() -> Platform::String ^
 {
 // This runs in a thread pool thread...
 
@@ -1149,17 +1059,15 @@ return create_async([this, handle, offset32, numBytes, charset]() -> Platform::S
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->readFileText32(handle ? handle->Data() : L"",offset32,numBytes,charset ? charset->Data() : L"");
+	const wchar_t *retStr = m_impl->readFileText32(handle ? handle->Data() : L"",offset,numBytes,charset ? charset->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
 });
     }
-IAsyncOperation<Platform::String ^>^ SFtp::ReadFileText64Async(Platform::String ^handle, int64 offset64, int numBytes, Platform::String ^charset)
+IAsyncOperation<Platform::String ^>^ SFtp::ReadFileText64Async(Platform::String ^handle, int64 offset, int numBytes, Platform::String ^charset)
     {
-return create_async([this, handle, offset64, numBytes, charset]() -> Platform::String ^
+return create_async([this, handle, offset, numBytes, charset]() -> Platform::String ^
 {
 // This runs in a thread pool thread...
 
@@ -1167,17 +1075,15 @@ return create_async([this, handle, offset64, numBytes, charset]() -> Platform::S
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->readFileText64(handle ? handle->Data() : L"",offset64,numBytes,charset ? charset->Data() : L"");
+	const wchar_t *retStr = m_impl->readFileText64(handle ? handle->Data() : L"",offset,numBytes,charset ? charset->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
 });
     }
-IAsyncOperation<Platform::String ^>^ SFtp::ReadFileText64sAsync(Platform::String ^handle, Platform::String ^offset64, int numBytes, Platform::String ^charset)
+IAsyncOperation<Platform::String ^>^ SFtp::ReadFileText64sAsync(Platform::String ^handle, Platform::String ^offset, int numBytes, Platform::String ^charset)
     {
-return create_async([this, handle, offset64, numBytes, charset]() -> Platform::String ^
+return create_async([this, handle, offset, numBytes, charset]() -> Platform::String ^
 {
 // This runs in a thread pool thread...
 
@@ -1185,9 +1091,7 @@ return create_async([this, handle, offset64, numBytes, charset]() -> Platform::S
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->readFileText64s(handle ? handle->Data() : L"",offset64 ? offset64->Data() : L"",numBytes,charset ? charset->Data() : L"");
+	const wchar_t *retStr = m_impl->readFileText64s(handle ? handle->Data() : L"",offset ? offset->Data() : L"",numBytes,charset ? charset->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
@@ -1203,8 +1107,6 @@ return create_async([this, originalPath, composePath]() -> Platform::String ^
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->realPath(originalPath ? originalPath->Data() : L"",composePath ? composePath->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -1221,8 +1123,6 @@ return create_async([this, path]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->RemoveDir(path ? path->Data() : L"");
 
 });
@@ -1237,8 +1137,6 @@ return create_async([this, filename]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->RemoveFile(filename ? filename->Data() : L"");
 
 });
@@ -1253,8 +1151,6 @@ return create_async([this, oldPath, newPath]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->RenameFileOrDir(oldPath ? oldPath->Data() : L"",newPath ? newPath->Data() : L"");
 
 });
@@ -1269,8 +1165,6 @@ return create_async([this, remoteFilePath, localFilePath]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ResumeDownloadFileByName(remoteFilePath ? remoteFilePath->Data() : L"",localFilePath ? localFilePath->Data() : L"");
 
 });
@@ -1285,28 +1179,24 @@ return create_async([this, remoteFilePath, localFilePath]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ResumeUploadFileByName(remoteFilePath ? remoteFilePath->Data() : L"",localFilePath ? localFilePath->Data() : L"");
 
 });
     }
-IAsyncOperation<Boolean>^ SFtp::SetCreateDtAsync(Platform::String ^pathOrHandle, Boolean bIsHandle, Chilkat::CkDateTime ^createTime)
+IAsyncOperation<Boolean>^ SFtp::SetCreateDtAsync(Platform::String ^pathOrHandle, Boolean isHandle, Chilkat::CkDateTime ^createDateTime)
     {
-return create_async([this, pathOrHandle, bIsHandle, createTime]() -> Boolean
+return create_async([this, pathOrHandle, isHandle, createDateTime]() -> Boolean
 {
 // This runs in a thread pool thread...
 
 	if (m_impl == nullptr) { return false; }
-	if (createTime == nullptr) { return false; }
-	CkDateTimeW* pObj2 = createTime->m_impl;
+	if (createDateTime == nullptr) { return false; }
+	CkDateTimeW* pObj2 = createDateTime->m_impl;
 	 if (!pObj2) { return false; }
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SetCreateDt(pathOrHandle ? pathOrHandle->Data() : L"",bIsHandle,*pObj2);
+	return m_impl->SetCreateDt(pathOrHandle ? pathOrHandle->Data() : L"",isHandle,*pObj2);
 
 });
     }
@@ -1320,28 +1210,24 @@ return create_async([this, pathOrHandle, bIsHandle, dateTimeStr]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetCreateTimeStr(pathOrHandle ? pathOrHandle->Data() : L"",bIsHandle,dateTimeStr ? dateTimeStr->Data() : L"");
 
 });
     }
-IAsyncOperation<Boolean>^ SFtp::SetLastAccessDtAsync(Platform::String ^pathOrHandle, Boolean bIsHandle, Chilkat::CkDateTime ^createTime)
+IAsyncOperation<Boolean>^ SFtp::SetLastAccessDtAsync(Platform::String ^pathOrHandle, Boolean isHandle, Chilkat::CkDateTime ^accessDateTime)
     {
-return create_async([this, pathOrHandle, bIsHandle, createTime]() -> Boolean
+return create_async([this, pathOrHandle, isHandle, accessDateTime]() -> Boolean
 {
 // This runs in a thread pool thread...
 
 	if (m_impl == nullptr) { return false; }
-	if (createTime == nullptr) { return false; }
-	CkDateTimeW* pObj2 = createTime->m_impl;
+	if (accessDateTime == nullptr) { return false; }
+	CkDateTimeW* pObj2 = accessDateTime->m_impl;
 	 if (!pObj2) { return false; }
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SetLastAccessDt(pathOrHandle ? pathOrHandle->Data() : L"",bIsHandle,*pObj2);
+	return m_impl->SetLastAccessDt(pathOrHandle ? pathOrHandle->Data() : L"",isHandle,*pObj2);
 
 });
     }
@@ -1355,28 +1241,24 @@ return create_async([this, pathOrHandle, bIsHandle, dateTimeStr]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetLastAccessTimeStr(pathOrHandle ? pathOrHandle->Data() : L"",bIsHandle,dateTimeStr ? dateTimeStr->Data() : L"");
 
 });
     }
-IAsyncOperation<Boolean>^ SFtp::SetLastModifiedDtAsync(Platform::String ^pathOrHandle, Boolean bIsHandle, Chilkat::CkDateTime ^createTime)
+IAsyncOperation<Boolean>^ SFtp::SetLastModifiedDtAsync(Platform::String ^pathOrHandle, Boolean isHandle, Chilkat::CkDateTime ^modifiedDateTime)
     {
-return create_async([this, pathOrHandle, bIsHandle, createTime]() -> Boolean
+return create_async([this, pathOrHandle, isHandle, modifiedDateTime]() -> Boolean
 {
 // This runs in a thread pool thread...
 
 	if (m_impl == nullptr) { return false; }
-	if (createTime == nullptr) { return false; }
-	CkDateTimeW* pObj2 = createTime->m_impl;
+	if (modifiedDateTime == nullptr) { return false; }
+	CkDateTimeW* pObj2 = modifiedDateTime->m_impl;
 	 if (!pObj2) { return false; }
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SetLastModifiedDt(pathOrHandle ? pathOrHandle->Data() : L"",bIsHandle,*pObj2);
+	return m_impl->SetLastModifiedDt(pathOrHandle ? pathOrHandle->Data() : L"",isHandle,*pObj2);
 
 });
     }
@@ -1390,15 +1272,13 @@ return create_async([this, pathOrHandle, bIsHandle, dateTimeStr]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetLastModifiedTimeStr(pathOrHandle ? pathOrHandle->Data() : L"",bIsHandle,dateTimeStr ? dateTimeStr->Data() : L"");
 
 });
     }
-IAsyncOperation<Boolean>^ SFtp::SetOwnerAndGroupAsync(Platform::String ^pathOrHandle, Boolean bIsHandle, Platform::String ^owner, Platform::String ^group)
+IAsyncOperation<Boolean>^ SFtp::SetOwnerAndGroupAsync(Platform::String ^pathOrHandle, Boolean isHandle, Platform::String ^owner, Platform::String ^group)
     {
-return create_async([this, pathOrHandle, bIsHandle, owner, group]() -> Boolean
+return create_async([this, pathOrHandle, isHandle, owner, group]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -1406,15 +1286,13 @@ return create_async([this, pathOrHandle, bIsHandle, owner, group]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SetOwnerAndGroup(pathOrHandle ? pathOrHandle->Data() : L"",bIsHandle,owner ? owner->Data() : L"",group ? group->Data() : L"");
+	return m_impl->SetOwnerAndGroup(pathOrHandle ? pathOrHandle->Data() : L"",isHandle,owner ? owner->Data() : L"",group ? group->Data() : L"");
 
 });
     }
-IAsyncOperation<Boolean>^ SFtp::SetPermissionsAsync(Platform::String ^pathOrHandle, Boolean bIsHandle, int perm)
+IAsyncOperation<Boolean>^ SFtp::SetPermissionsAsync(Platform::String ^pathOrHandle, Boolean isHandle, int permissions)
     {
-return create_async([this, pathOrHandle, bIsHandle, perm]() -> Boolean
+return create_async([this, pathOrHandle, isHandle, permissions]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -1422,9 +1300,7 @@ return create_async([this, pathOrHandle, bIsHandle, perm]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SetPermissions(pathOrHandle ? pathOrHandle->Data() : L"",bIsHandle,perm);
+	return m_impl->SetPermissions(pathOrHandle ? pathOrHandle->Data() : L"",isHandle,permissions);
 
 });
     }
@@ -1438,8 +1314,6 @@ return create_async([this, remoteRoot, localRoot, mode, recurse]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SyncTreeDownload(remoteRoot ? remoteRoot->Data() : L"",localRoot ? localRoot->Data() : L"",mode,recurse);
 
 });
@@ -1454,8 +1328,6 @@ return create_async([this, localBaseDir, remoteBaseDir, mode, bRecurse]() -> Boo
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SyncTreeUpload(localBaseDir ? localBaseDir->Data() : L"",remoteBaseDir ? remoteBaseDir->Data() : L"",mode,bRecurse);
 
 });
@@ -1466,13 +1338,11 @@ Boolean SFtp::UnlockComponent(Platform::String ^unlockCode)
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UnlockComponent(unlockCode ? unlockCode->Data() : L"");
     }
-IAsyncOperation<Boolean>^ SFtp::UploadFileAsync(Platform::String ^handle, Platform::String ^localFilePath)
+IAsyncOperation<Boolean>^ SFtp::UploadFileAsync(Platform::String ^handle, Platform::String ^fromFilename)
     {
-return create_async([this, handle, localFilePath]() -> Boolean
+return create_async([this, handle, fromFilename]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -1480,9 +1350,7 @@ return create_async([this, handle, localFilePath]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->UploadFile(handle ? handle->Data() : L"",localFilePath ? localFilePath->Data() : L"");
+	return m_impl->UploadFile(handle ? handle->Data() : L"",fromFilename ? fromFilename->Data() : L"");
 
 });
     }
@@ -1496,27 +1364,23 @@ return create_async([this, remoteFilePath, localFilePath]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UploadFileByName(remoteFilePath ? remoteFilePath->Data() : L"",localFilePath ? localFilePath->Data() : L"");
 
 });
     }
-IAsyncOperation<Boolean>^ SFtp::WriteFileBytesAsync(Platform::String ^handle, Windows::Foundation::Collections::IVector<uint8>^data)
+IAsyncOperation<Boolean>^ SFtp::WriteFileBytesAsync(Platform::String ^handle, Windows::Foundation::Collections::IVector<uint8>^byteData)
     {
-return create_async([this, handle, data]() -> Boolean
+return create_async([this, handle, byteData]() -> Boolean
 {
 // This runs in a thread pool thread...
 
 	if (m_impl == nullptr) { return false; }
 	CkByteData db1; std::vector<uint8> v1;
-        if (data != nullptr) { v1 = to_vector(data);
+        if (byteData != nullptr) { v1 = to_vector(byteData);
             db1.borrowData(&v1[0], (unsigned long)v1.size()); }
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->WriteFileBytes(handle ? handle->Data() : L"",db1);
 
 });
@@ -1534,8 +1398,6 @@ return create_async([this, handle, offset, data]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->WriteFileBytes32(handle ? handle->Data() : L"",offset,db2);
 
 });
@@ -1553,8 +1415,6 @@ return create_async([this, handle, offset64, data]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->WriteFileBytes64(handle ? handle->Data() : L"",offset64,db2);
 
 });
@@ -1572,8 +1432,6 @@ return create_async([this, handle, offset64, data]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->WriteFileBytes64s(handle ? handle->Data() : L"",offset64 ? offset64->Data() : L"",db2);
 
 });
@@ -1588,8 +1446,6 @@ return create_async([this, handle, charset, textData]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->WriteFileText(handle ? handle->Data() : L"",charset ? charset->Data() : L"",textData ? textData->Data() : L"");
 
 });
@@ -1604,8 +1460,6 @@ return create_async([this, handle, offset32, charset, textData]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->WriteFileText32(handle ? handle->Data() : L"",offset32,charset ? charset->Data() : L"",textData ? textData->Data() : L"");
 
 });
@@ -1620,8 +1474,6 @@ return create_async([this, handle, offset64, charset, textData]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->WriteFileText64(handle ? handle->Data() : L"",offset64,charset ? charset->Data() : L"",textData ? textData->Data() : L"");
 
 });
@@ -1636,8 +1488,6 @@ return create_async([this, handle, offset64, charset, textData]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->WriteFileText64s(handle ? handle->Data() : L"",offset64 ? offset64->Data() : L"",charset ? charset->Data() : L"",textData ? textData->Data() : L"");
 
 });

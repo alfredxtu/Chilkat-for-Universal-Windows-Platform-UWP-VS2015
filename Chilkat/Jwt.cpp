@@ -47,6 +47,22 @@ Chilkat::Jwt::Jwt(void)
 //}
 
 
+Boolean Chilkat::Jwt::AutoCompact::get()
+    {
+    return m_impl ? m_impl->get_AutoCompact() : false;
+    }
+void Chilkat::Jwt::AutoCompact::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AutoCompact(newVal);
+    }
+String ^Chilkat::Jwt::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::Jwt::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
 String ^Chilkat::Jwt::LastErrorHtml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
@@ -59,17 +75,13 @@ String ^Chilkat::Jwt::LastErrorXml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
     }
-String ^Chilkat::Jwt::Version::get()
+Boolean Chilkat::Jwt::LastMethodSuccess::get()
     {
-    return ref new String(m_impl ? m_impl->version() : L"");
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
     }
-String ^Chilkat::Jwt::DebugLogFilePath::get()
+void Chilkat::Jwt::LastMethodSuccess::set(Boolean newVal)
     {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::Jwt::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
 Boolean Chilkat::Jwt::VerboseLogging::get()
     {
@@ -79,51 +91,27 @@ void Chilkat::Jwt::VerboseLogging::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_VerboseLogging(newVal);
     }
-Boolean Chilkat::Jwt::LastMethodSuccess::get()
+String ^Chilkat::Jwt::Version::get()
     {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::Jwt::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
-Boolean Chilkat::Jwt::AutoCompact::get()
-    {
-    return m_impl ? m_impl->get_AutoCompact() : false;
-    }
-void Chilkat::Jwt::AutoCompact::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_AutoCompact(newVal);
+    return ref new String(m_impl ? m_impl->version() : L"");
     }
 
 
-Boolean Jwt::SaveLastError(Platform::String ^path)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
-    }
 Platform::String ^Jwt::CreateJwt(Platform::String ^header, Platform::String ^payload, Platform::String ^password)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->createJwt(header ? header->Data() : L"",payload ? payload->Data() : L"",password ? password->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-Platform::String ^Jwt::CreateJwtPk(Platform::String ^header, Platform::String ^payload, PrivateKey ^key)
+Platform::String ^Jwt::CreateJwtPk(Platform::String ^header, Platform::String ^payload, Chilkat::PrivateKey ^key)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	if (key == nullptr) { return nullptr; }
 	CkPrivateKeyW* pObj2 = key->m_impl;
 	 if (!pObj2) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->createJwtPk(header ? header->Data() : L"",payload ? payload->Data() : L"",*pObj2);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -132,16 +120,12 @@ int Jwt::GenNumericDate(int numSecOffset)
     {
 	if (m_impl == nullptr) { return -1; }
 	// --- prep output arg ---
-	// gType = int
-	// cppType = int
 	return m_impl->GenNumericDate(numSecOffset);
     }
 Platform::String ^Jwt::GetHeader(Platform::String ^token)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getHeader(token ? token->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -150,8 +134,6 @@ Platform::String ^Jwt::GetPayload(Platform::String ^token)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getPayload(token ? token->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -160,27 +142,21 @@ Boolean Jwt::IsTimeValid(Platform::String ^jwt, int leeway)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->IsTimeValid(jwt ? jwt->Data() : L"",leeway);
     }
 Boolean Jwt::VerifyJwt(Platform::String ^token, Platform::String ^password)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->VerifyJwt(token ? token->Data() : L"",password ? password->Data() : L"");
     }
-Boolean Jwt::VerifyJwtPk(Platform::String ^token, PublicKey ^key)
+Boolean Jwt::VerifyJwtPk(Platform::String ^token, Chilkat::PublicKey ^key)
     {
 	if (m_impl == nullptr) { return false; }
 	if (key == nullptr) { return false; }
 	CkPublicKeyW* pObj1 = key->m_impl;
 	 if (!pObj1) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->VerifyJwtPk(token ? token->Data() : L"",*pObj1);
     }
 

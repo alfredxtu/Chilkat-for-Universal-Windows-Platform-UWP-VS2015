@@ -43,6 +43,30 @@ Chilkat::Bz2::Bz2(void)
 //}
 
 
+Boolean Chilkat::Bz2::AbortCurrent::get()
+    {
+    return m_impl ? m_impl->get_AbortCurrent() : false;
+    }
+void Chilkat::Bz2::AbortCurrent::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
+    }
+String ^Chilkat::Bz2::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::Bz2::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
+int Chilkat::Bz2::HeartbeatMs::get()
+    {
+    return m_impl ? m_impl->get_HeartbeatMs() : 0;
+    }
+void Chilkat::Bz2::HeartbeatMs::set(int newVal)
+    {
+        if (m_impl) m_impl->put_HeartbeatMs(newVal);
+    }
 String ^Chilkat::Bz2::LastErrorHtml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
@@ -55,17 +79,13 @@ String ^Chilkat::Bz2::LastErrorXml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
     }
-String ^Chilkat::Bz2::Version::get()
+Boolean Chilkat::Bz2::LastMethodSuccess::get()
     {
-    return ref new String(m_impl ? m_impl->version() : L"");
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
     }
-String ^Chilkat::Bz2::DebugLogFilePath::get()
+void Chilkat::Bz2::LastMethodSuccess::set(Boolean newVal)
     {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::Bz2::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
 Boolean Chilkat::Bz2::VerboseLogging::get()
     {
@@ -75,42 +95,12 @@ void Chilkat::Bz2::VerboseLogging::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_VerboseLogging(newVal);
     }
-Boolean Chilkat::Bz2::LastMethodSuccess::get()
+String ^Chilkat::Bz2::Version::get()
     {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::Bz2::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
-int Chilkat::Bz2::HeartbeatMs::get()
-    {
-    return m_impl ? m_impl->get_HeartbeatMs() : 0;
-    }
-void Chilkat::Bz2::HeartbeatMs::set(int newVal)
-    {
-        if (m_impl) m_impl->put_HeartbeatMs(newVal);
-    }
-Boolean Chilkat::Bz2::AbortCurrent::get()
-    {
-    return m_impl ? m_impl->get_AbortCurrent() : false;
-    }
-void Chilkat::Bz2::AbortCurrent::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_AbortCurrent(newVal);
+    return ref new String(m_impl ? m_impl->version() : L"");
     }
 
 
-Boolean Bz2::SaveLastError(Platform::String ^path)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxBz2Progress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
-    }
 IAsyncOperation<Boolean>^ Bz2::CompressFileAsync(Platform::String ^inFilename, Platform::String ^toPath)
     {
 return create_async([this, inFilename, toPath]() -> Boolean
@@ -121,8 +111,6 @@ return create_async([this, inFilename, toPath]() -> Boolean
 	// --- prep output arg ---
 	CxBz2Progress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->CompressFile(inFilename ? inFilename->Data() : L"",toPath ? toPath->Data() : L"");
 
 });
@@ -138,9 +126,28 @@ return create_async([this, inFilename]() -> Windows::Foundation::Collections::IV
 	CkByteData outDb;
 	CxBz2Progress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->CompressFileToMem(inFilename ? inFilename->Data() : L"",outDb);
+	const uint8 *pOut = outDb.getData();
+	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
+	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
+
+});
+    }
+IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ Bz2::CompressMemoryAsync(Windows::Foundation::Collections::IVector<uint8>^inData)
+    {
+return create_async([this, inData]() -> Windows::Foundation::Collections::IVector<uint8>^
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return nullptr; }
+	CkByteData db0; std::vector<uint8> v0;
+        if (inData != nullptr) { v0 = to_vector(inData);
+            db0.borrowData(&v0[0], (unsigned long)v0.size()); }
+	// --- prep output arg ---
+	CkByteData outDb;
+	CxBz2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	bool success = m_impl->CompressMemory(db0,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
@@ -160,32 +167,7 @@ return create_async([this, inData, toPath]() -> Boolean
 	// --- prep output arg ---
 	CxBz2Progress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->CompressMemToFile(db0,toPath ? toPath->Data() : L"");
-
-});
-    }
-IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ Bz2::CompressMemoryAsync(Windows::Foundation::Collections::IVector<uint8>^inData)
-    {
-return create_async([this, inData]() -> Windows::Foundation::Collections::IVector<uint8>^
-{
-// This runs in a thread pool thread...
-
-	if (m_impl == nullptr) { return nullptr; }
-	CkByteData db0; std::vector<uint8> v0;
-        if (inData != nullptr) { v0 = to_vector(inData);
-            db0.borrowData(&v0[0], (unsigned long)v0.size()); }
-	// --- prep output arg ---
-	CkByteData outDb;
-	CxBz2Progress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
-	bool success = m_impl->CompressMemory(db0,outDb);
-	const uint8 *pOut = outDb.getData();
-	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
-	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
 
 });
     }
@@ -199,8 +181,6 @@ return create_async([this, inFilename, toPath]() -> Boolean
 	// --- prep output arg ---
 	CxBz2Progress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UncompressFile(inFilename ? inFilename->Data() : L"",toPath ? toPath->Data() : L"");
 
 });
@@ -216,9 +196,28 @@ return create_async([this, inFilename]() -> Windows::Foundation::Collections::IV
 	CkByteData outDb;
 	CxBz2Progress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->UncompressFileToMem(inFilename ? inFilename->Data() : L"",outDb);
+	const uint8 *pOut = outDb.getData();
+	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
+	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
+
+});
+    }
+IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ Bz2::UncompressMemoryAsync(Windows::Foundation::Collections::IVector<uint8>^inData)
+    {
+return create_async([this, inData]() -> Windows::Foundation::Collections::IVector<uint8>^
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return nullptr; }
+	CkByteData db0; std::vector<uint8> v0;
+        if (inData != nullptr) { v0 = to_vector(inData);
+            db0.borrowData(&v0[0], (unsigned long)v0.size()); }
+	// --- prep output arg ---
+	CkByteData outDb;
+	CxBz2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	bool success = m_impl->UncompressMemory(db0,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
@@ -238,32 +237,7 @@ return create_async([this, inData, toPath]() -> Boolean
 	// --- prep output arg ---
 	CxBz2Progress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UncompressMemToFile(db0,toPath ? toPath->Data() : L"");
-
-});
-    }
-IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ Bz2::UncompressMemoryAsync(Windows::Foundation::Collections::IVector<uint8>^inData)
-    {
-return create_async([this, inData]() -> Windows::Foundation::Collections::IVector<uint8>^
-{
-// This runs in a thread pool thread...
-
-	if (m_impl == nullptr) { return nullptr; }
-	CkByteData db0; std::vector<uint8> v0;
-        if (inData != nullptr) { v0 = to_vector(inData);
-            db0.borrowData(&v0[0], (unsigned long)v0.size()); }
-	// --- prep output arg ---
-	CkByteData outDb;
-	CxBz2Progress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
-	bool success = m_impl->UncompressMemory(db0,outDb);
-	const uint8 *pOut = outDb.getData();
-	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
-	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
 
 });
     }
@@ -273,8 +247,6 @@ Boolean Bz2::UnlockComponent(Platform::String ^regCode)
 	// --- prep output arg ---
 	CxBz2Progress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UnlockComponent(regCode ? regCode->Data() : L"");
     }
 

@@ -49,6 +49,14 @@ Chilkat::Ecc::Ecc(void)
 //}
 
 
+String ^Chilkat::Ecc::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::Ecc::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
 String ^Chilkat::Ecc::LastErrorHtml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
@@ -61,17 +69,13 @@ String ^Chilkat::Ecc::LastErrorXml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
     }
-String ^Chilkat::Ecc::Version::get()
+Boolean Chilkat::Ecc::LastMethodSuccess::get()
     {
-    return ref new String(m_impl ? m_impl->version() : L"");
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
     }
-String ^Chilkat::Ecc::DebugLogFilePath::get()
+void Chilkat::Ecc::LastMethodSuccess::set(Boolean newVal)
     {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::Ecc::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
 Boolean Chilkat::Ecc::VerboseLogging::get()
     {
@@ -81,40 +85,36 @@ void Chilkat::Ecc::VerboseLogging::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_VerboseLogging(newVal);
     }
-Boolean Chilkat::Ecc::LastMethodSuccess::get()
+String ^Chilkat::Ecc::Version::get()
     {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::Ecc::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+    return ref new String(m_impl ? m_impl->version() : L"");
     }
 
 
-Boolean Ecc::SaveLastError(Platform::String ^path)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
-    }
-PrivateKey ^Ecc::GenEccKey(Platform::String ^curveName, Prng ^prng)
+PrivateKey ^Ecc::GenEccKey(Platform::String ^curveName, Chilkat::Prng ^prng)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	if (prng == nullptr) { return nullptr; }
 	CkPrngW* pObj1 = prng->m_impl;
 	 if (!pObj1) { return nullptr; }
 	// --- prep output arg ---
-	// gType = PrivateKey
-	// cppType = CkPrivateKey *
 	CkPrivateKeyW *pRetObj = m_impl->GenEccKey(curveName ? curveName->Data() : L"",*pObj1);
 	if (!pRetObj) return nullptr;
 	Chilkat::PrivateKey ^pPrivateKey = ref new Chilkat::PrivateKey();
 	pPrivateKey->m_impl = pRetObj;
 	return pPrivateKey;
     }
-Platform::String ^Ecc::SharedSecretENC(PrivateKey ^privKey, PublicKey ^pubKey, Platform::String ^encoding)
+PrivateKey ^Ecc::GenEccKey2(Platform::String ^curveName, Platform::String ^encodedK, Platform::String ^encoding)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CkPrivateKeyW *pRetObj = m_impl->GenEccKey2(curveName ? curveName->Data() : L"",encodedK ? encodedK->Data() : L"",encoding ? encoding->Data() : L"");
+	if (!pRetObj) return nullptr;
+	Chilkat::PrivateKey ^pPrivateKey = ref new Chilkat::PrivateKey();
+	pPrivateKey->m_impl = pRetObj;
+	return pPrivateKey;
+    }
+Platform::String ^Ecc::SharedSecretENC(Chilkat::PrivateKey ^privKey, Chilkat::PublicKey ^pubKey, Platform::String ^encoding)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	if (privKey == nullptr) { return nullptr; }
@@ -124,13 +124,11 @@ Platform::String ^Ecc::SharedSecretENC(PrivateKey ^privKey, PublicKey ^pubKey, P
 	CkPublicKeyW* pObj1 = pubKey->m_impl;
 	 if (!pObj1) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->sharedSecretENC(*pObj0,*pObj1,encoding ? encoding->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-Platform::String ^Ecc::SignHashENC(Platform::String ^encodedHash, Platform::String ^encoding, PrivateKey ^privkey, Prng ^prng)
+Platform::String ^Ecc::SignHashENC(Platform::String ^encodedHash, Platform::String ^encoding, Chilkat::PrivateKey ^privkey, Chilkat::Prng ^prng)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	if (privkey == nullptr) { return nullptr; }
@@ -140,34 +138,18 @@ Platform::String ^Ecc::SignHashENC(Platform::String ^encodedHash, Platform::Stri
 	CkPrngW* pObj3 = prng->m_impl;
 	 if (!pObj3) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->signHashENC(encodedHash ? encodedHash->Data() : L"",encoding ? encoding->Data() : L"",*pObj2,*pObj3);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-int Ecc::VerifyHashENC(Platform::String ^encodedHash, Platform::String ^encodedSig, Platform::String ^encoding, PublicKey ^pubkey)
+int Ecc::VerifyHashENC(Platform::String ^encodedHash, Platform::String ^encodedSig, Platform::String ^encoding, Chilkat::PublicKey ^pubkey)
     {
 	if (m_impl == nullptr) { return -1; }
 	if (pubkey == nullptr) { return -1; }
 	CkPublicKeyW* pObj3 = pubkey->m_impl;
 	 if (!pObj3) { return -1; }
 	// --- prep output arg ---
-	// gType = int
-	// cppType = int
 	return m_impl->VerifyHashENC(encodedHash ? encodedHash->Data() : L"",encodedSig ? encodedSig->Data() : L"",encoding ? encoding->Data() : L"",*pObj3);
-    }
-PrivateKey ^Ecc::GenEccKey2(Platform::String ^curveName, Platform::String ^encodedK, Platform::String ^encoding)
-    {
-	if (m_impl == nullptr) { return nullptr; }
-	// --- prep output arg ---
-	// gType = PrivateKey
-	// cppType = CkPrivateKey *
-	CkPrivateKeyW *pRetObj = m_impl->GenEccKey2(curveName ? curveName->Data() : L"",encodedK ? encodedK->Data() : L"",encoding ? encoding->Data() : L"");
-	if (!pRetObj) return nullptr;
-	Chilkat::PrivateKey ^pPrivateKey = ref new Chilkat::PrivateKey();
-	pPrivateKey->m_impl = pRetObj;
-	return pPrivateKey;
     }
 
 

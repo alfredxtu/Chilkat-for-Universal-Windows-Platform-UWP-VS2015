@@ -82,38 +82,21 @@ public ref class Rest sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
+	property Boolean AllowHeaderQB
 	{
 		Boolean get();
 		void set(Boolean);
 	}
 	property Platform::String ^Authorization
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property int32 ConnectFailReason
+	{
+		int32 get();
+	}
+	property Platform::String ^DebugLogFilePath
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
@@ -133,6 +116,23 @@ public ref class Rest sealed
 		int32 get();
 		void set(int32);
 	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property Platform::String ^LastRequestHeader
 	{
 		Platform::String ^get();
@@ -149,6 +149,11 @@ public ref class Rest sealed
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
+	}
+	property Boolean PercentDoneOnSend
+	{
+		Boolean get();
+		void set(Boolean);
 	}
 	property Platform::String ^ResponseHeader
 	{
@@ -167,27 +172,20 @@ public ref class Rest sealed
 		Boolean get();
 		void set(Boolean);
 	}
-	property int32 ConnectFailReason
-	{
-		int32 get();
-	}
-	property Boolean PercentDoneOnSend
+	property Boolean VerboseLogging
 	{
 		Boolean get();
 		void set(Boolean);
 	}
-	property Boolean AllowHeaderQB
+	property Platform::String ^Version
 	{
-		Boolean get();
-		void set(Boolean);
+		Platform::String ^get();
 	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	Boolean AddHeader(Platform::String ^name, Platform::String ^value);
 
 	Boolean AddQueryParam(Platform::String ^name, Platform::String ^value);
@@ -212,13 +210,13 @@ public ref class Rest sealed
 
 	IAsyncOperation<Platform::String ^>^ FullRequestNoBodyAsync(Platform::String ^httpVerb, Platform::String ^uriPath);
 
-	IAsyncOperation<Platform::String ^>^ FullRequestStreamAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Stream ^stream);
+	IAsyncOperation<Platform::String ^>^ FullRequestStreamAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Chilkat::Stream ^stream);
 
 	IAsyncOperation<Platform::String ^>^ FullRequestStringAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Platform::String ^bodyText);
 
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ ReadRespBodyBinaryAsync(void);
 
-	IAsyncOperation<Boolean>^ ReadRespBodyStreamAsync(Stream ^stream, Boolean autoSetStreamCharset);
+	IAsyncOperation<Boolean>^ ReadRespBodyStreamAsync(Chilkat::Stream ^stream, Boolean autoSetStreamCharset);
 
 	IAsyncOperation<Platform::String ^>^ ReadRespBodyStringAsync(void);
 
@@ -244,31 +242,31 @@ public ref class Rest sealed
 
 	IAsyncOperation<Boolean>^ SendReqNoBodyAsync(Platform::String ^httpVerb, Platform::String ^uriPath);
 
-	IAsyncOperation<Boolean>^ SendReqStreamBodyAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Stream ^stream);
+	IAsyncOperation<Boolean>^ SendReqStreamBodyAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Chilkat::Stream ^stream);
 
 	IAsyncOperation<Boolean>^ SendReqStringBodyAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Platform::String ^bodyText);
 
-	Boolean SetAuthAws(AuthAws ^authProvider);
+	Boolean SetAuthAws(Chilkat::AuthAws ^authProvider);
 
-	Boolean SetAuthAzureAD(AuthAzureAD ^authProvider);
+	Boolean SetAuthAzureAD(Chilkat::AuthAzureAD ^authProvider);
 
-	Boolean SetAuthAzureStorage(AuthAzureStorage ^authProvider);
+	Boolean SetAuthAzureStorage(Chilkat::AuthAzureStorage ^authProvider);
 
 	Boolean SetAuthBasic(Platform::String ^username, Platform::String ^password);
 
-	Boolean SetAuthGoogle(AuthGoogle ^authProvider);
+	Boolean SetAuthGoogle(Chilkat::AuthGoogle ^authProvider);
 
-	Boolean SetAuthOAuth1(OAuth1 ^authProvider, Boolean useQueryParams);
+	Boolean SetAuthOAuth1(Chilkat::OAuth1 ^authProvider, Boolean useQueryParams);
 
 	Boolean SetMultipartBodyBinary(Windows::Foundation::Collections::IVector<uint8>^bodyData);
 
-	Boolean SetMultipartBodyStream(Stream ^stream);
+	Boolean SetMultipartBodyStream(Chilkat::Stream ^stream);
 
 	Boolean SetMultipartBodyString(Platform::String ^bodyText);
 
-	Boolean SetResponseBodyStream(int expectedStatus, Boolean autoSetStreamCharset, Stream ^responseStream);
+	Boolean SetResponseBodyStream(int expectedStatus, Boolean autoSetStreamCharset, Chilkat::Stream ^responseStream);
 
-	Boolean UseConnection(Socket ^connection, Boolean autoReconnect);
+	Boolean UseConnection(Chilkat::Socket ^connection, Boolean autoReconnect);
 
 
 

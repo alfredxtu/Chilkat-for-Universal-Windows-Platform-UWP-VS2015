@@ -43,46 +43,6 @@ Chilkat::HttpResponse::HttpResponse(void)
 //}
 
 
-String ^Chilkat::HttpResponse::LastErrorHtml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
-    }
-String ^Chilkat::HttpResponse::LastErrorText::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::HttpResponse::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::HttpResponse::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::HttpResponse::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::HttpResponse::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::HttpResponse::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::HttpResponse::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::HttpResponse::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::HttpResponse::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
 Windows::Foundation::Collections::IVector<uint8> ^Chilkat::HttpResponse::Body::get()
     {
     CkByteData db;
@@ -107,9 +67,21 @@ uint32 Chilkat::HttpResponse::ContentLength::get()
     {
     return m_impl ? m_impl->get_ContentLength() : 0;
     }
+int64 Chilkat::HttpResponse::ContentLength64::get()
+    {
+    return m_impl ? m_impl->get_ContentLength64() : 0;
+    }
 String ^Chilkat::HttpResponse::DateStr::get()
     {
     return ref new String(m_impl ? m_impl->dateStr() : L"");
+    }
+String ^Chilkat::HttpResponse::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::HttpResponse::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
     }
 String ^Chilkat::HttpResponse::Domain::get()
     {
@@ -126,6 +98,26 @@ String ^Chilkat::HttpResponse::FullMime::get()
 String ^Chilkat::HttpResponse::Header::get()
     {
     return ref new String(m_impl ? m_impl->header() : L"");
+    }
+String ^Chilkat::HttpResponse::LastErrorHtml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    }
+String ^Chilkat::HttpResponse::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::HttpResponse::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
+Boolean Chilkat::HttpResponse::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::HttpResponse::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
 int Chilkat::HttpResponse::NumCookies::get()
     {
@@ -147,22 +139,24 @@ String ^Chilkat::HttpResponse::StatusText::get()
     {
     return ref new String(m_impl ? m_impl->statusText() : L"");
     }
-
-
-Boolean HttpResponse::SaveLastError(Platform::String ^path)
+Boolean Chilkat::HttpResponse::VerboseLogging::get()
     {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
+    return m_impl ? m_impl->get_VerboseLogging() : false;
     }
+void Chilkat::HttpResponse::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::HttpResponse::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
+
+
 Platform::String ^HttpResponse::GetCookieDomain(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getCookieDomain(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -171,8 +165,6 @@ Platform::String ^HttpResponse::GetCookieExpiresStr(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getCookieExpiresStr(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -181,8 +173,6 @@ Platform::String ^HttpResponse::GetCookieName(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getCookieName(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -191,8 +181,6 @@ Platform::String ^HttpResponse::GetCookiePath(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getCookiePath(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -201,8 +189,6 @@ Platform::String ^HttpResponse::GetCookieValue(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getCookieValue(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -211,8 +197,6 @@ Platform::String ^HttpResponse::GetHeaderField(Platform::String ^fieldName)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getHeaderField(fieldName ? fieldName->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -221,8 +205,6 @@ Platform::String ^HttpResponse::GetHeaderFieldAttr(Platform::String ^fieldName, 
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getHeaderFieldAttr(fieldName ? fieldName->Data() : L"",attrName ? attrName->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -231,8 +213,6 @@ Platform::String ^HttpResponse::GetHeaderName(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getHeaderName(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -241,8 +221,6 @@ Platform::String ^HttpResponse::GetHeaderValue(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getHeaderValue(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -251,25 +229,19 @@ Boolean HttpResponse::SaveBodyBinary(Platform::String ^path)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->SaveBodyBinary(path ? path->Data() : L"");
     }
 Boolean HttpResponse::SaveBodyText(Boolean bCrlf, Platform::String ^path)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->SaveBodyText(bCrlf,path ? path->Data() : L"");
     }
-Platform::String ^HttpResponse::UrlEncParamValue(Platform::String ^encodedParams, Platform::String ^paramName)
+Platform::String ^HttpResponse::UrlEncParamValue(Platform::String ^encodedParamString, Platform::String ^paramName)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->urlEncParamValue(encodedParams ? encodedParams->Data() : L"",paramName ? paramName->Data() : L"");
+	const wchar_t *retStr = m_impl->urlEncParamValue(encodedParamString ? encodedParamString->Data() : L"",paramName ? paramName->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }

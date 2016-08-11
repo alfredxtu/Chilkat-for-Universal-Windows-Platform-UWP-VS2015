@@ -43,6 +43,18 @@ Chilkat::PublicKey::PublicKey(void)
 //}
 
 
+String ^Chilkat::PublicKey::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::PublicKey::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::PublicKey::KeyType::get()
+    {
+    return ref new String(m_impl ? m_impl->keyType() : L"");
+    }
 String ^Chilkat::PublicKey::LastErrorHtml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
@@ -55,17 +67,13 @@ String ^Chilkat::PublicKey::LastErrorXml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
     }
-String ^Chilkat::PublicKey::Version::get()
+Boolean Chilkat::PublicKey::LastMethodSuccess::get()
     {
-    return ref new String(m_impl ? m_impl->version() : L"");
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
     }
-String ^Chilkat::PublicKey::DebugLogFilePath::get()
+void Chilkat::PublicKey::LastMethodSuccess::set(Boolean newVal)
     {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::PublicKey::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
 Boolean Chilkat::PublicKey::VerboseLogging::get()
     {
@@ -75,35 +83,35 @@ void Chilkat::PublicKey::VerboseLogging::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_VerboseLogging(newVal);
     }
-Boolean Chilkat::PublicKey::LastMethodSuccess::get()
+String ^Chilkat::PublicKey::Version::get()
     {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::PublicKey::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
-String ^Chilkat::PublicKey::KeyType::get()
-    {
-    return ref new String(m_impl ? m_impl->keyType() : L"");
+    return ref new String(m_impl ? m_impl->version() : L"");
     }
 
 
-Boolean PublicKey::SaveLastError(Platform::String ^path)
+Windows::Foundation::Collections::IVector<uint8>^PublicKey::GetDer(Boolean preferPkcs1)
     {
-	if (m_impl == nullptr) { return false; }
+	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
+	CkByteData outDb;
+	bool success = m_impl->GetDer(preferPkcs1,outDb);
+	const uint8 *pOut = outDb.getData();
+	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
+	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
+    }
+Platform::String ^PublicKey::GetEncoded(Boolean preferPkcs1, Platform::String ^encoding)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	const wchar_t *retStr = m_impl->getEncoded(preferPkcs1,encoding ? encoding->Data() : L"");
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
     }
 Windows::Foundation::Collections::IVector<uint8>^PublicKey::GetOpenSslDer(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->GetOpenSslDer(outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -113,9 +121,15 @@ Platform::String ^PublicKey::GetOpenSslPem(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getOpenSslPem();
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
+Platform::String ^PublicKey::GetPem(Boolean preferPkcs1)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	const wchar_t *retStr = m_impl->getPem(preferPkcs1);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
@@ -123,8 +137,6 @@ Platform::String ^PublicKey::GetPkcs1ENC(Platform::String ^encoding)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getPkcs1ENC(encoding ? encoding->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -133,8 +145,6 @@ Platform::String ^PublicKey::GetPkcs8ENC(Platform::String ^encoding)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getPkcs8ENC(encoding ? encoding->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -144,8 +154,6 @@ Windows::Foundation::Collections::IVector<uint8>^PublicKey::GetRsaDer(void)
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->GetRsaDer(outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -155,8 +163,6 @@ Platform::String ^PublicKey::GetXml(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getXml();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -165,9 +171,28 @@ Boolean PublicKey::LoadBase64(Platform::String ^keyStr)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadBase64(keyStr ? keyStr->Data() : L"");
+    }
+Boolean PublicKey::LoadFromBinary(Windows::Foundation::Collections::IVector<uint8>^keyBytes)
+    {
+	if (m_impl == nullptr) { return false; }
+	CkByteData db0; std::vector<uint8> v0;
+        if (keyBytes != nullptr) { v0 = to_vector(keyBytes);
+            db0.borrowData(&v0[0], (unsigned long)v0.size()); }
+	// --- prep output arg ---
+	return m_impl->LoadFromBinary(db0);
+    }
+Boolean PublicKey::LoadFromFile(Platform::String ^path)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->LoadFromFile(path ? path->Data() : L"");
+    }
+Boolean PublicKey::LoadFromString(Platform::String ^keyString)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->LoadFromString(keyString ? keyString->Data() : L"");
     }
 Boolean PublicKey::LoadOpenSslDer(Windows::Foundation::Collections::IVector<uint8>^data)
     {
@@ -176,40 +201,30 @@ Boolean PublicKey::LoadOpenSslDer(Windows::Foundation::Collections::IVector<uint
         if (data != nullptr) { v0 = to_vector(data);
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadOpenSslDer(db0);
     }
 Boolean PublicKey::LoadOpenSslDerFile(Platform::String ^path)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadOpenSslDerFile(path ? path->Data() : L"");
     }
 Boolean PublicKey::LoadOpenSslPem(Platform::String ^str)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadOpenSslPem(str ? str->Data() : L"");
     }
 Boolean PublicKey::LoadOpenSslPemFile(Platform::String ^path)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadOpenSslPemFile(path ? path->Data() : L"");
     }
 Boolean PublicKey::LoadPkcs1Pem(Platform::String ^str)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadPkcs1Pem(str ? str->Data() : L"");
     }
 Boolean PublicKey::LoadRsaDer(Windows::Foundation::Collections::IVector<uint8>^data)
@@ -219,140 +234,61 @@ Boolean PublicKey::LoadRsaDer(Windows::Foundation::Collections::IVector<uint8>^d
         if (data != nullptr) { v0 = to_vector(data);
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadRsaDer(db0);
     }
 Boolean PublicKey::LoadRsaDerFile(Platform::String ^path)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadRsaDerFile(path ? path->Data() : L"");
     }
 Boolean PublicKey::LoadXml(Platform::String ^xml)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadXml(xml ? xml->Data() : L"");
     }
 Boolean PublicKey::LoadXmlFile(Platform::String ^path)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadXmlFile(path ? path->Data() : L"");
+    }
+Boolean PublicKey::SaveDerFile(Boolean preferPkcs1, Platform::String ^path)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->SaveDerFile(preferPkcs1,path ? path->Data() : L"");
     }
 Boolean PublicKey::SaveOpenSslDerFile(Platform::String ^path)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->SaveOpenSslDerFile(path ? path->Data() : L"");
     }
 Boolean PublicKey::SaveOpenSslPemFile(Platform::String ^path)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->SaveOpenSslPemFile(path ? path->Data() : L"");
+    }
+Boolean PublicKey::SavePemFile(Boolean preferPkcs1, Platform::String ^path)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->SavePemFile(preferPkcs1,path ? path->Data() : L"");
     }
 Boolean PublicKey::SaveRsaDerFile(Platform::String ^path)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->SaveRsaDerFile(path ? path->Data() : L"");
     }
 Boolean PublicKey::SaveXmlFile(Platform::String ^path)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->SaveXmlFile(path ? path->Data() : L"");
-    }
-Boolean PublicKey::LoadFromBinary(Windows::Foundation::Collections::IVector<uint8>^keyBytes)
-    {
-	if (m_impl == nullptr) { return false; }
-	CkByteData db0; std::vector<uint8> v0;
-        if (keyBytes != nullptr) { v0 = to_vector(keyBytes);
-            db0.borrowData(&v0[0], (unsigned long)v0.size()); }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->LoadFromBinary(db0);
-    }
-Boolean PublicKey::LoadFromString(Platform::String ^keyString)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->LoadFromString(keyString ? keyString->Data() : L"");
-    }
-Boolean PublicKey::LoadFromFile(Platform::String ^path)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->LoadFromFile(path ? path->Data() : L"");
-    }
-Windows::Foundation::Collections::IVector<uint8>^PublicKey::GetDer(Boolean preferPkcs1)
-    {
-	if (m_impl == nullptr) { return nullptr; }
-	// --- prep output arg ---
-	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
-	bool success = m_impl->GetDer(preferPkcs1,outDb);
-	const uint8 *pOut = outDb.getData();
-	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
-	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
-    }
-Platform::String ^PublicKey::GetPem(Boolean preferPkcs1)
-    {
-	if (m_impl == nullptr) { return nullptr; }
-	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->getPem(preferPkcs1);
-	if (!retStr) return nullptr;
-	return ref new String(retStr);
-    }
-Platform::String ^PublicKey::GetEncoded(Boolean preferPkcs1, Platform::String ^encoding)
-    {
-	if (m_impl == nullptr) { return nullptr; }
-	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->getEncoded(preferPkcs1,encoding ? encoding->Data() : L"");
-	if (!retStr) return nullptr;
-	return ref new String(retStr);
-    }
-Boolean PublicKey::SaveDerFile(Boolean preferPkcs1, Platform::String ^path)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveDerFile(preferPkcs1,path ? path->Data() : L"");
-    }
-Boolean PublicKey::SavePemFile(Boolean preferPkcs1, Platform::String ^path)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SavePemFile(preferPkcs1,path ? path->Data() : L"");
     }
 
 

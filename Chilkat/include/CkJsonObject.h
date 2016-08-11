@@ -106,45 +106,45 @@ class CK_VISIBLE_PUBLIC CkJsonObject  : public CkMultiByteBase
 	// ----------------------
 	// Methods
 	// ----------------------
-	// Inserts a new and empty JSON array member to the position indicated by ARG1. To
-	// prepend, pass an ARG1 of 0. To append, pass an ARG1 of -1. Indexing is 0-based
+	// Inserts a new and empty JSON array member to the position indicated by index. To
+	// prepend, pass an index of 0. To append, pass an index of -1. Indexing is 0-based
 	// (the 1st member is at index 0).
 	bool AddArrayAt(int index, const char *name);
 
 
-	// Inserts a new boolean member to the position indicated by ARG1. To prepend, pass
-	// an ARG1 of 0. To append, pass an ARG1 of -1. Indexing is 0-based (the 1st member
+	// Inserts a new boolean member to the position indicated by index. To prepend, pass
+	// an index of 0. To append, pass an index of -1. Indexing is 0-based (the 1st member
 	// is at index 0).
 	bool AddBoolAt(int index, const char *name, bool value);
 
 
-	// Inserts a new integer member to the position indicated by ARG1. To prepend, pass
-	// an ARG1 of 0. To append, pass an ARG1 of -1. Indexing is 0-based (the 1st member
+	// Inserts a new integer member to the position indicated by index. To prepend, pass
+	// an index of 0. To append, pass an index of -1. Indexing is 0-based (the 1st member
 	// is at index 0).
 	bool AddIntAt(int index, const char *name, int value);
 
 
-	// Inserts a new null member to the position indicated by ARG1. To prepend, pass an
-	// ARG1 of 0. To append, pass an ARG1 of -1. Indexing is 0-based (the 1st member is
+	// Inserts a new null member to the position indicated by index. To prepend, pass an
+	// index of 0. To append, pass an index of -1. Indexing is 0-based (the 1st member is
 	// at index 0).
 	bool AddNullAt(int index, const char *name);
 
 
-	// Inserts a new numeric member to the position indicated by ARG1. The ARG3 is an
+	// Inserts a new numeric member to the position indicated by index. The numericStr is an
 	// integer, float, or double already converted to a string in the format desired by
-	// the application. To prepend, pass an ARG1 of 0. To append, pass an ARG1 of -1.
+	// the application. To prepend, pass an index of 0. To append, pass an index of -1.
 	// Indexing is 0-based (the 1st member is at index 0).
 	bool AddNumberAt(int index, const char *name, const char *numericStr);
 
 
-	// Inserts a new and empty JSON object member to the position indicated by ARG1. To
-	// prepend, pass an ARG1 of 0. To append, pass an ARG1 of -1. Indexing is 0-based
+	// Inserts a new and empty JSON object member to the position indicated by index. To
+	// prepend, pass an index of 0. To append, pass an index of -1. Indexing is 0-based
 	// (the 1st member is at index 0).
 	bool AddObjectAt(int index, const char *name);
 
 
-	// Inserts a new string member to the position indicated by ARG1. To prepend, pass
-	// an ARG1 of 0. To append, pass an ARG1 of -1. Indexing is 0-based (the 1st member
+	// Inserts a new string member to the position indicated by index. To prepend, pass
+	// an index of 0. To append, pass an index of -1. Indexing is 0-based (the 1st member
 	// is at index 0).
 	bool AddStringAt(int index, const char *name, const char *value);
 
@@ -180,7 +180,7 @@ class CK_VISIBLE_PUBLIC CkJsonObject  : public CkMultiByteBase
 	CkJsonArray *ArrayAt(int index);
 
 
-	// Returns the JSON array at the specified ARG1.
+	// Returns the JSON array at the specified jsonPath.
 	// The caller is responsible for deleting the object returned by this method.
 	CkJsonArray *ArrayOf(const char *jsonPath);
 
@@ -190,15 +190,15 @@ class CK_VISIBLE_PUBLIC CkJsonObject  : public CkMultiByteBase
 	bool BoolAt(int index);
 
 
-	// Returns the boolean at the specified ARG1.
+	// Returns the boolean at the specified jsonPath.
 	bool BoolOf(const char *jsonPath);
 
 
-	// Deletes the member at having the name specified by ARG1.
+	// Deletes the member at having the name specified by name.
 	bool Delete(const char *name);
 
 
-	// Deletes the member at index ARG1. Indexing is 0-based (the 1st member is at
+	// Deletes the member at index index. Indexing is 0-based (the 1st member is at
 	// index 0).
 	bool DeleteAt(int index);
 
@@ -209,24 +209,24 @@ class CK_VISIBLE_PUBLIC CkJsonObject  : public CkMultiByteBase
 	// Writes the JSON document (rooted at the caller) and returns as a string.
 	const char *emit(void);
 
-	// Applies a Firebase event to the JSON. The ARG2 contains JSON having a format
+	// Applies a Firebase event to the JSON. The data contains JSON having a format
 	// such as
 	// {"path": "/", "data": {"a": 1, "b": 2}}
-	// The ARG1 should be "put" or "patch".
+	// The name should be "put" or "patch".
 	bool FirebaseApplyEvent(const char *name, const char *data);
 
 
-	// For each key in the ARG2, update (or add) the corresponding key in the JSON at
-	// the given ARG1. The ARG1 is relative to this JSON object. (This is effectively
+	// For each key in the jsonData, update (or add) the corresponding key in the JSON at
+	// the given jsonPath. The jsonPath is relative to this JSON object. (This is effectively
 	// applying a Firebase patch event.)
 	bool FirebasePatch(const char *jsonPath, const char *jsonData);
 
 
-	// Inserts or replaces the value at the ARG1. The ARG2 can contain JSON text, an
+	// Inserts or replaces the value at the jsonPath. The value can contain JSON text, an
 	// integer (in decimal string format), a boolean (true/false), the keyword "null",
 	// or a quoted string.
 	// 
-	// The ARG1 is relative to this JSON object. (This is effectively applying a
+	// The jsonPath is relative to this JSON object. (This is effectively applying a
 	// Firebase put event.)
 	// 
 	bool FirebasePut(const char *jsonPath, const char *value);
@@ -240,11 +240,11 @@ class CK_VISIBLE_PUBLIC CkJsonObject  : public CkMultiByteBase
 	CkJsonObject *GetDocRoot(void);
 
 
-	// Returns true if the item at the ARG1 exists.
+	// Returns true if the item at the jsonPath exists.
 	bool HasMember(const char *jsonPath);
 
 
-	// Returns the index of the member having the given ARG1. Returns -1 if the name is
+	// Returns the index of the member having the given name. Returns -1 if the name is
 	// not found.
 	int IndexOf(const char *name);
 
@@ -254,15 +254,15 @@ class CK_VISIBLE_PUBLIC CkJsonObject  : public CkMultiByteBase
 	int IntAt(int index);
 
 
-	// Returns the integer at the specified ARG1.
+	// Returns the integer at the specified jsonPath.
 	int IntOf(const char *jsonPath);
 
 
-	// Returns the boolean value of the member having the specified ARG1.
+	// Returns the boolean value of the member having the specified index.
 	bool IsNullAt(int index);
 
 
-	// Returns true if the value at the specified ARG1 is null. Otherwise returns
+	// Returns true if the value at the specified jsonPath is null. Otherwise returns
 	// false.
 	bool IsNullOf(const char *jsonPath);
 
@@ -272,7 +272,7 @@ class CK_VISIBLE_PUBLIC CkJsonObject  : public CkMultiByteBase
 	bool Load(const char *json);
 
 
-	// Loads a JSON file into this JSON object. The ARG1 is the file path to the JSON
+	// Loads a JSON file into this JSON object. The path is the file path to the JSON
 	// file.
 	bool LoadFile(const char *path);
 
@@ -291,16 +291,16 @@ class CK_VISIBLE_PUBLIC CkJsonObject  : public CkMultiByteBase
 	CkJsonObject *ObjectAt(int index);
 
 
-	// Returns the JSON object at the specified ARG1.
+	// Returns the JSON object at the specified jsonPath.
 	// The caller is responsible for deleting the object returned by this method.
 	CkJsonObject *ObjectOf(const char *jsonPath);
 
 
-	// Renames the member named ARG1 to ARG2.
+	// Renames the member named oldName to newName.
 	bool Rename(const char *oldName, const char *newName);
 
 
-	// Renames the member at ARG1 to ARG2.
+	// Renames the member at index to name.
 	bool RenameAt(int index, const char *name);
 
 
@@ -309,7 +309,7 @@ class CK_VISIBLE_PUBLIC CkJsonObject  : public CkMultiByteBase
 	bool SetBoolAt(int index, bool value);
 
 
-	// Sets the boolean value at the specified ARG1.
+	// Sets the boolean value at the specified jsonPath.
 	bool SetBoolOf(const char *jsonPath, bool value);
 
 
@@ -318,7 +318,7 @@ class CK_VISIBLE_PUBLIC CkJsonObject  : public CkMultiByteBase
 	bool SetIntAt(int index, int value);
 
 
-	// Sets the integer at the specified ARG1.
+	// Sets the integer at the specified jsonPath.
 	bool SetIntOf(const char *jsonPath, int value);
 
 
@@ -327,17 +327,17 @@ class CK_VISIBLE_PUBLIC CkJsonObject  : public CkMultiByteBase
 	bool SetNullAt(int index);
 
 
-	// Sets the value at the specified ARG1 to null.
+	// Sets the value at the specified jsonPath to null.
 	bool SetNullOf(const char *jsonPath);
 
 
-	// Sets the numeric value of the Nth member. The ARG2 is an integer, float, or
+	// Sets the numeric value of the Nth member. The value is an integer, float, or
 	// double already converted to a string in the format desired by the application.
 	// Indexing is 0-based (the 1st member is at index 0).
 	bool SetNumberAt(int index, const char *value);
 
 
-	// Sets the numeric value at the specified ARG1. The ARG2 is an integer, float, or
+	// Sets the numeric value at the specified jsonPath. The value is an integer, float, or
 	// double already converted to a string in the format desired by the application.
 	bool SetNumberOf(const char *jsonPath, const char *value);
 
@@ -347,11 +347,11 @@ class CK_VISIBLE_PUBLIC CkJsonObject  : public CkMultiByteBase
 	bool SetStringAt(int index, const char *value);
 
 
-	// Sets the string value at the specified ARG1.
+	// Sets the string value at the specified jsonPath.
 	bool SetStringOf(const char *jsonPath, const char *value);
 
 
-	// Returns the size of the array at the given ARG1. Returns -1 if the ARG1 does not
+	// Returns the size of the array at the given jsonPath. Returns -1 if the jsonPath does not
 	// evaluate to an existent JSON array.
 	int SizeOfArray(const char *jsonPath);
 
@@ -364,20 +364,20 @@ class CK_VISIBLE_PUBLIC CkJsonObject  : public CkMultiByteBase
 	// is at index 0).
 	const char *stringAt(int index);
 
-	// Returns the string value at the specified ARG1.
+	// Returns the string value at the specified jsonPath.
 	bool StringOf(const char *jsonPath, CkString &outStr);
 
-	// Returns the string value at the specified ARG1.
+	// Returns the string value at the specified jsonPath.
 	const char *stringOf(const char *jsonPath);
 
-	// Returns the type of data at the given ARG1. Possible return values are:
+	// Returns the type of data at the given index. Possible return values are:
 	//     string
 	//     number
 	//     object
 	//     array
 	//     boolean
 	//     null
-	// Returns -1 if no member exists at the given ARG1.
+	// Returns -1 if no member exists at the given index.
 	int TypeAt(int index);
 
 

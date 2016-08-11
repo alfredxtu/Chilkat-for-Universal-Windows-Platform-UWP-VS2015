@@ -47,45 +47,13 @@ Chilkat::Ssh::Ssh(void)
 //}
 
 
-String ^Chilkat::Ssh::LastErrorHtml::get()
+Boolean Chilkat::Ssh::AbortCurrent::get()
     {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    return m_impl ? m_impl->get_AbortCurrent() : false;
     }
-String ^Chilkat::Ssh::LastErrorText::get()
+void Chilkat::Ssh::AbortCurrent::set(Boolean newVal)
     {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::Ssh::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::Ssh::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::Ssh::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::Ssh::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Ssh::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::Ssh::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::Ssh::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::Ssh::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
     }
 int Chilkat::Ssh::AuthFailReason::get()
     {
@@ -131,6 +99,14 @@ void Chilkat::Ssh::ConnectTimeoutMs::set(int newVal)
     {
         if (m_impl) m_impl->put_ConnectTimeoutMs(newVal);
     }
+String ^Chilkat::Ssh::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::Ssh::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
 int Chilkat::Ssh::DisconnectCode::get()
     {
     return m_impl ? m_impl->get_DisconnectCode() : 0;
@@ -138,6 +114,14 @@ int Chilkat::Ssh::DisconnectCode::get()
 String ^Chilkat::Ssh::DisconnectReason::get()
     {
     return ref new String(m_impl ? m_impl->disconnectReason() : L"");
+    }
+Boolean Chilkat::Ssh::EnableCompression::get()
+    {
+    return m_impl ? m_impl->get_EnableCompression() : false;
+    }
+void Chilkat::Ssh::EnableCompression::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_EnableCompression(newVal);
     }
 String ^Chilkat::Ssh::ForceCipher::get()
     {
@@ -235,6 +219,26 @@ void Chilkat::Ssh::KeepSessionLog::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_KeepSessionLog(newVal);
     }
+String ^Chilkat::Ssh::LastErrorHtml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    }
+String ^Chilkat::Ssh::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::Ssh::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
+Boolean Chilkat::Ssh::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::Ssh::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+    }
 int Chilkat::Ssh::MaxPacketSize::get()
     {
     return m_impl ? m_impl->get_MaxPacketSize() : 0;
@@ -279,22 +283,6 @@ String ^Chilkat::Ssh::SessionLog::get()
     {
     return ref new String(m_impl ? m_impl->sessionLog() : L"");
     }
-int Chilkat::Ssh::SoRcvBuf::get()
-    {
-    return m_impl ? m_impl->get_SoRcvBuf() : 0;
-    }
-void Chilkat::Ssh::SoRcvBuf::set(int newVal)
-    {
-        if (m_impl) m_impl->put_SoRcvBuf(newVal);
-    }
-int Chilkat::Ssh::SoSndBuf::get()
-    {
-    return m_impl ? m_impl->get_SoSndBuf() : 0;
-    }
-void Chilkat::Ssh::SoSndBuf::set(int newVal)
-    {
-        if (m_impl) m_impl->put_SoSndBuf(newVal);
-    }
 String ^Chilkat::Ssh::SocksHostname::get()
     {
     return ref new String(m_impl ? m_impl->socksHostname() : L"");
@@ -335,6 +323,22 @@ void Chilkat::Ssh::SocksVersion::set(int newVal)
     {
         if (m_impl) m_impl->put_SocksVersion(newVal);
     }
+int Chilkat::Ssh::SoRcvBuf::get()
+    {
+    return m_impl ? m_impl->get_SoRcvBuf() : 0;
+    }
+void Chilkat::Ssh::SoRcvBuf::set(int newVal)
+    {
+        if (m_impl) m_impl->put_SoRcvBuf(newVal);
+    }
+int Chilkat::Ssh::SoSndBuf::get()
+    {
+    return m_impl ? m_impl->get_SoSndBuf() : 0;
+    }
+void Chilkat::Ssh::SoSndBuf::set(int newVal)
+    {
+        if (m_impl) m_impl->put_SoSndBuf(newVal);
+    }
 Boolean Chilkat::Ssh::StderrToStdout::get()
     {
     return m_impl ? m_impl->get_StderrToStdout() : false;
@@ -359,35 +363,21 @@ void Chilkat::Ssh::UserAuthBanner::set(String ^newVal)
     {
         if (m_impl) m_impl->put_UserAuthBanner(newVal ? newVal->Data() : L"");
     }
-Boolean Chilkat::Ssh::EnableCompression::get()
+Boolean Chilkat::Ssh::VerboseLogging::get()
     {
-    return m_impl ? m_impl->get_EnableCompression() : false;
+    return m_impl ? m_impl->get_VerboseLogging() : false;
     }
-void Chilkat::Ssh::EnableCompression::set(Boolean newVal)
+void Chilkat::Ssh::VerboseLogging::set(Boolean newVal)
     {
-        if (m_impl) m_impl->put_EnableCompression(newVal);
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
     }
-Boolean Chilkat::Ssh::AbortCurrent::get()
+String ^Chilkat::Ssh::Version::get()
     {
-    return m_impl ? m_impl->get_AbortCurrent() : false;
-    }
-void Chilkat::Ssh::AbortCurrent::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_AbortCurrent(newVal);
+    return ref new String(m_impl ? m_impl->version() : L"");
     }
 
 
-Boolean Ssh::SaveLastError(Platform::String ^path)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxSshProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
-    }
-IAsyncOperation<Boolean>^ Ssh::AuthenticatePkAsync(Platform::String ^username, SshKey ^privateKey)
+IAsyncOperation<Boolean>^ Ssh::AuthenticatePkAsync(Platform::String ^username, Chilkat::SshKey ^privateKey)
     {
 return create_async([this, username, privateKey]() -> Boolean
 {
@@ -400,8 +390,6 @@ return create_async([this, username, privateKey]() -> Boolean
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->AuthenticatePk(username ? username->Data() : L"",*pObj1);
 
 });
@@ -416,13 +404,11 @@ return create_async([this, login, password]() -> Boolean
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->AuthenticatePw(login ? login->Data() : L"",password ? password->Data() : L"");
 
 });
     }
-IAsyncOperation<Boolean>^ Ssh::AuthenticatePwPkAsync(Platform::String ^username, Platform::String ^password, SshKey ^privateKey)
+IAsyncOperation<Boolean>^ Ssh::AuthenticatePwPkAsync(Platform::String ^username, Platform::String ^password, Chilkat::SshKey ^privateKey)
     {
 return create_async([this, username, password, privateKey]() -> Boolean
 {
@@ -435,8 +421,6 @@ return create_async([this, username, password, privateKey]() -> Boolean
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->AuthenticatePwPk(username ? username->Data() : L"",password ? password->Data() : L"",*pObj2);
 
 });
@@ -447,8 +431,6 @@ Boolean Ssh::ChannelIsOpen(int channelNum)
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ChannelIsOpen(channelNum);
     }
 IAsyncOperation<int>^ Ssh::ChannelPollAsync(int channelNum, int pollTimeoutMs)
@@ -461,8 +443,6 @@ return create_async([this, channelNum, pollTimeoutMs]() -> int
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
 	return m_impl->ChannelPoll(channelNum,pollTimeoutMs);
 
 });
@@ -477,8 +457,6 @@ return create_async([this, channelNum]() -> int
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
 	return m_impl->ChannelRead(channelNum);
 
 });
@@ -493,8 +471,6 @@ return create_async([this, channelNum, pollTimeoutMs]() -> int
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
 	return m_impl->ChannelReadAndPoll(channelNum,pollTimeoutMs);
 
 });
@@ -509,11 +485,33 @@ return create_async([this, channelNum, pollTimeoutMs, maxNumBytes]() -> int
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
 	return m_impl->ChannelReadAndPoll2(channelNum,pollTimeoutMs,maxNumBytes);
 
 });
+    }
+Boolean Ssh::ChannelReceivedClose(int channelNum)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxSshProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->ChannelReceivedClose(channelNum);
+    }
+Boolean Ssh::ChannelReceivedEof(int channelNum)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxSshProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->ChannelReceivedEof(channelNum);
+    }
+Boolean Ssh::ChannelReceivedExitStatus(int channelNum)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxSshProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->ChannelReceivedExitStatus(channelNum);
     }
 IAsyncOperation<Boolean>^ Ssh::ChannelReceiveToCloseAsync(int channelNum)
     {
@@ -525,8 +523,6 @@ return create_async([this, channelNum]() -> Boolean
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ChannelReceiveToClose(channelNum);
 
 });
@@ -541,13 +537,11 @@ return create_async([this, channelNum, matchPattern, charset, caseSensitive]() -
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ChannelReceiveUntilMatch(channelNum,matchPattern ? matchPattern->Data() : L"",charset ? charset->Data() : L"",caseSensitive);
 
 });
     }
-IAsyncOperation<Boolean>^ Ssh::ChannelReceiveUntilMatchNAsync(int channelNum, StringArray ^matchPatterns, Platform::String ^charset, Boolean caseSensitive)
+IAsyncOperation<Boolean>^ Ssh::ChannelReceiveUntilMatchNAsync(int channelNum, Chilkat::StringArray ^matchPatterns, Platform::String ^charset, Boolean caseSensitive)
     {
 return create_async([this, channelNum, matchPatterns, charset, caseSensitive]() -> Boolean
 {
@@ -560,41 +554,9 @@ return create_async([this, channelNum, matchPatterns, charset, caseSensitive]() 
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ChannelReceiveUntilMatchN(channelNum,*pObj1,charset ? charset->Data() : L"",caseSensitive);
 
 });
-    }
-Boolean Ssh::ChannelReceivedClose(int channelNum)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxSshProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->ChannelReceivedClose(channelNum);
-    }
-Boolean Ssh::ChannelReceivedEof(int channelNum)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxSshProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->ChannelReceivedEof(channelNum);
-    }
-Boolean Ssh::ChannelReceivedExitStatus(int channelNum)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxSshProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->ChannelReceivedExitStatus(channelNum);
     }
 void Ssh::ChannelRelease(int channelNum)
     {
@@ -602,8 +564,6 @@ void Ssh::ChannelRelease(int channelNum)
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->ChannelRelease(channelNum);
     }
 IAsyncOperation<Boolean>^ Ssh::ChannelSendCloseAsync(int channelNum)
@@ -616,27 +576,23 @@ return create_async([this, channelNum]() -> Boolean
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ChannelSendClose(channelNum);
 
 });
     }
-IAsyncOperation<Boolean>^ Ssh::ChannelSendDataAsync(int channelNum, Windows::Foundation::Collections::IVector<uint8>^data)
+IAsyncOperation<Boolean>^ Ssh::ChannelSendDataAsync(int channelNum, Windows::Foundation::Collections::IVector<uint8>^byteData)
     {
-return create_async([this, channelNum, data]() -> Boolean
+return create_async([this, channelNum, byteData]() -> Boolean
 {
 // This runs in a thread pool thread...
 
 	if (m_impl == nullptr) { return false; }
 	CkByteData db1; std::vector<uint8> v1;
-        if (data != nullptr) { v1 = to_vector(data);
+        if (byteData != nullptr) { v1 = to_vector(byteData);
             db1.borrowData(&v1[0], (unsigned long)v1.size()); }
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ChannelSendData(channelNum,db1);
 
 });
@@ -651,15 +607,13 @@ return create_async([this, channelNum]() -> Boolean
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ChannelSendEof(channelNum);
 
 });
     }
-IAsyncOperation<Boolean>^ Ssh::ChannelSendStringAsync(int channelNum, Platform::String ^strData, Platform::String ^charset)
+IAsyncOperation<Boolean>^ Ssh::ChannelSendStringAsync(int channelNum, Platform::String ^textData, Platform::String ^charset)
     {
-return create_async([this, channelNum, strData, charset]() -> Boolean
+return create_async([this, channelNum, textData, charset]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -667,9 +621,7 @@ return create_async([this, channelNum, strData, charset]() -> Boolean
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->ChannelSendString(channelNum,strData ? strData->Data() : L"",charset ? charset->Data() : L"");
+	return m_impl->ChannelSendString(channelNum,textData ? textData->Data() : L"",charset ? charset->Data() : L"");
 
 });
     }
@@ -679,8 +631,6 @@ Boolean Ssh::CheckConnection(void)
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->CheckConnection();
     }
 void Ssh::ClearTtyModes(void)
@@ -689,13 +639,11 @@ void Ssh::ClearTtyModes(void)
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->ClearTtyModes();
     }
-IAsyncOperation<Boolean>^ Ssh::ConnectAsync(Platform::String ^hostname, int port)
+IAsyncOperation<Boolean>^ Ssh::ConnectAsync(Platform::String ^domainName, int port)
     {
-return create_async([this, hostname, port]() -> Boolean
+return create_async([this, domainName, port]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -703,13 +651,11 @@ return create_async([this, hostname, port]() -> Boolean
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->Connect(hostname ? hostname->Data() : L"",port);
+	return m_impl->Connect(domainName ? domainName->Data() : L"",port);
 
 });
     }
-IAsyncOperation<Boolean>^ Ssh::ConnectThroughSshAsync(Ssh ^ssh, Platform::String ^hostname, int port)
+IAsyncOperation<Boolean>^ Ssh::ConnectThroughSshAsync(Chilkat::Ssh ^ssh, Platform::String ^hostname, int port)
     {
 return create_async([this, ssh, hostname, port]() -> Boolean
 {
@@ -722,8 +668,6 @@ return create_async([this, ssh, hostname, port]() -> Boolean
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ConnectThroughSsh(*pObj0,hostname ? hostname->Data() : L"",port);
 
 });
@@ -738,8 +682,6 @@ return create_async([this, response]() -> Platform::String ^
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->continueKeyboardAuth(response ? response->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -752,8 +694,6 @@ void Ssh::Disconnect(void)
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = void
-	// cppType = void
 	m_impl->Disconnect();
     }
 int Ssh::GetChannelExitStatus(int channelNum)
@@ -762,8 +702,6 @@ int Ssh::GetChannelExitStatus(int channelNum)
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
 	return m_impl->GetChannelExitStatus(channelNum);
     }
 int Ssh::GetChannelNumber(int index)
@@ -772,8 +710,6 @@ int Ssh::GetChannelNumber(int index)
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
 	return m_impl->GetChannelNumber(index);
     }
 Platform::String ^Ssh::GetChannelType(int index)
@@ -782,8 +718,6 @@ Platform::String ^Ssh::GetChannelType(int index)
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getChannelType(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -795,23 +729,19 @@ Windows::Foundation::Collections::IVector<uint8>^Ssh::GetReceivedData(int channe
 	CkByteData outDb;
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->GetReceivedData(channelNum,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
     }
-Windows::Foundation::Collections::IVector<uint8>^Ssh::GetReceivedDataN(int channelNum, int numBytes)
+Windows::Foundation::Collections::IVector<uint8>^Ssh::GetReceivedDataN(int channelNum, int maxNumBytes)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CkByteData outDb;
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
-	bool success = m_impl->GetReceivedDataN(channelNum,numBytes,outDb);
+	bool success = m_impl->GetReceivedDataN(channelNum,maxNumBytes,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
@@ -822,8 +752,6 @@ int Ssh::GetReceivedNumBytes(int channelNum)
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
 	return m_impl->GetReceivedNumBytes(channelNum);
     }
 Windows::Foundation::Collections::IVector<uint8>^Ssh::GetReceivedStderr(int channelNum)
@@ -833,8 +761,6 @@ Windows::Foundation::Collections::IVector<uint8>^Ssh::GetReceivedStderr(int chan
 	CkByteData outDb;
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->GetReceivedStderr(channelNum,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
@@ -846,8 +772,6 @@ Platform::String ^Ssh::GetReceivedStderrText(int channelNum, Platform::String ^c
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getReceivedStderrText(channelNum,charset ? charset->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -858,8 +782,6 @@ Platform::String ^Ssh::GetReceivedText(int channelNum, Platform::String ^charset
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getReceivedText(channelNum,charset ? charset->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -870,8 +792,6 @@ Platform::String ^Ssh::GetReceivedTextS(int channelNum, Platform::String ^substr
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getReceivedTextS(channelNum,substr ? substr->Data() : L"",charset ? charset->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -886,15 +806,13 @@ return create_async([this, channelType]() -> int
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
 	return m_impl->OpenCustomChannel(channelType ? channelType->Data() : L"");
 
 });
     }
-IAsyncOperation<int>^ Ssh::OpenDirectTcpIpChannelAsync(Platform::String ^hostname, int port)
+IAsyncOperation<int>^ Ssh::OpenDirectTcpIpChannelAsync(Platform::String ^targetHostname, int targetPort)
     {
-return create_async([this, hostname, port]() -> int
+return create_async([this, targetHostname, targetPort]() -> int
 {
 // This runs in a thread pool thread...
 
@@ -902,9 +820,7 @@ return create_async([this, hostname, port]() -> int
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
-	return m_impl->OpenDirectTcpIpChannel(hostname ? hostname->Data() : L"",port);
+	return m_impl->OpenDirectTcpIpChannel(targetHostname ? targetHostname->Data() : L"",targetPort);
 
 });
     }
@@ -918,8 +834,6 @@ return create_async([this]() -> int
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
 	return m_impl->OpenSessionChannel();
 
 });
@@ -930,8 +844,6 @@ Platform::String ^Ssh::PeekReceivedText(int channelNum, Platform::String ^charse
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->peekReceivedText(channelNum,charset ? charset->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -946,8 +858,6 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ReKey();
 
 });
@@ -962,15 +872,13 @@ return create_async([this]() -> Boolean
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SendIgnore();
 
 });
     }
-IAsyncOperation<Boolean>^ Ssh::SendReqExecAsync(int channelNum, Platform::String ^command)
+IAsyncOperation<Boolean>^ Ssh::SendReqExecAsync(int channelNum, Platform::String ^commandLine)
     {
-return create_async([this, channelNum, command]() -> Boolean
+return create_async([this, channelNum, commandLine]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -978,15 +886,13 @@ return create_async([this, channelNum, command]() -> Boolean
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SendReqExec(channelNum,command ? command->Data() : L"");
+	return m_impl->SendReqExec(channelNum,commandLine ? commandLine->Data() : L"");
 
 });
     }
-IAsyncOperation<Boolean>^ Ssh::SendReqPtyAsync(int channelNum, Platform::String ^xTermEnvVar, int widthInChars, int heightInRows, int pixWidth, int pixHeight)
+IAsyncOperation<Boolean>^ Ssh::SendReqPtyAsync(int channelNum, Platform::String ^termType, int widthInChars, int heightInChars, int widthInPixels, int heightInPixels)
     {
-return create_async([this, channelNum, xTermEnvVar, widthInChars, heightInRows, pixWidth, pixHeight]() -> Boolean
+return create_async([this, channelNum, termType, widthInChars, heightInChars, widthInPixels, heightInPixels]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -994,9 +900,7 @@ return create_async([this, channelNum, xTermEnvVar, widthInChars, heightInRows, 
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SendReqPty(channelNum,xTermEnvVar ? xTermEnvVar->Data() : L"",widthInChars,heightInRows,pixWidth,pixHeight);
+	return m_impl->SendReqPty(channelNum,termType ? termType->Data() : L"",widthInChars,heightInChars,widthInPixels,heightInPixels);
 
 });
     }
@@ -1010,8 +914,6 @@ return create_async([this, channelNum, name, value]() -> Boolean
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SendReqSetEnv(channelNum,name ? name->Data() : L"",value ? value->Data() : L"");
 
 });
@@ -1026,8 +928,6 @@ return create_async([this, channelNum]() -> Boolean
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SendReqShell(channelNum);
 
 });
@@ -1042,8 +942,6 @@ return create_async([this, channelNum, signalName]() -> Boolean
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SendReqSignal(channelNum,signalName ? signalName->Data() : L"");
 
 });
@@ -1058,8 +956,6 @@ return create_async([this, channelNum, subsystemName]() -> Boolean
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SendReqSubsystem(channelNum,subsystemName ? subsystemName->Data() : L"");
 
 });
@@ -1074,8 +970,6 @@ return create_async([this, channelNum, widthInChars, heightInRows, pixWidth, pix
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SendReqWindowChange(channelNum,widthInChars,heightInRows,pixWidth,pixHeight);
 
 });
@@ -1090,8 +984,6 @@ return create_async([this, channelNum, singleConnection, authProt, authCookie, s
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SendReqX11Forwarding(channelNum,singleConnection,authProt ? authProt->Data() : L"",authCookie ? authCookie->Data() : L"",screenNum);
 
 });
@@ -1106,21 +998,17 @@ return create_async([this, channelNum, clientCanDo]() -> Boolean
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SendReqXonXoff(channelNum,clientCanDo);
 
 });
     }
-Boolean Ssh::SetTtyMode(Platform::String ^name, int value)
+Boolean Ssh::SetTtyMode(Platform::String ^ttyName, int ttyValue)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SetTtyMode(name ? name->Data() : L"",value);
+	return m_impl->SetTtyMode(ttyName ? ttyName->Data() : L"",ttyValue);
     }
 IAsyncOperation<Platform::String ^>^ Ssh::StartKeyboardAuthAsync(Platform::String ^login)
     {
@@ -1132,8 +1020,6 @@ return create_async([this, login]() -> Platform::String ^
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->startKeyboardAuth(login ? login->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -1146,8 +1032,6 @@ Boolean Ssh::UnlockComponent(Platform::String ^unlockCode)
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->UnlockComponent(unlockCode ? unlockCode->Data() : L"");
     }
 IAsyncOperation<int>^ Ssh::WaitForChannelMessageAsync(int pollTimeoutMs)
@@ -1160,8 +1044,6 @@ return create_async([this, pollTimeoutMs]() -> int
 	// --- prep output arg ---
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = int
-	// cppType = int
 	return m_impl->WaitForChannelMessage(pollTimeoutMs);
 
 });

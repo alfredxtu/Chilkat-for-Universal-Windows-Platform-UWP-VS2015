@@ -43,46 +43,6 @@ Chilkat::OAuth1::OAuth1(void)
 //}
 
 
-String ^Chilkat::OAuth1::LastErrorHtml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
-    }
-String ^Chilkat::OAuth1::LastErrorText::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::OAuth1::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::OAuth1::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::OAuth1::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::OAuth1::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::OAuth1::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::OAuth1::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::OAuth1::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::OAuth1::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
 String ^Chilkat::OAuth1::AuthorizationHeader::get()
     {
     return ref new String(m_impl ? m_impl->authorizationHeader() : L"");
@@ -107,6 +67,14 @@ void Chilkat::OAuth1::ConsumerSecret::set(String ^newVal)
     {
         if (m_impl) m_impl->put_ConsumerSecret(newVal ? newVal->Data() : L"");
     }
+String ^Chilkat::OAuth1::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::OAuth1::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
 String ^Chilkat::OAuth1::EncodedSignature::get()
     {
     return ref new String(m_impl ? m_impl->encodedSignature() : L"");
@@ -118,6 +86,26 @@ String ^Chilkat::OAuth1::GeneratedUrl::get()
 String ^Chilkat::OAuth1::HmacKey::get()
     {
     return ref new String(m_impl ? m_impl->hmacKey() : L"");
+    }
+String ^Chilkat::OAuth1::LastErrorHtml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    }
+String ^Chilkat::OAuth1::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::OAuth1::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
+Boolean Chilkat::OAuth1::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::OAuth1::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
     }
 String ^Chilkat::OAuth1::Nonce::get()
     {
@@ -191,54 +179,48 @@ void Chilkat::OAuth1::TokenSecret::set(String ^newVal)
     {
         if (m_impl) m_impl->put_TokenSecret(newVal ? newVal->Data() : L"");
     }
-
-
-Boolean OAuth1::SaveLastError(Platform::String ^path)
+Boolean Chilkat::OAuth1::VerboseLogging::get()
     {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
+    return m_impl ? m_impl->get_VerboseLogging() : false;
     }
+void Chilkat::OAuth1::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::OAuth1::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
+
+
 Boolean OAuth1::AddParam(Platform::String ^name, Platform::String ^value)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddParam(name ? name->Data() : L"",value ? value->Data() : L"");
+    }
+Boolean OAuth1::Generate(void)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->Generate();
     }
 Boolean OAuth1::GenNonce(int numBytes)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->GenNonce(numBytes);
     }
 Boolean OAuth1::GenTimestamp(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->GenTimestamp();
-    }
-Boolean OAuth1::Generate(void)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->Generate();
     }
 Boolean OAuth1::RemoveParam(Platform::String ^name)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->RemoveParam(name ? name->Data() : L"");
     }
 

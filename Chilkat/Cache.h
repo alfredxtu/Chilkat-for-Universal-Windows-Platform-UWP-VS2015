@@ -43,6 +43,11 @@ public ref class Cache sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
@@ -54,25 +59,6 @@ public ref class Cache sealed
 	property Platform::String ^LastErrorXml
 	{
 		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
 	}
 	property Platform::String ^LastEtagFetched
 	{
@@ -90,6 +76,11 @@ public ref class Cache sealed
 	{
 		Platform::String ^get();
 	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property int32 Level
 	{
 		int32 get();
@@ -99,56 +90,63 @@ public ref class Cache sealed
 	{
 		int32 get();
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	void AddRoot(Platform::String ^path);
 
 	int DeleteAll(void);
 
 	int DeleteAllExpired(void);
 
-	Boolean DeleteFromCache(Platform::String ^url);
+	Boolean DeleteFromCache(Platform::String ^key);
 
-	int DeleteOlderDt(Chilkat::CkDateTime ^dt);
+	int DeleteOlderDt(Chilkat::CkDateTime ^dateTime);
 
 	int DeleteOlderStr(Platform::String ^dateTimeStr);
 
-	Windows::Foundation::Collections::IVector<uint8>^FetchFromCache(Platform::String ^url);
+	Windows::Foundation::Collections::IVector<uint8>^FetchFromCache(Platform::String ^key);
 
 	Platform::String ^FetchText(Platform::String ^key);
 
-	Platform::String ^GetEtag(Platform::String ^url);
+	Platform::String ^GetEtag(Platform::String ^key);
 
 	CkDateTime ^GetExpirationDt(Platform::String ^key);
 
 	Platform::String ^GetExpirationStr(Platform::String ^url);
 
-	Platform::String ^GetFilename(Platform::String ^url);
+	Platform::String ^GetFilename(Platform::String ^key);
 
 	Platform::String ^GetRoot(int index);
 
-	Boolean IsCached(Platform::String ^url);
+	Boolean IsCached(Platform::String ^key);
 
-	Boolean SaveTextDt(Platform::String ^key, Chilkat::CkDateTime ^expire, Platform::String ^eTag, Platform::String ^strData);
+	Boolean SaveTextDt(Platform::String ^key, Chilkat::CkDateTime ^expireDateTime, Platform::String ^eTag, Platform::String ^itemTextData);
 
-	Boolean SaveTextNoExpire(Platform::String ^key, Platform::String ^eTag, Platform::String ^strData);
+	Boolean SaveTextNoExpire(Platform::String ^key, Platform::String ^eTag, Platform::String ^itemTextData);
 
-	Boolean SaveTextStr(Platform::String ^key, Platform::String ^expireDateTimeStr, Platform::String ^eTag, Platform::String ^strData);
+	Boolean SaveTextStr(Platform::String ^key, Platform::String ^expireDateTime, Platform::String ^eTag, Platform::String ^itemTextData);
 
-	Boolean SaveToCacheDt(Platform::String ^url, Chilkat::CkDateTime ^expire, Platform::String ^eTag, Windows::Foundation::Collections::IVector<uint8>^data);
+	Boolean SaveToCacheDt(Platform::String ^key, Chilkat::CkDateTime ^expireDateTime, Platform::String ^eTag, Windows::Foundation::Collections::IVector<uint8>^itemData);
 
-	Boolean SaveToCacheNoExpire(Platform::String ^url, Platform::String ^eTag, Windows::Foundation::Collections::IVector<uint8>^data);
+	Boolean SaveToCacheNoExpire(Platform::String ^key, Platform::String ^eTag, Windows::Foundation::Collections::IVector<uint8>^itemData);
 
-	Boolean SaveToCacheStr(Platform::String ^url, Platform::String ^expireDateTimeStr, Platform::String ^eTag, Windows::Foundation::Collections::IVector<uint8>^data);
+	Boolean SaveToCacheStr(Platform::String ^key, Platform::String ^expireDateTime, Platform::String ^eTag, Windows::Foundation::Collections::IVector<uint8>^itemData);
 
-	Boolean UpdateExpirationDt(Platform::String ^url, Chilkat::CkDateTime ^dt);
+	Boolean UpdateExpirationDt(Platform::String ^key, Chilkat::CkDateTime ^expireDateTime);
 
-	Boolean UpdateExpirationStr(Platform::String ^url, Platform::String ^dateTimeStr);
+	Boolean UpdateExpirationStr(Platform::String ^key, Platform::String ^expireDateTime);
 
 
 

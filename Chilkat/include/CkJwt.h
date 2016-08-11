@@ -63,11 +63,11 @@ class CK_VISIBLE_PUBLIC CkJwt  : public CkMultiByteBase
 	// ----------------------
 	// Methods
 	// ----------------------
-	// Creates a JWT. The ARG1 is the JOSE JSON header. It can be the full JOSE JSON,
+	// Creates a JWT. The header is the JOSE JSON header. It can be the full JOSE JSON,
 	// or it can be a shorthand string such as "HS256", "HS384", or "HS512", in which
 	// case the standard JOSE header for the given algorithm will be used.
 	// 
-	// The ARG2 is the JSON payload that contains the claims. The ARG3 is the secret.
+	// The payload is the JSON payload that contains the claims. The password is the secret.
 	// Given that the secret is a shared passwod string, this method should only be
 	// called for creating JWT's where the JOSE header's "alg" is HS256, HS384, or
 	// HS512. For RS256, RS384, RS512, ES256, ES384, and ES512, call CreateJwtPk
@@ -79,11 +79,11 @@ class CK_VISIBLE_PUBLIC CkJwt  : public CkMultiByteBase
 	// 
 	bool CreateJwt(const char *header, const char *payload, const char *password, CkString &outStr);
 
-	// Creates a JWT. The ARG1 is the JOSE JSON header. It can be the full JOSE JSON,
+	// Creates a JWT. The header is the JOSE JSON header. It can be the full JOSE JSON,
 	// or it can be a shorthand string such as "HS256", "HS384", or "HS512", in which
 	// case the standard JOSE header for the given algorithm will be used.
 	// 
-	// The ARG2 is the JSON payload that contains the claims. The ARG3 is the secret.
+	// The payload is the JSON payload that contains the claims. The password is the secret.
 	// Given that the secret is a shared passwod string, this method should only be
 	// called for creating JWT's where the JOSE header's "alg" is HS256, HS384, or
 	// HS512. For RS256, RS384, RS512, ES256, ES384, and ES512, call CreateJwtPk
@@ -95,12 +95,12 @@ class CK_VISIBLE_PUBLIC CkJwt  : public CkMultiByteBase
 	// 
 	const char *createJwt(const char *header, const char *payload, const char *password);
 
-	// Creates a JWT using an RSA or ECC private key. The ARG1 is the JOSE JSON header.
+	// Creates a JWT using an RSA or ECC private key. The header is the JOSE JSON header.
 	// It can be the full JOSE JSON, or it can be a shorthand string such as "RS256",
 	// "RS384", "RS512", "ES256", "ES384", or "ES512", in which case the standard JOSE
 	// header for the given algorithm will be used.
 	// 
-	// The ARG2 is the JSON payload that contains the claims. The ARG3 is the private
+	// The payload is the JSON payload that contains the claims. The key is the private
 	// key. This method should only be called for creating JWT's where the JOSE
 	// header's "alg" is RS256, RS384, RS512, ES256, ES384, and ES512. If the secret is
 	// a shared password string, then call CreateJwt instead.
@@ -111,12 +111,12 @@ class CK_VISIBLE_PUBLIC CkJwt  : public CkMultiByteBase
 	// 
 	bool CreateJwtPk(const char *header, const char *payload, CkPrivateKey &key, CkString &outStr);
 
-	// Creates a JWT using an RSA or ECC private key. The ARG1 is the JOSE JSON header.
+	// Creates a JWT using an RSA or ECC private key. The header is the JOSE JSON header.
 	// It can be the full JOSE JSON, or it can be a shorthand string such as "RS256",
 	// "RS384", "RS512", "ES256", "ES384", or "ES512", in which case the standard JOSE
 	// header for the given algorithm will be used.
 	// 
-	// The ARG2 is the JSON payload that contains the claims. The ARG3 is the private
+	// The payload is the JSON payload that contains the claims. The key is the private
 	// key. This method should only be called for creating JWT's where the JOSE
 	// header's "alg" is RS256, RS384, RS512, ES256, ES384, and ES512. If the secret is
 	// a shared password string, then call CreateJwt instead.
@@ -130,7 +130,7 @@ class CK_VISIBLE_PUBLIC CkJwt  : public CkMultiByteBase
 	// Generates a JSON numeric value representing the number of seconds from
 	// 1970-01-01T00:00:00Z UTC until the specified UTC date/time, ignoring leap
 	// seconds. The date/time generated is equal to the current system time plus the
-	// number of seconds specified by ARG1. The ARG1 can be negative.
+	// number of seconds specified by numSecOffset. The numSecOffset can be negative.
 	int GenNumericDate(int numSecOffset);
 
 
@@ -160,13 +160,13 @@ class CK_VISIBLE_PUBLIC CkJwt  : public CkMultiByteBase
 
 	// Verifies the "exp" and/or "nbf" claims and returns true if the current system
 	// date/time is within range. Returns false if the current system date/time is
-	// outside the allowed range of time. The ARG2 may be set to a non-zero number of
+	// outside the allowed range of time. The leeway may be set to a non-zero number of
 	// seconds to allow for some small leeway (usually no more than a few minutes) to
 	// account for clock skew.
 	bool IsTimeValid(const char *jwt, int leeway);
 
 
-	// Verifies a JWT that requires a shared password string for verification. The ARG1
+	// Verifies a JWT that requires a shared password string for verification. The token
 	// should be a JWT with the format xxxxx.yyyyy.zzzzz. This method should only be
 	// called for JWT's using the HS256, HS384, or HS512 algorithms. The VerifyJwtPk
 	// method should be called for verifying JWT's requiring an RSA or ECC key.
@@ -177,7 +177,7 @@ class CK_VISIBLE_PUBLIC CkJwt  : public CkMultiByteBase
 	bool VerifyJwt(const char *token, const char *password);
 
 
-	// Verifies a JWT that requires an RSA or ECC public key for verification. The ARG1
+	// Verifies a JWT that requires an RSA or ECC public key for verification. The token
 	// should be a JWT with the format xxxxx.yyyyy.zzzzz. This method should only be
 	// called for JWT's using the RS256, RS384, RS512, ES256, ES384, or ES512
 	// algorithms.

@@ -43,6 +43,19 @@ public ref class PrivateKey sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property int32 BitLength
+	{
+		int32 get();
+	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^KeyType
+	{
+		Platform::String ^get();
+	}
 	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
@@ -55,11 +68,12 @@ public ref class PrivateKey sealed
 	{
 		Platform::String ^get();
 	}
-	property Platform::String ^Version
+	property Boolean LastMethodSuccess
 	{
-		Platform::String ^get();
+		Boolean get();
+		void set(Boolean);
 	}
-	property Platform::String ^DebugLogFilePath
+	property Platform::String ^Pkcs8EncryptAlg
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
@@ -69,32 +83,20 @@ public ref class PrivateKey sealed
 		Boolean get();
 		void set(Boolean);
 	}
-	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property int32 BitLength
-	{
-		int32 get();
-	}
-	property Platform::String ^KeyType
+	property Platform::String ^Version
 	{
 		Platform::String ^get();
-	}
-	property Platform::String ^Pkcs8EncryptAlg
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
 	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
+	Windows::Foundation::Collections::IVector<uint8>^GetPkcs1(void);
 
 	Platform::String ^GetPkcs1ENC(Platform::String ^encoding);
+
+	Platform::String ^GetPkcs1Pem(void);
 
 	Windows::Foundation::Collections::IVector<uint8>^GetPkcs8(void);
 
@@ -124,6 +126,10 @@ public ref class PrivateKey sealed
 
 	Boolean LoadPemFile(Platform::String ^path);
 
+	Boolean LoadPkcs1(Windows::Foundation::Collections::IVector<uint8>^data);
+
+	Boolean LoadPkcs1File(Platform::String ^path);
+
 	Boolean LoadPkcs8(Windows::Foundation::Collections::IVector<uint8>^data);
 
 	Boolean LoadPkcs8Encrypted(Windows::Foundation::Collections::IVector<uint8>^data, Platform::String ^password);
@@ -140,6 +146,10 @@ public ref class PrivateKey sealed
 
 	Boolean LoadXmlFile(Platform::String ^path);
 
+	Boolean SavePemFile(Platform::String ^path);
+
+	Boolean SavePkcs1File(Platform::String ^path);
+
 	Boolean SavePkcs8EncryptedFile(Platform::String ^password, Platform::String ^path);
 
 	Boolean SavePkcs8EncryptedPemFile(Platform::String ^password, Platform::String ^path);
@@ -153,18 +163,6 @@ public ref class PrivateKey sealed
 	Boolean SaveRsaPemFile(Platform::String ^path);
 
 	Boolean SaveXmlFile(Platform::String ^path);
-
-	Windows::Foundation::Collections::IVector<uint8>^GetPkcs1(void);
-
-	Platform::String ^GetPkcs1Pem(void);
-
-	Boolean LoadPkcs1(Windows::Foundation::Collections::IVector<uint8>^data);
-
-	Boolean LoadPkcs1File(Platform::String ^path);
-
-	Boolean SavePkcs1File(Platform::String ^path);
-
-	Boolean SavePemFile(Platform::String ^path);
 
 
 

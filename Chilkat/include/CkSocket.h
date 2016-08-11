@@ -219,6 +219,32 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	// 
 	bool get_AsyncDnsSuccess(void);
 
+	// Contains the data received in an asynchronous receive operation (when receiving
+	// bytes asynchronously).
+	// 
+	// This functionality is replaced by the new model for asynchronous programming
+	// introduced in Chilkat v9.5.0.52. Applications should use the new model, which is
+	// identified by methods having names ending with "Async" and return a task object.
+	// 
+	void get_AsyncReceivedBytes(CkByteData &outBytes);
+
+	// Contains the string received in an asynchronous receive operation (when
+	// receiving a string asynchronously).
+	// 
+	// This functionality is replaced by the new model for asynchronous programming
+	// introduced in Chilkat v9.5.0.52. Applications should use the new model, which is
+	// identified by methods having names ending with "Async" and return a task object.
+	// 
+	void get_AsyncReceivedString(CkString &str);
+	// Contains the string received in an asynchronous receive operation (when
+	// receiving a string asynchronously).
+	// 
+	// This functionality is replaced by the new model for asynchronous programming
+	// introduced in Chilkat v9.5.0.52. Applications should use the new model, which is
+	// identified by methods having names ending with "Async" and return a task object.
+	// 
+	const char *asyncReceivedString(void);
+
 	// Set to true when an asynchronous receive operation completes. Once the
 	// asynchronous receive has finished, the success/failure is available in the
 	// AsyncReceiveSuccess boolean property.
@@ -252,32 +278,6 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	// identified by methods having names ending with "Async" and return a task object.
 	// 
 	bool get_AsyncReceiveSuccess(void);
-
-	// Contains the data received in an asynchronous receive operation (when receiving
-	// bytes asynchronously).
-	// 
-	// This functionality is replaced by the new model for asynchronous programming
-	// introduced in Chilkat v9.5.0.52. Applications should use the new model, which is
-	// identified by methods having names ending with "Async" and return a task object.
-	// 
-	void get_AsyncReceivedBytes(CkByteData &outBytes);
-
-	// Contains the string received in an asynchronous receive operation (when
-	// receiving a string asynchronously).
-	// 
-	// This functionality is replaced by the new model for asynchronous programming
-	// introduced in Chilkat v9.5.0.52. Applications should use the new model, which is
-	// identified by methods having names ending with "Async" and return a task object.
-	// 
-	void get_AsyncReceivedString(CkString &str);
-	// Contains the string received in an asynchronous receive operation (when
-	// receiving a string asynchronously).
-	// 
-	// This functionality is replaced by the new model for asynchronous programming
-	// introduced in Chilkat v9.5.0.52. Applications should use the new model, which is
-	// identified by methods having names ending with "Async" and return a task object.
-	// 
-	const char *asyncReceivedString(void);
 
 	// Set to true when an asynchronous send operation completes. Once the
 	// asynchronous send has finished, the success/failure is available in the
@@ -663,33 +663,6 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	// over IPv6.
 	void put_PreferIpv6(bool newVal);
 
-	// If a Receive method fails, this property can be checked to determine the reason
-	// for failure.
-	// 
-	// Possible values are:
-	// 0 = Success
-	// 1 = An async receive operation is already in progress.
-	// 2 = The socket is not connected, such as if it was never connected, or if the connection was previously lost.
-	// 3 = An unspecified internal failure, perhaps out-of-memory, caused the failure.
-	// 4 = Invalid parameters were passed to the receive method call.
-	// 5 = Timeout.  Data stopped arriving for more than the amount of time specified by the MaxReadIdleMs property.
-	// 6 = The receive was aborted by the application in an event callback.
-	// 7 = The connection was lost -- the remote peer reset the connection. (The connection was forcibly closed by the peer.)
-	// 8 = An established connection was aborted by the software in your host machine. (See https://www.chilkatsoft.com/p/p_299.asp )
-	// 9 = An unspecified fatal socket error occurred (less common).
-	// 10 = The connection was closed by the peer.
-	// 
-	int get_ReceiveFailReason(void);
-
-	// The number of bytes to receive at a time (internally). This setting has an
-	// effect on methods such as ReadBytes and ReadString where the number of bytes to
-	// read is not explicitly specified. The default value is 4096.
-	int get_ReceivePacketSize(void);
-	// The number of bytes to receive at a time (internally). This setting has an
-	// effect on methods such as ReadBytes and ReadString where the number of bytes to
-	// read is not explicitly specified. The default value is 4096.
-	void put_ReceivePacketSize(int newVal);
-
 	// Any method that receives data will increase the value of this property by the
 	// number of bytes received. The application may reset this property to 0 at any
 	// point. It is provided as a way to keep count of the total number of bytes
@@ -725,6 +698,33 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	// Contains the last integer received via a call to ReceiveByte, ReceiveInt16, or
 	// ReceiveInt32.
 	void put_ReceivedInt(int newVal);
+
+	// If a Receive method fails, this property can be checked to determine the reason
+	// for failure.
+	// 
+	// Possible values are:
+	// 0 = Success
+	// 1 = An async receive operation is already in progress.
+	// 2 = The socket is not connected, such as if it was never connected, or if the connection was previously lost.
+	// 3 = An unspecified internal failure, perhaps out-of-memory, caused the failure.
+	// 4 = Invalid parameters were passed to the receive method call.
+	// 5 = Timeout.  Data stopped arriving for more than the amount of time specified by the MaxReadIdleMs property.
+	// 6 = The receive was aborted by the application in an event callback.
+	// 7 = The connection was lost -- the remote peer reset the connection. (The connection was forcibly closed by the peer.)
+	// 8 = An established connection was aborted by the software in your host machine. (See https://www.chilkatsoft.com/p/p_299.asp )
+	// 9 = An unspecified fatal socket error occurred (less common).
+	// 10 = The connection was closed by the peer.
+	// 
+	int get_ReceiveFailReason(void);
+
+	// The number of bytes to receive at a time (internally). This setting has an
+	// effect on methods such as ReadBytes and ReadString where the number of bytes to
+	// read is not explicitly specified. The default value is 4096.
+	int get_ReceivePacketSize(void);
+	// The number of bytes to receive at a time (internally). This setting has an
+	// effect on methods such as ReadBytes and ReadString where the number of bytes to
+	// read is not explicitly specified. The default value is 4096.
+	void put_ReceivePacketSize(int newVal);
 
 	// When a socket is connected, the remote IP address of the connected peer is
 	// available in this property.
@@ -851,6 +851,60 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	// 
 	void put_SessionLogEncoding(const char *newVal);
 
+	// The SOCKS4/SOCKS5 hostname or IPv4 address (in dotted decimal notation). This
+	// property is only used if the SocksVersion property is set to 4 or 5).
+	void get_SocksHostname(CkString &str);
+	// The SOCKS4/SOCKS5 hostname or IPv4 address (in dotted decimal notation). This
+	// property is only used if the SocksVersion property is set to 4 or 5).
+	const char *socksHostname(void);
+	// The SOCKS4/SOCKS5 hostname or IPv4 address (in dotted decimal notation). This
+	// property is only used if the SocksVersion property is set to 4 or 5).
+	void put_SocksHostname(const char *newVal);
+
+	// The SOCKS5 password (if required). The SOCKS4 protocol does not include the use
+	// of a password, so this does not apply to SOCKS4.
+	void get_SocksPassword(CkString &str);
+	// The SOCKS5 password (if required). The SOCKS4 protocol does not include the use
+	// of a password, so this does not apply to SOCKS4.
+	const char *socksPassword(void);
+	// The SOCKS5 password (if required). The SOCKS4 protocol does not include the use
+	// of a password, so this does not apply to SOCKS4.
+	void put_SocksPassword(const char *newVal);
+
+	// The SOCKS4/SOCKS5 proxy port. The default value is 1080. This property only
+	// applies if a SOCKS proxy is used (if the SocksVersion property is set to 4 or
+	// 5).
+	int get_SocksPort(void);
+	// The SOCKS4/SOCKS5 proxy port. The default value is 1080. This property only
+	// applies if a SOCKS proxy is used (if the SocksVersion property is set to 4 or
+	// 5).
+	void put_SocksPort(int newVal);
+
+	// The SOCKS4/SOCKS5 proxy username. This property is only used if the SocksVersion
+	// property is set to 4 or 5).
+	void get_SocksUsername(CkString &str);
+	// The SOCKS4/SOCKS5 proxy username. This property is only used if the SocksVersion
+	// property is set to 4 or 5).
+	const char *socksUsername(void);
+	// The SOCKS4/SOCKS5 proxy username. This property is only used if the SocksVersion
+	// property is set to 4 or 5).
+	void put_SocksUsername(const char *newVal);
+
+	// SocksVersion May be set to one of the following integer values:
+	// 
+	// 0 - No SOCKS proxy is used. This is the default.
+	// 4 - Connect via a SOCKS4 proxy.
+	// 5 - Connect via a SOCKS5 proxy.
+	// 
+	int get_SocksVersion(void);
+	// SocksVersion May be set to one of the following integer values:
+	// 
+	// 0 - No SOCKS proxy is used. This is the default.
+	// 4 - Connect via a SOCKS4 proxy.
+	// 5 - Connect via a SOCKS5 proxy.
+	// 
+	void put_SocksVersion(int newVal);
+
 	// Sets the receive buffer size socket option. Normally, this property should be
 	// left unchanged. The default value is 0, which indicates that the receive buffer
 	// size socket option should not be explicitly set (i.e. the system default value,
@@ -913,60 +967,6 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	// performance, try setting it equal to 2, 3, or 4 times the default value.
 	// 
 	void put_SoSndBuf(int newVal);
-
-	// The SOCKS4/SOCKS5 hostname or IPv4 address (in dotted decimal notation). This
-	// property is only used if the SocksVersion property is set to 4 or 5).
-	void get_SocksHostname(CkString &str);
-	// The SOCKS4/SOCKS5 hostname or IPv4 address (in dotted decimal notation). This
-	// property is only used if the SocksVersion property is set to 4 or 5).
-	const char *socksHostname(void);
-	// The SOCKS4/SOCKS5 hostname or IPv4 address (in dotted decimal notation). This
-	// property is only used if the SocksVersion property is set to 4 or 5).
-	void put_SocksHostname(const char *newVal);
-
-	// The SOCKS5 password (if required). The SOCKS4 protocol does not include the use
-	// of a password, so this does not apply to SOCKS4.
-	void get_SocksPassword(CkString &str);
-	// The SOCKS5 password (if required). The SOCKS4 protocol does not include the use
-	// of a password, so this does not apply to SOCKS4.
-	const char *socksPassword(void);
-	// The SOCKS5 password (if required). The SOCKS4 protocol does not include the use
-	// of a password, so this does not apply to SOCKS4.
-	void put_SocksPassword(const char *newVal);
-
-	// The SOCKS4/SOCKS5 proxy port. The default value is 1080. This property only
-	// applies if a SOCKS proxy is used (if the SocksVersion property is set to 4 or
-	// 5).
-	int get_SocksPort(void);
-	// The SOCKS4/SOCKS5 proxy port. The default value is 1080. This property only
-	// applies if a SOCKS proxy is used (if the SocksVersion property is set to 4 or
-	// 5).
-	void put_SocksPort(int newVal);
-
-	// The SOCKS4/SOCKS5 proxy username. This property is only used if the SocksVersion
-	// property is set to 4 or 5).
-	void get_SocksUsername(CkString &str);
-	// The SOCKS4/SOCKS5 proxy username. This property is only used if the SocksVersion
-	// property is set to 4 or 5).
-	const char *socksUsername(void);
-	// The SOCKS4/SOCKS5 proxy username. This property is only used if the SocksVersion
-	// property is set to 4 or 5).
-	void put_SocksUsername(const char *newVal);
-
-	// SocksVersion May be set to one of the following integer values:
-	// 
-	// 0 - No SOCKS proxy is used. This is the default.
-	// 4 - Connect via a SOCKS4 proxy.
-	// 5 - Connect via a SOCKS5 proxy.
-	// 
-	int get_SocksVersion(void);
-	// SocksVersion May be set to one of the following integer values:
-	// 
-	// 0 - No SOCKS proxy is used. This is the default.
-	// 4 - Connect via a SOCKS4 proxy.
-	// 5 - Connect via a SOCKS5 proxy.
-	// 
-	void put_SocksVersion(int newVal);
 
 	// Set this property to true if the socket requires an SSL connection. The
 	// default value is false.
@@ -1474,7 +1474,7 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	// Initiates a background thread to establish a TCP connection with a remote
 	// host:port. The method will fail if an asynchronous operation is already in
 	// progress, or if the timeout expired. The timeout (in milliseconds) is passed in
-	//  maxWaitMs. To wait indefinitely, set  maxWaitMs to 0. Set  ssl = true to esablish an SSL
+	// maxWaitMs. To wait indefinitely, set maxWaitMs to 0. Set ssl = true to esablish an SSL
 	// connection. Asynchronous connect operations can be aborted by calling
 	// AsyncConnectAbort. When the async connect operation completes, the
 	// AsyncConnectFinished property will become true. If the connect was successful,
@@ -1501,7 +1501,7 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	// Initiates a background thread to do a DNS query (i.e. to resolve a hostname to
 	// an IP address). The method will fail if an asynchronous operation is already in
 	// progress, or if the timeout expired. The timeout (in milliseconds) is passed in
-	//  maxWaitMs. To wait indefinitely, set  maxWaitMs to 0. Asynchronous DNS lookups can be
+	// maxWaitMs. To wait indefinitely, set maxWaitMs to 0. Asynchronous DNS lookups can be
 	// aborted by calling AsyncDnsAbort. When the async DNS operation completes, the
 	// AsyncDnsFinished property will become true. If the DNS query was successful,
 	// the AsyncDnsSuccess property is set to true. A debug log is available in the
@@ -1607,7 +1607,7 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	// introduced in Chilkat v9.5.0.52. Applications should use the new model, which is
 	// identified by methods having names ending with "Async" and return a task object.
 	// 
-	bool AsyncSendBytes(CkByteData &data);
+	bool AsyncSendBytes(CkByteData &byteData);
 
 
 	// Initiates a background thread to send text on an already-connected socket (ssl
@@ -1618,40 +1618,40 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	// introduced in Chilkat v9.5.0.52. Applications should use the new model, which is
 	// identified by methods having names ending with "Async" and return a task object.
 	// 
-	bool AsyncSendString(const char *str);
+	bool AsyncSendString(const char *stringToSend);
 
 
 	// Binds a TCP socket to a port and configures it to listen for incoming
-	// connections. The size of the backlog is passed in  backLog. The  backLog is necessary
+	// connections. The size of the backlog is passed in backLog. The backLog is necessary
 	// when multiple connections arrive at the same time, or close enough in time such
-	// that they cannot be serviced immediately. (A typical value to use for  backLog is
+	// that they cannot be serviced immediately. (A typical value to use for backLog is
 	// 5.) This method should be called once prior to receiving incoming connection
 	// requests via the AcceptNextConnection or AsyncAcceptStart methods.
 	// 
 	// To bind and listen using IPv6, set the ListenIpv6 property = true prior to
 	// calling this method.
 	// 
-	// What is a reasonable value for  backLog? The answer depends on how many simultaneous
+	// What is a reasonable value for backLog? The answer depends on how many simultaneous
 	// incoming connections could be expected, and how quickly your application can
 	// process an incoming connection and then return to accept the next connection.
 	// 
-	bool BindAndListen(int port, int backlog);
+	bool BindAndListen(int port, int backLog);
 
 	// Binds a TCP socket to a port and configures it to listen for incoming
-	// connections. The size of the backlog is passed in  backLog. The  backLog is necessary
+	// connections. The size of the backlog is passed in backLog. The backLog is necessary
 	// when multiple connections arrive at the same time, or close enough in time such
-	// that they cannot be serviced immediately. (A typical value to use for  backLog is
+	// that they cannot be serviced immediately. (A typical value to use for backLog is
 	// 5.) This method should be called once prior to receiving incoming connection
 	// requests via the AcceptNextConnection or AsyncAcceptStart methods.
 	// 
 	// To bind and listen using IPv6, set the ListenIpv6 property = true prior to
 	// calling this method.
 	// 
-	// What is a reasonable value for  backLog? The answer depends on how many simultaneous
+	// What is a reasonable value for backLog? The answer depends on how many simultaneous
 	// incoming connections could be expected, and how quickly your application can
 	// process an incoming connection and then return to accept the next connection.
 	// 
-	CkTask *BindAndListenAsync(int port, int backlog);
+	CkTask *BindAndListenAsync(int port, int backLog);
 
 
 	// Convenience method for building a simple HTTP GET request from a URL.
@@ -1712,10 +1712,10 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 
 	// Establishes a secure SSL/TLS or a plain non-secure TCP connection with a remote
 	// host:port. This is a blocking call. The maximum wait time (in milliseconds) is
-	// passed in  maxWaitMs. This is the amount of time the app is willing to wait for the
+	// passed in maxWaitMs. This is the amount of time the app is willing to wait for the
 	// TCP connection to be accepted.
 	// 
-	// To establish an SSL/TLS connection, set  ssl = true, otherwise set  ssl =
+	// To establish an SSL/TLS connection, set ssl = true, otherwise set ssl =
 	// false for a normal TCP connection. Note: The timeouts that apply to the
 	// internal SSL/TLS handshaking messages are the MaxReadIdleMs and MaxSendIdleMs
 	// properties.
@@ -1735,10 +1735,10 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 
 	// Establishes a secure SSL/TLS or a plain non-secure TCP connection with a remote
 	// host:port. This is a blocking call. The maximum wait time (in milliseconds) is
-	// passed in  maxWaitMs. This is the amount of time the app is willing to wait for the
+	// passed in maxWaitMs. This is the amount of time the app is willing to wait for the
 	// TCP connection to be accepted.
 	// 
-	// To establish an SSL/TLS connection, set  ssl = true, otherwise set  ssl =
+	// To establish an SSL/TLS connection, set ssl = true, otherwise set ssl =
 	// false for a normal TCP connection. Note: The timeouts that apply to the
 	// internal SSL/TLS handshaking messages are the MaxReadIdleMs and MaxSendIdleMs
 	// properties.
@@ -1784,16 +1784,16 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 
 	// Performs a DNS query to resolve a hostname to an IP address. The IP address is
 	// returned if successful. The maximum time to wait (in milliseconds) is passed in
-	//  maxWaitMs. To wait indefinitely, set  maxWaitMs = 0.
+	// maxWaitMs. To wait indefinitely, set maxWaitMs = 0.
 	bool DnsLookup(const char *hostname, int maxWaitMs, CkString &outStr);
 
 	// Performs a DNS query to resolve a hostname to an IP address. The IP address is
 	// returned if successful. The maximum time to wait (in milliseconds) is passed in
-	//  maxWaitMs. To wait indefinitely, set  maxWaitMs = 0.
+	// maxWaitMs. To wait indefinitely, set maxWaitMs = 0.
 	const char *dnsLookup(const char *hostname, int maxWaitMs);
 	// Performs a DNS query to resolve a hostname to an IP address. The IP address is
 	// returned if successful. The maximum time to wait (in milliseconds) is passed in
-	//  maxWaitMs. To wait indefinitely, set  maxWaitMs = 0.
+	// maxWaitMs. To wait indefinitely, set maxWaitMs = 0.
 	CkTask *DnsLookupAsync(const char *hostname, int maxWaitMs);
 
 
@@ -1879,13 +1879,13 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 
 
 	// Receives a single byte. The received byte will be available in the ReceivedInt
-	// property. If ARG1 is true, then a value from 0 to 255 is returned in
-	// ReceivedInt. If ARG1 is false, then a value from -128 to +127 is returned.
+	// property. If bUnsigned is true, then a value from 0 to 255 is returned in
+	// ReceivedInt. If bUnsigned is false, then a value from -128 to +127 is returned.
 	bool ReceiveByte(bool bUnsigned);
 
 	// Receives a single byte. The received byte will be available in the ReceivedInt
-	// property. If ARG1 is true, then a value from 0 to 255 is returned in
-	// ReceivedInt. If ARG1 is false, then a value from -128 to +127 is returned.
+	// property. If bUnsigned is true, then a value from 0 to 255 is returned in
+	// ReceivedInt. If bUnsigned is false, then a value from -128 to +127 is returned.
 	CkTask *ReceiveByteAsync(bool bUnsigned);
 
 
@@ -1956,31 +1956,31 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 
 
 	// Receives a 16-bit integer (2 bytes). The received integer will be available in
-	// the ReceivedInt property. Set ARG1 equal to true if the incoming 16-bit
-	// integer is in big-endian byte order. Otherwise set ARG1 equal to false for
-	// receving a little-endian integer. If ARG2 is true, the ReceivedInt will range
-	// from 0 to 65,535. If ARG2 is false, the ReceivedInt will range from -32,768
+	// the ReceivedInt property. Set bigEndian equal to true if the incoming 16-bit
+	// integer is in big-endian byte order. Otherwise set bigEndian equal to false for
+	// receving a little-endian integer. If bUnsigned is true, the ReceivedInt will range
+	// from 0 to 65,535. If bUnsigned is false, the ReceivedInt will range from -32,768
 	// through 32,767.
 	bool ReceiveInt16(bool bigEndian, bool bUnsigned);
 
 	// Receives a 16-bit integer (2 bytes). The received integer will be available in
-	// the ReceivedInt property. Set ARG1 equal to true if the incoming 16-bit
-	// integer is in big-endian byte order. Otherwise set ARG1 equal to false for
-	// receving a little-endian integer. If ARG2 is true, the ReceivedInt will range
-	// from 0 to 65,535. If ARG2 is false, the ReceivedInt will range from -32,768
+	// the ReceivedInt property. Set bigEndian equal to true if the incoming 16-bit
+	// integer is in big-endian byte order. Otherwise set bigEndian equal to false for
+	// receving a little-endian integer. If bUnsigned is true, the ReceivedInt will range
+	// from 0 to 65,535. If bUnsigned is false, the ReceivedInt will range from -32,768
 	// through 32,767.
 	CkTask *ReceiveInt16Async(bool bigEndian, bool bUnsigned);
 
 
 	// Receives a 32-bit integer (4 bytes). The received integer will be available in
-	// the ReceivedInt property. Set ARG1 equal to true if the incoming 32-bit
-	// integer is in big-endian byte order. Otherwise set ARG1 equal to false for
+	// the ReceivedInt property. Set bigEndian equal to true if the incoming 32-bit
+	// integer is in big-endian byte order. Otherwise set bigEndian equal to false for
 	// receving a little-endian integer.
 	bool ReceiveInt32(bool bigEndian);
 
 	// Receives a 32-bit integer (4 bytes). The received integer will be available in
-	// the ReceivedInt property. Set ARG1 equal to true if the incoming 32-bit
-	// integer is in big-endian byte order. Otherwise set ARG1 equal to false for
+	// the ReceivedInt property. Set bigEndian equal to true if the incoming 32-bit
+	// integer is in big-endian byte order. Otherwise set bigEndian equal to false for
 	// receving a little-endian integer.
 	CkTask *ReceiveInt32Async(bool bigEndian);
 
@@ -2029,7 +2029,7 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	// for data to arrive. The incoming bytes are interpreted according to the
 	// StringCharset property and returned as a string.)
 	// 
-	bool ReceiveStringMaxN(int maxBytes, CkString &outStr);
+	bool ReceiveStringMaxN(int maxByteCount, CkString &outStr);
 
 	// Same as ReceiveString, but limits the amount of data returned to a maximum of
 	// maxByteCount bytes.
@@ -2039,7 +2039,7 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	// for data to arrive. The incoming bytes are interpreted according to the
 	// StringCharset property and returned as a string.)
 	// 
-	const char *receiveStringMaxN(int maxBytes);
+	const char *receiveStringMaxN(int maxByteCount);
 	// Same as ReceiveString, but limits the amount of data returned to a maximum of
 	// maxByteCount bytes.
 	// 
@@ -2048,22 +2048,22 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	// for data to arrive. The incoming bytes are interpreted according to the
 	// StringCharset property and returned as a string.)
 	// 
-	CkTask *ReceiveStringMaxNAsync(int maxBytes);
+	CkTask *ReceiveStringMaxNAsync(int maxByteCount);
 
 
 	// Receives bytes on a connected SSL or non-SSL socket until a specific 1-byte
 	// value is read. Returns a string containing all the bytes up to but excluding the
 	// lookForByte.
-	bool ReceiveStringUntilByte(int byteValue, CkString &outStr);
+	bool ReceiveStringUntilByte(int lookForByte, CkString &outStr);
 
 	// Receives bytes on a connected SSL or non-SSL socket until a specific 1-byte
 	// value is read. Returns a string containing all the bytes up to but excluding the
 	// lookForByte.
-	const char *receiveStringUntilByte(int byteValue);
+	const char *receiveStringUntilByte(int lookForByte);
 	// Receives bytes on a connected SSL or non-SSL socket until a specific 1-byte
 	// value is read. Returns a string containing all the bytes up to but excluding the
 	// lookForByte.
-	CkTask *ReceiveStringUntilByteAsync(int byteValue);
+	CkTask *ReceiveStringUntilByteAsync(int lookForByte);
 
 
 	// Reads text from the connected TCP/IP or SSL socket until a CRLF is received.
@@ -2083,11 +2083,11 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 
 	// Receives bytes on the TCP/IP or SSL socket until a specific 1-byte value is
 	// read. Returns all the bytes up to and including the lookForByte.
-	bool ReceiveUntilByte(int byteValue, CkByteData &outBytes);
+	bool ReceiveUntilByte(int lookForByte, CkByteData &outBytes);
 
 	// Receives bytes on the TCP/IP or SSL socket until a specific 1-byte value is
 	// read. Returns all the bytes up to and including the lookForByte.
-	CkTask *ReceiveUntilByteAsync(int byteValue);
+	CkTask *ReceiveUntilByteAsync(int lookForByte);
 
 
 	// Reads text from the connected TCP/IP or SSL socket until a matching string
@@ -2154,7 +2154,7 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	// remote receiver can read it), then a socket write can block (until outgoing send
 	// buffer space becomes available).
 	// 
-	// Waits a maximum of ARG1 milliseconds. If maxWaitMs = 0, then it is effectively a
+	// Waits a maximum of timeoutMs milliseconds. If maxWaitMs = 0, then it is effectively a
 	// poll. Returns the number of sockets such that data can be written without
 	// blocking. A value of -1 indicates an error condition.
 	// 
@@ -2170,7 +2170,7 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	// remote receiver can read it), then a socket write can block (until outgoing send
 	// buffer space becomes available).
 	// 
-	// Waits a maximum of ARG1 milliseconds. If maxWaitMs = 0, then it is effectively a
+	// Waits a maximum of timeoutMs milliseconds. If maxWaitMs = 0, then it is effectively a
 	// poll. Returns the number of sockets such that data can be written without
 	// blocking. A value of -1 indicates an error condition.
 	// 
@@ -2196,13 +2196,13 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 
 
 	// The same as SendBytes, except the bytes are provided in encoded string form as
-	// specified by  encodingAlg. The  encodingAlg can be "Base64", "modBase64", "Base32", "Base58",
+	// specified by encodingAlg. The encodingAlg can be "Base64", "modBase64", "Base32", "Base58",
 	// "UU", "QP" (for quoted-printable), "URL" (for url-encoding), "Hex", "Q", "B",
 	// "url_oauth", "url_rfc1738", "url_rfc2396", and "url_rfc3986".
 	bool SendBytesENC(const char *encodedBytes, const char *encodingAlg);
 
 	// The same as SendBytes, except the bytes are provided in encoded string form as
-	// specified by  encodingAlg. The  encodingAlg can be "Base64", "modBase64", "Base32", "Base58",
+	// specified by encodingAlg. The encodingAlg can be "Base64", "modBase64", "Base32", "Base58",
 	// "UU", "QP" (for quoted-printable), "URL" (for url-encoding), "Hex", "Q", "B",
 	// "url_oauth", "url_rfc1738", "url_rfc2396", and "url_rfc3986".
 	CkTask *SendBytesENCAsync(const char *encodedBytes, const char *encodingAlg);
@@ -2223,25 +2223,25 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	CkTask *SendCountAsync(int byteCount);
 
 
-	// Sends a 16-bit integer (2 bytes). Set ARG2 equal to true to send the integer
+	// Sends a 16-bit integer (2 bytes). Set bigEndian equal to true to send the integer
 	// in big-endian byte order (this is the standard network byte order). Otherwise
-	// set ARG2 equal to false to send in little-endian byte order.
+	// set bigEndian equal to false to send in little-endian byte order.
 	bool SendInt16(int value, bool bigEndian);
 
-	// Sends a 16-bit integer (2 bytes). Set ARG2 equal to true to send the integer
+	// Sends a 16-bit integer (2 bytes). Set bigEndian equal to true to send the integer
 	// in big-endian byte order (this is the standard network byte order). Otherwise
-	// set ARG2 equal to false to send in little-endian byte order.
+	// set bigEndian equal to false to send in little-endian byte order.
 	CkTask *SendInt16Async(int value, bool bigEndian);
 
 
-	// Sends a 32-bit integer (4 bytes). Set ARG2 equal to true to send the integer
+	// Sends a 32-bit integer (4 bytes). Set bigEndian equal to true to send the integer
 	// in big-endian byte order (this is the standard network byte order). Otherwise
-	// set ARG2 equal to false to send in little-endian byte order.
+	// set bigEndian equal to false to send in little-endian byte order.
 	bool SendInt32(int value, bool bigEndian);
 
-	// Sends a 32-bit integer (4 bytes). Set ARG2 equal to true to send the integer
+	// Sends a 32-bit integer (4 bytes). Set bigEndian equal to true to send the integer
 	// in big-endian byte order (this is the standard network byte order). Otherwise
-	// set ARG2 equal to false to send in little-endian byte order.
+	// set bigEndian equal to false to send in little-endian byte order.
 	CkTask *SendInt32Async(int value, bool bigEndian);
 
 
@@ -2252,7 +2252,7 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	// This is a blocking (synchronous) method. It returns after the string has been
 	// sent.
 	// 
-	bool SendString(const char *str);
+	bool SendString(const char *stringToSend);
 
 	// Sends a string over a connected SSL or non-SSL (TCP/IP) socket. If transmission
 	// halts for more than MaxSendIdleMs milliseconds, the send is aborted. The string
@@ -2261,7 +2261,7 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	// This is a blocking (synchronous) method. It returns after the string has been
 	// sent.
 	// 
-	CkTask *SendStringAsync(const char *str);
+	CkTask *SendStringAsync(const char *stringToSend);
 
 
 	// A client-side certificate for SSL/TLS connections is optional. It should be used
@@ -2289,7 +2289,7 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 
 	// Authenticates with the SSH server using public-key authentication. The
 	// corresponding public key must have been installed on the SSH server for the
-	// sshLogin. Authentication will succeed if the matching  privateKey is provided.
+	// sshLogin. Authentication will succeed if the matching privateKey is provided.
 	// 
 	// Important: When reporting problems, please send the full contents of the
 	// LastErrorText property to support@chilkatsoft.com.
@@ -2298,7 +2298,7 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 
 	// Authenticates with the SSH server using public-key authentication. The
 	// corresponding public key must have been installed on the SSH server for the
-	// sshLogin. Authentication will succeed if the matching  privateKey is provided.
+	// sshLogin. Authentication will succeed if the matching privateKey is provided.
 	// 
 	// Important: When reporting problems, please send the full contents of the
 	// LastErrorText property to support@chilkatsoft.com.
@@ -2306,12 +2306,12 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	CkTask *SshAuthenticatePkAsync(const char *sshLogin, CkSshKey &privateKey);
 
 
-	// Authenticates with the SSH server using a sshLogin and  sshPassword. This method is only
+	// Authenticates with the SSH server using a sshLogin and sshPassword. This method is only
 	// used for SSH tunneling. The tunnel is established by calling SshOpenTunnel, then
 	// (if necessary) authenticated by calling SshAuthenticatePw or SshAuthenticatePk.
 	bool SshAuthenticatePw(const char *sshLogin, const char *sshPassword);
 
-	// Authenticates with the SSH server using a sshLogin and  sshPassword. This method is only
+	// Authenticates with the SSH server using a sshLogin and sshPassword. This method is only
 	// used for SSH tunneling. The tunnel is established by calling SshOpenTunnel, then
 	// (if necessary) authenticated by calling SshAuthenticatePw or SshAuthenticatePk.
 	CkTask *SshAuthenticatePwAsync(const char *sshLogin, const char *sshPassword);
@@ -2325,7 +2325,7 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 
 
 	// Opens a new channel within an SSH tunnel. Returns the socket that is connected
-	// to the destination host:port through the SSH tunnel via port forwarding. If ARG3
+	// to the destination host:port through the SSH tunnel via port forwarding. If ssl
 	// is true, the connection is TLS (i.e. TLS inside the SSH tunnel). Returns the
 	// socket object that is the port-forwarded tunneled connection. Any number of
 	// channels may be opened within a single SSH tunnel, and may be port-forwarded to
@@ -2334,7 +2334,7 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	CkSocket *SshOpenChannel(const char *hostname, int port, bool ssl, int maxWaitMs);
 
 	// Opens a new channel within an SSH tunnel. Returns the socket that is connected
-	// to the destination host:port through the SSH tunnel via port forwarding. If ARG3
+	// to the destination host:port through the SSH tunnel via port forwarding. If ssl
 	// is true, the connection is TLS (i.e. TLS inside the SSH tunnel). Returns the
 	// socket object that is the port-forwarded tunneled connection. Any number of
 	// channels may be opened within a single SSH tunnel, and may be port-forwarded to
@@ -2342,8 +2342,8 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	CkTask *SshOpenChannelAsync(const char *hostname, int port, bool ssl, int maxWaitMs);
 
 
-	// Connects to an SSH server and creates a tunnel for port forwarding. The ARG1 is
-	// the hostname (or IP address) of the SSH server. The ARG2 is typically 22, which
+	// Connects to an SSH server and creates a tunnel for port forwarding. The sshHostname is
+	// the hostname (or IP address) of the SSH server. The sshPort is typically 22, which
 	// is the standard SSH port number.
 	// 
 	// An SSH tunneling (port forwarding) session always begins by first calling
@@ -2354,8 +2354,8 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	// 
 	bool SshOpenTunnel(const char *sshHostname, int sshPort);
 
-	// Connects to an SSH server and creates a tunnel for port forwarding. The ARG1 is
-	// the hostname (or IP address) of the SSH server. The ARG2 is typically 22, which
+	// Connects to an SSH server and creates a tunnel for port forwarding. The sshHostname is
+	// the hostname (or IP address) of the SSH server. The sshPort is typically 22, which
 	// is the standard SSH port number.
 	// 
 	// An SSH tunneling (port forwarding) session always begins by first calling

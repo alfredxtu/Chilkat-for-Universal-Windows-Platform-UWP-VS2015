@@ -44,21 +44,9 @@ Chilkat::FileAccess::FileAccess(void)
 //}
 
 
-String ^Chilkat::FileAccess::LastErrorHtml::get()
+String ^Chilkat::FileAccess::CurrentDir::get()
     {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
-    }
-String ^Chilkat::FileAccess::LastErrorText::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::FileAccess::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::FileAccess::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
+    return ref new String(m_impl ? m_impl->currentDir() : L"");
     }
 String ^Chilkat::FileAccess::DebugLogFilePath::get()
     {
@@ -67,26 +55,6 @@ String ^Chilkat::FileAccess::DebugLogFilePath::get()
 void Chilkat::FileAccess::DebugLogFilePath::set(String ^newVal)
     {
         if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::FileAccess::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::FileAccess::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::FileAccess::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::FileAccess::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
-String ^Chilkat::FileAccess::CurrentDir::get()
-    {
-    return ref new String(m_impl ? m_impl->currentDir() : L"");
     }
 Boolean Chilkat::FileAccess::EndOfFile::get()
     {
@@ -100,171 +68,157 @@ String ^Chilkat::FileAccess::FileOpenErrorMsg::get()
     {
     return ref new String(m_impl ? m_impl->fileOpenErrorMsg() : L"");
     }
-
-
-Boolean FileAccess::SaveLastError(Platform::String ^path)
+String ^Chilkat::FileAccess::LastErrorHtml::get()
     {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
     }
+String ^Chilkat::FileAccess::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::FileAccess::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
+Boolean Chilkat::FileAccess::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::FileAccess::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+    }
+Boolean Chilkat::FileAccess::VerboseLogging::get()
+    {
+    return m_impl ? m_impl->get_VerboseLogging() : false;
+    }
+void Chilkat::FileAccess::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::FileAccess::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
+
+
 Boolean FileAccess::AppendAnsi(Platform::String ^text)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->AppendAnsi(text ? text->Data() : L"");
     }
-Boolean FileAccess::AppendText(Platform::String ^text, Platform::String ^charset)
+Boolean FileAccess::AppendText(Platform::String ^str, Platform::String ^charset)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->AppendText(text ? text->Data() : L"",charset ? charset->Data() : L"");
+	return m_impl->AppendText(str ? str->Data() : L"",charset ? charset->Data() : L"");
     }
 Boolean FileAccess::AppendUnicodeBOM(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->AppendUnicodeBOM();
     }
 Boolean FileAccess::AppendUtf8BOM(void)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->AppendUtf8BOM();
     }
-Boolean FileAccess::DirAutoCreate(Platform::String ^path)
+Boolean FileAccess::DirAutoCreate(Platform::String ^dirPath)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->DirAutoCreate(path ? path->Data() : L"");
+	return m_impl->DirAutoCreate(dirPath ? dirPath->Data() : L"");
     }
-Boolean FileAccess::DirCreate(Platform::String ^path)
+Boolean FileAccess::DirCreate(Platform::String ^dirPath)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->DirCreate(path ? path->Data() : L"");
+	return m_impl->DirCreate(dirPath ? dirPath->Data() : L"");
     }
-Boolean FileAccess::DirDelete(Platform::String ^path)
+Boolean FileAccess::DirDelete(Platform::String ^dirPath)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->DirDelete(path ? path->Data() : L"");
+	return m_impl->DirDelete(dirPath ? dirPath->Data() : L"");
     }
 Boolean FileAccess::DirEnsureExists(Platform::String ^filePath)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->DirEnsureExists(filePath ? filePath->Data() : L"");
     }
 void FileAccess::FileClose(void)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	// gType = void
-	// cppType = void
 	m_impl->FileClose();
     }
-Boolean FileAccess::FileContentsEqual(Platform::String ^path1, Platform::String ^path2)
+Boolean FileAccess::FileContentsEqual(Platform::String ^filePath1, Platform::String ^filePath2)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->FileContentsEqual(path1 ? path1->Data() : L"",path2 ? path2->Data() : L"");
+	return m_impl->FileContentsEqual(filePath1 ? filePath1->Data() : L"",filePath2 ? filePath2->Data() : L"");
     }
-Boolean FileAccess::FileCopy(Platform::String ^existing, Platform::String ^newFilename, Boolean failIfExists)
+Boolean FileAccess::FileCopy(Platform::String ^existingFilepath, Platform::String ^newFilepath, Boolean failIfExists)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->FileCopy(existing ? existing->Data() : L"",newFilename ? newFilename->Data() : L"",failIfExists);
+	return m_impl->FileCopy(existingFilepath ? existingFilepath->Data() : L"",newFilepath ? newFilepath->Data() : L"",failIfExists);
     }
-Boolean FileAccess::FileDelete(Platform::String ^filename)
+Boolean FileAccess::FileDelete(Platform::String ^filePath)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->FileDelete(filename ? filename->Data() : L"");
+	return m_impl->FileDelete(filePath ? filePath->Data() : L"");
     }
-Boolean FileAccess::FileExists(Platform::String ^path)
+Boolean FileAccess::FileExists(Platform::String ^filePath)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->FileExists(path ? path->Data() : L"");
+	return m_impl->FileExists(filePath ? filePath->Data() : L"");
     }
 int FileAccess::FileExists3(Platform::String ^path)
     {
 	if (m_impl == nullptr) { return -1; }
 	// --- prep output arg ---
-	// gType = int
-	// cppType = int
 	return m_impl->FileExists3(path ? path->Data() : L"");
     }
-Boolean FileAccess::FileOpen(Platform::String ^filename, uint32 accessMode, uint32 shareMode, uint32 createDisp, uint32 attr)
+Boolean FileAccess::FileOpen(Platform::String ^filePath, uint32 accessMode, uint32 shareMode, uint32 createDisposition, uint32 attributes)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->FileOpen(filename ? filename->Data() : L"",accessMode,shareMode,createDisp,attr);
+	return m_impl->FileOpen(filePath ? filePath->Data() : L"",accessMode,shareMode,createDisposition,attributes);
     }
-Windows::Foundation::Collections::IVector<uint8>^FileAccess::FileRead(int numBytes)
+Windows::Foundation::Collections::IVector<uint8>^FileAccess::FileRead(int maxNumBytes)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
-	bool success = m_impl->FileRead(numBytes,outDb);
+	bool success = m_impl->FileRead(maxNumBytes,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
     }
-Boolean FileAccess::FileRename(Platform::String ^existing, Platform::String ^newFilename)
+Boolean FileAccess::FileRename(Platform::String ^existingFilepath, Platform::String ^newFilepath)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->FileRename(existing ? existing->Data() : L"",newFilename ? newFilename->Data() : L"");
+	return m_impl->FileRename(existingFilepath ? existingFilepath->Data() : L"",newFilepath ? newFilepath->Data() : L"");
     }
 Boolean FileAccess::FileSeek(int offset, int origin)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->FileSeek(offset,origin);
     }
-int FileAccess::FileSize(Platform::String ^filename)
+int FileAccess::FileSize(Platform::String ^filePath)
     {
 	if (m_impl == nullptr) { return -1; }
 	// --- prep output arg ---
-	// gType = int
-	// cppType = int
-	return m_impl->FileSize(filename ? filename->Data() : L"");
+	return m_impl->FileSize(filePath ? filePath->Data() : L"");
     }
 Boolean FileAccess::FileWrite(Windows::Foundation::Collections::IVector<uint8>^data)
     {
@@ -273,16 +227,12 @@ Boolean FileAccess::FileWrite(Windows::Foundation::Collections::IVector<uint8>^d
         if (data != nullptr) { v0 = to_vector(data);
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->FileWrite(db0);
     }
 Platform::String ^FileAccess::GenBlockId(int index, int length, Platform::String ^encoding)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->genBlockId(index,length,encoding ? encoding->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -291,17 +241,13 @@ int FileAccess::GetNumBlocks(int blockSize)
     {
 	if (m_impl == nullptr) { return -1; }
 	// --- prep output arg ---
-	// gType = int
-	// cppType = int
 	return m_impl->GetNumBlocks(blockSize);
     }
-Platform::String ^FileAccess::GetTempFilename(Platform::String ^dirName, Platform::String ^prefix)
+Platform::String ^FileAccess::GetTempFilename(Platform::String ^dirPath, Platform::String ^prefix)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->getTempFilename(dirName ? dirName->Data() : L"",prefix ? prefix->Data() : L"");
+	const wchar_t *retStr = m_impl->getTempFilename(dirPath ? dirPath->Data() : L"",prefix ? prefix->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
@@ -309,41 +255,31 @@ Boolean FileAccess::OpenForAppend(Platform::String ^filePath)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->OpenForAppend(filePath ? filePath->Data() : L"");
     }
 Boolean FileAccess::OpenForRead(Platform::String ^filePath)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->OpenForRead(filePath ? filePath->Data() : L"");
     }
 Boolean FileAccess::OpenForReadWrite(Platform::String ^filePath)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->OpenForReadWrite(filePath ? filePath->Data() : L"");
     }
 Boolean FileAccess::OpenForWrite(Platform::String ^filePath)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->OpenForWrite(filePath ? filePath->Data() : L"");
     }
-Platform::String ^FileAccess::ReadBinaryToEncoded(Platform::String ^filename, Platform::String ^encoding)
+Platform::String ^FileAccess::ReadBinaryToEncoded(Platform::String ^filePath, Platform::String ^encoding)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->readBinaryToEncoded(filename ? filename->Data() : L"",encoding ? encoding->Data() : L"");
+	const wchar_t *retStr = m_impl->readBinaryToEncoded(filePath ? filePath->Data() : L"",encoding ? encoding->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
@@ -352,32 +288,26 @@ Windows::Foundation::Collections::IVector<uint8>^FileAccess::ReadBlock(int block
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
 	bool success = m_impl->ReadBlock(blockIndex,blockSize,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
     }
-Windows::Foundation::Collections::IVector<uint8>^FileAccess::ReadEntireFile(Platform::String ^filename)
+Windows::Foundation::Collections::IVector<uint8>^FileAccess::ReadEntireFile(Platform::String ^filePath)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CkByteData outDb;
-	// gType = bytes
-	// cppType = bool
-	bool success = m_impl->ReadEntireFile(filename ? filename->Data() : L"",outDb);
+	bool success = m_impl->ReadEntireFile(filePath ? filePath->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
     }
-Platform::String ^FileAccess::ReadEntireTextFile(Platform::String ^filename, Platform::String ^charset)
+Platform::String ^FileAccess::ReadEntireTextFile(Platform::String ^filePath, Platform::String ^charset)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	// gType = string
-	// cppType = bool
-	const wchar_t *retStr = m_impl->readEntireTextFile(filename ? filename->Data() : L"",charset ? charset->Data() : L"");
+	const wchar_t *retStr = m_impl->readEntireTextFile(filePath ? filePath->Data() : L"",charset ? charset->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
@@ -385,88 +315,70 @@ Boolean FileAccess::ReassembleFile(Platform::String ^partsDirPath, Platform::Str
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->ReassembleFile(partsDirPath ? partsDirPath->Data() : L"",partPrefix ? partPrefix->Data() : L"",partExtension ? partExtension->Data() : L"",reassembledFilename ? reassembledFilename->Data() : L"");
     }
-int FileAccess::ReplaceStrings(Platform::String ^path, Platform::String ^charset, Platform::String ^existingString, Platform::String ^replacementString)
+int FileAccess::ReplaceStrings(Platform::String ^filePath, Platform::String ^charset, Platform::String ^existingString, Platform::String ^replacementString)
     {
 	if (m_impl == nullptr) { return -1; }
 	// --- prep output arg ---
-	// gType = int
-	// cppType = int
-	return m_impl->ReplaceStrings(path ? path->Data() : L"",charset ? charset->Data() : L"",existingString ? existingString->Data() : L"",replacementString ? replacementString->Data() : L"");
+	return m_impl->ReplaceStrings(filePath ? filePath->Data() : L"",charset ? charset->Data() : L"",existingString ? existingString->Data() : L"",replacementString ? replacementString->Data() : L"");
     }
-Boolean FileAccess::SetCurrentDir(Platform::String ^path)
+Boolean FileAccess::SetCurrentDir(Platform::String ^dirPath)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SetCurrentDir(path ? path->Data() : L"");
+	return m_impl->SetCurrentDir(dirPath ? dirPath->Data() : L"");
     }
-Boolean FileAccess::SetFileTimes(Platform::String ^path, Chilkat::CkDateTime ^create, Chilkat::CkDateTime ^lastAccess, Chilkat::CkDateTime ^lastModified)
+Boolean FileAccess::SetFileTimes(Platform::String ^filePath, Chilkat::CkDateTime ^createTime, Chilkat::CkDateTime ^lastAccessTime, Chilkat::CkDateTime ^lastModTime)
     {
 	if (m_impl == nullptr) { return false; }
-	if (create == nullptr) { return false; }
-	CkDateTimeW* pObj1 = create->m_impl;
+	if (createTime == nullptr) { return false; }
+	CkDateTimeW* pObj1 = createTime->m_impl;
 	 if (!pObj1) { return false; }
-	if (lastAccess == nullptr) { return false; }
-	CkDateTimeW* pObj2 = lastAccess->m_impl;
+	if (lastAccessTime == nullptr) { return false; }
+	CkDateTimeW* pObj2 = lastAccessTime->m_impl;
 	 if (!pObj2) { return false; }
-	if (lastModified == nullptr) { return false; }
-	CkDateTimeW* pObj3 = lastModified->m_impl;
+	if (lastModTime == nullptr) { return false; }
+	CkDateTimeW* pObj3 = lastModTime->m_impl;
 	 if (!pObj3) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SetFileTimes(path ? path->Data() : L"",*pObj1,*pObj2,*pObj3);
+	return m_impl->SetFileTimes(filePath ? filePath->Data() : L"",*pObj1,*pObj2,*pObj3);
     }
-Boolean FileAccess::SetLastModified(Platform::String ^path, Chilkat::CkDateTime ^lastModified)
+Boolean FileAccess::SetLastModified(Platform::String ^filePath, Chilkat::CkDateTime ^lastModified)
     {
 	if (m_impl == nullptr) { return false; }
 	if (lastModified == nullptr) { return false; }
 	CkDateTimeW* pObj1 = lastModified->m_impl;
 	 if (!pObj1) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->SetLastModified(path ? path->Data() : L"",*pObj1);
+	return m_impl->SetLastModified(filePath ? filePath->Data() : L"",*pObj1);
     }
 Boolean FileAccess::SplitFile(Platform::String ^fileToSplit, Platform::String ^partPrefix, Platform::String ^partExtension, int partSize, Platform::String ^destDir)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->SplitFile(fileToSplit ? fileToSplit->Data() : L"",partPrefix ? partPrefix->Data() : L"",partExtension ? partExtension->Data() : L"",partSize,destDir ? destDir->Data() : L"");
     }
 Boolean FileAccess::TreeDelete(Platform::String ^path)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
 	return m_impl->TreeDelete(path ? path->Data() : L"");
     }
-Boolean FileAccess::WriteEntireFile(Platform::String ^filename, Windows::Foundation::Collections::IVector<uint8>^fileData)
+Boolean FileAccess::WriteEntireFile(Platform::String ^filePath, Windows::Foundation::Collections::IVector<uint8>^fileData)
     {
 	if (m_impl == nullptr) { return false; }
 	CkByteData db1; std::vector<uint8> v1;
         if (fileData != nullptr) { v1 = to_vector(fileData);
             db1.borrowData(&v1[0], (unsigned long)v1.size()); }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->WriteEntireFile(filename ? filename->Data() : L"",db1);
+	return m_impl->WriteEntireFile(filePath ? filePath->Data() : L"",db1);
     }
-Boolean FileAccess::WriteEntireTextFile(Platform::String ^filename, Platform::String ^fileData, Platform::String ^charset, Boolean includePreamble)
+Boolean FileAccess::WriteEntireTextFile(Platform::String ^filePath, Platform::String ^textData, Platform::String ^charset, Boolean includedPreamble)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	// gType = bool
-	// cppType = bool
-	return m_impl->WriteEntireTextFile(filename ? filename->Data() : L"",fileData ? fileData->Data() : L"",charset ? charset->Data() : L"",includePreamble);
+	return m_impl->WriteEntireTextFile(filePath ? filePath->Data() : L"",textData ? textData->Data() : L"",charset ? charset->Data() : L"",includedPreamble);
     }
 
 

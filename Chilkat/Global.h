@@ -42,6 +42,31 @@ public ref class Global sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property int32 AnsiCodePage
+	{
+		int32 get();
+		void set(int32);
+	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property int32 DefaultNtlmVersion
+	{
+		int32 get();
+		void set(int32);
+	}
+	property int32 DnsTimeToLive
+	{
+		int32 get();
+		void set(int32);
+	}
+	property Boolean EnableDnsCaching
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
@@ -54,46 +79,7 @@ public ref class Global sealed
 	{
 		Platform::String ^get();
 	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Boolean LastMethodSuccess
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property int32 AnsiCodePage
-	{
-		int32 get();
-		void set(int32);
-	}
-	property int32 DefaultNtlmVersion
-	{
-		int32 get();
-		void set(int32);
-	}
-	property Boolean DefaultUtf8
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property int32 DnsTimeToLive
-	{
-		int32 get();
-		void set(int32);
-	}
-	property Boolean EnableDnsCaching
 	{
 		Boolean get();
 		void set(Boolean);
@@ -108,13 +94,20 @@ public ref class Global sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	Boolean DnsClearCache(void);
 
 	Boolean FinalizeThreadPool(void);

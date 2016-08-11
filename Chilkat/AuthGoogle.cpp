@@ -47,21 +47,13 @@ Chilkat::AuthGoogle::AuthGoogle(void)
 //}
 
 
-String ^Chilkat::AuthGoogle::LastErrorHtml::get()
+String ^Chilkat::AuthGoogle::AccessToken::get()
     {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    return ref new String(m_impl ? m_impl->accessToken() : L"");
     }
-String ^Chilkat::AuthGoogle::LastErrorText::get()
+void Chilkat::AuthGoogle::AccessToken::set(String ^newVal)
     {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::AuthGoogle::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::AuthGoogle::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
+        if (m_impl) m_impl->put_AccessToken(newVal ? newVal->Data() : L"");
     }
 String ^Chilkat::AuthGoogle::DebugLogFilePath::get()
     {
@@ -70,30 +62,6 @@ String ^Chilkat::AuthGoogle::DebugLogFilePath::get()
 void Chilkat::AuthGoogle::DebugLogFilePath::set(String ^newVal)
     {
         if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::AuthGoogle::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::AuthGoogle::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::AuthGoogle::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::AuthGoogle::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
-String ^Chilkat::AuthGoogle::AccessToken::get()
-    {
-    return ref new String(m_impl ? m_impl->accessToken() : L"");
-    }
-void Chilkat::AuthGoogle::AccessToken::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_AccessToken(newVal ? newVal->Data() : L"");
     }
 String ^Chilkat::AuthGoogle::EmailAddress::get()
     {
@@ -119,6 +87,26 @@ void Chilkat::AuthGoogle::JsonKey::set(String ^newVal)
     {
         if (m_impl) m_impl->put_JsonKey(newVal ? newVal->Data() : L"");
     }
+String ^Chilkat::AuthGoogle::LastErrorHtml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    }
+String ^Chilkat::AuthGoogle::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::AuthGoogle::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
+Boolean Chilkat::AuthGoogle::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::AuthGoogle::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+    }
 int Chilkat::AuthGoogle::NumSecondsRemaining::get()
     {
     return m_impl ? m_impl->get_NumSecondsRemaining() : 0;
@@ -143,33 +131,33 @@ Boolean Chilkat::AuthGoogle::Valid::get()
     {
     return m_impl ? m_impl->get_Valid() : false;
     }
-
-
-Boolean AuthGoogle::SaveLastError(Platform::String ^path)
+Boolean Chilkat::AuthGoogle::VerboseLogging::get()
     {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxAuthGoogleProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
+    return m_impl ? m_impl->get_VerboseLogging() : false;
     }
+void Chilkat::AuthGoogle::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::AuthGoogle::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
+
+
 Pfx ^AuthGoogle::GetP12(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CxAuthGoogleProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Pfx
-	// cppType = CkPfx *
 	CkPfxW *pRetObj = m_impl->GetP12();
 	if (!pRetObj) return nullptr;
 	Chilkat::Pfx ^pPfx = ref new Chilkat::Pfx();
 	pPfx->m_impl = pRetObj;
 	return pPfx;
     }
-IAsyncOperation<Boolean>^ AuthGoogle::ObtainAccessTokenAsync(Socket ^connection)
+IAsyncOperation<Boolean>^ AuthGoogle::ObtainAccessTokenAsync(Chilkat::Socket ^connection)
     {
 return create_async([this, connection]() -> Boolean
 {
@@ -182,13 +170,11 @@ return create_async([this, connection]() -> Boolean
 	// --- prep output arg ---
 	CxAuthGoogleProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ObtainAccessToken(*pObj0);
 
 });
     }
-Boolean AuthGoogle::SetP12(Pfx ^key)
+Boolean AuthGoogle::SetP12(Chilkat::Pfx ^key)
     {
 	if (m_impl == nullptr) { return false; }
 	if (key == nullptr) { return false; }
@@ -197,8 +183,6 @@ Boolean AuthGoogle::SetP12(Pfx ^key)
 	// --- prep output arg ---
 	CxAuthGoogleProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->SetP12(*pObj0);
     }
 

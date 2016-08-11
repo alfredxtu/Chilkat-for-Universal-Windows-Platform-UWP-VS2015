@@ -55,6 +55,30 @@ Chilkat::Pem::Pem(void)
 //}
 
 
+Boolean Chilkat::Pem::AppendMode::get()
+    {
+    return m_impl ? m_impl->get_AppendMode() : false;
+    }
+void Chilkat::Pem::AppendMode::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AppendMode(newVal);
+    }
+String ^Chilkat::Pem::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::Pem::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
+int Chilkat::Pem::HeartbeatMs::get()
+    {
+    return m_impl ? m_impl->get_HeartbeatMs() : 0;
+    }
+void Chilkat::Pem::HeartbeatMs::set(int newVal)
+    {
+        if (m_impl) m_impl->put_HeartbeatMs(newVal);
+    }
 String ^Chilkat::Pem::LastErrorHtml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
@@ -67,26 +91,6 @@ String ^Chilkat::Pem::LastErrorXml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
     }
-String ^Chilkat::Pem::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::Pem::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::Pem::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::Pem::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::Pem::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
 Boolean Chilkat::Pem::LastMethodSuccess::get()
     {
     return m_impl ? m_impl->get_LastMethodSuccess() : false;
@@ -94,22 +98,6 @@ Boolean Chilkat::Pem::LastMethodSuccess::get()
 void Chilkat::Pem::LastMethodSuccess::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
-Boolean Chilkat::Pem::AppendMode::get()
-    {
-    return m_impl ? m_impl->get_AppendMode() : false;
-    }
-void Chilkat::Pem::AppendMode::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_AppendMode(newVal);
-    }
-int Chilkat::Pem::HeartbeatMs::get()
-    {
-    return m_impl ? m_impl->get_HeartbeatMs() : 0;
-    }
-void Chilkat::Pem::HeartbeatMs::set(int newVal)
-    {
-        if (m_impl) m_impl->put_HeartbeatMs(newVal);
     }
 int Chilkat::Pem::NumCerts::get()
     {
@@ -143,19 +131,21 @@ void Chilkat::Pem::PublicKeyFormat::set(String ^newVal)
     {
         if (m_impl) m_impl->put_PublicKeyFormat(newVal ? newVal->Data() : L"");
     }
-
-
-Boolean Pem::SaveLastError(Platform::String ^path)
+Boolean Chilkat::Pem::VerboseLogging::get()
     {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxPemProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
+    return m_impl ? m_impl->get_VerboseLogging() : false;
     }
-Boolean Pem::AddCert(Cert ^cert, Boolean includeChain)
+void Chilkat::Pem::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::Pem::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
+    }
+
+
+Boolean Pem::AddCert(Chilkat::Cert ^cert, Boolean includeChain)
     {
 	if (m_impl == nullptr) { return false; }
 	if (cert == nullptr) { return false; }
@@ -164,11 +154,17 @@ Boolean Pem::AddCert(Cert ^cert, Boolean includeChain)
 	// --- prep output arg ---
 	CxPemProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddCert(*pObj0,includeChain);
     }
-Boolean Pem::AddPrivateKey(PrivateKey ^privateKey)
+Boolean Pem::AddItem(Platform::String ^itemType, Platform::String ^encoding, Platform::String ^itemData)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxPemProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->AddItem(itemType ? itemType->Data() : L"",encoding ? encoding->Data() : L"",itemData ? itemData->Data() : L"");
+    }
+Boolean Pem::AddPrivateKey(Chilkat::PrivateKey ^privateKey)
     {
 	if (m_impl == nullptr) { return false; }
 	if (privateKey == nullptr) { return false; }
@@ -177,11 +173,9 @@ Boolean Pem::AddPrivateKey(PrivateKey ^privateKey)
 	// --- prep output arg ---
 	CxPemProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddPrivateKey(*pObj0);
     }
-Boolean Pem::AddPrivateKey2(PrivateKey ^privKey, CertChain ^certChain)
+Boolean Pem::AddPrivateKey2(Chilkat::PrivateKey ^privKey, Chilkat::CertChain ^certChain)
     {
 	if (m_impl == nullptr) { return false; }
 	if (privKey == nullptr) { return false; }
@@ -193,11 +187,9 @@ Boolean Pem::AddPrivateKey2(PrivateKey ^privKey, CertChain ^certChain)
 	// --- prep output arg ---
 	CxPemProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddPrivateKey2(*pObj0,*pObj1);
     }
-Boolean Pem::AddPublicKey(PublicKey ^pubkey)
+Boolean Pem::AddPublicKey(Chilkat::PublicKey ^pubkey)
     {
 	if (m_impl == nullptr) { return false; }
 	if (pubkey == nullptr) { return false; }
@@ -206,8 +198,6 @@ Boolean Pem::AddPublicKey(PublicKey ^pubkey)
 	// --- prep output arg ---
 	CxPemProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->AddPublicKey(*pObj0);
     }
 Boolean Pem::Clear(void)
@@ -216,8 +206,6 @@ Boolean Pem::Clear(void)
 	// --- prep output arg ---
 	CxPemProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->Clear();
     }
 Cert ^Pem::GetCert(int index)
@@ -226,8 +214,6 @@ Cert ^Pem::GetCert(int index)
 	// --- prep output arg ---
 	CxPemProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Cert
-	// cppType = CkCert *
 	CkCertW *pRetObj = m_impl->GetCert(index);
 	if (!pRetObj) return nullptr;
 	Chilkat::Cert ^pCert = ref new Chilkat::Cert();
@@ -240,8 +226,6 @@ Platform::String ^Pem::GetEncodedItem(Platform::String ^itemType, Platform::Stri
 	// --- prep output arg ---
 	CxPemProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->getEncodedItem(itemType ? itemType->Data() : L"",itemSubType ? itemSubType->Data() : L"",encoding ? encoding->Data() : L"",index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -252,8 +236,6 @@ PrivateKey ^Pem::GetPrivateKey(int index)
 	// --- prep output arg ---
 	CxPemProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = PrivateKey
-	// cppType = CkPrivateKey *
 	CkPrivateKeyW *pRetObj = m_impl->GetPrivateKey(index);
 	if (!pRetObj) return nullptr;
 	Chilkat::PrivateKey ^pPrivateKey = ref new Chilkat::PrivateKey();
@@ -266,8 +248,6 @@ PublicKey ^Pem::GetPublicKey(int index)
 	// --- prep output arg ---
 	CxPemProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = PublicKey
-	// cppType = CkPublicKey *
 	CkPublicKeyW *pRetObj = m_impl->GetPublicKey(index);
 	if (!pRetObj) return nullptr;
 	Chilkat::PublicKey ^pPublicKey = ref new Chilkat::PublicKey();
@@ -287,8 +267,6 @@ return create_async([this, p7bData]() -> Boolean
 	// --- prep output arg ---
 	CxPemProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadP7b(db0);
 
 });
@@ -303,8 +281,6 @@ return create_async([this, path]() -> Boolean
 	// --- prep output arg ---
 	CxPemProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadP7bFile(path ? path->Data() : L"");
 
 });
@@ -319,8 +295,6 @@ return create_async([this, pemContent, password]() -> Boolean
 	// --- prep output arg ---
 	CxPemProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadPem(pemContent ? pemContent->Data() : L"",password ? password->Data() : L"");
 
 });
@@ -335,8 +309,6 @@ return create_async([this, path, password]() -> Boolean
 	// --- prep output arg ---
 	CxPemProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->LoadPemFile(path ? path->Data() : L"",password ? password->Data() : L"");
 
 });
@@ -347,8 +319,6 @@ Boolean Pem::RemoveCert(int index)
 	// --- prep output arg ---
 	CxPemProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->RemoveCert(index);
     }
 Boolean Pem::RemovePrivateKey(int index)
@@ -357,8 +327,6 @@ Boolean Pem::RemovePrivateKey(int index)
 	// --- prep output arg ---
 	CxPemProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->RemovePrivateKey(index);
     }
 JavaKeyStore ^Pem::ToJks(Platform::String ^alias, Platform::String ^password)
@@ -367,8 +335,6 @@ JavaKeyStore ^Pem::ToJks(Platform::String ^alias, Platform::String ^password)
 	// --- prep output arg ---
 	CxPemProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = JavaKeyStore
-	// cppType = CkJavaKeyStore *
 	CkJavaKeyStoreW *pRetObj = m_impl->ToJks(alias ? alias->Data() : L"",password ? password->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::JavaKeyStore ^pJavaKeyStore = ref new Chilkat::JavaKeyStore();
@@ -381,8 +347,6 @@ Platform::String ^Pem::ToPem(void)
 	// --- prep output arg ---
 	CxPemProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->toPem();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -393,8 +357,6 @@ Platform::String ^Pem::ToPemEx(Boolean extendedAttrs, Boolean noKeys, Boolean no
 	// --- prep output arg ---
 	CxPemProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = string
-	// cppType = bool
 	const wchar_t *retStr = m_impl->toPemEx(extendedAttrs,noKeys,noCerts,noCaCerts,encryptAlg ? encryptAlg->Data() : L"",password ? password->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
@@ -405,8 +367,6 @@ Pfx ^Pem::ToPfx(void)
 	// --- prep output arg ---
 	CxPemProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = Pfx
-	// cppType = CkPfx *
 	CkPfxW *pRetObj = m_impl->ToPfx();
 	if (!pRetObj) return nullptr;
 	Chilkat::Pfx ^pPfx = ref new Chilkat::Pfx();

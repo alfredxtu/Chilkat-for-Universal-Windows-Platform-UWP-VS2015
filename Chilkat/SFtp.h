@@ -89,33 +89,7 @@ public ref class SFtp sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
+	property Boolean AbortCurrent
 	{
 		Boolean get();
 		void set(Boolean);
@@ -152,6 +126,11 @@ public ref class SFtp sealed
 	{
 		int32 get();
 		void set(int32);
+	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
 	}
 	property int32 DisconnectCode
 	{
@@ -257,6 +236,23 @@ public ref class SFtp sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property int32 MaxPacketSize
 	{
 		int32 get();
@@ -299,16 +295,6 @@ public ref class SFtp sealed
 	{
 		Platform::String ^get();
 	}
-	property int32 SoRcvBuf
-	{
-		int32 get();
-		void set(int32);
-	}
-	property int32 SoSndBuf
-	{
-		int32 get();
-		void set(int32);
-	}
 	property Platform::String ^SocksHostname
 	{
 		Platform::String ^get();
@@ -334,17 +320,32 @@ public ref class SFtp sealed
 		int32 get();
 		void set(int32);
 	}
+	property int32 SoRcvBuf
+	{
+		int32 get();
+		void set(int32);
+	}
+	property int32 SoSndBuf
+	{
+		int32 get();
+		void set(int32);
+	}
+	property Platform::String ^SyncDirectives
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^SyncedFiles
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^SyncMustMatch
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
 	property Platform::String ^SyncMustNotMatch
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Platform::String ^SyncedFiles
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
@@ -364,32 +365,29 @@ public ref class SFtp sealed
 		Boolean get();
 		void set(Boolean);
 	}
-	property Boolean AbortCurrent
+	property Boolean VerboseLogging
 	{
 		Boolean get();
 		void set(Boolean);
 	}
-	property Platform::String ^SyncDirectives
+	property Platform::String ^Version
 	{
 		Platform::String ^get();
-		void set(Platform::String ^);
 	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	IAsyncOperation<int>^ AccumulateBytesAsync(Platform::String ^handle, int maxBytes);
 
 	Platform::String ^Add64(Platform::String ^n1, Platform::String ^n2);
 
-	IAsyncOperation<Boolean>^ AuthenticatePkAsync(Platform::String ^username, SshKey ^privateKey);
+	IAsyncOperation<Boolean>^ AuthenticatePkAsync(Platform::String ^username, Chilkat::SshKey ^privateKey);
 
 	IAsyncOperation<Boolean>^ AuthenticatePwAsync(Platform::String ^login, Platform::String ^password);
 
-	IAsyncOperation<Boolean>^ AuthenticatePwPkAsync(Platform::String ^username, Platform::String ^password, SshKey ^privateKey);
+	IAsyncOperation<Boolean>^ AuthenticatePwPkAsync(Platform::String ^username, Platform::String ^password, Chilkat::SshKey ^privateKey);
 
 	void ClearAccumulateBuffer(void);
 
@@ -399,11 +397,11 @@ public ref class SFtp sealed
 
 	IAsyncOperation<Boolean>^ CloseHandleAsync(Platform::String ^handle);
 
-	IAsyncOperation<Boolean>^ ConnectAsync(Platform::String ^hostname, int port);
+	IAsyncOperation<Boolean>^ ConnectAsync(Platform::String ^domainName, int port);
 
-	IAsyncOperation<Boolean>^ ConnectThroughSshAsync(Ssh ^sshConn, Platform::String ^hostname, int port);
+	IAsyncOperation<Boolean>^ ConnectThroughSshAsync(Chilkat::Ssh ^sshConn, Platform::String ^hostname, int port);
 
-	IAsyncOperation<Boolean>^ CopyFileAttrAsync(Platform::String ^localFilename, Platform::String ^remoteFilename, Boolean bIsHandle);
+	IAsyncOperation<Boolean>^ CopyFileAttrAsync(Platform::String ^localFilename, Platform::String ^remoteFilename, Boolean isHandle);
 
 	IAsyncOperation<Boolean>^ CreateDirAsync(Platform::String ^path);
 
@@ -415,29 +413,29 @@ public ref class SFtp sealed
 
 	Boolean Eof(Platform::String ^handle);
 
-	IAsyncOperation<CkDateTime ^>^ GetFileCreateDtAsync(Platform::String ^filenameOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
+	IAsyncOperation<CkDateTime ^>^ GetFileCreateDtAsync(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
 
-	IAsyncOperation<Platform::String ^>^ GetFileCreateTimeStrAsync(Platform::String ^filenameOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
+	IAsyncOperation<Platform::String ^>^ GetFileCreateTimeStrAsync(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
 
-	IAsyncOperation<Platform::String ^>^ GetFileGroupAsync(Platform::String ^filenameOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
+	IAsyncOperation<Platform::String ^>^ GetFileGroupAsync(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
 
-	IAsyncOperation<CkDateTime ^>^ GetFileLastAccessDtAsync(Platform::String ^filenameOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
+	IAsyncOperation<CkDateTime ^>^ GetFileLastAccessDtAsync(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
 
-	IAsyncOperation<Platform::String ^>^ GetFileLastAccessStrAsync(Platform::String ^filenameOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
+	IAsyncOperation<Platform::String ^>^ GetFileLastAccessStrAsync(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
 
-	IAsyncOperation<CkDateTime ^>^ GetFileLastModifiedDtAsync(Platform::String ^filenameOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
+	IAsyncOperation<CkDateTime ^>^ GetFileLastModifiedDtAsync(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
 
-	IAsyncOperation<Platform::String ^>^ GetFileLastModifiedStrAsync(Platform::String ^filenameOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
+	IAsyncOperation<Platform::String ^>^ GetFileLastModifiedStrAsync(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
 
-	IAsyncOperation<Platform::String ^>^ GetFileOwnerAsync(Platform::String ^filenameOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
+	IAsyncOperation<Platform::String ^>^ GetFileOwnerAsync(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
 
-	IAsyncOperation<int>^ GetFilePermissionsAsync(Platform::String ^filenameOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
+	IAsyncOperation<int>^ GetFilePermissionsAsync(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
 
-	IAsyncOperation<int>^ GetFileSize32Async(Platform::String ^filenameOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
+	IAsyncOperation<int>^ GetFileSize32Async(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
 
-	IAsyncOperation<int64>^ GetFileSize64Async(Platform::String ^filenameOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
+	IAsyncOperation<int64>^ GetFileSize64Async(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
 
-	IAsyncOperation<Platform::String ^>^ GetFileSizeStrAsync(Platform::String ^filenameOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
+	IAsyncOperation<Platform::String ^>^ GetFileSizeStrAsync(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
 
 	IAsyncOperation<Boolean>^ InitializeSftpAsync(void);
 
@@ -447,7 +445,7 @@ public ref class SFtp sealed
 
 	IAsyncOperation<Platform::String ^>^ OpenDirAsync(Platform::String ^path);
 
-	IAsyncOperation<Platform::String ^>^ OpenFileAsync(Platform::String ^remoteFilePath, Platform::String ^access, Platform::String ^createDisp);
+	IAsyncOperation<Platform::String ^>^ OpenFileAsync(Platform::String ^remotePath, Platform::String ^access, Platform::String ^createDisposition);
 
 	IAsyncOperation<SFtpDir ^>^ ReadDirAsync(Platform::String ^handle);
 
@@ -455,17 +453,17 @@ public ref class SFtp sealed
 
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ ReadFileBytes32Async(Platform::String ^handle, int offset, int numBytes);
 
-	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ ReadFileBytes64Async(Platform::String ^handle, int64 offset64, int numBytes);
+	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ ReadFileBytes64Async(Platform::String ^handle, int64 offset, int numBytes);
 
-	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ ReadFileBytes64sAsync(Platform::String ^handle, Platform::String ^offset64, int numBytes);
+	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ ReadFileBytes64sAsync(Platform::String ^handle, Platform::String ^offset, int numBytes);
 
 	IAsyncOperation<Platform::String ^>^ ReadFileTextAsync(Platform::String ^handle, int numBytes, Platform::String ^charset);
 
-	IAsyncOperation<Platform::String ^>^ ReadFileText32Async(Platform::String ^handle, int offset32, int numBytes, Platform::String ^charset);
+	IAsyncOperation<Platform::String ^>^ ReadFileText32Async(Platform::String ^handle, int offset, int numBytes, Platform::String ^charset);
 
-	IAsyncOperation<Platform::String ^>^ ReadFileText64Async(Platform::String ^handle, int64 offset64, int numBytes, Platform::String ^charset);
+	IAsyncOperation<Platform::String ^>^ ReadFileText64Async(Platform::String ^handle, int64 offset, int numBytes, Platform::String ^charset);
 
-	IAsyncOperation<Platform::String ^>^ ReadFileText64sAsync(Platform::String ^handle, Platform::String ^offset64, int numBytes, Platform::String ^charset);
+	IAsyncOperation<Platform::String ^>^ ReadFileText64sAsync(Platform::String ^handle, Platform::String ^offset, int numBytes, Platform::String ^charset);
 
 	IAsyncOperation<Platform::String ^>^ RealPathAsync(Platform::String ^originalPath, Platform::String ^composePath);
 
@@ -479,21 +477,21 @@ public ref class SFtp sealed
 
 	IAsyncOperation<Boolean>^ ResumeUploadFileByNameAsync(Platform::String ^remoteFilePath, Platform::String ^localFilePath);
 
-	IAsyncOperation<Boolean>^ SetCreateDtAsync(Platform::String ^pathOrHandle, Boolean bIsHandle, Chilkat::CkDateTime ^createTime);
+	IAsyncOperation<Boolean>^ SetCreateDtAsync(Platform::String ^pathOrHandle, Boolean isHandle, Chilkat::CkDateTime ^createDateTime);
 
 	IAsyncOperation<Boolean>^ SetCreateTimeStrAsync(Platform::String ^pathOrHandle, Boolean bIsHandle, Platform::String ^dateTimeStr);
 
-	IAsyncOperation<Boolean>^ SetLastAccessDtAsync(Platform::String ^pathOrHandle, Boolean bIsHandle, Chilkat::CkDateTime ^createTime);
+	IAsyncOperation<Boolean>^ SetLastAccessDtAsync(Platform::String ^pathOrHandle, Boolean isHandle, Chilkat::CkDateTime ^accessDateTime);
 
 	IAsyncOperation<Boolean>^ SetLastAccessTimeStrAsync(Platform::String ^pathOrHandle, Boolean bIsHandle, Platform::String ^dateTimeStr);
 
-	IAsyncOperation<Boolean>^ SetLastModifiedDtAsync(Platform::String ^pathOrHandle, Boolean bIsHandle, Chilkat::CkDateTime ^createTime);
+	IAsyncOperation<Boolean>^ SetLastModifiedDtAsync(Platform::String ^pathOrHandle, Boolean isHandle, Chilkat::CkDateTime ^modifiedDateTime);
 
 	IAsyncOperation<Boolean>^ SetLastModifiedTimeStrAsync(Platform::String ^pathOrHandle, Boolean bIsHandle, Platform::String ^dateTimeStr);
 
-	IAsyncOperation<Boolean>^ SetOwnerAndGroupAsync(Platform::String ^pathOrHandle, Boolean bIsHandle, Platform::String ^owner, Platform::String ^group);
+	IAsyncOperation<Boolean>^ SetOwnerAndGroupAsync(Platform::String ^pathOrHandle, Boolean isHandle, Platform::String ^owner, Platform::String ^group);
 
-	IAsyncOperation<Boolean>^ SetPermissionsAsync(Platform::String ^pathOrHandle, Boolean bIsHandle, int perm);
+	IAsyncOperation<Boolean>^ SetPermissionsAsync(Platform::String ^pathOrHandle, Boolean isHandle, int permissions);
 
 	IAsyncOperation<Boolean>^ SyncTreeDownloadAsync(Platform::String ^remoteRoot, Platform::String ^localRoot, int mode, Boolean recurse);
 
@@ -501,11 +499,11 @@ public ref class SFtp sealed
 
 	Boolean UnlockComponent(Platform::String ^unlockCode);
 
-	IAsyncOperation<Boolean>^ UploadFileAsync(Platform::String ^handle, Platform::String ^localFilePath);
+	IAsyncOperation<Boolean>^ UploadFileAsync(Platform::String ^handle, Platform::String ^fromFilename);
 
 	IAsyncOperation<Boolean>^ UploadFileByNameAsync(Platform::String ^remoteFilePath, Platform::String ^localFilePath);
 
-	IAsyncOperation<Boolean>^ WriteFileBytesAsync(Platform::String ^handle, Windows::Foundation::Collections::IVector<uint8>^data);
+	IAsyncOperation<Boolean>^ WriteFileBytesAsync(Platform::String ^handle, Windows::Foundation::Collections::IVector<uint8>^byteData);
 
 	IAsyncOperation<Boolean>^ WriteFileBytes32Async(Platform::String ^handle, int offset, Windows::Foundation::Collections::IVector<uint8>^data);
 

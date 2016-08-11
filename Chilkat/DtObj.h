@@ -42,6 +42,21 @@ public ref class DtObj sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property int32 Day
+	{
+		int32 get();
+		void set(int32);
+	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property int32 Hour
+	{
+		int32 get();
+		void set(int32);
+	}
 	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
@@ -54,34 +69,10 @@ public ref class DtObj sealed
 	{
 		Platform::String ^get();
 	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
 	property Boolean LastMethodSuccess
 	{
 		Boolean get();
 		void set(Boolean);
-	}
-	property int32 Day
-	{
-		int32 get();
-		void set(int32);
-	}
-	property int32 Hour
-	{
-		int32 get();
-		void set(int32);
 	}
 	property int32 Minute
 	{
@@ -113,6 +104,15 @@ public ref class DtObj sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
+	}
 	property int32 Year
 	{
 		int32 get();
@@ -123,8 +123,6 @@ public ref class DtObj sealed
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
 	void DeSerialize(Platform::String ^serializedDtObj);
 
 	Platform::String ^Serialize(void);
