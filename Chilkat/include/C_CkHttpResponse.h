@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkHttpResponse CkHttpResponse_Create(void);
 CK_VISIBLE_PUBLIC void CkHttpResponse_Dispose(HCkHttpResponse handle);
 CK_VISIBLE_PUBLIC void CkHttpResponse_getBody(HCkHttpResponse cHandle, HCkByteData retval);
@@ -16,7 +17,7 @@ CK_VISIBLE_PUBLIC void CkHttpResponse_getCharset(HCkHttpResponse cHandle, HCkStr
 CK_VISIBLE_PUBLIC const char *CkHttpResponse_charset(HCkHttpResponse cHandle);
 CK_VISIBLE_PUBLIC unsigned long CkHttpResponse_getContentLength(HCkHttpResponse cHandle);
 CK_VISIBLE_PUBLIC __int64 CkHttpResponse_getContentLength64(HCkHttpResponse cHandle);
-CK_VISIBLE_PUBLIC void CkHttpResponse_getDate(HCkHttpResponse cHandle, SYSTEMTIME *retval);
+CK_VISIBLE_PUBLIC void CkHttpResponse_getDate(HCkHttpResponse cHandle, SYSTEMTIME * retval);
 CK_VISIBLE_PUBLIC void CkHttpResponse_getDateStr(HCkHttpResponse cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const char *CkHttpResponse_dateStr(HCkHttpResponse cHandle);
 CK_VISIBLE_PUBLIC void CkHttpResponse_getDebugLogFilePath(HCkHttpResponse cHandle, HCkString retval);

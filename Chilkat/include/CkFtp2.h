@@ -1206,12 +1206,18 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 	void put_ReadTimeout(int newVal);
 
 	// If true, then the FTP2 client will verify the server's SSL certificate. The
-	// certificate is expired, or if the cert's signature is invalid, the connection is
-	// not allowed. The default value of this property is false.
+	// server's certificate signature is verified with its issuer, and the issuer's
+	// cert is verified with its issuer, etc. up to the root CA cert. If a signature
+	// verification fails, the connection is not allowed. Also, if the certificate is
+	// expired, or if the cert's signature is invalid, the connection is not allowed.
+	// The default value of this property is false.
 	bool get_RequireSslCertVerify(void);
 	// If true, then the FTP2 client will verify the server's SSL certificate. The
-	// certificate is expired, or if the cert's signature is invalid, the connection is
-	// not allowed. The default value of this property is false.
+	// server's certificate signature is verified with its issuer, and the issuer's
+	// cert is verified with its issuer, etc. up to the root CA cert. If a signature
+	// verification fails, the connection is not allowed. Also, if the certificate is
+	// expired, or if the cert's signature is invalid, the connection is not allowed.
+	// The default value of this property is false.
 	void put_RequireSslCertVerify(bool newVal);
 
 	// Both uploads and downloads may be resumed by simply setting this property =
@@ -4591,7 +4597,8 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 
 
 	// Unlocks the component. This must be called once prior to calling any other
-	// method. A permanent unlock code for FTP2 should contain the substring "FTP".
+	// method. A purchased unlock code for FTP2 should contain the substring "FTP", or
+	// can be a Bundle unlock code.
 	bool UnlockComponent(const char *unlockCode);
 
 

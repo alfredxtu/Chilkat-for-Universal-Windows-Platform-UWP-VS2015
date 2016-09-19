@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkFileAccess CkFileAccess_Create(void);
 CK_VISIBLE_PUBLIC void CkFileAccess_Dispose(HCkFileAccess handle);
 CK_VISIBLE_PUBLIC void CkFileAccess_getCurrentDir(HCkFileAccess cHandle, HCkString retval);

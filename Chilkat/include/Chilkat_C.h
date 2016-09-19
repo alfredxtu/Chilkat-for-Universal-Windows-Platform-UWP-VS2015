@@ -136,6 +136,7 @@ typedef void *HCkRest;
 typedef void *HCkStringBuilder;
 typedef void *HCkJwt;
 typedef void *HCkServerSentEvent;
+typedef void *HCkOAuth2;
 
 
 typedef void *HCkByteDataW;
@@ -248,4 +249,5 @@ typedef void *HCkAuthAzureADW;
 typedef void *HCkStringBuilderW;
 typedef void *HCkJwtW;
 typedef void *HCkServerSentEventW;
+typedef void *HCkOAuth2W;
 #endif

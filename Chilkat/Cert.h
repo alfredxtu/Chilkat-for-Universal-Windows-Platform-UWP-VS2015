@@ -97,9 +97,9 @@ public ref class Cert sealed
 	{
 		Boolean get();
 	}
-	property int32 IntendedKeyUsage
+	property uint32 IntendedKeyUsage
 	{
-		int32 get();
+		uint32 get();
 	}
 	property Boolean IsRoot
 	{

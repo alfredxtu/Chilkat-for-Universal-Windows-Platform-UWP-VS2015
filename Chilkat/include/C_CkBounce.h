@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkBounce CkBounce_Create(void);
 CK_VISIBLE_PUBLIC void CkBounce_Dispose(HCkBounce handle);
 CK_VISIBLE_PUBLIC void CkBounce_getBounceAddress(HCkBounce cHandle, HCkString retval);

@@ -542,6 +542,10 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	// The default value is false for IPv4.
 	void put_ListenIpv6(bool newVal);
 
+	// The BindAndListen method will find a random unused port to listen on if you bind
+	// to port 0. This chosen listen port is available via this property.
+	int get_ListenPort(void);
+
 	// The local IP address for a bound or connected socket.
 	void get_LocalIpAddress(CkString &str);
 	// The local IP address for a bound or connected socket.
@@ -1628,6 +1632,10 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	// 5.) This method should be called once prior to receiving incoming connection
 	// requests via the AcceptNextConnection or AsyncAcceptStart methods.
 	// 
+	// Note:This method will find a random unused port to listen on if you bind to port
+	// 0. The chosen port is available via the read-only ListenPort property after this
+	// method returns successful.
+	// 
 	// To bind and listen using IPv6, set the ListenIpv6 property = true prior to
 	// calling this method.
 	// 
@@ -1643,6 +1651,10 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	// that they cannot be serviced immediately. (A typical value to use for backLog is
 	// 5.) This method should be called once prior to receiving incoming connection
 	// requests via the AcceptNextConnection or AsyncAcceptStart methods.
+	// 
+	// Note:This method will find a random unused port to listen on if you bind to port
+	// 0. The chosen port is available via the read-only ListenPort property after this
+	// method returns successful.
 	// 
 	// To bind and listen using IPv6, set the ListenIpv6 property = true prior to
 	// calling this method.

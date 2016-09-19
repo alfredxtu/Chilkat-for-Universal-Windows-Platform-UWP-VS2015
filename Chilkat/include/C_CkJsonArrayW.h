@@ -5,10 +5,11 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkJsonArrayW CkJsonArrayW_Create(void);
 CK_VISIBLE_PUBLIC void CkJsonArrayW_Dispose(HCkJsonArrayW handle);
 CK_VISIBLE_PUBLIC void CkJsonArrayW_getDebugLogFilePath(HCkJsonArrayW cHandle, HCkString retval);
-CK_VISIBLE_PUBLIC void CkJsonArrayW_putDebugLogFilePath(HCkJsonArrayW cHandle, const wchar_t *newVal);
+CK_VISIBLE_PUBLIC void  CkJsonArrayW_putDebugLogFilePath(HCkJsonArrayW cHandle, const wchar_t *newVal);
 CK_VISIBLE_PUBLIC const wchar_t *CkJsonArrayW_debugLogFilePath(HCkJsonArrayW cHandle);
 CK_VISIBLE_PUBLIC void CkJsonArrayW_getLastErrorHtml(HCkJsonArrayW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkJsonArrayW_lastErrorHtml(HCkJsonArrayW cHandle);
@@ -17,10 +18,10 @@ CK_VISIBLE_PUBLIC const wchar_t *CkJsonArrayW_lastErrorText(HCkJsonArrayW cHandl
 CK_VISIBLE_PUBLIC void CkJsonArrayW_getLastErrorXml(HCkJsonArrayW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkJsonArrayW_lastErrorXml(HCkJsonArrayW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkJsonArrayW_getLastMethodSuccess(HCkJsonArrayW cHandle);
-CK_VISIBLE_PUBLIC void CkJsonArrayW_putLastMethodSuccess(HCkJsonArrayW cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC void  CkJsonArrayW_putLastMethodSuccess(HCkJsonArrayW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC int CkJsonArrayW_getSize(HCkJsonArrayW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkJsonArrayW_getVerboseLogging(HCkJsonArrayW cHandle);
-CK_VISIBLE_PUBLIC void CkJsonArrayW_putVerboseLogging(HCkJsonArrayW cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC void  CkJsonArrayW_putVerboseLogging(HCkJsonArrayW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkJsonArrayW_getVersion(HCkJsonArrayW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkJsonArrayW_version(HCkJsonArrayW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkJsonArrayW_AddArrayAt(HCkJsonArrayW cHandle, int index);

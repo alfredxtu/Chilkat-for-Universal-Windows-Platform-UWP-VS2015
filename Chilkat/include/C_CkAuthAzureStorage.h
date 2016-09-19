@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkAuthAzureStorage CkAuthAzureStorage_Create(void);
 CK_VISIBLE_PUBLIC void CkAuthAzureStorage_Dispose(HCkAuthAzureStorage handle);
 CK_VISIBLE_PUBLIC void CkAuthAzureStorage_getAccessKey(HCkAuthAzureStorage cHandle, HCkString retval);

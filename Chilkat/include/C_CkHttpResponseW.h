@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkHttpResponseW CkHttpResponseW_Create(void);
 CK_VISIBLE_PUBLIC void CkHttpResponseW_Dispose(HCkHttpResponseW handle);
 CK_VISIBLE_PUBLIC void CkHttpResponseW_getBody(HCkHttpResponseW cHandle, HCkByteData retval);
@@ -16,11 +17,11 @@ CK_VISIBLE_PUBLIC void CkHttpResponseW_getCharset(HCkHttpResponseW cHandle, HCkS
 CK_VISIBLE_PUBLIC const wchar_t *CkHttpResponseW_charset(HCkHttpResponseW cHandle);
 CK_VISIBLE_PUBLIC unsigned long CkHttpResponseW_getContentLength(HCkHttpResponseW cHandle);
 CK_VISIBLE_PUBLIC __int64 CkHttpResponseW_getContentLength64(HCkHttpResponseW cHandle);
-CK_VISIBLE_PUBLIC void CkHttpResponseW_getDate(HCkHttpResponseW cHandle, SYSTEMTIME *retval);
+CK_VISIBLE_PUBLIC void CkHttpResponseW_getDate(HCkHttpResponseW cHandle, SYSTEMTIME * retval);
 CK_VISIBLE_PUBLIC void CkHttpResponseW_getDateStr(HCkHttpResponseW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkHttpResponseW_dateStr(HCkHttpResponseW cHandle);
 CK_VISIBLE_PUBLIC void CkHttpResponseW_getDebugLogFilePath(HCkHttpResponseW cHandle, HCkString retval);
-CK_VISIBLE_PUBLIC void CkHttpResponseW_putDebugLogFilePath(HCkHttpResponseW cHandle, const wchar_t *newVal);
+CK_VISIBLE_PUBLIC void  CkHttpResponseW_putDebugLogFilePath(HCkHttpResponseW cHandle, const wchar_t *newVal);
 CK_VISIBLE_PUBLIC const wchar_t *CkHttpResponseW_debugLogFilePath(HCkHttpResponseW cHandle);
 CK_VISIBLE_PUBLIC void CkHttpResponseW_getDomain(HCkHttpResponseW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkHttpResponseW_domain(HCkHttpResponseW cHandle);
@@ -37,7 +38,7 @@ CK_VISIBLE_PUBLIC const wchar_t *CkHttpResponseW_lastErrorText(HCkHttpResponseW 
 CK_VISIBLE_PUBLIC void CkHttpResponseW_getLastErrorXml(HCkHttpResponseW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkHttpResponseW_lastErrorXml(HCkHttpResponseW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkHttpResponseW_getLastMethodSuccess(HCkHttpResponseW cHandle);
-CK_VISIBLE_PUBLIC void CkHttpResponseW_putLastMethodSuccess(HCkHttpResponseW cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC void  CkHttpResponseW_putLastMethodSuccess(HCkHttpResponseW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC int CkHttpResponseW_getNumCookies(HCkHttpResponseW cHandle);
 CK_VISIBLE_PUBLIC int CkHttpResponseW_getNumHeaderFields(HCkHttpResponseW cHandle);
 CK_VISIBLE_PUBLIC int CkHttpResponseW_getStatusCode(HCkHttpResponseW cHandle);
@@ -46,7 +47,7 @@ CK_VISIBLE_PUBLIC const wchar_t *CkHttpResponseW_statusLine(HCkHttpResponseW cHa
 CK_VISIBLE_PUBLIC void CkHttpResponseW_getStatusText(HCkHttpResponseW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkHttpResponseW_statusText(HCkHttpResponseW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkHttpResponseW_getVerboseLogging(HCkHttpResponseW cHandle);
-CK_VISIBLE_PUBLIC void CkHttpResponseW_putVerboseLogging(HCkHttpResponseW cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC void  CkHttpResponseW_putVerboseLogging(HCkHttpResponseW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkHttpResponseW_getVersion(HCkHttpResponseW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkHttpResponseW_version(HCkHttpResponseW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkHttpResponseW_GetCookieDomain(HCkHttpResponseW cHandle, int index, HCkString outStr);

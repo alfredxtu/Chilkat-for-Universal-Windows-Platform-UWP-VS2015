@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkAuthAws CkAuthAws_Create(void);
 CK_VISIBLE_PUBLIC void CkAuthAws_Dispose(HCkAuthAws handle);
 CK_VISIBLE_PUBLIC void CkAuthAws_getAccessKey(HCkAuthAws cHandle, HCkString retval);

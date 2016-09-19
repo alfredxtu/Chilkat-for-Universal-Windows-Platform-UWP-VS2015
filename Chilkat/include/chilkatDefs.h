@@ -2,6 +2,12 @@
 #ifndef _CHILKATDEFS_H_INCLUDED_
 #define _CHILKATDEFS_H_INCLUDED_
 
+#if defined(QT_VERSION) && !defined(QT_NO_EMIT) 
+// QT defines an "emit" macro which collides with any function or variable named "emit".
+// The CkJsonObject contains a function named "emit".  This causes a compiler error in QT.
+#undef emit
+#endif
+
 // If this is Windows Phone, then define CK_LIBWINPHONE
 #if !defined(CK_LIBWINPHONE)
 #if defined(WINAPI_FAMILY) && WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP

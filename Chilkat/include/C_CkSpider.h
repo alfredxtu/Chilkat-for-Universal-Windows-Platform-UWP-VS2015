@@ -50,7 +50,7 @@ CK_VISIBLE_PUBLIC void CkSpider_getLastHtmlTitle(HCkSpider cHandle, HCkString re
 CK_VISIBLE_PUBLIC const char *CkSpider_lastHtmlTitle(HCkSpider cHandle);
 CK_VISIBLE_PUBLIC BOOL CkSpider_getLastMethodSuccess(HCkSpider cHandle);
 CK_VISIBLE_PUBLIC void CkSpider_putLastMethodSuccess(HCkSpider cHandle, BOOL newVal);
-CK_VISIBLE_PUBLIC void CkSpider_getLastModDate(HCkSpider cHandle, SYSTEMTIME *retval);
+CK_VISIBLE_PUBLIC void CkSpider_getLastModDate(HCkSpider cHandle, SYSTEMTIME * retval);
 CK_VISIBLE_PUBLIC void CkSpider_getLastModDateStr(HCkSpider cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const char *CkSpider_lastModDateStr(HCkSpider cHandle);
 CK_VISIBLE_PUBLIC void CkSpider_getLastUrl(HCkSpider cHandle, HCkString retval);

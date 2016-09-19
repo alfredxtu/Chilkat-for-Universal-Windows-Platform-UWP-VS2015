@@ -5,11 +5,12 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkMessageSetW CkMessageSetW_Create(void);
 CK_VISIBLE_PUBLIC void CkMessageSetW_Dispose(HCkMessageSetW handle);
 CK_VISIBLE_PUBLIC int CkMessageSetW_getCount(HCkMessageSetW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkMessageSetW_getHasUids(HCkMessageSetW cHandle);
-CK_VISIBLE_PUBLIC void CkMessageSetW_putHasUids(HCkMessageSetW cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC void  CkMessageSetW_putHasUids(HCkMessageSetW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC BOOL CkMessageSetW_ContainsId(HCkMessageSetW cHandle, int msgId);
 CK_VISIBLE_PUBLIC BOOL CkMessageSetW_FromCompactString(HCkMessageSetW cHandle, const wchar_t *str);
 CK_VISIBLE_PUBLIC int CkMessageSetW_GetId(HCkMessageSetW cHandle, int index);

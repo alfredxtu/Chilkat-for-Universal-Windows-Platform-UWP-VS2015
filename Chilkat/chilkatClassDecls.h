@@ -48,6 +48,7 @@ ref class Mht;
 ref class Mime;
 ref class Ntlm;
 ref class OAuth1;
+ref class OAuth2;
 ref class Pem;
 ref class Pfx;
 ref class PrivateKey;

@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkHashtable CkHashtable_Create(void);
 CK_VISIBLE_PUBLIC void CkHashtable_Dispose(HCkHashtable handle);
 CK_VISIBLE_PUBLIC BOOL CkHashtable_getUtf8(HCkHashtable cHandle);

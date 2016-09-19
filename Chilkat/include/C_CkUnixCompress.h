@@ -38,14 +38,12 @@ CK_VISIBLE_PUBLIC BOOL CkUnixCompress_CompressFile(HCkUnixCompress cHandle, cons
 CK_VISIBLE_PUBLIC HCkTask CkUnixCompress_CompressFileAsync(HCkUnixCompress cHandle, const char *inFilename, const char *destPath);
 CK_VISIBLE_PUBLIC BOOL CkUnixCompress_CompressFileToMem(HCkUnixCompress cHandle, const char *inFilename, HCkByteData outData);
 CK_VISIBLE_PUBLIC HCkTask CkUnixCompress_CompressFileToMemAsync(HCkUnixCompress cHandle, const char *inFilename);
-CK_VISIBLE_PUBLIC BOOL CkUnixCompress_CompressMemToFile(HCkUnixCompress cHandle, HCkByteData inData, const char *destPath);
 CK_VISIBLE_PUBLIC BOOL CkUnixCompress_CompressMemory(HCkUnixCompress cHandle, HCkByteData inData, HCkByteData outData);
+CK_VISIBLE_PUBLIC BOOL CkUnixCompress_CompressMemToFile(HCkUnixCompress cHandle, HCkByteData inData, const char *destPath);
 CK_VISIBLE_PUBLIC BOOL CkUnixCompress_CompressString(HCkUnixCompress cHandle, const char *inStr, const char *charset, HCkByteData outBytes);
 CK_VISIBLE_PUBLIC BOOL CkUnixCompress_CompressStringToFile(HCkUnixCompress cHandle, const char *inStr, const char *charset, const char *destPath);
 CK_VISIBLE_PUBLIC BOOL CkUnixCompress_IsUnlocked(HCkUnixCompress cHandle);
 CK_VISIBLE_PUBLIC BOOL CkUnixCompress_SaveLastError(HCkUnixCompress cHandle, const char *path);
-CK_VISIBLE_PUBLIC BOOL CkUnixCompress_UnTarZ(HCkUnixCompress cHandle, const char *zFilename, const char *destDir, BOOL bNoAbsolute);
-CK_VISIBLE_PUBLIC HCkTask CkUnixCompress_UnTarZAsync(HCkUnixCompress cHandle, const char *zFilename, const char *destDir, BOOL bNoAbsolute);
 CK_VISIBLE_PUBLIC BOOL CkUnixCompress_UncompressFile(HCkUnixCompress cHandle, const char *inFilename, const char *destPath);
 CK_VISIBLE_PUBLIC HCkTask CkUnixCompress_UncompressFileAsync(HCkUnixCompress cHandle, const char *inFilename, const char *destPath);
 CK_VISIBLE_PUBLIC BOOL CkUnixCompress_UncompressFileToMem(HCkUnixCompress cHandle, const char *inFilename, HCkByteData outData);
@@ -53,9 +51,11 @@ CK_VISIBLE_PUBLIC HCkTask CkUnixCompress_UncompressFileToMemAsync(HCkUnixCompres
 CK_VISIBLE_PUBLIC BOOL CkUnixCompress_UncompressFileToString(HCkUnixCompress cHandle, const char *zFilename, const char *charset, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkUnixCompress_uncompressFileToString(HCkUnixCompress cHandle, const char *zFilename, const char *charset);
 CK_VISIBLE_PUBLIC HCkTask CkUnixCompress_UncompressFileToStringAsync(HCkUnixCompress cHandle, const char *zFilename, const char *charset);
-CK_VISIBLE_PUBLIC BOOL CkUnixCompress_UncompressMemToFile(HCkUnixCompress cHandle, HCkByteData inData, const char *destPath);
 CK_VISIBLE_PUBLIC BOOL CkUnixCompress_UncompressMemory(HCkUnixCompress cHandle, HCkByteData inData, HCkByteData outData);
+CK_VISIBLE_PUBLIC BOOL CkUnixCompress_UncompressMemToFile(HCkUnixCompress cHandle, HCkByteData inData, const char *destPath);
 CK_VISIBLE_PUBLIC BOOL CkUnixCompress_UncompressString(HCkUnixCompress cHandle, HCkByteData inCompressedData, const char *charset, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkUnixCompress_uncompressString(HCkUnixCompress cHandle, HCkByteData inCompressedData, const char *charset);
 CK_VISIBLE_PUBLIC BOOL CkUnixCompress_UnlockComponent(HCkUnixCompress cHandle, const char *unlockCode);
+CK_VISIBLE_PUBLIC BOOL CkUnixCompress_UnTarZ(HCkUnixCompress cHandle, const char *zFilename, const char *destDir, BOOL bNoAbsolute);
+CK_VISIBLE_PUBLIC HCkTask CkUnixCompress_UnTarZAsync(HCkUnixCompress cHandle, const char *zFilename, const char *destDir, BOOL bNoAbsolute);
 #endif

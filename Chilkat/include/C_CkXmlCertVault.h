@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkXmlCertVault CkXmlCertVault_Create(void);
 CK_VISIBLE_PUBLIC void CkXmlCertVault_Dispose(HCkXmlCertVault handle);
 CK_VISIBLE_PUBLIC void CkXmlCertVault_getDebugLogFilePath(HCkXmlCertVault cHandle, HCkString retval);

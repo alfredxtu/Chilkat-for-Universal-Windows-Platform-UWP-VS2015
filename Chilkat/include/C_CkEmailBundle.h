@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkEmailBundle CkEmailBundle_Create(void);
 CK_VISIBLE_PUBLIC void CkEmailBundle_Dispose(HCkEmailBundle handle);
 CK_VISIBLE_PUBLIC void CkEmailBundle_getDebugLogFilePath(HCkEmailBundle cHandle, HCkString retval);

@@ -225,6 +225,10 @@ void Chilkat::Socket::ListenIpv6::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_ListenIpv6(newVal);
     }
+int Chilkat::Socket::ListenPort::get()
+    {
+    return m_impl ? m_impl->get_ListenPort() : 0;
+    }
 String ^Chilkat::Socket::LocalIpAddress::get()
     {
     return ref new String(m_impl ? m_impl->localIpAddress() : L"");

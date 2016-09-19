@@ -5,24 +5,25 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkJsonObjectW CkJsonObjectW_Create(void);
 CK_VISIBLE_PUBLIC void CkJsonObjectW_Dispose(HCkJsonObjectW handle);
 CK_VISIBLE_PUBLIC void CkJsonObjectW_getDebugLogFilePath(HCkJsonObjectW cHandle, HCkString retval);
-CK_VISIBLE_PUBLIC void CkJsonObjectW_putDebugLogFilePath(HCkJsonObjectW cHandle, const wchar_t *newVal);
+CK_VISIBLE_PUBLIC void  CkJsonObjectW_putDebugLogFilePath(HCkJsonObjectW cHandle, const wchar_t *newVal);
 CK_VISIBLE_PUBLIC const wchar_t *CkJsonObjectW_debugLogFilePath(HCkJsonObjectW cHandle);
 CK_VISIBLE_PUBLIC void CkJsonObjectW_getDelimiterChar(HCkJsonObjectW cHandle, HCkString retval);
-CK_VISIBLE_PUBLIC void CkJsonObjectW_putDelimiterChar(HCkJsonObjectW cHandle, const wchar_t *newVal);
+CK_VISIBLE_PUBLIC void  CkJsonObjectW_putDelimiterChar(HCkJsonObjectW cHandle, const wchar_t *newVal);
 CK_VISIBLE_PUBLIC const wchar_t *CkJsonObjectW_delimiterChar(HCkJsonObjectW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_getEmitCompact(HCkJsonObjectW cHandle);
-CK_VISIBLE_PUBLIC void CkJsonObjectW_putEmitCompact(HCkJsonObjectW cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC void  CkJsonObjectW_putEmitCompact(HCkJsonObjectW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_getEmitCrLf(HCkJsonObjectW cHandle);
-CK_VISIBLE_PUBLIC void CkJsonObjectW_putEmitCrLf(HCkJsonObjectW cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC void  CkJsonObjectW_putEmitCrLf(HCkJsonObjectW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC int CkJsonObjectW_getI(HCkJsonObjectW cHandle);
-CK_VISIBLE_PUBLIC void CkJsonObjectW_putI(HCkJsonObjectW cHandle, int newVal);
+CK_VISIBLE_PUBLIC void  CkJsonObjectW_putI(HCkJsonObjectW cHandle, int newVal);
 CK_VISIBLE_PUBLIC int CkJsonObjectW_getJ(HCkJsonObjectW cHandle);
-CK_VISIBLE_PUBLIC void CkJsonObjectW_putJ(HCkJsonObjectW cHandle, int newVal);
+CK_VISIBLE_PUBLIC void  CkJsonObjectW_putJ(HCkJsonObjectW cHandle, int newVal);
 CK_VISIBLE_PUBLIC int CkJsonObjectW_getK(HCkJsonObjectW cHandle);
-CK_VISIBLE_PUBLIC void CkJsonObjectW_putK(HCkJsonObjectW cHandle, int newVal);
+CK_VISIBLE_PUBLIC void  CkJsonObjectW_putK(HCkJsonObjectW cHandle, int newVal);
 CK_VISIBLE_PUBLIC void CkJsonObjectW_getLastErrorHtml(HCkJsonObjectW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkJsonObjectW_lastErrorHtml(HCkJsonObjectW cHandle);
 CK_VISIBLE_PUBLIC void CkJsonObjectW_getLastErrorText(HCkJsonObjectW cHandle, HCkString retval);
@@ -30,10 +31,10 @@ CK_VISIBLE_PUBLIC const wchar_t *CkJsonObjectW_lastErrorText(HCkJsonObjectW cHan
 CK_VISIBLE_PUBLIC void CkJsonObjectW_getLastErrorXml(HCkJsonObjectW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkJsonObjectW_lastErrorXml(HCkJsonObjectW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_getLastMethodSuccess(HCkJsonObjectW cHandle);
-CK_VISIBLE_PUBLIC void CkJsonObjectW_putLastMethodSuccess(HCkJsonObjectW cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC void  CkJsonObjectW_putLastMethodSuccess(HCkJsonObjectW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC int CkJsonObjectW_getSize(HCkJsonObjectW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_getVerboseLogging(HCkJsonObjectW cHandle);
-CK_VISIBLE_PUBLIC void CkJsonObjectW_putVerboseLogging(HCkJsonObjectW cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC void  CkJsonObjectW_putVerboseLogging(HCkJsonObjectW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkJsonObjectW_getVersion(HCkJsonObjectW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkJsonObjectW_version(HCkJsonObjectW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_AddArrayAt(HCkJsonObjectW cHandle, int index, const wchar_t *name);

@@ -46,6 +46,7 @@ friend ref class Mht;
 friend ref class Mime;
 friend ref class Ntlm;
 friend ref class OAuth1;
+friend ref class OAuth2;
 friend ref class Pem;
 friend ref class Pfx;
 friend ref class PrivateKey;

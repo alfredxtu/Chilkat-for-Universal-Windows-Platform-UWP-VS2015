@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkPfx CkPfx_Create(void);
 CK_VISIBLE_PUBLIC void CkPfx_Dispose(HCkPfx handle);
 CK_VISIBLE_PUBLIC void CkPfx_getDebugLogFilePath(HCkPfx cHandle, HCkString retval);

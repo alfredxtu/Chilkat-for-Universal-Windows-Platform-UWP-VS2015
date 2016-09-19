@@ -1289,9 +1289,9 @@ return create_async([this, reference, wildcardedMailbox]() -> Mailboxes ^
 
 });
     }
-IAsyncOperation<Boolean>^ Imap::LoginAsync(Platform::String ^login, Platform::String ^password)
+IAsyncOperation<Boolean>^ Imap::LoginAsync(Platform::String ^loginName, Platform::String ^password)
     {
-return create_async([this, login, password]() -> Boolean
+return create_async([this, loginName, password]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -1299,7 +1299,7 @@ return create_async([this, login, password]() -> Boolean
 	// --- prep output arg ---
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	return m_impl->Login(login ? login->Data() : L"",password ? password->Data() : L"");
+	return m_impl->Login(loginName ? loginName->Data() : L"",password ? password->Data() : L"");
 
 });
     }

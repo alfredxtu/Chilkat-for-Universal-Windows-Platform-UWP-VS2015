@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkCertStore CkCertStore_Create(void);
 CK_VISIBLE_PUBLIC void CkCertStore_Dispose(HCkCertStore handle);
 CK_VISIBLE_PUBLIC BOOL CkCertStore_getAvoidWindowsPkAccess(HCkCertStore cHandle);

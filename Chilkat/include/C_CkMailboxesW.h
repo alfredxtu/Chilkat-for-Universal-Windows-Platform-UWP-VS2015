@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkMailboxesW CkMailboxesW_Create(void);
 CK_VISIBLE_PUBLIC void CkMailboxesW_Dispose(HCkMailboxesW handle);
 CK_VISIBLE_PUBLIC int CkMailboxesW_getCount(HCkMailboxesW cHandle);

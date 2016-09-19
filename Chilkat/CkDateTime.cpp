@@ -141,9 +141,9 @@ Platform::String ^Chilkat::CkDateTime::GetAsTimestamp(Boolean bLocal)
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-int Chilkat::CkDateTime::GetAsUnixTime(Boolean bLocal)
+uint32 Chilkat::CkDateTime::GetAsUnixTime(Boolean bLocal)
     {
-	if (m_impl == nullptr) { return -1; }
+	if (m_impl == nullptr) { return 0; }
 	// --- prep output arg ---
 	return m_impl->GetAsUnixTime(bLocal);
     }
@@ -171,23 +171,23 @@ Platform::String ^Chilkat::CkDateTime::Serialize(void)
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-void Chilkat::CkDateTime::SetFromCurrentSystemTime(void)
+Boolean Chilkat::CkDateTime::SetFromCurrentSystemTime(void)
     {
-	if (m_impl == nullptr) { return ; }
+	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	m_impl->SetFromCurrentSystemTime();
+	return m_impl->SetFromCurrentSystemTime();
     }
-void Chilkat::CkDateTime::SetFromDateTimeTicks(Boolean bLocal, int64 ticks)
+Boolean Chilkat::CkDateTime::SetFromDateTimeTicks(Boolean bLocal, int64 ticks)
     {
-	if (m_impl == nullptr) { return ; }
+	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	m_impl->SetFromDateTimeTicks(bLocal,ticks);
+	return m_impl->SetFromDateTimeTicks(bLocal,ticks);
     }
-void Chilkat::CkDateTime::SetFromDosDate(Boolean bLocal, uint32 t)
+Boolean Chilkat::CkDateTime::SetFromDosDate(Boolean bLocal, uint32 t)
     {
-	if (m_impl == nullptr) { return ; }
+	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	m_impl->SetFromDosDate(bLocal,t);
+	return m_impl->SetFromDosDate(bLocal,t);
     }
 Boolean Chilkat::CkDateTime::SetFromDtObj(Chilkat::DtObj ^dt)
     {
@@ -198,17 +198,17 @@ Boolean Chilkat::CkDateTime::SetFromDtObj(Chilkat::DtObj ^dt)
 	// --- prep output arg ---
 	return m_impl->SetFromDtObj(*pObj0);
     }
-void Chilkat::CkDateTime::SetFromNtpTime(int ntpSeconds)
+Boolean Chilkat::CkDateTime::SetFromNtpTime(int ntpSeconds)
     {
-	if (m_impl == nullptr) { return ; }
+	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	m_impl->SetFromNtpTime(ntpSeconds);
+	return m_impl->SetFromNtpTime(ntpSeconds);
     }
-void Chilkat::CkDateTime::SetFromOleDate(Boolean bLocal, double dt)
+Boolean Chilkat::CkDateTime::SetFromOleDate(Boolean bLocal, double dt)
     {
-	if (m_impl == nullptr) { return ; }
+	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	m_impl->SetFromOleDate(bLocal,dt);
+	return m_impl->SetFromOleDate(bLocal,dt);
     }
 Boolean Chilkat::CkDateTime::SetFromRfc822(Platform::String ^rfc822Str)
     {
@@ -222,17 +222,17 @@ Boolean Chilkat::CkDateTime::SetFromTimestamp(Platform::String ^timestamp)
 	// --- prep output arg ---
 	return m_impl->SetFromTimestamp(timestamp ? timestamp->Data() : L"");
     }
-void Chilkat::CkDateTime::SetFromUnixTime(Boolean bLocal, int t)
+Boolean Chilkat::CkDateTime::SetFromUnixTime(Boolean bLocal, uint32 t)
     {
-	if (m_impl == nullptr) { return ; }
+	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	m_impl->SetFromUnixTime(bLocal,t);
+	return m_impl->SetFromUnixTime(bLocal,t);
     }
-void Chilkat::CkDateTime::SetFromUnixTime64(Boolean bLocal, int64 t)
+Boolean Chilkat::CkDateTime::SetFromUnixTime64(Boolean bLocal, int64 t)
     {
-	if (m_impl == nullptr) { return ; }
+	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	m_impl->SetFromUnixTime64(bLocal,t);
+	return m_impl->SetFromUnixTime64(bLocal,t);
     }
 
 

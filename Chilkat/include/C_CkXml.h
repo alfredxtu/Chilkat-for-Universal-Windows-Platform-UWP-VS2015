@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkXml CkXml_Create(void);
 CK_VISIBLE_PUBLIC void CkXml_Dispose(HCkXml handle);
 CK_VISIBLE_PUBLIC BOOL CkXml_getCdata(HCkXml cHandle);
@@ -84,14 +85,14 @@ CK_VISIBLE_PUBLIC HCkXml CkXml_FindNextRecord(HCkXml cHandle, const char *tag, c
 CK_VISIBLE_PUBLIC HCkXml CkXml_FindOrAddNewChild(HCkXml cHandle, const char *tag);
 CK_VISIBLE_PUBLIC HCkXml CkXml_FirstChild(HCkXml cHandle);
 CK_VISIBLE_PUBLIC BOOL CkXml_FirstChild2(HCkXml cHandle);
-CK_VISIBLE_PUBLIC BOOL CkXml_GetAttrValue(HCkXml cHandle, const char *name, HCkString outStr);
-CK_VISIBLE_PUBLIC const char *CkXml_getAttrValue(HCkXml cHandle, const char *name);
-CK_VISIBLE_PUBLIC int CkXml_GetAttrValueInt(HCkXml cHandle, const char *name);
 CK_VISIBLE_PUBLIC BOOL CkXml_GetAttributeName(HCkXml cHandle, int index, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkXml_getAttributeName(HCkXml cHandle, int index);
 CK_VISIBLE_PUBLIC BOOL CkXml_GetAttributeValue(HCkXml cHandle, int index, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkXml_getAttributeValue(HCkXml cHandle, int index);
 CK_VISIBLE_PUBLIC int CkXml_GetAttributeValueInt(HCkXml cHandle, int index);
+CK_VISIBLE_PUBLIC BOOL CkXml_GetAttrValue(HCkXml cHandle, const char *name, HCkString outStr);
+CK_VISIBLE_PUBLIC const char *CkXml_getAttrValue(HCkXml cHandle, const char *name);
+CK_VISIBLE_PUBLIC int CkXml_GetAttrValueInt(HCkXml cHandle, const char *name);
 CK_VISIBLE_PUBLIC BOOL CkXml_GetBinaryContent(HCkXml cHandle, BOOL unzipFlag, BOOL decryptFlag, const char *password, HCkByteData outData);
 CK_VISIBLE_PUBLIC HCkXml CkXml_GetChild(HCkXml cHandle, int index);
 CK_VISIBLE_PUBLIC BOOL CkXml_GetChild2(HCkXml cHandle, int index);
@@ -118,8 +119,8 @@ CK_VISIBLE_PUBLIC void CkXml_GetRoot2(HCkXml cHandle);
 CK_VISIBLE_PUBLIC HCkXml CkXml_GetSelf(HCkXml cHandle);
 CK_VISIBLE_PUBLIC BOOL CkXml_GetXml(HCkXml cHandle, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkXml_getXml(HCkXml cHandle);
-CK_VISIBLE_PUBLIC BOOL CkXml_HasAttrWithValue(HCkXml cHandle, const char *name, const char *value);
 CK_VISIBLE_PUBLIC BOOL CkXml_HasAttribute(HCkXml cHandle, const char *name);
+CK_VISIBLE_PUBLIC BOOL CkXml_HasAttrWithValue(HCkXml cHandle, const char *name, const char *value);
 CK_VISIBLE_PUBLIC BOOL CkXml_HasChildWithContent(HCkXml cHandle, const char *content);
 CK_VISIBLE_PUBLIC BOOL CkXml_HasChildWithTag(HCkXml cHandle, const char *tag);
 CK_VISIBLE_PUBLIC BOOL CkXml_HasChildWithTagAndContent(HCkXml cHandle, const char *tag, const char *content);

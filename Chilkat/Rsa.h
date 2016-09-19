@@ -126,7 +126,7 @@ public ref class Rsa sealed
 
 	Platform::String ^EncryptBytesENC(Windows::Foundation::Collections::IVector<uint8>^data, Boolean bUsePrivateKey);
 
-	Windows::Foundation::Collections::IVector<uint8>^EncryptString(Platform::String ^stringToSign, Boolean usePrivateKey);
+	Windows::Foundation::Collections::IVector<uint8>^EncryptString(Platform::String ^stringToEncrypt, Boolean usePrivateKey);
 
 	Platform::String ^EncryptStringENC(Platform::String ^str, Boolean bUsePrivateKey);
 

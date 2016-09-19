@@ -125,6 +125,7 @@ CK_VISIBLE_PUBLIC BOOL CkRest_SetAuthAzureStorage(HCkRest cHandle, HCkAuthAzureS
 CK_VISIBLE_PUBLIC BOOL CkRest_SetAuthBasic(HCkRest cHandle, const char *username, const char *password);
 CK_VISIBLE_PUBLIC BOOL CkRest_SetAuthGoogle(HCkRest cHandle, HCkAuthGoogle authProvider);
 CK_VISIBLE_PUBLIC BOOL CkRest_SetAuthOAuth1(HCkRest cHandle, HCkOAuth1 authProvider, BOOL useQueryParams);
+CK_VISIBLE_PUBLIC BOOL CkRest_SetAuthOAuth2(HCkRest cHandle, HCkOAuth2 authProvider);
 CK_VISIBLE_PUBLIC BOOL CkRest_SetMultipartBodyBinary(HCkRest cHandle, HCkByteData bodyData);
 CK_VISIBLE_PUBLIC BOOL CkRest_SetMultipartBodyStream(HCkRest cHandle, HCkStream stream);
 CK_VISIBLE_PUBLIC BOOL CkRest_SetMultipartBodyString(HCkRest cHandle, const char *bodyText);

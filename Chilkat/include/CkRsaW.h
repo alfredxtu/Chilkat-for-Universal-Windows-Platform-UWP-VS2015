@@ -313,7 +313,7 @@ class CK_VISIBLE_PUBLIC CkRsaW  : public CkWideCharBase
 	// Important: If trying to match OpenSSL results, set the LittleEndian property =
 	// false.
 	// 
-	bool EncryptString(const wchar_t *stringToSign, bool usePrivateKey, CkByteData &outData);
+	bool EncryptString(const wchar_t *stringToEncrypt, bool usePrivateKey, CkByteData &outData);
 
 	// Same as EncryptString, except the output is an encoded string. The encoding is
 	// specified by the EncodingMode property, which can have values such as "base64",

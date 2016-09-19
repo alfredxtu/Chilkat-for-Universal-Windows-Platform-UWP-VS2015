@@ -31,6 +31,7 @@ namespace Chilkat
 	ref class AuthAzureStorage;
 	ref class AuthGoogle;
 	ref class OAuth1;
+	ref class OAuth2;
 	ref class Socket;
 
 
@@ -257,6 +258,8 @@ public ref class Rest sealed
 	Boolean SetAuthGoogle(Chilkat::AuthGoogle ^authProvider);
 
 	Boolean SetAuthOAuth1(Chilkat::OAuth1 ^authProvider, Boolean useQueryParams);
+
+	Boolean SetAuthOAuth2(Chilkat::OAuth2 ^authProvider);
 
 	Boolean SetMultipartBodyBinary(Windows::Foundation::Collections::IVector<uint8>^bodyData);
 

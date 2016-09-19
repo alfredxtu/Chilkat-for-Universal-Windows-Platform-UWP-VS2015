@@ -101,7 +101,7 @@ public ref class CkDateTime sealed
 
 	Platform::String ^GetAsTimestamp(Boolean bLocal);
 
-	int GetAsUnixTime(Boolean bLocal);
+	uint32 GetAsUnixTime(Boolean bLocal);
 
 	int64 GetAsUnixTime64(Boolean bLocal);
 
@@ -109,25 +109,25 @@ public ref class CkDateTime sealed
 
 	Platform::String ^Serialize(void);
 
-	void SetFromCurrentSystemTime(void);
+	Boolean SetFromCurrentSystemTime(void);
 
-	void SetFromDateTimeTicks(Boolean bLocal, int64 ticks);
+	Boolean SetFromDateTimeTicks(Boolean bLocal, int64 ticks);
 
-	void SetFromDosDate(Boolean bLocal, uint32 t);
+	Boolean SetFromDosDate(Boolean bLocal, uint32 t);
 
 	Boolean SetFromDtObj(Chilkat::DtObj ^dt);
 
-	void SetFromNtpTime(int ntpSeconds);
+	Boolean SetFromNtpTime(int ntpSeconds);
 
-	void SetFromOleDate(Boolean bLocal, double dt);
+	Boolean SetFromOleDate(Boolean bLocal, double dt);
 
 	Boolean SetFromRfc822(Platform::String ^rfc822Str);
 
 	Boolean SetFromTimestamp(Platform::String ^timestamp);
 
-	void SetFromUnixTime(Boolean bLocal, int t);
+	Boolean SetFromUnixTime(Boolean bLocal, uint32 t);
 
-	void SetFromUnixTime64(Boolean bLocal, int64 t);
+	Boolean SetFromUnixTime64(Boolean bLocal, int64 t);
 
 
 

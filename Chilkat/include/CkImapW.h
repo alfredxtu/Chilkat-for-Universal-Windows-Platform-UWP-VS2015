@@ -1862,12 +1862,12 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	// "XOAUTH2". The XOAUTH2 authentication functionality was added in version
 	// 9.5.0.44.
 	// 
-	bool Login(const wchar_t *login, const wchar_t *password);
+	bool Login(const wchar_t *loginName, const wchar_t *password);
 
 	// Creates an asynchronous task to call the Login method with the arguments
 	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
 	// The caller is responsible for deleting the object returned by this method.
-	CkTaskW *LoginAsync(const wchar_t *login, const wchar_t *password);
+	CkTaskW *LoginAsync(const wchar_t *loginName, const wchar_t *password);
 
 	// Logs out of the IMAP server.
 	bool Logout(void);
@@ -2352,18 +2352,9 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	CkTaskW *SubscribeAsync(const wchar_t *mailbox);
 
 	// Unlocks the component. This must be called once at the beginning of your program
-	// to unlock the component. A permanent unlock code is provided when the IMAP
+	// to unlock the component. A purchased unlock code is provided when the IMAP
 	// component is licensed. Any string, such as "Hello World", may be passed to this
 	// method to automatically begin a fully-functional 30-day trial.
-	// 
-	// A valid permanent unlock code for this object will always included the substring
-	// "IMAP".
-	// 
-	// Note: A permanent unlock code for IMAP will also always include the substring
-	// "MAIL", and therefore it may be used for the MailMan (or CkMailMan)
-	// object/class. The IMAP license includes POP3/SMTP functionality, and therefore
-	// the MailMan object/class may be unlocked using the same unlock code.
-	// 
 	bool UnlockComponent(const wchar_t *unlockCode);
 
 	// Unsubscribe from an IMAP mailbox.

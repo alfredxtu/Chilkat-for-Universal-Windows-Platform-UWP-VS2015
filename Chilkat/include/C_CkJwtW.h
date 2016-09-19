@@ -5,12 +5,13 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkJwtW CkJwtW_Create(void);
 CK_VISIBLE_PUBLIC void CkJwtW_Dispose(HCkJwtW handle);
 CK_VISIBLE_PUBLIC BOOL CkJwtW_getAutoCompact(HCkJwtW cHandle);
-CK_VISIBLE_PUBLIC void CkJwtW_putAutoCompact(HCkJwtW cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC void  CkJwtW_putAutoCompact(HCkJwtW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkJwtW_getDebugLogFilePath(HCkJwtW cHandle, HCkString retval);
-CK_VISIBLE_PUBLIC void CkJwtW_putDebugLogFilePath(HCkJwtW cHandle, const wchar_t *newVal);
+CK_VISIBLE_PUBLIC void  CkJwtW_putDebugLogFilePath(HCkJwtW cHandle, const wchar_t *newVal);
 CK_VISIBLE_PUBLIC const wchar_t *CkJwtW_debugLogFilePath(HCkJwtW cHandle);
 CK_VISIBLE_PUBLIC void CkJwtW_getLastErrorHtml(HCkJwtW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkJwtW_lastErrorHtml(HCkJwtW cHandle);
@@ -19,9 +20,9 @@ CK_VISIBLE_PUBLIC const wchar_t *CkJwtW_lastErrorText(HCkJwtW cHandle);
 CK_VISIBLE_PUBLIC void CkJwtW_getLastErrorXml(HCkJwtW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkJwtW_lastErrorXml(HCkJwtW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkJwtW_getLastMethodSuccess(HCkJwtW cHandle);
-CK_VISIBLE_PUBLIC void CkJwtW_putLastMethodSuccess(HCkJwtW cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC void  CkJwtW_putLastMethodSuccess(HCkJwtW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC BOOL CkJwtW_getVerboseLogging(HCkJwtW cHandle);
-CK_VISIBLE_PUBLIC void CkJwtW_putVerboseLogging(HCkJwtW cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC void  CkJwtW_putVerboseLogging(HCkJwtW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkJwtW_getVersion(HCkJwtW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkJwtW_version(HCkJwtW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkJwtW_CreateJwt(HCkJwtW cHandle, const wchar_t *header, const wchar_t *payload, const wchar_t *password, HCkString outStr);

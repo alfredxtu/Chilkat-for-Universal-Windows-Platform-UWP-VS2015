@@ -485,7 +485,7 @@ public ref class Imap sealed
 
 	IAsyncOperation<Mailboxes ^>^ ListSubscribedAsync(Platform::String ^reference, Platform::String ^wildcardedMailbox);
 
-	IAsyncOperation<Boolean>^ LoginAsync(Platform::String ^login, Platform::String ^password);
+	IAsyncOperation<Boolean>^ LoginAsync(Platform::String ^loginName, Platform::String ^password);
 
 	IAsyncOperation<Boolean>^ LogoutAsync(void);
 

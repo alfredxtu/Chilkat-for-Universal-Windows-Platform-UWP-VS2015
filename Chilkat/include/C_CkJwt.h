@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkJwt CkJwt_Create(void);
 CK_VISIBLE_PUBLIC void CkJwt_Dispose(HCkJwt handle);
 CK_VISIBLE_PUBLIC BOOL CkJwt_getAutoCompact(HCkJwt cHandle);

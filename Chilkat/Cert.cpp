@@ -108,7 +108,7 @@ Boolean Chilkat::Cert::HasKeyContainer::get()
     {
     return m_impl ? m_impl->get_HasKeyContainer() : false;
     }
-int Chilkat::Cert::IntendedKeyUsage::get()
+uint32 Chilkat::Cert::IntendedKeyUsage::get()
     {
     return m_impl ? m_impl->get_IntendedKeyUsage() : 0;
     }

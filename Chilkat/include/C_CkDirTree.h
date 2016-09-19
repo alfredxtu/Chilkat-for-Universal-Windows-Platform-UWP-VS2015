@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkDirTree CkDirTree_Create(void);
 CK_VISIBLE_PUBLIC void CkDirTree_Dispose(HCkDirTree handle);
 CK_VISIBLE_PUBLIC void CkDirTree_getBaseDir(HCkDirTree cHandle, HCkString retval);

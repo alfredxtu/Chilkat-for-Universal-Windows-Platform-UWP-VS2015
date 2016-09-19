@@ -5,15 +5,16 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkSFtpFile CkSFtpFile_Create(void);
 CK_VISIBLE_PUBLIC void CkSFtpFile_Dispose(HCkSFtpFile handle);
-CK_VISIBLE_PUBLIC void CkSFtpFile_getCreateTime(HCkSFtpFile cHandle, SYSTEMTIME *retval);
+CK_VISIBLE_PUBLIC void CkSFtpFile_getCreateTime(HCkSFtpFile cHandle, SYSTEMTIME * retval);
 CK_VISIBLE_PUBLIC void CkSFtpFile_getCreateTimeStr(HCkSFtpFile cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const char *CkSFtpFile_createTimeStr(HCkSFtpFile cHandle);
-CK_VISIBLE_PUBLIC void CkSFtpFile_getFileType(HCkSFtpFile cHandle, HCkString retval);
-CK_VISIBLE_PUBLIC const char *CkSFtpFile_fileType(HCkSFtpFile cHandle);
 CK_VISIBLE_PUBLIC void CkSFtpFile_getFilename(HCkSFtpFile cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const char *CkSFtpFile_filename(HCkSFtpFile cHandle);
+CK_VISIBLE_PUBLIC void CkSFtpFile_getFileType(HCkSFtpFile cHandle, HCkString retval);
+CK_VISIBLE_PUBLIC const char *CkSFtpFile_fileType(HCkSFtpFile cHandle);
 CK_VISIBLE_PUBLIC int CkSFtpFile_getGid(HCkSFtpFile cHandle);
 CK_VISIBLE_PUBLIC void CkSFtpFile_getGroup(HCkSFtpFile cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const char *CkSFtpFile_group(HCkSFtpFile cHandle);
@@ -31,10 +32,10 @@ CK_VISIBLE_PUBLIC BOOL CkSFtpFile_getIsSparse(HCkSFtpFile cHandle);
 CK_VISIBLE_PUBLIC BOOL CkSFtpFile_getIsSymLink(HCkSFtpFile cHandle);
 CK_VISIBLE_PUBLIC BOOL CkSFtpFile_getIsSync(HCkSFtpFile cHandle);
 CK_VISIBLE_PUBLIC BOOL CkSFtpFile_getIsSystem(HCkSFtpFile cHandle);
-CK_VISIBLE_PUBLIC void CkSFtpFile_getLastAccessTime(HCkSFtpFile cHandle, SYSTEMTIME *retval);
+CK_VISIBLE_PUBLIC void CkSFtpFile_getLastAccessTime(HCkSFtpFile cHandle, SYSTEMTIME * retval);
 CK_VISIBLE_PUBLIC void CkSFtpFile_getLastAccessTimeStr(HCkSFtpFile cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const char *CkSFtpFile_lastAccessTimeStr(HCkSFtpFile cHandle);
-CK_VISIBLE_PUBLIC void CkSFtpFile_getLastModifiedTime(HCkSFtpFile cHandle, SYSTEMTIME *retval);
+CK_VISIBLE_PUBLIC void CkSFtpFile_getLastModifiedTime(HCkSFtpFile cHandle, SYSTEMTIME * retval);
 CK_VISIBLE_PUBLIC void CkSFtpFile_getLastModifiedTimeStr(HCkSFtpFile cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const char *CkSFtpFile_lastModifiedTimeStr(HCkSFtpFile cHandle);
 CK_VISIBLE_PUBLIC void CkSFtpFile_getOwner(HCkSFtpFile cHandle, HCkString retval);

@@ -2326,10 +2326,10 @@ class CK_VISIBLE_PUBLIC CkSFtp  : public CkClassWithCallbacks
 	// "abc123" will unlock the component for the 1st thirty days after the initial
 	// install.
 	// 
-	// A permanent unlock code for SFTP should contain the substring "SSH" because SFTP
-	// is the Secure File Transfer protocol over SSH. It is a sub-system of the SSH
-	// protocol. It is not the FTP protocol. If the Chilkat FTP2 component/library
-	// should be used for the FTP protocol.
+	// A purchased unlock code for SFTP should contain the substring "SSH" (or it can
+	// be a Bundle unlock code) because SFTP is the Secure File Transfer protocol over
+	// SSH. It is a sub-system of the SSH protocol. It is not the FTP protocol. If the
+	// Chilkat FTP2 component/library should be used for the FTP protocol.
 	// 
 	bool UnlockComponent(const char *unlockCode);
 

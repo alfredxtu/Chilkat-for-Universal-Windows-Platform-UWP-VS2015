@@ -30,7 +30,7 @@ CK_VISIBLE_PUBLIC void CkZipEntry_putDebugLogFilePath(HCkZipEntry cHandle, const
 CK_VISIBLE_PUBLIC const char *CkZipEntry_debugLogFilePath(HCkZipEntry cHandle);
 CK_VISIBLE_PUBLIC int CkZipEntry_getEntryID(HCkZipEntry cHandle);
 CK_VISIBLE_PUBLIC int CkZipEntry_getEntryType(HCkZipEntry cHandle);
-CK_VISIBLE_PUBLIC void CkZipEntry_getFileDateTime(HCkZipEntry cHandle, SYSTEMTIME *retval);
+CK_VISIBLE_PUBLIC void CkZipEntry_getFileDateTime(HCkZipEntry cHandle, SYSTEMTIME * retval);
 CK_VISIBLE_PUBLIC void CkZipEntry_putFileDateTime(HCkZipEntry cHandle, SYSTEMTIME *newVal);
 CK_VISIBLE_PUBLIC void CkZipEntry_getFileDateTimeStr(HCkZipEntry cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void CkZipEntry_putFileDateTimeStr(HCkZipEntry cHandle, const char *newVal);

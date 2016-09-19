@@ -214,8 +214,8 @@ class CK_VISIBLE_PUBLIC CkJavaKeyStore  : public CkMultiByteBase
 
 
 	// Unlocks the component allowing for the full functionality to be used. If a
-	// permanent (purchased) unlock code is passed, there is no expiration. Any other
-	// string automatically begins a fully-functional 30-day trial the first time
+	// purchased unlock code is passed, there is no expiration. Any other string
+	// automatically begins a fully-functional 30-day trial the first time
 	// UnlockComponent is called.
 	bool LoadFile(const char *password, const char *path);
 
@@ -269,8 +269,8 @@ class CK_VISIBLE_PUBLIC CkJavaKeyStore  : public CkMultiByteBase
 
 
 	// Unlocks the component allowing for the full functionality to be used. If a
-	// permanent (purchased) unlock code is passed, there is no expiration. Any other
-	// string automatically begins a fully-functional 30-day trial the first time
+	// purchased unlock code is passed, there is no expiration. Any other string
+	// automatically begins a fully-functional 30-day trial the first time
 	// UnlockComponent is called.
 	bool UnlockComponent(const char *unlockCode);
 

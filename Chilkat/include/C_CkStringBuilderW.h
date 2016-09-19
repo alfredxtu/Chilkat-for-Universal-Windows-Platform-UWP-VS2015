@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkStringBuilderW CkStringBuilderW_Create(void);
 CK_VISIBLE_PUBLIC void CkStringBuilderW_Dispose(HCkStringBuilderW handle);
 CK_VISIBLE_PUBLIC int CkStringBuilderW_getLength(HCkStringBuilderW cHandle);

@@ -82,10 +82,6 @@ CK_VISIBLE_PUBLIC void CkSshTunnel_putOutboundBindIpAddress(HCkSshTunnel cHandle
 CK_VISIBLE_PUBLIC const char *CkSshTunnel_outboundBindIpAddress(HCkSshTunnel cHandle);
 CK_VISIBLE_PUBLIC int CkSshTunnel_getOutboundBindPort(HCkSshTunnel cHandle);
 CK_VISIBLE_PUBLIC void CkSshTunnel_putOutboundBindPort(HCkSshTunnel cHandle, int newVal);
-CK_VISIBLE_PUBLIC int CkSshTunnel_getSoRcvBuf(HCkSshTunnel cHandle);
-CK_VISIBLE_PUBLIC void CkSshTunnel_putSoRcvBuf(HCkSshTunnel cHandle, int newVal);
-CK_VISIBLE_PUBLIC int CkSshTunnel_getSoSndBuf(HCkSshTunnel cHandle);
-CK_VISIBLE_PUBLIC void CkSshTunnel_putSoSndBuf(HCkSshTunnel cHandle, int newVal);
 CK_VISIBLE_PUBLIC void CkSshTunnel_getSocksHostname(HCkSshTunnel cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void CkSshTunnel_putSocksHostname(HCkSshTunnel cHandle, const char *newVal);
 CK_VISIBLE_PUBLIC const char *CkSshTunnel_socksHostname(HCkSshTunnel cHandle);
@@ -99,6 +95,10 @@ CK_VISIBLE_PUBLIC void CkSshTunnel_putSocksUsername(HCkSshTunnel cHandle, const 
 CK_VISIBLE_PUBLIC const char *CkSshTunnel_socksUsername(HCkSshTunnel cHandle);
 CK_VISIBLE_PUBLIC int CkSshTunnel_getSocksVersion(HCkSshTunnel cHandle);
 CK_VISIBLE_PUBLIC void CkSshTunnel_putSocksVersion(HCkSshTunnel cHandle, int newVal);
+CK_VISIBLE_PUBLIC int CkSshTunnel_getSoRcvBuf(HCkSshTunnel cHandle);
+CK_VISIBLE_PUBLIC void CkSshTunnel_putSoRcvBuf(HCkSshTunnel cHandle, int newVal);
+CK_VISIBLE_PUBLIC int CkSshTunnel_getSoSndBuf(HCkSshTunnel cHandle);
+CK_VISIBLE_PUBLIC void CkSshTunnel_putSoSndBuf(HCkSshTunnel cHandle, int newVal);
 CK_VISIBLE_PUBLIC BOOL CkSshTunnel_getTcpNoDelay(HCkSshTunnel cHandle);
 CK_VISIBLE_PUBLIC void CkSshTunnel_putTcpNoDelay(HCkSshTunnel cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkSshTunnel_getTunnelLog(HCkSshTunnel cHandle, HCkString retval);

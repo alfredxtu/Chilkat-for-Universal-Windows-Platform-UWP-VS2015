@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkMime CkMime_Create(void);
 CK_VISIBLE_PUBLIC void CkMime_Dispose(HCkMime handle);
 CK_VISIBLE_PUBLIC void CkMime_getBoundary(HCkMime cHandle, HCkString retval);

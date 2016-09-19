@@ -21,6 +21,7 @@ class CkAuthAzureADW;
 class CkAuthAzureStorageW;
 class CkAuthGoogleW;
 class CkOAuth1W;
+class CkOAuth2W;
 class CkSocketW;
 class CkBaseProgressW;
 
@@ -658,6 +659,12 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// information and signature is passed in query parameters. Otherwise it is passed
 	// in an Authorization header.
 	bool SetAuthOAuth1(CkOAuth1W &authProvider, bool useQueryParams);
+
+	// Sets the authentication provider for REST API requests needing standards-based
+	// OAuth 2.0 authentication. This is for the case where a desktop/native/mobile
+	// application will be popping up a web browser, or embedding a web browser, to get
+	// authorization interactively from end-user of the application.
+	bool SetAuthOAuth2(CkOAuth2W &authProvider);
 
 	// Only used for multipart requests. Sets the binary content of the multipart body
 	// indicated by the PartSelector.

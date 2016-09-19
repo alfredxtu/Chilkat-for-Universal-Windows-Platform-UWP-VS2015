@@ -1357,8 +1357,8 @@ class CK_VISIBLE_PUBLIC CkZipW  : public CkClassWithCallbacksW
 	void SetPassword(const wchar_t *password);
 
 	// Unlocks the component allowing for the full functionality to be used. If a
-	// permanent (purchased) unlock code is passed, there is no expiration. Any other
-	// string automatically begins a fully-functional 30-day trial the first time
+	// purchased unlock code is passed, there is no expiration. Any other string
+	// automatically begins a fully-functional 30-day trial the first time
 	// UnlockComponent is called.
 	bool UnlockComponent(const wchar_t *regCode);
 

@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkPublicKey CkPublicKey_Create(void);
 CK_VISIBLE_PUBLIC void CkPublicKey_Dispose(HCkPublicKey handle);
 CK_VISIBLE_PUBLIC void CkPublicKey_getDebugLogFilePath(HCkPublicKey cHandle, HCkString retval);

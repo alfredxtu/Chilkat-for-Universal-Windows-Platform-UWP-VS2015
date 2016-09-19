@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkPrivateKey CkPrivateKey_Create(void);
 CK_VISIBLE_PUBLIC void CkPrivateKey_Dispose(HCkPrivateKey handle);
 CK_VISIBLE_PUBLIC int CkPrivateKey_getBitLength(HCkPrivateKey cHandle);

@@ -2111,7 +2111,7 @@ class CK_VISIBLE_PUBLIC CkImap  : public CkClassWithCallbacks
 	// "XOAUTH2". The XOAUTH2 authentication functionality was added in version
 	// 9.5.0.44.
 	// 
-	bool Login(const char *login, const char *password);
+	bool Login(const char *loginName, const char *password);
 
 	// Logs into the IMAP server. The component must first be connected to an IMAP
 	// server by calling Connect. If XOAUTH2 authentication is required, pass the
@@ -2123,7 +2123,7 @@ class CK_VISIBLE_PUBLIC CkImap  : public CkClassWithCallbacks
 	// "XOAUTH2". The XOAUTH2 authentication functionality was added in version
 	// 9.5.0.44.
 	// 
-	CkTask *LoginAsync(const char *login, const char *password);
+	CkTask *LoginAsync(const char *loginName, const char *password);
 
 
 	// Logs out of the IMAP server.
@@ -2879,18 +2879,9 @@ class CK_VISIBLE_PUBLIC CkImap  : public CkClassWithCallbacks
 
 
 	// Unlocks the component. This must be called once at the beginning of your program
-	// to unlock the component. A permanent unlock code is provided when the IMAP
+	// to unlock the component. A purchased unlock code is provided when the IMAP
 	// component is licensed. Any string, such as "Hello World", may be passed to this
 	// method to automatically begin a fully-functional 30-day trial.
-	// 
-	// A valid permanent unlock code for this object will always included the substring
-	// "IMAP".
-	// 
-	// Note: A permanent unlock code for IMAP will also always include the substring
-	// "MAIL", and therefore it may be used for the MailMan (or CkMailMan)
-	// object/class. The IMAP license includes POP3/SMTP functionality, and therefore
-	// the MailMan object/class may be unlocked using the same unlock code.
-	// 
 	bool UnlockComponent(const char *unlockCode);
 
 

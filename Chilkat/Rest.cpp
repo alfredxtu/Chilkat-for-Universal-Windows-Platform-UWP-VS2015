@@ -16,6 +16,7 @@
 #include "include/CkAuthAzureStorageW.h"
 #include "include/CkAuthGoogleW.h"
 #include "include/CkOAuth1W.h"
+#include "include/CkOAuth2W.h"
 #include "include/CkSocketW.h"
 #include "Stream.h"
 #include "Url.h"
@@ -24,6 +25,7 @@
 #include "AuthAzureStorage.h"
 #include "AuthGoogle.h"
 #include "OAuth1.h"
+#include "OAuth2.h"
 #include "Socket.h"
 
 
@@ -646,6 +648,17 @@ Boolean Rest::SetAuthOAuth1(Chilkat::OAuth1 ^authProvider, Boolean useQueryParam
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->SetAuthOAuth1(*pObj0,useQueryParams);
+    }
+Boolean Rest::SetAuthOAuth2(Chilkat::OAuth2 ^authProvider)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (authProvider == nullptr) { return false; }
+	CkOAuth2W* pObj0 = authProvider->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxRestProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->SetAuthOAuth2(*pObj0);
     }
 Boolean Rest::SetMultipartBodyBinary(Windows::Foundation::Collections::IVector<uint8>^bodyData)
     {

@@ -199,6 +199,10 @@ public ref class Socket sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property int32 ListenPort
+	{
+		int32 get();
+	}
 	property Platform::String ^LocalIpAddress
 	{
 		Platform::String ^get();

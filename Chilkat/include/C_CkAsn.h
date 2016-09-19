@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkAsn CkAsn_Create(void);
 CK_VISIBLE_PUBLIC void CkAsn_Dispose(HCkAsn handle);
 CK_VISIBLE_PUBLIC BOOL CkAsn_getBoolValue(HCkAsn cHandle);

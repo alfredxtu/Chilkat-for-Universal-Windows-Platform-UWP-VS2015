@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkOAuth1 CkOAuth1_Create(void);
 CK_VISIBLE_PUBLIC void CkOAuth1_Dispose(HCkOAuth1 handle);
 CK_VISIBLE_PUBLIC void CkOAuth1_getAuthorizationHeader(HCkOAuth1 cHandle, HCkString retval);
@@ -69,9 +70,9 @@ CK_VISIBLE_PUBLIC void CkOAuth1_putVerboseLogging(HCkOAuth1 cHandle, BOOL newVal
 CK_VISIBLE_PUBLIC void CkOAuth1_getVersion(HCkOAuth1 cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const char *CkOAuth1_version(HCkOAuth1 cHandle);
 CK_VISIBLE_PUBLIC BOOL CkOAuth1_AddParam(HCkOAuth1 cHandle, const char *name, const char *value);
+CK_VISIBLE_PUBLIC BOOL CkOAuth1_Generate(HCkOAuth1 cHandle);
 CK_VISIBLE_PUBLIC BOOL CkOAuth1_GenNonce(HCkOAuth1 cHandle, int numBytes);
 CK_VISIBLE_PUBLIC BOOL CkOAuth1_GenTimestamp(HCkOAuth1 cHandle);
-CK_VISIBLE_PUBLIC BOOL CkOAuth1_Generate(HCkOAuth1 cHandle);
 CK_VISIBLE_PUBLIC BOOL CkOAuth1_RemoveParam(HCkOAuth1 cHandle, const char *name);
 CK_VISIBLE_PUBLIC BOOL CkOAuth1_SaveLastError(HCkOAuth1 cHandle, const char *path);
 #endif

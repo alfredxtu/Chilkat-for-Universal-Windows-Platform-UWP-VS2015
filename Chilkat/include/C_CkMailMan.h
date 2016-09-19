@@ -266,7 +266,7 @@ CK_VISIBLE_PUBLIC HCkTask CkMailMan_GetMailboxCountAsync(HCkMailMan cHandle);
 CK_VISIBLE_PUBLIC BOOL CkMailMan_GetMailboxInfoXml(HCkMailMan cHandle, HCkString outXml);
 CK_VISIBLE_PUBLIC const char *CkMailMan_getMailboxInfoXml(HCkMailMan cHandle);
 CK_VISIBLE_PUBLIC HCkTask CkMailMan_GetMailboxInfoXmlAsync(HCkMailMan cHandle);
-CK_VISIBLE_PUBLIC int CkMailMan_GetMailboxSize(HCkMailMan cHandle);
+CK_VISIBLE_PUBLIC unsigned long CkMailMan_GetMailboxSize(HCkMailMan cHandle);
 CK_VISIBLE_PUBLIC HCkTask CkMailMan_GetMailboxSizeAsync(HCkMailMan cHandle);
 CK_VISIBLE_PUBLIC HCkCert CkMailMan_GetPop3SslServerCert(HCkMailMan cHandle);
 CK_VISIBLE_PUBLIC HCkStringArray CkMailMan_GetSentToEmailAddrs(HCkMailMan cHandle);
@@ -290,8 +290,6 @@ CK_VISIBLE_PUBLIC HCkEmailBundle CkMailMan_LoadXmlFile(HCkMailMan cHandle, const
 CK_VISIBLE_PUBLIC HCkEmailBundle CkMailMan_LoadXmlString(HCkMailMan cHandle, const char *xmlString);
 #if defined(CK_MX_INCLUDED)
 CK_VISIBLE_PUBLIC BOOL CkMailMan_MxLookup(HCkMailMan cHandle, const char *emailAddress, HCkString outStrHostname);
-#endif
-#if defined(CK_MX_INCLUDED)
 CK_VISIBLE_PUBLIC const char *CkMailMan_mxLookup(HCkMailMan cHandle, const char *emailAddress);
 #endif
 #if defined(CK_MX_INCLUDED)

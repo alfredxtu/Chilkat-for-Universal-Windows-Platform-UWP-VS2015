@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkMessageSet CkMessageSet_Create(void);
 CK_VISIBLE_PUBLIC void CkMessageSet_Dispose(HCkMessageSet handle);
 CK_VISIBLE_PUBLIC int CkMessageSet_getCount(HCkMessageSet cHandle);

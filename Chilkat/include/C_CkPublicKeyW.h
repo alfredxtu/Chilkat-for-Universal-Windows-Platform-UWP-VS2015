@@ -5,10 +5,11 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkPublicKeyW CkPublicKeyW_Create(void);
 CK_VISIBLE_PUBLIC void CkPublicKeyW_Dispose(HCkPublicKeyW handle);
 CK_VISIBLE_PUBLIC void CkPublicKeyW_getDebugLogFilePath(HCkPublicKeyW cHandle, HCkString retval);
-CK_VISIBLE_PUBLIC void CkPublicKeyW_putDebugLogFilePath(HCkPublicKeyW cHandle, const wchar_t *newVal);
+CK_VISIBLE_PUBLIC void  CkPublicKeyW_putDebugLogFilePath(HCkPublicKeyW cHandle, const wchar_t *newVal);
 CK_VISIBLE_PUBLIC const wchar_t *CkPublicKeyW_debugLogFilePath(HCkPublicKeyW cHandle);
 CK_VISIBLE_PUBLIC void CkPublicKeyW_getKeyType(HCkPublicKeyW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkPublicKeyW_keyType(HCkPublicKeyW cHandle);
@@ -19,9 +20,9 @@ CK_VISIBLE_PUBLIC const wchar_t *CkPublicKeyW_lastErrorText(HCkPublicKeyW cHandl
 CK_VISIBLE_PUBLIC void CkPublicKeyW_getLastErrorXml(HCkPublicKeyW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkPublicKeyW_lastErrorXml(HCkPublicKeyW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkPublicKeyW_getLastMethodSuccess(HCkPublicKeyW cHandle);
-CK_VISIBLE_PUBLIC void CkPublicKeyW_putLastMethodSuccess(HCkPublicKeyW cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC void  CkPublicKeyW_putLastMethodSuccess(HCkPublicKeyW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC BOOL CkPublicKeyW_getVerboseLogging(HCkPublicKeyW cHandle);
-CK_VISIBLE_PUBLIC void CkPublicKeyW_putVerboseLogging(HCkPublicKeyW cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC void  CkPublicKeyW_putVerboseLogging(HCkPublicKeyW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkPublicKeyW_getVersion(HCkPublicKeyW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkPublicKeyW_version(HCkPublicKeyW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkPublicKeyW_GetDer(HCkPublicKeyW cHandle, BOOL preferPkcs1, HCkByteData outBytes);

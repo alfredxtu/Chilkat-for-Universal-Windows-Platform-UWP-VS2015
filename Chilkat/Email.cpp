@@ -662,6 +662,14 @@ Platform::String ^Email::ComputeGlobalKey(Platform::String ^encoding, Boolean bF
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
+Platform::String ^Email::ComputeGlobalKey2(Platform::String ^encoding, Boolean bFold)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	const wchar_t *retStr = m_impl->computeGlobalKey2(encoding ? encoding->Data() : L"",bFold);
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
 Email ^Email::CreateDsn(Platform::String ^humanReadableMessage, Platform::String ^xmlStatusFields, Boolean bHeaderOnly)
     {
 	if (m_impl == nullptr) { return nullptr; }

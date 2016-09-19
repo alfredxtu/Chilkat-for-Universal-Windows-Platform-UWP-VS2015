@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkStringArray CkStringArray_Create(void);
 CK_VISIBLE_PUBLIC void CkStringArray_Dispose(HCkStringArray handle);
 CK_VISIBLE_PUBLIC int CkStringArray_getCount(HCkStringArray cHandle);

@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkDtObj CkDtObj_Create(void);
 CK_VISIBLE_PUBLIC void CkDtObj_Dispose(HCkDtObj handle);
 CK_VISIBLE_PUBLIC int CkDtObj_getDay(HCkDtObj cHandle);

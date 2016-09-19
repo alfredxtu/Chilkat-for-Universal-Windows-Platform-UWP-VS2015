@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkNtlm CkNtlm_Create(void);
 CK_VISIBLE_PUBLIC void CkNtlm_Dispose(HCkNtlm handle);
 CK_VISIBLE_PUBLIC void CkNtlm_getClientChallenge(HCkNtlm cHandle, HCkString retval);

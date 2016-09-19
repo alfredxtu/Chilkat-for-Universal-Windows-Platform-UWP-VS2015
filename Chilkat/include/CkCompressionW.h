@@ -632,7 +632,7 @@ class CK_VISIBLE_PUBLIC CkCompressionW  : public CkClassWithCallbacksW
 	// component may be used fully-functional for the 1st 30-days after download by
 	// passing an arbitrary string to this method. If for some reason you do not
 	// receive the full 30-day trial, send email to support@chilkatsoft.com for a
-	// temporary unlock code w/ an explicit expiration date. Upon purchase, a permanent
+	// temporary unlock code w/ an explicit expiration date. Upon purchase, a purchased
 	// unlock code is provided which should replace the temporary/arbitrary string
 	// passed to this method.
 	bool UnlockComponent(const wchar_t *unlockCode);

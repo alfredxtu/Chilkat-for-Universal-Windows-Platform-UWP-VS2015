@@ -144,7 +144,7 @@ class CK_VISIBLE_PUBLIC CkCertW  : public CkWideCharBase
 	// Certificate Signing: 0x04
 	// CRL Signing: 0x02
 	// Encipher-Only: 0x01
-	int get_IntendedKeyUsage(void);
+	unsigned long get_IntendedKeyUsage(void);
 
 	// true if this is the root certificate, otherwise false.
 	bool get_IsRoot(void);

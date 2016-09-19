@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkRsa CkRsa_Create(void);
 CK_VISIBLE_PUBLIC void CkRsa_Dispose(HCkRsa handle);
 CK_VISIBLE_PUBLIC void CkRsa_getCharset(HCkRsa cHandle, HCkString retval);
@@ -49,7 +50,7 @@ CK_VISIBLE_PUBLIC const char *CkRsa_decryptStringENC(HCkRsa cHandle, const char 
 CK_VISIBLE_PUBLIC BOOL CkRsa_EncryptBytes(HCkRsa cHandle, HCkByteData binaryData, BOOL usePrivateKey, HCkByteData outData);
 CK_VISIBLE_PUBLIC BOOL CkRsa_EncryptBytesENC(HCkRsa cHandle, HCkByteData data, BOOL bUsePrivateKey, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkRsa_encryptBytesENC(HCkRsa cHandle, HCkByteData data, BOOL bUsePrivateKey);
-CK_VISIBLE_PUBLIC BOOL CkRsa_EncryptString(HCkRsa cHandle, const char *stringToSign, BOOL usePrivateKey, HCkByteData outData);
+CK_VISIBLE_PUBLIC BOOL CkRsa_EncryptString(HCkRsa cHandle, const char *stringToEncrypt, BOOL usePrivateKey, HCkByteData outData);
 CK_VISIBLE_PUBLIC BOOL CkRsa_EncryptStringENC(HCkRsa cHandle, const char *str, BOOL bUsePrivateKey, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkRsa_encryptStringENC(HCkRsa cHandle, const char *str, BOOL bUsePrivateKey);
 CK_VISIBLE_PUBLIC BOOL CkRsa_ExportPrivateKey(HCkRsa cHandle, HCkString outStr);

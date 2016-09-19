@@ -5,10 +5,11 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkEccW CkEccW_Create(void);
 CK_VISIBLE_PUBLIC void CkEccW_Dispose(HCkEccW handle);
 CK_VISIBLE_PUBLIC void CkEccW_getDebugLogFilePath(HCkEccW cHandle, HCkString retval);
-CK_VISIBLE_PUBLIC void CkEccW_putDebugLogFilePath(HCkEccW cHandle, const wchar_t *newVal);
+CK_VISIBLE_PUBLIC void  CkEccW_putDebugLogFilePath(HCkEccW cHandle, const wchar_t *newVal);
 CK_VISIBLE_PUBLIC const wchar_t *CkEccW_debugLogFilePath(HCkEccW cHandle);
 CK_VISIBLE_PUBLIC void CkEccW_getLastErrorHtml(HCkEccW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkEccW_lastErrorHtml(HCkEccW cHandle);
@@ -17,9 +18,9 @@ CK_VISIBLE_PUBLIC const wchar_t *CkEccW_lastErrorText(HCkEccW cHandle);
 CK_VISIBLE_PUBLIC void CkEccW_getLastErrorXml(HCkEccW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkEccW_lastErrorXml(HCkEccW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkEccW_getLastMethodSuccess(HCkEccW cHandle);
-CK_VISIBLE_PUBLIC void CkEccW_putLastMethodSuccess(HCkEccW cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC void  CkEccW_putLastMethodSuccess(HCkEccW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC BOOL CkEccW_getVerboseLogging(HCkEccW cHandle);
-CK_VISIBLE_PUBLIC void CkEccW_putVerboseLogging(HCkEccW cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC void  CkEccW_putVerboseLogging(HCkEccW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkEccW_getVersion(HCkEccW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkEccW_version(HCkEccW cHandle);
 CK_VISIBLE_PUBLIC HCkPrivateKeyW CkEccW_GenEccKey(HCkEccW cHandle, const wchar_t *curveName, HCkPrngW prng);

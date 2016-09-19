@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkHtmlToXml CkHtmlToXml_Create(void);
 CK_VISIBLE_PUBLIC void CkHtmlToXml_Dispose(HCkHtmlToXml handle);
 CK_VISIBLE_PUBLIC void CkHtmlToXml_getDebugLogFilePath(HCkHtmlToXml cHandle, HCkString retval);

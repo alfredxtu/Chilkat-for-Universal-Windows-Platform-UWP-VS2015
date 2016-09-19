@@ -5,13 +5,14 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkStringArrayW CkStringArrayW_Create(void);
 CK_VISIBLE_PUBLIC void CkStringArrayW_Dispose(HCkStringArrayW handle);
 CK_VISIBLE_PUBLIC int CkStringArrayW_getCount(HCkStringArrayW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkStringArrayW_getCrlf(HCkStringArrayW cHandle);
-CK_VISIBLE_PUBLIC void CkStringArrayW_putCrlf(HCkStringArrayW cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC void  CkStringArrayW_putCrlf(HCkStringArrayW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkStringArrayW_getDebugLogFilePath(HCkStringArrayW cHandle, HCkString retval);
-CK_VISIBLE_PUBLIC void CkStringArrayW_putDebugLogFilePath(HCkStringArrayW cHandle, const wchar_t *newVal);
+CK_VISIBLE_PUBLIC void  CkStringArrayW_putDebugLogFilePath(HCkStringArrayW cHandle, const wchar_t *newVal);
 CK_VISIBLE_PUBLIC const wchar_t *CkStringArrayW_debugLogFilePath(HCkStringArrayW cHandle);
 CK_VISIBLE_PUBLIC void CkStringArrayW_getLastErrorHtml(HCkStringArrayW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkStringArrayW_lastErrorHtml(HCkStringArrayW cHandle);
@@ -20,14 +21,14 @@ CK_VISIBLE_PUBLIC const wchar_t *CkStringArrayW_lastErrorText(HCkStringArrayW cH
 CK_VISIBLE_PUBLIC void CkStringArrayW_getLastErrorXml(HCkStringArrayW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkStringArrayW_lastErrorXml(HCkStringArrayW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkStringArrayW_getLastMethodSuccess(HCkStringArrayW cHandle);
-CK_VISIBLE_PUBLIC void CkStringArrayW_putLastMethodSuccess(HCkStringArrayW cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC void  CkStringArrayW_putLastMethodSuccess(HCkStringArrayW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC int CkStringArrayW_getLength(HCkStringArrayW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkStringArrayW_getTrim(HCkStringArrayW cHandle);
-CK_VISIBLE_PUBLIC void CkStringArrayW_putTrim(HCkStringArrayW cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC void  CkStringArrayW_putTrim(HCkStringArrayW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC BOOL CkStringArrayW_getUnique(HCkStringArrayW cHandle);
-CK_VISIBLE_PUBLIC void CkStringArrayW_putUnique(HCkStringArrayW cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC void  CkStringArrayW_putUnique(HCkStringArrayW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC BOOL CkStringArrayW_getVerboseLogging(HCkStringArrayW cHandle);
-CK_VISIBLE_PUBLIC void CkStringArrayW_putVerboseLogging(HCkStringArrayW cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC void  CkStringArrayW_putVerboseLogging(HCkStringArrayW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkStringArrayW_getVersion(HCkStringArrayW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkStringArrayW_version(HCkStringArrayW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkStringArrayW_Append(HCkStringArrayW cHandle, const wchar_t *str);

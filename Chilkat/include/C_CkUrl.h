@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkUrl CkUrl_Create(void);
 CK_VISIBLE_PUBLIC void CkUrl_Dispose(HCkUrl handle);
 CK_VISIBLE_PUBLIC void CkUrl_getFrag(HCkUrl cHandle, HCkString retval);

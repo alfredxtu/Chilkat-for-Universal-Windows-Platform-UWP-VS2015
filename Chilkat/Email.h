@@ -367,6 +367,8 @@ public ref class Email sealed
 
 	Platform::String ^ComputeGlobalKey(Platform::String ^encoding, Boolean bFold);
 
+	Platform::String ^ComputeGlobalKey2(Platform::String ^encoding, Boolean bFold);
+
 	Email ^CreateDsn(Platform::String ^humanReadableMessage, Platform::String ^xmlStatusFields, Boolean bHeaderOnly);
 
 	Email ^CreateForward(void);

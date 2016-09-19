@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkGlobal CkGlobal_Create(void);
 CK_VISIBLE_PUBLIC void CkGlobal_Dispose(HCkGlobal handle);
 CK_VISIBLE_PUBLIC int CkGlobal_getAnsiCodePage(HCkGlobal cHandle);

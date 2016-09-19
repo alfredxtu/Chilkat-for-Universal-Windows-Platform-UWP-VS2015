@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkCertChain CkCertChain_Create(void);
 CK_VISIBLE_PUBLIC void CkCertChain_Dispose(HCkCertChain handle);
 CK_VISIBLE_PUBLIC void CkCertChain_getDebugLogFilePath(HCkCertChain cHandle, HCkString retval);

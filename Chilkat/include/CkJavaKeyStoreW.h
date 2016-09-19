@@ -202,8 +202,8 @@ class CK_VISIBLE_PUBLIC CkJavaKeyStoreW  : public CkWideCharBase
 	bool LoadEncoded(const wchar_t *password, const wchar_t *jksEncData, const wchar_t *encoding);
 
 	// Unlocks the component allowing for the full functionality to be used. If a
-	// permanent (purchased) unlock code is passed, there is no expiration. Any other
-	// string automatically begins a fully-functional 30-day trial the first time
+	// purchased unlock code is passed, there is no expiration. Any other string
+	// automatically begins a fully-functional 30-day trial the first time
 	// UnlockComponent is called.
 	bool LoadFile(const wchar_t *password, const wchar_t *path);
 
@@ -249,8 +249,8 @@ class CK_VISIBLE_PUBLIC CkJavaKeyStoreW  : public CkWideCharBase
 	CkPfxW *ToPfx(const wchar_t *password);
 
 	// Unlocks the component allowing for the full functionality to be used. If a
-	// permanent (purchased) unlock code is passed, there is no expiration. Any other
-	// string automatically begins a fully-functional 30-day trial the first time
+	// purchased unlock code is passed, there is no expiration. Any other string
+	// automatically begins a fully-functional 30-day trial the first time
 	// UnlockComponent is called.
 	bool UnlockComponent(const wchar_t *unlockCode);
 

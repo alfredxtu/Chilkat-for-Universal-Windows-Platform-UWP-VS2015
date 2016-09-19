@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkCharset CkCharset_Create(void);
 CK_VISIBLE_PUBLIC void CkCharset_Dispose(HCkCharset handle);
 CK_VISIBLE_PUBLIC void CkCharset_getAltToCharset(HCkCharset cHandle, HCkString retval);

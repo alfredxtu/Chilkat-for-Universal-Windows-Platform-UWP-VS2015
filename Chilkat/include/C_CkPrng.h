@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkPrng CkPrng_Create(void);
 CK_VISIBLE_PUBLIC void CkPrng_Dispose(HCkPrng handle);
 CK_VISIBLE_PUBLIC void CkPrng_getDebugLogFilePath(HCkPrng cHandle, HCkString retval);

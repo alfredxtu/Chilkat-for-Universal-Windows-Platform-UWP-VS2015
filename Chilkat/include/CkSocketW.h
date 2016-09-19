@@ -549,6 +549,10 @@ class CK_VISIBLE_PUBLIC CkSocketW  : public CkClassWithCallbacksW
 	// The default value is false for IPv4.
 	void put_ListenIpv6(bool newVal);
 
+	// The BindAndListen method will find a random unused port to listen on if you bind
+	// to port 0. This chosen listen port is available via this property.
+	int get_ListenPort(void);
+
 	// The local IP address for a bound or connected socket.
 	void get_LocalIpAddress(CkString &str);
 	// The local IP address for a bound or connected socket.
@@ -1409,6 +1413,9 @@ class CK_VISIBLE_PUBLIC CkSocketW  : public CkClassWithCallbacksW
 	// or more calls to this method to identify the CA's it will accept for client-side
 	// certificates.
 	// 
+	// If no CA DN's are added by this method, then client certificates from any root
+	// CA are accepted.
+	// 
 	// Important: If calling this method, it must be called before calling
 	// InitSslServer.
 	// 
@@ -1604,6 +1611,10 @@ class CK_VISIBLE_PUBLIC CkSocketW  : public CkClassWithCallbacksW
 	// that they cannot be serviced immediately. (A typical value to use for backLog is
 	// 5.) This method should be called once prior to receiving incoming connection
 	// requests via the AcceptNextConnection or AsyncAcceptStart methods.
+	// 
+	// Note:This method will find a random unused port to listen on if you bind to port
+	// 0. The chosen port is available via the read-only ListenPort property after this
+	// method returns successful.
 	// 
 	// To bind and listen using IPv6, set the ListenIpv6 property = true prior to
 	// calling this method.

@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkEmail CkEmail_Create(void);
 CK_VISIBLE_PUBLIC void CkEmail_Dispose(HCkEmail handle);
 CK_VISIBLE_PUBLIC void CkEmail_getBody(HCkEmail cHandle, HCkString retval);
@@ -20,7 +21,7 @@ CK_VISIBLE_PUBLIC void CkEmail_getDebugLogFilePath(HCkEmail cHandle, HCkString r
 CK_VISIBLE_PUBLIC void CkEmail_putDebugLogFilePath(HCkEmail cHandle, const char *newVal);
 CK_VISIBLE_PUBLIC const char *CkEmail_debugLogFilePath(HCkEmail cHandle);
 CK_VISIBLE_PUBLIC BOOL CkEmail_getDecrypted(HCkEmail cHandle);
-CK_VISIBLE_PUBLIC void CkEmail_getEmailDate(HCkEmail cHandle, SYSTEMTIME *retval);
+CK_VISIBLE_PUBLIC void CkEmail_getEmailDate(HCkEmail cHandle, SYSTEMTIME * retval);
 CK_VISIBLE_PUBLIC void CkEmail_putEmailDate(HCkEmail cHandle, SYSTEMTIME *newVal);
 CK_VISIBLE_PUBLIC void CkEmail_getEmailDateStr(HCkEmail cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void CkEmail_putEmailDateStr(HCkEmail cHandle, const char *newVal);
@@ -32,7 +33,7 @@ CK_VISIBLE_PUBLIC void CkEmail_putFileDistList(HCkEmail cHandle, const char *new
 CK_VISIBLE_PUBLIC const char *CkEmail_fileDistList(HCkEmail cHandle);
 CK_VISIBLE_PUBLIC void CkEmail_getFrom(HCkEmail cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void CkEmail_putFrom(HCkEmail cHandle, const char *newVal);
-CK_VISIBLE_PUBLIC const char *CkEmail_ck_from(HCkEmail cHandle);
+CK_VISIBLE_PUBLIC const char *CkEmail_from(HCkEmail cHandle);
 CK_VISIBLE_PUBLIC void CkEmail_getFromAddress(HCkEmail cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void CkEmail_putFromAddress(HCkEmail cHandle, const char *newVal);
 CK_VISIBLE_PUBLIC const char *CkEmail_fromAddress(HCkEmail cHandle);
@@ -51,7 +52,7 @@ CK_VISIBLE_PUBLIC void CkEmail_getLastErrorXml(HCkEmail cHandle, HCkString retva
 CK_VISIBLE_PUBLIC const char *CkEmail_lastErrorXml(HCkEmail cHandle);
 CK_VISIBLE_PUBLIC BOOL CkEmail_getLastMethodSuccess(HCkEmail cHandle);
 CK_VISIBLE_PUBLIC void CkEmail_putLastMethodSuccess(HCkEmail cHandle, BOOL newVal);
-CK_VISIBLE_PUBLIC void CkEmail_getLocalDate(HCkEmail cHandle, SYSTEMTIME *retval);
+CK_VISIBLE_PUBLIC void CkEmail_getLocalDate(HCkEmail cHandle, SYSTEMTIME * retval);
 CK_VISIBLE_PUBLIC void CkEmail_putLocalDate(HCkEmail cHandle, SYSTEMTIME *newVal);
 CK_VISIBLE_PUBLIC void CkEmail_getLocalDateStr(HCkEmail cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void CkEmail_putLocalDateStr(HCkEmail cHandle, const char *newVal);
@@ -91,11 +92,11 @@ CK_VISIBLE_PUBLIC BOOL CkEmail_getReturnReceipt(HCkEmail cHandle);
 CK_VISIBLE_PUBLIC void CkEmail_putReturnReceipt(HCkEmail cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC BOOL CkEmail_getSendEncrypted(HCkEmail cHandle);
 CK_VISIBLE_PUBLIC void CkEmail_putSendEncrypted(HCkEmail cHandle, BOOL newVal);
-CK_VISIBLE_PUBLIC BOOL CkEmail_getSendSigned(HCkEmail cHandle);
-CK_VISIBLE_PUBLIC void CkEmail_putSendSigned(HCkEmail cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkEmail_getSender(HCkEmail cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void CkEmail_putSender(HCkEmail cHandle, const char *newVal);
 CK_VISIBLE_PUBLIC const char *CkEmail_sender(HCkEmail cHandle);
+CK_VISIBLE_PUBLIC BOOL CkEmail_getSendSigned(HCkEmail cHandle);
+CK_VISIBLE_PUBLIC void CkEmail_putSendSigned(HCkEmail cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC BOOL CkEmail_getSignaturesValid(HCkEmail cHandle);
 CK_VISIBLE_PUBLIC void CkEmail_getSignedBy(HCkEmail cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const char *CkEmail_signedBy(HCkEmail cHandle);
@@ -128,6 +129,7 @@ CK_VISIBLE_PUBLIC BOOL CkEmail_AddFileAttachment2(HCkEmail cHandle, const char *
 CK_VISIBLE_PUBLIC void CkEmail_AddHeaderField(HCkEmail cHandle, const char *fieldName, const char *fieldValue);
 CK_VISIBLE_PUBLIC void CkEmail_AddHeaderField2(HCkEmail cHandle, const char *fieldName, const char *fieldValue);
 CK_VISIBLE_PUBLIC BOOL CkEmail_AddHtmlAlternativeBody(HCkEmail cHandle, const char *body);
+CK_VISIBLE_PUBLIC BOOL CkEmail_AddiCalendarAlternativeBody(HCkEmail cHandle, const char *icalContent, const char *methodName);
 CK_VISIBLE_PUBLIC BOOL CkEmail_AddMultipleBcc(HCkEmail cHandle, const char *commaSeparatedAddresses);
 CK_VISIBLE_PUBLIC BOOL CkEmail_AddMultipleCC(HCkEmail cHandle, const char *commaSeparatedAddresses);
 CK_VISIBLE_PUBLIC BOOL CkEmail_AddMultipleTo(HCkEmail cHandle, const char *commaSeparatedAddresses);
@@ -142,8 +144,6 @@ CK_VISIBLE_PUBLIC void CkEmail_AddRelatedData2P(HCkEmail cHandle, const unsigned
 #endif
 #if !defined(CHILKAT_MONO)
 CK_VISIBLE_PUBLIC BOOL CkEmail_AddRelatedDataP(HCkEmail cHandle, const char *nameInHtml, const unsigned char *pBytes, unsigned long szBytes, HCkString outStrContentId);
-#endif
-#if !defined(CHILKAT_MONO)
 CK_VISIBLE_PUBLIC const char *CkEmail_addRelatedDataP(HCkEmail cHandle, const char *nameInHtml, const unsigned char *pBytes, unsigned long szBytes);
 #endif
 CK_VISIBLE_PUBLIC BOOL CkEmail_AddRelatedFile(HCkEmail cHandle, const char *path, HCkString outStrContentID);
@@ -156,7 +156,6 @@ CK_VISIBLE_PUBLIC void CkEmail_AddRelatedString2(HCkEmail cHandle, const char *c
 CK_VISIBLE_PUBLIC BOOL CkEmail_AddStringAttachment(HCkEmail cHandle, const char *path, const char *content);
 CK_VISIBLE_PUBLIC BOOL CkEmail_AddStringAttachment2(HCkEmail cHandle, const char *path, const char *content, const char *charset);
 CK_VISIBLE_PUBLIC BOOL CkEmail_AddTo(HCkEmail cHandle, const char *friendlyName, const char *emailAddress);
-CK_VISIBLE_PUBLIC BOOL CkEmail_AddiCalendarAlternativeBody(HCkEmail cHandle, const char *icalContent, const char *methodName);
 CK_VISIBLE_PUBLIC BOOL CkEmail_AesDecrypt(HCkEmail cHandle, const char *password);
 CK_VISIBLE_PUBLIC BOOL CkEmail_AesEncrypt(HCkEmail cHandle, const char *password);
 CK_VISIBLE_PUBLIC void CkEmail_AppendToBody(HCkEmail cHandle, const char *str);
@@ -174,6 +173,8 @@ CK_VISIBLE_PUBLIC void CkEmail_ClearTo(HCkEmail cHandle);
 CK_VISIBLE_PUBLIC HCkEmail CkEmail_Clone(HCkEmail cHandle);
 CK_VISIBLE_PUBLIC BOOL CkEmail_ComputeGlobalKey(HCkEmail cHandle, const char *encoding, BOOL bFold, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkEmail_computeGlobalKey(HCkEmail cHandle, const char *encoding, BOOL bFold);
+CK_VISIBLE_PUBLIC BOOL CkEmail_ComputeGlobalKey2(HCkEmail cHandle, const char *encoding, BOOL bFold, HCkString outStr);
+CK_VISIBLE_PUBLIC const char *CkEmail_computeGlobalKey2(HCkEmail cHandle, const char *encoding, BOOL bFold);
 CK_VISIBLE_PUBLIC HCkEmail CkEmail_CreateDsn(HCkEmail cHandle, const char *humanReadableMessage, const char *xmlStatusFields, BOOL bHeaderOnly);
 CK_VISIBLE_PUBLIC HCkEmail CkEmail_CreateForward(HCkEmail cHandle);
 CK_VISIBLE_PUBLIC HCkEmail CkEmail_CreateMdn(HCkEmail cHandle, const char *humanReadableMessage, const char *xmlStatusFields, BOOL bHeaderOnly);
@@ -187,14 +188,14 @@ CK_VISIBLE_PUBLIC BOOL CkEmail_DropSingleAttachment(HCkEmail cHandle, int index)
 CK_VISIBLE_PUBLIC HCkCert CkEmail_FindIssuer(HCkEmail cHandle, HCkCert cert);
 CK_VISIBLE_PUBLIC BOOL CkEmail_GenerateFilename(HCkEmail cHandle, HCkString outStrFilename);
 CK_VISIBLE_PUBLIC const char *CkEmail_generateFilename(HCkEmail cHandle);
-CK_VISIBLE_PUBLIC BOOL CkEmail_GetAltHeaderField(HCkEmail cHandle, int index, const char *fieldName, HCkString outStr);
-CK_VISIBLE_PUBLIC const char *CkEmail_getAltHeaderField(HCkEmail cHandle, int index, const char *fieldName);
 CK_VISIBLE_PUBLIC BOOL CkEmail_GetAlternativeBody(HCkEmail cHandle, int index, HCkString outStrBody);
 CK_VISIBLE_PUBLIC const char *CkEmail_getAlternativeBody(HCkEmail cHandle, int index);
 CK_VISIBLE_PUBLIC BOOL CkEmail_GetAlternativeBodyByContentType(HCkEmail cHandle, const char *contentType, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkEmail_getAlternativeBodyByContentType(HCkEmail cHandle, const char *contentType);
 CK_VISIBLE_PUBLIC BOOL CkEmail_GetAlternativeContentType(HCkEmail cHandle, int index, HCkString outStrContentType);
 CK_VISIBLE_PUBLIC const char *CkEmail_getAlternativeContentType(HCkEmail cHandle, int index);
+CK_VISIBLE_PUBLIC BOOL CkEmail_GetAltHeaderField(HCkEmail cHandle, int index, const char *fieldName, HCkString outStr);
+CK_VISIBLE_PUBLIC const char *CkEmail_getAltHeaderField(HCkEmail cHandle, int index, const char *fieldName);
 CK_VISIBLE_PUBLIC HCkEmail CkEmail_GetAttachedMessage(HCkEmail cHandle, int index);
 CK_VISIBLE_PUBLIC BOOL CkEmail_GetAttachedMessageAttr(HCkEmail cHandle, int index, const char *fieldName, const char *attrName, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkEmail_getAttachedMessageAttr(HCkEmail cHandle, int index, const char *fieldName, const char *attrName);
@@ -251,8 +252,8 @@ CK_VISIBLE_PUBLIC BOOL CkEmail_GetMbPlainTextBody(HCkEmail cHandle, const char *
 CK_VISIBLE_PUBLIC BOOL CkEmail_GetMime(HCkEmail cHandle, HCkString outStrMime);
 CK_VISIBLE_PUBLIC const char *CkEmail_getMime(HCkEmail cHandle);
 CK_VISIBLE_PUBLIC BOOL CkEmail_GetMimeBinary(HCkEmail cHandle, HCkByteData outBytes);
-CK_VISIBLE_PUBLIC int CkEmail_GetNthBinaryPartOfType(HCkEmail cHandle, int index, const char *contentType, BOOL inlineOnly, BOOL excludeAttachments, HCkByteData outBytes);
-CK_VISIBLE_PUBLIC int CkEmail_GetNthTextPartOfType(HCkEmail cHandle, int index, const char *contentType, BOOL inlineOnly, BOOL excludeAttachments, HCkString outStr);
+CK_VISIBLE_PUBLIC BOOL CkEmail_GetNthBinaryPartOfType(HCkEmail cHandle, int index, const char *contentType, BOOL inlineOnly, BOOL excludeAttachments, HCkByteData outBytes);
+CK_VISIBLE_PUBLIC BOOL CkEmail_GetNthTextPartOfType(HCkEmail cHandle, int index, const char *contentType, BOOL inlineOnly, BOOL excludeAttachments, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkEmail_getNthTextPartOfType(HCkEmail cHandle, int index, const char *contentType, BOOL inlineOnly, BOOL excludeAttachments);
 CK_VISIBLE_PUBLIC int CkEmail_GetNumPartsOfType(HCkEmail cHandle, const char *contentType, BOOL inlineOnly, BOOL excludeAttachments);
 CK_VISIBLE_PUBLIC BOOL CkEmail_GetPlainTextBody(HCkEmail cHandle, HCkString outStrBody);
@@ -340,8 +341,8 @@ CK_VISIBLE_PUBLIC BOOL CkEmail_SetSigningCert(HCkEmail cHandle, HCkCert cert);
 CK_VISIBLE_PUBLIC BOOL CkEmail_SetSigningCert2(HCkEmail cHandle, HCkCert cert, HCkPrivateKey key);
 CK_VISIBLE_PUBLIC void CkEmail_SetTextBody(HCkEmail cHandle, const char *bodyText, const char *contentType);
 CK_VISIBLE_PUBLIC BOOL CkEmail_UidlEquals(HCkEmail cHandle, HCkEmail e);
-CK_VISIBLE_PUBLIC void CkEmail_UnSpamify(HCkEmail cHandle);
 CK_VISIBLE_PUBLIC BOOL CkEmail_UnpackHtml(HCkEmail cHandle, const char *unpackDir, const char *htmlFilename, const char *partsSubdir);
+CK_VISIBLE_PUBLIC void CkEmail_UnSpamify(HCkEmail cHandle);
 CK_VISIBLE_PUBLIC BOOL CkEmail_UnzipAttachments(HCkEmail cHandle);
 CK_VISIBLE_PUBLIC BOOL CkEmail_UseCertVault(HCkEmail cHandle, HCkXmlCertVault vault);
 CK_VISIBLE_PUBLIC BOOL CkEmail_ZipAttachments(HCkEmail cHandle, const char *zipFilename);

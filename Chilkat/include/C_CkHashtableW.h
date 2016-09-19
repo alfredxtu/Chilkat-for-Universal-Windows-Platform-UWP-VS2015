@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkHashtableW CkHashtableW_Create(void);
 CK_VISIBLE_PUBLIC void CkHashtableW_Dispose(HCkHashtableW handle);
 CK_VISIBLE_PUBLIC BOOL CkHashtableW_AddInt(HCkHashtableW cHandle, const wchar_t *key, int value);

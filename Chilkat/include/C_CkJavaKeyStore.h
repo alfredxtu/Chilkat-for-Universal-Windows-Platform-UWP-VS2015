@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkJavaKeyStore CkJavaKeyStore_Create(void);
 CK_VISIBLE_PUBLIC void CkJavaKeyStore_Dispose(HCkJavaKeyStore handle);
 CK_VISIBLE_PUBLIC void CkJavaKeyStore_getDebugLogFilePath(HCkJavaKeyStore cHandle, HCkString retval);

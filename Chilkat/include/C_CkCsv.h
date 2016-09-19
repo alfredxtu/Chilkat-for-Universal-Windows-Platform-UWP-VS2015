@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkCsv CkCsv_Create(void);
 CK_VISIBLE_PUBLIC void CkCsv_Dispose(HCkCsv handle);
 CK_VISIBLE_PUBLIC BOOL CkCsv_getAutoTrim(HCkCsv cHandle);

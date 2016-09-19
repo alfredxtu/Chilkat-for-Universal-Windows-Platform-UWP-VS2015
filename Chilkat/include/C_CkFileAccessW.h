@@ -5,12 +5,13 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkFileAccessW CkFileAccessW_Create(void);
 CK_VISIBLE_PUBLIC void CkFileAccessW_Dispose(HCkFileAccessW handle);
 CK_VISIBLE_PUBLIC void CkFileAccessW_getCurrentDir(HCkFileAccessW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkFileAccessW_currentDir(HCkFileAccessW cHandle);
 CK_VISIBLE_PUBLIC void CkFileAccessW_getDebugLogFilePath(HCkFileAccessW cHandle, HCkString retval);
-CK_VISIBLE_PUBLIC void CkFileAccessW_putDebugLogFilePath(HCkFileAccessW cHandle, const wchar_t *newVal);
+CK_VISIBLE_PUBLIC void  CkFileAccessW_putDebugLogFilePath(HCkFileAccessW cHandle, const wchar_t *newVal);
 CK_VISIBLE_PUBLIC const wchar_t *CkFileAccessW_debugLogFilePath(HCkFileAccessW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkFileAccessW_getEndOfFile(HCkFileAccessW cHandle);
 CK_VISIBLE_PUBLIC int CkFileAccessW_getFileOpenError(HCkFileAccessW cHandle);
@@ -23,9 +24,9 @@ CK_VISIBLE_PUBLIC const wchar_t *CkFileAccessW_lastErrorText(HCkFileAccessW cHan
 CK_VISIBLE_PUBLIC void CkFileAccessW_getLastErrorXml(HCkFileAccessW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkFileAccessW_lastErrorXml(HCkFileAccessW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkFileAccessW_getLastMethodSuccess(HCkFileAccessW cHandle);
-CK_VISIBLE_PUBLIC void CkFileAccessW_putLastMethodSuccess(HCkFileAccessW cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC void  CkFileAccessW_putLastMethodSuccess(HCkFileAccessW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC BOOL CkFileAccessW_getVerboseLogging(HCkFileAccessW cHandle);
-CK_VISIBLE_PUBLIC void CkFileAccessW_putVerboseLogging(HCkFileAccessW cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC void  CkFileAccessW_putVerboseLogging(HCkFileAccessW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkFileAccessW_getVersion(HCkFileAccessW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkFileAccessW_version(HCkFileAccessW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkFileAccessW_AppendAnsi(HCkFileAccessW cHandle, const wchar_t *text);

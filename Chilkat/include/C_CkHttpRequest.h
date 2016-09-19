@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkHttpRequest CkHttpRequest_Create(void);
 CK_VISIBLE_PUBLIC void CkHttpRequest_Dispose(HCkHttpRequest handle);
 CK_VISIBLE_PUBLIC void CkHttpRequest_getBoundary(HCkHttpRequest cHandle, HCkString retval);

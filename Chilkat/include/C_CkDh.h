@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkDh CkDh_Create(void);
 CK_VISIBLE_PUBLIC void CkDh_Dispose(HCkDh handle);
 CK_VISIBLE_PUBLIC void CkDh_getDebugLogFilePath(HCkDh cHandle, HCkString retval);

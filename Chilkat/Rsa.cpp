@@ -207,12 +207,12 @@ Platform::String ^Rsa::EncryptBytesENC(Windows::Foundation::Collections::IVector
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-Windows::Foundation::Collections::IVector<uint8>^Rsa::EncryptString(Platform::String ^stringToSign, Boolean usePrivateKey)
+Windows::Foundation::Collections::IVector<uint8>^Rsa::EncryptString(Platform::String ^stringToEncrypt, Boolean usePrivateKey)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	CkByteData outDb;
-	bool success = m_impl->EncryptString(stringToSign ? stringToSign->Data() : L"",usePrivateKey,outDb);
+	bool success = m_impl->EncryptString(stringToEncrypt ? stringToEncrypt->Data() : L"",usePrivateKey,outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));

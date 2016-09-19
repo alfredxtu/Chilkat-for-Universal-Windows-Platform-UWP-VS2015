@@ -1054,6 +1054,10 @@ class CK_VISIBLE_PUBLIC CkEmail  : public CkMultiByteBase
 	CkEmail *Clone(void);
 
 
+	// Important: New programs should ComputeGlobalKey2 instead. A compatibility issue
+	// was detected in versions after Chilkat v9.5.0.54. The ComputeGlobalKey2 provides
+	// a compatibility mode argument to maintain backward compatibility.
+	// 
 	// Computes a global unique key for the email that may be used as a key for a
 	// relational database table (or anything else). The key is created by a digest-MD5
 	// hash of the concatenation of the following header fields: Message-ID, Subject,
@@ -1062,7 +1066,23 @@ class CK_VISIBLE_PUBLIC CkEmail  : public CkMultiByteBase
 	// returned as an encoded string. The encoding determines the encoding: base64, hex,
 	// url, etc. If bFold is true, then the 16-byte MD5 hash is folded to 8 bytes with
 	// an XOR to produce a shorter key.
+	// 
 	bool ComputeGlobalKey(const char *encoding, bool bFold, CkString &outStr);
+
+	// Important: New programs should ComputeGlobalKey2 instead. A compatibility issue
+	// was detected in versions after Chilkat v9.5.0.54. The ComputeGlobalKey2 provides
+	// a compatibility mode argument to maintain backward compatibility.
+	// 
+	// Computes a global unique key for the email that may be used as a key for a
+	// relational database table (or anything else). The key is created by a digest-MD5
+	// hash of the concatenation of the following header fields: Message-ID, Subject,
+	// From, Date, To. (The header fields are Q/B decoded if necessary, converted to
+	// the utf-8 encoding, concatenated, and hashed using MD5.) The 16-byte MD5 hash is
+	// returned as an encoded string. The encoding determines the encoding: base64, hex,
+	// url, etc. If bFold is true, then the 16-byte MD5 hash is folded to 8 bytes with
+	// an XOR to produce a shorter key.
+	// 
+	const char *computeGlobalKey(const char *encoding, bool bFold);
 
 	// Computes a global unique key for the email that may be used as a key for a
 	// relational database table (or anything else). The key is created by a digest-MD5
@@ -1072,7 +1092,17 @@ class CK_VISIBLE_PUBLIC CkEmail  : public CkMultiByteBase
 	// returned as an encoded string. The encoding determines the encoding: base64, hex,
 	// url, etc. If bFold is true, then the 16-byte MD5 hash is folded to 8 bytes with
 	// an XOR to produce a shorter key.
-	const char *computeGlobalKey(const char *encoding, bool bFold);
+	bool ComputeGlobalKey2(const char *encoding, bool bFold, CkString &outStr);
+
+	// Computes a global unique key for the email that may be used as a key for a
+	// relational database table (or anything else). The key is created by a digest-MD5
+	// hash of the concatenation of the following header fields: Message-ID, Subject,
+	// From, Date, To. (The header fields are Q/B decoded if necessary, converted to
+	// the utf-8 encoding, concatenated, and hashed using MD5.) The 16-byte MD5 hash is
+	// returned as an encoded string. The encoding determines the encoding: base64, hex,
+	// url, etc. If bFold is true, then the 16-byte MD5 hash is folded to 8 bytes with
+	// an XOR to produce a shorter key.
+	const char *computeGlobalKey2(const char *encoding, bool bFold);
 
 	// Creates a new DSN (Delivery Status Notification) email having the format as
 	// specified in RFC 3464. See the example (below) for more detailed information.

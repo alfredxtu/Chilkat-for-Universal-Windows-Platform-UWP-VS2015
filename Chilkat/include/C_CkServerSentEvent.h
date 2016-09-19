@@ -5,6 +5,7 @@
 
 #include "Chilkat_C.h"
 
+
 CK_VISIBLE_PUBLIC HCkServerSentEvent CkServerSentEvent_Create(void);
 CK_VISIBLE_PUBLIC void CkServerSentEvent_Dispose(HCkServerSentEvent handle);
 CK_VISIBLE_PUBLIC void CkServerSentEvent_getData(HCkServerSentEvent cHandle, HCkString retval);

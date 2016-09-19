@@ -2701,8 +2701,8 @@ class CK_VISIBLE_PUBLIC CkMailManW  : public CkClassWithCallbacksW
 	// arbitrary string, such as "Hello World" may be passed to automatically begin a
 	// fully-functional 30-day trial.
 	// 
-	// A valid permanent unlock code for this object will always included the substring
-	// "MAIL".
+	// A valid purchased unlock code for this object will always included the substring
+	// "MAIL", or can be a Bundle unlock code.
 	// 
 	bool UnlockComponent(const wchar_t *code);
 

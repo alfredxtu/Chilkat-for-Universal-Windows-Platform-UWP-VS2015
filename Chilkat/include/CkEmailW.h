@@ -1015,24 +1015,69 @@ class CK_VISIBLE_PUBLIC CkEmailW  : public CkWideCharBase
 	// The caller is responsible for deleting the object returned by this method.
 	CkEmailW *Clone(void);
 
-	// Computes a global unique key for the email that may be used as a key for a
-	// relational database table (or anything else). The key is created by a digest-MD5
+	// Important: New programs should ComputeGlobalKey2 instead. This method did not
+	// adequately canonicalize the string passed to the digest-MD5 hash and therefore
+	// different versions of Chilkat may produce different results with this method.
+	// 
+	// Computes a global unique key for the email. The key is created by a digest-MD5
 	// hash of the concatenation of the following header fields: Message-ID, Subject,
 	// From, Date, To. (The header fields are Q/B decoded if necessary, converted to
 	// the utf-8 encoding, concatenated, and hashed using MD5.) The 16-byte MD5 hash is
 	// returned as an encoded string. The encoding determines the encoding: base64, hex,
 	// url, etc. If bFold is true, then the 16-byte MD5 hash is folded to 8 bytes with
 	// an XOR to produce a shorter key.
+	// 
 	bool ComputeGlobalKey(const wchar_t *encoding, bool bFold, CkString &outStr);
-	// Computes a global unique key for the email that may be used as a key for a
-	// relational database table (or anything else). The key is created by a digest-MD5
+	// Important: New programs should ComputeGlobalKey2 instead. This method did not
+	// adequately canonicalize the string passed to the digest-MD5 hash and therefore
+	// different versions of Chilkat may produce different results with this method.
+	// 
+	// Computes a global unique key for the email. The key is created by a digest-MD5
 	// hash of the concatenation of the following header fields: Message-ID, Subject,
 	// From, Date, To. (The header fields are Q/B decoded if necessary, converted to
 	// the utf-8 encoding, concatenated, and hashed using MD5.) The 16-byte MD5 hash is
 	// returned as an encoded string. The encoding determines the encoding: base64, hex,
 	// url, etc. If bFold is true, then the 16-byte MD5 hash is folded to 8 bytes with
 	// an XOR to produce a shorter key.
+	// 
 	const wchar_t *computeGlobalKey(const wchar_t *encoding, bool bFold);
+
+	// Computes a global unique key for the email. The key is created by a digest-MD5
+	// hash of the concatenation of the following:
+	// messageID + CRLF + subject + CRLF + from + CRLF + date + CRLF + recipientAddrs
+	// 
+	// messageID contains the contents of the Message-ID header field.
+	// subject contains the contents of the Subject header field, trimmed of whitespace from both ends, 
+	//     where TAB chars are converted to SPACE chars, and internal whitespace is trimmed so that 
+	//    no more than one SPACE char in a row exists.
+	// from contains the lowercase FROM header email address.
+	// date contains the contents of the DATE header field.
+	// toAddrs contains lowercase TO and CC recipient email addresses, comma separated, with duplicates removed, and sorted 
+	//     in ascending order.  The BCC addresses are NOT included.
+	// 
+	// (After calling this method, the LastErrorText property can be examined to see the string that was hashed.)
+	// The 16-byte MD5 hash is returned as an encoded string. The encoding determines the
+	// encoding: base64, hex, url, etc. If bFold is true, then the 16-byte MD5 hash is
+	// folded to 8 bytes with an XOR to produce a shorter key.
+	bool ComputeGlobalKey2(const wchar_t *encoding, bool bFold, CkString &outStr);
+	// Computes a global unique key for the email. The key is created by a digest-MD5
+	// hash of the concatenation of the following:
+	// messageID + CRLF + subject + CRLF + from + CRLF + date + CRLF + recipientAddrs
+	// 
+	// messageID contains the contents of the Message-ID header field.
+	// subject contains the contents of the Subject header field, trimmed of whitespace from both ends, 
+	//     where TAB chars are converted to SPACE chars, and internal whitespace is trimmed so that 
+	//    no more than one SPACE char in a row exists.
+	// from contains the lowercase FROM header email address.
+	// date contains the contents of the DATE header field.
+	// toAddrs contains lowercase TO and CC recipient email addresses, comma separated, with duplicates removed, and sorted 
+	//     in ascending order.  The BCC addresses are NOT included.
+	// 
+	// (After calling this method, the LastErrorText property can be examined to see the string that was hashed.)
+	// The 16-byte MD5 hash is returned as an encoded string. The encoding determines the
+	// encoding: base64, hex, url, etc. If bFold is true, then the 16-byte MD5 hash is
+	// folded to 8 bytes with an XOR to produce a shorter key.
+	const wchar_t *computeGlobalKey2(const wchar_t *encoding, bool bFold);
 
 	// Creates a new DSN (Delivery Status Notification) email having the format as
 	// specified in RFC 3464. See the example (below) for more detailed information.

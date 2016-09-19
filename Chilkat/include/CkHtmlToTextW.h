@@ -122,8 +122,7 @@ class CK_VISIBLE_PUBLIC CkHtmlToTextW  : public CkWideCharBase
 	// begin a 30-day trial.
 	// 
 	// This class is included with the Chilkat HTML-to-XML conversion component
-	// license. A permanent unlock code for Chilkat HTML-to-XML should be used to
-	// unlock this object.
+	// license.
 	// 
 	bool UnlockComponent(const wchar_t *code);
 
