@@ -15,7 +15,9 @@
 class CkByteData;
 class CkEmailW;
 class CkTaskW;
+class CkStringBuilderW;
 class CkMessageSetW;
+class CkBinDataW;
 class CkEmailBundleW;
 class CkStringArrayW;
 class CkCertW;
@@ -1110,6 +1112,15 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *AppendMimeWithFlagsAsync(const wchar_t *mailbox, const wchar_t *mimeText, bool seen, bool flagged, bool answered, bool draft);
 
+	// Same as AppendMimeWithFlags, but the MIME to be uploaded to the IMAP server is
+	// passed in a StringBuilder object.
+	bool AppendMimeWithFlagsSb(const wchar_t *mailbox, CkStringBuilderW &sbMime, bool seen, bool flagged, bool answered, bool draft);
+
+	// Creates an asynchronous task to call the AppendMimeWithFlagsSb method with the
+	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *AppendMimeWithFlagsSbAsync(const wchar_t *mailbox, CkStringBuilderW &sbMime, bool seen, bool flagged, bool answered, bool draft);
+
 	// Sends a CAPABILITY command to the IMAP server and returns the raw response.
 	bool Capability(CkString &outStr);
 	// Sends a CAPABILITY command to the IMAP server and returns the raw response.
@@ -1284,6 +1295,16 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *FetchAttachmentAsync(CkEmailW &emailObject, int attachmentIndex, const wchar_t *saveToPath);
 
+	// Downloads one of an email's attachments and returns the attachment data in a
+	// BinData object. ***See the FetchAttachment method description for more
+	// information about fetching attachments.
+	bool FetchAttachmentBd(CkEmailW &email, int attachmentIndex, CkBinDataW &binData);
+
+	// Creates an asynchronous task to call the FetchAttachmentBd method with the
+	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *FetchAttachmentBdAsync(CkEmailW &email, int attachmentIndex, CkBinDataW &binData);
+
 	// Downloads one of an email's attachments and returns the attachment data as
 	// in-memory bytes that may be accessed by an application. ***See the
 	// FetchAttachment method description for more information about fetching
@@ -1294,6 +1315,18 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *FetchAttachmentBytesAsync(CkEmailW &email, int attachIndex);
+
+	// Downloads one of an email's attachments and returns the attachment data in a
+	// StringBuilder. It only makes sense to call this method for attachments that
+	// contain text data. The charset indicates the character encoding of the text, such
+	// as "utf-8" or "windows-1252". ***See the FetchAttachment method description for
+	// more information about fetching attachments.
+	bool FetchAttachmentSb(CkEmailW &email, int attachmentIndex, const wchar_t *charset, CkStringBuilderW &sb);
+
+	// Creates an asynchronous task to call the FetchAttachmentSb method with the
+	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *FetchAttachmentSbAsync(CkEmailW &email, int attachmentIndex, const wchar_t *charset, CkStringBuilderW &sb);
 
 	// Downloads one of an email's attachments and returns the attachment data as a
 	// string. It only makes sense to call this method for attachments that contain
@@ -1446,6 +1479,17 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *FetchSingleAsMimeAsync(int msgId, bool bUid);
+
+	// Retrieves a single message from the IMAP server and returns a StringBuilder
+	// object containing the complete MIME source of the email. If the method fails, it
+	// returns a NULL reference. If bUid is true, then msgID represents a UID. If bUid
+	// is false, then msgID represents a sequence number.
+	bool FetchSingleAsMimeSb(int msgId, bool bUid, CkStringBuilderW &sbMime);
+
+	// Creates an asynchronous task to call the FetchSingleAsMimeSb method with the
+	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *FetchSingleAsMimeSbAsync(int msgId, bool bUid, CkStringBuilderW &sbMime);
 
 	// Retrieves a single message header from the IMAP server. If the method fails, it
 	// may return a NULL reference. The following methods are useful for retrieving

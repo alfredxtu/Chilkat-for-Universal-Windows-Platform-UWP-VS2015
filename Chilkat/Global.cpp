@@ -119,6 +119,10 @@ void Chilkat::Global::ThreadPoolLogPath::set(String ^newVal)
     {
         if (m_impl) m_impl->put_ThreadPoolLogPath(newVal ? newVal->Data() : L"");
     }
+int Chilkat::Global::UnlockStatus::get()
+    {
+    return m_impl ? m_impl->get_UnlockStatus() : 0;
+    }
 Boolean Chilkat::Global::VerboseLogging::get()
     {
     return m_impl ? m_impl->get_VerboseLogging() : false;

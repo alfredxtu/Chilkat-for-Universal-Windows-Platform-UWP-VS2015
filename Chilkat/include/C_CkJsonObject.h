@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.59
+// This is a generated source file for Chilkat version 9.5.0.62
 #ifndef _C_CkJsonObject_H
 #define _C_CkJsonObject_H
 #include "chilkatDefs.h"
@@ -59,6 +59,7 @@ CK_VISIBLE_PUBLIC BOOL CkJsonObject_Delete(HCkJsonObject cHandle, const char *na
 CK_VISIBLE_PUBLIC BOOL CkJsonObject_DeleteAt(HCkJsonObject cHandle, int index);
 CK_VISIBLE_PUBLIC BOOL CkJsonObject_Emit(HCkJsonObject cHandle, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkJsonObject_emit(HCkJsonObject cHandle);
+CK_VISIBLE_PUBLIC BOOL CkJsonObject_EmitSb(HCkJsonObject cHandle, HCkStringBuilder sb);
 CK_VISIBLE_PUBLIC BOOL CkJsonObject_FirebaseApplyEvent(HCkJsonObject cHandle, const char *name, const char *data);
 CK_VISIBLE_PUBLIC BOOL CkJsonObject_FirebasePatch(HCkJsonObject cHandle, const char *jsonPath, const char *jsonData);
 CK_VISIBLE_PUBLIC BOOL CkJsonObject_FirebasePut(HCkJsonObject cHandle, const char *jsonPath, const char *value);
@@ -71,6 +72,7 @@ CK_VISIBLE_PUBLIC BOOL CkJsonObject_IsNullAt(HCkJsonObject cHandle, int index);
 CK_VISIBLE_PUBLIC BOOL CkJsonObject_IsNullOf(HCkJsonObject cHandle, const char *jsonPath);
 CK_VISIBLE_PUBLIC BOOL CkJsonObject_Load(HCkJsonObject cHandle, const char *json);
 CK_VISIBLE_PUBLIC BOOL CkJsonObject_LoadFile(HCkJsonObject cHandle, const char *path);
+CK_VISIBLE_PUBLIC BOOL CkJsonObject_LoadSb(HCkJsonObject cHandle, HCkStringBuilder sb);
 CK_VISIBLE_PUBLIC BOOL CkJsonObject_NameAt(HCkJsonObject cHandle, int index, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkJsonObject_nameAt(HCkJsonObject cHandle, int index);
 CK_VISIBLE_PUBLIC HCkJsonObject CkJsonObject_ObjectAt(HCkJsonObject cHandle, int index);

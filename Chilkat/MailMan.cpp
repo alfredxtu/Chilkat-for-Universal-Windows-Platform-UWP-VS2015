@@ -13,6 +13,8 @@
 #include "include/CkEmailW.h"
 #include "include/CkStringArrayW.h"
 #include "include/CkCertW.h"
+#include "include/CkBinDataW.h"
+#include "include/CkStringBuilderW.h"
 #include "include/CkPrivateKeyW.h"
 #include "include/CkSshKeyW.h"
 #include "include/CkXmlCertVaultW.h"
@@ -22,6 +24,8 @@
 #include "Email.h"
 #include "StringArray.h"
 #include "Cert.h"
+#include "BinData.h"
+#include "StringBuilder.h"
 #include "PrivateKey.h"
 #include "SshKey.h"
 #include "XmlCertVault.h"
@@ -1472,6 +1476,20 @@ Platform::String ^MailMan::RenderToMime(Chilkat::Email ^email)
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
+Boolean MailMan::RenderToMimeBd(Chilkat::Email ^email, Chilkat::BinData ^renderedMime)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (email == nullptr) { return false; }
+	CkEmailW* pObj0 = email->m_impl;
+	 if (!pObj0) { return false; }
+	if (renderedMime == nullptr) { return false; }
+	CkBinDataW* pObj1 = renderedMime->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxMailManProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->RenderToMimeBd(*pObj0,*pObj1);
+    }
 Windows::Foundation::Collections::IVector<uint8>^MailMan::RenderToMimeBytes(Chilkat::Email ^email)
     {
 	if (m_impl == nullptr) { return nullptr; }
@@ -1486,6 +1504,20 @@ Windows::Foundation::Collections::IVector<uint8>^MailMan::RenderToMimeBytes(Chil
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
+    }
+Boolean MailMan::RenderToMimeSb(Chilkat::Email ^email, Chilkat::StringBuilder ^renderedMime)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (email == nullptr) { return false; }
+	CkEmailW* pObj0 = email->m_impl;
+	 if (!pObj0) { return false; }
+	if (renderedMime == nullptr) { return false; }
+	CkStringBuilderW* pObj1 = renderedMime->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxMailManProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->RenderToMimeSb(*pObj0,*pObj1);
     }
 IAsyncOperation<Boolean>^ MailMan::SendBundleAsync(Chilkat::EmailBundle ^bundle)
     {

@@ -13,6 +13,7 @@
 #include "CkMultiByteBase.h"
 
 class CkByteData;
+class CkStringBuilder;
 
 
 
@@ -608,6 +609,10 @@ class CK_VISIBLE_PUBLIC CkXml  : public CkMultiByteBase
 	const char *xml(void);
 
 
+	// Emits the XML to a StringBuilder object.
+	bool GetXmlSb(CkStringBuilder &sb);
+
+
 	// Returns true if the node contains an attribute with the specified name.
 	bool HasAttribute(const char *name);
 
@@ -652,6 +657,10 @@ class CK_VISIBLE_PUBLIC CkXml  : public CkMultiByteBase
 
 	// Updates the internal reference of the caller to its last child.
 	bool LastChild2(void);
+
+
+	// Loads XML from the contents of a StringBuilder object.
+	bool LoadSb(CkStringBuilder &sb, bool autoTrim);
 
 
 	// Loads an XML document from a memory buffer and returns true if successful. The
@@ -773,9 +782,9 @@ class CK_VISIBLE_PUBLIC CkXml  : public CkMultiByteBase
 
 	// Returns the first node having content matching the contentPattern. The contentPattern is a
 	// case-sensitive string that may contain any number of '*'s, each representing 0
-	// or more occurances of any character. The search is breadth-first over the
+	// or more occurrences of any character. The search is breadth-first over the
 	// sub-tree rooted at the caller. A match is returned only after the search has
-	// traversed past the node indicated by afterPtr. To find the 1st occurance, set afterPtr
+	// traversed past the node indicated by afterPtr. To find the 1st occurrence, set afterPtr
 	// equal to _NULL_. (For the ActiveX implementation, the afterPtr should never be
 	// _NULL_. A reference to the caller's node should be passed instead.)
 	// 
@@ -793,10 +802,10 @@ class CK_VISIBLE_PUBLIC CkXml  : public CkMultiByteBase
 
 	// Returns the first node having a tag equal to tag, an attribute named attr,
 	// whose value matches valuePattern. The valuePattern is a case-sensitive string that may contain
-	// any number of '*'s, each representing 0 or more occurances of any character. The
-	// search is breadth-first over the sub-tree rooted at the caller. A match is
+	// any number of '*'s, each representing 0 or more occurrences of any character.
+	// The search is breadth-first over the sub-tree rooted at the caller. A match is
 	// returned only after the search has traversed past the node indicated by afterPtr. To
-	// find the 1st occurance, set afterPtr equal to _NULL_. (For the ActiveX
+	// find the 1st occurrence, set afterPtr equal to _NULL_. (For the ActiveX
 	// implementation, the afterPtr should never be _NULL_. A reference to the caller's
 	// node should be passed instead.)
 	// 
@@ -814,11 +823,12 @@ class CK_VISIBLE_PUBLIC CkXml  : public CkMultiByteBase
 
 	// Returns the first node having a tag equal to tag, whose content matches contentPattern.
 	// The contentPattern is a case-sensitive string that may contain any number of '*'s, each
-	// representing 0 or more occurances of any character. The search is breadth-first
+	// representing 0 or more occurrences of any character. The search is breadth-first
 	// over the sub-tree rooted at the caller. A match is returned only after the
-	// search has traversed past the node indicated by afterPtr. To find the 1st occurance,
-	// set afterPtr equal to _NULL_. (For the ActiveX implementation, the afterPtr should never
-	// be _NULL_. A reference to the caller's node should be passed instead.)
+	// search has traversed past the node indicated by afterPtr. To find the 1st
+	// occurrence, set afterPtr equal to _NULL_. (For the ActiveX implementation, the afterPtr
+	// should never be _NULL_. A reference to the caller's node should be passed
+	// instead.)
 	// 
 	// To iterate over matching nodes, the returned node can be passed in afterPtr for the
 	// next call to SearchForContent, until the method returns _NULL_.
@@ -834,9 +844,10 @@ class CK_VISIBLE_PUBLIC CkXml  : public CkMultiByteBase
 
 	// Returns the first node having a tag equal to tag. The search is breadth-first
 	// over the sub-tree rooted at the caller. A match is returned only after the
-	// search has traversed past the node indicated by afterPtr. To find the 1st occurance,
-	// set afterPtr equal to _NULL_. (For the ActiveX implementation, the afterPtr should never
-	// be _NULL_. A reference to the caller's node should be passed instead.)
+	// search has traversed past the node indicated by afterPtr. To find the 1st
+	// occurrence, set afterPtr equal to _NULL_. (For the ActiveX implementation, the afterPtr
+	// should never be _NULL_. A reference to the caller's node should be passed
+	// instead.)
 	// 
 	// To iterate over matching nodes, the returned node can be passed in afterPtr for the
 	// next call to SearchForTag, until the method returns _NULL_.

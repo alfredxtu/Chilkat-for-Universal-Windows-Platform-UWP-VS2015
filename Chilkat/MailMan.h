@@ -28,6 +28,8 @@ namespace Chilkat
 	ref class Email;
 	ref class StringArray;
 	ref class Cert;
+	ref class BinData;
+	ref class StringBuilder;
 	ref class PrivateKey;
 	ref class SshKey;
 	ref class XmlCertVault;
@@ -620,7 +622,11 @@ public ref class MailMan sealed
 
 	Platform::String ^RenderToMime(Chilkat::Email ^email);
 
+	Boolean RenderToMimeBd(Chilkat::Email ^email, Chilkat::BinData ^renderedMime);
+
 	Windows::Foundation::Collections::IVector<uint8>^RenderToMimeBytes(Chilkat::Email ^email);
+
+	Boolean RenderToMimeSb(Chilkat::Email ^email, Chilkat::StringBuilder ^renderedMime);
 
 	IAsyncOperation<Boolean>^ SendBundleAsync(Chilkat::EmailBundle ^bundle);
 

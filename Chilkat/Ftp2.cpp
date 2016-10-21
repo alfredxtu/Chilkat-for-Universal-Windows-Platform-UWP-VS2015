@@ -9,8 +9,12 @@
 #include "include/CkDateTime.h"
 #include "include/CkFtp2W.h"
 		
+#include "include/CkBinDataW.h"
+#include "include/CkStringBuilderW.h"
 #include "include/CkCertW.h"
 #include "CkDateTime.h"
+#include "BinData.h"
+#include "StringBuilder.h"
 #include "Cert.h"
 
 
@@ -1135,6 +1139,23 @@ return create_async([this, remoteFilePath, localFilePath]() -> Boolean
 
 });
     }
+IAsyncOperation<Boolean>^ Ftp2::GetFileBdAsync(Platform::String ^remoteFilePath, Chilkat::BinData ^binData)
+    {
+return create_async([this, remoteFilePath, binData]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj1 = binData->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxFtp2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->GetFileBd(remoteFilePath ? remoteFilePath->Data() : L"",*pObj1);
+
+});
+    }
 IAsyncOperation<Platform::String ^>^ Ftp2::GetFilenameAsync(int index)
     {
 return create_async([this, index]() -> Platform::String ^
@@ -1148,6 +1169,23 @@ return create_async([this, index]() -> Platform::String ^
 	const wchar_t *retStr = m_impl->getFilename(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+
+});
+    }
+IAsyncOperation<Boolean>^ Ftp2::GetFileSbAsync(Platform::String ^remoteFilePath, Platform::String ^charset, Chilkat::StringBuilder ^sb)
+    {
+return create_async([this, remoteFilePath, charset, sb]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj2 = sb->m_impl;
+	 if (!pObj2) { return false; }
+	// --- prep output arg ---
+	CxFtp2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->GetFileSb(remoteFilePath ? remoteFilePath->Data() : L"",charset ? charset->Data() : L"",*pObj2);
 
 });
     }
@@ -1669,6 +1707,23 @@ return create_async([this, localFilePath, remoteFilePath]() -> Boolean
 
 });
     }
+IAsyncOperation<Boolean>^ Ftp2::PutFileBdAsync(Chilkat::BinData ^binData, Platform::String ^remoteFilePath)
+    {
+return create_async([this, binData, remoteFilePath]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj0 = binData->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxFtp2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->PutFileBd(*pObj0,remoteFilePath ? remoteFilePath->Data() : L"");
+
+});
+    }
 IAsyncOperation<Boolean>^ Ftp2::PutFileFromBinaryDataAsync(Platform::String ^remoteFilename, Windows::Foundation::Collections::IVector<uint8>^content)
     {
 return create_async([this, remoteFilename, content]() -> Boolean
@@ -1697,6 +1752,23 @@ return create_async([this, remoteFilename, textData, charset]() -> Boolean
 	CxFtp2Progress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->PutFileFromTextData(remoteFilename ? remoteFilename->Data() : L"",textData ? textData->Data() : L"",charset ? charset->Data() : L"");
+
+});
+    }
+IAsyncOperation<Boolean>^ Ftp2::PutFileSbAsync(Chilkat::StringBuilder ^sb, Platform::String ^charset, Boolean includeBom, Platform::String ^remoteFilePath)
+    {
+return create_async([this, sb, charset, includeBom, remoteFilePath]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj0 = sb->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxFtp2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->PutFileSb(*pObj0,charset ? charset->Data() : L"",includeBom,remoteFilePath ? remoteFilePath->Data() : L"");
 
 });
     }

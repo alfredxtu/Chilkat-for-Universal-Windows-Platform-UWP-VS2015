@@ -13,6 +13,7 @@
 #include "CkWideCharBase.h"
 
 class CkJsonArrayW;
+class CkStringBuilderW;
 
 
 
@@ -194,6 +195,9 @@ class CK_VISIBLE_PUBLIC CkJsonObjectW  : public CkWideCharBase
 	// Writes the JSON document (rooted at the caller) and returns as a string.
 	const wchar_t *emit(void);
 
+	// Writes the JSON to a StringBuilder object.
+	bool EmitSb(CkStringBuilderW &sb);
+
 	// Applies a Firebase event to the JSON. The data contains JSON having a format
 	// such as
 	// {"path": "/", "data": {"a": 1, "b": 2}}
@@ -249,6 +253,9 @@ class CK_VISIBLE_PUBLIC CkJsonObjectW  : public CkWideCharBase
 	// Loads a JSON file into this JSON object. The path is the file path to the JSON
 	// file.
 	bool LoadFile(const wchar_t *path);
+
+	// Loads JSON from the contents of a StringBuilder object.
+	bool LoadSb(CkStringBuilderW &sb);
 
 	// Returns the name of the Nth member. Indexing is 0-based (the 1st member is at
 	// index 0).

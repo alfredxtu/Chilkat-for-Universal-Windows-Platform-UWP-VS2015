@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.59
+// This is a generated source file for Chilkat version 9.5.0.62
 #ifndef _C_CkImapWH
 #define _C_CkImapWH
 #include "chilkatDefs.h"
@@ -159,6 +159,8 @@ CK_VISIBLE_PUBLIC BOOL CkImapW_AppendMimeWithDateStr(HCkImapW cHandle, const wch
 CK_VISIBLE_PUBLIC HCkTaskW CkImapW_AppendMimeWithDateStrAsync(HCkImapW cHandle, const wchar_t *mailbox, const wchar_t *mimeText, const wchar_t *internalDateStr);
 CK_VISIBLE_PUBLIC BOOL CkImapW_AppendMimeWithFlags(HCkImapW cHandle, const wchar_t *mailbox, const wchar_t *mimeText, BOOL seen, BOOL flagged, BOOL answered, BOOL draft);
 CK_VISIBLE_PUBLIC HCkTaskW CkImapW_AppendMimeWithFlagsAsync(HCkImapW cHandle, const wchar_t *mailbox, const wchar_t *mimeText, BOOL seen, BOOL flagged, BOOL answered, BOOL draft);
+CK_VISIBLE_PUBLIC BOOL CkImapW_AppendMimeWithFlagsSb(HCkImapW cHandle, const wchar_t *mailbox, HCkStringBuilderW sbMime, BOOL seen, BOOL flagged, BOOL answered, BOOL draft);
+CK_VISIBLE_PUBLIC HCkTaskW CkImapW_AppendMimeWithFlagsSbAsync(HCkImapW cHandle, const wchar_t *mailbox, HCkStringBuilderW sbMime, BOOL seen, BOOL flagged, BOOL answered, BOOL draft);
 CK_VISIBLE_PUBLIC BOOL CkImapW_Capability(HCkImapW cHandle, HCkString outStr);
 CK_VISIBLE_PUBLIC const wchar_t *CkImapW_capability(HCkImapW cHandle);
 CK_VISIBLE_PUBLIC HCkTaskW CkImapW_CapabilityAsync(HCkImapW cHandle);
@@ -190,8 +192,12 @@ CK_VISIBLE_PUBLIC BOOL CkImapW_ExpungeAndClose(HCkImapW cHandle);
 CK_VISIBLE_PUBLIC HCkTaskW CkImapW_ExpungeAndCloseAsync(HCkImapW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkImapW_FetchAttachment(HCkImapW cHandle, HCkEmailW emailObject, int attachmentIndex, const wchar_t *saveToPath);
 CK_VISIBLE_PUBLIC HCkTaskW CkImapW_FetchAttachmentAsync(HCkImapW cHandle, HCkEmailW emailObject, int attachmentIndex, const wchar_t *saveToPath);
+CK_VISIBLE_PUBLIC BOOL CkImapW_FetchAttachmentBd(HCkImapW cHandle, HCkEmailW email, int attachmentIndex, HCkBinDataW binData);
+CK_VISIBLE_PUBLIC HCkTaskW CkImapW_FetchAttachmentBdAsync(HCkImapW cHandle, HCkEmailW email, int attachmentIndex, HCkBinDataW binData);
 CK_VISIBLE_PUBLIC BOOL CkImapW_FetchAttachmentBytes(HCkImapW cHandle, HCkEmailW email, int attachIndex, HCkByteData outBytes);
 CK_VISIBLE_PUBLIC HCkTaskW CkImapW_FetchAttachmentBytesAsync(HCkImapW cHandle, HCkEmailW email, int attachIndex);
+CK_VISIBLE_PUBLIC BOOL CkImapW_FetchAttachmentSb(HCkImapW cHandle, HCkEmailW email, int attachmentIndex, const wchar_t *charset, HCkStringBuilderW sb);
+CK_VISIBLE_PUBLIC HCkTaskW CkImapW_FetchAttachmentSbAsync(HCkImapW cHandle, HCkEmailW email, int attachmentIndex, const wchar_t *charset, HCkStringBuilderW sb);
 CK_VISIBLE_PUBLIC BOOL CkImapW_FetchAttachmentString(HCkImapW cHandle, HCkEmailW emailObject, int attachmentIndex, const wchar_t *charset, HCkString outStr);
 CK_VISIBLE_PUBLIC const wchar_t *CkImapW_fetchAttachmentString(HCkImapW cHandle, HCkEmailW emailObject, int attachmentIndex, const wchar_t *charset);
 CK_VISIBLE_PUBLIC HCkTaskW CkImapW_FetchAttachmentStringAsync(HCkImapW cHandle, HCkEmailW emailObject, int attachmentIndex, const wchar_t *charset);
@@ -217,6 +223,8 @@ CK_VISIBLE_PUBLIC HCkTaskW CkImapW_FetchSingleAsync(HCkImapW cHandle, int msgId,
 CK_VISIBLE_PUBLIC BOOL CkImapW_FetchSingleAsMime(HCkImapW cHandle, int msgId, BOOL bUid, HCkString outStrMime);
 CK_VISIBLE_PUBLIC const wchar_t *CkImapW_fetchSingleAsMime(HCkImapW cHandle, int msgId, BOOL bUid);
 CK_VISIBLE_PUBLIC HCkTaskW CkImapW_FetchSingleAsMimeAsync(HCkImapW cHandle, int msgId, BOOL bUid);
+CK_VISIBLE_PUBLIC BOOL CkImapW_FetchSingleAsMimeSb(HCkImapW cHandle, int msgId, BOOL bUid, HCkStringBuilderW sbMime);
+CK_VISIBLE_PUBLIC HCkTaskW CkImapW_FetchSingleAsMimeSbAsync(HCkImapW cHandle, int msgId, BOOL bUid, HCkStringBuilderW sbMime);
 CK_VISIBLE_PUBLIC HCkEmailW CkImapW_FetchSingleHeader(HCkImapW cHandle, int msgId, BOOL bUid);
 CK_VISIBLE_PUBLIC HCkTaskW CkImapW_FetchSingleHeaderAsync(HCkImapW cHandle, int msgId, BOOL bUid);
 CK_VISIBLE_PUBLIC BOOL CkImapW_FetchSingleHeaderAsMime(HCkImapW cHandle, int msgId, BOOL bUID, HCkString outStr);

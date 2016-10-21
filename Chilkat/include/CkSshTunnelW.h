@@ -581,7 +581,13 @@ class CK_VISIBLE_PUBLIC CkSshTunnelW  : public CkClassWithCallbacksW
 	// ----------------------
 	// Methods
 	// ----------------------
-	// Returns true if the underlying TCP socket is connected to the SFTP server.
+	// Authenticates with the SSH server using public-key authentication. The
+	// corresponding public key must have been installed on the SSH server for the
+	// username. Authentication will succeed if the matching privateKey is provided.
+	// 
+	// Important: When reporting problems, please send the full contents of the
+	// LastErrorText property to support@chilkatsoft.com.
+	// 
 	bool AuthenticatePk(const wchar_t *username, CkSshKeyW &privateKey);
 
 	// Creates an asynchronous task to call the AuthenticatePk method with the
@@ -667,6 +673,10 @@ class CK_VISIBLE_PUBLIC CkSshTunnelW  : public CkClassWithCallbacksW
 	// Disconnects all clients, keeping the SSH tunnel open. If waitForThreads is true, the
 	// method will wait for the client threads to exit before returning.
 	bool DisconnectAllClients(bool waitForThreads);
+
+	// Returns true if connected to the SSH server. Returns false if the connection
+	// has been lost (or was never established).
+	bool IsSshConnected(void);
 
 	// Stops the listen background thread. It is possible to continue accepting
 	// connections by re-calling BeginAccepting. If waitForThread is true, the method will

@@ -10,7 +10,9 @@
 #include "include/CkJsonObjectW.h"
 		
 #include "include/CkJsonArrayW.h"
+#include "include/CkStringBuilderW.h"
 #include "JsonArray.h"
+#include "StringBuilder.h"
 
 
 using namespace Chilkat;
@@ -271,6 +273,15 @@ Platform::String ^JsonObject::Emit(void)
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
+Boolean JsonObject::EmitSb(Chilkat::StringBuilder ^sb)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj0 = sb->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->EmitSb(*pObj0);
+    }
 Boolean JsonObject::FirebaseApplyEvent(Platform::String ^name, Platform::String ^data)
     {
 	if (m_impl == nullptr) { return false; }
@@ -346,6 +357,15 @@ Boolean JsonObject::LoadFile(Platform::String ^path)
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->LoadFile(path ? path->Data() : L"");
+    }
+Boolean JsonObject::LoadSb(Chilkat::StringBuilder ^sb)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj0 = sb->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->LoadSb(*pObj0);
     }
 Platform::String ^JsonObject::NameAt(int index)
     {

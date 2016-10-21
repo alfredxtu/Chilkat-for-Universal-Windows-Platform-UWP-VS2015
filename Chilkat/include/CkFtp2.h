@@ -15,6 +15,8 @@
 class CkTask;
 class CkByteData;
 class CkDateTime;
+class CkBinData;
+class CkStringBuilder;
 class CkCert;
 class CkFtp2Progress;
 
@@ -2628,6 +2630,23 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 	CkTask *GetFileAsync(const char *remoteFilePath, const char *localFilePath);
 
 
+	// Downloads a file from the FTP server into a BinData object.
+	// 
+	// If the remoteFilePath contains non-English characters, it may be necessary to set the
+	// DirListingCharset property equal to "utf-8". Please refer to the documentation
+	// for the DirListingCharset property.
+	// 
+	bool GetFileBd(const char *remoteFilePath, CkBinData &binData);
+
+	// Downloads a file from the FTP server into a BinData object.
+	// 
+	// If the remoteFilePath contains non-English characters, it may be necessary to set the
+	// DirListingCharset property equal to "utf-8". Please refer to the documentation
+	// for the DirListingCharset property.
+	// 
+	CkTask *GetFileBdAsync(const char *remoteFilePath, CkBinData &binData);
+
+
 	// Returns the filename for the Nth file or sub-directory in the current remote
 	// directory. The first file/dir is at index 0, and the last one is at index
 	// (NumFilesAndDirs-1)
@@ -2646,6 +2665,23 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 	// directory. The first file/dir is at index 0, and the last one is at index
 	// (NumFilesAndDirs-1)
 	CkTask *GetFilenameAsync(int index);
+
+
+	// Downloads a file from the FTP server into a StringBuilder object.
+	// 
+	// If the remoteFilePath contains non-English characters, it may be necessary to set the
+	// DirListingCharset property equal to "utf-8". Please refer to the documentation
+	// for the DirListingCharset property.
+	// 
+	bool GetFileSb(const char *remoteFilePath, const char *charset, CkStringBuilder &sb);
+
+	// Downloads a file from the FTP server into a StringBuilder object.
+	// 
+	// If the remoteFilePath contains non-English characters, it may be necessary to set the
+	// DirListingCharset property equal to "utf-8". Please refer to the documentation
+	// for the DirListingCharset property.
+	// 
+	CkTask *GetFileSbAsync(const char *remoteFilePath, const char *charset, CkStringBuilder &sb);
 
 
 	// Returns group name, if available, for the Nth file. If empty, then no group
@@ -4198,6 +4234,23 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 	CkTask *PutFileAsync(const char *localFilePath, const char *remoteFilePath);
 
 
+	// Uploads the contents of a BinData to a remote file.
+	// 
+	// If the remoteFilePath contains non-English characters, it may be necessary to set the
+	// DirListingCharset property equal to "utf-8". Please refer to the documentation
+	// for the DirListingCharset property.
+	// 
+	bool PutFileBd(CkBinData &binData, const char *remoteFilePath);
+
+	// Uploads the contents of a BinData to a remote file.
+	// 
+	// If the remoteFilePath contains non-English characters, it may be necessary to set the
+	// DirListingCharset property equal to "utf-8". Please refer to the documentation
+	// for the DirListingCharset property.
+	// 
+	CkTask *PutFileBdAsync(CkBinData &binData, const char *remoteFilePath);
+
+
 	// Creates a file on the remote server containing the data passed in a byte array.
 	bool PutFileFromBinaryData(const char *remoteFilename, CkByteData &content);
 
@@ -4210,6 +4263,23 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 
 	// Creates a file on the remote server containing the data passed in a string.
 	CkTask *PutFileFromTextDataAsync(const char *remoteFilename, const char *textData, const char *charset);
+
+
+	// Uploads the contents of a StringBuilder to a remote file.
+	// 
+	// If the charset contains non-English characters, it may be necessary to set the
+	// DirListingCharset property equal to "utf-8". Please refer to the documentation
+	// for the DirListingCharset property.
+	// 
+	bool PutFileSb(CkStringBuilder &sb, const char *charset, bool includeBom, const char *remoteFilePath);
+
+	// Uploads the contents of a StringBuilder to a remote file.
+	// 
+	// If the charset contains non-English characters, it may be necessary to set the
+	// DirListingCharset property equal to "utf-8". Please refer to the documentation
+	// for the DirListingCharset property.
+	// 
+	CkTask *PutFileSbAsync(CkStringBuilder &sb, const char *charset, bool includeBom, const char *remoteFilePath);
 
 
 	// Executes an "FTP plan" (created by the CreatePlan method) and logs each

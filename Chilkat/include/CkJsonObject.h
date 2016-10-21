@@ -13,6 +13,7 @@
 #include "CkMultiByteBase.h"
 
 class CkJsonArray;
+class CkStringBuilder;
 
 
 
@@ -209,6 +210,10 @@ class CK_VISIBLE_PUBLIC CkJsonObject  : public CkMultiByteBase
 	// Writes the JSON document (rooted at the caller) and returns as a string.
 	const char *emit(void);
 
+	// Writes the JSON to a StringBuilder object.
+	bool EmitSb(CkStringBuilder &sb);
+
+
 	// Applies a Firebase event to the JSON. The data contains JSON having a format
 	// such as
 	// {"path": "/", "data": {"a": 1, "b": 2}}
@@ -275,6 +280,10 @@ class CK_VISIBLE_PUBLIC CkJsonObject  : public CkMultiByteBase
 	// Loads a JSON file into this JSON object. The path is the file path to the JSON
 	// file.
 	bool LoadFile(const char *path);
+
+
+	// Loads JSON from the contents of a StringBuilder object.
+	bool LoadSb(CkStringBuilder &sb);
 
 
 	// Returns the name of the Nth member. Indexing is 0-based (the 1st member is at

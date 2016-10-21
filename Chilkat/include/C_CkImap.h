@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.59
+// This is a generated source file for Chilkat version 9.5.0.62
 #ifndef _C_CkImap_H
 #define _C_CkImap_H
 #include "chilkatDefs.h"
@@ -161,6 +161,8 @@ CK_VISIBLE_PUBLIC BOOL CkImap_AppendMimeWithDateStr(HCkImap cHandle, const char 
 CK_VISIBLE_PUBLIC HCkTask CkImap_AppendMimeWithDateStrAsync(HCkImap cHandle, const char *mailbox, const char *mimeText, const char *internalDateStr);
 CK_VISIBLE_PUBLIC BOOL CkImap_AppendMimeWithFlags(HCkImap cHandle, const char *mailbox, const char *mimeText, BOOL seen, BOOL flagged, BOOL answered, BOOL draft);
 CK_VISIBLE_PUBLIC HCkTask CkImap_AppendMimeWithFlagsAsync(HCkImap cHandle, const char *mailbox, const char *mimeText, BOOL seen, BOOL flagged, BOOL answered, BOOL draft);
+CK_VISIBLE_PUBLIC BOOL CkImap_AppendMimeWithFlagsSb(HCkImap cHandle, const char *mailbox, HCkStringBuilder sbMime, BOOL seen, BOOL flagged, BOOL answered, BOOL draft);
+CK_VISIBLE_PUBLIC HCkTask CkImap_AppendMimeWithFlagsSbAsync(HCkImap cHandle, const char *mailbox, HCkStringBuilder sbMime, BOOL seen, BOOL flagged, BOOL answered, BOOL draft);
 CK_VISIBLE_PUBLIC BOOL CkImap_Capability(HCkImap cHandle, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkImap_capability(HCkImap cHandle);
 CK_VISIBLE_PUBLIC HCkTask CkImap_CapabilityAsync(HCkImap cHandle);
@@ -192,8 +194,12 @@ CK_VISIBLE_PUBLIC BOOL CkImap_ExpungeAndClose(HCkImap cHandle);
 CK_VISIBLE_PUBLIC HCkTask CkImap_ExpungeAndCloseAsync(HCkImap cHandle);
 CK_VISIBLE_PUBLIC BOOL CkImap_FetchAttachment(HCkImap cHandle, HCkEmail emailObject, int attachmentIndex, const char *saveToPath);
 CK_VISIBLE_PUBLIC HCkTask CkImap_FetchAttachmentAsync(HCkImap cHandle, HCkEmail emailObject, int attachmentIndex, const char *saveToPath);
+CK_VISIBLE_PUBLIC BOOL CkImap_FetchAttachmentBd(HCkImap cHandle, HCkEmail email, int attachmentIndex, HCkBinData binData);
+CK_VISIBLE_PUBLIC HCkTask CkImap_FetchAttachmentBdAsync(HCkImap cHandle, HCkEmail email, int attachmentIndex, HCkBinData binData);
 CK_VISIBLE_PUBLIC BOOL CkImap_FetchAttachmentBytes(HCkImap cHandle, HCkEmail email, int attachIndex, HCkByteData outBytes);
 CK_VISIBLE_PUBLIC HCkTask CkImap_FetchAttachmentBytesAsync(HCkImap cHandle, HCkEmail email, int attachIndex);
+CK_VISIBLE_PUBLIC BOOL CkImap_FetchAttachmentSb(HCkImap cHandle, HCkEmail email, int attachmentIndex, const char *charset, HCkStringBuilder sb);
+CK_VISIBLE_PUBLIC HCkTask CkImap_FetchAttachmentSbAsync(HCkImap cHandle, HCkEmail email, int attachmentIndex, const char *charset, HCkStringBuilder sb);
 CK_VISIBLE_PUBLIC BOOL CkImap_FetchAttachmentString(HCkImap cHandle, HCkEmail emailObject, int attachmentIndex, const char *charset, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkImap_fetchAttachmentString(HCkImap cHandle, HCkEmail emailObject, int attachmentIndex, const char *charset);
 CK_VISIBLE_PUBLIC HCkTask CkImap_FetchAttachmentStringAsync(HCkImap cHandle, HCkEmail emailObject, int attachmentIndex, const char *charset);
@@ -219,6 +225,8 @@ CK_VISIBLE_PUBLIC HCkTask CkImap_FetchSingleAsync(HCkImap cHandle, int msgId, BO
 CK_VISIBLE_PUBLIC BOOL CkImap_FetchSingleAsMime(HCkImap cHandle, int msgId, BOOL bUid, HCkString outStrMime);
 CK_VISIBLE_PUBLIC const char *CkImap_fetchSingleAsMime(HCkImap cHandle, int msgId, BOOL bUid);
 CK_VISIBLE_PUBLIC HCkTask CkImap_FetchSingleAsMimeAsync(HCkImap cHandle, int msgId, BOOL bUid);
+CK_VISIBLE_PUBLIC BOOL CkImap_FetchSingleAsMimeSb(HCkImap cHandle, int msgId, BOOL bUid, HCkStringBuilder sbMime);
+CK_VISIBLE_PUBLIC HCkTask CkImap_FetchSingleAsMimeSbAsync(HCkImap cHandle, int msgId, BOOL bUid, HCkStringBuilder sbMime);
 CK_VISIBLE_PUBLIC HCkEmail CkImap_FetchSingleHeader(HCkImap cHandle, int msgId, BOOL bUid);
 CK_VISIBLE_PUBLIC HCkTask CkImap_FetchSingleHeaderAsync(HCkImap cHandle, int msgId, BOOL bUid);
 CK_VISIBLE_PUBLIC BOOL CkImap_FetchSingleHeaderAsMime(HCkImap cHandle, int msgId, BOOL bUID, HCkString outStr);

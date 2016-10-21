@@ -12,6 +12,7 @@
 #include "CkString.h"
 #include "CkMultiByteBase.h"
 
+class CkStringTable;
 
 
 
@@ -58,6 +59,13 @@ class CK_VISIBLE_PUBLIC CkHashtable  : public CkMultiByteBase
 	bool AddInt(const char *key, int value);
 
 
+	// Adds URL query parameters into the hashtable. The queryParams has the form:
+	// "field1=value1&field2=value2&field3=value3...". It is assumed that the values
+	// are URL encoded, and this method automatically URL decodes the values prior to
+	// inserting into the hashtable.
+	bool AddQueryParams(const char *queryParams);
+
+
 	// Adds or replaces an entry with the given key and string value to the hash table.
 	// Returns true if a new hash entry was added or replaced. Returns false if an
 	// out-of-memory condition occurred.
@@ -85,6 +93,10 @@ class CK_VISIBLE_PUBLIC CkHashtable  : public CkMultiByteBase
 	// Determines if a given key is contained within the hash table. Returns true if
 	// the key exists, otherwise returns false.
 	bool Contains(const char *key);
+
+
+	// Appends the complete set of hashtable key strings to strTable.
+	bool GetKeys(CkStringTable &strTable);
 
 
 	// Returns the integer value associated with the specified key. If the key is not

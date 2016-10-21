@@ -16,6 +16,8 @@ class CkByteData;
 class CkCert;
 class CkStringArray;
 class CkDateTime;
+class CkBinData;
+class CkStringBuilder;
 class CkCertChain;
 class CkTask;
 class CkCsp;
@@ -1054,12 +1056,11 @@ class CK_VISIBLE_PUBLIC CkEmail  : public CkMultiByteBase
 	CkEmail *Clone(void);
 
 
-	// Important: New programs should ComputeGlobalKey2 instead. A compatibility issue
-	// was detected in versions after Chilkat v9.5.0.54. The ComputeGlobalKey2 provides
-	// a compatibility mode argument to maintain backward compatibility.
+	// Important: New programs should ComputeGlobalKey2 instead. This method did not
+	// adequately canonicalize the string passed to the digest-MD5 hash and therefore
+	// different versions of Chilkat may produce different results with this method.
 	// 
-	// Computes a global unique key for the email that may be used as a key for a
-	// relational database table (or anything else). The key is created by a digest-MD5
+	// Computes a global unique key for the email. The key is created by a digest-MD5
 	// hash of the concatenation of the following header fields: Message-ID, Subject,
 	// From, Date, To. (The header fields are Q/B decoded if necessary, converted to
 	// the utf-8 encoding, concatenated, and hashed using MD5.) The 16-byte MD5 hash is
@@ -1069,12 +1070,11 @@ class CK_VISIBLE_PUBLIC CkEmail  : public CkMultiByteBase
 	// 
 	bool ComputeGlobalKey(const char *encoding, bool bFold, CkString &outStr);
 
-	// Important: New programs should ComputeGlobalKey2 instead. A compatibility issue
-	// was detected in versions after Chilkat v9.5.0.54. The ComputeGlobalKey2 provides
-	// a compatibility mode argument to maintain backward compatibility.
+	// Important: New programs should ComputeGlobalKey2 instead. This method did not
+	// adequately canonicalize the string passed to the digest-MD5 hash and therefore
+	// different versions of Chilkat may produce different results with this method.
 	// 
-	// Computes a global unique key for the email that may be used as a key for a
-	// relational database table (or anything else). The key is created by a digest-MD5
+	// Computes a global unique key for the email. The key is created by a digest-MD5
 	// hash of the concatenation of the following header fields: Message-ID, Subject,
 	// From, Date, To. (The header fields are Q/B decoded if necessary, converted to
 	// the utf-8 encoding, concatenated, and hashed using MD5.) The 16-byte MD5 hash is
@@ -1084,24 +1084,42 @@ class CK_VISIBLE_PUBLIC CkEmail  : public CkMultiByteBase
 	// 
 	const char *computeGlobalKey(const char *encoding, bool bFold);
 
-	// Computes a global unique key for the email that may be used as a key for a
-	// relational database table (or anything else). The key is created by a digest-MD5
-	// hash of the concatenation of the following header fields: Message-ID, Subject,
-	// From, Date, To. (The header fields are Q/B decoded if necessary, converted to
-	// the utf-8 encoding, concatenated, and hashed using MD5.) The 16-byte MD5 hash is
-	// returned as an encoded string. The encoding determines the encoding: base64, hex,
-	// url, etc. If bFold is true, then the 16-byte MD5 hash is folded to 8 bytes with
-	// an XOR to produce a shorter key.
+	// Computes a global unique key for the email. The key is created by a digest-MD5
+	// hash of the concatenation of the following:
+	// messageID + CRLF + subject + CRLF + from + CRLF + date + CRLF + recipientAddrs
+	// 
+	// messageID contains the contents of the Message-ID header field.
+	// subject contains the contents of the Subject header field, trimmed of whitespace from both ends, 
+	//     where TAB chars are converted to SPACE chars, and internal whitespace is trimmed so that 
+	//    no more than one SPACE char in a row exists.
+	// from contains the lowercase FROM header email address.
+	// date contains the contents of the DATE header field.
+	// toAddrs contains lowercase TO and CC recipient email addresses, comma separated, with duplicates removed, and sorted 
+	//     in ascending order.  The BCC addresses are NOT included.
+	// 
+	// (After calling this method, the LastErrorText property can be examined to see the string that was hashed.)
+	// The 16-byte MD5 hash is returned as an encoded string. The encoding determines the
+	// encoding: base64, hex, url, etc. If bFold is true, then the 16-byte MD5 hash is
+	// folded to 8 bytes with an XOR to produce a shorter key.
 	bool ComputeGlobalKey2(const char *encoding, bool bFold, CkString &outStr);
 
-	// Computes a global unique key for the email that may be used as a key for a
-	// relational database table (or anything else). The key is created by a digest-MD5
-	// hash of the concatenation of the following header fields: Message-ID, Subject,
-	// From, Date, To. (The header fields are Q/B decoded if necessary, converted to
-	// the utf-8 encoding, concatenated, and hashed using MD5.) The 16-byte MD5 hash is
-	// returned as an encoded string. The encoding determines the encoding: base64, hex,
-	// url, etc. If bFold is true, then the 16-byte MD5 hash is folded to 8 bytes with
-	// an XOR to produce a shorter key.
+	// Computes a global unique key for the email. The key is created by a digest-MD5
+	// hash of the concatenation of the following:
+	// messageID + CRLF + subject + CRLF + from + CRLF + date + CRLF + recipientAddrs
+	// 
+	// messageID contains the contents of the Message-ID header field.
+	// subject contains the contents of the Subject header field, trimmed of whitespace from both ends, 
+	//     where TAB chars are converted to SPACE chars, and internal whitespace is trimmed so that 
+	//    no more than one SPACE char in a row exists.
+	// from contains the lowercase FROM header email address.
+	// date contains the contents of the DATE header field.
+	// toAddrs contains lowercase TO and CC recipient email addresses, comma separated, with duplicates removed, and sorted 
+	//     in ascending order.  The BCC addresses are NOT included.
+	// 
+	// (After calling this method, the LastErrorText property can be examined to see the string that was hashed.)
+	// The 16-byte MD5 hash is returned as an encoded string. The encoding determines the
+	// encoding: base64, hex, url, etc. If bFold is true, then the 16-byte MD5 hash is
+	// folded to 8 bytes with an XOR to produce a shorter key.
 	const char *computeGlobalKey2(const char *encoding, bool bFold);
 
 	// Creates a new DSN (Delivery Status Notification) email having the format as
@@ -1641,8 +1659,18 @@ class CK_VISIBLE_PUBLIC CkEmail  : public CkMultiByteBase
 	const char *mime(void);
 
 
+	// Return the email as binary MIME containing the email header, body (or bodies),
+	// related items (if any), and all attachments. The MIME is loaded into the bindat.
+	bool GetMimeBd(CkBinData &bindat);
+
+
 	// Returns the full MIME of an email.
 	bool GetMimeBinary(CkByteData &outBytes);
+
+
+	// Return the email as MIME text containing the email header, body (or bodies),
+	// related items (if any), and all attachments. The MIME is loaded into the sb.
+	bool GetMimeSb(CkStringBuilder &sb);
 
 
 	// Returns the binary bytes of the Nth MIME sub-part having a specified content
@@ -2001,7 +2029,7 @@ class CK_VISIBLE_PUBLIC CkEmail  : public CkMultiByteBase
 	void RemoveAttachmentPaths(void);
 
 
-	// Removes by name all occurances of a header field.
+	// Removes by name all occurrences of a header field.
 	void RemoveHeaderField(const char *fieldName);
 
 
@@ -2127,6 +2155,11 @@ class CK_VISIBLE_PUBLIC CkEmail  : public CkMultiByteBase
 	bool SetEncryptCert(CkCert &cert);
 
 
+	// Loads an email with the MIME stored in a BinData object. The contents of the
+	// email object are completely replaced.
+	bool SetFromMimeBd(CkBinData &bindat);
+
+
 	// Loads the email object with the mimeBytes. If the email object already contained an
 	// email, it is entirely replaced. The character encoding (such as "utf-8",
 	// "iso-8859-1", etc.) of the bytes is automatically inferred from the content. If
@@ -2142,6 +2175,11 @@ class CK_VISIBLE_PUBLIC CkEmail  : public CkMultiByteBase
 	// "iso-8859-1", etc.).
 	// 
 	bool SetFromMimeBytes2(CkByteData &mimeBytes, const char *charset);
+
+
+	// Loads an email with the MIME stored in a StringBuilder object. The contents of
+	// the email object are completely replaced.
+	bool SetFromMimeSb(CkStringBuilder &sb);
 
 
 	// Loads an email with the contents of a .eml (i.e. MIME) contained in a string.

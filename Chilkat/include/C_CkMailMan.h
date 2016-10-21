@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.59
+// This is a generated source file for Chilkat version 9.5.0.62
 #ifndef _C_CkMailMan_H
 #define _C_CkMailMan_H
 #include "chilkatDefs.h"
@@ -318,7 +318,9 @@ CK_VISIBLE_PUBLIC BOOL CkMailMan_QuickSend(HCkMailMan cHandle, const char *fromA
 CK_VISIBLE_PUBLIC HCkTask CkMailMan_QuickSendAsync(HCkMailMan cHandle, const char *fromAddr, const char *toAddr, const char *subject, const char *body, const char *smtpServer);
 CK_VISIBLE_PUBLIC BOOL CkMailMan_RenderToMime(HCkMailMan cHandle, HCkEmail email, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkMailMan_renderToMime(HCkMailMan cHandle, HCkEmail email);
+CK_VISIBLE_PUBLIC BOOL CkMailMan_RenderToMimeBd(HCkMailMan cHandle, HCkEmail email, HCkBinData renderedMime);
 CK_VISIBLE_PUBLIC BOOL CkMailMan_RenderToMimeBytes(HCkMailMan cHandle, HCkEmail email, HCkByteData outBytes);
+CK_VISIBLE_PUBLIC BOOL CkMailMan_RenderToMimeSb(HCkMailMan cHandle, HCkEmail email, HCkStringBuilder renderedMime);
 CK_VISIBLE_PUBLIC BOOL CkMailMan_SaveLastError(HCkMailMan cHandle, const char *path);
 CK_VISIBLE_PUBLIC BOOL CkMailMan_SendBundle(HCkMailMan cHandle, HCkEmailBundle bundle);
 CK_VISIBLE_PUBLIC HCkTask CkMailMan_SendBundleAsync(HCkMailMan cHandle, HCkEmailBundle bundle);

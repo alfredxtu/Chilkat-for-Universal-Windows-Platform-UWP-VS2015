@@ -16,6 +16,8 @@ class CkByteData;
 class CkTask;
 class CkSshKey;
 class CkSsh;
+class CkBinData;
+class CkStringBuilder;
 class CkDateTime;
 class CkSFtpDir;
 class CkSFtpProgress;
@@ -1068,6 +1070,15 @@ class CK_VISIBLE_PUBLIC CkSFtp  : public CkClassWithCallbacks
 	void Disconnect(void);
 
 
+	// Downloads the contents of a remote file to a BinData object. (Appends to the
+	// BinData.)
+	bool DownloadBd(const char *remoteFilePath, CkBinData &binData);
+
+	// Downloads the contents of a remote file to a BinData object. (Appends to the
+	// BinData.)
+	CkTask *DownloadBdAsync(const char *remoteFilePath, CkBinData &binData);
+
+
 	// Downloads a file from the SSH server to the local filesystem. There are no
 	// limitations on file size and the data is streamed from SSH server to the local
 	// file. handle is a file handle returned by a previous call to OpenFile.
@@ -1092,6 +1103,15 @@ class CK_VISIBLE_PUBLIC CkSFtp  : public CkClassWithCallbacks
 	// set to true. (The default value of PreserveDate is false.)
 	// 
 	CkTask *DownloadFileByNameAsync(const char *remoteFilePath, const char *localFilePath);
+
+
+	// Downloads the contents of a remote file to a StringBuilder object. (Appends to
+	// the StringBuilder.)
+	bool DownloadSb(const char *remoteFilePath, const char *charset, CkStringBuilder &sb);
+
+	// Downloads the contents of a remote file to a StringBuilder object. (Appends to
+	// the StringBuilder.)
+	CkTask *DownloadSbAsync(const char *remoteFilePath, const char *charset, CkStringBuilder &sb);
 
 
 	// Returns true if the last read operation for a handle reached the end of file.
@@ -2334,6 +2354,13 @@ class CK_VISIBLE_PUBLIC CkSFtp  : public CkClassWithCallbacks
 	bool UnlockComponent(const char *unlockCode);
 
 
+	// Uploads the contents of a BinData to a remote file.
+	bool UploadBd(CkBinData &binData, const char *remoteFilePath);
+
+	// Uploads the contents of a BinData to a remote file.
+	CkTask *UploadBdAsync(CkBinData &binData, const char *remoteFilePath);
+
+
 	// Uploads a file from the local filesystem to the SFTP server. handle is a handle of
 	// a currently open file (obtained by calling the OpenFile method). fromFilename is the
 	// local file path of the file to be uploaded.
@@ -2360,6 +2387,13 @@ class CK_VISIBLE_PUBLIC CkSFtp  : public CkClassWithCallbacks
 	// introduced in v9.5.0.40.
 	// 
 	CkTask *UploadFileByNameAsync(const char *remoteFilePath, const char *localFilePath);
+
+
+	// Uploads the contents of a StringBuilder to a remote file.
+	bool UploadSb(CkStringBuilder &sb, const char *remoteFilePath, const char *charset, bool includeBom);
+
+	// Uploads the contents of a StringBuilder to a remote file.
+	CkTask *UploadSbAsync(CkStringBuilder &sb, const char *remoteFilePath, const char *charset, bool includeBom);
 
 
 	// Appends byte data to an open file. The handle is a file handle returned by the

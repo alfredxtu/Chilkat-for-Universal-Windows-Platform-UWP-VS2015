@@ -21,6 +21,7 @@ namespace Chilkat
 {
 
 	ref class JsonArray;
+	ref class StringBuilder;
 
 
 public ref class JsonObject sealed
@@ -151,6 +152,8 @@ public ref class JsonObject sealed
 
 	Platform::String ^Emit(void);
 
+	Boolean EmitSb(Chilkat::StringBuilder ^sb);
+
 	Boolean FirebaseApplyEvent(Platform::String ^name, Platform::String ^data);
 
 	Boolean FirebasePatch(Platform::String ^jsonPath, Platform::String ^jsonData);
@@ -174,6 +177,8 @@ public ref class JsonObject sealed
 	Boolean Load(Platform::String ^json);
 
 	Boolean LoadFile(Platform::String ^path);
+
+	Boolean LoadSb(Chilkat::StringBuilder ^sb);
 
 	Platform::String ^NameAt(int index);
 

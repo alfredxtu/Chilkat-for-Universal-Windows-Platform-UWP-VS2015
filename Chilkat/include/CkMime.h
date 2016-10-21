@@ -16,6 +16,8 @@ class CkCert;
 class CkPrivateKey;
 class CkByteData;
 class CkStringArray;
+class CkBinData;
+class CkStringBuilder;
 class CkCertChain;
 class CkCsp;
 class CkXmlCertVault;
@@ -873,9 +875,18 @@ class CK_VISIBLE_PUBLIC CkMime  : public CkMultiByteBase
 	const char *mime(void);
 
 
+	// Writes the MIME to a BinData object, replacing the contents of the BinData.
+	bool GetMimeBd(CkBinData &bindat);
+
+
 	// Returns a byte array containing the complete MIME message, including all
 	// sub-parts.
 	bool GetMimeBytes(CkByteData &outBytes);
+
+
+	// Writes the MIME to a StringBuilder object, replacing the contents of the
+	// StringBuilder.
+	bool GetMimeSb(CkStringBuilder &sb);
 
 
 	// Returns the Nth sub-part of the MIME message. Indexing begins at 0.
@@ -1025,6 +1036,11 @@ class CK_VISIBLE_PUBLIC CkMime  : public CkMultiByteBase
 	bool LoadMime(const char *mimeMsg);
 
 
+	// Discards the current contents of the MIME object and loads a new MIME message
+	// from a BinData object.
+	bool LoadMimeBd(CkBinData &bindat);
+
+
 	// Loads a MIME document from an in-memory byte array.
 	bool LoadMimeBytes(CkByteData &binData);
 
@@ -1032,6 +1048,11 @@ class CK_VISIBLE_PUBLIC CkMime  : public CkMultiByteBase
 	// Discards the current contents of the MIME object and loads a new MIME message
 	// from a file.
 	bool LoadMimeFile(const char *fileName);
+
+
+	// Discards the current contents of the MIME object and loads a new MIME message
+	// from a StringBuilder.
+	bool LoadMimeSb(CkStringBuilder &sb);
 
 
 	// Converts XML to MIME and replaces the MIME object's contents with the converted
@@ -1065,10 +1086,10 @@ class CK_VISIBLE_PUBLIC CkMime  : public CkMultiByteBase
 	bool NewMultipartRelated(void);
 
 
-	// Removes a header field from the MIME header. If bAllOccurances is true, then all
-	// occurances of the header field are removed. Otherwise, only the 1st occurance is
-	// removed.
-	void RemoveHeaderField(const char *fieldName, bool bAllOccurances);
+	// Removes a header field from the MIME header. If bAllOccurrences is true, then all
+	// occurrences of the header field are removed. Otherwise, only the 1st occurrence
+	// is removed.
+	void RemoveHeaderField(const char *fieldName, bool bAllOccurrences);
 
 
 	// Removes the Nth subpart from the MIME message.

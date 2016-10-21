@@ -12,9 +12,11 @@
 #include "CkString.h"
 #include "CkClassWithCallbacksW.h"
 
+class CkStringBuilderW;
 class CkTaskW;
 class CkByteData;
 class CkStreamW;
+class CkBinDataW;
 class CkUrlW;
 class CkAuthAwsW;
 class CkAuthAzureADW;
@@ -313,6 +315,10 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// encoded.
 	bool AddQueryParams(const wchar_t *queryString);
 
+	// Adds a query parameter. If the query parameter already exists, then it is
+	// replaced. The parameter value is passed in a StringBuilder object.
+	bool AddQueryParamSb(const wchar_t *name, CkStringBuilderW &value);
+
 	// Removes all HTTP request headers.
 	bool ClearAllHeaders(void);
 
@@ -444,6 +450,16 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *FullRequestNoBodyAsync(const wchar_t *httpVerb, const wchar_t *uriPath);
 
+	// Sends a complete REST request (header + body string) and receives the full
+	// response. The body of the request is passed in requestBody. The response body is
+	// returned in responseBody.
+	bool FullRequestSb(const wchar_t *httpVerb, const wchar_t *uriPath, CkStringBuilderW &requestBody, CkStringBuilderW &responseBody);
+
+	// Creates an asynchronous task to call the FullRequestSb method with the arguments
+	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *FullRequestSbAsync(const wchar_t *httpVerb, const wchar_t *uriPath, CkStringBuilderW &requestBody, CkStringBuilderW &responseBody);
+
 	// Sends a complete REST request and receives the full response. It is assumed that
 	// the response body is a string (such as JSON or XML). The response body is
 	// returned.
@@ -487,6 +503,17 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *FullRequestStringAsync(const wchar_t *httpVerb, const wchar_t *uriPath, const wchar_t *bodyText);
+
+	// Reads the response body. Should only be called after ReadResponseHeader has been
+	// called, and should only be called when it is already known that the response
+	// body is binary, such as for JPG images or other non-text binary file types. The
+	// response body is received into responseBody.
+	bool ReadRespBd(CkBinDataW &responseBody);
+
+	// Creates an asynchronous task to call the ReadRespBd method with the arguments
+	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *ReadRespBdAsync(CkBinDataW &responseBody);
 
 	// Reads the response body. Should only be called after ReadResponseHeader has been
 	// called, and should only be called when it is already known that the response
@@ -540,6 +567,17 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *ReadResponseHeaderAsync(void);
 
+	// Reads the response body. Should only be called after ReadResponseHeader has been
+	// called, and should only be called when it is already known that the response
+	// body will be a string (such as XML, JSON, etc.) The response body is stored in
+	// responseBody.
+	bool ReadRespSb(CkStringBuilderW &responseBody);
+
+	// Creates an asynchronous task to call the ReadRespSb method with the arguments
+	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *ReadRespSbAsync(CkStringBuilderW &responseBody);
+
 	// If the response was a redirect and contains a Location header field, this method
 	// returns the redirect URL.
 	// The caller is responsible for deleting the object returned by this method.
@@ -569,6 +607,16 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// Returns the value of the Nth response header field. (Chilkat always uses 0-based
 	// indexing. The first header field is at index 0.)
 	const wchar_t *responseHdrValue(int index);
+
+	// Sends a REST request that cotnains a binary body. The httpVerb is the HTTP verb
+	// (also known as the HTTP method), such as "PUT". The uriPath is the path of the
+	// resource URI. The body contains the bytes of the HTTP request body.
+	bool SendReqBd(const wchar_t *httpVerb, const wchar_t *uriPath, CkBinDataW &body);
+
+	// Creates an asynchronous task to call the SendReqBd method with the arguments
+	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *SendReqBdAsync(const wchar_t *httpVerb, const wchar_t *uriPath, CkBinDataW &body);
 
 	// Sends a REST request that cotnains a binary body. The httpVerb is the HTTP verb
 	// (also known as the HTTP method), such as "PUT". The uriPath is the path of the
@@ -610,6 +658,16 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *SendReqNoBodyAsync(const wchar_t *httpVerb, const wchar_t *uriPath);
+
+	// Sends a REST request that cotnains a text body, such as XML or JSON. The httpVerb is
+	// the HTTP verb (also known as the HTTP method), such as "PUT". The uriPath is the
+	// path of the resource URI. The bodySb contains the text of the HTTP request body.
+	bool SendReqSb(const wchar_t *httpVerb, const wchar_t *uriPath, CkStringBuilderW &bodySb);
+
+	// Creates an asynchronous task to call the SendReqSb method with the arguments
+	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *SendReqSbAsync(const wchar_t *httpVerb, const wchar_t *uriPath, CkStringBuilderW &bodySb);
 
 	// Sends a REST request that cotnains a binary or text body that is obtained by
 	// reading from the stream. The httpVerb is the HTTP verb (also known as the HTTP
@@ -668,7 +726,15 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 
 	// Only used for multipart requests. Sets the binary content of the multipart body
 	// indicated by the PartSelector.
+	bool SetMultipartBodyBd(CkBinDataW &bodyData);
+
+	// Only used for multipart requests. Sets the binary content of the multipart body
+	// indicated by the PartSelector.
 	bool SetMultipartBodyBinary(CkByteData &bodyData);
+
+	// Only used for multipart requests. Sets the text content of the multipart body
+	// indicated by the PartSelector.
+	bool SetMultipartBodySb(CkStringBuilderW &bodySb);
 
 	// Only used for multipart requests. Sets the stream source of the multipart body
 	// indicated by the PartSelector.

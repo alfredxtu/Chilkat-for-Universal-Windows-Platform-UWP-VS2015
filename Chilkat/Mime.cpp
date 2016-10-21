@@ -12,11 +12,15 @@
 #include "include/CkCertW.h"
 #include "include/CkPrivateKeyW.h"
 #include "include/CkStringArrayW.h"
+#include "include/CkBinDataW.h"
+#include "include/CkStringBuilderW.h"
 #include "include/CkCertChainW.h"
 #include "include/CkXmlCertVaultW.h"
 #include "Cert.h"
 #include "PrivateKey.h"
 #include "StringArray.h"
+#include "BinData.h"
+#include "StringBuilder.h"
 #include "CertChain.h"
 #include "XmlCertVault.h"
 
@@ -574,6 +578,15 @@ Platform::String ^Mime::GetMime(void)
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
+Boolean Mime::GetMimeBd(Chilkat::BinData ^bindat)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bindat == nullptr) { return false; }
+	CkBinDataW* pObj0 = bindat->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->GetMimeBd(*pObj0);
+    }
 Windows::Foundation::Collections::IVector<uint8>^Mime::GetMimeBytes(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
@@ -583,6 +596,15 @@ Windows::Foundation::Collections::IVector<uint8>^Mime::GetMimeBytes(void)
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
+    }
+Boolean Mime::GetMimeSb(Chilkat::StringBuilder ^sb)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj0 = sb->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->GetMimeSb(*pObj0);
     }
 Mime ^Mime::GetPart(int index)
     {
@@ -746,6 +768,15 @@ Boolean Mime::LoadMime(Platform::String ^mimeMsg)
 	// --- prep output arg ---
 	return m_impl->LoadMime(mimeMsg ? mimeMsg->Data() : L"");
     }
+Boolean Mime::LoadMimeBd(Chilkat::BinData ^bindat)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bindat == nullptr) { return false; }
+	CkBinDataW* pObj0 = bindat->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->LoadMimeBd(*pObj0);
+    }
 Boolean Mime::LoadMimeBytes(Windows::Foundation::Collections::IVector<uint8>^binData)
     {
 	if (m_impl == nullptr) { return false; }
@@ -760,6 +791,15 @@ Boolean Mime::LoadMimeFile(Platform::String ^fileName)
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->LoadMimeFile(fileName ? fileName->Data() : L"");
+    }
+Boolean Mime::LoadMimeSb(Chilkat::StringBuilder ^sb)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj0 = sb->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->LoadMimeSb(*pObj0);
     }
 Boolean Mime::LoadXml(Platform::String ^xml)
     {
@@ -800,11 +840,11 @@ Boolean Mime::NewMultipartRelated(void)
 	// --- prep output arg ---
 	return m_impl->NewMultipartRelated();
     }
-void Mime::RemoveHeaderField(Platform::String ^fieldName, Boolean bAllOccurances)
+void Mime::RemoveHeaderField(Platform::String ^fieldName, Boolean bAllOccurrences)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	m_impl->RemoveHeaderField(fieldName ? fieldName->Data() : L"",bAllOccurances);
+	m_impl->RemoveHeaderField(fieldName ? fieldName->Data() : L"",bAllOccurrences);
     }
 Boolean Mime::RemovePart(int index)
     {

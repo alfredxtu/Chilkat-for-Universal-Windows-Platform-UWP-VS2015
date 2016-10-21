@@ -426,6 +426,9 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	// 5 = Internal failure.
 	// 6 = Connect Timed Out
 	// 7 = Connect Rejected (or failed for some other reason)
+	// 50 = HTTP proxy authentication failure.
+	// 98 = Async operation in progress.
+	// 99 = Product is not unlocked.
 	// 
 	// SSL/TLS:
 	// 100 = TLS internal error.
@@ -544,11 +547,11 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	// 
 	const char *finalRedirectUrl(void);
 
-	// If true, then 301 and 302 redirects are automatically followed when calling
-	// QuickGet and QuickGetStr. FollowRedirects is true by default.
+	// If true, then 301, 302, 303, and 307 redirects are automatically followed when
+	// calling QuickGet and QuickGetStr. FollowRedirects is true by default.
 	bool get_FollowRedirects(void);
-	// If true, then 301 and 302 redirects are automatically followed when calling
-	// QuickGet and QuickGetStr. FollowRedirects is true by default.
+	// If true, then 301, 302, 303, and 307 redirects are automatically followed when
+	// calling QuickGet and QuickGetStr. FollowRedirects is true by default.
 	void put_FollowRedirects(bool newVal);
 
 	// The freshness algorithm to use when determining the freshness of a cached HTTP

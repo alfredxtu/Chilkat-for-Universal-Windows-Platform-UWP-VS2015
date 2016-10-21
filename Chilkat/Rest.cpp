@@ -9,7 +9,9 @@
 #include "include/CkDateTime.h"
 #include "include/CkRestW.h"
 		
+#include "include/CkStringBuilderW.h"
 #include "include/CkStreamW.h"
+#include "include/CkBinDataW.h"
 #include "include/CkUrlW.h"
 #include "include/CkAuthAwsW.h"
 #include "include/CkAuthAzureADW.h"
@@ -18,7 +20,9 @@
 #include "include/CkOAuth1W.h"
 #include "include/CkOAuth2W.h"
 #include "include/CkSocketW.h"
+#include "StringBuilder.h"
 #include "Stream.h"
+#include "BinData.h"
 #include "Url.h"
 #include "AuthAws.h"
 #include "AuthAzureAD.h"
@@ -219,6 +223,17 @@ Boolean Rest::AddQueryParams(Platform::String ^queryString)
 	cxProgress.m_sender = this;
 	return m_impl->AddQueryParams(queryString ? queryString->Data() : L"");
     }
+Boolean Rest::AddQueryParamSb(Platform::String ^name, Chilkat::StringBuilder ^value)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (value == nullptr) { return false; }
+	CkStringBuilderW* pObj1 = value->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxRestProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->AddQueryParamSb(name ? name->Data() : L"",*pObj1);
+    }
 Boolean Rest::ClearAllHeaders(void)
     {
 	if (m_impl == nullptr) { return false; }
@@ -373,6 +388,23 @@ return create_async([this, httpVerb, uriPath, bodyText]() -> Platform::String ^
 
 });
     }
+IAsyncOperation<Boolean>^ Rest::ReadRespBdAsync(Chilkat::BinData ^responseBody)
+    {
+return create_async([this, responseBody]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (responseBody == nullptr) { return false; }
+	CkBinDataW* pObj0 = responseBody->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxRestProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->ReadRespBd(*pObj0);
+
+});
+    }
 IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ Rest::ReadRespBodyBinaryAsync(void)
     {
 return create_async([this]() -> Windows::Foundation::Collections::IVector<uint8>^
@@ -438,6 +470,23 @@ return create_async([this]() -> int
 
 });
     }
+IAsyncOperation<Boolean>^ Rest::ReadRespSbAsync(Chilkat::StringBuilder ^responseBody)
+    {
+return create_async([this, responseBody]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (responseBody == nullptr) { return false; }
+	CkStringBuilderW* pObj0 = responseBody->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxRestProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->ReadRespSb(*pObj0);
+
+});
+    }
 Url ^Rest::RedirectUrl(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
@@ -496,6 +545,23 @@ Platform::String ^Rest::ResponseHdrValue(int index)
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
+IAsyncOperation<Boolean>^ Rest::SendReqBdAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Chilkat::BinData ^body)
+    {
+return create_async([this, httpVerb, uriPath, body]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (body == nullptr) { return false; }
+	CkBinDataW* pObj2 = body->m_impl;
+	 if (!pObj2) { return false; }
+	// --- prep output arg ---
+	CxRestProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->SendReqBd(httpVerb ? httpVerb->Data() : L"",uriPath ? uriPath->Data() : L"",*pObj2);
+
+});
+    }
 IAsyncOperation<Boolean>^ Rest::SendReqBinaryBodyAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Windows::Foundation::Collections::IVector<uint8>^body)
     {
 return create_async([this, httpVerb, uriPath, body]() -> Boolean
@@ -552,6 +618,23 @@ return create_async([this, httpVerb, uriPath]() -> Boolean
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->SendReqNoBody(httpVerb ? httpVerb->Data() : L"",uriPath ? uriPath->Data() : L"");
+
+});
+    }
+IAsyncOperation<Boolean>^ Rest::SendReqSbAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Chilkat::StringBuilder ^bodySb)
+    {
+return create_async([this, httpVerb, uriPath, bodySb]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (bodySb == nullptr) { return false; }
+	CkStringBuilderW* pObj2 = bodySb->m_impl;
+	 if (!pObj2) { return false; }
+	// --- prep output arg ---
+	CxRestProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->SendReqSb(httpVerb ? httpVerb->Data() : L"",uriPath ? uriPath->Data() : L"",*pObj2);
 
 });
     }
@@ -660,6 +743,17 @@ Boolean Rest::SetAuthOAuth2(Chilkat::OAuth2 ^authProvider)
 	cxProgress.m_sender = this;
 	return m_impl->SetAuthOAuth2(*pObj0);
     }
+Boolean Rest::SetMultipartBodyBd(Chilkat::BinData ^bodyData)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bodyData == nullptr) { return false; }
+	CkBinDataW* pObj0 = bodyData->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxRestProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->SetMultipartBodyBd(*pObj0);
+    }
 Boolean Rest::SetMultipartBodyBinary(Windows::Foundation::Collections::IVector<uint8>^bodyData)
     {
 	if (m_impl == nullptr) { return false; }
@@ -670,6 +764,17 @@ Boolean Rest::SetMultipartBodyBinary(Windows::Foundation::Collections::IVector<u
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->SetMultipartBodyBinary(db0);
+    }
+Boolean Rest::SetMultipartBodySb(Chilkat::StringBuilder ^bodySb)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bodySb == nullptr) { return false; }
+	CkStringBuilderW* pObj0 = bodySb->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxRestProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->SetMultipartBodySb(*pObj0);
     }
 Boolean Rest::SetMultipartBodyStream(Chilkat::Stream ^stream)
     {

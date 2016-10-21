@@ -26,6 +26,8 @@ namespace Chilkat
 
 	ref class SshKey;
 	ref class Ssh;
+	ref class BinData;
+	ref class StringBuilder;
 	ref class CkDateTime;
 	ref class SFtpDir;
 
@@ -407,9 +409,13 @@ public ref class SFtp sealed
 
 	void Disconnect(void);
 
+	IAsyncOperation<Boolean>^ DownloadBdAsync(Platform::String ^remoteFilePath, Chilkat::BinData ^binData);
+
 	IAsyncOperation<Boolean>^ DownloadFileAsync(Platform::String ^handle, Platform::String ^toFilename);
 
 	IAsyncOperation<Boolean>^ DownloadFileByNameAsync(Platform::String ^remoteFilePath, Platform::String ^localFilePath);
+
+	IAsyncOperation<Boolean>^ DownloadSbAsync(Platform::String ^remoteFilePath, Platform::String ^charset, Chilkat::StringBuilder ^sb);
 
 	Boolean Eof(Platform::String ^handle);
 
@@ -499,9 +505,13 @@ public ref class SFtp sealed
 
 	Boolean UnlockComponent(Platform::String ^unlockCode);
 
+	IAsyncOperation<Boolean>^ UploadBdAsync(Chilkat::BinData ^binData, Platform::String ^remoteFilePath);
+
 	IAsyncOperation<Boolean>^ UploadFileAsync(Platform::String ^handle, Platform::String ^fromFilename);
 
 	IAsyncOperation<Boolean>^ UploadFileByNameAsync(Platform::String ^remoteFilePath, Platform::String ^localFilePath);
+
+	IAsyncOperation<Boolean>^ UploadSbAsync(Chilkat::StringBuilder ^sb, Platform::String ^remoteFilePath, Platform::String ^charset, Boolean includeBom);
 
 	IAsyncOperation<Boolean>^ WriteFileBytesAsync(Platform::String ^handle, Windows::Foundation::Collections::IVector<uint8>^byteData);
 

@@ -76,33 +76,7 @@ public ref class SshTunnel sealed
 	// ----------------------
 	// Properties
 	// ----------------------
-	property Platform::String ^LastErrorHtml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorText
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^LastErrorXml
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^Version
-	{
-		Platform::String ^get();
-	}
-	property Platform::String ^DebugLogFilePath
-	{
-		Platform::String ^get();
-		void set(Platform::String ^);
-	}
-	property Boolean VerboseLogging
-	{
-		Boolean get();
-		void set(Boolean);
-	}
-	property Boolean LastMethodSuccess
+	property Boolean AbortCurrent
 	{
 		Boolean get();
 		void set(Boolean);
@@ -122,6 +96,11 @@ public ref class SshTunnel sealed
 		int32 get();
 		void set(int32);
 	}
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^DestHostname
 	{
 		Platform::String ^get();
@@ -136,6 +115,10 @@ public ref class SshTunnel sealed
 	{
 		Boolean get();
 		void set(Boolean);
+	}
+	property Platform::String ^HostKeyFingerprint
+	{
+		Platform::String ^get();
 	}
 	property Platform::String ^HttpProxyAuthMethod
 	{
@@ -196,6 +179,23 @@ public ref class SshTunnel sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property Platform::String ^ListenBindIpAddress
 	{
 		Platform::String ^get();
@@ -211,16 +211,6 @@ public ref class SshTunnel sealed
 		void set(Platform::String ^);
 	}
 	property int32 OutboundBindPort
-	{
-		int32 get();
-		void set(int32);
-	}
-	property int32 SoRcvBuf
-	{
-		int32 get();
-		void set(int32);
-	}
-	property int32 SoSndBuf
 	{
 		int32 get();
 		void set(int32);
@@ -250,6 +240,16 @@ public ref class SshTunnel sealed
 		int32 get();
 		void set(int32);
 	}
+	property int32 SoRcvBuf
+	{
+		int32 get();
+		void set(int32);
+	}
+	property int32 SoSndBuf
+	{
+		int32 get();
+		void set(int32);
+	}
 	property Boolean TcpNoDelay
 	{
 		Boolean get();
@@ -265,7 +265,12 @@ public ref class SshTunnel sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
-	property Platform::String ^HostKeyFingerprint
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
 	{
 		Platform::String ^get();
 	}
@@ -274,13 +279,11 @@ public ref class SshTunnel sealed
 	// ----------------------
 	// Methods
 	// ----------------------
-	Boolean SaveLastError(Platform::String ^path);
-
-	IAsyncOperation<Boolean>^ AuthenticatePkAsync(Platform::String ^username, SshKey ^privateKey);
+	IAsyncOperation<Boolean>^ AuthenticatePkAsync(Platform::String ^username, Chilkat::SshKey ^privateKey);
 
 	IAsyncOperation<Boolean>^ AuthenticatePwAsync(Platform::String ^login, Platform::String ^password);
 
-	IAsyncOperation<Boolean>^ AuthenticatePwPkAsync(Platform::String ^username, Platform::String ^password, SshKey ^privateKey);
+	IAsyncOperation<Boolean>^ AuthenticatePwPkAsync(Platform::String ^username, Platform::String ^password, Chilkat::SshKey ^privateKey);
 
 	IAsyncOperation<Boolean>^ BeginAcceptingAsync(int listenPort);
 
@@ -288,13 +291,15 @@ public ref class SshTunnel sealed
 
 	IAsyncOperation<Boolean>^ ConnectAsync(Platform::String ^hostname, int port);
 
+	IAsyncOperation<Boolean>^ ConnectThroughSshAsync(Chilkat::Ssh ^ssh, Platform::String ^hostname, int port);
+
 	Boolean DisconnectAllClients(Boolean waitForThreads);
+
+	Boolean IsSshConnected(void);
 
 	Boolean StopAccepting(Boolean waitForThread);
 
 	Boolean UnlockComponent(Platform::String ^unlockCode);
-
-	IAsyncOperation<Boolean>^ ConnectThroughSshAsync(Ssh ^ssh, Platform::String ^hostname, int port);
 
 
 

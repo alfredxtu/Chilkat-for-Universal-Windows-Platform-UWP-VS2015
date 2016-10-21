@@ -24,7 +24,9 @@ using namespace concurrency;
 namespace Chilkat
 {
 
+	ref class StringBuilder;
 	ref class Stream;
+	ref class BinData;
 	ref class Url;
 	ref class AuthAws;
 	ref class AuthAzureAD;
@@ -193,6 +195,8 @@ public ref class Rest sealed
 
 	Boolean AddQueryParams(Platform::String ^queryString);
 
+	Boolean AddQueryParamSb(Platform::String ^name, Chilkat::StringBuilder ^value);
+
 	Boolean ClearAllHeaders(void);
 
 	Boolean ClearAllQueryParams(void);
@@ -215,6 +219,8 @@ public ref class Rest sealed
 
 	IAsyncOperation<Platform::String ^>^ FullRequestStringAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Platform::String ^bodyText);
 
+	IAsyncOperation<Boolean>^ ReadRespBdAsync(Chilkat::BinData ^responseBody);
+
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ ReadRespBodyBinaryAsync(void);
 
 	IAsyncOperation<Boolean>^ ReadRespBodyStreamAsync(Chilkat::Stream ^stream, Boolean autoSetStreamCharset);
@@ -222,6 +228,8 @@ public ref class Rest sealed
 	IAsyncOperation<Platform::String ^>^ ReadRespBodyStringAsync(void);
 
 	IAsyncOperation<int>^ ReadResponseHeaderAsync(void);
+
+	IAsyncOperation<Boolean>^ ReadRespSbAsync(Chilkat::StringBuilder ^responseBody);
 
 	Url ^RedirectUrl(void);
 
@@ -235,6 +243,8 @@ public ref class Rest sealed
 
 	Platform::String ^ResponseHdrValue(int index);
 
+	IAsyncOperation<Boolean>^ SendReqBdAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Chilkat::BinData ^body);
+
 	IAsyncOperation<Boolean>^ SendReqBinaryBodyAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Windows::Foundation::Collections::IVector<uint8>^body);
 
 	IAsyncOperation<Boolean>^ SendReqFormUrlEncodedAsync(Platform::String ^httpVerb, Platform::String ^uriPath);
@@ -242,6 +252,8 @@ public ref class Rest sealed
 	IAsyncOperation<Boolean>^ SendReqMultipartAsync(Platform::String ^httpVerb, Platform::String ^uriPath);
 
 	IAsyncOperation<Boolean>^ SendReqNoBodyAsync(Platform::String ^httpVerb, Platform::String ^uriPath);
+
+	IAsyncOperation<Boolean>^ SendReqSbAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Chilkat::StringBuilder ^bodySb);
 
 	IAsyncOperation<Boolean>^ SendReqStreamBodyAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Chilkat::Stream ^stream);
 
@@ -261,7 +273,11 @@ public ref class Rest sealed
 
 	Boolean SetAuthOAuth2(Chilkat::OAuth2 ^authProvider);
 
+	Boolean SetMultipartBodyBd(Chilkat::BinData ^bodyData);
+
 	Boolean SetMultipartBodyBinary(Windows::Foundation::Collections::IVector<uint8>^bodyData);
+
+	Boolean SetMultipartBodySb(Chilkat::StringBuilder ^bodySb);
 
 	Boolean SetMultipartBodyStream(Chilkat::Stream ^stream);
 

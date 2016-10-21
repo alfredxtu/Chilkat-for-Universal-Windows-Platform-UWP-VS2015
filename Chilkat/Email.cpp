@@ -11,12 +11,16 @@
 		
 #include "include/CkCertW.h"
 #include "include/CkStringArrayW.h"
+#include "include/CkBinDataW.h"
+#include "include/CkStringBuilderW.h"
 #include "include/CkCertChainW.h"
 #include "include/CkPrivateKeyW.h"
 #include "include/CkXmlCertVaultW.h"
 #include "Cert.h"
 #include "StringArray.h"
 #include "CkDateTime.h"
+#include "BinData.h"
+#include "StringBuilder.h"
 #include "CertChain.h"
 #include "PrivateKey.h"
 #include "XmlCertVault.h"
@@ -1085,6 +1089,15 @@ Platform::String ^Email::GetMime(void)
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
+Boolean Email::GetMimeBd(Chilkat::BinData ^bindat)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bindat == nullptr) { return false; }
+	CkBinDataW* pObj0 = bindat->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->GetMimeBd(*pObj0);
+    }
 Windows::Foundation::Collections::IVector<uint8>^Email::GetMimeBinary(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
@@ -1094,6 +1107,15 @@ Windows::Foundation::Collections::IVector<uint8>^Email::GetMimeBinary(void)
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
+    }
+Boolean Email::GetMimeSb(Chilkat::StringBuilder ^sb)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj0 = sb->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->GetMimeSb(*pObj0);
     }
 Windows::Foundation::Collections::IVector<uint8>^Email::GetNthBinaryPartOfType(int index, Platform::String ^contentType, Boolean inlineOnly, Boolean excludeAttachments)
     {
@@ -1465,6 +1487,15 @@ Boolean Email::SetEncryptCert(Chilkat::Cert ^cert)
 	// --- prep output arg ---
 	return m_impl->SetEncryptCert(*pObj0);
     }
+Boolean Email::SetFromMimeBd(Chilkat::BinData ^bindat)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bindat == nullptr) { return false; }
+	CkBinDataW* pObj0 = bindat->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->SetFromMimeBd(*pObj0);
+    }
 Boolean Email::SetFromMimeBytes(Windows::Foundation::Collections::IVector<uint8>^mimeBytes)
     {
 	if (m_impl == nullptr) { return false; }
@@ -1482,6 +1513,15 @@ Boolean Email::SetFromMimeBytes2(Windows::Foundation::Collections::IVector<uint8
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
 	return m_impl->SetFromMimeBytes2(db0,charset ? charset->Data() : L"");
+    }
+Boolean Email::SetFromMimeSb(Chilkat::StringBuilder ^sb)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj0 = sb->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->SetFromMimeSb(*pObj0);
     }
 Boolean Email::SetFromMimeText(Platform::String ^mimeText)
     {

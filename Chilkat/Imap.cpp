@@ -10,7 +10,9 @@
 #include "include/CkImapW.h"
 		
 #include "include/CkEmailW.h"
+#include "include/CkStringBuilderW.h"
 #include "include/CkMessageSetW.h"
+#include "include/CkBinDataW.h"
 #include "include/CkEmailBundleW.h"
 #include "include/CkStringArrayW.h"
 #include "include/CkCertW.h"
@@ -21,7 +23,9 @@
 #include "include/CkSshW.h"
 #include "include/CkSocketW.h"
 #include "Email.h"
+#include "StringBuilder.h"
 #include "MessageSet.h"
+#include "BinData.h"
 #include "EmailBundle.h"
 #include "StringArray.h"
 #include "Cert.h"
@@ -553,6 +557,23 @@ return create_async([this, mailbox, mimeText, seen, flagged, answered, draft]() 
 
 });
     }
+IAsyncOperation<Boolean>^ Imap::AppendMimeWithFlagsSbAsync(Platform::String ^mailbox, Chilkat::StringBuilder ^sbMime, Boolean seen, Boolean flagged, Boolean answered, Boolean draft)
+    {
+return create_async([this, mailbox, sbMime, seen, flagged, answered, draft]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (sbMime == nullptr) { return false; }
+	CkStringBuilderW* pObj1 = sbMime->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxImapProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->AppendMimeWithFlagsSb(mailbox ? mailbox->Data() : L"",*pObj1,seen,flagged,answered,draft);
+
+});
+    }
 IAsyncOperation<Platform::String ^>^ Imap::CapabilityAsync(void)
     {
 return create_async([this]() -> Platform::String ^
@@ -777,6 +798,26 @@ return create_async([this, emailObject, attachmentIndex, saveToPath]() -> Boolea
 
 });
     }
+IAsyncOperation<Boolean>^ Imap::FetchAttachmentBdAsync(Chilkat::Email ^email, int attachmentIndex, Chilkat::BinData ^binData)
+    {
+return create_async([this, email, attachmentIndex, binData]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (email == nullptr) { return false; }
+	CkEmailW* pObj0 = email->m_impl;
+	 if (!pObj0) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj2 = binData->m_impl;
+	 if (!pObj2) { return false; }
+	// --- prep output arg ---
+	CxImapProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->FetchAttachmentBd(*pObj0,attachmentIndex,*pObj2);
+
+});
+    }
 IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ Imap::FetchAttachmentBytesAsync(Chilkat::Email ^email, int attachIndex)
     {
 return create_async([this, email, attachIndex]() -> Windows::Foundation::Collections::IVector<uint8>^
@@ -795,6 +836,26 @@ return create_async([this, email, attachIndex]() -> Windows::Foundation::Collect
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
+
+});
+    }
+IAsyncOperation<Boolean>^ Imap::FetchAttachmentSbAsync(Chilkat::Email ^email, int attachmentIndex, Platform::String ^charset, Chilkat::StringBuilder ^sb)
+    {
+return create_async([this, email, attachmentIndex, charset, sb]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (email == nullptr) { return false; }
+	CkEmailW* pObj0 = email->m_impl;
+	 if (!pObj0) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj3 = sb->m_impl;
+	 if (!pObj3) { return false; }
+	// --- prep output arg ---
+	CxImapProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->FetchAttachmentSb(*pObj0,attachmentIndex,charset ? charset->Data() : L"",*pObj3);
 
 });
     }
@@ -1005,6 +1066,23 @@ return create_async([this, msgId, bUid]() -> Platform::String ^
 	const wchar_t *retStr = m_impl->fetchSingleAsMime(msgId,bUid);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+
+});
+    }
+IAsyncOperation<Boolean>^ Imap::FetchSingleAsMimeSbAsync(int msgId, Boolean bUid, Chilkat::StringBuilder ^sbMime)
+    {
+return create_async([this, msgId, bUid, sbMime]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (sbMime == nullptr) { return false; }
+	CkStringBuilderW* pObj2 = sbMime->m_impl;
+	 if (!pObj2) { return false; }
+	// --- prep output arg ---
+	CxImapProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->FetchSingleAsMimeSb(msgId,bUid,*pObj2);
 
 });
     }

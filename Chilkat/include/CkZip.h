@@ -361,16 +361,31 @@ class CK_VISIBLE_PUBLIC CkZip  : public CkClassWithCallbacks
 	// creating self-extracting EXEs. This property can be set to a pre-existing icon
 	// filename (.ico) that will be embedded within the to-be-created EXE and set as
 	// its default icon.
+	// 
+	// Note: This property is only possible for 32-bit applications. (Meaning that the
+	// application that is creating the self-extracting EXE must be a 32-bit
+	// application if an ExeIconFile is to be used.)
+	// 
 	void get_ExeIconFile(CkString &str);
 	// (Relevant only when running on a Microsoft Windows operating system.) Applies to
 	// creating self-extracting EXEs. This property can be set to a pre-existing icon
 	// filename (.ico) that will be embedded within the to-be-created EXE and set as
 	// its default icon.
+	// 
+	// Note: This property is only possible for 32-bit applications. (Meaning that the
+	// application that is creating the self-extracting EXE must be a 32-bit
+	// application if an ExeIconFile is to be used.)
+	// 
 	const char *exeIconFile(void);
 	// (Relevant only when running on a Microsoft Windows operating system.) Applies to
 	// creating self-extracting EXEs. This property can be set to a pre-existing icon
 	// filename (.ico) that will be embedded within the to-be-created EXE and set as
 	// its default icon.
+	// 
+	// Note: This property is only possible for 32-bit applications. (Meaning that the
+	// application that is creating the self-extracting EXE must be a 32-bit
+	// application if an ExeIconFile is to be used.)
+	// 
 	void put_ExeIconFile(const char *newVal);
 #endif
 

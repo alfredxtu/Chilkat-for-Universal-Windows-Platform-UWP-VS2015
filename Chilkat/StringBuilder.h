@@ -42,6 +42,11 @@ public ref class StringBuilder sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property int32 IntValue
+	{
+		int32 get();
+		void set(int32);
+	}
 	property int32 Length
 	{
 		int32 get();
@@ -59,15 +64,67 @@ public ref class StringBuilder sealed
 
 	Boolean AppendInt64(int64 value);
 
+	Boolean AppendSb(Chilkat::StringBuilder ^sb);
+
 	void Clear(void);
 
 	Boolean Contains(Platform::String ^str, Boolean caseSensitive);
 
-	Boolean Equals(Platform::String ^str, Boolean caseSensitive);
+	Boolean ContentsEqual(Platform::String ^str, Boolean caseSensitive);
+
+	Boolean ContentsEqualSb(Chilkat::StringBuilder ^sb, Boolean caseSensitive);
+
+	Boolean Decode(Platform::String ^encoding, Platform::String ^charset);
+
+	Boolean Encode(Platform::String ^encoding, Platform::String ^charset);
+
+	Boolean EndsWith(Platform::String ^substr, Boolean caseSensitive);
+
+	Boolean EntityDecode(void);
+
+	Platform::String ^GetAfterBetween(Platform::String ^searchAfter, Platform::String ^beginMark, Platform::String ^endMark);
 
 	Platform::String ^GetAsString(void);
 
+	Platform::String ^GetBetween(Platform::String ^beginMark, Platform::String ^endMark);
+
+	Windows::Foundation::Collections::IVector<uint8>^GetDecoded(Platform::String ^encoding);
+
+	Platform::String ^GetEncoded(Platform::String ^encoding, Platform::String ^charset);
+
+	Platform::String ^GetNth(int index, Platform::String ^delimiterChar, Boolean exceptDoubleQuoted, Boolean exceptEscaped);
+
+	Platform::String ^LastNLines(int numLines, Boolean bCrlf);
+
+	Boolean LoadFile(Platform::String ^path, Platform::String ^charset);
+
+	Boolean Prepend(Platform::String ^value);
+
 	void Replace(Platform::String ^value, Platform::String ^replacement);
+
+	int ReplaceBetween(Platform::String ^beginMark, Platform::String ^endMark, Platform::String ^value, Platform::String ^replacement);
+
+	int ReplaceWord(Platform::String ^value, Platform::String ^replacement);
+
+	Boolean SetNth(int index, Platform::String ^value, Platform::String ^delimiterChar, Boolean exceptDoubleQuoted, Boolean exceptEscaped);
+
+	Boolean SetString(Platform::String ^value);
+
+	Boolean StartsWith(Platform::String ^substr, Boolean caseSensitive);
+
+	Boolean ToCRLF(void);
+
+	Boolean ToLF(void);
+
+	Boolean ToLowercase(void);
+
+	Boolean ToUppercase(void);
+
+	Boolean Trim(void);
+
+	Boolean TrimInsideSpaces(void);
+
+	Boolean WriteFile(Platform::String ^path, Platform::String ^charset, Boolean emitBom);
 
 
 

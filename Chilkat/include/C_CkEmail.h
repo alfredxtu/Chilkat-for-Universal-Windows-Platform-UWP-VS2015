@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.59
+// This is a generated source file for Chilkat version 9.5.0.62
 #ifndef _C_CkEmail_H
 #define _C_CkEmail_H
 #include "chilkatDefs.h"
@@ -251,7 +251,9 @@ CK_VISIBLE_PUBLIC BOOL CkEmail_GetMbHtmlBody(HCkEmail cHandle, const char *chars
 CK_VISIBLE_PUBLIC BOOL CkEmail_GetMbPlainTextBody(HCkEmail cHandle, const char *charset, HCkByteData outData);
 CK_VISIBLE_PUBLIC BOOL CkEmail_GetMime(HCkEmail cHandle, HCkString outStrMime);
 CK_VISIBLE_PUBLIC const char *CkEmail_getMime(HCkEmail cHandle);
+CK_VISIBLE_PUBLIC BOOL CkEmail_GetMimeBd(HCkEmail cHandle, HCkBinData bindat);
 CK_VISIBLE_PUBLIC BOOL CkEmail_GetMimeBinary(HCkEmail cHandle, HCkByteData outBytes);
+CK_VISIBLE_PUBLIC BOOL CkEmail_GetMimeSb(HCkEmail cHandle, HCkStringBuilder sb);
 CK_VISIBLE_PUBLIC BOOL CkEmail_GetNthBinaryPartOfType(HCkEmail cHandle, int index, const char *contentType, BOOL inlineOnly, BOOL excludeAttachments, HCkByteData outBytes);
 CK_VISIBLE_PUBLIC BOOL CkEmail_GetNthTextPartOfType(HCkEmail cHandle, int index, const char *contentType, BOOL inlineOnly, BOOL excludeAttachments, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkEmail_getNthTextPartOfType(HCkEmail cHandle, int index, const char *contentType, BOOL inlineOnly, BOOL excludeAttachments);
@@ -328,8 +330,10 @@ CK_VISIBLE_PUBLIC BOOL CkEmail_SetDecryptCert2(HCkEmail cHandle, HCkCert cert, H
 CK_VISIBLE_PUBLIC BOOL CkEmail_SetDt(HCkEmail cHandle, HCkDateTime dt);
 CK_VISIBLE_PUBLIC void CkEmail_SetEdifactBody(HCkEmail cHandle, const char *message, const char *name, const char *filename, const char *charset);
 CK_VISIBLE_PUBLIC BOOL CkEmail_SetEncryptCert(HCkEmail cHandle, HCkCert cert);
+CK_VISIBLE_PUBLIC BOOL CkEmail_SetFromMimeBd(HCkEmail cHandle, HCkBinData bindat);
 CK_VISIBLE_PUBLIC BOOL CkEmail_SetFromMimeBytes(HCkEmail cHandle, HCkByteData mimeBytes);
 CK_VISIBLE_PUBLIC BOOL CkEmail_SetFromMimeBytes2(HCkEmail cHandle, HCkByteData mimeBytes, const char *charset);
+CK_VISIBLE_PUBLIC BOOL CkEmail_SetFromMimeSb(HCkEmail cHandle, HCkStringBuilder sb);
 CK_VISIBLE_PUBLIC BOOL CkEmail_SetFromMimeText(HCkEmail cHandle, const char *mimeText);
 CK_VISIBLE_PUBLIC BOOL CkEmail_SetFromXmlText(HCkEmail cHandle, const char *xmlStr);
 CK_VISIBLE_PUBLIC void CkEmail_SetHtmlBody(HCkEmail cHandle, const char *html);

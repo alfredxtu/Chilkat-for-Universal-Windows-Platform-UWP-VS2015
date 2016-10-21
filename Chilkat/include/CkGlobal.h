@@ -157,6 +157,13 @@ class CK_VISIBLE_PUBLIC CkGlobal  : public CkMultiByteBase
 	// and each of the pool worker threads for logging async activity.
 	void put_ThreadPoolLogPath(const char *newVal);
 
+	// Indicates the unlocked status for the last call to UnlockBundle, or any
+	// UnlockComponent call. The possible values are:
+	//     Not unlocked. (Still in locked state.)
+	//     Unlocked with in fully-functional trial mode.
+	//     Unlocked using a valid purchased unlock code.
+	int get_UnlockStatus(void);
+
 
 
 	// ----------------------

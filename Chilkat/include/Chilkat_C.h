@@ -137,6 +137,8 @@ typedef void *HCkStringBuilder;
 typedef void *HCkJwt;
 typedef void *HCkServerSentEvent;
 typedef void *HCkOAuth2;
+typedef void *HCkBinData;
+typedef void *HCkStringTable;
 
 
 typedef void *HCkByteDataW;
@@ -250,4 +252,7 @@ typedef void *HCkStringBuilderW;
 typedef void *HCkJwtW;
 typedef void *HCkServerSentEventW;
 typedef void *HCkOAuth2W;
+typedef void *HCkBinDataW;
+typedef void *HCkStringTableW;
+
 #endif

@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.59
+// This is a generated source file for Chilkat version 9.5.0.62
 #ifndef _C_CkMimeWH
 #define _C_CkMimeWH
 #include "chilkatDefs.h"
@@ -121,7 +121,9 @@ CK_VISIBLE_PUBLIC BOOL CkMimeW_GetHeaderFieldValue(HCkMimeW cHandle, int index, 
 CK_VISIBLE_PUBLIC const wchar_t *CkMimeW_getHeaderFieldValue(HCkMimeW cHandle, int index);
 CK_VISIBLE_PUBLIC BOOL CkMimeW_GetMime(HCkMimeW cHandle, HCkString outStr);
 CK_VISIBLE_PUBLIC const wchar_t *CkMimeW_getMime(HCkMimeW cHandle);
+CK_VISIBLE_PUBLIC BOOL CkMimeW_GetMimeBd(HCkMimeW cHandle, HCkBinDataW bindat);
 CK_VISIBLE_PUBLIC BOOL CkMimeW_GetMimeBytes(HCkMimeW cHandle, HCkByteData outBytes);
+CK_VISIBLE_PUBLIC BOOL CkMimeW_GetMimeSb(HCkMimeW cHandle, HCkStringBuilderW sb);
 CK_VISIBLE_PUBLIC HCkMimeW CkMimeW_GetPart(HCkMimeW cHandle, int index);
 CK_VISIBLE_PUBLIC BOOL CkMimeW_GetSignatureSigningTime(HCkMimeW cHandle, int index, SYSTEMTIME *outSysTime);
 CK_VISIBLE_PUBLIC BOOL CkMimeW_GetSignatureSigningTimeStr(HCkMimeW cHandle, int index, HCkString outStr);
@@ -150,15 +152,17 @@ CK_VISIBLE_PUBLIC BOOL CkMimeW_IsUnlocked(HCkMimeW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkMimeW_IsVideo(HCkMimeW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkMimeW_IsXml(HCkMimeW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkMimeW_LoadMime(HCkMimeW cHandle, const wchar_t *mimeMsg);
+CK_VISIBLE_PUBLIC BOOL CkMimeW_LoadMimeBd(HCkMimeW cHandle, HCkBinDataW bindat);
 CK_VISIBLE_PUBLIC BOOL CkMimeW_LoadMimeBytes(HCkMimeW cHandle, HCkByteData binData);
 CK_VISIBLE_PUBLIC BOOL CkMimeW_LoadMimeFile(HCkMimeW cHandle, const wchar_t *fileName);
+CK_VISIBLE_PUBLIC BOOL CkMimeW_LoadMimeSb(HCkMimeW cHandle, HCkStringBuilderW sb);
 CK_VISIBLE_PUBLIC BOOL CkMimeW_LoadXml(HCkMimeW cHandle, const wchar_t *xml);
 CK_VISIBLE_PUBLIC BOOL CkMimeW_LoadXmlFile(HCkMimeW cHandle, const wchar_t *fileName);
 CK_VISIBLE_PUBLIC BOOL CkMimeW_NewMessageRfc822(HCkMimeW cHandle, HCkMimeW mimeObject);
 CK_VISIBLE_PUBLIC BOOL CkMimeW_NewMultipartAlternative(HCkMimeW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkMimeW_NewMultipartMixed(HCkMimeW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkMimeW_NewMultipartRelated(HCkMimeW cHandle);
-CK_VISIBLE_PUBLIC void CkMimeW_RemoveHeaderField(HCkMimeW cHandle, const wchar_t *fieldName, BOOL bAllOccurances);
+CK_VISIBLE_PUBLIC void CkMimeW_RemoveHeaderField(HCkMimeW cHandle, const wchar_t *fieldName, BOOL bAllOccurrences);
 CK_VISIBLE_PUBLIC BOOL CkMimeW_RemovePart(HCkMimeW cHandle, int index);
 CK_VISIBLE_PUBLIC BOOL CkMimeW_SaveBody(HCkMimeW cHandle, const wchar_t *filename);
 CK_VISIBLE_PUBLIC BOOL CkMimeW_SaveLastError(HCkMimeW cHandle, const wchar_t *path);

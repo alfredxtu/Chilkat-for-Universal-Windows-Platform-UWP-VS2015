@@ -16,6 +16,8 @@ class CkByteData;
 class CkCertW;
 class CkStringArrayW;
 class CkDateTimeW;
+class CkBinDataW;
+class CkStringBuilderW;
 class CkCertChainW;
 class CkTaskW;
 class CkCspW;
@@ -1542,8 +1544,16 @@ class CK_VISIBLE_PUBLIC CkEmailW  : public CkWideCharBase
 	// related items (if any), and all attachments
 	const wchar_t *mime(void);
 
+	// Return the email as binary MIME containing the email header, body (or bodies),
+	// related items (if any), and all attachments. The MIME is loaded into the bindat.
+	bool GetMimeBd(CkBinDataW &bindat);
+
 	// Returns the full MIME of an email.
 	bool GetMimeBinary(CkByteData &outBytes);
+
+	// Return the email as MIME text containing the email header, body (or bodies),
+	// related items (if any), and all attachments. The MIME is loaded into the sb.
+	bool GetMimeSb(CkStringBuilderW &sb);
 
 	// Returns the binary bytes of the Nth MIME sub-part having a specified content
 	// type (such as "application/pdf". Indexing begins at 0. Call GetNumPartsOfType to
@@ -1848,7 +1858,7 @@ class CK_VISIBLE_PUBLIC CkEmailW  : public CkWideCharBase
 	// Removes path information from all attachment filenames.
 	void RemoveAttachmentPaths(void);
 
-	// Removes by name all occurances of a header field.
+	// Removes by name all occurrences of a header field.
 	void RemoveHeaderField(const wchar_t *fieldName);
 
 	// Removes the HTML body from the email (if an HTML body exists).
@@ -1956,6 +1966,10 @@ class CK_VISIBLE_PUBLIC CkEmailW  : public CkWideCharBase
 	// certificate in a certificate store or loading one from a file.
 	bool SetEncryptCert(CkCertW &cert);
 
+	// Loads an email with the MIME stored in a BinData object. The contents of the
+	// email object are completely replaced.
+	bool SetFromMimeBd(CkBinDataW &bindat);
+
 	// Loads the email object with the mimeBytes. If the email object already contained an
 	// email, it is entirely replaced. The character encoding (such as "utf-8",
 	// "iso-8859-1", etc.) of the bytes is automatically inferred from the content. If
@@ -1970,6 +1984,10 @@ class CK_VISIBLE_PUBLIC CkEmailW  : public CkWideCharBase
 	// "iso-8859-1", etc.).
 	// 
 	bool SetFromMimeBytes2(CkByteData &mimeBytes, const wchar_t *charset);
+
+	// Loads an email with the MIME stored in a StringBuilder object. The contents of
+	// the email object are completely replaced.
+	bool SetFromMimeSb(CkStringBuilderW &sb);
 
 	// Loads an email with the contents of a .eml (i.e. MIME) contained in a string.
 	// The contents of the email object are completely replaced.

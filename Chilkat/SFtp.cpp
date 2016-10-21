@@ -11,9 +11,13 @@
 		
 #include "include/CkSshKeyW.h"
 #include "include/CkSshW.h"
+#include "include/CkBinDataW.h"
+#include "include/CkStringBuilderW.h"
 #include "include/CkSFtpDirW.h"
 #include "SshKey.h"
 #include "Ssh.h"
+#include "BinData.h"
+#include "StringBuilder.h"
 #include "CkDateTime.h"
 #include "SFtpDir.h"
 
@@ -653,6 +657,23 @@ void SFtp::Disconnect(void)
 	cxProgress.m_sender = this;
 	m_impl->Disconnect();
     }
+IAsyncOperation<Boolean>^ SFtp::DownloadBdAsync(Platform::String ^remoteFilePath, Chilkat::BinData ^binData)
+    {
+return create_async([this, remoteFilePath, binData]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj1 = binData->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxSFtpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->DownloadBd(remoteFilePath ? remoteFilePath->Data() : L"",*pObj1);
+
+});
+    }
 IAsyncOperation<Boolean>^ SFtp::DownloadFileAsync(Platform::String ^handle, Platform::String ^toFilename)
     {
 return create_async([this, handle, toFilename]() -> Boolean
@@ -678,6 +699,23 @@ return create_async([this, remoteFilePath, localFilePath]() -> Boolean
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->DownloadFileByName(remoteFilePath ? remoteFilePath->Data() : L"",localFilePath ? localFilePath->Data() : L"");
+
+});
+    }
+IAsyncOperation<Boolean>^ SFtp::DownloadSbAsync(Platform::String ^remoteFilePath, Platform::String ^charset, Chilkat::StringBuilder ^sb)
+    {
+return create_async([this, remoteFilePath, charset, sb]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj2 = sb->m_impl;
+	 if (!pObj2) { return false; }
+	// --- prep output arg ---
+	CxSFtpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->DownloadSb(remoteFilePath ? remoteFilePath->Data() : L"",charset ? charset->Data() : L"",*pObj2);
 
 });
     }
@@ -1340,6 +1378,23 @@ Boolean SFtp::UnlockComponent(Platform::String ^unlockCode)
 	cxProgress.m_sender = this;
 	return m_impl->UnlockComponent(unlockCode ? unlockCode->Data() : L"");
     }
+IAsyncOperation<Boolean>^ SFtp::UploadBdAsync(Chilkat::BinData ^binData, Platform::String ^remoteFilePath)
+    {
+return create_async([this, binData, remoteFilePath]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj0 = binData->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxSFtpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->UploadBd(*pObj0,remoteFilePath ? remoteFilePath->Data() : L"");
+
+});
+    }
 IAsyncOperation<Boolean>^ SFtp::UploadFileAsync(Platform::String ^handle, Platform::String ^fromFilename)
     {
 return create_async([this, handle, fromFilename]() -> Boolean
@@ -1365,6 +1420,23 @@ return create_async([this, remoteFilePath, localFilePath]() -> Boolean
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->UploadFileByName(remoteFilePath ? remoteFilePath->Data() : L"",localFilePath ? localFilePath->Data() : L"");
+
+});
+    }
+IAsyncOperation<Boolean>^ SFtp::UploadSbAsync(Chilkat::StringBuilder ^sb, Platform::String ^remoteFilePath, Platform::String ^charset, Boolean includeBom)
+    {
+return create_async([this, sb, remoteFilePath, charset, includeBom]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj0 = sb->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxSFtpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->UploadSb(*pObj0,remoteFilePath ? remoteFilePath->Data() : L"",charset ? charset->Data() : L"",includeBom);
 
 });
     }

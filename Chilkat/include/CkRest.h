@@ -12,9 +12,11 @@
 #include "CkString.h"
 #include "CkClassWithCallbacks.h"
 
+class CkStringBuilder;
 class CkTask;
 class CkByteData;
 class CkStream;
+class CkBinData;
 class CkUrl;
 class CkAuthAws;
 class CkAuthAzureAD;
@@ -309,6 +311,11 @@ class CK_VISIBLE_PUBLIC CkRest  : public CkClassWithCallbacks
 	bool AddQueryParams(const char *queryString);
 
 
+	// Adds a query parameter. If the query parameter already exists, then it is
+	// replaced. The parameter value is passed in a StringBuilder object.
+	bool AddQueryParamSb(const char *name, CkStringBuilder &value);
+
+
 	// Removes all HTTP request headers.
 	bool ClearAllHeaders(void);
 
@@ -476,6 +483,17 @@ class CK_VISIBLE_PUBLIC CkRest  : public CkClassWithCallbacks
 	CkTask *FullRequestNoBodyAsync(const char *httpVerb, const char *uriPath);
 
 
+	// Sends a complete REST request (header + body string) and receives the full
+	// response. The body of the request is passed in requestBody. The response body is
+	// returned in responseBody.
+	bool FullRequestSb(const char *httpVerb, const char *uriPath, CkStringBuilder &requestBody, CkStringBuilder &responseBody);
+
+	// Sends a complete REST request (header + body string) and receives the full
+	// response. The body of the request is passed in requestBody. The response body is
+	// returned in responseBody.
+	CkTask *FullRequestSbAsync(const char *httpVerb, const char *uriPath, CkStringBuilder &requestBody, CkStringBuilder &responseBody);
+
+
 	// Sends a complete REST request and receives the full response. It is assumed that
 	// the response body is a string (such as JSON or XML). The response body is
 	// returned.
@@ -528,6 +546,19 @@ class CK_VISIBLE_PUBLIC CkRest  : public CkClassWithCallbacks
 	// SendReqStringBody, ReadResponseHeader, ReadRespBodyString.
 	// 
 	CkTask *FullRequestStringAsync(const char *httpVerb, const char *uriPath, const char *bodyText);
+
+
+	// Reads the response body. Should only be called after ReadResponseHeader has been
+	// called, and should only be called when it is already known that the response
+	// body is binary, such as for JPG images or other non-text binary file types. The
+	// response body is received into responseBody.
+	bool ReadRespBd(CkBinData &responseBody);
+
+	// Reads the response body. Should only be called after ReadResponseHeader has been
+	// called, and should only be called when it is already known that the response
+	// body is binary, such as for JPG images or other non-text binary file types. The
+	// response body is received into responseBody.
+	CkTask *ReadRespBdAsync(CkBinData &responseBody);
 
 
 	// Reads the response body. Should only be called after ReadResponseHeader has been
@@ -594,6 +625,19 @@ class CK_VISIBLE_PUBLIC CkRest  : public CkClassWithCallbacks
 	CkTask *ReadResponseHeaderAsync(void);
 
 
+	// Reads the response body. Should only be called after ReadResponseHeader has been
+	// called, and should only be called when it is already known that the response
+	// body will be a string (such as XML, JSON, etc.) The response body is stored in
+	// responseBody.
+	bool ReadRespSb(CkStringBuilder &responseBody);
+
+	// Reads the response body. Should only be called after ReadResponseHeader has been
+	// called, and should only be called when it is already known that the response
+	// body will be a string (such as XML, JSON, etc.) The response body is stored in
+	// responseBody.
+	CkTask *ReadRespSbAsync(CkStringBuilder &responseBody);
+
+
 	// If the response was a redirect and contains a Location header field, this method
 	// returns the redirect URL.
 	// The caller is responsible for deleting the object returned by this method.
@@ -629,6 +673,17 @@ class CK_VISIBLE_PUBLIC CkRest  : public CkClassWithCallbacks
 	// Returns the value of the Nth response header field. (Chilkat always uses 0-based
 	// indexing. The first header field is at index 0.)
 	const char *responseHdrValue(int index);
+
+	// Sends a REST request that cotnains a binary body. The httpVerb is the HTTP verb
+	// (also known as the HTTP method), such as "PUT". The uriPath is the path of the
+	// resource URI. The body contains the bytes of the HTTP request body.
+	bool SendReqBd(const char *httpVerb, const char *uriPath, CkBinData &body);
+
+	// Sends a REST request that cotnains a binary body. The httpVerb is the HTTP verb
+	// (also known as the HTTP method), such as "PUT". The uriPath is the path of the
+	// resource URI. The body contains the bytes of the HTTP request body.
+	CkTask *SendReqBdAsync(const char *httpVerb, const char *uriPath, CkBinData &body);
+
 
 	// Sends a REST request that cotnains a binary body. The httpVerb is the HTTP verb
 	// (also known as the HTTP method), such as "PUT". The uriPath is the path of the
@@ -674,6 +729,17 @@ class CK_VISIBLE_PUBLIC CkRest  : public CkClassWithCallbacks
 	// known as the HTTP method), such as "GET". The uriPath is the path of the resource
 	// URI.
 	CkTask *SendReqNoBodyAsync(const char *httpVerb, const char *uriPath);
+
+
+	// Sends a REST request that cotnains a text body, such as XML or JSON. The httpVerb is
+	// the HTTP verb (also known as the HTTP method), such as "PUT". The uriPath is the
+	// path of the resource URI. The bodySb contains the text of the HTTP request body.
+	bool SendReqSb(const char *httpVerb, const char *uriPath, CkStringBuilder &bodySb);
+
+	// Sends a REST request that cotnains a text body, such as XML or JSON. The httpVerb is
+	// the HTTP verb (also known as the HTTP method), such as "PUT". The uriPath is the
+	// path of the resource URI. The bodySb contains the text of the HTTP request body.
+	CkTask *SendReqSbAsync(const char *httpVerb, const char *uriPath, CkStringBuilder &bodySb);
 
 
 	// Sends a REST request that cotnains a binary or text body that is obtained by
@@ -742,7 +808,17 @@ class CK_VISIBLE_PUBLIC CkRest  : public CkClassWithCallbacks
 
 	// Only used for multipart requests. Sets the binary content of the multipart body
 	// indicated by the PartSelector.
+	bool SetMultipartBodyBd(CkBinData &bodyData);
+
+
+	// Only used for multipart requests. Sets the binary content of the multipart body
+	// indicated by the PartSelector.
 	bool SetMultipartBodyBinary(CkByteData &bodyData);
+
+
+	// Only used for multipart requests. Sets the text content of the multipart body
+	// indicated by the PartSelector.
+	bool SetMultipartBodySb(CkStringBuilder &bodySb);
 
 
 	// Only used for multipart requests. Sets the stream source of the multipart body

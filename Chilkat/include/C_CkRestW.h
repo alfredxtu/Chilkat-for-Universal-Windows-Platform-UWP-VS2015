@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.59
+// This is a generated source file for Chilkat version 9.5.0.62
 #ifndef _C_CkRestWH
 #define _C_CkRestWH
 #include "chilkatDefs.h"
@@ -61,6 +61,7 @@ CK_VISIBLE_PUBLIC const wchar_t *CkRestW_version(HCkRestW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkRestW_AddHeader(HCkRestW cHandle, const wchar_t *name, const wchar_t *value);
 CK_VISIBLE_PUBLIC BOOL CkRestW_AddQueryParam(HCkRestW cHandle, const wchar_t *name, const wchar_t *value);
 CK_VISIBLE_PUBLIC BOOL CkRestW_AddQueryParams(HCkRestW cHandle, const wchar_t *queryString);
+CK_VISIBLE_PUBLIC BOOL CkRestW_AddQueryParamSb(HCkRestW cHandle, const wchar_t *name, HCkStringBuilderW value);
 CK_VISIBLE_PUBLIC BOOL CkRestW_ClearAllHeaders(HCkRestW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkRestW_ClearAllQueryParams(HCkRestW cHandle);
 CK_VISIBLE_PUBLIC void CkRestW_ClearResponseBodyStream(HCkRestW cHandle);
@@ -80,12 +81,15 @@ CK_VISIBLE_PUBLIC HCkTaskW CkRestW_FullRequestMultipartAsync(HCkRestW cHandle, c
 CK_VISIBLE_PUBLIC BOOL CkRestW_FullRequestNoBody(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath, HCkString outStr);
 CK_VISIBLE_PUBLIC const wchar_t *CkRestW_fullRequestNoBody(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath);
 CK_VISIBLE_PUBLIC HCkTaskW CkRestW_FullRequestNoBodyAsync(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath);
+CK_VISIBLE_PUBLIC BOOL CkRestW_FullRequestSb(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath, HCkStringBuilderW requestBody, HCkStringBuilderW responseBody);
 CK_VISIBLE_PUBLIC BOOL CkRestW_FullRequestStream(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath, HCkStreamW stream, HCkString outStr);
 CK_VISIBLE_PUBLIC const wchar_t *CkRestW_fullRequestStream(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath, HCkStreamW stream);
 CK_VISIBLE_PUBLIC HCkTaskW CkRestW_FullRequestStreamAsync(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath, HCkStreamW stream);
 CK_VISIBLE_PUBLIC BOOL CkRestW_FullRequestString(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath, const wchar_t *bodyText, HCkString outStr);
 CK_VISIBLE_PUBLIC const wchar_t *CkRestW_fullRequestString(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath, const wchar_t *bodyText);
 CK_VISIBLE_PUBLIC HCkTaskW CkRestW_FullRequestStringAsync(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath, const wchar_t *bodyText);
+CK_VISIBLE_PUBLIC BOOL CkRestW_ReadRespBd(HCkRestW cHandle, HCkBinDataW responseBody);
+CK_VISIBLE_PUBLIC HCkTaskW CkRestW_ReadRespBdAsync(HCkRestW cHandle, HCkBinDataW responseBody);
 CK_VISIBLE_PUBLIC BOOL CkRestW_ReadRespBodyBinary(HCkRestW cHandle, HCkByteData outBytes);
 CK_VISIBLE_PUBLIC HCkTaskW CkRestW_ReadRespBodyBinaryAsync(HCkRestW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkRestW_ReadRespBodyStream(HCkRestW cHandle, HCkStreamW stream, BOOL autoSetStreamCharset);
@@ -95,6 +99,8 @@ CK_VISIBLE_PUBLIC const wchar_t *CkRestW_readRespBodyString(HCkRestW cHandle);
 CK_VISIBLE_PUBLIC HCkTaskW CkRestW_ReadRespBodyStringAsync(HCkRestW cHandle);
 CK_VISIBLE_PUBLIC int CkRestW_ReadResponseHeader(HCkRestW cHandle);
 CK_VISIBLE_PUBLIC HCkTaskW CkRestW_ReadResponseHeaderAsync(HCkRestW cHandle);
+CK_VISIBLE_PUBLIC BOOL CkRestW_ReadRespSb(HCkRestW cHandle, HCkStringBuilderW responseBody);
+CK_VISIBLE_PUBLIC HCkTaskW CkRestW_ReadRespSbAsync(HCkRestW cHandle, HCkStringBuilderW responseBody);
 CK_VISIBLE_PUBLIC HCkUrlW CkRestW_RedirectUrl(HCkRestW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkRestW_RemoveHeader(HCkRestW cHandle, const wchar_t *name);
 CK_VISIBLE_PUBLIC BOOL CkRestW_RemoveQueryParam(HCkRestW cHandle, const wchar_t *name);
@@ -105,6 +111,8 @@ CK_VISIBLE_PUBLIC const wchar_t *CkRestW_responseHdrName(HCkRestW cHandle, int i
 CK_VISIBLE_PUBLIC BOOL CkRestW_ResponseHdrValue(HCkRestW cHandle, int index, HCkString outStr);
 CK_VISIBLE_PUBLIC const wchar_t *CkRestW_responseHdrValue(HCkRestW cHandle, int index);
 CK_VISIBLE_PUBLIC BOOL CkRestW_SaveLastError(HCkRestW cHandle, const wchar_t *path);
+CK_VISIBLE_PUBLIC BOOL CkRestW_SendReqBd(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath, HCkBinDataW body);
+CK_VISIBLE_PUBLIC HCkTaskW CkRestW_SendReqBdAsync(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath, HCkBinDataW body);
 CK_VISIBLE_PUBLIC BOOL CkRestW_SendReqBinaryBody(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath, HCkByteData body);
 CK_VISIBLE_PUBLIC HCkTaskW CkRestW_SendReqBinaryBodyAsync(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath, HCkByteData body);
 CK_VISIBLE_PUBLIC BOOL CkRestW_SendReqFormUrlEncoded(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath);
@@ -113,6 +121,8 @@ CK_VISIBLE_PUBLIC BOOL CkRestW_SendReqMultipart(HCkRestW cHandle, const wchar_t 
 CK_VISIBLE_PUBLIC HCkTaskW CkRestW_SendReqMultipartAsync(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath);
 CK_VISIBLE_PUBLIC BOOL CkRestW_SendReqNoBody(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath);
 CK_VISIBLE_PUBLIC HCkTaskW CkRestW_SendReqNoBodyAsync(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath);
+CK_VISIBLE_PUBLIC BOOL CkRestW_SendReqSb(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath, HCkStringBuilderW bodySb);
+CK_VISIBLE_PUBLIC HCkTaskW CkRestW_SendReqSbAsync(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath, HCkStringBuilderW bodySb);
 CK_VISIBLE_PUBLIC BOOL CkRestW_SendReqStreamBody(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath, HCkStreamW stream);
 CK_VISIBLE_PUBLIC HCkTaskW CkRestW_SendReqStreamBodyAsync(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath, HCkStreamW stream);
 CK_VISIBLE_PUBLIC BOOL CkRestW_SendReqStringBody(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath, const wchar_t *bodyText);
@@ -124,7 +134,9 @@ CK_VISIBLE_PUBLIC BOOL CkRestW_SetAuthBasic(HCkRestW cHandle, const wchar_t *use
 CK_VISIBLE_PUBLIC BOOL CkRestW_SetAuthGoogle(HCkRestW cHandle, HCkAuthGoogleW authProvider);
 CK_VISIBLE_PUBLIC BOOL CkRestW_SetAuthOAuth1(HCkRestW cHandle, HCkOAuth1W authProvider, BOOL useQueryParams);
 CK_VISIBLE_PUBLIC BOOL CkRestW_SetAuthOAuth2(HCkRestW cHandle, HCkOAuth2W authProvider);
+CK_VISIBLE_PUBLIC BOOL CkRestW_SetMultipartBodyBd(HCkRestW cHandle, HCkBinDataW bodyData);
 CK_VISIBLE_PUBLIC BOOL CkRestW_SetMultipartBodyBinary(HCkRestW cHandle, HCkByteData bodyData);
+CK_VISIBLE_PUBLIC BOOL CkRestW_SetMultipartBodySb(HCkRestW cHandle, HCkStringBuilderW bodySb);
 CK_VISIBLE_PUBLIC BOOL CkRestW_SetMultipartBodyStream(HCkRestW cHandle, HCkStreamW stream);
 CK_VISIBLE_PUBLIC BOOL CkRestW_SetMultipartBodyString(HCkRestW cHandle, const wchar_t *bodyText);
 CK_VISIBLE_PUBLIC BOOL CkRestW_SetResponseBodyStream(HCkRestW cHandle, int expectedStatus, BOOL autoSetStreamCharset, HCkStreamW responseStream);

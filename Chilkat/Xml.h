@@ -20,6 +20,7 @@ using namespace concurrency;
 namespace Chilkat
 {
 
+	ref class StringBuilder;
 
 
 public ref class Xml sealed
@@ -252,6 +253,8 @@ public ref class Xml sealed
 
 	Platform::String ^GetXml(void);
 
+	Boolean GetXmlSb(Chilkat::StringBuilder ^sb);
+
 	Boolean HasAttribute(Platform::String ^name);
 
 	Boolean HasAttrWithValue(Platform::String ^name, Platform::String ^value);
@@ -269,6 +272,8 @@ public ref class Xml sealed
 	Xml ^LastChild(void);
 
 	Boolean LastChild2(void);
+
+	Boolean LoadSb(Chilkat::StringBuilder ^sb, Boolean autoTrim);
 
 	Boolean LoadXml(Platform::String ^xmlData);
 

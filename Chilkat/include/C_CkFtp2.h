@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.59
+// This is a generated source file for Chilkat version 9.5.0.62
 #ifndef _C_CkFtp2_H
 #define _C_CkFtp2_H
 #include "chilkatDefs.h"
@@ -301,9 +301,13 @@ CK_VISIBLE_PUBLIC int CkFtp2_GetDirCount(HCkFtp2 cHandle);
 CK_VISIBLE_PUBLIC HCkTask CkFtp2_GetDirCountAsync(HCkFtp2 cHandle);
 CK_VISIBLE_PUBLIC BOOL CkFtp2_GetFile(HCkFtp2 cHandle, const char *remoteFilePath, const char *localFilePath);
 CK_VISIBLE_PUBLIC HCkTask CkFtp2_GetFileAsync(HCkFtp2 cHandle, const char *remoteFilePath, const char *localFilePath);
+CK_VISIBLE_PUBLIC BOOL CkFtp2_GetFileBd(HCkFtp2 cHandle, const char *remoteFilePath, HCkBinData binData);
+CK_VISIBLE_PUBLIC HCkTask CkFtp2_GetFileBdAsync(HCkFtp2 cHandle, const char *remoteFilePath, HCkBinData binData);
 CK_VISIBLE_PUBLIC BOOL CkFtp2_GetFilename(HCkFtp2 cHandle, int index, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkFtp2_getFilename(HCkFtp2 cHandle, int index);
 CK_VISIBLE_PUBLIC HCkTask CkFtp2_GetFilenameAsync(HCkFtp2 cHandle, int index);
+CK_VISIBLE_PUBLIC BOOL CkFtp2_GetFileSb(HCkFtp2 cHandle, const char *remoteFilePath, const char *charset, HCkStringBuilder sb);
+CK_VISIBLE_PUBLIC HCkTask CkFtp2_GetFileSbAsync(HCkFtp2 cHandle, const char *remoteFilePath, const char *charset, HCkStringBuilder sb);
 CK_VISIBLE_PUBLIC BOOL CkFtp2_GetGroup(HCkFtp2 cHandle, int index, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkFtp2_getGroup(HCkFtp2 cHandle, int index);
 CK_VISIBLE_PUBLIC HCkTask CkFtp2_GetGroupAsync(HCkFtp2 cHandle, int index);
@@ -387,10 +391,14 @@ CK_VISIBLE_PUBLIC BOOL CkFtp2_Noop(HCkFtp2 cHandle);
 CK_VISIBLE_PUBLIC HCkTask CkFtp2_NoopAsync(HCkFtp2 cHandle);
 CK_VISIBLE_PUBLIC BOOL CkFtp2_PutFile(HCkFtp2 cHandle, const char *localFilePath, const char *remoteFilePath);
 CK_VISIBLE_PUBLIC HCkTask CkFtp2_PutFileAsync(HCkFtp2 cHandle, const char *localFilePath, const char *remoteFilePath);
+CK_VISIBLE_PUBLIC BOOL CkFtp2_PutFileBd(HCkFtp2 cHandle, HCkBinData binData, const char *remoteFilePath);
+CK_VISIBLE_PUBLIC HCkTask CkFtp2_PutFileBdAsync(HCkFtp2 cHandle, HCkBinData binData, const char *remoteFilePath);
 CK_VISIBLE_PUBLIC BOOL CkFtp2_PutFileFromBinaryData(HCkFtp2 cHandle, const char *remoteFilename, HCkByteData content);
 CK_VISIBLE_PUBLIC HCkTask CkFtp2_PutFileFromBinaryDataAsync(HCkFtp2 cHandle, const char *remoteFilename, HCkByteData content);
 CK_VISIBLE_PUBLIC BOOL CkFtp2_PutFileFromTextData(HCkFtp2 cHandle, const char *remoteFilename, const char *textData, const char *charset);
 CK_VISIBLE_PUBLIC HCkTask CkFtp2_PutFileFromTextDataAsync(HCkFtp2 cHandle, const char *remoteFilename, const char *textData, const char *charset);
+CK_VISIBLE_PUBLIC BOOL CkFtp2_PutFileSb(HCkFtp2 cHandle, HCkStringBuilder sb, const char *charset, BOOL includeBom, const char *remoteFilePath);
+CK_VISIBLE_PUBLIC HCkTask CkFtp2_PutFileSbAsync(HCkFtp2 cHandle, HCkStringBuilder sb, const char *charset, BOOL includeBom, const char *remoteFilePath);
 CK_VISIBLE_PUBLIC BOOL CkFtp2_PutPlan(HCkFtp2 cHandle, const char *plan, const char *alreadyDoneFilename);
 CK_VISIBLE_PUBLIC HCkTask CkFtp2_PutPlanAsync(HCkFtp2 cHandle, const char *plan, const char *alreadyDoneFilename);
 CK_VISIBLE_PUBLIC BOOL CkFtp2_PutTree(HCkFtp2 cHandle, const char *localDir);

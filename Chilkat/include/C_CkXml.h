@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.59
+// This is a generated source file for Chilkat version 9.5.0.62
 #ifndef _C_CkXml_H
 #define _C_CkXml_H
 #include "chilkatDefs.h"
@@ -119,6 +119,7 @@ CK_VISIBLE_PUBLIC void CkXml_GetRoot2(HCkXml cHandle);
 CK_VISIBLE_PUBLIC HCkXml CkXml_GetSelf(HCkXml cHandle);
 CK_VISIBLE_PUBLIC BOOL CkXml_GetXml(HCkXml cHandle, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkXml_getXml(HCkXml cHandle);
+CK_VISIBLE_PUBLIC BOOL CkXml_GetXmlSb(HCkXml cHandle, HCkStringBuilder sb);
 CK_VISIBLE_PUBLIC BOOL CkXml_HasAttribute(HCkXml cHandle, const char *name);
 CK_VISIBLE_PUBLIC BOOL CkXml_HasAttrWithValue(HCkXml cHandle, const char *name, const char *value);
 CK_VISIBLE_PUBLIC BOOL CkXml_HasChildWithContent(HCkXml cHandle, const char *content);
@@ -128,6 +129,7 @@ CK_VISIBLE_PUBLIC void CkXml_InsertChildTreeAfter(HCkXml cHandle, int index, HCk
 CK_VISIBLE_PUBLIC void CkXml_InsertChildTreeBefore(HCkXml cHandle, int index, HCkXml tree);
 CK_VISIBLE_PUBLIC HCkXml CkXml_LastChild(HCkXml cHandle);
 CK_VISIBLE_PUBLIC BOOL CkXml_LastChild2(HCkXml cHandle);
+CK_VISIBLE_PUBLIC BOOL CkXml_LoadSb(HCkXml cHandle, HCkStringBuilder sb, BOOL autoTrim);
 CK_VISIBLE_PUBLIC BOOL CkXml_LoadXml(HCkXml cHandle, const char *xmlData);
 CK_VISIBLE_PUBLIC BOOL CkXml_LoadXml2(HCkXml cHandle, const char *xmlData, BOOL autoTrim);
 CK_VISIBLE_PUBLIC BOOL CkXml_LoadXmlFile(HCkXml cHandle, const char *fileName);

@@ -25,6 +25,8 @@ namespace Chilkat
 {
 
 	ref class CkDateTime;
+	ref class BinData;
+	ref class StringBuilder;
 	ref class Cert;
 
 
@@ -643,7 +645,11 @@ public ref class Ftp2 sealed
 
 	IAsyncOperation<Boolean>^ GetFileAsync(Platform::String ^remoteFilePath, Platform::String ^localFilePath);
 
+	IAsyncOperation<Boolean>^ GetFileBdAsync(Platform::String ^remoteFilePath, Chilkat::BinData ^binData);
+
 	IAsyncOperation<Platform::String ^>^ GetFilenameAsync(int index);
+
+	IAsyncOperation<Boolean>^ GetFileSbAsync(Platform::String ^remoteFilePath, Platform::String ^charset, Chilkat::StringBuilder ^sb);
 
 	IAsyncOperation<Platform::String ^>^ GetGroupAsync(int index);
 
@@ -713,9 +719,13 @@ public ref class Ftp2 sealed
 
 	IAsyncOperation<Boolean>^ PutFileAsync(Platform::String ^localFilePath, Platform::String ^remoteFilePath);
 
+	IAsyncOperation<Boolean>^ PutFileBdAsync(Chilkat::BinData ^binData, Platform::String ^remoteFilePath);
+
 	IAsyncOperation<Boolean>^ PutFileFromBinaryDataAsync(Platform::String ^remoteFilename, Windows::Foundation::Collections::IVector<uint8>^content);
 
 	IAsyncOperation<Boolean>^ PutFileFromTextDataAsync(Platform::String ^remoteFilename, Platform::String ^textData, Platform::String ^charset);
+
+	IAsyncOperation<Boolean>^ PutFileSbAsync(Chilkat::StringBuilder ^sb, Platform::String ^charset, Boolean includeBom, Platform::String ^remoteFilePath);
 
 	IAsyncOperation<Boolean>^ PutPlanAsync(Platform::String ^plan, Platform::String ^alreadyDoneFilename);
 

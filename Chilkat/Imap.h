@@ -25,7 +25,9 @@ namespace Chilkat
 {
 
 	ref class Email;
+	ref class StringBuilder;
 	ref class MessageSet;
+	ref class BinData;
 	ref class EmailBundle;
 	ref class StringArray;
 	ref class Cert;
@@ -387,6 +389,8 @@ public ref class Imap sealed
 
 	IAsyncOperation<Boolean>^ AppendMimeWithFlagsAsync(Platform::String ^mailbox, Platform::String ^mimeText, Boolean seen, Boolean flagged, Boolean answered, Boolean draft);
 
+	IAsyncOperation<Boolean>^ AppendMimeWithFlagsSbAsync(Platform::String ^mailbox, Chilkat::StringBuilder ^sbMime, Boolean seen, Boolean flagged, Boolean answered, Boolean draft);
+
 	IAsyncOperation<Platform::String ^>^ CapabilityAsync(void);
 
 	Boolean CheckConnection(void);
@@ -419,7 +423,11 @@ public ref class Imap sealed
 
 	IAsyncOperation<Boolean>^ FetchAttachmentAsync(Chilkat::Email ^emailObject, int attachmentIndex, Platform::String ^saveToPath);
 
+	IAsyncOperation<Boolean>^ FetchAttachmentBdAsync(Chilkat::Email ^email, int attachmentIndex, Chilkat::BinData ^binData);
+
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ FetchAttachmentBytesAsync(Chilkat::Email ^email, int attachIndex);
+
+	IAsyncOperation<Boolean>^ FetchAttachmentSbAsync(Chilkat::Email ^email, int attachmentIndex, Platform::String ^charset, Chilkat::StringBuilder ^sb);
 
 	IAsyncOperation<Platform::String ^>^ FetchAttachmentStringAsync(Chilkat::Email ^emailObject, int attachmentIndex, Platform::String ^charset);
 
@@ -442,6 +450,8 @@ public ref class Imap sealed
 	IAsyncOperation<Email ^>^ FetchSingleAsync(int msgId, Boolean bUid);
 
 	IAsyncOperation<Platform::String ^>^ FetchSingleAsMimeAsync(int msgId, Boolean bUid);
+
+	IAsyncOperation<Boolean>^ FetchSingleAsMimeSbAsync(int msgId, Boolean bUid, Chilkat::StringBuilder ^sbMime);
 
 	IAsyncOperation<Email ^>^ FetchSingleHeaderAsync(int msgId, Boolean bUid);
 

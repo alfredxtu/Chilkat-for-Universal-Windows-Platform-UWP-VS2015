@@ -15,7 +15,9 @@
 class CkByteData;
 class CkTask;
 class CkEmail;
+class CkStringBuilder;
 class CkMessageSet;
+class CkBinData;
 class CkEmailBundle;
 class CkStringArray;
 class CkCert;
@@ -1104,6 +1106,15 @@ class CK_VISIBLE_PUBLIC CkImap  : public CkClassWithCallbacks
 	CkTask *AppendMimeWithFlagsAsync(const char *mailbox, const char *mimeText, bool seen, bool flagged, bool answered, bool draft);
 
 
+	// Same as AppendMimeWithFlags, but the MIME to be uploaded to the IMAP server is
+	// passed in a StringBuilder object.
+	bool AppendMimeWithFlagsSb(const char *mailbox, CkStringBuilder &sbMime, bool seen, bool flagged, bool answered, bool draft);
+
+	// Same as AppendMimeWithFlags, but the MIME to be uploaded to the IMAP server is
+	// passed in a StringBuilder object.
+	CkTask *AppendMimeWithFlagsSbAsync(const char *mailbox, CkStringBuilder &sbMime, bool seen, bool flagged, bool answered, bool draft);
+
+
 	// Sends a CAPABILITY command to the IMAP server and returns the raw response.
 	bool Capability(CkString &outStr);
 
@@ -1319,6 +1330,17 @@ class CK_VISIBLE_PUBLIC CkImap  : public CkClassWithCallbacks
 	CkTask *FetchAttachmentAsync(CkEmail &emailObject, int attachmentIndex, const char *saveToPath);
 
 
+	// Downloads one of an email's attachments and returns the attachment data in a
+	// BinData object. ***See the FetchAttachment method description for more
+	// information about fetching attachments.
+	bool FetchAttachmentBd(CkEmail &email, int attachmentIndex, CkBinData &binData);
+
+	// Downloads one of an email's attachments and returns the attachment data in a
+	// BinData object. ***See the FetchAttachment method description for more
+	// information about fetching attachments.
+	CkTask *FetchAttachmentBdAsync(CkEmail &email, int attachmentIndex, CkBinData &binData);
+
+
 	// Downloads one of an email's attachments and returns the attachment data as
 	// in-memory bytes that may be accessed by an application. ***See the
 	// FetchAttachment method description for more information about fetching
@@ -1330,6 +1352,21 @@ class CK_VISIBLE_PUBLIC CkImap  : public CkClassWithCallbacks
 	// FetchAttachment method description for more information about fetching
 	// attachments.
 	CkTask *FetchAttachmentBytesAsync(CkEmail &email, int attachIndex);
+
+
+	// Downloads one of an email's attachments and returns the attachment data in a
+	// StringBuilder. It only makes sense to call this method for attachments that
+	// contain text data. The charset indicates the character encoding of the text, such
+	// as "utf-8" or "windows-1252". ***See the FetchAttachment method description for
+	// more information about fetching attachments.
+	bool FetchAttachmentSb(CkEmail &email, int attachmentIndex, const char *charset, CkStringBuilder &sb);
+
+	// Downloads one of an email's attachments and returns the attachment data in a
+	// StringBuilder. It only makes sense to call this method for attachments that
+	// contain text data. The charset indicates the character encoding of the text, such
+	// as "utf-8" or "windows-1252". ***See the FetchAttachment method description for
+	// more information about fetching attachments.
+	CkTask *FetchAttachmentSbAsync(CkEmail &email, int attachmentIndex, const char *charset, CkStringBuilder &sb);
 
 
 	// Downloads one of an email's attachments and returns the attachment data as a
@@ -1509,6 +1546,19 @@ class CK_VISIBLE_PUBLIC CkImap  : public CkClassWithCallbacks
 	// reference. If bUid is true, then msgID represents a UID. If bUid is false, then
 	// msgID represents a sequence number.
 	CkTask *FetchSingleAsMimeAsync(int msgId, bool bUid);
+
+
+	// Retrieves a single message from the IMAP server and returns a StringBuilder
+	// object containing the complete MIME source of the email. If the method fails, it
+	// returns a NULL reference. If bUid is true, then msgID represents a UID. If bUid
+	// is false, then msgID represents a sequence number.
+	bool FetchSingleAsMimeSb(int msgId, bool bUid, CkStringBuilder &sbMime);
+
+	// Retrieves a single message from the IMAP server and returns a StringBuilder
+	// object containing the complete MIME source of the email. If the method fails, it
+	// returns a NULL reference. If bUid is true, then msgID represents a UID. If bUid
+	// is false, then msgID represents a sequence number.
+	CkTask *FetchSingleAsMimeSbAsync(int msgId, bool bUid, CkStringBuilder &sbMime);
 
 
 	// Retrieves a single message header from the IMAP server. If the method fails, it

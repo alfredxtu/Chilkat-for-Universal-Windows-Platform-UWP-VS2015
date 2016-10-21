@@ -593,9 +593,10 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	void put_CryptAlgorithm(const char *newVal);
 
 	// Controls the encoding of binary data to a printable string for many methods. The
-	// valid modes are "Base64", "modBase64", "Base32", "Base58", "UU", "QP" (for
-	// quoted-printable), "URL" (for url-encoding), "Hex", "Q", "B", "url_oauth",
-	// "url_rfc1738", "url_rfc2396", "url_rfc3986", "fingerprint", or "decimal".
+	// valid modes are "Base64", "modBase64", "base64url", "Base32", "Base58", "UU",
+	// "QP" (for quoted-printable), "URL" (for url-encoding), "Hex", "Q", "B",
+	// "url_oauth", "url_rfc1738", "url_rfc2396", "url_rfc3986", "fingerprint", or
+	// "decimal".
 	// 
 	// The "fingerprint" and"decimal" encodings are introduced in Chilkat v9.5.0.55.
 	// 
@@ -610,9 +611,10 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	// 
 	void get_EncodingMode(CkString &str);
 	// Controls the encoding of binary data to a printable string for many methods. The
-	// valid modes are "Base64", "modBase64", "Base32", "Base58", "UU", "QP" (for
-	// quoted-printable), "URL" (for url-encoding), "Hex", "Q", "B", "url_oauth",
-	// "url_rfc1738", "url_rfc2396", "url_rfc3986", "fingerprint", or "decimal".
+	// valid modes are "Base64", "modBase64", "base64url", "Base32", "Base58", "UU",
+	// "QP" (for quoted-printable), "URL" (for url-encoding), "Hex", "Q", "B",
+	// "url_oauth", "url_rfc1738", "url_rfc2396", "url_rfc3986", "fingerprint", or
+	// "decimal".
 	// 
 	// The "fingerprint" and"decimal" encodings are introduced in Chilkat v9.5.0.55.
 	// 
@@ -627,9 +629,10 @@ class CK_VISIBLE_PUBLIC CkCrypt2  : public CkClassWithCallbacks
 	// 
 	const char *encodingMode(void);
 	// Controls the encoding of binary data to a printable string for many methods. The
-	// valid modes are "Base64", "modBase64", "Base32", "Base58", "UU", "QP" (for
-	// quoted-printable), "URL" (for url-encoding), "Hex", "Q", "B", "url_oauth",
-	// "url_rfc1738", "url_rfc2396", "url_rfc3986", "fingerprint", or "decimal".
+	// valid modes are "Base64", "modBase64", "base64url", "Base32", "Base58", "UU",
+	// "QP" (for quoted-printable), "URL" (for url-encoding), "Hex", "Q", "B",
+	// "url_oauth", "url_rfc1738", "url_rfc2396", "url_rfc3986", "fingerprint", or
+	// "decimal".
 	// 
 	// The "fingerprint" and"decimal" encodings are introduced in Chilkat v9.5.0.55.
 	// 

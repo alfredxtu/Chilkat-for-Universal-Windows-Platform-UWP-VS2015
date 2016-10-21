@@ -47,45 +47,13 @@ Chilkat::SshTunnel::SshTunnel(void)
 //}
 
 
-String ^Chilkat::SshTunnel::LastErrorHtml::get()
+Boolean Chilkat::SshTunnel::AbortCurrent::get()
     {
-    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    return m_impl ? m_impl->get_AbortCurrent() : false;
     }
-String ^Chilkat::SshTunnel::LastErrorText::get()
+void Chilkat::SshTunnel::AbortCurrent::set(Boolean newVal)
     {
-    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
-    }
-String ^Chilkat::SshTunnel::LastErrorXml::get()
-    {
-    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
-    }
-String ^Chilkat::SshTunnel::Version::get()
-    {
-    return ref new String(m_impl ? m_impl->version() : L"");
-    }
-String ^Chilkat::SshTunnel::DebugLogFilePath::get()
-    {
-    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
-    }
-void Chilkat::SshTunnel::DebugLogFilePath::set(String ^newVal)
-    {
-        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
-    }
-Boolean Chilkat::SshTunnel::VerboseLogging::get()
-    {
-    return m_impl ? m_impl->get_VerboseLogging() : false;
-    }
-void Chilkat::SshTunnel::VerboseLogging::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_VerboseLogging(newVal);
-    }
-Boolean Chilkat::SshTunnel::LastMethodSuccess::get()
-    {
-    return m_impl ? m_impl->get_LastMethodSuccess() : false;
-    }
-void Chilkat::SshTunnel::LastMethodSuccess::set(Boolean newVal)
-    {
-        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+        if (m_impl) m_impl->put_AbortCurrent(newVal);
     }
 String ^Chilkat::SshTunnel::AcceptLog::get()
     {
@@ -111,6 +79,14 @@ void Chilkat::SshTunnel::ConnectTimeoutMs::set(int newVal)
     {
         if (m_impl) m_impl->put_ConnectTimeoutMs(newVal);
     }
+String ^Chilkat::SshTunnel::DebugLogFilePath::get()
+    {
+    return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
+    }
+void Chilkat::SshTunnel::DebugLogFilePath::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
 String ^Chilkat::SshTunnel::DestHostname::get()
     {
     return ref new String(m_impl ? m_impl->destHostname() : L"");
@@ -134,6 +110,10 @@ Boolean Chilkat::SshTunnel::DynamicPortForwarding::get()
 void Chilkat::SshTunnel::DynamicPortForwarding::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_DynamicPortForwarding(newVal);
+    }
+String ^Chilkat::SshTunnel::HostKeyFingerprint::get()
+    {
+    return ref new String(m_impl ? m_impl->hostKeyFingerprint() : L"");
     }
 String ^Chilkat::SshTunnel::HttpProxyAuthMethod::get()
     {
@@ -227,6 +207,26 @@ void Chilkat::SshTunnel::KeepTunnelLog::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_KeepTunnelLog(newVal);
     }
+String ^Chilkat::SshTunnel::LastErrorHtml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
+    }
+String ^Chilkat::SshTunnel::LastErrorText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorText() : L"");
+    }
+String ^Chilkat::SshTunnel::LastErrorXml::get()
+    {
+    return ref new String(m_impl ? m_impl->lastErrorXml() : L"");
+    }
+Boolean Chilkat::SshTunnel::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::SshTunnel::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+    }
 String ^Chilkat::SshTunnel::ListenBindIpAddress::get()
     {
     return ref new String(m_impl ? m_impl->listenBindIpAddress() : L"");
@@ -254,22 +254,6 @@ int Chilkat::SshTunnel::OutboundBindPort::get()
 void Chilkat::SshTunnel::OutboundBindPort::set(int newVal)
     {
         if (m_impl) m_impl->put_OutboundBindPort(newVal);
-    }
-int Chilkat::SshTunnel::SoRcvBuf::get()
-    {
-    return m_impl ? m_impl->get_SoRcvBuf() : 0;
-    }
-void Chilkat::SshTunnel::SoRcvBuf::set(int newVal)
-    {
-        if (m_impl) m_impl->put_SoRcvBuf(newVal);
-    }
-int Chilkat::SshTunnel::SoSndBuf::get()
-    {
-    return m_impl ? m_impl->get_SoSndBuf() : 0;
-    }
-void Chilkat::SshTunnel::SoSndBuf::set(int newVal)
-    {
-        if (m_impl) m_impl->put_SoSndBuf(newVal);
     }
 String ^Chilkat::SshTunnel::SocksHostname::get()
     {
@@ -311,6 +295,22 @@ void Chilkat::SshTunnel::SocksVersion::set(int newVal)
     {
         if (m_impl) m_impl->put_SocksVersion(newVal);
     }
+int Chilkat::SshTunnel::SoRcvBuf::get()
+    {
+    return m_impl ? m_impl->get_SoRcvBuf() : 0;
+    }
+void Chilkat::SshTunnel::SoRcvBuf::set(int newVal)
+    {
+        if (m_impl) m_impl->put_SoRcvBuf(newVal);
+    }
+int Chilkat::SshTunnel::SoSndBuf::get()
+    {
+    return m_impl ? m_impl->get_SoSndBuf() : 0;
+    }
+void Chilkat::SshTunnel::SoSndBuf::set(int newVal)
+    {
+        if (m_impl) m_impl->put_SoSndBuf(newVal);
+    }
 Boolean Chilkat::SshTunnel::TcpNoDelay::get()
     {
     return m_impl ? m_impl->get_TcpNoDelay() : false;
@@ -335,23 +335,21 @@ void Chilkat::SshTunnel::TunnelLogPath::set(String ^newVal)
     {
         if (m_impl) m_impl->put_TunnelLogPath(newVal ? newVal->Data() : L"");
     }
-String ^Chilkat::SshTunnel::HostKeyFingerprint::get()
+Boolean Chilkat::SshTunnel::VerboseLogging::get()
     {
-    return ref new String(m_impl ? m_impl->hostKeyFingerprint() : L"");
+    return m_impl ? m_impl->get_VerboseLogging() : false;
+    }
+void Chilkat::SshTunnel::VerboseLogging::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_VerboseLogging(newVal);
+    }
+String ^Chilkat::SshTunnel::Version::get()
+    {
+    return ref new String(m_impl ? m_impl->version() : L"");
     }
 
 
-Boolean SshTunnel::SaveLastError(Platform::String ^path)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxSshTunnelProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->SaveLastError(path ? path->Data() : L"");
-    }
-IAsyncOperation<Boolean>^ SshTunnel::AuthenticatePkAsync(Platform::String ^username, SshKey ^privateKey)
+IAsyncOperation<Boolean>^ SshTunnel::AuthenticatePkAsync(Platform::String ^username, Chilkat::SshKey ^privateKey)
     {
 return create_async([this, username, privateKey]() -> Boolean
 {
@@ -364,8 +362,6 @@ return create_async([this, username, privateKey]() -> Boolean
 	// --- prep output arg ---
 	CxSshTunnelProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->AuthenticatePk(username ? username->Data() : L"",*pObj1);
 
 });
@@ -380,13 +376,11 @@ return create_async([this, login, password]() -> Boolean
 	// --- prep output arg ---
 	CxSshTunnelProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->AuthenticatePw(login ? login->Data() : L"",password ? password->Data() : L"");
 
 });
     }
-IAsyncOperation<Boolean>^ SshTunnel::AuthenticatePwPkAsync(Platform::String ^username, Platform::String ^password, SshKey ^privateKey)
+IAsyncOperation<Boolean>^ SshTunnel::AuthenticatePwPkAsync(Platform::String ^username, Platform::String ^password, Chilkat::SshKey ^privateKey)
     {
 return create_async([this, username, password, privateKey]() -> Boolean
 {
@@ -399,8 +393,6 @@ return create_async([this, username, password, privateKey]() -> Boolean
 	// --- prep output arg ---
 	CxSshTunnelProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->AuthenticatePwPk(username ? username->Data() : L"",password ? password->Data() : L"",*pObj2);
 
 });
@@ -415,8 +407,6 @@ return create_async([this, listenPort]() -> Boolean
 	// --- prep output arg ---
 	CxSshTunnelProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->BeginAccepting(listenPort);
 
 });
@@ -427,8 +417,6 @@ Boolean SshTunnel::CloseTunnel(Boolean waitForThreads)
 	// --- prep output arg ---
 	CxSshTunnelProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->CloseTunnel(waitForThreads);
     }
 IAsyncOperation<Boolean>^ SshTunnel::ConnectAsync(Platform::String ^hostname, int port)
@@ -441,43 +429,11 @@ return create_async([this, hostname, port]() -> Boolean
 	// --- prep output arg ---
 	CxSshTunnelProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->Connect(hostname ? hostname->Data() : L"",port);
 
 });
     }
-Boolean SshTunnel::DisconnectAllClients(Boolean waitForThreads)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxSshTunnelProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->DisconnectAllClients(waitForThreads);
-    }
-Boolean SshTunnel::StopAccepting(Boolean waitForThread)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxSshTunnelProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->StopAccepting(waitForThread);
-    }
-Boolean SshTunnel::UnlockComponent(Platform::String ^unlockCode)
-    {
-	if (m_impl == nullptr) { return false; }
-	// --- prep output arg ---
-	CxSshTunnelProgress cxProgress(m_impl);
-	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
-	return m_impl->UnlockComponent(unlockCode ? unlockCode->Data() : L"");
-    }
-IAsyncOperation<Boolean>^ SshTunnel::ConnectThroughSshAsync(Ssh ^ssh, Platform::String ^hostname, int port)
+IAsyncOperation<Boolean>^ SshTunnel::ConnectThroughSshAsync(Chilkat::Ssh ^ssh, Platform::String ^hostname, int port)
     {
 return create_async([this, ssh, hostname, port]() -> Boolean
 {
@@ -490,11 +446,41 @@ return create_async([this, ssh, hostname, port]() -> Boolean
 	// --- prep output arg ---
 	CxSshTunnelProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	// gType = bool
-	// cppType = bool
 	return m_impl->ConnectThroughSsh(*pObj0,hostname ? hostname->Data() : L"",port);
 
 });
+    }
+Boolean SshTunnel::DisconnectAllClients(Boolean waitForThreads)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxSshTunnelProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->DisconnectAllClients(waitForThreads);
+    }
+Boolean SshTunnel::IsSshConnected(void)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxSshTunnelProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->IsSshConnected();
+    }
+Boolean SshTunnel::StopAccepting(Boolean waitForThread)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxSshTunnelProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->StopAccepting(waitForThread);
+    }
+Boolean SshTunnel::UnlockComponent(Platform::String ^unlockCode)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxSshTunnelProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->UnlockComponent(unlockCode ? unlockCode->Data() : L"");
     }
 
 

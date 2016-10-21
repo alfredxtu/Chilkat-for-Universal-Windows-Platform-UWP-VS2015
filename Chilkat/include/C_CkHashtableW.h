@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.59
+// This is a generated source file for Chilkat version 9.5.0.62
 #ifndef _C_CkHashtableWH
 #define _C_CkHashtableWH
 #include "chilkatDefs.h"
@@ -9,10 +9,12 @@
 CK_VISIBLE_PUBLIC HCkHashtableW CkHashtableW_Create(void);
 CK_VISIBLE_PUBLIC void CkHashtableW_Dispose(HCkHashtableW handle);
 CK_VISIBLE_PUBLIC BOOL CkHashtableW_AddInt(HCkHashtableW cHandle, const wchar_t *key, int value);
+CK_VISIBLE_PUBLIC BOOL CkHashtableW_AddQueryParams(HCkHashtableW cHandle, const wchar_t *queryParams);
 CK_VISIBLE_PUBLIC BOOL CkHashtableW_AddStr(HCkHashtableW cHandle, const wchar_t *key, const wchar_t *value);
 CK_VISIBLE_PUBLIC void CkHashtableW_Clear(HCkHashtableW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkHashtableW_ClearWithNewCapacity(HCkHashtableW cHandle, int capacity);
 CK_VISIBLE_PUBLIC BOOL CkHashtableW_Contains(HCkHashtableW cHandle, const wchar_t *key);
+CK_VISIBLE_PUBLIC BOOL CkHashtableW_GetKeys(HCkHashtableW cHandle, HCkStringTableW strTable);
 CK_VISIBLE_PUBLIC int CkHashtableW_LookupInt(HCkHashtableW cHandle, const wchar_t *key);
 CK_VISIBLE_PUBLIC BOOL CkHashtableW_LookupStr(HCkHashtableW cHandle, const wchar_t *key, HCkString outStr);
 CK_VISIBLE_PUBLIC const wchar_t *CkHashtableW_lookupStr(HCkHashtableW cHandle, const wchar_t *key);

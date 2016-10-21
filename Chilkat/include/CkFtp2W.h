@@ -15,6 +15,8 @@
 class CkTaskW;
 class CkByteData;
 class CkDateTimeW;
+class CkBinDataW;
+class CkStringBuilderW;
 class CkCertW;
 class CkFtp2ProgressW;
 
@@ -2465,6 +2467,19 @@ class CK_VISIBLE_PUBLIC CkFtp2W  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *GetFileAsync(const wchar_t *remoteFilePath, const wchar_t *localFilePath);
 
+	// Downloads a file from the FTP server into a BinData object.
+	// 
+	// If the remoteFilePath contains non-English characters, it may be necessary to set the
+	// DirListingCharset property equal to "utf-8". Please refer to the documentation
+	// for the DirListingCharset property.
+	// 
+	bool GetFileBd(const wchar_t *remoteFilePath, CkBinDataW &binData);
+
+	// Creates an asynchronous task to call the GetFileBd method with the arguments
+	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *GetFileBdAsync(const wchar_t *remoteFilePath, CkBinDataW &binData);
+
 	// Returns the filename for the Nth file or sub-directory in the current remote
 	// directory. The first file/dir is at index 0, and the last one is at index
 	// (NumFilesAndDirs-1)
@@ -2482,6 +2497,19 @@ class CK_VISIBLE_PUBLIC CkFtp2W  : public CkClassWithCallbacksW
 	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *GetFilenameAsync(int index);
+
+	// Downloads a file from the FTP server into a StringBuilder object.
+	// 
+	// If the remoteFilePath contains non-English characters, it may be necessary to set the
+	// DirListingCharset property equal to "utf-8". Please refer to the documentation
+	// for the DirListingCharset property.
+	// 
+	bool GetFileSb(const wchar_t *remoteFilePath, const wchar_t *charset, CkStringBuilderW &sb);
+
+	// Creates an asynchronous task to call the GetFileSb method with the arguments
+	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *GetFileSbAsync(const wchar_t *remoteFilePath, const wchar_t *charset, CkStringBuilderW &sb);
 
 	// Returns group name, if available, for the Nth file. If empty, then no group
 	// information is available.
@@ -3689,6 +3717,19 @@ class CK_VISIBLE_PUBLIC CkFtp2W  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *PutFileAsync(const wchar_t *localFilePath, const wchar_t *remoteFilePath);
 
+	// Uploads the contents of a BinData to a remote file.
+	// 
+	// If the remoteFilePath contains non-English characters, it may be necessary to set the
+	// DirListingCharset property equal to "utf-8". Please refer to the documentation
+	// for the DirListingCharset property.
+	// 
+	bool PutFileBd(CkBinDataW &binData, const wchar_t *remoteFilePath);
+
+	// Creates an asynchronous task to call the PutFileBd method with the arguments
+	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *PutFileBdAsync(CkBinDataW &binData, const wchar_t *remoteFilePath);
+
 	// Creates a file on the remote server containing the data passed in a byte array.
 	bool PutFileFromBinaryData(const wchar_t *remoteFilename, CkByteData &content);
 
@@ -3704,6 +3745,19 @@ class CK_VISIBLE_PUBLIC CkFtp2W  : public CkClassWithCallbacksW
 	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *PutFileFromTextDataAsync(const wchar_t *remoteFilename, const wchar_t *textData, const wchar_t *charset);
+
+	// Uploads the contents of a StringBuilder to a remote file.
+	// 
+	// If the charset contains non-English characters, it may be necessary to set the
+	// DirListingCharset property equal to "utf-8". Please refer to the documentation
+	// for the DirListingCharset property.
+	// 
+	bool PutFileSb(CkStringBuilderW &sb, const wchar_t *charset, bool includeBom, const wchar_t *remoteFilePath);
+
+	// Creates an asynchronous task to call the PutFileSb method with the arguments
+	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *PutFileSbAsync(CkStringBuilderW &sb, const wchar_t *charset, bool includeBom, const wchar_t *remoteFilePath);
 
 	// Executes an "FTP plan" (created by the CreatePlan method) and logs each
 	// successful operation to a plan log file. If a large-scale upload is interrupted,

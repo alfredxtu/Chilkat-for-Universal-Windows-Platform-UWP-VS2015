@@ -227,7 +227,7 @@ class CK_VISIBLE_PUBLIC CkOAuth2  : public CkClassWithCallbacks
 	// 
 	// This deserves some explanation. For a web-based application (where the code is
 	// on the web server) and the user interacts with the application in a browser,
-	// then YES, the client secret must be kept secret at all times. One does not want
+	// then YES, the client secret MUST be kept secret at all times. One does not want
 	// to be interacting with a site that claims to be "Application XYZ" but is
 	// actually an impersonator. But the Chilkat OAuth2 class is for desktop
 	// applications and scripts (i.e. things that run on the local computer, not in a
@@ -265,7 +265,7 @@ class CK_VISIBLE_PUBLIC CkOAuth2  : public CkClassWithCallbacks
 	// 
 	// This deserves some explanation. For a web-based application (where the code is
 	// on the web server) and the user interacts with the application in a browser,
-	// then YES, the client secret must be kept secret at all times. One does not want
+	// then YES, the client secret MUST be kept secret at all times. One does not want
 	// to be interacting with a site that claims to be "Application XYZ" but is
 	// actually an impersonator. But the Chilkat OAuth2 class is for desktop
 	// applications and scripts (i.e. things that run on the local computer, not in a
@@ -303,7 +303,7 @@ class CK_VISIBLE_PUBLIC CkOAuth2  : public CkClassWithCallbacks
 	// 
 	// This deserves some explanation. For a web-based application (where the code is
 	// on the web server) and the user interacts with the application in a browser,
-	// then YES, the client secret must be kept secret at all times. One does not want
+	// then YES, the client secret MUST be kept secret at all times. One does not want
 	// to be interacting with a site that claims to be "Application XYZ" but is
 	// actually an impersonator. But the Chilkat OAuth2 class is for desktop
 	// applications and scripts (i.e. things that run on the local computer, not in a
@@ -585,10 +585,28 @@ class CK_VISIBLE_PUBLIC CkOAuth2  : public CkClassWithCallbacks
 
 	// Monitors an already started OAuth2 authorization flow and returns when it is
 	// finished.
+	// 
+	// Note: It rarely makes sense to call this method. If this programming language
+	// supports callbacks, then MonitorAsync is a better choice. (See the Oauth2
+	// project repositories at https://github.com/chilkatsoft for samples.) If a
+	// programming language does not have callbacks, a better choice is to periodically
+	// check the AuthFlowState property for a value >= 3. If there is no response from
+	// the browser, the background thread (that is waiting on the browser) can be
+	// cancelled by calling the Cancel method.
+	// 
 	bool Monitor(void);
 
 	// Monitors an already started OAuth2 authorization flow and returns when it is
 	// finished.
+	// 
+	// Note: It rarely makes sense to call this method. If this programming language
+	// supports callbacks, then MonitorAsync is a better choice. (See the Oauth2
+	// project repositories at https://github.com/chilkatsoft for samples.) If a
+	// programming language does not have callbacks, a better choice is to periodically
+	// check the AuthFlowState property for a value >= 3. If there is no response from
+	// the browser, the background thread (that is waiting on the browser) can be
+	// cancelled by calling the Cancel method.
+	// 
 	CkTask *MonitorAsync(void);
 
 

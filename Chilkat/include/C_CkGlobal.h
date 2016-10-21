@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.59
+// This is a generated source file for Chilkat version 9.5.0.62
 #ifndef _C_CkGlobal_H
 #define _C_CkGlobal_H
 #include "chilkatDefs.h"
@@ -34,6 +34,7 @@ CK_VISIBLE_PUBLIC void CkGlobal_putMaxThreads(HCkGlobal cHandle, int newVal);
 CK_VISIBLE_PUBLIC void CkGlobal_getThreadPoolLogPath(HCkGlobal cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void CkGlobal_putThreadPoolLogPath(HCkGlobal cHandle, const char *newVal);
 CK_VISIBLE_PUBLIC const char *CkGlobal_threadPoolLogPath(HCkGlobal cHandle);
+CK_VISIBLE_PUBLIC int CkGlobal_getUnlockStatus(HCkGlobal cHandle);
 CK_VISIBLE_PUBLIC BOOL CkGlobal_getUtf8(HCkGlobal cHandle);
 CK_VISIBLE_PUBLIC void CkGlobal_putUtf8(HCkGlobal cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC BOOL CkGlobal_getVerboseLogging(HCkGlobal cHandle);

@@ -16,6 +16,8 @@ class CkByteData;
 class CkTaskW;
 class CkSshKeyW;
 class CkSshW;
+class CkBinDataW;
+class CkStringBuilderW;
 class CkDateTimeW;
 class CkSFtpDirW;
 class CkSFtpProgressW;
@@ -990,6 +992,15 @@ class CK_VISIBLE_PUBLIC CkSFtpW  : public CkClassWithCallbacksW
 	// Disconnects from the SSH server.
 	void Disconnect(void);
 
+	// Downloads the contents of a remote file to a BinData object. (Appends to the
+	// BinData.)
+	bool DownloadBd(const wchar_t *remoteFilePath, CkBinDataW &binData);
+
+	// Creates an asynchronous task to call the DownloadBd method with the arguments
+	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *DownloadBdAsync(const wchar_t *remoteFilePath, CkBinDataW &binData);
+
 	// Downloads a file from the SSH server to the local filesystem. There are no
 	// limitations on file size and the data is streamed from SSH server to the local
 	// file. handle is a file handle returned by a previous call to OpenFile.
@@ -1011,6 +1022,15 @@ class CK_VISIBLE_PUBLIC CkSFtpW  : public CkClassWithCallbacksW
 	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *DownloadFileByNameAsync(const wchar_t *remoteFilePath, const wchar_t *localFilePath);
+
+	// Downloads the contents of a remote file to a StringBuilder object. (Appends to
+	// the StringBuilder.)
+	bool DownloadSb(const wchar_t *remoteFilePath, const wchar_t *charset, CkStringBuilderW &sb);
+
+	// Creates an asynchronous task to call the DownloadSb method with the arguments
+	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *DownloadSbAsync(const wchar_t *remoteFilePath, const wchar_t *charset, CkStringBuilderW &sb);
 
 	// Returns true if the last read operation for a handle reached the end of file.
 	// Otherwise returns false. If an invalid handle is passed, a value of true is
@@ -1988,6 +2008,14 @@ class CK_VISIBLE_PUBLIC CkSFtpW  : public CkClassWithCallbacksW
 	// 
 	bool UnlockComponent(const wchar_t *unlockCode);
 
+	// Uploads the contents of a BinData to a remote file.
+	bool UploadBd(CkBinDataW &binData, const wchar_t *remoteFilePath);
+
+	// Creates an asynchronous task to call the UploadBd method with the arguments
+	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *UploadBdAsync(CkBinDataW &binData, const wchar_t *remoteFilePath);
+
 	// Uploads a file from the local filesystem to the SFTP server. handle is a handle of
 	// a currently open file (obtained by calling the OpenFile method). fromFilename is the
 	// local file path of the file to be uploaded.
@@ -2010,6 +2038,14 @@ class CK_VISIBLE_PUBLIC CkSFtpW  : public CkClassWithCallbacksW
 	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *UploadFileByNameAsync(const wchar_t *remoteFilePath, const wchar_t *localFilePath);
+
+	// Uploads the contents of a StringBuilder to a remote file.
+	bool UploadSb(CkStringBuilderW &sb, const wchar_t *remoteFilePath, const wchar_t *charset, bool includeBom);
+
+	// Creates an asynchronous task to call the UploadSb method with the arguments
+	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *UploadSbAsync(CkStringBuilderW &sb, const wchar_t *remoteFilePath, const wchar_t *charset, bool includeBom);
 
 	// Appends byte data to an open file. The handle is a file handle returned by the
 	// OpenFile method.

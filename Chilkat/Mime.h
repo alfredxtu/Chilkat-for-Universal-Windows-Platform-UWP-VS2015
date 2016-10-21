@@ -23,6 +23,8 @@ namespace Chilkat
 	ref class Cert;
 	ref class PrivateKey;
 	ref class StringArray;
+	ref class BinData;
+	ref class StringBuilder;
 	ref class CertChain;
 	ref class XmlCertVault;
 
@@ -260,7 +262,11 @@ public ref class Mime sealed
 
 	Platform::String ^GetMime(void);
 
+	Boolean GetMimeBd(Chilkat::BinData ^bindat);
+
 	Windows::Foundation::Collections::IVector<uint8>^GetMimeBytes(void);
+
+	Boolean GetMimeSb(Chilkat::StringBuilder ^sb);
 
 	Mime ^GetPart(int index);
 
@@ -310,9 +316,13 @@ public ref class Mime sealed
 
 	Boolean LoadMime(Platform::String ^mimeMsg);
 
+	Boolean LoadMimeBd(Chilkat::BinData ^bindat);
+
 	Boolean LoadMimeBytes(Windows::Foundation::Collections::IVector<uint8>^binData);
 
 	Boolean LoadMimeFile(Platform::String ^fileName);
+
+	Boolean LoadMimeSb(Chilkat::StringBuilder ^sb);
 
 	Boolean LoadXml(Platform::String ^xml);
 
@@ -326,7 +336,7 @@ public ref class Mime sealed
 
 	Boolean NewMultipartRelated(void);
 
-	void RemoveHeaderField(Platform::String ^fieldName, Boolean bAllOccurances);
+	void RemoveHeaderField(Platform::String ^fieldName, Boolean bAllOccurrences);
 
 	Boolean RemovePart(int index);
 

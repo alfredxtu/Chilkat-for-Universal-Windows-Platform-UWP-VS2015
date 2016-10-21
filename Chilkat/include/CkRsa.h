@@ -315,7 +315,7 @@ class CK_VISIBLE_PUBLIC CkRsa  : public CkMultiByteBase
 	// Important: If trying to match OpenSSL results, set the LittleEndian property =
 	// false.
 	// 
-	bool EncryptString(const char *stringToSign, bool usePrivateKey, CkByteData &outData);
+	bool EncryptString(const char *stringToEncrypt, bool usePrivateKey, CkByteData &outData);
 
 
 	// Same as EncryptString, except the output is an encoded string. The encoding is

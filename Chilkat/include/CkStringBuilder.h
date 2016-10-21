@@ -48,6 +48,11 @@ class CK_VISIBLE_PUBLIC CkStringBuilder  : public CkMultiByteBase
 	// ----------------------
 	// Properties
 	// ----------------------
+	// Returns the content of the string converted to an integer.
+	int get_IntValue(void);
+	// Returns the content of the string converted to an integer.
+	void put_IntValue(int newVal);
+
 	// The number of characters of the string contained within this instance.
 	int get_Length(void);
 
@@ -75,6 +80,10 @@ class CK_VISIBLE_PUBLIC CkStringBuilder  : public CkMultiByteBase
 	bool AppendInt64(__int64 value);
 
 
+	// Appends the contents of another StringBuilder to this instance.
+	bool AppendSb(CkStringBuilder &sb);
+
+
 	// Removes all characters from the current StringBuilder instance.
 	void Clear(void);
 
@@ -87,7 +96,62 @@ class CK_VISIBLE_PUBLIC CkStringBuilder  : public CkMultiByteBase
 
 	// Returns true if the contents of this object equals the str. Returns false
 	// if unequal. For case insensitive equality, set caseSensitive equal to false.
-	bool Equals(const char *str, bool caseSensitive);
+	bool ContentsEqual(const char *str, bool caseSensitive);
+
+
+	// Returns true if the contents of this object equals the sb. Returns false
+	// if unequal. For case insensitive equality, set caseSensitive equal to false.
+	bool ContentsEqualSb(CkStringBuilder &sb, bool caseSensitive);
+
+
+	// Decodes and replaces the contents with the decoded string. The encoding can be set
+	// to any of the following strings: "base64", "hex", "quoted-printable" (or "qp"),
+	// "url", "base32", "Q", "B", "url_rc1738", "url_rfc2396", "url_rfc3986",
+	// "url_oauth", "uu", "modBase64", or "html" (for HTML entity encoding). The full
+	// up-to-date list of supported binary encodings is available at the link entitled
+	// "Supported Binary Encodings" below.
+	// 
+	// Note: This method can only be called if the encoded content decodes to a string.
+	// The charset indicates the charset to be used in intepreting the decoded bytes. For
+	// example, the charset can be "utf-8", "utf-16", "iso-8859-1", "shift_JIS", etc.
+	// 
+	bool Decode(const char *encoding, const char *charset);
+
+
+	// Encodes to base64, hex, quoted-printable, or URL-encoding. The encoding can be set
+	// to any of the following strings: "base64", "hex", "quoted-printable" (or "qp"),
+	// "url", "base32", "Q", "B", "url_rc1738", "url_rfc2396", "url_rfc3986",
+	// "url_oauth", "uu", "modBase64", or "html" (for HTML entity encoding). The full
+	// up-to-date list of supported binary encodings is available at the link entitled
+	// "Supported Binary Encodings" below.
+	bool Encode(const char *encoding, const char *charset);
+
+
+	// Returns true if the string ends with substr. Otherwise returns false. The
+	// comparison is case sensitive if caseSensitive is true, and case insensitive if caseSensitive is
+	// false.
+	bool EndsWith(const char *substr, bool caseSensitive);
+
+
+	// Decodes HTML entities. See HTML entities
+	// <https://duckduckgo.com/?q=html+entities&bext=wfp&ia=web> for more information
+	// about HTML entities.
+	bool EntityDecode(void);
+
+
+	// Begin searching after the 1st occurrence of searchAfter is found, and then return the
+	// substring found between the next occurrence of beginMark and the next occurrence of
+	// endMark.
+	bool GetAfterBetween(const char *searchAfter, const char *beginMark, const char *endMark, CkString &outStr);
+
+	// Begin searching after the 1st occurrence of searchAfter is found, and then return the
+	// substring found between the next occurrence of beginMark and the next occurrence of
+	// endMark.
+	const char *getAfterBetween(const char *searchAfter, const char *beginMark, const char *endMark);
+	// Begin searching after the 1st occurrence of searchAfter is found, and then return the
+	// substring found between the next occurrence of beginMark and the next occurrence of
+	// endMark.
+	const char *afterBetween(const char *searchAfter, const char *beginMark, const char *endMark);
 
 
 	// Returns the contents as a string.
@@ -99,9 +163,165 @@ class CK_VISIBLE_PUBLIC CkStringBuilder  : public CkMultiByteBase
 	const char *asString(void);
 
 
+	// Returns the substring found between the 1st occurrence of beginMark and the next
+	// occurrence of endMark.
+	bool GetBetween(const char *beginMark, const char *endMark, CkString &outStr);
+
+	// Returns the substring found between the 1st occurrence of beginMark and the next
+	// occurrence of endMark.
+	const char *getBetween(const char *beginMark, const char *endMark);
+	// Returns the substring found between the 1st occurrence of beginMark and the next
+	// occurrence of endMark.
+	const char *between(const char *beginMark, const char *endMark);
+
+
+	// Decodes and returns the decoded bytes. The encoding can be set to any of the
+	// following strings: "base64", "hex", "quoted-printable" (or "qp"), "url",
+	// "base32", "Q", "B", "url_rc1738", "url_rfc2396", "url_rfc3986", "url_oauth",
+	// "uu", "modBase64", or "html" (for HTML entity encoding). The full up-to-date
+	// list of supported binary encodings is available at the link entitled "Supported
+	// Binary Encodings" below.
+	bool GetDecoded(const char *encoding, CkByteData &outBytes);
+
+
+	// Returns the string contents encoded in an encoding such as base64, hex,
+	// quoted-printable, or URL-encoding. The encoding can be set to any of the following
+	// strings: "base64", "hex", "quoted-printable" (or "qp"), "url", "base32", "Q",
+	// "B", "url_rc1738", "url_rfc2396", "url_rfc3986", "url_oauth", "uu", "modBase64",
+	// or "html" (for HTML entity encoding). The full up-to-date list of supported
+	// binary encodings is available at the link entitled "Supported Binary Encodings"
+	// below.
+	// 
+	// Note: The Encode method modifies the content of this object. The GetEncoded
+	// method leaves this object's content unmodified.
+	// 
+	bool GetEncoded(const char *encoding, const char *charset, CkString &outStr);
+
+	// Returns the string contents encoded in an encoding such as base64, hex,
+	// quoted-printable, or URL-encoding. The encoding can be set to any of the following
+	// strings: "base64", "hex", "quoted-printable" (or "qp"), "url", "base32", "Q",
+	// "B", "url_rc1738", "url_rfc2396", "url_rfc3986", "url_oauth", "uu", "modBase64",
+	// or "html" (for HTML entity encoding). The full up-to-date list of supported
+	// binary encodings is available at the link entitled "Supported Binary Encodings"
+	// below.
+	// 
+	// Note: The Encode method modifies the content of this object. The GetEncoded
+	// method leaves this object's content unmodified.
+	// 
+	const char *getEncoded(const char *encoding, const char *charset);
+	// Returns the string contents encoded in an encoding such as base64, hex,
+	// quoted-printable, or URL-encoding. The encoding can be set to any of the following
+	// strings: "base64", "hex", "quoted-printable" (or "qp"), "url", "base32", "Q",
+	// "B", "url_rc1738", "url_rfc2396", "url_rfc3986", "url_oauth", "uu", "modBase64",
+	// or "html" (for HTML entity encoding). The full up-to-date list of supported
+	// binary encodings is available at the link entitled "Supported Binary Encodings"
+	// below.
+	// 
+	// Note: The Encode method modifies the content of this object. The GetEncoded
+	// method leaves this object's content unmodified.
+	// 
+	const char *encoded(const char *encoding, const char *charset);
+
+
+	// Returns the Nth substring in string that is a list delimted by delimiterChar. The first
+	// substring is at index 0. If exceptDoubleQuoted is true, then the delimiter char found
+	// between double quotes is not treated as a delimiter. If exceptEscaped is true, then an
+	// escaped (with a backslash) delimiter char is not treated as a delimiter.
+	bool GetNth(int index, const char *delimiterChar, bool exceptDoubleQuoted, bool exceptEscaped, CkString &outStr);
+
+	// Returns the Nth substring in string that is a list delimted by delimiterChar. The first
+	// substring is at index 0. If exceptDoubleQuoted is true, then the delimiter char found
+	// between double quotes is not treated as a delimiter. If exceptEscaped is true, then an
+	// escaped (with a backslash) delimiter char is not treated as a delimiter.
+	const char *getNth(int index, const char *delimiterChar, bool exceptDoubleQuoted, bool exceptEscaped);
+	// Returns the Nth substring in string that is a list delimted by delimiterChar. The first
+	// substring is at index 0. If exceptDoubleQuoted is true, then the delimiter char found
+	// between double quotes is not treated as a delimiter. If exceptEscaped is true, then an
+	// escaped (with a backslash) delimiter char is not treated as a delimiter.
+	const char *nth(int index, const char *delimiterChar, bool exceptDoubleQuoted, bool exceptEscaped);
+
+
+	// Returns the last N lines of the text. If fewer than numLines lines exists, then all
+	// of the text is returned. If bCrlf is true, then the line endings of the
+	// returned string are converted to CRLF, otherwise the line endings are converted
+	// to LF-only.
+	bool LastNLines(int numLines, bool bCrlf, CkString &outStr);
+
+	// Returns the last N lines of the text. If fewer than numLines lines exists, then all
+	// of the text is returned. If bCrlf is true, then the line endings of the
+	// returned string are converted to CRLF, otherwise the line endings are converted
+	// to LF-only.
+	const char *lastNLines(int numLines, bool bCrlf);
+
+	// Loads the contents of a file.
+	bool LoadFile(const char *path, const char *charset);
+
+
+	// Prepends a copy of the specified string to this instance.
+	bool Prepend(const char *value);
+
+
 	// Replaces all occurrences of a specified string in this instance with another
 	// specified string.
 	void Replace(const char *value, const char *replacement);
+
+
+	// Replaces all occurrences of value with replacement, but only where value is found between
+	// beginMark and endMark. Returns the number of replacements made.
+	int ReplaceBetween(const char *beginMark, const char *endMark, const char *value, const char *replacement);
+
+
+	// Replaces all word occurrences of a specified string in this instance with
+	// another specified string. Returns the number of replacements made.
+	int ReplaceWord(const char *value, const char *replacement);
+
+
+	// Sets the Nth substring in string in a list delimted by delimiterChar. The first substring
+	// is at index 0. If exceptDoubleQuoted is true, then the delimiter char found between double
+	// quotes is not treated as a delimiter. If exceptEscaped is true, then an escaped (with a
+	// backslash) delimiter char is not treated as a delimiter.
+	bool SetNth(int index, const char *value, const char *delimiterChar, bool exceptDoubleQuoted, bool exceptEscaped);
+
+
+	// Sets this instance to a copy of the specified string.
+	bool SetString(const char *value);
+
+
+	// Returns true if the string starts with substr. Otherwise returns false. The
+	// comparison is case sensitive if caseSensitive is true, and case insensitive if caseSensitive is
+	// false.
+	bool StartsWith(const char *substr, bool caseSensitive);
+
+
+	// Converts line endings to CRLF (Windows) format.
+	bool ToCRLF(void);
+
+
+	// Converts line endings to LF-only (UNIX) format.
+	bool ToLF(void);
+
+
+	// Converts the contents to lowercase.
+	bool ToLowercase(void);
+
+
+	// Converts the contents to uppercase.
+	bool ToUppercase(void);
+
+
+	// Trims whitespace from both ends of the string.
+	bool Trim(void);
+
+
+	// Replaces all tabs, CR's, and LF's, with SPACE chars, and removes extra SPACE's
+	// so there are no occurances of more than one SPACE char in a row.
+	bool TrimInsideSpaces(void);
+
+
+	// Writes the contents to a file. If emitBom is true, then the BOM (also known as a
+	// preamble), is emitted for charsets that define a BOM (such as utf-8, utf-16,
+	// utf-32, etc.)
+	bool WriteFile(const char *path, const char *charset, bool emitBom);
 
 
 

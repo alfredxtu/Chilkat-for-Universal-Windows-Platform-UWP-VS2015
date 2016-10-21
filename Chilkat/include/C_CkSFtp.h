@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.59
+// This is a generated source file for Chilkat version 9.5.0.62
 #ifndef _C_CkSFtp_H
 #define _C_CkSFtp_H
 #include "chilkatDefs.h"
@@ -172,10 +172,14 @@ CK_VISIBLE_PUBLIC HCkTask CkSFtp_CopyFileAttrAsync(HCkSFtp cHandle, const char *
 CK_VISIBLE_PUBLIC BOOL CkSFtp_CreateDir(HCkSFtp cHandle, const char *path);
 CK_VISIBLE_PUBLIC HCkTask CkSFtp_CreateDirAsync(HCkSFtp cHandle, const char *path);
 CK_VISIBLE_PUBLIC void CkSFtp_Disconnect(HCkSFtp cHandle);
+CK_VISIBLE_PUBLIC BOOL CkSFtp_DownloadBd(HCkSFtp cHandle, const char *remoteFilePath, HCkBinData binData);
+CK_VISIBLE_PUBLIC HCkTask CkSFtp_DownloadBdAsync(HCkSFtp cHandle, const char *remoteFilePath, HCkBinData binData);
 CK_VISIBLE_PUBLIC BOOL CkSFtp_DownloadFile(HCkSFtp cHandle, const char *handle, const char *toFilename);
 CK_VISIBLE_PUBLIC HCkTask CkSFtp_DownloadFileAsync(HCkSFtp cHandle, const char *handle, const char *toFilename);
 CK_VISIBLE_PUBLIC BOOL CkSFtp_DownloadFileByName(HCkSFtp cHandle, const char *remoteFilePath, const char *localFilePath);
 CK_VISIBLE_PUBLIC HCkTask CkSFtp_DownloadFileByNameAsync(HCkSFtp cHandle, const char *remoteFilePath, const char *localFilePath);
+CK_VISIBLE_PUBLIC BOOL CkSFtp_DownloadSb(HCkSFtp cHandle, const char *remoteFilePath, const char *charset, HCkStringBuilder sb);
+CK_VISIBLE_PUBLIC HCkTask CkSFtp_DownloadSbAsync(HCkSFtp cHandle, const char *remoteFilePath, const char *charset, HCkStringBuilder sb);
 CK_VISIBLE_PUBLIC BOOL CkSFtp_Eof(HCkSFtp cHandle, const char *handle);
 CK_VISIBLE_PUBLIC HCkDateTime CkSFtp_GetFileCreateDt(HCkSFtp cHandle, const char *pathOrHandle, BOOL bFollowLinks, BOOL bIsHandle);
 CK_VISIBLE_PUBLIC HCkTask CkSFtp_GetFileCreateDtAsync(HCkSFtp cHandle, const char *pathOrHandle, BOOL bFollowLinks, BOOL bIsHandle);
@@ -271,10 +275,14 @@ CK_VISIBLE_PUBLIC HCkTask CkSFtp_SyncTreeDownloadAsync(HCkSFtp cHandle, const ch
 CK_VISIBLE_PUBLIC BOOL CkSFtp_SyncTreeUpload(HCkSFtp cHandle, const char *localBaseDir, const char *remoteBaseDir, int mode, BOOL bRecurse);
 CK_VISIBLE_PUBLIC HCkTask CkSFtp_SyncTreeUploadAsync(HCkSFtp cHandle, const char *localBaseDir, const char *remoteBaseDir, int mode, BOOL bRecurse);
 CK_VISIBLE_PUBLIC BOOL CkSFtp_UnlockComponent(HCkSFtp cHandle, const char *unlockCode);
+CK_VISIBLE_PUBLIC BOOL CkSFtp_UploadBd(HCkSFtp cHandle, HCkBinData binData, const char *remoteFilePath);
+CK_VISIBLE_PUBLIC HCkTask CkSFtp_UploadBdAsync(HCkSFtp cHandle, HCkBinData binData, const char *remoteFilePath);
 CK_VISIBLE_PUBLIC BOOL CkSFtp_UploadFile(HCkSFtp cHandle, const char *handle, const char *fromFilename);
 CK_VISIBLE_PUBLIC HCkTask CkSFtp_UploadFileAsync(HCkSFtp cHandle, const char *handle, const char *fromFilename);
 CK_VISIBLE_PUBLIC BOOL CkSFtp_UploadFileByName(HCkSFtp cHandle, const char *remoteFilePath, const char *localFilePath);
 CK_VISIBLE_PUBLIC HCkTask CkSFtp_UploadFileByNameAsync(HCkSFtp cHandle, const char *remoteFilePath, const char *localFilePath);
+CK_VISIBLE_PUBLIC BOOL CkSFtp_UploadSb(HCkSFtp cHandle, HCkStringBuilder sb, const char *remoteFilePath, const char *charset, BOOL includeBom);
+CK_VISIBLE_PUBLIC HCkTask CkSFtp_UploadSbAsync(HCkSFtp cHandle, HCkStringBuilder sb, const char *remoteFilePath, const char *charset, BOOL includeBom);
 CK_VISIBLE_PUBLIC BOOL CkSFtp_WriteFileBytes(HCkSFtp cHandle, const char *handle, HCkByteData byteData);
 CK_VISIBLE_PUBLIC HCkTask CkSFtp_WriteFileBytesAsync(HCkSFtp cHandle, const char *handle, HCkByteData byteData);
 CK_VISIBLE_PUBLIC BOOL CkSFtp_WriteFileBytes32(HCkSFtp cHandle, const char *handle, int offset, HCkByteData data);

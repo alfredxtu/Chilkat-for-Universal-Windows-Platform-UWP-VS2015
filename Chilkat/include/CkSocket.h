@@ -1418,6 +1418,9 @@ class CK_VISIBLE_PUBLIC CkSocket  : public CkClassWithCallbacks
 	// or more calls to this method to identify the CA's it will accept for client-side
 	// certificates.
 	// 
+	// If no CA DN's are added by this method, then client certificates from any root
+	// CA are accepted.
+	// 
 	// Important: If calling this method, it must be called before calling
 	// InitSslServer.
 	// 

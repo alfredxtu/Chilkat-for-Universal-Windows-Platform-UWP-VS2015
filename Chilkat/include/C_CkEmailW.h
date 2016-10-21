@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.59
+// This is a generated source file for Chilkat version 9.5.0.62
 #ifndef _C_CkEmailWH
 #define _C_CkEmailWH
 #include "chilkatDefs.h"
@@ -249,7 +249,9 @@ CK_VISIBLE_PUBLIC BOOL CkEmailW_GetMbHtmlBody(HCkEmailW cHandle, const wchar_t *
 CK_VISIBLE_PUBLIC BOOL CkEmailW_GetMbPlainTextBody(HCkEmailW cHandle, const wchar_t *charset, HCkByteData outData);
 CK_VISIBLE_PUBLIC BOOL CkEmailW_GetMime(HCkEmailW cHandle, HCkString outStrMime);
 CK_VISIBLE_PUBLIC const wchar_t *CkEmailW_getMime(HCkEmailW cHandle);
+CK_VISIBLE_PUBLIC BOOL CkEmailW_GetMimeBd(HCkEmailW cHandle, HCkBinDataW bindat);
 CK_VISIBLE_PUBLIC BOOL CkEmailW_GetMimeBinary(HCkEmailW cHandle, HCkByteData outBytes);
+CK_VISIBLE_PUBLIC BOOL CkEmailW_GetMimeSb(HCkEmailW cHandle, HCkStringBuilderW sb);
 CK_VISIBLE_PUBLIC BOOL CkEmailW_GetNthBinaryPartOfType(HCkEmailW cHandle, int index, const wchar_t *contentType, BOOL inlineOnly, BOOL excludeAttachments, HCkByteData outBytes);
 CK_VISIBLE_PUBLIC BOOL CkEmailW_GetNthTextPartOfType(HCkEmailW cHandle, int index, const wchar_t *contentType, BOOL inlineOnly, BOOL excludeAttachments, HCkString outStr);
 CK_VISIBLE_PUBLIC const wchar_t *CkEmailW_getNthTextPartOfType(HCkEmailW cHandle, int index, const wchar_t *contentType, BOOL inlineOnly, BOOL excludeAttachments);
@@ -326,8 +328,10 @@ CK_VISIBLE_PUBLIC BOOL CkEmailW_SetDecryptCert2(HCkEmailW cHandle, HCkCertW cert
 CK_VISIBLE_PUBLIC BOOL CkEmailW_SetDt(HCkEmailW cHandle, HCkDateTimeW dt);
 CK_VISIBLE_PUBLIC void CkEmailW_SetEdifactBody(HCkEmailW cHandle, const wchar_t *message, const wchar_t *name, const wchar_t *filename, const wchar_t *charset);
 CK_VISIBLE_PUBLIC BOOL CkEmailW_SetEncryptCert(HCkEmailW cHandle, HCkCertW cert);
+CK_VISIBLE_PUBLIC BOOL CkEmailW_SetFromMimeBd(HCkEmailW cHandle, HCkBinDataW bindat);
 CK_VISIBLE_PUBLIC BOOL CkEmailW_SetFromMimeBytes(HCkEmailW cHandle, HCkByteData mimeBytes);
 CK_VISIBLE_PUBLIC BOOL CkEmailW_SetFromMimeBytes2(HCkEmailW cHandle, HCkByteData mimeBytes, const wchar_t *charset);
+CK_VISIBLE_PUBLIC BOOL CkEmailW_SetFromMimeSb(HCkEmailW cHandle, HCkStringBuilderW sb);
 CK_VISIBLE_PUBLIC BOOL CkEmailW_SetFromMimeText(HCkEmailW cHandle, const wchar_t *mimeText);
 CK_VISIBLE_PUBLIC BOOL CkEmailW_SetFromXmlText(HCkEmailW cHandle, const wchar_t *xmlStr);
 CK_VISIBLE_PUBLIC void CkEmailW_SetHtmlBody(HCkEmailW cHandle, const wchar_t *html);

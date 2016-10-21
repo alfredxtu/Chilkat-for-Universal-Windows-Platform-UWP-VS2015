@@ -23,6 +23,8 @@ namespace Chilkat
 	ref class Cert;
 	ref class StringArray;
 	ref class CkDateTime;
+	ref class BinData;
+	ref class StringBuilder;
 	ref class CertChain;
 	ref class PrivateKey;
 	ref class XmlCertVault;
@@ -467,7 +469,11 @@ public ref class Email sealed
 
 	Platform::String ^GetMime(void);
 
+	Boolean GetMimeBd(Chilkat::BinData ^bindat);
+
 	Windows::Foundation::Collections::IVector<uint8>^GetMimeBinary(void);
+
+	Boolean GetMimeSb(Chilkat::StringBuilder ^sb);
 
 	Windows::Foundation::Collections::IVector<uint8>^GetNthBinaryPartOfType(int index, Platform::String ^contentType, Boolean inlineOnly, Boolean excludeAttachments);
 
@@ -569,9 +575,13 @@ public ref class Email sealed
 
 	Boolean SetEncryptCert(Chilkat::Cert ^cert);
 
+	Boolean SetFromMimeBd(Chilkat::BinData ^bindat);
+
 	Boolean SetFromMimeBytes(Windows::Foundation::Collections::IVector<uint8>^mimeBytes);
 
 	Boolean SetFromMimeBytes2(Windows::Foundation::Collections::IVector<uint8>^mimeBytes, Platform::String ^charset);
+
+	Boolean SetFromMimeSb(Chilkat::StringBuilder ^sb);
 
 	Boolean SetFromMimeText(Platform::String ^mimeText);
 

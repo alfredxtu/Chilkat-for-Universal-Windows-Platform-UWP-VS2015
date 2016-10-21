@@ -18,6 +18,8 @@ class CkEmailBundle;
 class CkEmail;
 class CkStringArray;
 class CkCert;
+class CkBinData;
+class CkStringBuilder;
 class CkCsp;
 class CkPrivateKey;
 class CkSshKey;
@@ -351,7 +353,7 @@ class CK_VISIBLE_PUBLIC CkMailMan  : public CkClassWithCallbacks
 	// 
 	// Any MIME header field name can be used, case is insensitive. 
 	// Literal strings are double-quoted, and case is insensitive. 
-	// The "*" wildcard matches 0 or more occurances of any character. 
+	// The "*" wildcard matches 0 or more occurrences of any character. 
 	// Parentheses can be used to control precedence. 
 	// The logical operators are: AND, OR, NOT (case insensitive) 
 	// Comparison operators are: =, , =, String comparison operators are: CONTAINS, LIKE (case insensitive)
@@ -372,7 +374,7 @@ class CK_VISIBLE_PUBLIC CkMailMan  : public CkClassWithCallbacks
 	// 
 	// Any MIME header field name can be used, case is insensitive. 
 	// Literal strings are double-quoted, and case is insensitive. 
-	// The "*" wildcard matches 0 or more occurances of any character. 
+	// The "*" wildcard matches 0 or more occurrences of any character. 
 	// Parentheses can be used to control precedence. 
 	// The logical operators are: AND, OR, NOT (case insensitive) 
 	// Comparison operators are: =, , =, String comparison operators are: CONTAINS, LIKE (case insensitive)
@@ -393,7 +395,7 @@ class CK_VISIBLE_PUBLIC CkMailMan  : public CkClassWithCallbacks
 	// 
 	// Any MIME header field name can be used, case is insensitive. 
 	// Literal strings are double-quoted, and case is insensitive. 
-	// The "*" wildcard matches 0 or more occurances of any character. 
+	// The "*" wildcard matches 0 or more occurrences of any character. 
 	// Parentheses can be used to control precedence. 
 	// The logical operators are: AND, OR, NOT (case insensitive) 
 	// Comparison operators are: =, , =, String comparison operators are: CONTAINS, LIKE (case insensitive)
@@ -2519,6 +2521,10 @@ class CK_VISIBLE_PUBLIC CkMailMan  : public CkClassWithCallbacks
 	// 
 	const char *renderToMime(CkEmail &email);
 
+	// The same as RenderToMimeBytes, except the MIME is rendered into renderedMime.
+	bool RenderToMimeBd(CkEmail &email, CkBinData &renderedMime);
+
+
 	// This method is the same as RenderToMime, but the MIME is returned in a byte
 	// array. If an email uses an 8bit or binary MIME encoding, then calling
 	// RenderToMime may introduce errors because it is not possible to return non-text
@@ -2526,6 +2532,10 @@ class CK_VISIBLE_PUBLIC CkMailMan  : public CkClassWithCallbacks
 	// over RenderToMime, unless it is assured that the email (MIME) does not use a
 	// binary encoding for non-text data.
 	bool RenderToMimeBytes(CkEmail &email, CkByteData &outBytes);
+
+
+	// The same as RenderToMime, except the MIME is rendered into renderedMime.
+	bool RenderToMimeSb(CkEmail &email, CkStringBuilder &renderedMime);
 
 
 	// Sends a bundle of emails. This is identical to calling SendEmail for each email

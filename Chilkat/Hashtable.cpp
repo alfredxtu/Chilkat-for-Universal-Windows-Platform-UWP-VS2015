@@ -9,6 +9,8 @@
 #include "include/CkDateTime.h"
 #include "include/CkHashtableW.h"
 		
+#include "include/CkStringTableW.h"
+#include "StringTable.h"
 
 
 using namespace Chilkat;
@@ -51,6 +53,12 @@ Boolean Hashtable::AddInt(Platform::String ^key, int value)
 	// --- prep output arg ---
 	return m_impl->AddInt(key ? key->Data() : L"",value);
     }
+Boolean Hashtable::AddQueryParams(Platform::String ^queryParams)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->AddQueryParams(queryParams ? queryParams->Data() : L"");
+    }
 Boolean Hashtable::AddStr(Platform::String ^key, Platform::String ^value)
     {
 	if (m_impl == nullptr) { return false; }
@@ -74,6 +82,15 @@ Boolean Hashtable::Contains(Platform::String ^key)
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->Contains(key ? key->Data() : L"");
+    }
+Boolean Hashtable::GetKeys(Chilkat::StringTable ^strTable)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (strTable == nullptr) { return false; }
+	CkStringTableW* pObj0 = strTable->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->GetKeys(*pObj0);
     }
 int Hashtable::LookupInt(Platform::String ^key)
     {

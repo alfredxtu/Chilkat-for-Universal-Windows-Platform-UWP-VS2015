@@ -94,6 +94,10 @@ public ref class Global sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property int32 UnlockStatus
+	{
+		int32 get();
+	}
 	property Boolean VerboseLogging
 	{
 		Boolean get();

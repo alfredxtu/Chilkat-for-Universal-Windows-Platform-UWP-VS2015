@@ -9,6 +9,8 @@
 #include "include/CkDateTime.h"
 #include "include/CkXmlW.h"
 		
+#include "include/CkStringBuilderW.h"
+#include "StringBuilder.h"
 
 
 using namespace Chilkat;
@@ -615,6 +617,15 @@ Platform::String ^Xml::GetXml(void)
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
+Boolean Xml::GetXmlSb(Chilkat::StringBuilder ^sb)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj0 = sb->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->GetXmlSb(*pObj0);
+    }
 Boolean Xml::HasAttribute(Platform::String ^name)
     {
 	if (m_impl == nullptr) { return false; }
@@ -678,6 +689,15 @@ Boolean Xml::LastChild2(void)
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->LastChild2();
+    }
+Boolean Xml::LoadSb(Chilkat::StringBuilder ^sb, Boolean autoTrim)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj0 = sb->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->LoadSb(*pObj0,autoTrim);
     }
 Boolean Xml::LoadXml(Platform::String ^xmlData)
     {

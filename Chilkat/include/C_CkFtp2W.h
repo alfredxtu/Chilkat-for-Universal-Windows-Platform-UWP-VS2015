@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.59
+// This is a generated source file for Chilkat version 9.5.0.62
 #ifndef _C_CkFtp2WH
 #define _C_CkFtp2WH
 #include "chilkatDefs.h"
@@ -299,9 +299,13 @@ CK_VISIBLE_PUBLIC int CkFtp2W_GetDirCount(HCkFtp2W cHandle);
 CK_VISIBLE_PUBLIC HCkTaskW CkFtp2W_GetDirCountAsync(HCkFtp2W cHandle);
 CK_VISIBLE_PUBLIC BOOL CkFtp2W_GetFile(HCkFtp2W cHandle, const wchar_t *remoteFilePath, const wchar_t *localFilePath);
 CK_VISIBLE_PUBLIC HCkTaskW CkFtp2W_GetFileAsync(HCkFtp2W cHandle, const wchar_t *remoteFilePath, const wchar_t *localFilePath);
+CK_VISIBLE_PUBLIC BOOL CkFtp2W_GetFileBd(HCkFtp2W cHandle, const wchar_t *remoteFilePath, HCkBinDataW binData);
+CK_VISIBLE_PUBLIC HCkTaskW CkFtp2W_GetFileBdAsync(HCkFtp2W cHandle, const wchar_t *remoteFilePath, HCkBinDataW binData);
 CK_VISIBLE_PUBLIC BOOL CkFtp2W_GetFilename(HCkFtp2W cHandle, int index, HCkString outStr);
 CK_VISIBLE_PUBLIC const wchar_t *CkFtp2W_getFilename(HCkFtp2W cHandle, int index);
 CK_VISIBLE_PUBLIC HCkTaskW CkFtp2W_GetFilenameAsync(HCkFtp2W cHandle, int index);
+CK_VISIBLE_PUBLIC BOOL CkFtp2W_GetFileSb(HCkFtp2W cHandle, const wchar_t *remoteFilePath, const wchar_t *charset, HCkStringBuilderW sb);
+CK_VISIBLE_PUBLIC HCkTaskW CkFtp2W_GetFileSbAsync(HCkFtp2W cHandle, const wchar_t *remoteFilePath, const wchar_t *charset, HCkStringBuilderW sb);
 CK_VISIBLE_PUBLIC BOOL CkFtp2W_GetGroup(HCkFtp2W cHandle, int index, HCkString outStr);
 CK_VISIBLE_PUBLIC const wchar_t *CkFtp2W_getGroup(HCkFtp2W cHandle, int index);
 CK_VISIBLE_PUBLIC HCkTaskW CkFtp2W_GetGroupAsync(HCkFtp2W cHandle, int index);
@@ -385,10 +389,14 @@ CK_VISIBLE_PUBLIC BOOL CkFtp2W_Noop(HCkFtp2W cHandle);
 CK_VISIBLE_PUBLIC HCkTaskW CkFtp2W_NoopAsync(HCkFtp2W cHandle);
 CK_VISIBLE_PUBLIC BOOL CkFtp2W_PutFile(HCkFtp2W cHandle, const wchar_t *localFilePath, const wchar_t *remoteFilePath);
 CK_VISIBLE_PUBLIC HCkTaskW CkFtp2W_PutFileAsync(HCkFtp2W cHandle, const wchar_t *localFilePath, const wchar_t *remoteFilePath);
+CK_VISIBLE_PUBLIC BOOL CkFtp2W_PutFileBd(HCkFtp2W cHandle, HCkBinDataW binData, const wchar_t *remoteFilePath);
+CK_VISIBLE_PUBLIC HCkTaskW CkFtp2W_PutFileBdAsync(HCkFtp2W cHandle, HCkBinDataW binData, const wchar_t *remoteFilePath);
 CK_VISIBLE_PUBLIC BOOL CkFtp2W_PutFileFromBinaryData(HCkFtp2W cHandle, const wchar_t *remoteFilename, HCkByteData content);
 CK_VISIBLE_PUBLIC HCkTaskW CkFtp2W_PutFileFromBinaryDataAsync(HCkFtp2W cHandle, const wchar_t *remoteFilename, HCkByteData content);
 CK_VISIBLE_PUBLIC BOOL CkFtp2W_PutFileFromTextData(HCkFtp2W cHandle, const wchar_t *remoteFilename, const wchar_t *textData, const wchar_t *charset);
 CK_VISIBLE_PUBLIC HCkTaskW CkFtp2W_PutFileFromTextDataAsync(HCkFtp2W cHandle, const wchar_t *remoteFilename, const wchar_t *textData, const wchar_t *charset);
+CK_VISIBLE_PUBLIC BOOL CkFtp2W_PutFileSb(HCkFtp2W cHandle, HCkStringBuilderW sb, const wchar_t *charset, BOOL includeBom, const wchar_t *remoteFilePath);
+CK_VISIBLE_PUBLIC HCkTaskW CkFtp2W_PutFileSbAsync(HCkFtp2W cHandle, HCkStringBuilderW sb, const wchar_t *charset, BOOL includeBom, const wchar_t *remoteFilePath);
 CK_VISIBLE_PUBLIC BOOL CkFtp2W_PutPlan(HCkFtp2W cHandle, const wchar_t *plan, const wchar_t *alreadyDoneFilename);
 CK_VISIBLE_PUBLIC HCkTaskW CkFtp2W_PutPlanAsync(HCkFtp2W cHandle, const wchar_t *plan, const wchar_t *alreadyDoneFilename);
 CK_VISIBLE_PUBLIC BOOL CkFtp2W_PutTree(HCkFtp2W cHandle, const wchar_t *localDir);

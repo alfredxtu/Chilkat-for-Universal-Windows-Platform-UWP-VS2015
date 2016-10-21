@@ -12,6 +12,7 @@
 #include "CkString.h"
 #include "CkWideCharBase.h"
 
+class CkStringTableW;
 
 
 
@@ -61,6 +62,12 @@ class CK_VISIBLE_PUBLIC CkHashtableW  : public CkWideCharBase
 	// if an out-of-memory condition occurred.
 	bool AddInt(const wchar_t *key, int value);
 
+	// Adds URL query parameters into the hashtable. The queryParams has the form:
+	// "field1=value1&field2=value2&field3=value3...". It is assumed that the values
+	// are URL encoded, and this method automatically URL decodes the values prior to
+	// inserting into the hashtable.
+	bool AddQueryParams(const wchar_t *queryParams);
+
 	// Adds or replaces an entry with the given key and string value to the hash table.
 	// Returns true if a new hash entry was added or replaced. Returns false if an
 	// out-of-memory condition occurred.
@@ -85,6 +92,9 @@ class CK_VISIBLE_PUBLIC CkHashtableW  : public CkWideCharBase
 	// Determines if a given key is contained within the hash table. Returns true if
 	// the key exists, otherwise returns false.
 	bool Contains(const wchar_t *key);
+
+	// Appends the complete set of hashtable key strings to strTable.
+	bool GetKeys(CkStringTableW &strTable);
 
 	// Returns the integer value associated with the specified key. If the key is not
 	// in the hash table, the return value is 0.
