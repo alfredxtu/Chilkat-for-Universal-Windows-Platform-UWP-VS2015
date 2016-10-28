@@ -1,5 +1,5 @@
 
-# Chilkat v9.5.0.62 Runtime Component for Universal Windows apps
+# Chilkat v9.5.0.63 Runtime Component for Universal Windows apps
 
 This repo is the full version (and trial) of the Chilkat Runtime Component for UWP applications using Visual Studio 2015 for Windows 10.  The Chilkat API contains both commercial and freeware classes.  Commercial classes must be licensed for use beyond 30 days.  The "Chilkat Bundle" provides licenses to all existing Chilkat commercial classes.
 
