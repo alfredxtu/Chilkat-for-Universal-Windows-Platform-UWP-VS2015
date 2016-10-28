@@ -30,6 +30,7 @@ CK_VISIBLE_PUBLIC BOOL CkStringTable_Append(HCkStringTable cHandle, const char *
 CK_VISIBLE_PUBLIC BOOL CkStringTable_AppendFromFile(HCkStringTable cHandle, int maxLineLen, const char *charset, const char *path);
 CK_VISIBLE_PUBLIC BOOL CkStringTable_AppendFromSb(HCkStringTable cHandle, HCkStringBuilder sb);
 CK_VISIBLE_PUBLIC void CkStringTable_Clear(HCkStringTable cHandle);
+CK_VISIBLE_PUBLIC int CkStringTable_IntAt(HCkStringTable cHandle, int index);
 CK_VISIBLE_PUBLIC BOOL CkStringTable_SaveLastError(HCkStringTable cHandle, const char *path);
 CK_VISIBLE_PUBLIC BOOL CkStringTable_SaveToFile(HCkStringTable cHandle, const char *charset, BOOL bCrlf, const char *path);
 CK_VISIBLE_PUBLIC BOOL CkStringTable_SplitAndAppend(HCkStringTable cHandle, const char *inStr, const char *delimiterChar, BOOL exceptDoubleQuoted, BOOL exceptEscaped);

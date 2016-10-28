@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.62
+// This is a generated source file for Chilkat version 9.5.0.63
 #ifndef _C_CkRestWH
 #define _C_CkRestWH
 #include "chilkatDefs.h"
@@ -13,6 +13,8 @@ CK_VISIBLE_PUBLIC void CkRestW_setTaskCompleted(HCkRestW cHandle, void (*fnTaskC
 
 CK_VISIBLE_PUBLIC HCkRestW CkRestW_Create(void);
 CK_VISIBLE_PUBLIC void CkRestW_Dispose(HCkRestW handle);
+CK_VISIBLE_PUBLIC BOOL CkRestW_getAllowHeaderFolding(HCkRestW cHandle);
+CK_VISIBLE_PUBLIC void  CkRestW_putAllowHeaderFolding(HCkRestW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC BOOL CkRestW_getAllowHeaderQB(HCkRestW cHandle);
 CK_VISIBLE_PUBLIC void  CkRestW_putAllowHeaderQB(HCkRestW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkRestW_getAuthorization(HCkRestW cHandle, HCkString retval);
@@ -82,6 +84,7 @@ CK_VISIBLE_PUBLIC BOOL CkRestW_FullRequestNoBody(HCkRestW cHandle, const wchar_t
 CK_VISIBLE_PUBLIC const wchar_t *CkRestW_fullRequestNoBody(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath);
 CK_VISIBLE_PUBLIC HCkTaskW CkRestW_FullRequestNoBodyAsync(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath);
 CK_VISIBLE_PUBLIC BOOL CkRestW_FullRequestSb(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath, HCkStringBuilderW requestBody, HCkStringBuilderW responseBody);
+CK_VISIBLE_PUBLIC HCkTaskW CkRestW_FullRequestSbAsync(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath, HCkStringBuilderW requestBody, HCkStringBuilderW responseBody);
 CK_VISIBLE_PUBLIC BOOL CkRestW_FullRequestStream(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath, HCkStreamW stream, HCkString outStr);
 CK_VISIBLE_PUBLIC const wchar_t *CkRestW_fullRequestStream(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath, HCkStreamW stream);
 CK_VISIBLE_PUBLIC HCkTaskW CkRestW_FullRequestStreamAsync(HCkRestW cHandle, const wchar_t *httpVerb, const wchar_t *uriPath, HCkStreamW stream);

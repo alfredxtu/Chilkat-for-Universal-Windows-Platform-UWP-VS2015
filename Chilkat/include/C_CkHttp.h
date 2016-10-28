@@ -26,6 +26,8 @@ CK_VISIBLE_PUBLIC void CkHttp_putAcceptLanguage(HCkHttp cHandle, const char *new
 CK_VISIBLE_PUBLIC const char *CkHttp_acceptLanguage(HCkHttp cHandle);
 CK_VISIBLE_PUBLIC BOOL CkHttp_getAllowGzip(HCkHttp cHandle);
 CK_VISIBLE_PUBLIC void CkHttp_putAllowGzip(HCkHttp cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC BOOL CkHttp_getAllowHeaderFolding(HCkHttp cHandle);
+CK_VISIBLE_PUBLIC void CkHttp_putAllowHeaderFolding(HCkHttp cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC BOOL CkHttp_getAutoAddHostHeader(HCkHttp cHandle);
 CK_VISIBLE_PUBLIC void CkHttp_putAutoAddHostHeader(HCkHttp cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkHttp_getAwsAccessKey(HCkHttp cHandle, HCkString retval);
@@ -283,9 +285,13 @@ CK_VISIBLE_PUBLIC BOOL CkHttp_Download(HCkHttp cHandle, const char *url, const c
 CK_VISIBLE_PUBLIC HCkTask CkHttp_DownloadAsync(HCkHttp cHandle, const char *url, const char *localFilePath);
 CK_VISIBLE_PUBLIC BOOL CkHttp_DownloadAppend(HCkHttp cHandle, const char *url, const char *filename);
 CK_VISIBLE_PUBLIC HCkTask CkHttp_DownloadAppendAsync(HCkHttp cHandle, const char *url, const char *filename);
+CK_VISIBLE_PUBLIC BOOL CkHttp_DownloadBd(HCkHttp cHandle, const char *url, HCkBinData binData);
+CK_VISIBLE_PUBLIC HCkTask CkHttp_DownloadBdAsync(HCkHttp cHandle, const char *url, HCkBinData binData);
 CK_VISIBLE_PUBLIC BOOL CkHttp_DownloadHash(HCkHttp cHandle, const char *url, const char *hashAlgorithm, const char *encoding, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkHttp_downloadHash(HCkHttp cHandle, const char *url, const char *hashAlgorithm, const char *encoding);
 CK_VISIBLE_PUBLIC HCkTask CkHttp_DownloadHashAsync(HCkHttp cHandle, const char *url, const char *hashAlgorithm, const char *encoding);
+CK_VISIBLE_PUBLIC BOOL CkHttp_DownloadSb(HCkHttp cHandle, const char *url, const char *charset, HCkStringBuilder sb);
+CK_VISIBLE_PUBLIC HCkTask CkHttp_DownloadSbAsync(HCkHttp cHandle, const char *url, const char *charset, HCkStringBuilder sb);
 CK_VISIBLE_PUBLIC BOOL CkHttp_EventLogName(HCkHttp cHandle, int index, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkHttp_eventLogName(HCkHttp cHandle, int index);
 CK_VISIBLE_PUBLIC BOOL CkHttp_EventLogValue(HCkHttp cHandle, int index, HCkString outStr);

@@ -195,8 +195,23 @@ class CK_VISIBLE_PUBLIC CkJsonObjectW  : public CkWideCharBase
 	// Writes the JSON document (rooted at the caller) and returns as a string.
 	const wchar_t *emit(void);
 
-	// Writes the JSON to a StringBuilder object.
+	// Appends the JSON to a StringBuilder object.
 	bool EmitSb(CkStringBuilderW &sb);
+
+	// Finds a JSON record in an array where a particular field equals or matches a
+	// value pattern. Reviewing the examples below is the best way to understand this
+	// function.
+	// The caller is responsible for deleting the object returned by this method.
+	CkJsonObjectW *FindRecord(const wchar_t *arrayPath, const wchar_t *relPath, const wchar_t *value, bool caseSensitive);
+
+	// Finds a JSON value in an record array where a particular field equals or matches
+	// a value pattern. Reviewing the examples below is the best way to understand this
+	// function.
+	bool FindRecordString(const wchar_t *arrayPath, const wchar_t *relPath, const wchar_t *value, bool caseSensitive, const wchar_t *retRelPath, CkString &outStr);
+	// Finds a JSON value in an record array where a particular field equals or matches
+	// a value pattern. Reviewing the examples below is the best way to understand this
+	// function.
+	const wchar_t *findRecordString(const wchar_t *arrayPath, const wchar_t *relPath, const wchar_t *value, bool caseSensitive, const wchar_t *retRelPath);
 
 	// Applies a Firebase event to the JSON. The data contains JSON having a format
 	// such as
@@ -341,6 +356,18 @@ class CK_VISIBLE_PUBLIC CkJsonObjectW  : public CkWideCharBase
 	//     null
 	// Returns -1 if no member exists at the given index.
 	int TypeAt(int index);
+
+	// Updates or appends a new boolean member. If the full path specified by jsonPath does
+	// not exist, it is automatically created as needed.
+	bool UpdateBool(const wchar_t *jsonPath, bool value);
+
+	// Updates or appends a new integer member. If the full path specified by jsonPath does
+	// not exist, it is automatically created as needed.
+	bool UpdateInt(const wchar_t *jsonPath, int value);
+
+	// Updates or appends a new string member. If the full path specified by jsonPath does
+	// not exist, it is automatically created as needed.
+	bool UpdateString(const wchar_t *jsonPath, const wchar_t *value);
 
 
 

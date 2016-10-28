@@ -239,8 +239,8 @@ class CK_VISIBLE_PUBLIC CkStringBuilderW  : public CkWideCharBase
 	bool Prepend(const wchar_t *value);
 
 	// Replaces all occurrences of a specified string in this instance with another
-	// specified string.
-	void Replace(const wchar_t *value, const wchar_t *replacement);
+	// specified string. Returns the number of replacements.
+	int Replace(const wchar_t *value, const wchar_t *replacement);
 
 	// Replaces all occurrences of value with replacement, but only where value is found between
 	// beginMark and endMark. Returns the number of replacements made.

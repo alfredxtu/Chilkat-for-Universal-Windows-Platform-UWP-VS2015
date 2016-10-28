@@ -12,11 +12,11 @@
 #include "CkString.h"
 #include "CkMultiByteBase.h"
 
+class CkBinData;
 class CkByteData;
 class CkCert;
 class CkStringArray;
 class CkDateTime;
-class CkBinData;
 class CkStringBuilder;
 class CkCertChain;
 class CkTask;
@@ -715,6 +715,11 @@ class CK_VISIBLE_PUBLIC CkEmail  : public CkMultiByteBase
 	// ----------------------
 	// Methods
 	// ----------------------
+	// Adds an attachment using the contents of a BinData object. If contentType is empty,
+	// then the content-type will be inferred from the filename extension.
+	bool AddAttachmentBd(const char *filename, CkBinData &binData, const char *contentType);
+
+
 	// Adds or replaces a MIME header field in one of the email attachments. If the
 	// header field does not exist, it is added. Otherwise it is replaced.
 	void AddAttachmentHeader(int index, const char *fieldName, const char *fieldValue);
@@ -731,12 +736,12 @@ class CK_VISIBLE_PUBLIC CkEmail  : public CkMultiByteBase
 
 
 	// Adds an attachment directly from data in memory to the email.
-	bool AddDataAttachment(const char *filePath, CkByteData &content);
+	bool AddDataAttachment(const char *fileName, CkByteData &content);
 
 
 	// Adds an attachment to an email from in-memory data. Same as AddDataAttachment
 	// but allows the content-type to be specified.
-	bool AddDataAttachment2(const char *path, CkByteData &content, const char *contentType);
+	bool AddDataAttachment2(const char *fileName, CkByteData &content, const char *contentType);
 
 
 	// Allows for certificates to be explicitly specified for sending encrypted email
@@ -1660,7 +1665,8 @@ class CK_VISIBLE_PUBLIC CkEmail  : public CkMultiByteBase
 
 
 	// Return the email as binary MIME containing the email header, body (or bodies),
-	// related items (if any), and all attachments. The MIME is loaded into the bindat.
+	// related items (if any), and all attachments. The MIME is appended to the
+	// existing contents (if any) of bindat.
 	bool GetMimeBd(CkBinData &bindat);
 
 
@@ -1669,7 +1675,8 @@ class CK_VISIBLE_PUBLIC CkEmail  : public CkMultiByteBase
 
 
 	// Return the email as MIME text containing the email header, body (or bodies),
-	// related items (if any), and all attachments. The MIME is loaded into the sb.
+	// related items (if any), and all attachments. The MIME is appended to the
+	// existing contents (if any) of sb.
 	bool GetMimeSb(CkStringBuilder &sb);
 
 

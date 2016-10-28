@@ -24,6 +24,8 @@ using namespace concurrency;
 namespace Chilkat
 {
 
+	ref class BinData;
+	ref class StringBuilder;
 	ref class Cert;
 	ref class Hashtable;
 	ref class HttpResponse;
@@ -153,6 +155,11 @@ public ref class Http sealed
 		void set(Platform::String ^);
 	}
 	property Boolean AllowGzip
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Boolean AllowHeaderFolding
 	{
 		Boolean get();
 		void set(Boolean);
@@ -635,7 +642,11 @@ public ref class Http sealed
 
 	IAsyncOperation<Boolean>^ DownloadAppendAsync(Platform::String ^url, Platform::String ^filename);
 
+	IAsyncOperation<Boolean>^ DownloadBdAsync(Platform::String ^url, Chilkat::BinData ^binData);
+
 	IAsyncOperation<Platform::String ^>^ DownloadHashAsync(Platform::String ^url, Platform::String ^hashAlgorithm, Platform::String ^encoding);
+
+	IAsyncOperation<Boolean>^ DownloadSbAsync(Platform::String ^url, Platform::String ^charset, Chilkat::StringBuilder ^sb);
 
 	Platform::String ^ExtractMetaRefreshUrl(Platform::String ^htmlContent);
 

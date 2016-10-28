@@ -75,6 +75,12 @@ class CK_VISIBLE_PUBLIC CkStringTableW  : public CkWideCharBase
 	// Removes all the strings from the table.
 	void Clear(void);
 
+	// Returns the Nth string in the table, converted to an integer value. The index is
+	// 0-based. (The first string is at index 0.) Returns -1 if no string is found at
+	// the specified index. Returns 0 if the string at the specified index exist, but
+	// is not an integer.
+	int IntAt(int index);
+
 	// Saves the string table to a file. The charset is the character encoding to use,
 	// such as "utf-8", "iso-8859-1", "windows-1252", "Shift_JIS", "gb2312", etc. If
 	// bCrlf is true, then CRLF line endings are used, otherwise LF-only line endings

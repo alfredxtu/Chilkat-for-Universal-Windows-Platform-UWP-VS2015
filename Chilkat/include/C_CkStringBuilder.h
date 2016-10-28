@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.62
+// This is a generated source file for Chilkat version 9.5.0.63
 #ifndef _C_CkStringBuilder_H
 #define _C_CkStringBuilder_H
 #include "chilkatDefs.h"
@@ -41,7 +41,7 @@ CK_VISIBLE_PUBLIC BOOL CkStringBuilder_LastNLines(HCkStringBuilder cHandle, int 
 CK_VISIBLE_PUBLIC const char *CkStringBuilder_lastNLines(HCkStringBuilder cHandle, int numLines, BOOL bCrlf);
 CK_VISIBLE_PUBLIC BOOL CkStringBuilder_LoadFile(HCkStringBuilder cHandle, const char *path, const char *charset);
 CK_VISIBLE_PUBLIC BOOL CkStringBuilder_Prepend(HCkStringBuilder cHandle, const char *value);
-CK_VISIBLE_PUBLIC void CkStringBuilder_Replace(HCkStringBuilder cHandle, const char *value, const char *replacement);
+CK_VISIBLE_PUBLIC int CkStringBuilder_Replace(HCkStringBuilder cHandle, const char *value, const char *replacement);
 CK_VISIBLE_PUBLIC int CkStringBuilder_ReplaceBetween(HCkStringBuilder cHandle, const char *beginMark, const char *endMark, const char *value, const char *replacement);
 CK_VISIBLE_PUBLIC int CkStringBuilder_ReplaceWord(HCkStringBuilder cHandle, const char *value, const char *replacement);
 CK_VISIBLE_PUBLIC BOOL CkStringBuilder_SetNth(HCkStringBuilder cHandle, int index, const char *value, const char *delimiterChar, BOOL exceptDoubleQuoted, BOOL exceptEscaped);

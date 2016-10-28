@@ -91,6 +91,8 @@ public ref class StringTable sealed
 
 	void Clear(void);
 
+	int IntAt(int index);
+
 	Boolean SaveToFile(Platform::String ^charset, Boolean bCrlf, Platform::String ^path);
 
 	Boolean SplitAndAppend(Platform::String ^inStr, Platform::String ^delimiterChar, Boolean exceptDoubleQuoted, Boolean exceptEscaped);

@@ -210,9 +210,26 @@ class CK_VISIBLE_PUBLIC CkJsonObject  : public CkMultiByteBase
 	// Writes the JSON document (rooted at the caller) and returns as a string.
 	const char *emit(void);
 
-	// Writes the JSON to a StringBuilder object.
+	// Appends the JSON to a StringBuilder object.
 	bool EmitSb(CkStringBuilder &sb);
 
+
+	// Finds a JSON record in an array where a particular field equals or matches a
+	// value pattern. Reviewing the examples below is the best way to understand this
+	// function.
+	// The caller is responsible for deleting the object returned by this method.
+	CkJsonObject *FindRecord(const char *arrayPath, const char *relPath, const char *value, bool caseSensitive);
+
+
+	// Finds a JSON value in an record array where a particular field equals or matches
+	// a value pattern. Reviewing the examples below is the best way to understand this
+	// function.
+	bool FindRecordString(const char *arrayPath, const char *relPath, const char *value, bool caseSensitive, const char *retRelPath, CkString &outStr);
+
+	// Finds a JSON value in an record array where a particular field equals or matches
+	// a value pattern. Reviewing the examples below is the best way to understand this
+	// function.
+	const char *findRecordString(const char *arrayPath, const char *relPath, const char *value, bool caseSensitive, const char *retRelPath);
 
 	// Applies a Firebase event to the JSON. The data contains JSON having a format
 	// such as
@@ -388,6 +405,21 @@ class CK_VISIBLE_PUBLIC CkJsonObject  : public CkMultiByteBase
 	//     null
 	// Returns -1 if no member exists at the given index.
 	int TypeAt(int index);
+
+
+	// Updates or appends a new boolean member. If the full path specified by jsonPath does
+	// not exist, it is automatically created as needed.
+	bool UpdateBool(const char *jsonPath, bool value);
+
+
+	// Updates or appends a new integer member. If the full path specified by jsonPath does
+	// not exist, it is automatically created as needed.
+	bool UpdateInt(const char *jsonPath, int value);
+
+
+	// Updates or appends a new string member. If the full path specified by jsonPath does
+	// not exist, it is automatically created as needed.
+	bool UpdateString(const char *jsonPath, const char *value);
 
 
 

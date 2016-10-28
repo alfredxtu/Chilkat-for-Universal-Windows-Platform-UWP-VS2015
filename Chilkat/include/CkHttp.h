@@ -15,6 +15,8 @@
 class CkByteData;
 class CkHttpResponse;
 class CkTask;
+class CkBinData;
+class CkStringBuilder;
 class CkCert;
 class CkHashtable;
 class CkHttpRequest;
@@ -123,6 +125,13 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	// content. The default value is true, which means the server, if it chooses, may
 	// send a gzipped response.
 	void put_AllowGzip(bool newVal);
+
+	// If this property is set to false, then no MIME header folding will be
+	// automatically applied to any request header. The default is true.
+	bool get_AllowHeaderFolding(void);
+	// If this property is set to false, then no MIME header folding will be
+	// automatically applied to any request header. The default is true.
+	void put_AllowHeaderFolding(bool newVal);
 
 	// If set to true, the "Host" header field will automatically be added to the
 	// request header for any QuickGet or QuickGetStr method calls. The value of the
@@ -2012,19 +2021,28 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	void put_UseIEProxy(bool newVal);
 
 	// The UserAgent header field to be automatically included with GET requests issued
-	// by QuickGet or QuickGetStr. The default value is "Chilkat/1.0.0
-	// (+http://www.chilkatsoft.com/ChilkatHttpUA.asp)" which indicates that the
-	// software used to issue the HTTP request was the Chilkat HTTP component.
+	// by QuickGet or QuickGetStr. The default value is "Mozilla/5.0 (Windows NT 6.3;
+	// WOW64; rv:49.0) Gecko/20100101 Firefox/49.0". The reason for this default is to
+	// get the same server behavior for a recent version of a typical and popular
+	// browser. Some sites may respond differently depending on the User-Agent, and the
+	// goal is to avoid strange responses that are different than what a typical
+	// browser would receive.
 	void get_UserAgent(CkString &str);
 	// The UserAgent header field to be automatically included with GET requests issued
-	// by QuickGet or QuickGetStr. The default value is "Chilkat/1.0.0
-	// (+http://www.chilkatsoft.com/ChilkatHttpUA.asp)" which indicates that the
-	// software used to issue the HTTP request was the Chilkat HTTP component.
+	// by QuickGet or QuickGetStr. The default value is "Mozilla/5.0 (Windows NT 6.3;
+	// WOW64; rv:49.0) Gecko/20100101 Firefox/49.0". The reason for this default is to
+	// get the same server behavior for a recent version of a typical and popular
+	// browser. Some sites may respond differently depending on the User-Agent, and the
+	// goal is to avoid strange responses that are different than what a typical
+	// browser would receive.
 	const char *userAgent(void);
 	// The UserAgent header field to be automatically included with GET requests issued
-	// by QuickGet or QuickGetStr. The default value is "Chilkat/1.0.0
-	// (+http://www.chilkatsoft.com/ChilkatHttpUA.asp)" which indicates that the
-	// software used to issue the HTTP request was the Chilkat HTTP component.
+	// by QuickGet or QuickGetStr. The default value is "Mozilla/5.0 (Windows NT 6.3;
+	// WOW64; rv:49.0) Gecko/20100101 Firefox/49.0". The reason for this default is to
+	// get the same server behavior for a recent version of a typical and popular
+	// browser. Some sites may respond differently depending on the User-Agent, and the
+	// goal is to avoid strange responses that are different than what a typical
+	// browser would receive.
 	void put_UserAgent(const char *newVal);
 
 	// Indicates whether the last HTTP GET was redirected.
@@ -2147,6 +2165,13 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	CkTask *DownloadAppendAsync(const char *url, const char *filename);
 
 
+	// Downloads the content at the url into a BinData object.
+	bool DownloadBd(const char *url, CkBinData &binData);
+
+	// Downloads the content at the url into a BinData object.
+	CkTask *DownloadBdAsync(const char *url, CkBinData &binData);
+
+
 	// Retrieves the content at a URL and computes and returns a hash of the content.
 	// The hash is returned as an encoded string according to the encoding, which may be
 	// "Base64", "modBase64", "Base32", "UU", "QP" (for quoted-printable), "URL" (for
@@ -2169,6 +2194,21 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	// "url_rfc3986". The hashAlgorithm may be "sha1", "sha256", "sha384", "sha512", "md2",
 	// "md5", "haval", "ripemd128", "ripemd160","ripemd256", or "ripemd320".
 	CkTask *DownloadHashAsync(const char *url, const char *hashAlgorithm, const char *encoding);
+
+
+	// Downloads the content at the url into a Chilkat StringBuilder object. The charset
+	// tells Chilkat how to interpret the bytes received. If left empty, then Chilkat
+	// will use whatever information about charset that is available in the HTTP
+	// response, or default to utf-8. The sb is appended with the downloaded text
+	// data.
+	bool DownloadSb(const char *url, const char *charset, CkStringBuilder &sb);
+
+	// Downloads the content at the url into a Chilkat StringBuilder object. The charset
+	// tells Chilkat how to interpret the bytes received. If left empty, then Chilkat
+	// will use whatever information about charset that is available in the HTTP
+	// response, or default to utf-8. The sb is appended with the downloaded text
+	// data.
+	CkTask *DownloadSbAsync(const char *url, const char *charset, CkStringBuilder &sb);
 
 
 	// Returns the name of the Nth event in the in-memory event log. Refer to the

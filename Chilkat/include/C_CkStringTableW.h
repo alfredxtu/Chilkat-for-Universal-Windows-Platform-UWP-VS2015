@@ -28,6 +28,7 @@ CK_VISIBLE_PUBLIC BOOL CkStringTableW_Append(HCkStringTableW cHandle, const wcha
 CK_VISIBLE_PUBLIC BOOL CkStringTableW_AppendFromFile(HCkStringTableW cHandle, int maxLineLen, const wchar_t *charset, const wchar_t *path);
 CK_VISIBLE_PUBLIC BOOL CkStringTableW_AppendFromSb(HCkStringTableW cHandle, HCkStringBuilderW sb);
 CK_VISIBLE_PUBLIC void CkStringTableW_Clear(HCkStringTableW cHandle);
+CK_VISIBLE_PUBLIC int CkStringTableW_IntAt(HCkStringTableW cHandle, int index);
 CK_VISIBLE_PUBLIC BOOL CkStringTableW_SaveLastError(HCkStringTableW cHandle, const wchar_t *path);
 CK_VISIBLE_PUBLIC BOOL CkStringTableW_SaveToFile(HCkStringTableW cHandle, const wchar_t *charset, BOOL bCrlf, const wchar_t *path);
 CK_VISIBLE_PUBLIC BOOL CkStringTableW_SplitAndAppend(HCkStringTableW cHandle, const wchar_t *inStr, const wchar_t *delimiterChar, BOOL exceptDoubleQuoted, BOOL exceptEscaped);

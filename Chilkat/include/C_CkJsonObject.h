@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.62
+// This is a generated source file for Chilkat version 9.5.0.63
 #ifndef _C_CkJsonObject_H
 #define _C_CkJsonObject_H
 #include "chilkatDefs.h"
@@ -60,6 +60,9 @@ CK_VISIBLE_PUBLIC BOOL CkJsonObject_DeleteAt(HCkJsonObject cHandle, int index);
 CK_VISIBLE_PUBLIC BOOL CkJsonObject_Emit(HCkJsonObject cHandle, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkJsonObject_emit(HCkJsonObject cHandle);
 CK_VISIBLE_PUBLIC BOOL CkJsonObject_EmitSb(HCkJsonObject cHandle, HCkStringBuilder sb);
+CK_VISIBLE_PUBLIC HCkJsonObject CkJsonObject_FindRecord(HCkJsonObject cHandle, const char *arrayPath, const char *relPath, const char *value, BOOL caseSensitive);
+CK_VISIBLE_PUBLIC BOOL CkJsonObject_FindRecordString(HCkJsonObject cHandle, const char *arrayPath, const char *relPath, const char *value, BOOL caseSensitive, const char *retRelPath, HCkString outStr);
+CK_VISIBLE_PUBLIC const char *CkJsonObject_findRecordString(HCkJsonObject cHandle, const char *arrayPath, const char *relPath, const char *value, BOOL caseSensitive, const char *retRelPath);
 CK_VISIBLE_PUBLIC BOOL CkJsonObject_FirebaseApplyEvent(HCkJsonObject cHandle, const char *name, const char *data);
 CK_VISIBLE_PUBLIC BOOL CkJsonObject_FirebasePatch(HCkJsonObject cHandle, const char *jsonPath, const char *jsonData);
 CK_VISIBLE_PUBLIC BOOL CkJsonObject_FirebasePut(HCkJsonObject cHandle, const char *jsonPath, const char *value);
@@ -96,4 +99,7 @@ CK_VISIBLE_PUBLIC const char *CkJsonObject_stringAt(HCkJsonObject cHandle, int i
 CK_VISIBLE_PUBLIC BOOL CkJsonObject_StringOf(HCkJsonObject cHandle, const char *jsonPath, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkJsonObject_stringOf(HCkJsonObject cHandle, const char *jsonPath);
 CK_VISIBLE_PUBLIC int CkJsonObject_TypeAt(HCkJsonObject cHandle, int index);
+CK_VISIBLE_PUBLIC BOOL CkJsonObject_UpdateBool(HCkJsonObject cHandle, const char *jsonPath, BOOL value);
+CK_VISIBLE_PUBLIC BOOL CkJsonObject_UpdateInt(HCkJsonObject cHandle, const char *jsonPath, int value);
+CK_VISIBLE_PUBLIC BOOL CkJsonObject_UpdateString(HCkJsonObject cHandle, const char *jsonPath, const char *value);
 #endif

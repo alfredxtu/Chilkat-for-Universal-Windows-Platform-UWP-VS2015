@@ -85,6 +85,11 @@ public ref class Rest sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Boolean AllowHeaderFolding
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property Boolean AllowHeaderQB
 	{
 		Boolean get();
@@ -214,6 +219,8 @@ public ref class Rest sealed
 	IAsyncOperation<Platform::String ^>^ FullRequestMultipartAsync(Platform::String ^httpVerb, Platform::String ^uriPath);
 
 	IAsyncOperation<Platform::String ^>^ FullRequestNoBodyAsync(Platform::String ^httpVerb, Platform::String ^uriPath);
+
+	IAsyncOperation<Boolean>^ FullRequestSbAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Chilkat::StringBuilder ^requestBody, Chilkat::StringBuilder ^responseBody);
 
 	IAsyncOperation<Platform::String ^>^ FullRequestStreamAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Chilkat::Stream ^stream);
 

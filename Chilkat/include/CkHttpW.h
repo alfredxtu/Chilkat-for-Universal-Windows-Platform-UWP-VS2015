@@ -15,6 +15,8 @@
 class CkByteData;
 class CkHttpResponseW;
 class CkTaskW;
+class CkBinDataW;
+class CkStringBuilderW;
 class CkCertW;
 class CkHashtableW;
 class CkHttpRequestW;
@@ -130,6 +132,13 @@ class CK_VISIBLE_PUBLIC CkHttpW  : public CkClassWithCallbacksW
 	// content. The default value is true, which means the server, if it chooses, may
 	// send a gzipped response.
 	void put_AllowGzip(bool newVal);
+
+	// If this property is set to false, then no MIME header folding will be
+	// automatically applied to any request header. The default is true.
+	bool get_AllowHeaderFolding(void);
+	// If this property is set to false, then no MIME header folding will be
+	// automatically applied to any request header. The default is true.
+	void put_AllowHeaderFolding(bool newVal);
 
 	// If set to true, the "Host" header field will automatically be added to the
 	// request header for any QuickGet or QuickGetStr method calls. The value of the
@@ -2019,19 +2028,28 @@ class CK_VISIBLE_PUBLIC CkHttpW  : public CkClassWithCallbacksW
 	void put_UseIEProxy(bool newVal);
 
 	// The UserAgent header field to be automatically included with GET requests issued
-	// by QuickGet or QuickGetStr. The default value is "Chilkat/1.0.0
-	// (+http://www.chilkatsoft.com/ChilkatHttpUA.asp)" which indicates that the
-	// software used to issue the HTTP request was the Chilkat HTTP component.
+	// by QuickGet or QuickGetStr. The default value is "Mozilla/5.0 (Windows NT 6.3;
+	// WOW64; rv:49.0) Gecko/20100101 Firefox/49.0". The reason for this default is to
+	// get the same server behavior for a recent version of a typical and popular
+	// browser. Some sites may respond differently depending on the User-Agent, and the
+	// goal is to avoid strange responses that are different than what a typical
+	// browser would receive.
 	void get_UserAgent(CkString &str);
 	// The UserAgent header field to be automatically included with GET requests issued
-	// by QuickGet or QuickGetStr. The default value is "Chilkat/1.0.0
-	// (+http://www.chilkatsoft.com/ChilkatHttpUA.asp)" which indicates that the
-	// software used to issue the HTTP request was the Chilkat HTTP component.
+	// by QuickGet or QuickGetStr. The default value is "Mozilla/5.0 (Windows NT 6.3;
+	// WOW64; rv:49.0) Gecko/20100101 Firefox/49.0". The reason for this default is to
+	// get the same server behavior for a recent version of a typical and popular
+	// browser. Some sites may respond differently depending on the User-Agent, and the
+	// goal is to avoid strange responses that are different than what a typical
+	// browser would receive.
 	const wchar_t *userAgent(void);
 	// The UserAgent header field to be automatically included with GET requests issued
-	// by QuickGet or QuickGetStr. The default value is "Chilkat/1.0.0
-	// (+http://www.chilkatsoft.com/ChilkatHttpUA.asp)" which indicates that the
-	// software used to issue the HTTP request was the Chilkat HTTP component.
+	// by QuickGet or QuickGetStr. The default value is "Mozilla/5.0 (Windows NT 6.3;
+	// WOW64; rv:49.0) Gecko/20100101 Firefox/49.0". The reason for this default is to
+	// get the same server behavior for a recent version of a typical and popular
+	// browser. Some sites may respond differently depending on the User-Agent, and the
+	// goal is to avoid strange responses that are different than what a typical
+	// browser would receive.
 	void put_UserAgent(const wchar_t *newVal);
 
 	// Indicates whether the last HTTP GET was redirected.
@@ -2139,6 +2157,14 @@ class CK_VISIBLE_PUBLIC CkHttpW  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *DownloadAppendAsync(const wchar_t *url, const wchar_t *filename);
 
+	// Downloads the content at the url into a BinData object.
+	bool DownloadBd(const wchar_t *url, CkBinDataW &binData);
+
+	// Creates an asynchronous task to call the DownloadBd method with the arguments
+	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *DownloadBdAsync(const wchar_t *url, CkBinDataW &binData);
+
 	// Retrieves the content at a URL and computes and returns a hash of the content.
 	// The hash is returned as an encoded string according to the encoding, which may be
 	// "Base64", "modBase64", "Base32", "UU", "QP" (for quoted-printable), "URL" (for
@@ -2158,6 +2184,18 @@ class CK_VISIBLE_PUBLIC CkHttpW  : public CkClassWithCallbacksW
 	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *DownloadHashAsync(const wchar_t *url, const wchar_t *hashAlgorithm, const wchar_t *encoding);
+
+	// Downloads the content at the url into a Chilkat StringBuilder object. The charset
+	// tells Chilkat how to interpret the bytes received. If left empty, then Chilkat
+	// will use whatever information about charset that is available in the HTTP
+	// response, or default to utf-8. The sb is appended with the downloaded text
+	// data.
+	bool DownloadSb(const wchar_t *url, const wchar_t *charset, CkStringBuilderW &sb);
+
+	// Creates an asynchronous task to call the DownloadSb method with the arguments
+	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *DownloadSbAsync(const wchar_t *url, const wchar_t *charset, CkStringBuilderW &sb);
 
 	// Returns the name of the Nth event in the in-memory event log. Refer to the
 	// documentation for the KeepEventLog property for the full list of event names.

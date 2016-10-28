@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.62
+// This is a generated source file for Chilkat version 9.5.0.63
 #ifndef _C_CkRest_H
 #define _C_CkRest_H
 #include "chilkatDefs.h"
@@ -13,6 +13,8 @@ CK_VISIBLE_PUBLIC void CkRest_setTaskCompleted(HCkRest cHandle, void (*fnTaskCom
 
 CK_VISIBLE_PUBLIC HCkRest CkRest_Create(void);
 CK_VISIBLE_PUBLIC void CkRest_Dispose(HCkRest handle);
+CK_VISIBLE_PUBLIC BOOL CkRest_getAllowHeaderFolding(HCkRest cHandle);
+CK_VISIBLE_PUBLIC void CkRest_putAllowHeaderFolding(HCkRest cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC BOOL CkRest_getAllowHeaderQB(HCkRest cHandle);
 CK_VISIBLE_PUBLIC void CkRest_putAllowHeaderQB(HCkRest cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkRest_getAuthorization(HCkRest cHandle, HCkString retval);
@@ -84,6 +86,7 @@ CK_VISIBLE_PUBLIC BOOL CkRest_FullRequestNoBody(HCkRest cHandle, const char *htt
 CK_VISIBLE_PUBLIC const char *CkRest_fullRequestNoBody(HCkRest cHandle, const char *httpVerb, const char *uriPath);
 CK_VISIBLE_PUBLIC HCkTask CkRest_FullRequestNoBodyAsync(HCkRest cHandle, const char *httpVerb, const char *uriPath);
 CK_VISIBLE_PUBLIC BOOL CkRest_FullRequestSb(HCkRest cHandle, const char *httpVerb, const char *uriPath, HCkStringBuilder requestBody, HCkStringBuilder responseBody);
+CK_VISIBLE_PUBLIC HCkTask CkRest_FullRequestSbAsync(HCkRest cHandle, const char *httpVerb, const char *uriPath, HCkStringBuilder requestBody, HCkStringBuilder responseBody);
 CK_VISIBLE_PUBLIC BOOL CkRest_FullRequestStream(HCkRest cHandle, const char *httpVerb, const char *uriPath, HCkStream stream, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkRest_fullRequestStream(HCkRest cHandle, const char *httpVerb, const char *uriPath, HCkStream stream);
 CK_VISIBLE_PUBLIC HCkTask CkRest_FullRequestStreamAsync(HCkRest cHandle, const char *httpVerb, const char *uriPath, HCkStream stream);

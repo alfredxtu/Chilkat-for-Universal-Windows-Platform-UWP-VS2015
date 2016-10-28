@@ -262,8 +262,8 @@ class CK_VISIBLE_PUBLIC CkStringBuilder  : public CkMultiByteBase
 
 
 	// Replaces all occurrences of a specified string in this instance with another
-	// specified string.
-	void Replace(const char *value, const char *replacement);
+	// specified string. Returns the number of replacements.
+	int Replace(const char *value, const char *replacement);
 
 
 	// Replaces all occurrences of value with replacement, but only where value is found between

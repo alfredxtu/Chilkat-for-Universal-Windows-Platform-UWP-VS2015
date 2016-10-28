@@ -9,17 +9,17 @@
 #include "include/CkDateTime.h"
 #include "include/CkEmailW.h"
 		
+#include "include/CkBinDataW.h"
 #include "include/CkCertW.h"
 #include "include/CkStringArrayW.h"
-#include "include/CkBinDataW.h"
 #include "include/CkStringBuilderW.h"
 #include "include/CkCertChainW.h"
 #include "include/CkPrivateKeyW.h"
 #include "include/CkXmlCertVaultW.h"
+#include "BinData.h"
 #include "Cert.h"
 #include "StringArray.h"
 #include "CkDateTime.h"
-#include "BinData.h"
 #include "StringBuilder.h"
 #include "CertChain.h"
 #include "PrivateKey.h"
@@ -368,6 +368,15 @@ String ^Chilkat::Email::Version::get()
     }
 
 
+Boolean Email::AddAttachmentBd(Platform::String ^filename, Chilkat::BinData ^binData, Platform::String ^contentType)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj1 = binData->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	return m_impl->AddAttachmentBd(filename ? filename->Data() : L"",*pObj1,contentType ? contentType->Data() : L"");
+    }
 void Email::AddAttachmentHeader(int index, Platform::String ^fieldName, Platform::String ^fieldValue)
     {
 	if (m_impl == nullptr) { return ; }
@@ -386,23 +395,23 @@ Boolean Email::AddCC(Platform::String ^friendlyName, Platform::String ^emailAddr
 	// --- prep output arg ---
 	return m_impl->AddCC(friendlyName ? friendlyName->Data() : L"",emailAddress ? emailAddress->Data() : L"");
     }
-Boolean Email::AddDataAttachment(Platform::String ^filePath, Windows::Foundation::Collections::IVector<uint8>^content)
+Boolean Email::AddDataAttachment(Platform::String ^fileName, Windows::Foundation::Collections::IVector<uint8>^content)
     {
 	if (m_impl == nullptr) { return false; }
 	CkByteData db1; std::vector<uint8> v1;
         if (content != nullptr) { v1 = to_vector(content);
             db1.borrowData(&v1[0], (unsigned long)v1.size()); }
 	// --- prep output arg ---
-	return m_impl->AddDataAttachment(filePath ? filePath->Data() : L"",db1);
+	return m_impl->AddDataAttachment(fileName ? fileName->Data() : L"",db1);
     }
-Boolean Email::AddDataAttachment2(Platform::String ^path, Windows::Foundation::Collections::IVector<uint8>^content, Platform::String ^contentType)
+Boolean Email::AddDataAttachment2(Platform::String ^fileName, Windows::Foundation::Collections::IVector<uint8>^content, Platform::String ^contentType)
     {
 	if (m_impl == nullptr) { return false; }
 	CkByteData db1; std::vector<uint8> v1;
         if (content != nullptr) { v1 = to_vector(content);
             db1.borrowData(&v1[0], (unsigned long)v1.size()); }
 	// --- prep output arg ---
-	return m_impl->AddDataAttachment2(path ? path->Data() : L"",db1,contentType ? contentType->Data() : L"");
+	return m_impl->AddDataAttachment2(fileName ? fileName->Data() : L"",db1,contentType ? contentType->Data() : L"");
     }
 Boolean Email::AddEncryptCert(Chilkat::Cert ^cert)
     {

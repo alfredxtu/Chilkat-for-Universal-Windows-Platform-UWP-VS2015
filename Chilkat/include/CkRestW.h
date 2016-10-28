@@ -70,6 +70,17 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// ----------------------
 	// Properties
 	// ----------------------
+	// If this property is set to false, then no MIME header folding will be
+	// automatically applied to any request header. The default is true. This
+	// property is provided to satisfy certain providers, such as Quickbooks, that
+	// require all MIME headers to be single unfolded lines regardless of length.
+	bool get_AllowHeaderFolding(void);
+	// If this property is set to false, then no MIME header folding will be
+	// automatically applied to any request header. The default is true. This
+	// property is provided to satisfy certain providers, such as Quickbooks, that
+	// require all MIME headers to be single unfolded lines regardless of length.
+	void put_AllowHeaderFolding(bool newVal);
+
 	// Controls whether non us-ascii HTTP request headers are automatically Q/B
 	// encoded. The default value is true.
 	// 
@@ -452,7 +463,7 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 
 	// Sends a complete REST request (header + body string) and receives the full
 	// response. The body of the request is passed in requestBody. The response body is
-	// returned in responseBody.
+	// returned in responseBody (replacing whatever contents responseBody may have previously held).
 	bool FullRequestSb(const wchar_t *httpVerb, const wchar_t *uriPath, CkStringBuilderW &requestBody, CkStringBuilderW &responseBody);
 
 	// Creates an asynchronous task to call the FullRequestSb method with the arguments
@@ -507,7 +518,8 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// Reads the response body. Should only be called after ReadResponseHeader has been
 	// called, and should only be called when it is already known that the response
 	// body is binary, such as for JPG images or other non-text binary file types. The
-	// response body is received into responseBody.
+	// response body is received into responseBody (replacing whatever contents responseBody may have
+	// previously held).
 	bool ReadRespBd(CkBinDataW &responseBody);
 
 	// Creates an asynchronous task to call the ReadRespBd method with the arguments
@@ -570,7 +582,7 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// Reads the response body. Should only be called after ReadResponseHeader has been
 	// called, and should only be called when it is already known that the response
 	// body will be a string (such as XML, JSON, etc.) The response body is stored in
-	// responseBody.
+	// responseBody. (replacing whatever contents responseBody may have previously held).
 	bool ReadRespSb(CkStringBuilderW &responseBody);
 
 	// Creates an asynchronous task to call the ReadRespSb method with the arguments

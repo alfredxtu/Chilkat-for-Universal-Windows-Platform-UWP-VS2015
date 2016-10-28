@@ -214,11 +214,11 @@ Boolean StringBuilder::Prepend(Platform::String ^value)
 	// --- prep output arg ---
 	return m_impl->Prepend(value ? value->Data() : L"");
     }
-void StringBuilder::Replace(Platform::String ^value, Platform::String ^replacement)
+int StringBuilder::Replace(Platform::String ^value, Platform::String ^replacement)
     {
-	if (m_impl == nullptr) { return ; }
+	if (m_impl == nullptr) { return -1; }
 	// --- prep output arg ---
-	m_impl->Replace(value ? value->Data() : L"",replacement ? replacement->Data() : L"");
+	return m_impl->Replace(value ? value->Data() : L"",replacement ? replacement->Data() : L"");
     }
 int StringBuilder::ReplaceBetween(Platform::String ^beginMark, Platform::String ^endMark, Platform::String ^value, Platform::String ^replacement)
     {

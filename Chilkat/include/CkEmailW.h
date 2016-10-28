@@ -12,11 +12,11 @@
 #include "CkString.h"
 #include "CkWideCharBase.h"
 
+class CkBinDataW;
 class CkByteData;
 class CkCertW;
 class CkStringArrayW;
 class CkDateTimeW;
-class CkBinDataW;
 class CkStringBuilderW;
 class CkCertChainW;
 class CkTaskW;
@@ -719,6 +719,10 @@ class CK_VISIBLE_PUBLIC CkEmailW  : public CkWideCharBase
 	// ----------------------
 	// Methods
 	// ----------------------
+	// Adds an attachment using the contents of a BinData object. If contentType is empty,
+	// then the content-type will be inferred from the filename extension.
+	bool AddAttachmentBd(const wchar_t *filename, CkBinDataW &binData, const wchar_t *contentType);
+
 	// Adds or replaces a MIME header field in one of the email attachments. If the
 	// header field does not exist, it is added. Otherwise it is replaced.
 	void AddAttachmentHeader(int index, const wchar_t *fieldName, const wchar_t *fieldValue);
@@ -732,11 +736,11 @@ class CK_VISIBLE_PUBLIC CkEmailW  : public CkWideCharBase
 	bool AddCC(const wchar_t *friendlyName, const wchar_t *emailAddress);
 
 	// Adds an attachment directly from data in memory to the email.
-	bool AddDataAttachment(const wchar_t *filePath, CkByteData &content);
+	bool AddDataAttachment(const wchar_t *fileName, CkByteData &content);
 
 	// Adds an attachment to an email from in-memory data. Same as AddDataAttachment
 	// but allows the content-type to be specified.
-	bool AddDataAttachment2(const wchar_t *path, CkByteData &content, const wchar_t *contentType);
+	bool AddDataAttachment2(const wchar_t *fileName, CkByteData &content, const wchar_t *contentType);
 
 	// Allows for certificates to be explicitly specified for sending encrypted email
 	// to one or more recipients. Call this method once per certificate to be used. The
@@ -1545,14 +1549,16 @@ class CK_VISIBLE_PUBLIC CkEmailW  : public CkWideCharBase
 	const wchar_t *mime(void);
 
 	// Return the email as binary MIME containing the email header, body (or bodies),
-	// related items (if any), and all attachments. The MIME is loaded into the bindat.
+	// related items (if any), and all attachments. The MIME is appended to the
+	// existing contents (if any) of bindat.
 	bool GetMimeBd(CkBinDataW &bindat);
 
 	// Returns the full MIME of an email.
 	bool GetMimeBinary(CkByteData &outBytes);
 
 	// Return the email as MIME text containing the email header, body (or bodies),
-	// related items (if any), and all attachments. The MIME is loaded into the sb.
+	// related items (if any), and all attachments. The MIME is appended to the
+	// existing contents (if any) of sb.
 	bool GetMimeSb(CkStringBuilderW &sb);
 
 	// Returns the binary bytes of the Nth MIME sub-part having a specified content

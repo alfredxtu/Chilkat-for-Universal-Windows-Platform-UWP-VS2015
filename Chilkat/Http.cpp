@@ -9,12 +9,16 @@
 #include "include/CkDateTime.h"
 #include "include/CkHttpW.h"
 		
+#include "include/CkBinDataW.h"
+#include "include/CkStringBuilderW.h"
 #include "include/CkCertW.h"
 #include "include/CkHashtableW.h"
 #include "include/CkHttpResponseW.h"
 #include "include/CkHttpRequestW.h"
 #include "include/CkStringArrayW.h"
 #include "include/CkPrivateKeyW.h"
+#include "BinData.h"
+#include "StringBuilder.h"
 #include "Cert.h"
 #include "Hashtable.h"
 #include "HttpResponse.h"
@@ -95,6 +99,14 @@ Boolean Chilkat::Http::AllowGzip::get()
 void Chilkat::Http::AllowGzip::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_AllowGzip(newVal);
+    }
+Boolean Chilkat::Http::AllowHeaderFolding::get()
+    {
+    return m_impl ? m_impl->get_AllowHeaderFolding() : false;
+    }
+void Chilkat::Http::AllowHeaderFolding::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AllowHeaderFolding(newVal);
     }
 Boolean Chilkat::Http::AutoAddHostHeader::get()
     {
@@ -868,6 +880,23 @@ return create_async([this, url, filename]() -> Boolean
 
 });
     }
+IAsyncOperation<Boolean>^ Http::DownloadBdAsync(Platform::String ^url, Chilkat::BinData ^binData)
+    {
+return create_async([this, url, binData]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj1 = binData->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxHttpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->DownloadBd(url ? url->Data() : L"",*pObj1);
+
+});
+    }
 IAsyncOperation<Platform::String ^>^ Http::DownloadHashAsync(Platform::String ^url, Platform::String ^hashAlgorithm, Platform::String ^encoding)
     {
 return create_async([this, url, hashAlgorithm, encoding]() -> Platform::String ^
@@ -881,6 +910,23 @@ return create_async([this, url, hashAlgorithm, encoding]() -> Platform::String ^
 	const wchar_t *retStr = m_impl->downloadHash(url ? url->Data() : L"",hashAlgorithm ? hashAlgorithm->Data() : L"",encoding ? encoding->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+
+});
+    }
+IAsyncOperation<Boolean>^ Http::DownloadSbAsync(Platform::String ^url, Platform::String ^charset, Chilkat::StringBuilder ^sb)
+    {
+return create_async([this, url, charset, sb]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj2 = sb->m_impl;
+	 if (!pObj2) { return false; }
+	// --- prep output arg ---
+	CxHttpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->DownloadSb(url ? url->Data() : L"",charset ? charset->Data() : L"",*pObj2);
 
 });
     }

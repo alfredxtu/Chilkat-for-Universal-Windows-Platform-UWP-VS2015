@@ -100,7 +100,7 @@ public ref class StringBuilder sealed
 
 	Boolean Prepend(Platform::String ^value);
 
-	void Replace(Platform::String ^value, Platform::String ^replacement);
+	int Replace(Platform::String ^value, Platform::String ^replacement);
 
 	int ReplaceBetween(Platform::String ^beginMark, Platform::String ^endMark, Platform::String ^value, Platform::String ^replacement);
 

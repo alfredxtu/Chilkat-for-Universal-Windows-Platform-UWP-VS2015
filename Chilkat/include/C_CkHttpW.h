@@ -26,6 +26,8 @@ CK_VISIBLE_PUBLIC void  CkHttpW_putAcceptLanguage(HCkHttpW cHandle, const wchar_
 CK_VISIBLE_PUBLIC const wchar_t *CkHttpW_acceptLanguage(HCkHttpW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkHttpW_getAllowGzip(HCkHttpW cHandle);
 CK_VISIBLE_PUBLIC void  CkHttpW_putAllowGzip(HCkHttpW cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC BOOL CkHttpW_getAllowHeaderFolding(HCkHttpW cHandle);
+CK_VISIBLE_PUBLIC void  CkHttpW_putAllowHeaderFolding(HCkHttpW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC BOOL CkHttpW_getAutoAddHostHeader(HCkHttpW cHandle);
 CK_VISIBLE_PUBLIC void  CkHttpW_putAutoAddHostHeader(HCkHttpW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkHttpW_getAwsAccessKey(HCkHttpW cHandle, HCkString retval);
@@ -281,9 +283,13 @@ CK_VISIBLE_PUBLIC BOOL CkHttpW_Download(HCkHttpW cHandle, const wchar_t *url, co
 CK_VISIBLE_PUBLIC HCkTaskW CkHttpW_DownloadAsync(HCkHttpW cHandle, const wchar_t *url, const wchar_t *localFilePath);
 CK_VISIBLE_PUBLIC BOOL CkHttpW_DownloadAppend(HCkHttpW cHandle, const wchar_t *url, const wchar_t *filename);
 CK_VISIBLE_PUBLIC HCkTaskW CkHttpW_DownloadAppendAsync(HCkHttpW cHandle, const wchar_t *url, const wchar_t *filename);
+CK_VISIBLE_PUBLIC BOOL CkHttpW_DownloadBd(HCkHttpW cHandle, const wchar_t *url, HCkBinDataW binData);
+CK_VISIBLE_PUBLIC HCkTaskW CkHttpW_DownloadBdAsync(HCkHttpW cHandle, const wchar_t *url, HCkBinDataW binData);
 CK_VISIBLE_PUBLIC BOOL CkHttpW_DownloadHash(HCkHttpW cHandle, const wchar_t *url, const wchar_t *hashAlgorithm, const wchar_t *encoding, HCkString outStr);
 CK_VISIBLE_PUBLIC const wchar_t *CkHttpW_downloadHash(HCkHttpW cHandle, const wchar_t *url, const wchar_t *hashAlgorithm, const wchar_t *encoding);
 CK_VISIBLE_PUBLIC HCkTaskW CkHttpW_DownloadHashAsync(HCkHttpW cHandle, const wchar_t *url, const wchar_t *hashAlgorithm, const wchar_t *encoding);
+CK_VISIBLE_PUBLIC BOOL CkHttpW_DownloadSb(HCkHttpW cHandle, const wchar_t *url, const wchar_t *charset, HCkStringBuilderW sb);
+CK_VISIBLE_PUBLIC HCkTaskW CkHttpW_DownloadSbAsync(HCkHttpW cHandle, const wchar_t *url, const wchar_t *charset, HCkStringBuilderW sb);
 CK_VISIBLE_PUBLIC BOOL CkHttpW_EventLogName(HCkHttpW cHandle, int index, HCkString outStr);
 CK_VISIBLE_PUBLIC const wchar_t *CkHttpW_eventLogName(HCkHttpW cHandle, int index);
 CK_VISIBLE_PUBLIC BOOL CkHttpW_EventLogValue(HCkHttpW cHandle, int index, HCkString outStr);

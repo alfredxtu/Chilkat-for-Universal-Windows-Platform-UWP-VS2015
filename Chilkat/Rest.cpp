@@ -65,6 +65,14 @@ Chilkat::Rest::Rest(void)
 //}
 
 
+Boolean Chilkat::Rest::AllowHeaderFolding::get()
+    {
+    return m_impl ? m_impl->get_AllowHeaderFolding() : false;
+    }
+void Chilkat::Rest::AllowHeaderFolding::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_AllowHeaderFolding(newVal);
+    }
 Boolean Chilkat::Rest::AllowHeaderQB::get()
     {
     return m_impl ? m_impl->get_AllowHeaderQB() : false;
@@ -350,6 +358,26 @@ return create_async([this, httpVerb, uriPath]() -> Platform::String ^
 	const wchar_t *retStr = m_impl->fullRequestNoBody(httpVerb ? httpVerb->Data() : L"",uriPath ? uriPath->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+
+});
+    }
+IAsyncOperation<Boolean>^ Rest::FullRequestSbAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Chilkat::StringBuilder ^requestBody, Chilkat::StringBuilder ^responseBody)
+    {
+return create_async([this, httpVerb, uriPath, requestBody, responseBody]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (requestBody == nullptr) { return false; }
+	CkStringBuilderW* pObj2 = requestBody->m_impl;
+	 if (!pObj2) { return false; }
+	if (responseBody == nullptr) { return false; }
+	CkStringBuilderW* pObj3 = responseBody->m_impl;
+	 if (!pObj3) { return false; }
+	// --- prep output arg ---
+	CxRestProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->FullRequestSb(httpVerb ? httpVerb->Data() : L"",uriPath ? uriPath->Data() : L"",*pObj2,*pObj3);
 
 });
     }

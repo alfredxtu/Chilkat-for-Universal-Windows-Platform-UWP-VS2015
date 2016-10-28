@@ -282,6 +282,24 @@ Boolean JsonObject::EmitSb(Chilkat::StringBuilder ^sb)
 	// --- prep output arg ---
 	return m_impl->EmitSb(*pObj0);
     }
+JsonObject ^JsonObject::FindRecord(Platform::String ^arrayPath, Platform::String ^relPath, Platform::String ^value, Boolean caseSensitive)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CkJsonObjectW *pRetObj = m_impl->FindRecord(arrayPath ? arrayPath->Data() : L"",relPath ? relPath->Data() : L"",value ? value->Data() : L"",caseSensitive);
+	if (!pRetObj) return nullptr;
+	Chilkat::JsonObject ^pJsonObject = ref new Chilkat::JsonObject();
+	pJsonObject->m_impl = pRetObj;
+	return pJsonObject;
+    }
+Platform::String ^JsonObject::FindRecordString(Platform::String ^arrayPath, Platform::String ^relPath, Platform::String ^value, Boolean caseSensitive, Platform::String ^retRelPath)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	const wchar_t *retStr = m_impl->findRecordString(arrayPath ? arrayPath->Data() : L"",relPath ? relPath->Data() : L"",value ? value->Data() : L"",caseSensitive,retRelPath ? retRelPath->Data() : L"");
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
 Boolean JsonObject::FirebaseApplyEvent(Platform::String ^name, Platform::String ^data)
     {
 	if (m_impl == nullptr) { return false; }
@@ -494,6 +512,24 @@ int JsonObject::TypeAt(int index)
 	if (m_impl == nullptr) { return -1; }
 	// --- prep output arg ---
 	return m_impl->TypeAt(index);
+    }
+Boolean JsonObject::UpdateBool(Platform::String ^jsonPath, Boolean value)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->UpdateBool(jsonPath ? jsonPath->Data() : L"",value);
+    }
+Boolean JsonObject::UpdateInt(Platform::String ^jsonPath, int value)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->UpdateInt(jsonPath ? jsonPath->Data() : L"",value);
+    }
+Boolean JsonObject::UpdateString(Platform::String ^jsonPath, Platform::String ^value)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->UpdateString(jsonPath ? jsonPath->Data() : L"",value ? value->Data() : L"");
     }
 
 

@@ -20,10 +20,10 @@ using namespace concurrency;
 namespace Chilkat
 {
 
+	ref class BinData;
 	ref class Cert;
 	ref class StringArray;
 	ref class CkDateTime;
-	ref class BinData;
 	ref class StringBuilder;
 	ref class CertChain;
 	ref class PrivateKey;
@@ -285,15 +285,17 @@ public ref class Email sealed
 	// ----------------------
 	// Methods
 	// ----------------------
+	Boolean AddAttachmentBd(Platform::String ^filename, Chilkat::BinData ^binData, Platform::String ^contentType);
+
 	void AddAttachmentHeader(int index, Platform::String ^fieldName, Platform::String ^fieldValue);
 
 	Boolean AddBcc(Platform::String ^friendlyName, Platform::String ^emailAddress);
 
 	Boolean AddCC(Platform::String ^friendlyName, Platform::String ^emailAddress);
 
-	Boolean AddDataAttachment(Platform::String ^filePath, Windows::Foundation::Collections::IVector<uint8>^content);
+	Boolean AddDataAttachment(Platform::String ^fileName, Windows::Foundation::Collections::IVector<uint8>^content);
 
-	Boolean AddDataAttachment2(Platform::String ^path, Windows::Foundation::Collections::IVector<uint8>^content, Platform::String ^contentType);
+	Boolean AddDataAttachment2(Platform::String ^fileName, Windows::Foundation::Collections::IVector<uint8>^content, Platform::String ^contentType);
 
 	Boolean AddEncryptCert(Chilkat::Cert ^cert);
 

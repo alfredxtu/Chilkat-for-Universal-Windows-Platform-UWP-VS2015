@@ -154,6 +154,10 @@ public ref class JsonObject sealed
 
 	Boolean EmitSb(Chilkat::StringBuilder ^sb);
 
+	JsonObject ^FindRecord(Platform::String ^arrayPath, Platform::String ^relPath, Platform::String ^value, Boolean caseSensitive);
+
+	Platform::String ^FindRecordString(Platform::String ^arrayPath, Platform::String ^relPath, Platform::String ^value, Boolean caseSensitive, Platform::String ^retRelPath);
+
 	Boolean FirebaseApplyEvent(Platform::String ^name, Platform::String ^data);
 
 	Boolean FirebasePatch(Platform::String ^jsonPath, Platform::String ^jsonData);
@@ -217,6 +221,12 @@ public ref class JsonObject sealed
 	Platform::String ^StringOf(Platform::String ^jsonPath);
 
 	int TypeAt(int index);
+
+	Boolean UpdateBool(Platform::String ^jsonPath, Boolean value);
+
+	Boolean UpdateInt(Platform::String ^jsonPath, int value);
+
+	Boolean UpdateString(Platform::String ^jsonPath, Platform::String ^value);
 
 
 

@@ -118,6 +118,12 @@ void StringTable::Clear(void)
 	// --- prep output arg ---
 	m_impl->Clear();
     }
+int StringTable::IntAt(int index)
+    {
+	if (m_impl == nullptr) { return -1; }
+	// --- prep output arg ---
+	return m_impl->IntAt(index);
+    }
 Boolean StringTable::SaveToFile(Platform::String ^charset, Boolean bCrlf, Platform::String ^path)
     {
 	if (m_impl == nullptr) { return false; }
