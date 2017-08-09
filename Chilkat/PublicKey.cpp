@@ -51,6 +51,10 @@ void Chilkat::PublicKey::DebugLogFilePath::set(String ^newVal)
     {
         if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
     }
+int Chilkat::PublicKey::KeySize::get()
+    {
+    return m_impl ? m_impl->get_KeySize() : 0;
+    }
 String ^Chilkat::PublicKey::KeyType::get()
     {
     return ref new String(m_impl ? m_impl->keyType() : L"");
@@ -104,6 +108,22 @@ Platform::String ^PublicKey::GetEncoded(Boolean preferPkcs1, Platform::String ^e
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	const wchar_t *retStr = m_impl->getEncoded(preferPkcs1,encoding ? encoding->Data() : L"");
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
+Platform::String ^PublicKey::GetJwk(void)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	const wchar_t *retStr = m_impl->getJwk();
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
+Platform::String ^PublicKey::GetJwkThumbprint(Platform::String ^hashAlg)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	const wchar_t *retStr = m_impl->getJwkThumbprint(hashAlg ? hashAlg->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }

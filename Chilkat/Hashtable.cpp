@@ -9,7 +9,9 @@
 #include "include/CkDateTime.h"
 #include "include/CkHashtableW.h"
 		
+#include "include/CkStringBuilderW.h"
 #include "include/CkStringTableW.h"
+#include "StringBuilder.h"
 #include "StringTable.h"
 
 
@@ -45,8 +47,25 @@ Chilkat::Hashtable::Hashtable(void)
 //}
 
 
+Boolean Chilkat::Hashtable::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::Hashtable::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+    }
 
 
+Boolean Hashtable::AddFromXmlSb(Chilkat::StringBuilder ^sbXml)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (sbXml == nullptr) { return false; }
+	CkStringBuilderW* pObj0 = sbXml->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->AddFromXmlSb(*pObj0);
+    }
 Boolean Hashtable::AddInt(Platform::String ^key, int value)
     {
 	if (m_impl == nullptr) { return false; }
@@ -83,6 +102,12 @@ Boolean Hashtable::Contains(Platform::String ^key)
 	// --- prep output arg ---
 	return m_impl->Contains(key ? key->Data() : L"");
     }
+Boolean Hashtable::ContainsIntKey(int key)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->ContainsIntKey(key);
+    }
 Boolean Hashtable::GetKeys(Chilkat::StringTable ^strTable)
     {
 	if (m_impl == nullptr) { return false; }
@@ -111,6 +136,15 @@ Boolean Hashtable::Remove(Platform::String ^key)
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->Remove(key ? key->Data() : L"");
+    }
+Boolean Hashtable::ToXmlSb(Chilkat::StringBuilder ^sbXml)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (sbXml == nullptr) { return false; }
+	CkStringBuilderW* pObj0 = sbXml->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->ToXmlSb(*pObj0);
     }
 
 

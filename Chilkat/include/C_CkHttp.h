@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.62
+// This is a generated source file for Chilkat version 9.5.0.69
 #ifndef _C_CkHttp_H
 #define _C_CkHttp_H
 #include "chilkatDefs.h"
@@ -28,6 +28,9 @@ CK_VISIBLE_PUBLIC BOOL CkHttp_getAllowGzip(HCkHttp cHandle);
 CK_VISIBLE_PUBLIC void CkHttp_putAllowGzip(HCkHttp cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC BOOL CkHttp_getAllowHeaderFolding(HCkHttp cHandle);
 CK_VISIBLE_PUBLIC void CkHttp_putAllowHeaderFolding(HCkHttp cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC void CkHttp_getAuthToken(HCkHttp cHandle, HCkString retval);
+CK_VISIBLE_PUBLIC void CkHttp_putAuthToken(HCkHttp cHandle, const char *newVal);
+CK_VISIBLE_PUBLIC const char *CkHttp_authToken(HCkHttp cHandle);
 CK_VISIBLE_PUBLIC BOOL CkHttp_getAutoAddHostHeader(HCkHttp cHandle);
 CK_VISIBLE_PUBLIC void CkHttp_putAutoAddHostHeader(HCkHttp cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkHttp_getAwsAccessKey(HCkHttp cHandle, HCkString retval);
@@ -120,6 +123,8 @@ CK_VISIBLE_PUBLIC const char *CkHttp_lastResponseBody(HCkHttp cHandle);
 CK_VISIBLE_PUBLIC void CkHttp_getLastResponseHeader(HCkHttp cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const char *CkHttp_lastResponseHeader(HCkHttp cHandle);
 CK_VISIBLE_PUBLIC int CkHttp_getLastStatus(HCkHttp cHandle);
+CK_VISIBLE_PUBLIC void CkHttp_getLastStatusText(HCkHttp cHandle, HCkString retval);
+CK_VISIBLE_PUBLIC const char *CkHttp_lastStatusText(HCkHttp cHandle);
 CK_VISIBLE_PUBLIC int CkHttp_getLMFactor(HCkHttp cHandle);
 CK_VISIBLE_PUBLIC void CkHttp_putLMFactor(HCkHttp cHandle, int newVal);
 CK_VISIBLE_PUBLIC void CkHttp_getLogin(HCkHttp cHandle, HCkString retval);
@@ -278,6 +283,7 @@ CK_VISIBLE_PUBLIC HCkHttpResponse CkHttp_BgResponseObject(HCkHttp cHandle);
 CK_VISIBLE_PUBLIC void CkHttp_BgTaskAbort(HCkHttp cHandle);
 CK_VISIBLE_PUBLIC void CkHttp_ClearBgEventLog(HCkHttp cHandle);
 CK_VISIBLE_PUBLIC void CkHttp_ClearInMemoryCookies(HCkHttp cHandle);
+CK_VISIBLE_PUBLIC void CkHttp_ClearUrlVars(HCkHttp cHandle);
 CK_VISIBLE_PUBLIC BOOL CkHttp_CloseAllConnections(HCkHttp cHandle);
 CK_VISIBLE_PUBLIC HCkTask CkHttp_CloseAllConnectionsAsync(HCkHttp cHandle);
 CK_VISIBLE_PUBLIC void CkHttp_DnsCacheClear(HCkHttp cHandle);
@@ -331,6 +337,8 @@ CK_VISIBLE_PUBLIC HCkHttpResponse CkHttp_PostJson(HCkHttp cHandle, const char *u
 CK_VISIBLE_PUBLIC HCkTask CkHttp_PostJsonAsync(HCkHttp cHandle, const char *url, const char *jsonText);
 CK_VISIBLE_PUBLIC HCkHttpResponse CkHttp_PostJson2(HCkHttp cHandle, const char *url, const char *contentType, const char *jsonText);
 CK_VISIBLE_PUBLIC HCkTask CkHttp_PostJson2Async(HCkHttp cHandle, const char *url, const char *contentType, const char *jsonText);
+CK_VISIBLE_PUBLIC HCkHttpResponse CkHttp_PostJson3(HCkHttp cHandle, const char *url, const char *contentType, HCkJsonObject json);
+CK_VISIBLE_PUBLIC HCkTask CkHttp_PostJson3Async(HCkHttp cHandle, const char *url, const char *contentType, HCkJsonObject json);
 CK_VISIBLE_PUBLIC HCkHttpResponse CkHttp_PostUrlEncoded(HCkHttp cHandle, const char *url, HCkHttpRequest req);
 CK_VISIBLE_PUBLIC HCkTask CkHttp_PostUrlEncodedAsync(HCkHttp cHandle, const char *url, HCkHttpRequest req);
 CK_VISIBLE_PUBLIC HCkHttpResponse CkHttp_PostXml(HCkHttp cHandle, const char *endpointUrl, const char *xmlContent, const char *xmlCharset);
@@ -348,8 +356,12 @@ CK_VISIBLE_PUBLIC const char *CkHttp_quickDeleteStr(HCkHttp cHandle, const char 
 CK_VISIBLE_PUBLIC HCkTask CkHttp_QuickDeleteStrAsync(HCkHttp cHandle, const char *url);
 CK_VISIBLE_PUBLIC BOOL CkHttp_QuickGet(HCkHttp cHandle, const char *url, HCkByteData outData);
 CK_VISIBLE_PUBLIC HCkTask CkHttp_QuickGetAsync(HCkHttp cHandle, const char *url);
+CK_VISIBLE_PUBLIC BOOL CkHttp_QuickGetBd(HCkHttp cHandle, const char *url, HCkBinData binData);
+CK_VISIBLE_PUBLIC HCkTask CkHttp_QuickGetBdAsync(HCkHttp cHandle, const char *url, HCkBinData binData);
 CK_VISIBLE_PUBLIC HCkHttpResponse CkHttp_QuickGetObj(HCkHttp cHandle, const char *url);
 CK_VISIBLE_PUBLIC HCkTask CkHttp_QuickGetObjAsync(HCkHttp cHandle, const char *url);
+CK_VISIBLE_PUBLIC BOOL CkHttp_QuickGetSb(HCkHttp cHandle, const char *url, HCkStringBuilder sbContent);
+CK_VISIBLE_PUBLIC HCkTask CkHttp_QuickGetSbAsync(HCkHttp cHandle, const char *url, HCkStringBuilder sbContent);
 CK_VISIBLE_PUBLIC BOOL CkHttp_QuickGetStr(HCkHttp cHandle, const char *url, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkHttp_quickGetStr(HCkHttp cHandle, const char *url);
 CK_VISIBLE_PUBLIC HCkTask CkHttp_QuickGetStrAsync(HCkHttp cHandle, const char *url);
@@ -381,6 +393,8 @@ CK_VISIBLE_PUBLIC int CkHttp_S3_FileExists(HCkHttp cHandle, const char *bucketPa
 CK_VISIBLE_PUBLIC HCkTask CkHttp_S3_FileExistsAsync(HCkHttp cHandle, const char *bucketPath, const char *objectName);
 CK_VISIBLE_PUBLIC BOOL CkHttp_S3_GenerateUrl(HCkHttp cHandle, const char *bucket, const char *path, HCkDateTime expire, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkHttp_s3_GenerateUrl(HCkHttp cHandle, const char *bucket, const char *path, HCkDateTime expire);
+CK_VISIBLE_PUBLIC BOOL CkHttp_S3_GenerateUrlV4(HCkHttp cHandle, BOOL useHttps, const char *bucketName, const char *path, int numSecondsValid, const char *awsService, HCkString outStr);
+CK_VISIBLE_PUBLIC const char *CkHttp_s3_GenerateUrlV4(HCkHttp cHandle, BOOL useHttps, const char *bucketName, const char *path, int numSecondsValid, const char *awsService);
 CK_VISIBLE_PUBLIC BOOL CkHttp_S3_ListBucketObjects(HCkHttp cHandle, const char *bucketPath, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkHttp_s3_ListBucketObjects(HCkHttp cHandle, const char *bucketPath);
 CK_VISIBLE_PUBLIC HCkTask CkHttp_S3_ListBucketObjectsAsync(HCkHttp cHandle, const char *bucketPath);
@@ -400,6 +414,7 @@ CK_VISIBLE_PUBLIC void CkHttp_SetRequestHeader(HCkHttp cHandle, const char *head
 CK_VISIBLE_PUBLIC BOOL CkHttp_SetSslClientCert(HCkHttp cHandle, HCkCert cert);
 CK_VISIBLE_PUBLIC BOOL CkHttp_SetSslClientCertPem(HCkHttp cHandle, const char *pemDataOrPath, const char *pemPassword);
 CK_VISIBLE_PUBLIC BOOL CkHttp_SetSslClientCertPfx(HCkHttp cHandle, const char *pfxPath, const char *pfxPassword);
+CK_VISIBLE_PUBLIC BOOL CkHttp_SetUrlVar(HCkHttp cHandle, const char *name, const char *value);
 CK_VISIBLE_PUBLIC void CkHttp_SleepMs(HCkHttp cHandle, int millisec);
 CK_VISIBLE_PUBLIC HCkHttpResponse CkHttp_SynchronousRequest(HCkHttp cHandle, const char *domain, int port, BOOL ssl, HCkHttpRequest req);
 CK_VISIBLE_PUBLIC HCkTask CkHttp_SynchronousRequestAsync(HCkHttp cHandle, const char *domain, int port, BOOL ssl, HCkHttpRequest req);

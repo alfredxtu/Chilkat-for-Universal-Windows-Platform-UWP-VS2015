@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat v9.5.0
+// This header is generated for Chilkat 9.5.0.69
 
 #ifndef _CkHttpRequestW_H
 #define _CkHttpRequestW_H
@@ -13,6 +13,8 @@
 #include "CkWideCharBase.h"
 
 class CkByteData;
+class CkBinDataW;
+class CkStringBuilderW;
 
 
 
@@ -242,6 +244,23 @@ class CK_VISIBLE_PUBLIC CkHttpRequestW  : public CkWideCharBase
 	// 
 	void AddHeader(const wchar_t *name, const wchar_t *value);
 
+	// Computes the Amazon MWS signature using the mwsSecretKey and adds the "Signature"
+	// parameter to the request. This method should be called for all Amazon
+	// Marketplace Web Service (Amazon MWS) HTTP requests. It should be called after
+	// all request parameters have been added.
+	// 
+	// The domain should be the domain of the request, such as one of the following:
+	//     mws.amazonservices.com
+	//     mws-eu.amazonservices.com
+	//     mws.amazonservices.in
+	//     mws.amazonservices.com.cn
+	//     mws.amazonservices.jp
+	// 
+	// Note: This method automatically adds or replaces the existing Timestamp
+	// parameter to the current system date/time.
+	// 
+	bool AddMwsSignature(const wchar_t *domain, const wchar_t *mwsSecretKey);
+
 	// Adds a request query parameter (name/value pair) to the HTTP request. The name
 	// and value strings passed to this method should not be URL encoded.
 	void AddParam(const wchar_t *name, const wchar_t *value);
@@ -258,6 +277,10 @@ class CK_VISIBLE_PUBLIC CkHttpRequestW  : public CkWideCharBase
 	// Adds a request header to the Nth sub-header of the HTTP request. If a header
 	// having the same field name is already present, this method replaces it.
 	bool AddSubHeader(int index, const wchar_t *name, const wchar_t *value);
+
+	// The same as GenerateRequestText, except the generated request is written to the
+	// file specified by path.
+	bool GenerateRequestFile(const wchar_t *path);
 
 	// Returns the request text that would be sent if Http.SynchronousRequest was
 	// called.
@@ -345,6 +368,9 @@ class CK_VISIBLE_PUBLIC CkHttpRequestW  : public CkWideCharBase
 	// "abc+123<param2=abc%2D123"
 	const wchar_t *urlEncodedParams(void);
 
+	// Uses the contents of the requestBody as the HTTP request body.
+	bool LoadBodyFromBd(CkBinDataW &requestBody);
+
 	// The HTTP protocol is such that all HTTP requests are MIME. For non-multipart
 	// requests, this method may be called to set the MIME body of the HTTP request to
 	// the exact contents of the byteData.
@@ -358,6 +384,12 @@ class CK_VISIBLE_PUBLIC CkHttpRequestW  : public CkWideCharBase
 	// Note: A non-multipart HTTP request consists of (1) the HTTP start line, (2) MIME
 	// header fields, and (3) the MIME body. This method sets the MIME body.
 	bool LoadBodyFromFile(const wchar_t *filePath);
+
+	// Uses the contents of the requestBody as the HTTP request body. The charset indicates the
+	// binary representation of the string, such as "utf-8", "utf-16", "iso-8859-*",
+	// "windows-125*", etc. Any of the character encodings supported at the link below
+	// are valid.
+	bool LoadBodyFromSb(CkStringBuilderW &requestBody, const wchar_t *charset);
 
 	// The HTTP protocol is such that all HTTP requests are MIME. For non-multipart
 	// requests, this method may be called to set the MIME body of the HTTP request to
@@ -373,7 +405,7 @@ class CK_VISIBLE_PUBLIC CkHttpRequestW  : public CkWideCharBase
 	// Removes all request parameters.
 	void RemoveAllParams(void);
 
-	// Removes all occurances of a HTTP request header field. Always returns true.
+	// Removes all occurrences of a HTTP request header field. Always returns true.
 	bool RemoveHeader(const wchar_t *name);
 
 	// Removes a single HTTP request parameter by name.

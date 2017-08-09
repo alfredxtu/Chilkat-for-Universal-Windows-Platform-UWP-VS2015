@@ -9,7 +9,13 @@
 #include "include/CkDateTime.h"
 #include "include/CkZipEntryW.h"
 		
+#include "include/CkBinDataW.h"
+#include "include/CkStringBuilderW.h"
+#include "include/CkStreamW.h"
 #include "CkDateTime.h"
+#include "BinData.h"
+#include "StringBuilder.h"
+#include "Stream.h"
 
 
 using namespace Chilkat;
@@ -92,6 +98,10 @@ void Chilkat::ZipEntry::DebugLogFilePath::set(String ^newVal)
     {
         if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
     }
+int Chilkat::ZipEntry::EncryptionKeyLen::get()
+    {
+    return m_impl ? m_impl->get_EncryptionKeyLen() : 0;
+    }
 int Chilkat::ZipEntry::EntryID::get()
     {
     return m_impl ? m_impl->get_EntryID() : 0;
@@ -127,6 +137,10 @@ int Chilkat::ZipEntry::HeartbeatMs::get()
 void Chilkat::ZipEntry::HeartbeatMs::set(int newVal)
     {
         if (m_impl) m_impl->put_HeartbeatMs(newVal);
+    }
+Boolean Chilkat::ZipEntry::IsAesEncrypted::get()
+    {
+    return m_impl ? m_impl->get_IsAesEncrypted() : false;
     }
 Boolean Chilkat::ZipEntry::IsDirectory::get()
     {
@@ -360,6 +374,57 @@ void ZipEntry::SetDt(Chilkat::CkDateTime ^dt)
 	CxZipEntryProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	m_impl->SetDt(*pObj0);
+    }
+IAsyncOperation<Boolean>^ ZipEntry::UnzipToBdAsync(Chilkat::BinData ^binData)
+    {
+return create_async([this, binData]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj0 = binData->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxZipEntryProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->UnzipToBd(*pObj0);
+
+});
+    }
+IAsyncOperation<Boolean>^ ZipEntry::UnzipToSbAsync(int lineEndingBehavior, Platform::String ^srcCharset, Chilkat::StringBuilder ^sb)
+    {
+return create_async([this, lineEndingBehavior, srcCharset, sb]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj2 = sb->m_impl;
+	 if (!pObj2) { return false; }
+	// --- prep output arg ---
+	CxZipEntryProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->UnzipToSb(lineEndingBehavior,srcCharset ? srcCharset->Data() : L"",*pObj2);
+
+});
+    }
+IAsyncOperation<Boolean>^ ZipEntry::UnzipToStreamAsync(Chilkat::Stream ^toStream)
+    {
+return create_async([this, toStream]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (toStream == nullptr) { return false; }
+	CkStreamW* pObj0 = toStream->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxZipEntryProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->UnzipToStream(*pObj0);
+
+});
     }
 IAsyncOperation<Platform::String ^>^ ZipEntry::UnzipToStringAsync(int lineEndingBehavior, Platform::String ^srcCharset)
     {

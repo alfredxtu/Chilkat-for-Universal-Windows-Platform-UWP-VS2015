@@ -9,6 +9,8 @@
 #include "include/CkDateTime.h"
 #include "include/CkPrngW.h"
 		
+#include "include/CkBinDataW.h"
+#include "BinData.h"
 
 
 using namespace Chilkat;
@@ -131,6 +133,15 @@ Platform::String ^Prng::GenRandom(int numBytes, Platform::String ^encoding)
 	const wchar_t *retStr = m_impl->genRandom(numBytes,encoding ? encoding->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+    }
+Boolean Prng::GenRandomBd(int numBytes, Chilkat::BinData ^bd)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bd == nullptr) { return false; }
+	CkBinDataW* pObj1 = bd->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	return m_impl->GenRandomBd(numBytes,*pObj1);
     }
 Windows::Foundation::Collections::IVector<uint8>^Prng::GenRandomBytes(int numBytes)
     {

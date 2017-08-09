@@ -55,6 +55,14 @@ void Chilkat::MessageSet::HasUids::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_HasUids(newVal);
     }
+Boolean Chilkat::MessageSet::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::MessageSet::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+    }
 
 
 Boolean MessageSet::ContainsId(int msgId)

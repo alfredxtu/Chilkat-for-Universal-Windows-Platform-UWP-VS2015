@@ -45,6 +45,14 @@ Chilkat::BinData::BinData(void)
 //}
 
 
+Boolean Chilkat::BinData::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::BinData::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+    }
 int Chilkat::BinData::NumBytes::get()
     {
     return m_impl ? m_impl->get_NumBytes() : 0;
@@ -165,6 +173,14 @@ Boolean BinData::GetEncodedSb(Platform::String ^encoding, Chilkat::StringBuilder
 	// --- prep output arg ---
 	return m_impl->GetEncodedSb(encoding ? encoding->Data() : L"",*pObj1);
     }
+Platform::String ^BinData::GetString(Platform::String ^charset)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	const wchar_t *retStr = m_impl->getString(charset ? charset->Data() : L"");
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
 Boolean BinData::LoadBinary(Windows::Foundation::Collections::IVector<uint8>^data)
     {
 	if (m_impl == nullptr) { return false; }
@@ -191,6 +207,12 @@ Boolean BinData::RemoveChunk(int offset, int numBytes)
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->RemoveChunk(offset,numBytes);
+    }
+Boolean BinData::SecureClear(void)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->SecureClear();
     }
 Boolean BinData::WriteFile(Platform::String ^path)
     {

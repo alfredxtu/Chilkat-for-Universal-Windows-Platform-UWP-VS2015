@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat v9.5.0
+// This header is generated for Chilkat 9.5.0.69
 
 #ifndef _CkStringBuilder_H
 #define _CkStringBuilder_H
@@ -12,6 +12,7 @@
 #include "CkString.h"
 #include "CkMultiByteBase.h"
 
+class CkBinData;
 class CkByteData;
 
 
@@ -65,6 +66,15 @@ class CK_VISIBLE_PUBLIC CkStringBuilder  : public CkMultiByteBase
 	bool Append(const char *value);
 
 
+	// Appends the contents of binData. The charset specifies the character encoding of the
+	// bytes contained in binData. The charset can be any of the supported encodings listed
+	// at Chilkat Supported Character Encodings
+	// <http://cknotes.com/chilkat-charsets-character-encodings-supported/> . To append
+	// the entire contents of binData, set offset and numBytes equal to zero. To append a range
+	// of binData, set the offset and numBytes to specify the range.
+	bool AppendBd(CkBinData &binData, const char *charset, int offset, int numBytes);
+
+
 	// Appends binary data using the encoding specified by encoding, such as "base64",
 	// "hex", etc.
 	bool AppendEncoded(CkByteData &binaryData, const char *encoding);
@@ -80,6 +90,12 @@ class CK_VISIBLE_PUBLIC CkStringBuilder  : public CkMultiByteBase
 	bool AppendInt64(__int64 value);
 
 
+	// Appends the value followed by a CRLF or LF to the end of the curent StringBuilder
+	// object. If crlf is true, then a CRLF line ending is used. Otherwise a LF line
+	// ending is used.
+	bool AppendLine(const char *value, bool crlf);
+
+
 	// Appends the contents of another StringBuilder to this instance.
 	bool AppendSb(CkStringBuilder &sb);
 
@@ -88,10 +104,23 @@ class CK_VISIBLE_PUBLIC CkStringBuilder  : public CkMultiByteBase
 	void Clear(void);
 
 
-	// Returns true if the caseSensitive is contained within this object. For case sensitive
+	// Returns true if the str is contained within this object. For case sensitive
 	// matching, set caseSensitive equal to true. For case-insensitive, set caseSensitive equal to
 	// false.
 	bool Contains(const char *str, bool caseSensitive);
+
+
+	// Returns true if the word is contained within this object, but only if it is a
+	// whole word. This method is limited to finding whole words in strings that only
+	// contains characters in the Latin1 charset (i.e. iso-8859-1 or Windows-1252). A
+	// whole word can only contain alphanumeric chars where the alpha chars are
+	// restricted to those of the Latin1 alpha chars. (The underscore character is also
+	// considered part of a word.)
+	// 
+	// For case sensitive matching, set caseSensitive equal to true. For case-insensitive, set
+	// caseSensitive equal to false.
+	// 
+	bool ContainsWord(const char *word, bool caseSensitive);
 
 
 	// Returns true if the contents of this object equals the str. Returns false
@@ -266,14 +295,36 @@ class CK_VISIBLE_PUBLIC CkStringBuilder  : public CkMultiByteBase
 	int Replace(const char *value, const char *replacement);
 
 
+	// Replaces the first occurrence of the content found between beginMark and endMark with
+	// replacement. The beginMark and endMark are included in what is replaced if replaceMarks is true.
+	bool ReplaceAllBetween(const char *beginMark, const char *endMark, const char *replacement, bool replaceMarks);
+
+
 	// Replaces all occurrences of value with replacement, but only where value is found between
 	// beginMark and endMark. Returns the number of replacements made.
 	int ReplaceBetween(const char *beginMark, const char *endMark, const char *value, const char *replacement);
 
 
+	// Replaces all occurrences of value with the decimal integer replacement. Returns the
+	// number of replacements.
+	int ReplaceI(const char *value, int replacement);
+
+
 	// Replaces all word occurrences of a specified string in this instance with
 	// another specified string. Returns the number of replacements made.
+	// 
+	// Important: This method is limited to replacing whole words in strings that only
+	// contains characters in the Latin1 charset (i.e. iso-8859-1 or Windows-1252). A
+	// whole word can only contain alphanumeric chars where the alpha chars are
+	// restricted to those of the Latin1 alpha chars. (The underscore character is also
+	// considered part of a word.)
+	// 
 	int ReplaceWord(const char *value, const char *replacement);
+
+
+	// Removes all characters from the current StringBuilder instance, and write zero
+	// bytes to the allocated memory before deallocating.
+	void SecureClear(void);
 
 
 	// Sets the Nth substring in string in a list delimted by delimiterChar. The first substring

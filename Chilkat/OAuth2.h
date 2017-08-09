@@ -164,6 +164,11 @@ public ref class OAuth2 sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Platform::String ^Resource
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^Scope
 	{
 		Platform::String ^get();

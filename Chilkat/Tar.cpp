@@ -313,6 +313,22 @@ Boolean Tar::AddFile(Platform::String ^path)
 	cxProgress.m_sender = this;
 	return m_impl->AddFile(path ? path->Data() : L"");
     }
+Boolean Tar::AddFile2(Platform::String ^filePath, Platform::String ^pathWithinTar)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxTarProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->AddFile2(filePath ? filePath->Data() : L"",pathWithinTar ? pathWithinTar->Data() : L"");
+    }
+Boolean Tar::CreateDeb(Platform::String ^controlPath, Platform::String ^dataPath, Platform::String ^debPath)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxTarProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->CreateDeb(controlPath ? controlPath->Data() : L"",dataPath ? dataPath->Data() : L"",debPath ? debPath->Data() : L"");
+    }
 Platform::String ^Tar::GetDirRoot(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }

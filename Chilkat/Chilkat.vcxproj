@@ -147,6 +147,7 @@
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>28204</DisableSpecificWarnings>
+      <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -298,8 +299,10 @@
     <ClCompile Include="Atom.cpp" />
     <ClCompile Include="AuthAws.cpp" />
     <ClCompile Include="AuthAzureAD.cpp" />
+    <ClCompile Include="AuthAzureSAS.cpp" />
     <ClCompile Include="AuthAzureStorage.cpp" />
     <ClCompile Include="AuthGoogle.cpp" />
+    <ClCompile Include="AuthUtil.cpp" />
     <ClCompile Include="BinData.cpp" />
     <ClCompile Include="Bounce.cpp" />
     <ClCompile Include="Bz2.cpp" />
@@ -312,6 +315,7 @@
     <ClCompile Include="CkDateTime.cpp" />
     <ClCompile Include="Compression.cpp" />
     <ClCompile Include="Crypt2.cpp" />
+    <ClCompile Include="Csr.cpp" />
     <ClCompile Include="Csv.cpp" />
     <ClCompile Include="Dh.cpp" />
     <ClCompile Include="DirTree.cpp" />
@@ -335,6 +339,8 @@
     <ClCompile Include="JavaKeyStore.cpp" />
     <ClCompile Include="JsonArray.cpp" />
     <ClCompile Include="JsonObject.cpp" />
+    <ClCompile Include="Jwe.cpp" />
+    <ClCompile Include="Jws.cpp" />
     <ClCompile Include="Jwt.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="Mailboxes.cpp" />

@@ -10,11 +10,15 @@
 #include "include/CkCrypt2W.h"
 		
 #include "include/CkCertW.h"
+#include "include/CkBinDataW.h"
+#include "include/CkStringBuilderW.h"
 #include "include/CkStreamW.h"
 #include "include/CkCertChainW.h"
 #include "include/CkPrivateKeyW.h"
 #include "include/CkXmlCertVaultW.h"
 #include "Cert.h"
+#include "BinData.h"
+#include "StringBuilder.h"
 #include "Stream.h"
 #include "CertChain.h"
 #include "PrivateKey.h"
@@ -60,6 +64,14 @@ Boolean Chilkat::Crypt2::AbortCurrent::get()
 void Chilkat::Crypt2::AbortCurrent::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_AbortCurrent(newVal);
+    }
+int Chilkat::Crypt2::BCryptWorkFactor::get()
+    {
+    return m_impl ? m_impl->get_BCryptWorkFactor() : 0;
+    }
+void Chilkat::Crypt2::BCryptWorkFactor::set(int newVal)
+    {
+        if (m_impl) m_impl->put_BCryptWorkFactor(newVal);
     }
 int Chilkat::Crypt2::BlockSize::get()
     {
@@ -264,6 +276,22 @@ int Chilkat::Crypt2::NumSignerCerts::get()
     {
     return m_impl ? m_impl->get_NumSignerCerts() : 0;
     }
+String ^Chilkat::Crypt2::OaepHash::get()
+    {
+    return ref new String(m_impl ? m_impl->oaepHash() : L"");
+    }
+void Chilkat::Crypt2::OaepHash::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_OaepHash(newVal ? newVal->Data() : L"");
+    }
+Boolean Chilkat::Crypt2::OaepPadding::get()
+    {
+    return m_impl ? m_impl->get_OaepPadding() : false;
+    }
+void Chilkat::Crypt2::OaepPadding::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_OaepPadding(newVal);
+    }
 int Chilkat::Crypt2::PaddingScheme::get()
     {
     return m_impl ? m_impl->get_PaddingScheme() : 0;
@@ -334,6 +362,14 @@ void Chilkat::Crypt2::SecretKey::set(Windows::Foundation::Collections::IVector<u
             db.borrowData(&v[0], (unsigned long)v.size()); }
         if (m_impl) m_impl->put_SecretKey(db);
     }
+String ^Chilkat::Crypt2::SigningAlg::get()
+    {
+    return ref new String(m_impl ? m_impl->signingAlg() : L"");
+    }
+void Chilkat::Crypt2::SigningAlg::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_SigningAlg(newVal ? newVal->Data() : L"");
+    }
 String ^Chilkat::Crypt2::UuFilename::get()
     {
     return ref new String(m_impl ? m_impl->uuFilename() : L"");
@@ -393,6 +429,44 @@ Boolean Crypt2::AddPfxSourceFile(Platform::String ^pfxFilePath, Platform::String
 	CxCrypt2Progress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->AddPfxSourceFile(pfxFilePath ? pfxFilePath->Data() : L"",pfxPassword ? pfxPassword->Data() : L"");
+    }
+Platform::String ^Crypt2::AesKeyUnwrap(Platform::String ^kek, Platform::String ^wrappedKeyData, Platform::String ^encoding)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CxCrypt2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	const wchar_t *retStr = m_impl->aesKeyUnwrap(kek ? kek->Data() : L"",wrappedKeyData ? wrappedKeyData->Data() : L"",encoding ? encoding->Data() : L"");
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
+Platform::String ^Crypt2::AesKeyWrap(Platform::String ^kek, Platform::String ^keyData, Platform::String ^encoding)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CxCrypt2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	const wchar_t *retStr = m_impl->aesKeyWrap(kek ? kek->Data() : L"",keyData ? keyData->Data() : L"",encoding ? encoding->Data() : L"");
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
+Platform::String ^Crypt2::BCryptHash(Platform::String ^password)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CxCrypt2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	const wchar_t *retStr = m_impl->bCryptHash(password ? password->Data() : L"");
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
+Boolean Crypt2::BCryptVerify(Platform::String ^password, Platform::String ^bcryptHash)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxCrypt2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->BCryptVerify(password ? password->Data() : L"",bcryptHash ? bcryptHash->Data() : L"");
     }
 Platform::String ^Crypt2::BytesToString(Windows::Foundation::Collections::IVector<uint8>^inData, Platform::String ^charset)
     {
@@ -579,6 +653,17 @@ Platform::String ^Crypt2::DecodeString(Platform::String ^inStr, Platform::String
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
+Boolean Crypt2::DecryptBd(Chilkat::BinData ^bd)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bd == nullptr) { return false; }
+	CkBinDataW* pObj0 = bd->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxCrypt2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->DecryptBd(*pObj0);
+    }
 Windows::Foundation::Collections::IVector<uint8>^Crypt2::DecryptBytes(Windows::Foundation::Collections::IVector<uint8>^data)
     {
 	if (m_impl == nullptr) { return nullptr; }
@@ -615,6 +700,20 @@ Platform::String ^Crypt2::DecryptEncoded(Platform::String ^encodedEncryptedData)
 	const wchar_t *retStr = m_impl->decryptEncoded(encodedEncryptedData ? encodedEncryptedData->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+    }
+Boolean Crypt2::DecryptSb(Chilkat::BinData ^bdIn, Chilkat::StringBuilder ^sbOut)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bdIn == nullptr) { return false; }
+	CkBinDataW* pObj0 = bdIn->m_impl;
+	 if (!pObj0) { return false; }
+	if (sbOut == nullptr) { return false; }
+	CkStringBuilderW* pObj1 = sbOut->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxCrypt2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->DecryptSb(*pObj0,*pObj1);
     }
 IAsyncOperation<Boolean>^ Crypt2::DecryptStreamAsync(Chilkat::Stream ^strm)
     {
@@ -679,6 +778,17 @@ Platform::String ^Crypt2::EncodeString(Platform::String ^strToEncode, Platform::
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
+Boolean Crypt2::EncryptBd(Chilkat::BinData ^bd)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bd == nullptr) { return false; }
+	CkBinDataW* pObj0 = bd->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxCrypt2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->EncryptBd(*pObj0);
+    }
 Windows::Foundation::Collections::IVector<uint8>^Crypt2::EncryptBytes(Windows::Foundation::Collections::IVector<uint8>^data)
     {
 	if (m_impl == nullptr) { return nullptr; }
@@ -716,6 +826,20 @@ Platform::String ^Crypt2::EncryptEncoded(Platform::String ^str)
 	const wchar_t *retStr = m_impl->encryptEncoded(str ? str->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+    }
+Boolean Crypt2::EncryptSb(Chilkat::StringBuilder ^sbIn, Chilkat::BinData ^bdOut)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (sbIn == nullptr) { return false; }
+	CkStringBuilderW* pObj0 = sbIn->m_impl;
+	 if (!pObj0) { return false; }
+	if (bdOut == nullptr) { return false; }
+	CkBinDataW* pObj1 = bdOut->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxCrypt2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->EncryptSb(*pObj0,*pObj1);
     }
 IAsyncOperation<Boolean>^ Crypt2::EncryptStreamAsync(Chilkat::Stream ^strm)
     {
@@ -906,6 +1030,19 @@ CertChain ^Crypt2::GetSignerCertChain(int index)
 	pCertChain->m_impl = pRetObj;
 	return pCertChain;
     }
+Platform::String ^Crypt2::HashBdENC(Chilkat::BinData ^bd)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	if (bd == nullptr) { return nullptr; }
+	CkBinDataW* pObj0 = bd->m_impl;
+	 if (!pObj0) { return nullptr; }
+	// --- prep output arg ---
+	CxCrypt2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	const wchar_t *retStr = m_impl->hashBdENC(*pObj0);
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
 Boolean Crypt2::HashBeginBytes(Windows::Foundation::Collections::IVector<uint8>^data)
     {
 	if (m_impl == nullptr) { return false; }
@@ -953,9 +1090,9 @@ Platform::String ^Crypt2::HashBytesENC(Windows::Foundation::Collections::IVector
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ Crypt2::HashFileAsync(Platform::String ^filename)
+IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ Crypt2::HashFileAsync(Platform::String ^path)
     {
-return create_async([this, filename]() -> Windows::Foundation::Collections::IVector<uint8>^
+return create_async([this, path]() -> Windows::Foundation::Collections::IVector<uint8>^
 {
 // This runs in a thread pool thread...
 
@@ -964,16 +1101,16 @@ return create_async([this, filename]() -> Windows::Foundation::Collections::IVec
 	CkByteData outDb;
 	CxCrypt2Progress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	bool success = m_impl->HashFile(filename ? filename->Data() : L"",outDb);
+	bool success = m_impl->HashFile(path ? path->Data() : L"",outDb);
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
 
 });
     }
-IAsyncOperation<Platform::String ^>^ Crypt2::HashFileENCAsync(Platform::String ^filename)
+IAsyncOperation<Platform::String ^>^ Crypt2::HashFileENCAsync(Platform::String ^path)
     {
-return create_async([this, filename]() -> Platform::String ^
+return create_async([this, path]() -> Platform::String ^
 {
 // This runs in a thread pool thread...
 
@@ -981,7 +1118,7 @@ return create_async([this, filename]() -> Platform::String ^
 	// --- prep output arg ---
 	CxCrypt2Progress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	const wchar_t *retStr = m_impl->hashFileENC(filename ? filename->Data() : L"");
+	const wchar_t *retStr = m_impl->hashFileENC(path ? path->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
@@ -1166,6 +1303,19 @@ Boolean Crypt2::IsUnlocked(void)
 	cxProgress.m_sender = this;
 	return m_impl->IsUnlocked();
     }
+Platform::String ^Crypt2::MacBdENC(Chilkat::BinData ^bd)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	if (bd == nullptr) { return nullptr; }
+	CkBinDataW* pObj0 = bd->m_impl;
+	 if (!pObj0) { return nullptr; }
+	// --- prep output arg ---
+	CxCrypt2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	const wchar_t *retStr = m_impl->macBdENC(*pObj0);
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
 Windows::Foundation::Collections::IVector<uint8>^Crypt2::MacBytes(Windows::Foundation::Collections::IVector<uint8>^inBytes)
     {
 	if (m_impl == nullptr) { return nullptr; }
@@ -1236,6 +1386,17 @@ Platform::String ^Crypt2::MySqlAesEncrypt(Platform::String ^strData, Platform::S
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
+Boolean Crypt2::OpaqueSignBd(Chilkat::BinData ^bd)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bd == nullptr) { return false; }
+	CkBinDataW* pObj0 = bd->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxCrypt2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->OpaqueSignBd(*pObj0);
+    }
 Windows::Foundation::Collections::IVector<uint8>^Crypt2::OpaqueSignBytes(Windows::Foundation::Collections::IVector<uint8>^data)
     {
 	if (m_impl == nullptr) { return nullptr; }
@@ -1285,6 +1446,17 @@ Platform::String ^Crypt2::OpaqueSignStringENC(Platform::String ^str)
 	const wchar_t *retStr = m_impl->opaqueSignStringENC(str ? str->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+    }
+Boolean Crypt2::OpaqueVerifyBd(Chilkat::BinData ^bd)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bd == nullptr) { return false; }
+	CkBinDataW* pObj0 = bd->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxCrypt2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->OpaqueVerifyBd(*pObj0);
     }
 Windows::Foundation::Collections::IVector<uint8>^Crypt2::OpaqueVerifyBytes(Windows::Foundation::Collections::IVector<uint8>^p7s)
     {
@@ -1578,6 +1750,19 @@ Boolean Crypt2::SetVerifyCert(Chilkat::Cert ^cert)
 	cxProgress.m_sender = this;
 	return m_impl->SetVerifyCert(*pObj0);
     }
+Platform::String ^Crypt2::SignBdENC(Chilkat::BinData ^dataToSign)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	if (dataToSign == nullptr) { return nullptr; }
+	CkBinDataW* pObj0 = dataToSign->m_impl;
+	 if (!pObj0) { return nullptr; }
+	// --- prep output arg ---
+	CxCrypt2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	const wchar_t *retStr = m_impl->signBdENC(*pObj0);
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
 Windows::Foundation::Collections::IVector<uint8>^Crypt2::SignBytes(Windows::Foundation::Collections::IVector<uint8>^data)
     {
 	if (m_impl == nullptr) { return nullptr; }
@@ -1603,6 +1788,19 @@ Platform::String ^Crypt2::SignBytesENC(Windows::Foundation::Collections::IVector
 	CxCrypt2Progress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	const wchar_t *retStr = m_impl->signBytesENC(db0);
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
+Platform::String ^Crypt2::SignSbENC(Chilkat::StringBuilder ^sb)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	if (sb == nullptr) { return nullptr; }
+	CkStringBuilderW* pObj0 = sb->m_impl;
+	 if (!pObj0) { return nullptr; }
+	// --- prep output arg ---
+	CxCrypt2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	const wchar_t *retStr = m_impl->signSbENC(*pObj0);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
@@ -1669,6 +1867,17 @@ Boolean Crypt2::UseCertVault(Chilkat::XmlCertVault ^vault)
 	cxProgress.m_sender = this;
 	return m_impl->UseCertVault(*pObj0);
     }
+Boolean Crypt2::VerifyBdENC(Chilkat::BinData ^data, Platform::String ^encodedSig)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (data == nullptr) { return false; }
+	CkBinDataW* pObj0 = data->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxCrypt2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->VerifyBdENC(*pObj0,encodedSig ? encodedSig->Data() : L"");
+    }
 Boolean Crypt2::VerifyBytes(Windows::Foundation::Collections::IVector<uint8>^data, Windows::Foundation::Collections::IVector<uint8>^sig)
     {
 	if (m_impl == nullptr) { return false; }
@@ -1717,6 +1926,17 @@ Boolean Crypt2::VerifyP7S(Platform::String ^inFilename, Platform::String ^p7sFil
 	CxCrypt2Progress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->VerifyP7S(inFilename ? inFilename->Data() : L"",p7sFilename ? p7sFilename->Data() : L"");
+    }
+Boolean Crypt2::VerifySbENC(Chilkat::StringBuilder ^sb, Platform::String ^encodedSig)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj0 = sb->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxCrypt2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->VerifySbENC(*pObj0,encodedSig ? encodedSig->Data() : L"");
     }
 Boolean Crypt2::VerifyString(Platform::String ^str, Windows::Foundation::Collections::IVector<uint8>^sig)
     {

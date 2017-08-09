@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.62
+// This is a generated source file for Chilkat version 9.5.0.69
 #ifndef _C_CkHttpResponseWH
 #define _C_CkHttpResponseWH
 #include "chilkatDefs.h"
@@ -50,6 +50,8 @@ CK_VISIBLE_PUBLIC BOOL CkHttpResponseW_getVerboseLogging(HCkHttpResponseW cHandl
 CK_VISIBLE_PUBLIC void  CkHttpResponseW_putVerboseLogging(HCkHttpResponseW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkHttpResponseW_getVersion(HCkHttpResponseW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkHttpResponseW_version(HCkHttpResponseW cHandle);
+CK_VISIBLE_PUBLIC BOOL CkHttpResponseW_GetBodyBd(HCkHttpResponseW cHandle, HCkBinDataW binData);
+CK_VISIBLE_PUBLIC BOOL CkHttpResponseW_GetBodySb(HCkHttpResponseW cHandle, HCkStringBuilderW sb);
 CK_VISIBLE_PUBLIC BOOL CkHttpResponseW_GetCookieDomain(HCkHttpResponseW cHandle, int index, HCkString outStr);
 CK_VISIBLE_PUBLIC const wchar_t *CkHttpResponseW_getCookieDomain(HCkHttpResponseW cHandle, int index);
 CK_VISIBLE_PUBLIC BOOL CkHttpResponseW_GetCookieExpires(HCkHttpResponseW cHandle, int index, SYSTEMTIME *outSysTime);

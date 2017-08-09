@@ -11,8 +11,10 @@
 		
 #include "include/CkCertW.h"
 #include "include/CkTrustedRootsW.h"
+#include "include/CkJsonObjectW.h"
 #include "Cert.h"
 #include "TrustedRoots.h"
+#include "JsonObject.h"
 
 
 using namespace Chilkat;
@@ -119,6 +121,15 @@ Boolean CertChain::IsRootTrusted(Chilkat::TrustedRoots ^trustedRoots)
 	 if (!pObj0) { return false; }
 	// --- prep output arg ---
 	return m_impl->IsRootTrusted(*pObj0);
+    }
+Boolean CertChain::LoadX5C(Chilkat::JsonObject ^jwk)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (jwk == nullptr) { return false; }
+	CkJsonObjectW* pObj0 = jwk->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->LoadX5C(*pObj0);
     }
 Boolean CertChain::VerifyCertSignatures(void)
     {

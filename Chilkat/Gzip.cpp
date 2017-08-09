@@ -9,6 +9,8 @@
 #include "include/CkDateTime.h"
 #include "include/CkGzipW.h"
 		
+#include "include/CkBinDataW.h"
+#include "BinData.h"
 #include "CkDateTime.h"
 
 
@@ -157,6 +159,23 @@ String ^Chilkat::Gzip::Version::get()
     }
 
 
+IAsyncOperation<Boolean>^ Gzip::CompressBdAsync(Chilkat::BinData ^binDat)
+    {
+return create_async([this, binDat]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (binDat == nullptr) { return false; }
+	CkBinDataW* pObj0 = binDat->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxGzipProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->CompressBd(*pObj0);
+
+});
+    }
 IAsyncOperation<Boolean>^ Gzip::CompressFileAsync(Platform::String ^inFilename, Platform::String ^destPath)
     {
 return create_async([this, inFilename, destPath]() -> Boolean
@@ -389,6 +408,23 @@ Boolean Gzip::SetDt(Chilkat::CkDateTime ^dt)
 	CxGzipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->SetDt(*pObj0);
+    }
+IAsyncOperation<Boolean>^ Gzip::UncompressBdAsync(Chilkat::BinData ^binDat)
+    {
+return create_async([this, binDat]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (binDat == nullptr) { return false; }
+	CkBinDataW* pObj0 = binDat->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxGzipProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->UncompressBd(*pObj0);
+
+});
     }
 IAsyncOperation<Boolean>^ Gzip::UncompressFileAsync(Platform::String ^srcPath, Platform::String ^destPath)
     {

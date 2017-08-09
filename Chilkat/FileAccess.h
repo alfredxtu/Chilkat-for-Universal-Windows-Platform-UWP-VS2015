@@ -20,6 +20,7 @@ using namespace concurrency;
 namespace Chilkat
 {
 
+	ref class BinData;
 	ref class CkDateTime;
 
 
@@ -127,6 +128,8 @@ public ref class FileAccess sealed
 
 	Windows::Foundation::Collections::IVector<uint8>^FileRead(int maxNumBytes);
 
+	Boolean FileReadBd(int maxNumBytes, Chilkat::BinData ^binData);
+
 	Boolean FileRename(Platform::String ^existingFilepath, Platform::String ^newFilepath);
 
 	Boolean FileSeek(int offset, int origin);
@@ -135,7 +138,19 @@ public ref class FileAccess sealed
 
 	Boolean FileWrite(Windows::Foundation::Collections::IVector<uint8>^data);
 
+	Boolean FileWriteBd(Chilkat::BinData ^binData, int offset, int numBytes);
+
 	Platform::String ^GenBlockId(int index, int length, Platform::String ^encoding);
+
+	Platform::String ^GetDirectoryName(Platform::String ^path);
+
+	Platform::String ^GetExtension(Platform::String ^path);
+
+	Platform::String ^GetFileName(Platform::String ^path);
+
+	Platform::String ^GetFileNameWithoutExtension(Platform::String ^path);
+
+	CkDateTime ^GetLastModified(Platform::String ^path);
 
 	int GetNumBlocks(int blockSize);
 

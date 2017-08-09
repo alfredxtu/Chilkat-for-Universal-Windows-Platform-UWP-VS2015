@@ -132,6 +132,7 @@ typedef void *HCkAuthAws;
 typedef void *HCkAuthGoogle;
 typedef void *HCkAuthAzureStorage;
 typedef void *HCkAuthAzureAD;
+typedef void *HCkAuthAzureSAS;
 typedef void *HCkRest;
 typedef void *HCkStringBuilder;
 typedef void *HCkJwt;
@@ -139,6 +140,12 @@ typedef void *HCkServerSentEvent;
 typedef void *HCkOAuth2;
 typedef void *HCkBinData;
 typedef void *HCkStringTable;
+typedef void *HCkCsr;
+typedef void *HCkJwe;
+typedef void *HCkJws;
+typedef void *HCkAuthUtil;
+typedef void *HCkXmlDSig;
+typedef void *HCkXmlDSigGen;
 
 
 typedef void *HCkByteDataW;
@@ -248,11 +255,18 @@ typedef void *HCkAuthAwsW;
 typedef void *HCkAuthGoogleW;
 typedef void *HCkAuthAzureStorageW;
 typedef void *HCkAuthAzureADW;
+typedef void *HCkAuthAzureSASW;
 typedef void *HCkStringBuilderW;
 typedef void *HCkJwtW;
 typedef void *HCkServerSentEventW;
 typedef void *HCkOAuth2W;
 typedef void *HCkBinDataW;
 typedef void *HCkStringTableW;
+typedef void *HCkCsrW;
+typedef void *HCkJweW;
+typedef void *HCkJwsW;
+typedef void *HCkAuthUtilW;
+typedef void *HCkXmlDSigW;
+typedef void *HCkXmlDSigGenW;
 
 #endif

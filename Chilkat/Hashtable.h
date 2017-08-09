@@ -20,6 +20,7 @@ using namespace concurrency;
 namespace Chilkat
 {
 
+	ref class StringBuilder;
 	ref class StringTable;
 
 
@@ -43,11 +44,18 @@ public ref class Hashtable sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 
 
 	// ----------------------
 	// Methods
 	// ----------------------
+	Boolean AddFromXmlSb(Chilkat::StringBuilder ^sbXml);
+
 	Boolean AddInt(Platform::String ^key, int value);
 
 	Boolean AddQueryParams(Platform::String ^queryParams);
@@ -60,6 +68,8 @@ public ref class Hashtable sealed
 
 	Boolean Contains(Platform::String ^key);
 
+	Boolean ContainsIntKey(int key);
+
 	Boolean GetKeys(Chilkat::StringTable ^strTable);
 
 	int LookupInt(Platform::String ^key);
@@ -67,6 +77,8 @@ public ref class Hashtable sealed
 	Platform::String ^LookupStr(Platform::String ^key);
 
 	Boolean Remove(Platform::String ^key);
+
+	Boolean ToXmlSb(Chilkat::StringBuilder ^sbXml);
 
 
 

@@ -45,6 +45,14 @@ Chilkat::SFtpDir::SFtpDir(void)
 //}
 
 
+Boolean Chilkat::SFtpDir::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::SFtpDir::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+    }
 int Chilkat::SFtpDir::NumFilesAndDirs::get()
     {
     return m_impl ? m_impl->get_NumFilesAndDirs() : 0;

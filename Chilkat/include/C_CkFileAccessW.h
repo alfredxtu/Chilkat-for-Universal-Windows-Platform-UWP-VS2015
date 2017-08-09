@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.62
+// This is a generated source file for Chilkat version 9.5.0.69
 #ifndef _C_CkFileAccessWH
 #define _C_CkFileAccessWH
 #include "chilkatDefs.h"
@@ -33,10 +33,10 @@ CK_VISIBLE_PUBLIC BOOL CkFileAccessW_AppendAnsi(HCkFileAccessW cHandle, const wc
 CK_VISIBLE_PUBLIC BOOL CkFileAccessW_AppendText(HCkFileAccessW cHandle, const wchar_t *str, const wchar_t *charset);
 CK_VISIBLE_PUBLIC BOOL CkFileAccessW_AppendUnicodeBOM(HCkFileAccessW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkFileAccessW_AppendUtf8BOM(HCkFileAccessW cHandle);
-CK_VISIBLE_PUBLIC BOOL CkFileAccessW_DirAutoCreate(HCkFileAccessW cHandle, const wchar_t *dirPath);
+CK_VISIBLE_PUBLIC BOOL CkFileAccessW_DirAutoCreate(HCkFileAccessW cHandle, const wchar_t *filePath);
 CK_VISIBLE_PUBLIC BOOL CkFileAccessW_DirCreate(HCkFileAccessW cHandle, const wchar_t *dirPath);
 CK_VISIBLE_PUBLIC BOOL CkFileAccessW_DirDelete(HCkFileAccessW cHandle, const wchar_t *dirPath);
-CK_VISIBLE_PUBLIC BOOL CkFileAccessW_DirEnsureExists(HCkFileAccessW cHandle, const wchar_t *filePath);
+CK_VISIBLE_PUBLIC BOOL CkFileAccessW_DirEnsureExists(HCkFileAccessW cHandle, const wchar_t *dirPath);
 CK_VISIBLE_PUBLIC void CkFileAccessW_FileClose(HCkFileAccessW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkFileAccessW_FileContentsEqual(HCkFileAccessW cHandle, const wchar_t *filePath1, const wchar_t *filePath2);
 CK_VISIBLE_PUBLIC BOOL CkFileAccessW_FileCopy(HCkFileAccessW cHandle, const wchar_t *existingFilepath, const wchar_t *newFilepath, BOOL failIfExists);
@@ -45,12 +45,23 @@ CK_VISIBLE_PUBLIC BOOL CkFileAccessW_FileExists(HCkFileAccessW cHandle, const wc
 CK_VISIBLE_PUBLIC int CkFileAccessW_FileExists3(HCkFileAccessW cHandle, const wchar_t *path);
 CK_VISIBLE_PUBLIC BOOL CkFileAccessW_FileOpen(HCkFileAccessW cHandle, const wchar_t *filePath, unsigned long accessMode, unsigned long shareMode, unsigned long createDisposition, unsigned long attributes);
 CK_VISIBLE_PUBLIC BOOL CkFileAccessW_FileRead(HCkFileAccessW cHandle, int maxNumBytes, HCkByteData outBytes);
+CK_VISIBLE_PUBLIC BOOL CkFileAccessW_FileReadBd(HCkFileAccessW cHandle, int maxNumBytes, HCkBinDataW binData);
 CK_VISIBLE_PUBLIC BOOL CkFileAccessW_FileRename(HCkFileAccessW cHandle, const wchar_t *existingFilepath, const wchar_t *newFilepath);
 CK_VISIBLE_PUBLIC BOOL CkFileAccessW_FileSeek(HCkFileAccessW cHandle, int offset, int origin);
 CK_VISIBLE_PUBLIC int CkFileAccessW_FileSize(HCkFileAccessW cHandle, const wchar_t *filePath);
 CK_VISIBLE_PUBLIC BOOL CkFileAccessW_FileWrite(HCkFileAccessW cHandle, HCkByteData data);
+CK_VISIBLE_PUBLIC BOOL CkFileAccessW_FileWriteBd(HCkFileAccessW cHandle, HCkBinDataW binData, int offset, int numBytes);
 CK_VISIBLE_PUBLIC BOOL CkFileAccessW_GenBlockId(HCkFileAccessW cHandle, int index, int length, const wchar_t *encoding, HCkString outStr);
 CK_VISIBLE_PUBLIC const wchar_t *CkFileAccessW_genBlockId(HCkFileAccessW cHandle, int index, int length, const wchar_t *encoding);
+CK_VISIBLE_PUBLIC BOOL CkFileAccessW_GetDirectoryName(HCkFileAccessW cHandle, const wchar_t *path, HCkString outStr);
+CK_VISIBLE_PUBLIC const wchar_t *CkFileAccessW_getDirectoryName(HCkFileAccessW cHandle, const wchar_t *path);
+CK_VISIBLE_PUBLIC BOOL CkFileAccessW_GetExtension(HCkFileAccessW cHandle, const wchar_t *path, HCkString outStr);
+CK_VISIBLE_PUBLIC const wchar_t *CkFileAccessW_getExtension(HCkFileAccessW cHandle, const wchar_t *path);
+CK_VISIBLE_PUBLIC BOOL CkFileAccessW_GetFileName(HCkFileAccessW cHandle, const wchar_t *path, HCkString outStr);
+CK_VISIBLE_PUBLIC const wchar_t *CkFileAccessW_getFileName(HCkFileAccessW cHandle, const wchar_t *path);
+CK_VISIBLE_PUBLIC BOOL CkFileAccessW_GetFileNameWithoutExtension(HCkFileAccessW cHandle, const wchar_t *path, HCkString outStr);
+CK_VISIBLE_PUBLIC const wchar_t *CkFileAccessW_getFileNameWithoutExtension(HCkFileAccessW cHandle, const wchar_t *path);
+CK_VISIBLE_PUBLIC HCkDateTimeW CkFileAccessW_GetLastModified(HCkFileAccessW cHandle, const wchar_t *path);
 CK_VISIBLE_PUBLIC int CkFileAccessW_GetNumBlocks(HCkFileAccessW cHandle, int blockSize);
 CK_VISIBLE_PUBLIC BOOL CkFileAccessW_GetTempFilename(HCkFileAccessW cHandle, const wchar_t *dirPath, const wchar_t *prefix, HCkString outStr);
 CK_VISIBLE_PUBLIC const wchar_t *CkFileAccessW_getTempFilename(HCkFileAccessW cHandle, const wchar_t *dirPath, const wchar_t *prefix);

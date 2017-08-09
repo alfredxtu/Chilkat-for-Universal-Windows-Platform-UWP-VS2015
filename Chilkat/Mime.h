@@ -26,6 +26,7 @@ namespace Chilkat
 	ref class BinData;
 	ref class StringBuilder;
 	ref class CertChain;
+	ref class JsonObject;
 	ref class XmlCertVault;
 
 
@@ -131,6 +132,16 @@ public ref class Mime sealed
 	{
 		int32 get();
 	}
+	property Platform::String ^OaepHash
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Boolean OaepPadding
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property Platform::String ^Pkcs7CryptAlg
 	{
 		Platform::String ^get();
@@ -142,6 +153,11 @@ public ref class Mime sealed
 		void set(int32);
 	}
 	property Platform::String ^Protocol
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^SigningAlg
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
@@ -240,6 +256,8 @@ public ref class Mime sealed
 
 	Cert ^FindIssuer(Chilkat::Cert ^cert);
 
+	Boolean GetBodyBd(Chilkat::BinData ^binDat);
+
 	Windows::Foundation::Collections::IVector<uint8>^GetBodyBinary(void);
 
 	Platform::String ^GetBodyDecoded(void);
@@ -313,6 +331,8 @@ public ref class Mime sealed
 	Boolean IsVideo(void);
 
 	Boolean IsXml(void);
+
+	JsonObject ^LastJsonData(void);
 
 	Boolean LoadMime(Platform::String ^mimeMsg);
 

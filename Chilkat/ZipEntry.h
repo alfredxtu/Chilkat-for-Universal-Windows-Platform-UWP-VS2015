@@ -25,6 +25,9 @@ namespace Chilkat
 {
 
 	ref class CkDateTime;
+	ref class BinData;
+	ref class StringBuilder;
+	ref class Stream;
 
 
 public ref class ZipEntry sealed
@@ -111,6 +114,10 @@ public ref class ZipEntry sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property int32 EncryptionKeyLen
+	{
+		int32 get();
+	}
 	property int32 EntryID
 	{
 		int32 get();
@@ -137,6 +144,10 @@ public ref class ZipEntry sealed
 	{
 		int32 get();
 		void set(int32);
+	}
+	property Boolean IsAesEncrypted
+	{
+		Boolean get();
 	}
 	property Boolean IsDirectory
 	{
@@ -217,6 +228,12 @@ public ref class ZipEntry sealed
 	Boolean ReplaceString(Platform::String ^strContent, Platform::String ^charset);
 
 	void SetDt(Chilkat::CkDateTime ^dt);
+
+	IAsyncOperation<Boolean>^ UnzipToBdAsync(Chilkat::BinData ^binData);
+
+	IAsyncOperation<Boolean>^ UnzipToSbAsync(int lineEndingBehavior, Platform::String ^srcCharset, Chilkat::StringBuilder ^sb);
+
+	IAsyncOperation<Boolean>^ UnzipToStreamAsync(Chilkat::Stream ^toStream);
 
 	IAsyncOperation<Platform::String ^>^ UnzipToStringAsync(int lineEndingBehavior, Platform::String ^srcCharset);
 

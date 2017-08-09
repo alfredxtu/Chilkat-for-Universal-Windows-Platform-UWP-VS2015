@@ -20,6 +20,8 @@ using namespace concurrency;
 namespace Chilkat
 {
 
+	ref class BinData;
+	ref class StringBuilder;
 
 
 public ref class HttpRequest sealed
@@ -136,6 +138,8 @@ public ref class HttpRequest sealed
 
 	void AddHeader(Platform::String ^name, Platform::String ^value);
 
+	Boolean AddMwsSignature(Platform::String ^domain, Platform::String ^mwsSecretKey);
+
 	void AddParam(Platform::String ^name, Platform::String ^value);
 
 	Boolean AddStringForUpload(Platform::String ^name, Platform::String ^filename, Platform::String ^strData, Platform::String ^charset);
@@ -143,6 +147,8 @@ public ref class HttpRequest sealed
 	Boolean AddStringForUpload2(Platform::String ^name, Platform::String ^filename, Platform::String ^strData, Platform::String ^charset, Platform::String ^contentType);
 
 	Boolean AddSubHeader(int index, Platform::String ^name, Platform::String ^value);
+
+	Boolean GenerateRequestFile(Platform::String ^path);
 
 	Platform::String ^GenerateRequestText(void);
 
@@ -160,9 +166,13 @@ public ref class HttpRequest sealed
 
 	Platform::String ^GetUrlEncodedParams(void);
 
+	Boolean LoadBodyFromBd(Chilkat::BinData ^requestBody);
+
 	Boolean LoadBodyFromBytes(Windows::Foundation::Collections::IVector<uint8>^byteData);
 
 	Boolean LoadBodyFromFile(Platform::String ^filePath);
+
+	Boolean LoadBodyFromSb(Chilkat::StringBuilder ^requestBody, Platform::String ^charset);
 
 	Boolean LoadBodyFromString(Platform::String ^bodyStr, Platform::String ^charset);
 

@@ -9,6 +9,10 @@
 #include "include/CkDateTime.h"
 #include "include/CkStreamW.h"
 		
+#include "include/CkBinDataW.h"
+#include "include/CkStringBuilderW.h"
+#include "BinData.h"
+#include "StringBuilder.h"
 
 
 using namespace Chilkat;
@@ -217,6 +221,23 @@ void Chilkat::Stream::WriteTimeoutMs::set(int newVal)
     }
 
 
+IAsyncOperation<Boolean>^ Stream::ReadBdAsync(Chilkat::BinData ^binData)
+    {
+return create_async([this, binData]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj0 = binData->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxStreamProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->ReadBd(*pObj0);
+
+});
+    }
 IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ Stream::ReadBytesAsync(void)
     {
 return create_async([this]() -> Windows::Foundation::Collections::IVector<uint8>^
@@ -282,6 +303,23 @@ return create_async([this, numBytes, encoding]() -> Platform::String ^
 	const wchar_t *retStr = m_impl->readNBytesENC(numBytes,encoding ? encoding->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+
+});
+    }
+IAsyncOperation<Boolean>^ Stream::ReadSbAsync(Chilkat::StringBuilder ^sb)
+    {
+return create_async([this, sb]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj0 = sb->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxStreamProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->ReadSb(*pObj0);
 
 });
     }
@@ -396,6 +434,23 @@ Boolean Stream::SetSourceString(Platform::String ^srcStr, Platform::String ^char
 	cxProgress.m_sender = this;
 	return m_impl->SetSourceString(srcStr ? srcStr->Data() : L"",charset ? charset->Data() : L"");
     }
+IAsyncOperation<Boolean>^ Stream::WriteBdAsync(Chilkat::BinData ^binData)
+    {
+return create_async([this, binData]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj0 = binData->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxStreamProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->WriteBd(*pObj0);
+
+});
+    }
 IAsyncOperation<Boolean>^ Stream::WriteByteAsync(int byteVal)
     {
 return create_async([this, byteVal]() -> Boolean
@@ -448,6 +503,23 @@ Boolean Stream::WriteClose(void)
 	CxStreamProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->WriteClose();
+    }
+IAsyncOperation<Boolean>^ Stream::WriteSbAsync(Chilkat::StringBuilder ^sb)
+    {
+return create_async([this, sb]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj0 = sb->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxStreamProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->WriteSb(*pObj0);
+
+});
     }
 IAsyncOperation<Boolean>^ Stream::WriteStringAsync(Platform::String ^str)
     {

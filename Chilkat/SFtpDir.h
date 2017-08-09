@@ -43,6 +43,11 @@ public ref class SFtpDir sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property int32 NumFilesAndDirs
 	{
 		int32 get();

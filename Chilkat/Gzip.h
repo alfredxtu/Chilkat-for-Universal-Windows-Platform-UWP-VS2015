@@ -24,6 +24,7 @@ using namespace concurrency;
 namespace Chilkat
 {
 
+	ref class BinData;
 	ref class CkDateTime;
 
 
@@ -151,6 +152,8 @@ public ref class Gzip sealed
 	// ----------------------
 	// Methods
 	// ----------------------
+	IAsyncOperation<Boolean>^ CompressBdAsync(Chilkat::BinData ^binDat);
+
 	IAsyncOperation<Boolean>^ CompressFileAsync(Platform::String ^inFilename, Platform::String ^destPath);
 
 	IAsyncOperation<Boolean>^ CompressFile2Async(Platform::String ^inFilename, Platform::String ^embeddedFilename, Platform::String ^destPath);
@@ -186,6 +189,8 @@ public ref class Gzip sealed
 	Windows::Foundation::Collections::IVector<uint8>^ReadFile(Platform::String ^path);
 
 	Boolean SetDt(Chilkat::CkDateTime ^dt);
+
+	IAsyncOperation<Boolean>^ UncompressBdAsync(Chilkat::BinData ^binDat);
 
 	IAsyncOperation<Boolean>^ UncompressFileAsync(Platform::String ^srcPath, Platform::String ^destPath);
 

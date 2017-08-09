@@ -73,6 +73,11 @@ public ref class Xml sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Boolean EmitCompact
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property Boolean EmitXmlDecl
 	{
 		Boolean get();
@@ -82,6 +87,21 @@ public ref class Xml sealed
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
+	}
+	property int32 I
+	{
+		int32 get();
+		void set(int32);
+	}
+	property int32 J
+	{
+		int32 get();
+		void set(int32);
+	}
+	property int32 K
+	{
+		int32 get();
+		void set(int32);
 	}
 	property Platform::String ^LastErrorHtml
 	{
@@ -165,7 +185,7 @@ public ref class Xml sealed
 
 	Boolean BEncodeContent(Platform::String ^charset, Windows::Foundation::Collections::IVector<uint8>^inData);
 
-	Boolean ChildContentMatches(Platform::String ^tag, Platform::String ^pattern, Boolean caseSensitive);
+	Boolean ChildContentMatches(Platform::String ^tagPath, Platform::String ^pattern, Boolean caseSensitive);
 
 	Platform::String ^ChilkatPath(Platform::String ^pathCmd);
 
@@ -187,15 +207,15 @@ public ref class Xml sealed
 
 	Xml ^ExtractChildByIndex(int index);
 
-	Xml ^ExtractChildByName(Platform::String ^tag, Platform::String ^attrName, Platform::String ^attrValue);
+	Xml ^ExtractChildByName(Platform::String ^tagPath, Platform::String ^attrName, Platform::String ^attrValue);
 
-	Xml ^FindChild(Platform::String ^tag);
+	Xml ^FindChild(Platform::String ^tagPath);
 
-	Boolean FindChild2(Platform::String ^tag);
+	Boolean FindChild2(Platform::String ^tagPath);
 
-	Xml ^FindNextRecord(Platform::String ^tag, Platform::String ^contentPattern);
+	Xml ^FindNextRecord(Platform::String ^tagPath, Platform::String ^contentPattern);
 
-	Xml ^FindOrAddNewChild(Platform::String ^tag);
+	Xml ^FindOrAddNewChild(Platform::String ^tagPath);
 
 	Xml ^FirstChild(void);
 
@@ -217,25 +237,25 @@ public ref class Xml sealed
 
 	Boolean GetChild2(int index);
 
-	Boolean GetChildBoolValue(Platform::String ^tag);
+	Boolean GetChildBoolValue(Platform::String ^tagPath);
 
-	Platform::String ^GetChildContent(Platform::String ^tag);
+	Platform::String ^GetChildContent(Platform::String ^tagPath);
 
 	Platform::String ^GetChildContentByIndex(int index);
 
 	Xml ^GetChildExact(Platform::String ^tag, Platform::String ^content);
 
-	int GetChildIntValue(Platform::String ^tag);
+	int GetChildIntValue(Platform::String ^tagPath);
 
 	Platform::String ^GetChildTag(int index);
 
 	Platform::String ^GetChildTagByIndex(int index);
 
-	Xml ^GetChildWithAttr(Platform::String ^tag, Platform::String ^attrName, Platform::String ^attrValue);
+	Xml ^GetChildWithAttr(Platform::String ^tagPath, Platform::String ^attrName, Platform::String ^attrValue);
 
 	Xml ^GetChildWithContent(Platform::String ^content);
 
-	Xml ^GetChildWithTag(Platform::String ^tag);
+	Xml ^GetChildWithTag(Platform::String ^tagPath);
 
 	Xml ^GetNthChildWithTag(Platform::String ^tag, int n);
 
@@ -261,9 +281,9 @@ public ref class Xml sealed
 
 	Boolean HasChildWithContent(Platform::String ^content);
 
-	Boolean HasChildWithTag(Platform::String ^tag);
+	Boolean HasChildWithTag(Platform::String ^tagPath);
 
-	Boolean HasChildWithTagAndContent(Platform::String ^tag, Platform::String ^content);
+	Boolean HasChildWithTagAndContent(Platform::String ^tagPath, Platform::String ^content);
 
 	void InsertChildTreeAfter(int index, Chilkat::Xml ^tree);
 
@@ -283,19 +303,21 @@ public ref class Xml sealed
 
 	Boolean LoadXmlFile2(Platform::String ^fileName, Boolean autoTrim);
 
-	Xml ^NewChild(Platform::String ^tag, Platform::String ^content);
+	Xml ^NewChild(Platform::String ^tagPath, Platform::String ^content);
 
-	void NewChild2(Platform::String ^tag, Platform::String ^content);
+	void NewChild2(Platform::String ^tagPath, Platform::String ^content);
 
 	Xml ^NewChildAfter(int index, Platform::String ^tag, Platform::String ^content);
 
 	Xml ^NewChildBefore(int index, Platform::String ^tag, Platform::String ^content);
 
-	void NewChildInt2(Platform::String ^tag, int value);
+	void NewChildInt2(Platform::String ^tagPath, int value);
 
 	Xml ^NextSibling(void);
 
 	Boolean NextSibling2(void);
+
+	int NumChildrenAt(Platform::String ^tagPath);
 
 	int NumChildrenHavingTag(Platform::String ^tag);
 
@@ -311,7 +333,7 @@ public ref class Xml sealed
 
 	Boolean RemoveAttribute(Platform::String ^name);
 
-	void RemoveChild(Platform::String ^tag);
+	void RemoveChild(Platform::String ^tagPath);
 
 	void RemoveChildByIndex(int index);
 
@@ -369,13 +391,17 @@ public ref class Xml sealed
 
 	Boolean UnzipTree(void);
 
+	Boolean UpdateAt(Platform::String ^tagPath, Boolean autoCreate, Platform::String ^value);
+
+	Boolean UpdateAttrAt(Platform::String ^tagPath, Boolean autoCreate, Platform::String ^attrName, Platform::String ^attrValue);
+
 	Boolean UpdateAttribute(Platform::String ^attrName, Platform::String ^attrValue);
 
 	Boolean UpdateAttributeInt(Platform::String ^attrName, int value);
 
-	void UpdateChildContent(Platform::String ^tag, Platform::String ^value);
+	void UpdateChildContent(Platform::String ^tagPath, Platform::String ^value);
 
-	void UpdateChildContentInt(Platform::String ^tag, int value);
+	void UpdateChildContentInt(Platform::String ^tagPath, int value);
 
 	Boolean ZipContent(void);
 

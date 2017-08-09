@@ -9,6 +9,8 @@
 #include "include/CkDateTime.h"
 #include "include/CkOAuth1W.h"
 		
+#include "include/CkPrivateKeyW.h"
+#include "PrivateKey.h"
 
 
 using namespace Chilkat;
@@ -222,6 +224,15 @@ Boolean OAuth1::RemoveParam(Platform::String ^name)
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->RemoveParam(name ? name->Data() : L"");
+    }
+Boolean OAuth1::SetRsaKey(Chilkat::PrivateKey ^privKey)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (privKey == nullptr) { return false; }
+	CkPrivateKeyW* pObj0 = privKey->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->SetRsaKey(*pObj0);
     }
 
 

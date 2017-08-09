@@ -20,6 +20,7 @@ using namespace concurrency;
 namespace Chilkat
 {
 
+	ref class StringBuilder;
 	ref class JsonObject;
 
 
@@ -47,6 +48,16 @@ public ref class JsonArray sealed
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
+	}
+	property Boolean EmitCompact
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Boolean EmitCrlf
+	{
+		Boolean get();
+		void set(Boolean);
 	}
 	property Platform::String ^LastErrorHtml
 	{
@@ -105,9 +116,15 @@ public ref class JsonArray sealed
 
 	Platform::String ^Emit(void);
 
+	Boolean EmitSb(Chilkat::StringBuilder ^sb);
+
 	int IntAt(int index);
 
 	Boolean IsNullAt(int index);
+
+	Boolean Load(Platform::String ^jsonArray);
+
+	Boolean LoadSb(Chilkat::StringBuilder ^sb);
 
 	JsonObject ^ObjectAt(int index);
 

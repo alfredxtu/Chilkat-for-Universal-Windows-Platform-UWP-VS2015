@@ -9,6 +9,10 @@
 #include "include/CkDateTime.h"
 #include "include/CkHttpRequestW.h"
 		
+#include "include/CkBinDataW.h"
+#include "include/CkStringBuilderW.h"
+#include "BinData.h"
+#include "StringBuilder.h"
 
 
 using namespace Chilkat;
@@ -193,6 +197,12 @@ void HttpRequest::AddHeader(Platform::String ^name, Platform::String ^value)
 	// --- prep output arg ---
 	m_impl->AddHeader(name ? name->Data() : L"",value ? value->Data() : L"");
     }
+Boolean HttpRequest::AddMwsSignature(Platform::String ^domain, Platform::String ^mwsSecretKey)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->AddMwsSignature(domain ? domain->Data() : L"",mwsSecretKey ? mwsSecretKey->Data() : L"");
+    }
 void HttpRequest::AddParam(Platform::String ^name, Platform::String ^value)
     {
 	if (m_impl == nullptr) { return ; }
@@ -216,6 +226,12 @@ Boolean HttpRequest::AddSubHeader(int index, Platform::String ^name, Platform::S
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->AddSubHeader(index,name ? name->Data() : L"",value ? value->Data() : L"");
+    }
+Boolean HttpRequest::GenerateRequestFile(Platform::String ^path)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->GenerateRequestFile(path ? path->Data() : L"");
     }
 Platform::String ^HttpRequest::GenerateRequestText(void)
     {
@@ -281,6 +297,15 @@ Platform::String ^HttpRequest::GetUrlEncodedParams(void)
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
+Boolean HttpRequest::LoadBodyFromBd(Chilkat::BinData ^requestBody)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (requestBody == nullptr) { return false; }
+	CkBinDataW* pObj0 = requestBody->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->LoadBodyFromBd(*pObj0);
+    }
 Boolean HttpRequest::LoadBodyFromBytes(Windows::Foundation::Collections::IVector<uint8>^byteData)
     {
 	if (m_impl == nullptr) { return false; }
@@ -295,6 +320,15 @@ Boolean HttpRequest::LoadBodyFromFile(Platform::String ^filePath)
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->LoadBodyFromFile(filePath ? filePath->Data() : L"");
+    }
+Boolean HttpRequest::LoadBodyFromSb(Chilkat::StringBuilder ^requestBody, Platform::String ^charset)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (requestBody == nullptr) { return false; }
+	CkStringBuilderW* pObj0 = requestBody->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->LoadBodyFromSb(*pObj0,charset ? charset->Data() : L"");
     }
 Boolean HttpRequest::LoadBodyFromString(Platform::String ^bodyStr, Platform::String ^charset)
     {

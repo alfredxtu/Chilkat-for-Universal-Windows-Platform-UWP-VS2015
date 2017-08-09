@@ -499,6 +499,8 @@ public ref class Imap sealed
 
 	IAsyncOperation<Boolean>^ LogoutAsync(void);
 
+	IAsyncOperation<Boolean>^ MoveMessagesAsync(Chilkat::MessageSet ^messageSet, Platform::String ^destFolder);
+
 	IAsyncOperation<Boolean>^ NoopAsync(void);
 
 	IAsyncOperation<Boolean>^ RefetchMailFlagsAsync(Chilkat::Email ^email);

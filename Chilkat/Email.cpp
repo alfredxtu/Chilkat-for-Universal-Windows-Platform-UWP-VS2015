@@ -206,6 +206,10 @@ int Chilkat::Email::NumDaysOld::get()
     {
     return m_impl ? m_impl->get_NumDaysOld() : 0;
     }
+int Chilkat::Email::NumDigests::get()
+    {
+    return m_impl ? m_impl->get_NumDigests() : 0;
+    }
 int Chilkat::Email::NumHeaderFields::get()
     {
     return m_impl ? m_impl->get_NumHeaderFields() : 0;
@@ -225,6 +229,22 @@ int Chilkat::Email::NumReports::get()
 int Chilkat::Email::NumTo::get()
     {
     return m_impl ? m_impl->get_NumTo() : 0;
+    }
+String ^Chilkat::Email::OaepHash::get()
+    {
+    return ref new String(m_impl ? m_impl->oaepHash() : L"");
+    }
+void Chilkat::Email::OaepHash::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_OaepHash(newVal ? newVal->Data() : L"");
+    }
+Boolean Chilkat::Email::OaepPadding::get()
+    {
+    return m_impl ? m_impl->get_OaepPadding() : false;
+    }
+void Chilkat::Email::OaepPadding::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_OaepPadding(newVal);
     }
 Boolean Chilkat::Email::OverwriteExisting::get()
     {
@@ -321,6 +341,14 @@ Boolean Chilkat::Email::SignaturesValid::get()
 String ^Chilkat::Email::SignedBy::get()
     {
     return ref new String(m_impl ? m_impl->signedBy() : L"");
+    }
+String ^Chilkat::Email::SigningAlg::get()
+    {
+    return ref new String(m_impl ? m_impl->signingAlg() : L"");
+    }
+void Chilkat::Email::SigningAlg::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_SigningAlg(newVal ? newVal->Data() : L"");
     }
 String ^Chilkat::Email::SigningHashAlg::get()
     {
@@ -499,14 +527,34 @@ Boolean Email::AddPlainTextAlternativeBody(Platform::String ^body)
 	// --- prep output arg ---
 	return m_impl->AddPlainTextAlternativeBody(body ? body->Data() : L"");
     }
-Platform::String ^Email::AddRelatedData(Platform::String ^path, Windows::Foundation::Collections::IVector<uint8>^inData)
+Platform::String ^Email::AddRelatedBd(Platform::String ^filename, Chilkat::BinData ^binData)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	if (binData == nullptr) { return nullptr; }
+	CkBinDataW* pObj1 = binData->m_impl;
+	 if (!pObj1) { return nullptr; }
+	// --- prep output arg ---
+	const wchar_t *retStr = m_impl->addRelatedBd(filename ? filename->Data() : L"",*pObj1);
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
+Boolean Email::AddRelatedBd2(Chilkat::BinData ^binData, Platform::String ^fileNameInHtml)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj0 = binData->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->AddRelatedBd2(*pObj0,fileNameInHtml ? fileNameInHtml->Data() : L"");
+    }
+Platform::String ^Email::AddRelatedData(Platform::String ^fileName, Windows::Foundation::Collections::IVector<uint8>^inData)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	CkByteData db1; std::vector<uint8> v1;
         if (inData != nullptr) { v1 = to_vector(inData);
             db1.borrowData(&v1[0], (unsigned long)v1.size()); }
 	// --- prep output arg ---
-	const wchar_t *retStr = m_impl->addRelatedData(path ? path->Data() : L"",db1);
+	const wchar_t *retStr = m_impl->addRelatedData(fileName ? fileName->Data() : L"",db1);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
@@ -547,11 +595,11 @@ Platform::String ^Email::AddRelatedString(Platform::String ^nameInHtml, Platform
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-void Email::AddRelatedString2(Platform::String ^content, Platform::String ^charset, Platform::String ^fileNameInHtml)
+void Email::AddRelatedString2(Platform::String ^fileNameInHtml, Platform::String ^content, Platform::String ^charset)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	m_impl->AddRelatedString2(content ? content->Data() : L"",charset ? charset->Data() : L"",fileNameInHtml ? fileNameInHtml->Data() : L"");
+	m_impl->AddRelatedString2(fileNameInHtml ? fileNameInHtml->Data() : L"",content ? content->Data() : L"",charset ? charset->Data() : L"");
     }
 Boolean Email::AddStringAttachment(Platform::String ^path, Platform::String ^content)
     {
@@ -784,6 +832,15 @@ Platform::String ^Email::GetAlternativeBody(int index)
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
+Boolean Email::GetAlternativeBodyBd(int index, Chilkat::BinData ^binData)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj1 = binData->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	return m_impl->GetAlternativeBodyBd(index,*pObj1);
+    }
 Platform::String ^Email::GetAlternativeBodyByContentType(Platform::String ^contentType)
     {
 	if (m_impl == nullptr) { return nullptr; }
@@ -841,6 +898,15 @@ Platform::String ^Email::GetAttachmentAttr(int index, Platform::String ^fieldNam
 	const wchar_t *retStr = m_impl->getAttachmentAttr(index,fieldName ? fieldName->Data() : L"",attrName ? attrName->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+    }
+Boolean Email::GetAttachmentBd(int index, Chilkat::BinData ^binData)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj1 = binData->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	return m_impl->GetAttachmentBd(index,*pObj1);
     }
 Platform::String ^Email::GetAttachmentContentID(int index)
     {
@@ -961,6 +1027,16 @@ Platform::String ^Email::GetDeliveryStatusInfo(Platform::String ^fieldName)
 	const wchar_t *retStr = m_impl->getDeliveryStatusInfo(fieldName ? fieldName->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+    }
+Email ^Email::GetDigest(int index)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CkEmailW *pRetObj = m_impl->GetDigest(index);
+	if (!pRetObj) return nullptr;
+	Chilkat::Email ^pEmail = ref new Chilkat::Email();
+	pEmail->m_impl = pRetObj;
+	return pEmail;
     }
 StringArray ^Email::GetDsnFinalRecipients(void)
     {
@@ -1471,6 +1547,27 @@ Boolean Email::SetBinaryBody(Windows::Foundation::Collections::IVector<uint8>^by
             db0.borrowData(&v0[0], (unsigned long)v0.size()); }
 	// --- prep output arg ---
 	return m_impl->SetBinaryBody(db0,contentType ? contentType->Data() : L"",disposition ? disposition->Data() : L"",filename ? filename->Data() : L"");
+    }
+Boolean Email::SetDecryptCert(Chilkat::Cert ^cert)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (cert == nullptr) { return false; }
+	CkCertW* pObj0 = cert->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->SetDecryptCert(*pObj0);
+    }
+Boolean Email::SetDecryptCert2(Chilkat::Cert ^cert, Chilkat::PrivateKey ^key)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (cert == nullptr) { return false; }
+	CkCertW* pObj0 = cert->m_impl;
+	 if (!pObj0) { return false; }
+	if (key == nullptr) { return false; }
+	CkPrivateKeyW* pObj1 = key->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	return m_impl->SetDecryptCert2(*pObj0,*pObj1);
     }
 Boolean Email::SetDt(Chilkat::CkDateTime ^dt)
     {

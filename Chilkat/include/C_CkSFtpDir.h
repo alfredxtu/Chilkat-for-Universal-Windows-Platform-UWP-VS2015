@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.62
+// This is a generated source file for Chilkat version 9.5.0.69
 #ifndef _C_CkSFtpDir_H
 #define _C_CkSFtpDir_H
 #include "chilkatDefs.h"
@@ -8,6 +8,8 @@
 
 CK_VISIBLE_PUBLIC HCkSFtpDir CkSFtpDir_Create(void);
 CK_VISIBLE_PUBLIC void CkSFtpDir_Dispose(HCkSFtpDir handle);
+CK_VISIBLE_PUBLIC BOOL CkSFtpDir_getLastMethodSuccess(HCkSFtpDir cHandle);
+CK_VISIBLE_PUBLIC void CkSFtpDir_putLastMethodSuccess(HCkSFtpDir cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC int CkSFtpDir_getNumFilesAndDirs(HCkSFtpDir cHandle);
 CK_VISIBLE_PUBLIC void CkSFtpDir_getOriginalPath(HCkSFtpDir cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const char *CkSFtpDir_originalPath(HCkSFtpDir cHandle);

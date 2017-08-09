@@ -24,6 +24,8 @@ using namespace concurrency;
 namespace Chilkat
 {
 
+	ref class BinData;
+	ref class StringBuilder;
 
 
 public ref class Stream sealed
@@ -206,6 +208,8 @@ public ref class Stream sealed
 	// ----------------------
 	// Methods
 	// ----------------------
+	IAsyncOperation<Boolean>^ ReadBdAsync(Chilkat::BinData ^binData);
+
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ ReadBytesAsync(void);
 
 	IAsyncOperation<Platform::String ^>^ ReadBytesENCAsync(Platform::String ^encoding);
@@ -213,6 +217,8 @@ public ref class Stream sealed
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ ReadNBytesAsync(int numBytes);
 
 	IAsyncOperation<Platform::String ^>^ ReadNBytesENCAsync(int numBytes, Platform::String ^encoding);
+
+	IAsyncOperation<Boolean>^ ReadSbAsync(Chilkat::StringBuilder ^sb);
 
 	IAsyncOperation<Platform::String ^>^ ReadStringAsync(void);
 
@@ -232,6 +238,8 @@ public ref class Stream sealed
 
 	Boolean SetSourceString(Platform::String ^srcStr, Platform::String ^charset);
 
+	IAsyncOperation<Boolean>^ WriteBdAsync(Chilkat::BinData ^binData);
+
 	IAsyncOperation<Boolean>^ WriteByteAsync(int byteVal);
 
 	IAsyncOperation<Boolean>^ WriteBytesAsync(Windows::Foundation::Collections::IVector<uint8>^byteData);
@@ -239,6 +247,8 @@ public ref class Stream sealed
 	IAsyncOperation<Boolean>^ WriteBytesENCAsync(Platform::String ^byteData, Platform::String ^encoding);
 
 	Boolean WriteClose(void);
+
+	IAsyncOperation<Boolean>^ WriteSbAsync(Chilkat::StringBuilder ^sb);
 
 	IAsyncOperation<Boolean>^ WriteStringAsync(Platform::String ^str);
 

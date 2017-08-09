@@ -25,6 +25,8 @@ namespace Chilkat
 {
 
 	ref class Cert;
+	ref class BinData;
+	ref class StringBuilder;
 	ref class SshKey;
 	ref class Ssh;
 
@@ -434,6 +436,10 @@ public ref class Socket sealed
 
 	IAsyncOperation<Boolean>^ PollDataAvailableAsync(void);
 
+	IAsyncOperation<Boolean>^ ReceiveBdAsync(Chilkat::BinData ^binData);
+
+	IAsyncOperation<Boolean>^ ReceiveBdNAsync(uint32 numBytes, Chilkat::BinData ^binData);
+
 	IAsyncOperation<Boolean>^ ReceiveByteAsync(Boolean bUnsigned);
 
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ ReceiveBytesAsync(void);
@@ -452,6 +458,8 @@ public ref class Socket sealed
 
 	IAsyncOperation<Platform::String ^>^ ReceiveNBytesENCAsync(uint32 numBytes, Platform::String ^encodingAlg);
 
+	IAsyncOperation<Boolean>^ ReceiveSbAsync(Chilkat::StringBuilder ^sb);
+
 	IAsyncOperation<Platform::String ^>^ ReceiveStringAsync(void);
 
 	IAsyncOperation<Platform::String ^>^ ReceiveStringMaxNAsync(int maxByteCount);
@@ -464,6 +472,8 @@ public ref class Socket sealed
 
 	IAsyncOperation<Platform::String ^>^ ReceiveUntilMatchAsync(Platform::String ^matchStr);
 
+	IAsyncOperation<Boolean>^ SendBdAsync(Chilkat::BinData ^binData, uint32 offset, uint32 numBytes);
+
 	IAsyncOperation<Boolean>^ SendByteAsync(int value);
 
 	IAsyncOperation<Boolean>^ SendBytesAsync(Windows::Foundation::Collections::IVector<uint8>^data);
@@ -475,6 +485,8 @@ public ref class Socket sealed
 	IAsyncOperation<Boolean>^ SendInt16Async(int value, Boolean bigEndian);
 
 	IAsyncOperation<Boolean>^ SendInt32Async(int value, Boolean bigEndian);
+
+	IAsyncOperation<Boolean>^ SendSbAsync(Chilkat::StringBuilder ^sb);
 
 	IAsyncOperation<Boolean>^ SendStringAsync(Platform::String ^stringToSend);
 

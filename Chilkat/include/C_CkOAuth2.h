@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.62
+// This is a generated source file for Chilkat version 9.5.0.69
 #ifndef _C_CkOAuth2_H
 #define _C_CkOAuth2_H
 #include "chilkatDefs.h"
@@ -60,6 +60,9 @@ CK_VISIBLE_PUBLIC const char *CkOAuth2_redirectDenyHtml(HCkOAuth2 cHandle);
 CK_VISIBLE_PUBLIC void CkOAuth2_getRefreshToken(HCkOAuth2 cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void CkOAuth2_putRefreshToken(HCkOAuth2 cHandle, const char *newVal);
 CK_VISIBLE_PUBLIC const char *CkOAuth2_refreshToken(HCkOAuth2 cHandle);
+CK_VISIBLE_PUBLIC void CkOAuth2_getResource(HCkOAuth2 cHandle, HCkString retval);
+CK_VISIBLE_PUBLIC void CkOAuth2_putResource(HCkOAuth2 cHandle, const char *newVal);
+CK_VISIBLE_PUBLIC const char *CkOAuth2_resource(HCkOAuth2 cHandle);
 CK_VISIBLE_PUBLIC void CkOAuth2_getScope(HCkOAuth2 cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void CkOAuth2_putScope(HCkOAuth2 cHandle, const char *newVal);
 CK_VISIBLE_PUBLIC const char *CkOAuth2_scope(HCkOAuth2 cHandle);

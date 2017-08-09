@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat v9.5.0
+// This header is generated for Chilkat 9.5.0.69
 
 #ifndef _CkOAuth2_H
 #define _CkOAuth2_H
@@ -480,6 +480,19 @@ class CK_VISIBLE_PUBLIC CkOAuth2  : public CkClassWithCallbacks
 	// }
 	// 
 	void put_RefreshToken(const char *newVal);
+
+	// This is an optional setting that defines the "resource" query parameter. For
+	// example, to call the Microsoft Graph API, set this property value to
+	// "https://graph.microsoft.com/".
+	void get_Resource(CkString &str);
+	// This is an optional setting that defines the "resource" query parameter. For
+	// example, to call the Microsoft Graph API, set this property value to
+	// "https://graph.microsoft.com/".
+	const char *resource(void);
+	// This is an optional setting that defines the "resource" query parameter. For
+	// example, to call the Microsoft Graph API, set this property value to
+	// "https://graph.microsoft.com/".
+	void put_Resource(const char *newVal);
 
 	// This is an optional setting that defines the scope of access. For example,
 	// Google API scopes are listed here:

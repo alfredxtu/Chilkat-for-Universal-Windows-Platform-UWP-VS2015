@@ -13,6 +13,7 @@
 #include "include/CkEmailW.h"
 #include "include/CkStringArrayW.h"
 #include "include/CkCertW.h"
+#include "include/CkJsonObjectW.h"
 #include "include/CkBinDataW.h"
 #include "include/CkStringBuilderW.h"
 #include "include/CkPrivateKeyW.h"
@@ -24,6 +25,7 @@
 #include "Email.h"
 #include "StringArray.h"
 #include "Cert.h"
+#include "JsonObject.h"
 #include "BinData.h"
 #include "StringBuilder.h"
 #include "PrivateKey.h"
@@ -288,10 +290,6 @@ Boolean Chilkat::MailMan::LastMethodSuccess::get()
 void Chilkat::MailMan::LastMethodSuccess::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_LastMethodSuccess(newVal);
-    }
-String ^Chilkat::MailMan::LastSendQFilename::get()
-    {
-    return ref new String(m_impl ? m_impl->lastSendQFilename() : L"");
     }
 int Chilkat::MailMan::LastSmtpStatus::get()
     {
@@ -656,6 +654,14 @@ Boolean Chilkat::MailMan::StartTLS::get()
 void Chilkat::MailMan::StartTLS::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_StartTLS(newVal);
+    }
+Boolean Chilkat::MailMan::StartTLSifPossible::get()
+    {
+    return m_impl ? m_impl->get_StartTLSifPossible() : false;
+    }
+void Chilkat::MailMan::StartTLSifPossible::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_StartTLSifPossible(newVal);
     }
 String ^Chilkat::MailMan::TlsCipherSuite::get()
     {
@@ -1237,6 +1243,18 @@ Boolean MailMan::IsUnlocked(void)
 	cxProgress.m_sender = this;
 	return m_impl->IsUnlocked();
     }
+JsonObject ^MailMan::LastJsonData(void)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CxMailManProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	CkJsonObjectW *pRetObj = m_impl->LastJsonData();
+	if (!pRetObj) return nullptr;
+	Chilkat::JsonObject ^pJsonObject = ref new Chilkat::JsonObject();
+	pJsonObject->m_impl = pRetObj;
+	return pJsonObject;
+    }
 Email ^MailMan::LoadEml(Platform::String ^emlFilename)
     {
 	if (m_impl == nullptr) { return nullptr; }
@@ -1742,9 +1760,9 @@ return create_async([this, command, charset, bEncodeBase64]() -> Platform::Strin
 
 });
     }
-IAsyncOperation<Boolean>^ MailMan::SshAuthenticatePkAsync(Platform::String ^bSmtp, Chilkat::SshKey ^sshUsername)
+IAsyncOperation<Boolean>^ MailMan::SshAuthenticatePkAsync(Platform::String ^sshLogin, Chilkat::SshKey ^sshUsername)
     {
-return create_async([this, bSmtp, sshUsername]() -> Boolean
+return create_async([this, sshLogin, sshUsername]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -1755,13 +1773,13 @@ return create_async([this, bSmtp, sshUsername]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	return m_impl->SshAuthenticatePk(bSmtp ? bSmtp->Data() : L"",*pObj1);
+	return m_impl->SshAuthenticatePk(sshLogin ? sshLogin->Data() : L"",*pObj1);
 
 });
     }
-IAsyncOperation<Boolean>^ MailMan::SshAuthenticatePwAsync(Platform::String ^bSmtp, Platform::String ^sshLogin)
+IAsyncOperation<Boolean>^ MailMan::SshAuthenticatePwAsync(Platform::String ^sshLogin, Platform::String ^sshPassword)
     {
-return create_async([this, bSmtp, sshLogin]() -> Boolean
+return create_async([this, sshLogin, sshPassword]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -1769,7 +1787,7 @@ return create_async([this, bSmtp, sshLogin]() -> Boolean
 	// --- prep output arg ---
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	return m_impl->SshAuthenticatePw(bSmtp ? bSmtp->Data() : L"",sshLogin ? sshLogin->Data() : L"");
+	return m_impl->SshAuthenticatePw(sshLogin ? sshLogin->Data() : L"",sshPassword ? sshPassword->Data() : L"");
 
 });
     }

@@ -28,6 +28,7 @@ namespace Chilkat
 	ref class Email;
 	ref class StringArray;
 	ref class Cert;
+	ref class JsonObject;
 	ref class BinData;
 	ref class StringBuilder;
 	ref class PrivateKey;
@@ -239,10 +240,6 @@ public ref class MailMan sealed
 	{
 		Boolean get();
 		void set(Boolean);
-	}
-	property Platform::String ^LastSendQFilename
-	{
-		Platform::String ^get();
 	}
 	property int32 LastSmtpStatus
 	{
@@ -482,6 +479,11 @@ public ref class MailMan sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Boolean StartTLSifPossible
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property Platform::String ^TlsCipherSuite
 	{
 		Platform::String ^get();
@@ -586,6 +588,8 @@ public ref class MailMan sealed
 
 	Boolean IsUnlocked(void);
 
+	JsonObject ^LastJsonData(void);
+
 	Email ^LoadEml(Platform::String ^emlFilename);
 
 	EmailBundle ^LoadMbx(Platform::String ^mbxFileName);
@@ -660,9 +664,9 @@ public ref class MailMan sealed
 
 	IAsyncOperation<Platform::String ^>^ SmtpSendRawCommandAsync(Platform::String ^command, Platform::String ^charset, Boolean bEncodeBase64);
 
-	IAsyncOperation<Boolean>^ SshAuthenticatePkAsync(Platform::String ^bSmtp, Chilkat::SshKey ^sshUsername);
+	IAsyncOperation<Boolean>^ SshAuthenticatePkAsync(Platform::String ^sshLogin, Chilkat::SshKey ^sshUsername);
 
-	IAsyncOperation<Boolean>^ SshAuthenticatePwAsync(Platform::String ^bSmtp, Platform::String ^sshLogin);
+	IAsyncOperation<Boolean>^ SshAuthenticatePwAsync(Platform::String ^sshLogin, Platform::String ^sshPassword);
 
 	IAsyncOperation<Boolean>^ SshCloseTunnelAsync(void);
 

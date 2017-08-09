@@ -26,6 +26,7 @@ namespace Chilkat
 
 	ref class ZipEntry;
 	ref class StringArray;
+	ref class BinData;
 
 
 public ref class Zip sealed
@@ -393,11 +394,13 @@ public ref class Zip sealed
 
 	Boolean NewZip(Platform::String ^zipFilePath);
 
+	Boolean OpenBd(Chilkat::BinData ^binData);
+
 	Boolean OpenFromByteData(Windows::Foundation::Collections::IVector<uint8>^byteData);
 
 	Boolean OpenFromMemory(Windows::Foundation::Collections::IVector<uint8>^inData);
 
-	IAsyncOperation<Boolean>^ OpenZipAsync(Platform::String ^ZipFileName);
+	IAsyncOperation<Boolean>^ OpenZipAsync(Platform::String ^zipPath);
 
 	IAsyncOperation<Boolean>^ QuickAppendAsync(Platform::String ^ZipFileName);
 
@@ -422,6 +425,8 @@ public ref class Zip sealed
 	IAsyncOperation<int>^ UnzipNewerAsync(Platform::String ^dirPath);
 
 	Boolean VerifyPassword(void);
+
+	IAsyncOperation<Boolean>^ WriteBdAsync(Chilkat::BinData ^binData);
 
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ WriteToMemoryAsync(void);
 

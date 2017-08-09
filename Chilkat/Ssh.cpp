@@ -347,6 +347,14 @@ void Chilkat::Ssh::StderrToStdout::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_StderrToStdout(newVal);
     }
+Boolean Chilkat::Ssh::StripColorCodes::get()
+    {
+    return m_impl ? m_impl->get_StripColorCodes() : false;
+    }
+void Chilkat::Ssh::StripColorCodes::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_StripColorCodes(newVal);
+    }
 Boolean Chilkat::Ssh::TcpNoDelay::get()
     {
     return m_impl ? m_impl->get_TcpNoDelay() : false;
@@ -847,6 +855,64 @@ Platform::String ^Ssh::PeekReceivedText(int channelNum, Platform::String ^charse
 	const wchar_t *retStr = m_impl->peekReceivedText(channelNum,charset ? charset->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+    }
+IAsyncOperation<int>^ Ssh::QuickCmdCheckAsync(int pollTimeoutMs)
+    {
+return create_async([this, pollTimeoutMs]() -> int
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return -1; }
+	// --- prep output arg ---
+	CxSshProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->QuickCmdCheck(pollTimeoutMs);
+
+});
+    }
+IAsyncOperation<int>^ Ssh::QuickCmdSendAsync(Platform::String ^command)
+    {
+return create_async([this, command]() -> int
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return -1; }
+	// --- prep output arg ---
+	CxSshProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->QuickCmdSend(command ? command->Data() : L"");
+
+});
+    }
+IAsyncOperation<Platform::String ^>^ Ssh::QuickCommandAsync(Platform::String ^command, Platform::String ^charset)
+    {
+return create_async([this, command, charset]() -> Platform::String ^
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CxSshProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	const wchar_t *retStr = m_impl->quickCommand(command ? command->Data() : L"",charset ? charset->Data() : L"");
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+
+});
+    }
+IAsyncOperation<int>^ Ssh::QuickShellAsync(void)
+    {
+return create_async([this]() -> int
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return -1; }
+	// --- prep output arg ---
+	CxSshProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->QuickShell();
+
+});
     }
 IAsyncOperation<Boolean>^ Ssh::ReKeyAsync(void)
     {

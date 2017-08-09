@@ -93,6 +93,14 @@ void Chilkat::Xml::EmitBom::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_EmitBom(newVal);
     }
+Boolean Chilkat::Xml::EmitCompact::get()
+    {
+    return m_impl ? m_impl->get_EmitCompact() : false;
+    }
+void Chilkat::Xml::EmitCompact::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_EmitCompact(newVal);
+    }
 Boolean Chilkat::Xml::EmitXmlDecl::get()
     {
     return m_impl ? m_impl->get_EmitXmlDecl() : false;
@@ -108,6 +116,30 @@ String ^Chilkat::Xml::Encoding::get()
 void Chilkat::Xml::Encoding::set(String ^newVal)
     {
         if (m_impl) m_impl->put_Encoding(newVal ? newVal->Data() : L"");
+    }
+int Chilkat::Xml::I::get()
+    {
+    return m_impl ? m_impl->get_I() : 0;
+    }
+void Chilkat::Xml::I::set(int newVal)
+    {
+        if (m_impl) m_impl->put_I(newVal);
+    }
+int Chilkat::Xml::J::get()
+    {
+    return m_impl ? m_impl->get_J() : 0;
+    }
+void Chilkat::Xml::J::set(int newVal)
+    {
+        if (m_impl) m_impl->put_J(newVal);
+    }
+int Chilkat::Xml::K::get()
+    {
+    return m_impl ? m_impl->get_K() : 0;
+    }
+void Chilkat::Xml::K::set(int newVal)
+    {
+        if (m_impl) m_impl->put_K(newVal);
     }
 String ^Chilkat::Xml::LastErrorHtml::get()
     {
@@ -259,11 +291,11 @@ Boolean Xml::BEncodeContent(Platform::String ^charset, Windows::Foundation::Coll
 	// --- prep output arg ---
 	return m_impl->BEncodeContent(charset ? charset->Data() : L"",db1);
     }
-Boolean Xml::ChildContentMatches(Platform::String ^tag, Platform::String ^pattern, Boolean caseSensitive)
+Boolean Xml::ChildContentMatches(Platform::String ^tagPath, Platform::String ^pattern, Boolean caseSensitive)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	return m_impl->ChildContentMatches(tag ? tag->Data() : L"",pattern ? pattern->Data() : L"",caseSensitive);
+	return m_impl->ChildContentMatches(tagPath ? tagPath->Data() : L"",pattern ? pattern->Data() : L"",caseSensitive);
     }
 Platform::String ^Xml::ChilkatPath(Platform::String ^pathCmd)
     {
@@ -343,47 +375,47 @@ Xml ^Xml::ExtractChildByIndex(int index)
 	pXml->m_impl = pRetObj;
 	return pXml;
     }
-Xml ^Xml::ExtractChildByName(Platform::String ^tag, Platform::String ^attrName, Platform::String ^attrValue)
+Xml ^Xml::ExtractChildByName(Platform::String ^tagPath, Platform::String ^attrName, Platform::String ^attrValue)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	CkXmlW *pRetObj = m_impl->ExtractChildByName(tag ? tag->Data() : L"",attrName ? attrName->Data() : L"",attrValue ? attrValue->Data() : L"");
+	CkXmlW *pRetObj = m_impl->ExtractChildByName(tagPath ? tagPath->Data() : L"",attrName ? attrName->Data() : L"",attrValue ? attrValue->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::Xml ^pXml = ref new Chilkat::Xml();
 	pXml->m_impl = pRetObj;
 	return pXml;
     }
-Xml ^Xml::FindChild(Platform::String ^tag)
+Xml ^Xml::FindChild(Platform::String ^tagPath)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	CkXmlW *pRetObj = m_impl->FindChild(tag ? tag->Data() : L"");
+	CkXmlW *pRetObj = m_impl->FindChild(tagPath ? tagPath->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::Xml ^pXml = ref new Chilkat::Xml();
 	pXml->m_impl = pRetObj;
 	return pXml;
     }
-Boolean Xml::FindChild2(Platform::String ^tag)
+Boolean Xml::FindChild2(Platform::String ^tagPath)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	return m_impl->FindChild2(tag ? tag->Data() : L"");
+	return m_impl->FindChild2(tagPath ? tagPath->Data() : L"");
     }
-Xml ^Xml::FindNextRecord(Platform::String ^tag, Platform::String ^contentPattern)
+Xml ^Xml::FindNextRecord(Platform::String ^tagPath, Platform::String ^contentPattern)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	CkXmlW *pRetObj = m_impl->FindNextRecord(tag ? tag->Data() : L"",contentPattern ? contentPattern->Data() : L"");
+	CkXmlW *pRetObj = m_impl->FindNextRecord(tagPath ? tagPath->Data() : L"",contentPattern ? contentPattern->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::Xml ^pXml = ref new Chilkat::Xml();
 	pXml->m_impl = pRetObj;
 	return pXml;
     }
-Xml ^Xml::FindOrAddNewChild(Platform::String ^tag)
+Xml ^Xml::FindOrAddNewChild(Platform::String ^tagPath)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	CkXmlW *pRetObj = m_impl->FindOrAddNewChild(tag ? tag->Data() : L"");
+	CkXmlW *pRetObj = m_impl->FindOrAddNewChild(tagPath ? tagPath->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::Xml ^pXml = ref new Chilkat::Xml();
 	pXml->m_impl = pRetObj;
@@ -467,17 +499,17 @@ Boolean Xml::GetChild2(int index)
 	// --- prep output arg ---
 	return m_impl->GetChild2(index);
     }
-Boolean Xml::GetChildBoolValue(Platform::String ^tag)
+Boolean Xml::GetChildBoolValue(Platform::String ^tagPath)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	return m_impl->GetChildBoolValue(tag ? tag->Data() : L"");
+	return m_impl->GetChildBoolValue(tagPath ? tagPath->Data() : L"");
     }
-Platform::String ^Xml::GetChildContent(Platform::String ^tag)
+Platform::String ^Xml::GetChildContent(Platform::String ^tagPath)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	const wchar_t *retStr = m_impl->getChildContent(tag ? tag->Data() : L"");
+	const wchar_t *retStr = m_impl->getChildContent(tagPath ? tagPath->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
@@ -499,11 +531,11 @@ Xml ^Xml::GetChildExact(Platform::String ^tag, Platform::String ^content)
 	pXml->m_impl = pRetObj;
 	return pXml;
     }
-int Xml::GetChildIntValue(Platform::String ^tag)
+int Xml::GetChildIntValue(Platform::String ^tagPath)
     {
 	if (m_impl == nullptr) { return -1; }
 	// --- prep output arg ---
-	return m_impl->GetChildIntValue(tag ? tag->Data() : L"");
+	return m_impl->GetChildIntValue(tagPath ? tagPath->Data() : L"");
     }
 Platform::String ^Xml::GetChildTag(int index)
     {
@@ -521,11 +553,11 @@ Platform::String ^Xml::GetChildTagByIndex(int index)
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
-Xml ^Xml::GetChildWithAttr(Platform::String ^tag, Platform::String ^attrName, Platform::String ^attrValue)
+Xml ^Xml::GetChildWithAttr(Platform::String ^tagPath, Platform::String ^attrName, Platform::String ^attrValue)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	CkXmlW *pRetObj = m_impl->GetChildWithAttr(tag ? tag->Data() : L"",attrName ? attrName->Data() : L"",attrValue ? attrValue->Data() : L"");
+	CkXmlW *pRetObj = m_impl->GetChildWithAttr(tagPath ? tagPath->Data() : L"",attrName ? attrName->Data() : L"",attrValue ? attrValue->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::Xml ^pXml = ref new Chilkat::Xml();
 	pXml->m_impl = pRetObj;
@@ -541,11 +573,11 @@ Xml ^Xml::GetChildWithContent(Platform::String ^content)
 	pXml->m_impl = pRetObj;
 	return pXml;
     }
-Xml ^Xml::GetChildWithTag(Platform::String ^tag)
+Xml ^Xml::GetChildWithTag(Platform::String ^tagPath)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	CkXmlW *pRetObj = m_impl->GetChildWithTag(tag ? tag->Data() : L"");
+	CkXmlW *pRetObj = m_impl->GetChildWithTag(tagPath ? tagPath->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::Xml ^pXml = ref new Chilkat::Xml();
 	pXml->m_impl = pRetObj;
@@ -644,17 +676,17 @@ Boolean Xml::HasChildWithContent(Platform::String ^content)
 	// --- prep output arg ---
 	return m_impl->HasChildWithContent(content ? content->Data() : L"");
     }
-Boolean Xml::HasChildWithTag(Platform::String ^tag)
+Boolean Xml::HasChildWithTag(Platform::String ^tagPath)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	return m_impl->HasChildWithTag(tag ? tag->Data() : L"");
+	return m_impl->HasChildWithTag(tagPath ? tagPath->Data() : L"");
     }
-Boolean Xml::HasChildWithTagAndContent(Platform::String ^tag, Platform::String ^content)
+Boolean Xml::HasChildWithTagAndContent(Platform::String ^tagPath, Platform::String ^content)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	return m_impl->HasChildWithTagAndContent(tag ? tag->Data() : L"",content ? content->Data() : L"");
+	return m_impl->HasChildWithTagAndContent(tagPath ? tagPath->Data() : L"",content ? content->Data() : L"");
     }
 void Xml::InsertChildTreeAfter(int index, Chilkat::Xml ^tree)
     {
@@ -723,21 +755,21 @@ Boolean Xml::LoadXmlFile2(Platform::String ^fileName, Boolean autoTrim)
 	// --- prep output arg ---
 	return m_impl->LoadXmlFile2(fileName ? fileName->Data() : L"",autoTrim);
     }
-Xml ^Xml::NewChild(Platform::String ^tag, Platform::String ^content)
+Xml ^Xml::NewChild(Platform::String ^tagPath, Platform::String ^content)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
-	CkXmlW *pRetObj = m_impl->NewChild(tag ? tag->Data() : L"",content ? content->Data() : L"");
+	CkXmlW *pRetObj = m_impl->NewChild(tagPath ? tagPath->Data() : L"",content ? content->Data() : L"");
 	if (!pRetObj) return nullptr;
 	Chilkat::Xml ^pXml = ref new Chilkat::Xml();
 	pXml->m_impl = pRetObj;
 	return pXml;
     }
-void Xml::NewChild2(Platform::String ^tag, Platform::String ^content)
+void Xml::NewChild2(Platform::String ^tagPath, Platform::String ^content)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	m_impl->NewChild2(tag ? tag->Data() : L"",content ? content->Data() : L"");
+	m_impl->NewChild2(tagPath ? tagPath->Data() : L"",content ? content->Data() : L"");
     }
 Xml ^Xml::NewChildAfter(int index, Platform::String ^tag, Platform::String ^content)
     {
@@ -759,11 +791,11 @@ Xml ^Xml::NewChildBefore(int index, Platform::String ^tag, Platform::String ^con
 	pXml->m_impl = pRetObj;
 	return pXml;
     }
-void Xml::NewChildInt2(Platform::String ^tag, int value)
+void Xml::NewChildInt2(Platform::String ^tagPath, int value)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	m_impl->NewChildInt2(tag ? tag->Data() : L"",value);
+	m_impl->NewChildInt2(tagPath ? tagPath->Data() : L"",value);
     }
 Xml ^Xml::NextSibling(void)
     {
@@ -780,6 +812,12 @@ Boolean Xml::NextSibling2(void)
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->NextSibling2();
+    }
+int Xml::NumChildrenAt(Platform::String ^tagPath)
+    {
+	if (m_impl == nullptr) { return -1; }
+	// --- prep output arg ---
+	return m_impl->NumChildrenAt(tagPath ? tagPath->Data() : L"");
     }
 int Xml::NumChildrenHavingTag(Platform::String ^tag)
     {
@@ -830,11 +868,11 @@ Boolean Xml::RemoveAttribute(Platform::String ^name)
 	// --- prep output arg ---
 	return m_impl->RemoveAttribute(name ? name->Data() : L"");
     }
-void Xml::RemoveChild(Platform::String ^tag)
+void Xml::RemoveChild(Platform::String ^tagPath)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	m_impl->RemoveChild(tag ? tag->Data() : L"");
+	m_impl->RemoveChild(tagPath ? tagPath->Data() : L"");
     }
 void Xml::RemoveChildByIndex(int index)
     {
@@ -1047,6 +1085,18 @@ Boolean Xml::UnzipTree(void)
 	// --- prep output arg ---
 	return m_impl->UnzipTree();
     }
+Boolean Xml::UpdateAt(Platform::String ^tagPath, Boolean autoCreate, Platform::String ^value)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->UpdateAt(tagPath ? tagPath->Data() : L"",autoCreate,value ? value->Data() : L"");
+    }
+Boolean Xml::UpdateAttrAt(Platform::String ^tagPath, Boolean autoCreate, Platform::String ^attrName, Platform::String ^attrValue)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->UpdateAttrAt(tagPath ? tagPath->Data() : L"",autoCreate,attrName ? attrName->Data() : L"",attrValue ? attrValue->Data() : L"");
+    }
 Boolean Xml::UpdateAttribute(Platform::String ^attrName, Platform::String ^attrValue)
     {
 	if (m_impl == nullptr) { return false; }
@@ -1059,17 +1109,17 @@ Boolean Xml::UpdateAttributeInt(Platform::String ^attrName, int value)
 	// --- prep output arg ---
 	return m_impl->UpdateAttributeInt(attrName ? attrName->Data() : L"",value);
     }
-void Xml::UpdateChildContent(Platform::String ^tag, Platform::String ^value)
+void Xml::UpdateChildContent(Platform::String ^tagPath, Platform::String ^value)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	m_impl->UpdateChildContent(tag ? tag->Data() : L"",value ? value->Data() : L"");
+	m_impl->UpdateChildContent(tagPath ? tagPath->Data() : L"",value ? value->Data() : L"");
     }
-void Xml::UpdateChildContentInt(Platform::String ^tag, int value)
+void Xml::UpdateChildContentInt(Platform::String ^tagPath, int value)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
-	m_impl->UpdateChildContentInt(tag ? tag->Data() : L"",value);
+	m_impl->UpdateChildContentInt(tagPath ? tagPath->Data() : L"",value);
     }
 Boolean Xml::ZipContent(void)
     {

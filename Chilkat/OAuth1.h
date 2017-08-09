@@ -20,6 +20,7 @@ using namespace concurrency;
 namespace Chilkat
 {
 
+	ref class PrivateKey;
 
 
 public ref class OAuth1 sealed
@@ -165,6 +166,8 @@ public ref class OAuth1 sealed
 	Boolean GenTimestamp(void);
 
 	Boolean RemoveParam(Platform::String ^name);
+
+	Boolean SetRsaKey(Chilkat::PrivateKey ^privKey);
 
 
 

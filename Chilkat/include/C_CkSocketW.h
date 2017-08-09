@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.62
+// This is a generated source file for Chilkat version 9.5.0.69
 #ifndef _C_CkSocketWH
 #define _C_CkSocketWH
 #include "chilkatDefs.h"
@@ -236,6 +236,10 @@ CK_VISIBLE_PUBLIC BOOL CkSocketW_IsUnlocked(HCkSocketW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkSocketW_LoadTaskResult(HCkSocketW cHandle, HCkTaskW task);
 CK_VISIBLE_PUBLIC BOOL CkSocketW_PollDataAvailable(HCkSocketW cHandle);
 CK_VISIBLE_PUBLIC HCkTaskW CkSocketW_PollDataAvailableAsync(HCkSocketW cHandle);
+CK_VISIBLE_PUBLIC BOOL CkSocketW_ReceiveBd(HCkSocketW cHandle, HCkBinDataW binData);
+CK_VISIBLE_PUBLIC HCkTaskW CkSocketW_ReceiveBdAsync(HCkSocketW cHandle, HCkBinDataW binData);
+CK_VISIBLE_PUBLIC BOOL CkSocketW_ReceiveBdN(HCkSocketW cHandle, unsigned long numBytes, HCkBinDataW binData);
+CK_VISIBLE_PUBLIC HCkTaskW CkSocketW_ReceiveBdNAsync(HCkSocketW cHandle, unsigned long numBytes, HCkBinDataW binData);
 CK_VISIBLE_PUBLIC BOOL CkSocketW_ReceiveByte(HCkSocketW cHandle, BOOL bUnsigned);
 CK_VISIBLE_PUBLIC HCkTaskW CkSocketW_ReceiveByteAsync(HCkSocketW cHandle, BOOL bUnsigned);
 CK_VISIBLE_PUBLIC BOOL CkSocketW_ReceiveBytes(HCkSocketW cHandle, HCkByteData outData);
@@ -256,6 +260,8 @@ CK_VISIBLE_PUBLIC HCkTaskW CkSocketW_ReceiveInt32Async(HCkSocketW cHandle, BOOL 
 CK_VISIBLE_PUBLIC BOOL CkSocketW_ReceiveNBytesENC(HCkSocketW cHandle, unsigned long numBytes, const wchar_t *encodingAlg, HCkString outStr);
 CK_VISIBLE_PUBLIC const wchar_t *CkSocketW_receiveNBytesENC(HCkSocketW cHandle, unsigned long numBytes, const wchar_t *encodingAlg);
 CK_VISIBLE_PUBLIC HCkTaskW CkSocketW_ReceiveNBytesENCAsync(HCkSocketW cHandle, unsigned long numBytes, const wchar_t *encodingAlg);
+CK_VISIBLE_PUBLIC BOOL CkSocketW_ReceiveSb(HCkSocketW cHandle, HCkStringBuilderW sb);
+CK_VISIBLE_PUBLIC HCkTaskW CkSocketW_ReceiveSbAsync(HCkSocketW cHandle, HCkStringBuilderW sb);
 CK_VISIBLE_PUBLIC BOOL CkSocketW_ReceiveString(HCkSocketW cHandle, HCkString outStr);
 CK_VISIBLE_PUBLIC const wchar_t *CkSocketW_receiveString(HCkSocketW cHandle);
 CK_VISIBLE_PUBLIC HCkTaskW CkSocketW_ReceiveStringAsync(HCkSocketW cHandle);
@@ -278,6 +284,8 @@ CK_VISIBLE_PUBLIC int CkSocketW_SelectForReading(HCkSocketW cHandle, int timeout
 CK_VISIBLE_PUBLIC HCkTaskW CkSocketW_SelectForReadingAsync(HCkSocketW cHandle, int timeoutMs);
 CK_VISIBLE_PUBLIC int CkSocketW_SelectForWriting(HCkSocketW cHandle, int timeoutMs);
 CK_VISIBLE_PUBLIC HCkTaskW CkSocketW_SelectForWritingAsync(HCkSocketW cHandle, int timeoutMs);
+CK_VISIBLE_PUBLIC BOOL CkSocketW_SendBd(HCkSocketW cHandle, HCkBinDataW binData, unsigned long offset, unsigned long numBytes);
+CK_VISIBLE_PUBLIC HCkTaskW CkSocketW_SendBdAsync(HCkSocketW cHandle, HCkBinDataW binData, unsigned long offset, unsigned long numBytes);
 CK_VISIBLE_PUBLIC BOOL CkSocketW_SendByte(HCkSocketW cHandle, int value);
 CK_VISIBLE_PUBLIC HCkTaskW CkSocketW_SendByteAsync(HCkSocketW cHandle, int value);
 CK_VISIBLE_PUBLIC BOOL CkSocketW_SendBytes(HCkSocketW cHandle, HCkByteData data);
@@ -290,8 +298,11 @@ CK_VISIBLE_PUBLIC BOOL CkSocketW_SendInt16(HCkSocketW cHandle, int value, BOOL b
 CK_VISIBLE_PUBLIC HCkTaskW CkSocketW_SendInt16Async(HCkSocketW cHandle, int value, BOOL bigEndian);
 CK_VISIBLE_PUBLIC BOOL CkSocketW_SendInt32(HCkSocketW cHandle, int value, BOOL bigEndian);
 CK_VISIBLE_PUBLIC HCkTaskW CkSocketW_SendInt32Async(HCkSocketW cHandle, int value, BOOL bigEndian);
+CK_VISIBLE_PUBLIC BOOL CkSocketW_SendSb(HCkSocketW cHandle, HCkStringBuilderW sb);
+CK_VISIBLE_PUBLIC HCkTaskW CkSocketW_SendSbAsync(HCkSocketW cHandle, HCkStringBuilderW sb);
 CK_VISIBLE_PUBLIC BOOL CkSocketW_SendString(HCkSocketW cHandle, const wchar_t *stringToSend);
 CK_VISIBLE_PUBLIC HCkTaskW CkSocketW_SendStringAsync(HCkSocketW cHandle, const wchar_t *stringToSend);
+CK_VISIBLE_PUBLIC BOOL CkSocketW_SendWakeOnLan(HCkSocketW cHandle, const wchar_t *macAddress, int port, const wchar_t *ipBroadcastAddr);
 CK_VISIBLE_PUBLIC BOOL CkSocketW_SetSslClientCert(HCkSocketW cHandle, HCkCertW cert);
 CK_VISIBLE_PUBLIC BOOL CkSocketW_SetSslClientCertPem(HCkSocketW cHandle, const wchar_t *pemDataOrFilename, const wchar_t *pemPassword);
 CK_VISIBLE_PUBLIC BOOL CkSocketW_SetSslClientCertPfx(HCkSocketW cHandle, const wchar_t *pfxFilename, const wchar_t *pfxPassword);

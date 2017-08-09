@@ -55,6 +55,14 @@ String ^Chilkat::Url::HostType::get()
     {
     return ref new String(m_impl ? m_impl->hostType() : L"");
     }
+Boolean Chilkat::Url::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::Url::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+    }
 String ^Chilkat::Url::Login::get()
     {
     return ref new String(m_impl ? m_impl->login() : L"");

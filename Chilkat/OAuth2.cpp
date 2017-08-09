@@ -173,6 +173,14 @@ void Chilkat::OAuth2::RefreshToken::set(String ^newVal)
     {
         if (m_impl) m_impl->put_RefreshToken(newVal ? newVal->Data() : L"");
     }
+String ^Chilkat::OAuth2::Resource::get()
+    {
+    return ref new String(m_impl ? m_impl->resource() : L"");
+    }
+void Chilkat::OAuth2::Resource::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_Resource(newVal ? newVal->Data() : L"");
+    }
 String ^Chilkat::OAuth2::Scope::get()
     {
     return ref new String(m_impl ? m_impl->scope() : L"");

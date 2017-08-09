@@ -47,6 +47,14 @@ int Chilkat::Mailboxes::Count::get()
     {
     return m_impl ? m_impl->get_Count() : 0;
     }
+Boolean Chilkat::Mailboxes::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::Mailboxes::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+    }
 
 
 Platform::String ^Mailboxes::GetFlags(int index)

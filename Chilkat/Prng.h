@@ -20,6 +20,7 @@ using namespace concurrency;
 namespace Chilkat
 {
 
+	ref class BinData;
 
 
 public ref class Prng sealed
@@ -92,6 +93,8 @@ public ref class Prng sealed
 	Platform::String ^FirebasePushId(void);
 
 	Platform::String ^GenRandom(int numBytes, Platform::String ^encoding);
+
+	Boolean GenRandomBd(int numBytes, Chilkat::BinData ^bd);
 
 	Windows::Foundation::Collections::IVector<uint8>^GenRandomBytes(int numBytes);
 

@@ -22,6 +22,7 @@ namespace Chilkat
 
 	ref class Cert;
 	ref class TrustedRoots;
+	ref class JsonObject;
 
 
 public ref class CertChain sealed
@@ -95,6 +96,8 @@ public ref class CertChain sealed
 	Cert ^GetCert(int index);
 
 	Boolean IsRootTrusted(Chilkat::TrustedRoots ^trustedRoots);
+
+	Boolean LoadX5C(Chilkat::JsonObject ^jwk);
 
 	Boolean VerifyCertSignatures(void);
 

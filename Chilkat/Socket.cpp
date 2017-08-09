@@ -10,9 +10,13 @@
 #include "include/CkSocketW.h"
 		
 #include "include/CkCertW.h"
+#include "include/CkBinDataW.h"
+#include "include/CkStringBuilderW.h"
 #include "include/CkSshKeyW.h"
 #include "include/CkSshW.h"
 #include "Cert.h"
+#include "BinData.h"
+#include "StringBuilder.h"
 #include "SshKey.h"
 #include "Ssh.h"
 
@@ -738,6 +742,40 @@ return create_async([this]() -> Boolean
 
 });
     }
+IAsyncOperation<Boolean>^ Socket::ReceiveBdAsync(Chilkat::BinData ^binData)
+    {
+return create_async([this, binData]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj0 = binData->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxSocketProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->ReceiveBd(*pObj0);
+
+});
+    }
+IAsyncOperation<Boolean>^ Socket::ReceiveBdNAsync(uint32 numBytes, Chilkat::BinData ^binData)
+    {
+return create_async([this, numBytes, binData]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj1 = binData->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxSocketProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->ReceiveBdN(numBytes,*pObj1);
+
+});
+    }
 IAsyncOperation<Boolean>^ Socket::ReceiveByteAsync(Boolean bUnsigned)
     {
 return create_async([this, bUnsigned]() -> Boolean
@@ -876,6 +914,23 @@ return create_async([this, numBytes, encodingAlg]() -> Platform::String ^
 
 });
     }
+IAsyncOperation<Boolean>^ Socket::ReceiveSbAsync(Chilkat::StringBuilder ^sb)
+    {
+return create_async([this, sb]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj0 = sb->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxSocketProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->ReceiveSb(*pObj0);
+
+});
+    }
 IAsyncOperation<Platform::String ^>^ Socket::ReceiveStringAsync(void)
     {
 return create_async([this]() -> Platform::String ^
@@ -974,6 +1029,23 @@ return create_async([this, matchStr]() -> Platform::String ^
 
 });
     }
+IAsyncOperation<Boolean>^ Socket::SendBdAsync(Chilkat::BinData ^binData, uint32 offset, uint32 numBytes)
+    {
+return create_async([this, binData, offset, numBytes]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj0 = binData->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxSocketProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->SendBd(*pObj0,offset,numBytes);
+
+});
+    }
 IAsyncOperation<Boolean>^ Socket::SendByteAsync(int value)
     {
 return create_async([this, value]() -> Boolean
@@ -1058,6 +1130,23 @@ return create_async([this, value, bigEndian]() -> Boolean
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->SendInt32(value,bigEndian);
+
+});
+    }
+IAsyncOperation<Boolean>^ Socket::SendSbAsync(Chilkat::StringBuilder ^sb)
+    {
+return create_async([this, sb]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj0 = sb->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxSocketProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->SendSb(*pObj0);
 
 });
     }

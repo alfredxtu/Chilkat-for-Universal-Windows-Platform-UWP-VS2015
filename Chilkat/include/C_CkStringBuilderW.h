@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.63
+// This is a generated source file for Chilkat version 9.5.0.69
 #ifndef _C_CkStringBuilderWH
 #define _C_CkStringBuilderWH
 #include "chilkatDefs.h"
@@ -10,14 +10,19 @@ CK_VISIBLE_PUBLIC HCkStringBuilderW CkStringBuilderW_Create(void);
 CK_VISIBLE_PUBLIC void CkStringBuilderW_Dispose(HCkStringBuilderW handle);
 CK_VISIBLE_PUBLIC int CkStringBuilderW_getIntValue(HCkStringBuilderW cHandle);
 CK_VISIBLE_PUBLIC void  CkStringBuilderW_putIntValue(HCkStringBuilderW cHandle, int newVal);
+CK_VISIBLE_PUBLIC BOOL CkStringBuilderW_getLastMethodSuccess(HCkStringBuilderW cHandle);
+CK_VISIBLE_PUBLIC void  CkStringBuilderW_putLastMethodSuccess(HCkStringBuilderW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC int CkStringBuilderW_getLength(HCkStringBuilderW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkStringBuilderW_Append(HCkStringBuilderW cHandle, const wchar_t *value);
+CK_VISIBLE_PUBLIC BOOL CkStringBuilderW_AppendBd(HCkStringBuilderW cHandle, HCkBinDataW binData, const wchar_t *charset, int offset, int numBytes);
 CK_VISIBLE_PUBLIC BOOL CkStringBuilderW_AppendEncoded(HCkStringBuilderW cHandle, HCkByteData binaryData, const wchar_t *encoding);
 CK_VISIBLE_PUBLIC BOOL CkStringBuilderW_AppendInt(HCkStringBuilderW cHandle, int value);
 CK_VISIBLE_PUBLIC BOOL CkStringBuilderW_AppendInt64(HCkStringBuilderW cHandle, __int64 value);
+CK_VISIBLE_PUBLIC BOOL CkStringBuilderW_AppendLine(HCkStringBuilderW cHandle, const wchar_t *value, BOOL crlf);
 CK_VISIBLE_PUBLIC BOOL CkStringBuilderW_AppendSb(HCkStringBuilderW cHandle, HCkStringBuilderW sb);
 CK_VISIBLE_PUBLIC void CkStringBuilderW_Clear(HCkStringBuilderW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkStringBuilderW_Contains(HCkStringBuilderW cHandle, const wchar_t *str, BOOL caseSensitive);
+CK_VISIBLE_PUBLIC BOOL CkStringBuilderW_ContainsWord(HCkStringBuilderW cHandle, const wchar_t *word, BOOL caseSensitive);
 CK_VISIBLE_PUBLIC BOOL CkStringBuilderW_ContentsEqual(HCkStringBuilderW cHandle, const wchar_t *str, BOOL caseSensitive);
 CK_VISIBLE_PUBLIC BOOL CkStringBuilderW_ContentsEqualSb(HCkStringBuilderW cHandle, HCkStringBuilderW sb, BOOL caseSensitive);
 CK_VISIBLE_PUBLIC BOOL CkStringBuilderW_Decode(HCkStringBuilderW cHandle, const wchar_t *encoding, const wchar_t *charset);
@@ -40,8 +45,11 @@ CK_VISIBLE_PUBLIC const wchar_t *CkStringBuilderW_lastNLines(HCkStringBuilderW c
 CK_VISIBLE_PUBLIC BOOL CkStringBuilderW_LoadFile(HCkStringBuilderW cHandle, const wchar_t *path, const wchar_t *charset);
 CK_VISIBLE_PUBLIC BOOL CkStringBuilderW_Prepend(HCkStringBuilderW cHandle, const wchar_t *value);
 CK_VISIBLE_PUBLIC int CkStringBuilderW_Replace(HCkStringBuilderW cHandle, const wchar_t *value, const wchar_t *replacement);
+CK_VISIBLE_PUBLIC BOOL CkStringBuilderW_ReplaceAllBetween(HCkStringBuilderW cHandle, const wchar_t *beginMark, const wchar_t *endMark, const wchar_t *replacement, BOOL replaceMarks);
 CK_VISIBLE_PUBLIC int CkStringBuilderW_ReplaceBetween(HCkStringBuilderW cHandle, const wchar_t *beginMark, const wchar_t *endMark, const wchar_t *value, const wchar_t *replacement);
+CK_VISIBLE_PUBLIC int CkStringBuilderW_ReplaceI(HCkStringBuilderW cHandle, const wchar_t *value, int replacement);
 CK_VISIBLE_PUBLIC int CkStringBuilderW_ReplaceWord(HCkStringBuilderW cHandle, const wchar_t *value, const wchar_t *replacement);
+CK_VISIBLE_PUBLIC void CkStringBuilderW_SecureClear(HCkStringBuilderW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkStringBuilderW_SetNth(HCkStringBuilderW cHandle, int index, const wchar_t *value, const wchar_t *delimiterChar, BOOL exceptDoubleQuoted, BOOL exceptEscaped);
 CK_VISIBLE_PUBLIC BOOL CkStringBuilderW_SetString(HCkStringBuilderW cHandle, const wchar_t *value);
 CK_VISIBLE_PUBLIC BOOL CkStringBuilderW_StartsWith(HCkStringBuilderW cHandle, const wchar_t *substr, BOOL caseSensitive);

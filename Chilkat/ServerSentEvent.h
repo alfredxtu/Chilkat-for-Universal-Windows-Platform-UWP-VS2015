@@ -54,6 +54,11 @@ public ref class ServerSentEvent sealed
 	{
 		Platform::String ^get();
 	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property int32 Retry
 	{
 		int32 get();

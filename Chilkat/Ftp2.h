@@ -27,6 +27,7 @@ namespace Chilkat
 	ref class CkDateTime;
 	ref class BinData;
 	ref class StringBuilder;
+	ref class Stream;
 	ref class Cert;
 
 
@@ -336,6 +337,11 @@ public ref class Ftp2 sealed
 		Boolean get();
 	}
 	property Boolean KeepSessionLog
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Boolean LargeFileMeasures
 	{
 		Boolean get();
 		void set(Boolean);
@@ -650,6 +656,8 @@ public ref class Ftp2 sealed
 	IAsyncOperation<Platform::String ^>^ GetFilenameAsync(int index);
 
 	IAsyncOperation<Boolean>^ GetFileSbAsync(Platform::String ^remoteFilePath, Platform::String ^charset, Chilkat::StringBuilder ^sb);
+
+	IAsyncOperation<Boolean>^ GetFileToStreamAsync(Platform::String ^remoteFilePath, Chilkat::Stream ^toStream);
 
 	IAsyncOperation<Platform::String ^>^ GetGroupAsync(int index);
 

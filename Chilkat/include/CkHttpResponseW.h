@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat v9.5.0
+// This header is generated for Chilkat 9.5.0.69
 
 #ifndef _CkHttpResponseW_H
 #define _CkHttpResponseW_H
@@ -13,6 +13,8 @@
 #include "CkWideCharBase.h"
 
 class CkByteData;
+class CkBinDataW;
+class CkStringBuilderW;
 class CkTaskW;
 
 
@@ -141,6 +143,12 @@ class CK_VISIBLE_PUBLIC CkHttpResponseW  : public CkWideCharBase
 	// ----------------------
 	// Methods
 	// ----------------------
+	// Copies the response body to a BinData object.
+	bool GetBodyBd(CkBinDataW &binData);
+
+	// Copies the response body to a Chilkat StringBuilder object.
+	bool GetBodySb(CkStringBuilderW &sb);
+
 	// Returns the domain of the Nth cookie in the response. Indexing begins at 0. The
 	// number of response cookies is specified in the NumCookies property.
 	bool GetCookieDomain(int index, CkString &outStr);

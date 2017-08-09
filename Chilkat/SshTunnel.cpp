@@ -458,6 +458,16 @@ Boolean SshTunnel::DisconnectAllClients(Boolean waitForThreads)
 	cxProgress.m_sender = this;
 	return m_impl->DisconnectAllClients(waitForThreads);
     }
+Platform::String ^SshTunnel::GetCurrentState(void)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CxSshTunnelProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	const wchar_t *retStr = m_impl->getCurrentState();
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
 Boolean SshTunnel::IsSshConnected(void)
     {
 	if (m_impl == nullptr) { return false; }

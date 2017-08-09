@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.62
+// This is a generated source file for Chilkat version 9.5.0.69
 #ifndef _C_CkOAuth1WH
 #define _C_CkOAuth1WH
 #include "chilkatDefs.h"
@@ -73,4 +73,5 @@ CK_VISIBLE_PUBLIC BOOL CkOAuth1W_GenNonce(HCkOAuth1W cHandle, int numBytes);
 CK_VISIBLE_PUBLIC BOOL CkOAuth1W_GenTimestamp(HCkOAuth1W cHandle);
 CK_VISIBLE_PUBLIC BOOL CkOAuth1W_RemoveParam(HCkOAuth1W cHandle, const wchar_t *name);
 CK_VISIBLE_PUBLIC BOOL CkOAuth1W_SaveLastError(HCkOAuth1W cHandle, const wchar_t *path);
+CK_VISIBLE_PUBLIC BOOL CkOAuth1W_SetRsaKey(HCkOAuth1W cHandle, HCkPrivateKeyW privKey);
 #endif

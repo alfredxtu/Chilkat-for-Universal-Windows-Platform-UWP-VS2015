@@ -1395,6 +1395,23 @@ return create_async([this]() -> Boolean
 
 });
     }
+IAsyncOperation<Boolean>^ Imap::MoveMessagesAsync(Chilkat::MessageSet ^messageSet, Platform::String ^destFolder)
+    {
+return create_async([this, messageSet, destFolder]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (messageSet == nullptr) { return false; }
+	CkMessageSetW* pObj0 = messageSet->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxImapProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->MoveMessages(*pObj0,destFolder ? destFolder->Data() : L"");
+
+});
+    }
 IAsyncOperation<Boolean>^ Imap::NoopAsync(void)
     {
 return create_async([this]() -> Boolean

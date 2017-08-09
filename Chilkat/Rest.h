@@ -25,11 +25,12 @@ namespace Chilkat
 {
 
 	ref class StringBuilder;
-	ref class Stream;
 	ref class BinData;
+	ref class Stream;
 	ref class Url;
 	ref class AuthAws;
 	ref class AuthAzureAD;
+	ref class AuthAzureSAS;
 	ref class AuthAzureStorage;
 	ref class AuthGoogle;
 	ref class OAuth1;
@@ -196,6 +197,8 @@ public ref class Rest sealed
 	// ----------------------
 	Boolean AddHeader(Platform::String ^name, Platform::String ^value);
 
+	Boolean AddMwsSignature(Platform::String ^httpVerb, Platform::String ^uriPath, Platform::String ^domain, Platform::String ^mwsSecretKey);
+
 	Boolean AddQueryParam(Platform::String ^name, Platform::String ^value);
 
 	Boolean AddQueryParams(Platform::String ^queryString);
@@ -204,13 +207,19 @@ public ref class Rest sealed
 
 	Boolean ClearAllHeaders(void);
 
+	Boolean ClearAllParts(void);
+
 	Boolean ClearAllQueryParams(void);
+
+	Boolean ClearAuth(void);
 
 	void ClearResponseBodyStream(void);
 
 	IAsyncOperation<Boolean>^ ConnectAsync(Platform::String ^hostname, int port, Boolean tls, Boolean autoReconnect);
 
 	IAsyncOperation<Boolean>^ DisconnectAsync(int maxWaitMs);
+
+	IAsyncOperation<Boolean>^ FullRequestBdAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Chilkat::BinData ^binData, Chilkat::StringBuilder ^responseBody);
 
 	IAsyncOperation<Platform::String ^>^ FullRequestBinaryAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Windows::Foundation::Collections::IVector<uint8>^bodyBytes);
 
@@ -219,6 +228,10 @@ public ref class Rest sealed
 	IAsyncOperation<Platform::String ^>^ FullRequestMultipartAsync(Platform::String ^httpVerb, Platform::String ^uriPath);
 
 	IAsyncOperation<Platform::String ^>^ FullRequestNoBodyAsync(Platform::String ^httpVerb, Platform::String ^uriPath);
+
+	IAsyncOperation<Boolean>^ FullRequestNoBodyBdAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Chilkat::BinData ^binData);
+
+	IAsyncOperation<Boolean>^ FullRequestNoBodySbAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Chilkat::StringBuilder ^sb);
 
 	IAsyncOperation<Boolean>^ FullRequestSbAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Chilkat::StringBuilder ^requestBody, Chilkat::StringBuilder ^responseBody);
 
@@ -269,6 +282,8 @@ public ref class Rest sealed
 	Boolean SetAuthAws(Chilkat::AuthAws ^authProvider);
 
 	Boolean SetAuthAzureAD(Chilkat::AuthAzureAD ^authProvider);
+
+	Boolean SetAuthAzureSas(Chilkat::AuthAzureSAS ^authProvider);
 
 	Boolean SetAuthAzureStorage(Chilkat::AuthAzureStorage ^authProvider);
 

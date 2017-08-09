@@ -103,6 +103,22 @@ String ^Chilkat::PrivateKey::Version::get()
     }
 
 
+Platform::String ^PrivateKey::GetJwk(void)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	const wchar_t *retStr = m_impl->getJwk();
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
+Platform::String ^PrivateKey::GetJwkThumbprint(Platform::String ^hashAlg)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	const wchar_t *retStr = m_impl->getJwkThumbprint(hashAlg ? hashAlg->Data() : L"");
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
 Windows::Foundation::Collections::IVector<uint8>^PrivateKey::GetPkcs1(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
@@ -228,6 +244,12 @@ Boolean PrivateKey::LoadEncryptedPemFile(Platform::String ^path, Platform::Strin
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->LoadEncryptedPemFile(path ? path->Data() : L"",password ? password->Data() : L"");
+    }
+Boolean PrivateKey::LoadJwk(Platform::String ^jsonStr)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->LoadJwk(jsonStr ? jsonStr->Data() : L"");
     }
 Boolean PrivateKey::LoadPem(Platform::String ^str)
     {

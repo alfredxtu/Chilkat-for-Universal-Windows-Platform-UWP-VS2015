@@ -25,6 +25,8 @@ namespace Chilkat
 {
 
 	ref class Cert;
+	ref class BinData;
+	ref class StringBuilder;
 	ref class Stream;
 	ref class CertChain;
 	ref class PrivateKey;
@@ -83,6 +85,11 @@ public ref class Crypt2 sealed
 	{
 		Boolean get();
 		void set(Boolean);
+	}
+	property int32 BCryptWorkFactor
+	{
+		int32 get();
+		void set(int32);
 	}
 	property int32 BlockSize
 	{
@@ -214,6 +221,16 @@ public ref class Crypt2 sealed
 	{
 		int32 get();
 	}
+	property Platform::String ^OaepHash
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Boolean OaepPadding
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property int32 PaddingScheme
 	{
 		int32 get();
@@ -249,6 +266,11 @@ public ref class Crypt2 sealed
 		Windows::Foundation::Collections::IVector<uint8> ^get();
 		void set(Windows::Foundation::Collections::IVector<uint8> ^);
 	}
+	property Platform::String ^SigningAlg
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^UuFilename
 	{
 		Platform::String ^get();
@@ -278,6 +300,14 @@ public ref class Crypt2 sealed
 	Boolean AddPfxSourceData(Windows::Foundation::Collections::IVector<uint8>^pfxBytes, Platform::String ^pfxPassword);
 
 	Boolean AddPfxSourceFile(Platform::String ^pfxFilePath, Platform::String ^pfxPassword);
+
+	Platform::String ^AesKeyUnwrap(Platform::String ^kek, Platform::String ^wrappedKeyData, Platform::String ^encoding);
+
+	Platform::String ^AesKeyWrap(Platform::String ^kek, Platform::String ^keyData, Platform::String ^encoding);
+
+	Platform::String ^BCryptHash(Platform::String ^password);
+
+	Boolean BCryptVerify(Platform::String ^password, Platform::String ^bcryptHash);
 
 	Platform::String ^BytesToString(Windows::Foundation::Collections::IVector<uint8>^inData, Platform::String ^charset);
 
@@ -311,11 +341,15 @@ public ref class Crypt2 sealed
 
 	Platform::String ^DecodeString(Platform::String ^inStr, Platform::String ^charset, Platform::String ^encoding);
 
+	Boolean DecryptBd(Chilkat::BinData ^bd);
+
 	Windows::Foundation::Collections::IVector<uint8>^DecryptBytes(Windows::Foundation::Collections::IVector<uint8>^data);
 
 	Windows::Foundation::Collections::IVector<uint8>^DecryptBytesENC(Platform::String ^str);
 
 	Platform::String ^DecryptEncoded(Platform::String ^encodedEncryptedData);
+
+	Boolean DecryptSb(Chilkat::BinData ^bdIn, Chilkat::StringBuilder ^sbOut);
 
 	IAsyncOperation<Boolean>^ DecryptStreamAsync(Chilkat::Stream ^strm);
 
@@ -327,11 +361,15 @@ public ref class Crypt2 sealed
 
 	Platform::String ^EncodeString(Platform::String ^strToEncode, Platform::String ^charsetName, Platform::String ^toEncodingName);
 
+	Boolean EncryptBd(Chilkat::BinData ^bd);
+
 	Windows::Foundation::Collections::IVector<uint8>^EncryptBytes(Windows::Foundation::Collections::IVector<uint8>^data);
 
 	Platform::String ^EncryptBytesENC(Windows::Foundation::Collections::IVector<uint8>^data);
 
 	Platform::String ^EncryptEncoded(Platform::String ^str);
+
+	Boolean EncryptSb(Chilkat::StringBuilder ^sbIn, Chilkat::BinData ^bdOut);
 
 	IAsyncOperation<Boolean>^ EncryptStreamAsync(Chilkat::Stream ^strm);
 
@@ -367,6 +405,8 @@ public ref class Crypt2 sealed
 
 	CertChain ^GetSignerCertChain(int index);
 
+	Platform::String ^HashBdENC(Chilkat::BinData ^bd);
+
 	Boolean HashBeginBytes(Windows::Foundation::Collections::IVector<uint8>^data);
 
 	Boolean HashBeginString(Platform::String ^strData);
@@ -375,9 +415,9 @@ public ref class Crypt2 sealed
 
 	Platform::String ^HashBytesENC(Windows::Foundation::Collections::IVector<uint8>^data);
 
-	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ HashFileAsync(Platform::String ^filename);
+	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ HashFileAsync(Platform::String ^path);
 
-	IAsyncOperation<Platform::String ^>^ HashFileENCAsync(Platform::String ^filename);
+	IAsyncOperation<Platform::String ^>^ HashFileENCAsync(Platform::String ^path);
 
 	Windows::Foundation::Collections::IVector<uint8>^HashFinal(void);
 
@@ -411,6 +451,8 @@ public ref class Crypt2 sealed
 
 	Boolean IsUnlocked(void);
 
+	Platform::String ^MacBdENC(Chilkat::BinData ^bd);
+
 	Windows::Foundation::Collections::IVector<uint8>^MacBytes(Windows::Foundation::Collections::IVector<uint8>^inBytes);
 
 	Platform::String ^MacBytesENC(Windows::Foundation::Collections::IVector<uint8>^inBytes);
@@ -423,6 +465,8 @@ public ref class Crypt2 sealed
 
 	Platform::String ^MySqlAesEncrypt(Platform::String ^strData, Platform::String ^strPassword);
 
+	Boolean OpaqueSignBd(Chilkat::BinData ^bd);
+
 	Windows::Foundation::Collections::IVector<uint8>^OpaqueSignBytes(Windows::Foundation::Collections::IVector<uint8>^data);
 
 	Platform::String ^OpaqueSignBytesENC(Windows::Foundation::Collections::IVector<uint8>^data);
@@ -430,6 +474,8 @@ public ref class Crypt2 sealed
 	Windows::Foundation::Collections::IVector<uint8>^OpaqueSignString(Platform::String ^str);
 
 	Platform::String ^OpaqueSignStringENC(Platform::String ^str);
+
+	Boolean OpaqueVerifyBd(Chilkat::BinData ^bd);
 
 	Windows::Foundation::Collections::IVector<uint8>^OpaqueVerifyBytes(Windows::Foundation::Collections::IVector<uint8>^p7s);
 
@@ -489,9 +535,13 @@ public ref class Crypt2 sealed
 
 	Boolean SetVerifyCert(Chilkat::Cert ^cert);
 
+	Platform::String ^SignBdENC(Chilkat::BinData ^dataToSign);
+
 	Windows::Foundation::Collections::IVector<uint8>^SignBytes(Windows::Foundation::Collections::IVector<uint8>^data);
 
 	Platform::String ^SignBytesENC(Windows::Foundation::Collections::IVector<uint8>^data);
+
+	Platform::String ^SignSbENC(Chilkat::StringBuilder ^sb);
 
 	Windows::Foundation::Collections::IVector<uint8>^SignString(Platform::String ^str);
 
@@ -505,6 +555,8 @@ public ref class Crypt2 sealed
 
 	Boolean UseCertVault(Chilkat::XmlCertVault ^vault);
 
+	Boolean VerifyBdENC(Chilkat::BinData ^data, Platform::String ^encodedSig);
+
 	Boolean VerifyBytes(Windows::Foundation::Collections::IVector<uint8>^data, Windows::Foundation::Collections::IVector<uint8>^sig);
 
 	Boolean VerifyBytesENC(Windows::Foundation::Collections::IVector<uint8>^data, Platform::String ^encodedSig);
@@ -514,6 +566,8 @@ public ref class Crypt2 sealed
 	Boolean VerifyP7M(Platform::String ^p7mPath, Platform::String ^destPath);
 
 	Boolean VerifyP7S(Platform::String ^inFilename, Platform::String ^p7sFilename);
+
+	Boolean VerifySbENC(Chilkat::StringBuilder ^sb, Platform::String ^encodedSig);
 
 	Boolean VerifyString(Platform::String ^str, Windows::Foundation::Collections::IVector<uint8>^sig);
 

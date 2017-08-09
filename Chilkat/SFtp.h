@@ -419,6 +419,8 @@ public ref class SFtp sealed
 
 	Boolean Eof(Platform::String ^handle);
 
+	IAsyncOperation<int>^ FileExistsAsync(Platform::String ^remotePath, Boolean followLinks);
+
 	IAsyncOperation<CkDateTime ^>^ GetFileCreateDtAsync(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
 
 	IAsyncOperation<Platform::String ^>^ GetFileCreateTimeStrAsync(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
@@ -482,6 +484,8 @@ public ref class SFtp sealed
 	IAsyncOperation<Boolean>^ ResumeDownloadFileByNameAsync(Platform::String ^remoteFilePath, Platform::String ^localFilePath);
 
 	IAsyncOperation<Boolean>^ ResumeUploadFileByNameAsync(Platform::String ^remoteFilePath, Platform::String ^localFilePath);
+
+	IAsyncOperation<Boolean>^ SendIgnoreAsync(void);
 
 	IAsyncOperation<Boolean>^ SetCreateDtAsync(Platform::String ^pathOrHandle, Boolean isHandle, Chilkat::CkDateTime ^createDateTime);
 

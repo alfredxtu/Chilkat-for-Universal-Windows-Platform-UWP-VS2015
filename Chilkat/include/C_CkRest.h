@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.63
+// This is a generated source file for Chilkat version 9.5.0.69
 #ifndef _C_CkRest_H
 #define _C_CkRest_H
 #include "chilkatDefs.h"
@@ -63,16 +63,21 @@ CK_VISIBLE_PUBLIC void CkRest_putVerboseLogging(HCkRest cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkRest_getVersion(HCkRest cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const char *CkRest_version(HCkRest cHandle);
 CK_VISIBLE_PUBLIC BOOL CkRest_AddHeader(HCkRest cHandle, const char *name, const char *value);
+CK_VISIBLE_PUBLIC BOOL CkRest_AddMwsSignature(HCkRest cHandle, const char *httpVerb, const char *uriPath, const char *domain, const char *mwsSecretKey);
 CK_VISIBLE_PUBLIC BOOL CkRest_AddQueryParam(HCkRest cHandle, const char *name, const char *value);
 CK_VISIBLE_PUBLIC BOOL CkRest_AddQueryParams(HCkRest cHandle, const char *queryString);
 CK_VISIBLE_PUBLIC BOOL CkRest_AddQueryParamSb(HCkRest cHandle, const char *name, HCkStringBuilder value);
 CK_VISIBLE_PUBLIC BOOL CkRest_ClearAllHeaders(HCkRest cHandle);
+CK_VISIBLE_PUBLIC BOOL CkRest_ClearAllParts(HCkRest cHandle);
 CK_VISIBLE_PUBLIC BOOL CkRest_ClearAllQueryParams(HCkRest cHandle);
+CK_VISIBLE_PUBLIC BOOL CkRest_ClearAuth(HCkRest cHandle);
 CK_VISIBLE_PUBLIC void CkRest_ClearResponseBodyStream(HCkRest cHandle);
 CK_VISIBLE_PUBLIC BOOL CkRest_Connect(HCkRest cHandle, const char *hostname, int port, BOOL tls, BOOL autoReconnect);
 CK_VISIBLE_PUBLIC HCkTask CkRest_ConnectAsync(HCkRest cHandle, const char *hostname, int port, BOOL tls, BOOL autoReconnect);
 CK_VISIBLE_PUBLIC BOOL CkRest_Disconnect(HCkRest cHandle, int maxWaitMs);
 CK_VISIBLE_PUBLIC HCkTask CkRest_DisconnectAsync(HCkRest cHandle, int maxWaitMs);
+CK_VISIBLE_PUBLIC BOOL CkRest_FullRequestBd(HCkRest cHandle, const char *httpVerb, const char *uriPath, HCkBinData binData, HCkStringBuilder responseBody);
+CK_VISIBLE_PUBLIC HCkTask CkRest_FullRequestBdAsync(HCkRest cHandle, const char *httpVerb, const char *uriPath, HCkBinData binData, HCkStringBuilder responseBody);
 CK_VISIBLE_PUBLIC BOOL CkRest_FullRequestBinary(HCkRest cHandle, const char *httpVerb, const char *uriPath, HCkByteData bodyBytes, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkRest_fullRequestBinary(HCkRest cHandle, const char *httpVerb, const char *uriPath, HCkByteData bodyBytes);
 CK_VISIBLE_PUBLIC HCkTask CkRest_FullRequestBinaryAsync(HCkRest cHandle, const char *httpVerb, const char *uriPath, HCkByteData bodyBytes);
@@ -85,6 +90,10 @@ CK_VISIBLE_PUBLIC HCkTask CkRest_FullRequestMultipartAsync(HCkRest cHandle, cons
 CK_VISIBLE_PUBLIC BOOL CkRest_FullRequestNoBody(HCkRest cHandle, const char *httpVerb, const char *uriPath, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkRest_fullRequestNoBody(HCkRest cHandle, const char *httpVerb, const char *uriPath);
 CK_VISIBLE_PUBLIC HCkTask CkRest_FullRequestNoBodyAsync(HCkRest cHandle, const char *httpVerb, const char *uriPath);
+CK_VISIBLE_PUBLIC BOOL CkRest_FullRequestNoBodyBd(HCkRest cHandle, const char *httpVerb, const char *uriPath, HCkBinData binData);
+CK_VISIBLE_PUBLIC HCkTask CkRest_FullRequestNoBodyBdAsync(HCkRest cHandle, const char *httpVerb, const char *uriPath, HCkBinData binData);
+CK_VISIBLE_PUBLIC BOOL CkRest_FullRequestNoBodySb(HCkRest cHandle, const char *httpVerb, const char *uriPath, HCkStringBuilder sb);
+CK_VISIBLE_PUBLIC HCkTask CkRest_FullRequestNoBodySbAsync(HCkRest cHandle, const char *httpVerb, const char *uriPath, HCkStringBuilder sb);
 CK_VISIBLE_PUBLIC BOOL CkRest_FullRequestSb(HCkRest cHandle, const char *httpVerb, const char *uriPath, HCkStringBuilder requestBody, HCkStringBuilder responseBody);
 CK_VISIBLE_PUBLIC HCkTask CkRest_FullRequestSbAsync(HCkRest cHandle, const char *httpVerb, const char *uriPath, HCkStringBuilder requestBody, HCkStringBuilder responseBody);
 CK_VISIBLE_PUBLIC BOOL CkRest_FullRequestStream(HCkRest cHandle, const char *httpVerb, const char *uriPath, HCkStream stream, HCkString outStr);
@@ -134,6 +143,7 @@ CK_VISIBLE_PUBLIC BOOL CkRest_SendReqStringBody(HCkRest cHandle, const char *htt
 CK_VISIBLE_PUBLIC HCkTask CkRest_SendReqStringBodyAsync(HCkRest cHandle, const char *httpVerb, const char *uriPath, const char *bodyText);
 CK_VISIBLE_PUBLIC BOOL CkRest_SetAuthAws(HCkRest cHandle, HCkAuthAws authProvider);
 CK_VISIBLE_PUBLIC BOOL CkRest_SetAuthAzureAD(HCkRest cHandle, HCkAuthAzureAD authProvider);
+CK_VISIBLE_PUBLIC BOOL CkRest_SetAuthAzureSas(HCkRest cHandle, HCkAuthAzureSAS authProvider);
 CK_VISIBLE_PUBLIC BOOL CkRest_SetAuthAzureStorage(HCkRest cHandle, HCkAuthAzureStorage authProvider);
 CK_VISIBLE_PUBLIC BOOL CkRest_SetAuthBasic(HCkRest cHandle, const char *username, const char *password);
 CK_VISIBLE_PUBLIC BOOL CkRest_SetAuthGoogle(HCkRest cHandle, HCkAuthGoogle authProvider);

@@ -251,6 +251,10 @@ public ref class Tar sealed
 
 	Boolean AddFile(Platform::String ^path);
 
+	Boolean AddFile2(Platform::String ^filePath, Platform::String ^pathWithinTar);
+
+	Boolean CreateDeb(Platform::String ^controlPath, Platform::String ^dataPath, Platform::String ^debPath);
+
 	Platform::String ^GetDirRoot(int index);
 
 	IAsyncOperation<Platform::String ^>^ ListXmlAsync(Platform::String ^tarPath);

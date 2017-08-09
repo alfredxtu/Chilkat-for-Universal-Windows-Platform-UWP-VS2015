@@ -9,7 +9,9 @@
 #include "include/CkDateTime.h"
 #include "include/CkCompressionW.h"
 		
+#include "include/CkBinDataW.h"
 #include "include/CkStreamW.h"
+#include "BinData.h"
 #include "Stream.h"
 
 
@@ -267,6 +269,23 @@ return create_async([this, str]() -> Platform::String ^
 
 });
     }
+IAsyncOperation<Boolean>^ Compression::CompressBdAsync(Chilkat::BinData ^binData)
+    {
+return create_async([this, binData]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj0 = binData->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxCompressionProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->CompressBd(*pObj0);
+
+});
+    }
 IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ Compression::CompressBytesAsync(Windows::Foundation::Collections::IVector<uint8>^data)
     {
 return create_async([this, data]() -> Windows::Foundation::Collections::IVector<uint8>^
@@ -369,6 +388,23 @@ return create_async([this, str]() -> Platform::String ^
 	const wchar_t *retStr = m_impl->compressStringENC(str ? str->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+
+});
+    }
+IAsyncOperation<Boolean>^ Compression::DecompressBdAsync(Chilkat::BinData ^binData)
+    {
+return create_async([this, binData]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj0 = binData->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxCompressionProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->DecompressBd(*pObj0);
 
 });
     }

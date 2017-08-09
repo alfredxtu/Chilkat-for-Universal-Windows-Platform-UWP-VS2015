@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.62
+// This is a generated source file for Chilkat version 9.5.0.69
 #ifndef _C_CkUrl_H
 #define _C_CkUrl_H
 #include "chilkatDefs.h"
@@ -14,6 +14,8 @@ CK_VISIBLE_PUBLIC void CkUrl_getHost(HCkUrl cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const char *CkUrl_host(HCkUrl cHandle);
 CK_VISIBLE_PUBLIC void CkUrl_getHostType(HCkUrl cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const char *CkUrl_hostType(HCkUrl cHandle);
+CK_VISIBLE_PUBLIC BOOL CkUrl_getLastMethodSuccess(HCkUrl cHandle);
+CK_VISIBLE_PUBLIC void CkUrl_putLastMethodSuccess(HCkUrl cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkUrl_getLogin(HCkUrl cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const char *CkUrl_login(HCkUrl cHandle);
 CK_VISIBLE_PUBLIC void CkUrl_getPassword(HCkUrl cHandle, HCkString retval);

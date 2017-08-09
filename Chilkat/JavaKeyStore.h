@@ -24,6 +24,8 @@ namespace Chilkat
 	ref class Cert;
 	ref class CertChain;
 	ref class PrivateKey;
+	ref class JsonObject;
+	ref class StringBuilder;
 	ref class Pem;
 	ref class XmlCertVault;
 
@@ -74,6 +76,10 @@ public ref class JavaKeyStore sealed
 	{
 		int32 get();
 	}
+	property int32 NumSecretKeys
+	{
+		int32 get();
+	}
 	property int32 NumTrustedCerts
 	{
 		int32 get();
@@ -106,6 +112,8 @@ public ref class JavaKeyStore sealed
 
 	Boolean AddPrivateKey(Chilkat::Cert ^cert, Platform::String ^alias, Platform::String ^password);
 
+	Boolean AddSecretKey(Platform::String ^encodedKeyBytes, Platform::String ^encoding, Platform::String ^algorithm, Platform::String ^alias, Platform::String ^password);
+
 	Boolean AddTrustedCert(Chilkat::Cert ^cert, Platform::String ^alias);
 
 	Boolean ChangePassword(int index, Platform::String ^oldPassword, Platform::String ^newPassword);
@@ -122,6 +130,10 @@ public ref class JavaKeyStore sealed
 
 	Platform::String ^GetPrivateKeyAlias(int index);
 
+	Platform::String ^GetSecretKey(Platform::String ^password, int index, Platform::String ^encoding);
+
+	Platform::String ^GetSecretKeyAlias(int index);
+
 	Cert ^GetTrustedCert(int index);
 
 	Platform::String ^GetTrustedCertAlias(int index);
@@ -132,6 +144,8 @@ public ref class JavaKeyStore sealed
 
 	Boolean LoadFile(Platform::String ^password, Platform::String ^path);
 
+	Boolean LoadJwkSet(Platform::String ^password, Chilkat::JsonObject ^jwkSet);
+
 	Boolean RemoveEntry(int entryType, int index);
 
 	Boolean SetAlias(int entryType, int index, Platform::String ^alias);
@@ -141,6 +155,8 @@ public ref class JavaKeyStore sealed
 	Platform::String ^ToEncodedString(Platform::String ^password, Platform::String ^encoding);
 
 	Boolean ToFile(Platform::String ^password, Platform::String ^path);
+
+	Boolean ToJwkSet(Platform::String ^password, Chilkat::StringBuilder ^sbJwkSet);
 
 	Pem ^ToPem(Platform::String ^password);
 

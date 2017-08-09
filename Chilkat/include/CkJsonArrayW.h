@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat v9.5.0
+// This header is generated for Chilkat 9.5.0.69
 
 #ifndef _CkJsonArrayW_H
 #define _CkJsonArrayW_H
@@ -12,6 +12,7 @@
 #include "CkString.h"
 #include "CkWideCharBase.h"
 
+class CkStringBuilderW;
 class CkJsonObjectW;
 
 
@@ -52,6 +53,40 @@ class CK_VISIBLE_PUBLIC CkJsonArrayW  : public CkWideCharBase
 	// ----------------------
 	// Properties
 	// ----------------------
+	// If true then the Emit method outputs in the most compact form possible (a
+	// single-line with no extra whitespace). If false, then emits with whitespace
+	// and indentation to make the JSON human-readable.
+	// 
+	// The default value is true.
+	// 
+	bool get_EmitCompact(void);
+	// If true then the Emit method outputs in the most compact form possible (a
+	// single-line with no extra whitespace). If false, then emits with whitespace
+	// and indentation to make the JSON human-readable.
+	// 
+	// The default value is true.
+	// 
+	void put_EmitCompact(bool newVal);
+
+	// If true then the Emit method uses CRLF line-endings when emitting the
+	// non-compact (pretty-print) format. If false, then bare-LF's are emitted. (The
+	// compact format emits to a single line with no end-of-line characters.) Windows
+	// systems traditionally use CRLF line-endings, whereas Linux, Mac OS X, and other
+	// systems traditionally use bare-LF line-endings.
+	// 
+	// The default value is true.
+	// 
+	bool get_EmitCrlf(void);
+	// If true then the Emit method uses CRLF line-endings when emitting the
+	// non-compact (pretty-print) format. If false, then bare-LF's are emitted. (The
+	// compact format emits to a single line with no end-of-line characters.) Windows
+	// systems traditionally use CRLF line-endings, whereas Linux, Mac OS X, and other
+	// systems traditionally use bare-LF line-endings.
+	// 
+	// The default value is true.
+	// 
+	void put_EmitCrlf(bool newVal);
+
 	// The number of JSON values in the array.
 	int get_Size(void);
 
@@ -112,17 +147,32 @@ class CK_VISIBLE_PUBLIC CkJsonArrayW  : public CkWideCharBase
 	// Writes the JSON array (rooted at the caller) and returns as a string.
 	// 
 	// Note: To control the compact/non-compact format, and to control the LF/CRLF
-	// line-endings, set the EmitCompact and EmitCrlf properties of the JSON object
-	// prior to getting the CLASS_NAME object.
+	// line-endings, set the EmitCompact and EmitCrlf properties.
 	// 
 	bool Emit(CkString &outStr);
 	// Writes the JSON array (rooted at the caller) and returns as a string.
 	// 
 	// Note: To control the compact/non-compact format, and to control the LF/CRLF
-	// line-endings, set the EmitCompact and EmitCrlf properties of the JSON object
-	// prior to getting the CLASS_NAME object.
+	// line-endings, set the EmitCompact and EmitCrlf properties.
 	// 
-	const wchar_t *emit(void);
+// QT defines the macro "emit" globally.  (Good grief!)
+#if defined(QT_VERSION)
+#pragma push_macro("emit")
+#undef emit
+const wchar_t *emit(void);
+#pragma pop_macro("emit")
+#else
+const wchar_t *emit(void);
+#endif
+
+
+
+	// Writes the JSON array to the sb.
+	// 
+	// Note: To control the compact/non-compact format, and to control the LF/CRLF
+	// line-endings, set the EmitCompact and EmitCrlf properties.
+	// 
+	bool EmitSb(CkStringBuilderW &sb);
 
 	// Returns the integer value of the Nth array element. Indexing is 0-based (the 1st
 	// member is at index 0).
@@ -131,6 +181,24 @@ class CK_VISIBLE_PUBLIC CkJsonArrayW  : public CkWideCharBase
 	// Returns the true if the Nth array element is null, otherwise returns false.
 	// Indexing is 0-based (the 1st member is at index 0).
 	bool IsNullAt(int index);
+
+	// Loads a JSON array from a string. A JSON array must begin with a "[" and end
+	// with a "]".
+	// 
+	// Note: The Load method causes the JsonArray to detach and become it's own JSON
+	// document. It should only be called on new instances of the JsonArray. See the
+	// example below.
+	// 
+	bool Load(const wchar_t *jsonArray);
+
+	// Loads a JSON array from a StringBuilder. A JSON array must begin with a "[" and
+	// end with a "]".
+	// 
+	// Note: The Load method causes the JsonArray to detach and become it's own JSON
+	// document. It should only be called on new instances of the JsonArray. See the
+	// example below.
+	// 
+	bool LoadSb(CkStringBuilderW &sb);
 
 	// Returns the JSON object that is the value of the Nth array element. Indexing is
 	// 0-based (the 1st member is at index 0).

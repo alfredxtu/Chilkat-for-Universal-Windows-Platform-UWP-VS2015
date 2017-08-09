@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.62
+// This is a generated source file for Chilkat version 9.5.0.69
 #ifndef _C_CkJsonArray_H
 #define _C_CkJsonArray_H
 #include "chilkatDefs.h"
@@ -11,6 +11,10 @@ CK_VISIBLE_PUBLIC void CkJsonArray_Dispose(HCkJsonArray handle);
 CK_VISIBLE_PUBLIC void CkJsonArray_getDebugLogFilePath(HCkJsonArray cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void CkJsonArray_putDebugLogFilePath(HCkJsonArray cHandle, const char *newVal);
 CK_VISIBLE_PUBLIC const char *CkJsonArray_debugLogFilePath(HCkJsonArray cHandle);
+CK_VISIBLE_PUBLIC BOOL CkJsonArray_getEmitCompact(HCkJsonArray cHandle);
+CK_VISIBLE_PUBLIC void CkJsonArray_putEmitCompact(HCkJsonArray cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC BOOL CkJsonArray_getEmitCrlf(HCkJsonArray cHandle);
+CK_VISIBLE_PUBLIC void CkJsonArray_putEmitCrlf(HCkJsonArray cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkJsonArray_getLastErrorHtml(HCkJsonArray cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const char *CkJsonArray_lastErrorHtml(HCkJsonArray cHandle);
 CK_VISIBLE_PUBLIC void CkJsonArray_getLastErrorText(HCkJsonArray cHandle, HCkString retval);
@@ -38,8 +42,11 @@ CK_VISIBLE_PUBLIC BOOL CkJsonArray_BoolAt(HCkJsonArray cHandle, int index);
 CK_VISIBLE_PUBLIC BOOL CkJsonArray_DeleteAt(HCkJsonArray cHandle, int index);
 CK_VISIBLE_PUBLIC BOOL CkJsonArray_Emit(HCkJsonArray cHandle, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkJsonArray_emit(HCkJsonArray cHandle);
+CK_VISIBLE_PUBLIC BOOL CkJsonArray_EmitSb(HCkJsonArray cHandle, HCkStringBuilder sb);
 CK_VISIBLE_PUBLIC int CkJsonArray_IntAt(HCkJsonArray cHandle, int index);
 CK_VISIBLE_PUBLIC BOOL CkJsonArray_IsNullAt(HCkJsonArray cHandle, int index);
+CK_VISIBLE_PUBLIC BOOL CkJsonArray_Load(HCkJsonArray cHandle, const char *jsonArray);
+CK_VISIBLE_PUBLIC BOOL CkJsonArray_LoadSb(HCkJsonArray cHandle, HCkStringBuilder sb);
 CK_VISIBLE_PUBLIC HCkJsonObject CkJsonArray_ObjectAt(HCkJsonArray cHandle, int index);
 CK_VISIBLE_PUBLIC BOOL CkJsonArray_SaveLastError(HCkJsonArray cHandle, const char *path);
 CK_VISIBLE_PUBLIC BOOL CkJsonArray_SetBoolAt(HCkJsonArray cHandle, int index, BOOL value);

@@ -20,6 +20,7 @@ using namespace concurrency;
 namespace Chilkat
 {
 
+	ref class BinData;
 
 
 public ref class StringBuilder sealed
@@ -47,6 +48,11 @@ public ref class StringBuilder sealed
 		int32 get();
 		void set(int32);
 	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property int32 Length
 	{
 		int32 get();
@@ -58,17 +64,23 @@ public ref class StringBuilder sealed
 	// ----------------------
 	Boolean Append(Platform::String ^value);
 
+	Boolean AppendBd(Chilkat::BinData ^binData, Platform::String ^charset, int offset, int numBytes);
+
 	Boolean AppendEncoded(Windows::Foundation::Collections::IVector<uint8>^binaryData, Platform::String ^encoding);
 
 	Boolean AppendInt(int value);
 
 	Boolean AppendInt64(int64 value);
 
+	Boolean AppendLine(Platform::String ^value, Boolean crlf);
+
 	Boolean AppendSb(Chilkat::StringBuilder ^sb);
 
 	void Clear(void);
 
 	Boolean Contains(Platform::String ^str, Boolean caseSensitive);
+
+	Boolean ContainsWord(Platform::String ^word, Boolean caseSensitive);
 
 	Boolean ContentsEqual(Platform::String ^str, Boolean caseSensitive);
 
@@ -102,9 +114,15 @@ public ref class StringBuilder sealed
 
 	int Replace(Platform::String ^value, Platform::String ^replacement);
 
+	Boolean ReplaceAllBetween(Platform::String ^beginMark, Platform::String ^endMark, Platform::String ^replacement, Boolean replaceMarks);
+
 	int ReplaceBetween(Platform::String ^beginMark, Platform::String ^endMark, Platform::String ^value, Platform::String ^replacement);
 
+	int ReplaceI(Platform::String ^value, int replacement);
+
 	int ReplaceWord(Platform::String ^value, Platform::String ^replacement);
+
+	void SecureClear(void);
 
 	Boolean SetNth(int index, Platform::String ^value, Platform::String ^delimiterChar, Boolean exceptDoubleQuoted, Boolean exceptEscaped);
 

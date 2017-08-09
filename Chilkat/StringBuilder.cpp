@@ -9,6 +9,8 @@
 #include "include/CkDateTime.h"
 #include "include/CkStringBuilderW.h"
 		
+#include "include/CkBinDataW.h"
+#include "BinData.h"
 
 
 using namespace Chilkat;
@@ -51,6 +53,14 @@ void Chilkat::StringBuilder::IntValue::set(int newVal)
     {
         if (m_impl) m_impl->put_IntValue(newVal);
     }
+Boolean Chilkat::StringBuilder::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::StringBuilder::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+    }
 int Chilkat::StringBuilder::Length::get()
     {
     return m_impl ? m_impl->get_Length() : 0;
@@ -62,6 +72,15 @@ Boolean StringBuilder::Append(Platform::String ^value)
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->Append(value ? value->Data() : L"");
+    }
+Boolean StringBuilder::AppendBd(Chilkat::BinData ^binData, Platform::String ^charset, int offset, int numBytes)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj0 = binData->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->AppendBd(*pObj0,charset ? charset->Data() : L"",offset,numBytes);
     }
 Boolean StringBuilder::AppendEncoded(Windows::Foundation::Collections::IVector<uint8>^binaryData, Platform::String ^encoding)
     {
@@ -84,6 +103,12 @@ Boolean StringBuilder::AppendInt64(int64 value)
 	// --- prep output arg ---
 	return m_impl->AppendInt64(value);
     }
+Boolean StringBuilder::AppendLine(Platform::String ^value, Boolean crlf)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->AppendLine(value ? value->Data() : L"",crlf);
+    }
 Boolean StringBuilder::AppendSb(Chilkat::StringBuilder ^sb)
     {
 	if (m_impl == nullptr) { return false; }
@@ -104,6 +129,12 @@ Boolean StringBuilder::Contains(Platform::String ^str, Boolean caseSensitive)
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->Contains(str ? str->Data() : L"",caseSensitive);
+    }
+Boolean StringBuilder::ContainsWord(Platform::String ^word, Boolean caseSensitive)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->ContainsWord(word ? word->Data() : L"",caseSensitive);
     }
 Boolean StringBuilder::ContentsEqual(Platform::String ^str, Boolean caseSensitive)
     {
@@ -220,17 +251,35 @@ int StringBuilder::Replace(Platform::String ^value, Platform::String ^replacemen
 	// --- prep output arg ---
 	return m_impl->Replace(value ? value->Data() : L"",replacement ? replacement->Data() : L"");
     }
+Boolean StringBuilder::ReplaceAllBetween(Platform::String ^beginMark, Platform::String ^endMark, Platform::String ^replacement, Boolean replaceMarks)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->ReplaceAllBetween(beginMark ? beginMark->Data() : L"",endMark ? endMark->Data() : L"",replacement ? replacement->Data() : L"",replaceMarks);
+    }
 int StringBuilder::ReplaceBetween(Platform::String ^beginMark, Platform::String ^endMark, Platform::String ^value, Platform::String ^replacement)
     {
 	if (m_impl == nullptr) { return -1; }
 	// --- prep output arg ---
 	return m_impl->ReplaceBetween(beginMark ? beginMark->Data() : L"",endMark ? endMark->Data() : L"",value ? value->Data() : L"",replacement ? replacement->Data() : L"");
     }
+int StringBuilder::ReplaceI(Platform::String ^value, int replacement)
+    {
+	if (m_impl == nullptr) { return -1; }
+	// --- prep output arg ---
+	return m_impl->ReplaceI(value ? value->Data() : L"",replacement);
+    }
 int StringBuilder::ReplaceWord(Platform::String ^value, Platform::String ^replacement)
     {
 	if (m_impl == nullptr) { return -1; }
 	// --- prep output arg ---
 	return m_impl->ReplaceWord(value ? value->Data() : L"",replacement ? replacement->Data() : L"");
+    }
+void StringBuilder::SecureClear(void)
+    {
+	if (m_impl == nullptr) { return ; }
+	// --- prep output arg ---
+	m_impl->SecureClear();
     }
 Boolean StringBuilder::SetNth(int index, Platform::String ^value, Platform::String ^delimiterChar, Boolean exceptDoubleQuoted, Boolean exceptEscaped)
     {

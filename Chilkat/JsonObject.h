@@ -21,7 +21,10 @@ namespace Chilkat
 {
 
 	ref class JsonArray;
+	ref class StringTable;
+	ref class BinData;
 	ref class StringBuilder;
+	ref class Hashtable;
 
 
 public ref class JsonObject sealed
@@ -138,6 +141,8 @@ public ref class JsonObject sealed
 
 	Boolean AppendString(Platform::String ^name, Platform::String ^value);
 
+	Boolean AppendStringArray(Platform::String ^name, Chilkat::StringTable ^values);
+
 	JsonArray ^ArrayAt(int index);
 
 	JsonArray ^ArrayOf(Platform::String ^jsonPath);
@@ -146,6 +151,10 @@ public ref class JsonObject sealed
 
 	Boolean BoolOf(Platform::String ^jsonPath);
 
+	Boolean BytesOf(Platform::String ^jsonPath, Platform::String ^encoding, Chilkat::BinData ^bd);
+
+	JsonObject ^Clone(void);
+
 	Boolean Delete(Platform::String ^name);
 
 	Boolean DeleteAt(int index);
@@ -153,6 +162,10 @@ public ref class JsonObject sealed
 	Platform::String ^Emit(void);
 
 	Boolean EmitSb(Chilkat::StringBuilder ^sb);
+
+	Platform::String ^EmitWithSubs(Chilkat::Hashtable ^subs, Boolean omitEmpty);
+
+	JsonObject ^FindObjectWithMember(Platform::String ^name);
 
 	JsonObject ^FindRecord(Platform::String ^arrayPath, Platform::String ^relPath, Platform::String ^value, Boolean caseSensitive);
 
@@ -178,9 +191,13 @@ public ref class JsonObject sealed
 
 	Boolean IsNullOf(Platform::String ^jsonPath);
 
+	int JsonTypeOf(Platform::String ^jsonPath);
+
 	Boolean Load(Platform::String ^json);
 
 	Boolean LoadFile(Platform::String ^path);
+
+	Boolean LoadPredefined(Platform::String ^name);
 
 	Boolean LoadSb(Chilkat::StringBuilder ^sb);
 
@@ -189,6 +206,8 @@ public ref class JsonObject sealed
 	JsonObject ^ObjectAt(int index);
 
 	JsonObject ^ObjectOf(Platform::String ^jsonPath);
+
+	Boolean Predefine(Platform::String ^name);
 
 	Boolean Rename(Platform::String ^oldName, Platform::String ^newName);
 
@@ -220,11 +239,21 @@ public ref class JsonObject sealed
 
 	Platform::String ^StringOf(Platform::String ^jsonPath);
 
+	Boolean StringOfSb(Platform::String ^jsonPath, Chilkat::StringBuilder ^sb);
+
 	int TypeAt(int index);
+
+	Boolean UpdateBd(Platform::String ^jsonPath, Platform::String ^encoding, Chilkat::BinData ^bd);
 
 	Boolean UpdateBool(Platform::String ^jsonPath, Boolean value);
 
 	Boolean UpdateInt(Platform::String ^jsonPath, int value);
+
+	Boolean UpdateNull(Platform::String ^jsonPath);
+
+	Boolean UpdateNumber(Platform::String ^jsonPath, Platform::String ^numericStr);
+
+	Boolean UpdateSb(Platform::String ^jsonPath, Chilkat::StringBuilder ^sb);
 
 	Boolean UpdateString(Platform::String ^jsonPath, Platform::String ^value);
 

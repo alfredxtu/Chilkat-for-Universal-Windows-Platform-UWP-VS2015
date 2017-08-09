@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.62
+// This is a generated source file for Chilkat version 9.5.0.69
 #ifndef _C_CkImapWH
 #define _C_CkImapWH
 #include "chilkatDefs.h"
@@ -267,6 +267,8 @@ CK_VISIBLE_PUBLIC BOOL CkImapW_Login(HCkImapW cHandle, const wchar_t *loginName,
 CK_VISIBLE_PUBLIC HCkTaskW CkImapW_LoginAsync(HCkImapW cHandle, const wchar_t *loginName, const wchar_t *password);
 CK_VISIBLE_PUBLIC BOOL CkImapW_Logout(HCkImapW cHandle);
 CK_VISIBLE_PUBLIC HCkTaskW CkImapW_LogoutAsync(HCkImapW cHandle);
+CK_VISIBLE_PUBLIC BOOL CkImapW_MoveMessages(HCkImapW cHandle, HCkMessageSetW messageSet, const wchar_t *destFolder);
+CK_VISIBLE_PUBLIC HCkTaskW CkImapW_MoveMessagesAsync(HCkImapW cHandle, HCkMessageSetW messageSet, const wchar_t *destFolder);
 CK_VISIBLE_PUBLIC BOOL CkImapW_Noop(HCkImapW cHandle);
 CK_VISIBLE_PUBLIC HCkTaskW CkImapW_NoopAsync(HCkImapW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkImapW_RefetchMailFlags(HCkImapW cHandle, HCkEmailW email);

@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat v9.5.0
+// This header is generated for Chilkat 9.5.0.69
 
 #ifndef _CkHashtable_H
 #define _CkHashtable_H
@@ -12,6 +12,7 @@
 #include "CkString.h"
 #include "CkMultiByteBase.h"
 
+class CkStringBuilder;
 class CkStringTable;
 
 
@@ -53,6 +54,10 @@ class CK_VISIBLE_PUBLIC CkHashtable  : public CkMultiByteBase
 	// ----------------------
 	// Methods
 	// ----------------------
+	// Adds to the hash table from XML previously created by calling ToXmlSb.
+	bool AddFromXmlSb(CkStringBuilder &sbXml);
+
+
 	// Adds or replaces an entry with the given key and integer value to the hash
 	// table. Returns true if a new hash entry was added or replaced. Returns false
 	// if an out-of-memory condition occurred.
@@ -95,6 +100,11 @@ class CK_VISIBLE_PUBLIC CkHashtable  : public CkMultiByteBase
 	bool Contains(const char *key);
 
 
+	// Determines if a given key is contained within the hash table. Returns true if
+	// the key exists, otherwise returns false.
+	bool ContainsIntKey(int key);
+
+
 	// Appends the complete set of hashtable key strings to strTable.
 	bool GetKeys(CkStringTable &strTable);
 
@@ -114,6 +124,10 @@ class CK_VISIBLE_PUBLIC CkHashtable  : public CkMultiByteBase
 	// the key existed and was removed. Returns false if the key did not already
 	// exist.
 	bool Remove(const char *key);
+
+
+	// Serializes the hash table to XML format. The XML is appended to sbXml.
+	bool ToXmlSb(CkStringBuilder &sbXml);
 
 
 

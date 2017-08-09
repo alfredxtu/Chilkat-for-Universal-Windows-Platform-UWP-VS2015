@@ -29,6 +29,7 @@ namespace Chilkat
 	ref class Cert;
 	ref class Hashtable;
 	ref class HttpResponse;
+	ref class JsonObject;
 	ref class HttpRequest;
 	ref class StringArray;
 	ref class CkDateTime;
@@ -163,6 +164,11 @@ public ref class Http sealed
 	{
 		Boolean get();
 		void set(Boolean);
+	}
+	property Platform::String ^AuthToken
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
 	}
 	property Boolean AutoAddHostHeader
 	{
@@ -322,6 +328,10 @@ public ref class Http sealed
 	property int32 LastStatus
 	{
 		int32 get();
+	}
+	property Platform::String ^LastStatusText
+	{
+		Platform::String ^get();
 	}
 	property int32 LMFactor
 	{
@@ -634,6 +644,8 @@ public ref class Http sealed
 
 	void ClearInMemoryCookies(void);
 
+	void ClearUrlVars(void);
+
 	IAsyncOperation<Boolean>^ CloseAllConnectionsAsync(void);
 
 	void DnsCacheClear(void);
@@ -682,6 +694,8 @@ public ref class Http sealed
 
 	IAsyncOperation<HttpResponse ^>^ PostJson2Async(Platform::String ^url, Platform::String ^contentType, Platform::String ^jsonText);
 
+	IAsyncOperation<HttpResponse ^>^ PostJson3Async(Platform::String ^url, Platform::String ^contentType, Chilkat::JsonObject ^json);
+
 	IAsyncOperation<HttpResponse ^>^ PostUrlEncodedAsync(Platform::String ^url, Chilkat::HttpRequest ^req);
 
 	IAsyncOperation<HttpResponse ^>^ PostXmlAsync(Platform::String ^endpointUrl, Platform::String ^xmlContent, Platform::String ^xmlCharset);
@@ -696,7 +710,11 @@ public ref class Http sealed
 
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ QuickGetAsync(Platform::String ^url);
 
+	IAsyncOperation<Boolean>^ QuickGetBdAsync(Platform::String ^url, Chilkat::BinData ^binData);
+
 	IAsyncOperation<HttpResponse ^>^ QuickGetObjAsync(Platform::String ^url);
+
+	IAsyncOperation<Boolean>^ QuickGetSbAsync(Platform::String ^url, Chilkat::StringBuilder ^sbContent);
 
 	IAsyncOperation<Platform::String ^>^ QuickGetStrAsync(Platform::String ^url);
 
@@ -728,6 +746,8 @@ public ref class Http sealed
 
 	Platform::String ^S3_GenerateUrl(Platform::String ^bucket, Platform::String ^path, Chilkat::CkDateTime ^expire);
 
+	Platform::String ^S3_GenerateUrlV4(Boolean useHttps, Platform::String ^bucketName, Platform::String ^path, int numSecondsValid, Platform::String ^awsService);
+
 	IAsyncOperation<Platform::String ^>^ S3_ListBucketObjectsAsync(Platform::String ^bucketPath);
 
 	IAsyncOperation<Platform::String ^>^ S3_ListBucketsAsync(void);
@@ -749,6 +769,8 @@ public ref class Http sealed
 	Boolean SetSslClientCertPem(Platform::String ^pemDataOrPath, Platform::String ^pemPassword);
 
 	Boolean SetSslClientCertPfx(Platform::String ^pfxPath, Platform::String ^pfxPassword);
+
+	Boolean SetUrlVar(Platform::String ^name, Platform::String ^value);
 
 	void SleepMs(int millisec);
 

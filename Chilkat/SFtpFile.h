@@ -123,6 +123,11 @@ public ref class SFtpFile sealed
 	{
 		Platform::String ^get();
 	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property Platform::String ^LastModifiedTimeStr
 	{
 		Platform::String ^get();

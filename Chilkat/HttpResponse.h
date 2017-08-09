@@ -20,6 +20,8 @@ using namespace concurrency;
 namespace Chilkat
 {
 
+	ref class BinData;
+	ref class StringBuilder;
 
 
 public ref class HttpResponse sealed
@@ -142,6 +144,10 @@ public ref class HttpResponse sealed
 	// ----------------------
 	// Methods
 	// ----------------------
+	Boolean GetBodyBd(Chilkat::BinData ^binData);
+
+	Boolean GetBodySb(Chilkat::StringBuilder ^sb);
+
 	Platform::String ^GetCookieDomain(int index);
 
 	Platform::String ^GetCookieExpiresStr(int index);

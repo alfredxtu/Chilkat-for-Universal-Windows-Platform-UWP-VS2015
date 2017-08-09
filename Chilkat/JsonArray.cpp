@@ -9,7 +9,9 @@
 #include "include/CkDateTime.h"
 #include "include/CkJsonArrayW.h"
 		
+#include "include/CkStringBuilderW.h"
 #include "include/CkJsonObjectW.h"
+#include "StringBuilder.h"
 #include "JsonObject.h"
 
 
@@ -52,6 +54,22 @@ String ^Chilkat::JsonArray::DebugLogFilePath::get()
 void Chilkat::JsonArray::DebugLogFilePath::set(String ^newVal)
     {
         if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
+Boolean Chilkat::JsonArray::EmitCompact::get()
+    {
+    return m_impl ? m_impl->get_EmitCompact() : false;
+    }
+void Chilkat::JsonArray::EmitCompact::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_EmitCompact(newVal);
+    }
+Boolean Chilkat::JsonArray::EmitCrlf::get()
+    {
+    return m_impl ? m_impl->get_EmitCrlf() : false;
+    }
+void Chilkat::JsonArray::EmitCrlf::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_EmitCrlf(newVal);
     }
 String ^Chilkat::JsonArray::LastErrorHtml::get()
     {
@@ -163,6 +181,15 @@ Platform::String ^JsonArray::Emit(void)
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
+Boolean JsonArray::EmitSb(Chilkat::StringBuilder ^sb)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj0 = sb->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->EmitSb(*pObj0);
+    }
 int JsonArray::IntAt(int index)
     {
 	if (m_impl == nullptr) { return -1; }
@@ -174,6 +201,21 @@ Boolean JsonArray::IsNullAt(int index)
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->IsNullAt(index);
+    }
+Boolean JsonArray::Load(Platform::String ^jsonArray)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->Load(jsonArray ? jsonArray->Data() : L"");
+    }
+Boolean JsonArray::LoadSb(Chilkat::StringBuilder ^sb)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj0 = sb->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->LoadSb(*pObj0);
     }
 JsonObject ^JsonArray::ObjectAt(int index)
     {

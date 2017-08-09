@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat v9.5.0
+// This header is generated for Chilkat 9.5.0.69
 
 #ifndef _CkJsonObjectW_H
 #define _CkJsonObjectW_H
@@ -13,7 +13,10 @@
 #include "CkWideCharBase.h"
 
 class CkJsonArrayW;
+class CkStringTableW;
+class CkBinDataW;
 class CkStringBuilderW;
+class CkHashtableW;
 
 
 
@@ -69,23 +72,35 @@ class CK_VISIBLE_PUBLIC CkJsonObjectW  : public CkWideCharBase
 	// If true then the Emit method outputs in the most compact form possible (a
 	// single-line with no extra whitespace). If false, then emits with whitespace
 	// and indentation to make the JSON human-readable.
+	// 
+	// The default value is true.
+	// 
 	bool get_EmitCompact(void);
 	// If true then the Emit method outputs in the most compact form possible (a
 	// single-line with no extra whitespace). If false, then emits with whitespace
 	// and indentation to make the JSON human-readable.
+	// 
+	// The default value is true.
+	// 
 	void put_EmitCompact(bool newVal);
 
 	// If true then the Emit method uses CRLF line-endings when emitting the
 	// non-compact (pretty-print) format. If false, then bare-LF's are emitted. (The
 	// compact format emits to a single line with no end-of-line characters.) Windows
 	// systems traditionally use CRLF line-endings, whereas Linux, Mac OS X, and other
-	// systems traditionally use bare-LF line-endings. The default value is true.
+	// systems traditionally use bare-LF line-endings.
+	// 
+	// The default value is true.
+	// 
 	bool get_EmitCrLf(void);
 	// If true then the Emit method uses CRLF line-endings when emitting the
 	// non-compact (pretty-print) format. If false, then bare-LF's are emitted. (The
 	// compact format emits to a single line with no end-of-line characters.) Windows
 	// systems traditionally use CRLF line-endings, whereas Linux, Mac OS X, and other
-	// systems traditionally use bare-LF line-endings. The default value is true.
+	// systems traditionally use bare-LF line-endings.
+	// 
+	// The default value is true.
+	// 
 	void put_EmitCrLf(bool newVal);
 
 	// The value of the "i" index to be used when evaluating a JSON path.
@@ -167,6 +182,9 @@ class CK_VISIBLE_PUBLIC CkJsonObjectW  : public CkWideCharBase
 	// method.)
 	bool AppendString(const wchar_t *name, const wchar_t *value);
 
+	// Appends an array of string values.
+	bool AppendStringArray(const wchar_t *name, CkStringTableW &values);
+
 	// Returns the JSON array that is the value of the Nth member. Indexing is 0-based
 	// (the 1st member is at index 0).
 	// The caller is responsible for deleting the object returned by this method.
@@ -183,6 +201,14 @@ class CK_VISIBLE_PUBLIC CkJsonObjectW  : public CkWideCharBase
 	// Returns the boolean at the specified jsonPath.
 	bool BoolOf(const wchar_t *jsonPath);
 
+	// Appends the binary bytes at the specified jsonPath to bd. The encoding indicates the
+	// encoding of the bytes, such as "base64", "hex", etc.
+	bool BytesOf(const wchar_t *jsonPath, const wchar_t *encoding, CkBinDataW &bd);
+
+	// Returns a copy of this JSON object.
+	// The caller is responsible for deleting the object returned by this method.
+	CkJsonObjectW *Clone(void);
+
 	// Deletes the member at having the name specified by name.
 	bool Delete(const wchar_t *name);
 
@@ -193,23 +219,47 @@ class CK_VISIBLE_PUBLIC CkJsonObjectW  : public CkWideCharBase
 	// Writes the JSON document (rooted at the caller) and returns as a string.
 	bool Emit(CkString &outStr);
 	// Writes the JSON document (rooted at the caller) and returns as a string.
-	const wchar_t *emit(void);
+// QT defines the macro "emit" globally.  (Good grief!)
+#if defined(QT_VERSION)
+#pragma push_macro("emit")
+#undef emit
+const wchar_t *emit(void);
+#pragma pop_macro("emit")
+#else
+const wchar_t *emit(void);
+#endif
+
+
 
 	// Appends the JSON to a StringBuilder object.
 	bool EmitSb(CkStringBuilderW &sb);
 
+	// Emits the JSON document with variable substitutions applied. If omitEmpty is true,
+	// then members having empty strings or empty arrays are omitted.
+	bool EmitWithSubs(CkHashtableW &subs, bool omitEmpty, CkString &outStr);
+	// Emits the JSON document with variable substitutions applied. If omitEmpty is true,
+	// then members having empty strings or empty arrays are omitted.
+	const wchar_t *emitWithSubs(CkHashtableW &subs, bool omitEmpty);
+
+	// Recursively searches the JSON subtree rooted at the caller's node for a JSON
+	// object containing a member having a specified name. (If the caller is the root
+	// node of the entire JSON document, then the entire JSON document is searched.)
+	// Returns the first match or _NULL_ if not found.
+	// The caller is responsible for deleting the object returned by this method.
+	CkJsonObjectW *FindObjectWithMember(const wchar_t *name);
+
 	// Finds a JSON record in an array where a particular field equals or matches a
-	// value pattern. Reviewing the examples below is the best way to understand this
+	// value pattern. Reviewing the example below is the best way to understand this
 	// function.
 	// The caller is responsible for deleting the object returned by this method.
 	CkJsonObjectW *FindRecord(const wchar_t *arrayPath, const wchar_t *relPath, const wchar_t *value, bool caseSensitive);
 
 	// Finds a JSON value in an record array where a particular field equals or matches
-	// a value pattern. Reviewing the examples below is the best way to understand this
+	// a value pattern. Reviewing the example below is the best way to understand this
 	// function.
 	bool FindRecordString(const wchar_t *arrayPath, const wchar_t *relPath, const wchar_t *value, bool caseSensitive, const wchar_t *retRelPath, CkString &outStr);
 	// Finds a JSON value in an record array where a particular field equals or matches
-	// a value pattern. Reviewing the examples below is the best way to understand this
+	// a value pattern. Reviewing the example below is the best way to understand this
 	// function.
 	const wchar_t *findRecordString(const wchar_t *arrayPath, const wchar_t *relPath, const wchar_t *value, bool caseSensitive, const wchar_t *retRelPath);
 
@@ -261,6 +311,16 @@ class CK_VISIBLE_PUBLIC CkJsonObjectW  : public CkWideCharBase
 	// false.
 	bool IsNullOf(const wchar_t *jsonPath);
 
+	// Returns the type of data at the given jsonPath. Possible return values are:
+	//     string
+	//     number
+	//     object
+	//     array
+	//     boolean
+	//     null
+	// Returns -1 if no member exists at the given jsonPath.
+	int JsonTypeOf(const wchar_t *jsonPath);
+
 	// Parses a JSON string and loads it into this JSON object to provide DOM-style
 	// access.
 	bool Load(const wchar_t *json);
@@ -268,6 +328,9 @@ class CK_VISIBLE_PUBLIC CkJsonObjectW  : public CkWideCharBase
 	// Loads a JSON file into this JSON object. The path is the file path to the JSON
 	// file.
 	bool LoadFile(const wchar_t *path);
+
+	// Loads this JSON object from a predefined document having a specified name.
+	bool LoadPredefined(const wchar_t *name);
 
 	// Loads JSON from the contents of a StringBuilder object.
 	bool LoadSb(CkStringBuilderW &sb);
@@ -287,6 +350,10 @@ class CK_VISIBLE_PUBLIC CkJsonObjectW  : public CkWideCharBase
 	// Returns the JSON object at the specified jsonPath.
 	// The caller is responsible for deleting the object returned by this method.
 	CkJsonObjectW *ObjectOf(const wchar_t *jsonPath);
+
+	// Adds or replaces this JSON to an internal global set of predefined JSON
+	// documents that can be subsequently loaded by name.
+	bool Predefine(const wchar_t *name);
 
 	// Renames the member named oldName to newName.
 	bool Rename(const wchar_t *oldName, const wchar_t *newName);
@@ -347,6 +414,9 @@ class CK_VISIBLE_PUBLIC CkJsonObjectW  : public CkWideCharBase
 	// Returns the string value at the specified jsonPath.
 	const wchar_t *stringOf(const wchar_t *jsonPath);
 
+	// Appends the string value at the specified jsonPath to sb.
+	bool StringOfSb(const wchar_t *jsonPath, CkStringBuilderW &sb);
+
 	// Returns the type of data at the given index. Possible return values are:
 	//     string
 	//     number
@@ -357,6 +427,12 @@ class CK_VISIBLE_PUBLIC CkJsonObjectW  : public CkWideCharBase
 	// Returns -1 if no member exists at the given index.
 	int TypeAt(int index);
 
+	// Updates or appends a new string member with the encoded contents of bd. If the
+	// full path specified by jsonPath does not exist, it is automatically created as
+	// needed. The bytes contained in bd are encoded according to encoding (such as
+	// "base64", "hex", etc.)
+	bool UpdateBd(const wchar_t *jsonPath, const wchar_t *encoding, CkBinDataW &bd);
+
 	// Updates or appends a new boolean member. If the full path specified by jsonPath does
 	// not exist, it is automatically created as needed.
 	bool UpdateBool(const wchar_t *jsonPath, bool value);
@@ -365,8 +441,26 @@ class CK_VISIBLE_PUBLIC CkJsonObjectW  : public CkWideCharBase
 	// not exist, it is automatically created as needed.
 	bool UpdateInt(const wchar_t *jsonPath, int value);
 
+	// Updates or appends a null member. If the full path specified by jsonPath does not
+	// exist, it is automatically created as needed.
+	bool UpdateNull(const wchar_t *jsonPath);
+
+	// Updates or appends a new numeric member. If the full path specified by jsonPath does
+	// not exist, it is automatically created as needed.
+	bool UpdateNumber(const wchar_t *jsonPath, const wchar_t *numericStr);
+
+	// Updates or appends a new string member with the contents of sb. If the full
+	// path specified by jsonPath does not exist, it is automatically created as needed.
+	bool UpdateSb(const wchar_t *jsonPath, CkStringBuilderW &sb);
+
 	// Updates or appends a new string member. If the full path specified by jsonPath does
 	// not exist, it is automatically created as needed.
+	// 
+	// Important: Prior to version 9.5.0.68, the string passed in to this method did
+	// not get properly JSON escaped. This could cause problems if non-us-ascii chars
+	// are present, or if certain special chars such as quotes, CR's, or LF's are
+	// present. Version 9.5.0.68 fixes the problem.
+	// 
 	bool UpdateString(const wchar_t *jsonPath, const wchar_t *value);
 
 

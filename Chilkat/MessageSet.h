@@ -51,6 +51,11 @@ public ref class MessageSet sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 
 
 	// ----------------------

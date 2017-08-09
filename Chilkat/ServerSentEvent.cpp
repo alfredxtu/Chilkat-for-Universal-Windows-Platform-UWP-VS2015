@@ -55,6 +55,14 @@ String ^Chilkat::ServerSentEvent::LastEventId::get()
     {
     return ref new String(m_impl ? m_impl->lastEventId() : L"");
     }
+Boolean Chilkat::ServerSentEvent::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::ServerSentEvent::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+    }
 int Chilkat::ServerSentEvent::Retry::get()
     {
     return m_impl ? m_impl->get_Retry() : 0;

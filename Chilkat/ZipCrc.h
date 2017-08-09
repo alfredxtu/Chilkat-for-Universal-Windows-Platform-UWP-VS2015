@@ -74,6 +74,11 @@ public ref class ZipCrc sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 
 
 	// ----------------------

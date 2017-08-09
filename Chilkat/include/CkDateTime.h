@@ -79,6 +79,10 @@ class CK_VISIBLE_PUBLIC CkDateTime  : public CkMultiByteBase
 	// 32-bit NTP time (number of seconds since 00:00 (midnight) 1 January 1900 GMT)
 	bool SetFromNtpTime(int t);
 
+
+	// Return the difference in seconds between this date/time and dt.  (returns this-dt)
+	int DiffSeconds(CkDateTime &dt);
+
 	// 64-bit Unix time.
 	__int64 GetAsUnixTime64(bool bLocal);
 	bool SetFromUnixTime64(bool bLocal, __int64 t);
@@ -108,6 +112,11 @@ class CK_VISIBLE_PUBLIC CkDateTime  : public CkMultiByteBase
 	double GetAsOleDate(bool bLocal);
 	bool SetFromOleDate(bool bLocal, double dt);
 
+	 bool AddSeconds(int numSeconds);
+	 bool GetAsUnixTimeStr(bool bLocal, CkString &outStr);
+	 const char *getAsUnixTimeStr(bool bLocal);
+	 bool GetAsIso8601(const char *formatStr, bool bLocal, CkString &outStr);
+	 const char *getAsIso8601(const char *formatStr, bool bLocal);
 
 
 //	The DOS date/time format is a bitmask:
@@ -209,6 +218,18 @@ class CK_VISIBLE_PUBLIC CkDateTime  : public CkMultiByteBase
 	CkDtObj *GetDtObj(bool bLocal);
 	bool SetFromDtObj(CkDtObj &dtObj);
 
+	// Loads the date/time with a string having the format as produced by the Serialize
+	// method, which is a string of SPACE separated integers containing (in this order)
+	// year, month, day, hour, minutes, seconds, and a UTC flag having the value of
+	// 1/0.
+	bool ExpiresWithin(int n, const char *units);
+
+
+	// Loads the date/time with a string having the format as produced by the Serialize
+	// method, which is a string of SPACE separated integers containing (in this order)
+	// year, month, day, hour, minutes, seconds, and a UTC flag having the value of
+	// 1/0.
+	bool OlderThan(int n, const char *units);
 
 };
 #if !defined(__sun__) && !defined(__sun)

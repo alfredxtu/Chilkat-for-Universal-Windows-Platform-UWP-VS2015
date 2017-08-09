@@ -295,6 +295,8 @@ public ref class SshTunnel sealed
 
 	Boolean DisconnectAllClients(Boolean waitForThreads);
 
+	Platform::String ^GetCurrentState(void);
+
 	Boolean IsSshConnected(void);
 
 	Boolean StopAccepting(Boolean waitForThread);

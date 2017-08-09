@@ -11,8 +11,10 @@
 		
 #include "include/CkZipEntryW.h"
 #include "include/CkStringArrayW.h"
+#include "include/CkBinDataW.h"
 #include "ZipEntry.h"
 #include "StringArray.h"
+#include "BinData.h"
 
 
 using namespace Chilkat;
@@ -700,6 +702,17 @@ Boolean Zip::NewZip(Platform::String ^zipFilePath)
 	cxProgress.m_sender = this;
 	return m_impl->NewZip(zipFilePath ? zipFilePath->Data() : L"");
     }
+Boolean Zip::OpenBd(Chilkat::BinData ^binData)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj0 = binData->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxZipProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->OpenBd(*pObj0);
+    }
 Boolean Zip::OpenFromByteData(Windows::Foundation::Collections::IVector<uint8>^byteData)
     {
 	if (m_impl == nullptr) { return false; }
@@ -722,9 +735,9 @@ Boolean Zip::OpenFromMemory(Windows::Foundation::Collections::IVector<uint8>^inD
 	cxProgress.m_sender = this;
 	return m_impl->OpenFromMemory(db0);
     }
-IAsyncOperation<Boolean>^ Zip::OpenZipAsync(Platform::String ^ZipFileName)
+IAsyncOperation<Boolean>^ Zip::OpenZipAsync(Platform::String ^zipPath)
     {
-return create_async([this, ZipFileName]() -> Boolean
+return create_async([this, zipPath]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -732,7 +745,7 @@ return create_async([this, ZipFileName]() -> Boolean
 	// --- prep output arg ---
 	CxZipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	return m_impl->OpenZip(ZipFileName ? ZipFileName->Data() : L"");
+	return m_impl->OpenZip(zipPath ? zipPath->Data() : L"");
 
 });
     }
@@ -870,6 +883,23 @@ Boolean Zip::VerifyPassword(void)
 	CxZipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->VerifyPassword();
+    }
+IAsyncOperation<Boolean>^ Zip::WriteBdAsync(Chilkat::BinData ^binData)
+    {
+return create_async([this, binData]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj0 = binData->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxZipProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->WriteBd(*pObj0);
+
+});
     }
 IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ Zip::WriteToMemoryAsync(void)
     {

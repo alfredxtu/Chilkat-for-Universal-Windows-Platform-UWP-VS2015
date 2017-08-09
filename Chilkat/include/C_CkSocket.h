@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.62
+// This is a generated source file for Chilkat version 9.5.0.69
 #ifndef _C_CkSocket_H
 #define _C_CkSocket_H
 #include "chilkatDefs.h"
@@ -238,6 +238,10 @@ CK_VISIBLE_PUBLIC BOOL CkSocket_IsUnlocked(HCkSocket cHandle);
 CK_VISIBLE_PUBLIC BOOL CkSocket_LoadTaskResult(HCkSocket cHandle, HCkTask task);
 CK_VISIBLE_PUBLIC BOOL CkSocket_PollDataAvailable(HCkSocket cHandle);
 CK_VISIBLE_PUBLIC HCkTask CkSocket_PollDataAvailableAsync(HCkSocket cHandle);
+CK_VISIBLE_PUBLIC BOOL CkSocket_ReceiveBd(HCkSocket cHandle, HCkBinData binData);
+CK_VISIBLE_PUBLIC HCkTask CkSocket_ReceiveBdAsync(HCkSocket cHandle, HCkBinData binData);
+CK_VISIBLE_PUBLIC BOOL CkSocket_ReceiveBdN(HCkSocket cHandle, unsigned long numBytes, HCkBinData binData);
+CK_VISIBLE_PUBLIC HCkTask CkSocket_ReceiveBdNAsync(HCkSocket cHandle, unsigned long numBytes, HCkBinData binData);
 CK_VISIBLE_PUBLIC BOOL CkSocket_ReceiveByte(HCkSocket cHandle, BOOL bUnsigned);
 CK_VISIBLE_PUBLIC HCkTask CkSocket_ReceiveByteAsync(HCkSocket cHandle, BOOL bUnsigned);
 CK_VISIBLE_PUBLIC BOOL CkSocket_ReceiveBytes(HCkSocket cHandle, HCkByteData outData);
@@ -258,6 +262,8 @@ CK_VISIBLE_PUBLIC HCkTask CkSocket_ReceiveInt32Async(HCkSocket cHandle, BOOL big
 CK_VISIBLE_PUBLIC BOOL CkSocket_ReceiveNBytesENC(HCkSocket cHandle, unsigned long numBytes, const char *encodingAlg, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkSocket_receiveNBytesENC(HCkSocket cHandle, unsigned long numBytes, const char *encodingAlg);
 CK_VISIBLE_PUBLIC HCkTask CkSocket_ReceiveNBytesENCAsync(HCkSocket cHandle, unsigned long numBytes, const char *encodingAlg);
+CK_VISIBLE_PUBLIC BOOL CkSocket_ReceiveSb(HCkSocket cHandle, HCkStringBuilder sb);
+CK_VISIBLE_PUBLIC HCkTask CkSocket_ReceiveSbAsync(HCkSocket cHandle, HCkStringBuilder sb);
 CK_VISIBLE_PUBLIC BOOL CkSocket_ReceiveString(HCkSocket cHandle, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkSocket_receiveString(HCkSocket cHandle);
 CK_VISIBLE_PUBLIC HCkTask CkSocket_ReceiveStringAsync(HCkSocket cHandle);
@@ -280,6 +286,8 @@ CK_VISIBLE_PUBLIC int CkSocket_SelectForReading(HCkSocket cHandle, int timeoutMs
 CK_VISIBLE_PUBLIC HCkTask CkSocket_SelectForReadingAsync(HCkSocket cHandle, int timeoutMs);
 CK_VISIBLE_PUBLIC int CkSocket_SelectForWriting(HCkSocket cHandle, int timeoutMs);
 CK_VISIBLE_PUBLIC HCkTask CkSocket_SelectForWritingAsync(HCkSocket cHandle, int timeoutMs);
+CK_VISIBLE_PUBLIC BOOL CkSocket_SendBd(HCkSocket cHandle, HCkBinData binData, unsigned long offset, unsigned long numBytes);
+CK_VISIBLE_PUBLIC HCkTask CkSocket_SendBdAsync(HCkSocket cHandle, HCkBinData binData, unsigned long offset, unsigned long numBytes);
 CK_VISIBLE_PUBLIC BOOL CkSocket_SendByte(HCkSocket cHandle, int value);
 CK_VISIBLE_PUBLIC HCkTask CkSocket_SendByteAsync(HCkSocket cHandle, int value);
 CK_VISIBLE_PUBLIC BOOL CkSocket_SendBytes(HCkSocket cHandle, HCkByteData data);
@@ -292,8 +300,11 @@ CK_VISIBLE_PUBLIC BOOL CkSocket_SendInt16(HCkSocket cHandle, int value, BOOL big
 CK_VISIBLE_PUBLIC HCkTask CkSocket_SendInt16Async(HCkSocket cHandle, int value, BOOL bigEndian);
 CK_VISIBLE_PUBLIC BOOL CkSocket_SendInt32(HCkSocket cHandle, int value, BOOL bigEndian);
 CK_VISIBLE_PUBLIC HCkTask CkSocket_SendInt32Async(HCkSocket cHandle, int value, BOOL bigEndian);
+CK_VISIBLE_PUBLIC BOOL CkSocket_SendSb(HCkSocket cHandle, HCkStringBuilder sb);
+CK_VISIBLE_PUBLIC HCkTask CkSocket_SendSbAsync(HCkSocket cHandle, HCkStringBuilder sb);
 CK_VISIBLE_PUBLIC BOOL CkSocket_SendString(HCkSocket cHandle, const char *stringToSend);
 CK_VISIBLE_PUBLIC HCkTask CkSocket_SendStringAsync(HCkSocket cHandle, const char *stringToSend);
+CK_VISIBLE_PUBLIC BOOL CkSocket_SendWakeOnLan(HCkSocket cHandle, const char *macAddress, int port, const char *ipBroadcastAddr);
 CK_VISIBLE_PUBLIC BOOL CkSocket_SetSslClientCert(HCkSocket cHandle, HCkCert cert);
 CK_VISIBLE_PUBLIC BOOL CkSocket_SetSslClientCertPem(HCkSocket cHandle, const char *pemDataOrFilename, const char *pemPassword);
 CK_VISIBLE_PUBLIC BOOL CkSocket_SetSslClientCertPfx(HCkSocket cHandle, const char *pfxFilename, const char *pfxPassword);

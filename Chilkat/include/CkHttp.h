@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat v9.5.0
+// This header is generated for Chilkat 9.5.0.69
 
 #ifndef _CkHttp_H
 #define _CkHttp_H
@@ -19,6 +19,7 @@ class CkBinData;
 class CkStringBuilder;
 class CkCert;
 class CkHashtable;
+class CkJsonObject;
 class CkHttpRequest;
 class CkStringArray;
 class CkDateTime;
@@ -132,6 +133,16 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	// If this property is set to false, then no MIME header folding will be
 	// automatically applied to any request header. The default is true.
 	void put_AllowHeaderFolding(bool newVal);
+
+	// If set, then automatically adds the "Authorization: Bearer " header to all
+	// requests.
+	void get_AuthToken(CkString &str);
+	// If set, then automatically adds the "Authorization: Bearer " header to all
+	// requests.
+	const char *authToken(void);
+	// If set, then automatically adds the "Authorization: Bearer " header to all
+	// requests.
+	void put_AuthToken(const char *newVal);
 
 	// If set to true, the "Host" header field will automatically be added to the
 	// request header for any QuickGet or QuickGetStr method calls. The value of the
@@ -924,6 +935,17 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	// the StatusCode property of the response object.
 	int get_LastStatus(void);
 
+	// The last HTTP status text received by the HTTP component. This only applies to
+	// methods that do not return an HTTP response object. For methods that return an
+	// HTTP response object, such as SynchronousRequest, the status text is found in
+	// the StatusText property of the response object.
+	void get_LastStatusText(CkString &str);
+	// The last HTTP status text received by the HTTP component. This only applies to
+	// methods that do not return an HTTP response object. For methods that return an
+	// HTTP response object, such as SynchronousRequest, the status text is found in
+	// the StatusText property of the response object.
+	const char *lastStatusText(void);
+
 	// An integer between 1 and 100 that indicates the percentage of time from the HTTP
 	// page's last-modified date that will be used for the freshness period. The
 	// default value is 25. For example, if a page is fetched with a last-modified date
@@ -1144,25 +1166,25 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	void put_OAuthRealm(const char *newVal);
 
 	// The OAuth signature method, such as "HMAC-SHA1" to be used in the Authorization
-	// header. The default is "HMAC-SHA1". It is also possible to choose "RSA-SHA1" or
-	// "RSA-SHA2", in which case the RSA private key would need to be provided via the
-	// SetOAuthRsaKey method.
+	// header. The default is "HMAC-SHA1". It is also possible to choose "HMAC-SHA256",
+	// "RSA-SHA1" or "RSA-SHA2". For RSA algorithms, an RSA private key would need to
+	// be provided via the SetOAuthRsaKey method.
 	// 
 	// Note: RSA-SHA2 is supported starting in Chilkat v9.5.0.56
 	// 
 	void get_OAuthSigMethod(CkString &str);
 	// The OAuth signature method, such as "HMAC-SHA1" to be used in the Authorization
-	// header. The default is "HMAC-SHA1". It is also possible to choose "RSA-SHA1" or
-	// "RSA-SHA2", in which case the RSA private key would need to be provided via the
-	// SetOAuthRsaKey method.
+	// header. The default is "HMAC-SHA1". It is also possible to choose "HMAC-SHA256",
+	// "RSA-SHA1" or "RSA-SHA2". For RSA algorithms, an RSA private key would need to
+	// be provided via the SetOAuthRsaKey method.
 	// 
 	// Note: RSA-SHA2 is supported starting in Chilkat v9.5.0.56
 	// 
 	const char *oAuthSigMethod(void);
 	// The OAuth signature method, such as "HMAC-SHA1" to be used in the Authorization
-	// header. The default is "HMAC-SHA1". It is also possible to choose "RSA-SHA1" or
-	// "RSA-SHA2", in which case the RSA private key would need to be provided via the
-	// SetOAuthRsaKey method.
+	// header. The default is "HMAC-SHA1". It is also possible to choose "HMAC-SHA256",
+	// "RSA-SHA1" or "RSA-SHA2". For RSA algorithms, an RSA private key would need to
+	// be provided via the SetOAuthRsaKey method.
 	// 
 	// Note: RSA-SHA2 is supported starting in Chilkat v9.5.0.56
 	// 
@@ -1531,54 +1553,34 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	void put_SocksVersion(int newVal);
 
 	// Sets the receive buffer size socket option. Normally, this property should be
-	// left unchanged. The default value is 0, which indicates that the receive buffer
-	// size socket option should not be explicitly set (i.e. the system default value,
-	// which may vary from system to system, should be used).
+	// left unchanged. The default value is 4194304.
 	// 
-	// This property can be changed if download performance seems slow. It is
-	// recommended to be a multiple of 4096. To see the current system's default
-	// receive buffer size, examine the LastErrorText property after calling any method
-	// that establishes a connection. It should be reported under the heading
-	// "SO_RCVBUF". To boost performance, try setting it equal to 2, 3, or 4 times the
-	// default value.
+	// This property can be increased if download performance seems slow. It is
+	// recommended to be a multiple of 4096.
 	// 
 	int get_SoRcvBuf(void);
 	// Sets the receive buffer size socket option. Normally, this property should be
-	// left unchanged. The default value is 0, which indicates that the receive buffer
-	// size socket option should not be explicitly set (i.e. the system default value,
-	// which may vary from system to system, should be used).
+	// left unchanged. The default value is 4194304.
 	// 
-	// This property can be changed if download performance seems slow. It is
-	// recommended to be a multiple of 4096. To see the current system's default
-	// receive buffer size, examine the LastErrorText property after calling any method
-	// that establishes a connection. It should be reported under the heading
-	// "SO_RCVBUF". To boost performance, try setting it equal to 2, 3, or 4 times the
-	// default value.
+	// This property can be increased if download performance seems slow. It is
+	// recommended to be a multiple of 4096.
 	// 
 	void put_SoRcvBuf(int newVal);
 
 	// Sets the send buffer size socket option. Normally, this property should be left
-	// unchanged. The default value is 0, which indicates that the send buffer size
-	// socket option should not be explicitly set (i.e. the system default value, which
-	// may vary from system to system, should be used).
+	// unchanged. The default value is 262144.
 	// 
-	// This property can be changed if upload performance seems slow. It is recommended
-	// to be a multiple of 4096. To see the current system's default send buffer size,
-	// examine the LastErrorText property after calling any method that establishes a
-	// connection. It should be reported under the heading "SO_SNDBUF". To boost
-	// performance, try setting it equal to 2, 3, or 4 times the default value.
+	// This property can be increased if upload performance seems slow. It is
+	// recommended to be a multiple of 4096. Testing with sizes such as 512K and 1MB is
+	// reasonable.
 	// 
 	int get_SoSndBuf(void);
 	// Sets the send buffer size socket option. Normally, this property should be left
-	// unchanged. The default value is 0, which indicates that the send buffer size
-	// socket option should not be explicitly set (i.e. the system default value, which
-	// may vary from system to system, should be used).
+	// unchanged. The default value is 262144.
 	// 
-	// This property can be changed if upload performance seems slow. It is recommended
-	// to be a multiple of 4096. To see the current system's default send buffer size,
-	// examine the LastErrorText property after calling any method that establishes a
-	// connection. It should be reported under the heading "SO_SNDBUF". To boost
-	// performance, try setting it equal to 2, 3, or 4 times the default value.
+	// This property can be increased if upload performance seems slow. It is
+	// recommended to be a multiple of 4096. Testing with sizes such as 512K and 1MB is
+	// reasonable.
 	// 
 	void put_SoSndBuf(int newVal);
 
@@ -2113,6 +2115,10 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	void ClearInMemoryCookies(void);
 
 
+	// Clears all URL variable values previously set by one or more calls to SetUrlVar.
+	void ClearUrlVars(void);
+
+
 	// Closes all connections still open from previous HTTP requests.
 	// 
 	// An HTTP object instance will maintain up to 10 connections. If the HTTP server's
@@ -2197,17 +2203,13 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 
 
 	// Downloads the content at the url into a Chilkat StringBuilder object. The charset
-	// tells Chilkat how to interpret the bytes received. If left empty, then Chilkat
-	// will use whatever information about charset that is available in the HTTP
-	// response, or default to utf-8. The sb is appended with the downloaded text
-	// data.
+	// tells Chilkat how to interpret the bytes received. The sb is appended with the
+	// downloaded text data.
 	bool DownloadSb(const char *url, const char *charset, CkStringBuilder &sb);
 
 	// Downloads the content at the url into a Chilkat StringBuilder object. The charset
-	// tells Chilkat how to interpret the bytes received. If left empty, then Chilkat
-	// will use whatever information about charset that is available in the HTTP
-	// response, or default to utf-8. The sb is appended with the downloaded text
-	// data.
+	// tells Chilkat how to interpret the bytes received. The sb is appended with the
+	// downloaded text data.
 	CkTask *DownloadSbAsync(const char *url, const char *charset, CkStringBuilder &sb);
 
 
@@ -2559,6 +2561,14 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	CkTask *PostJson2Async(const char *url, const char *contentType, const char *jsonText);
 
 
+	// The same as PostJson2,except a JSON object is passed in for the request body.
+	// The caller is responsible for deleting the object returned by this method.
+	CkHttpResponse *PostJson3(const char *url, const char *contentType, CkJsonObject &json);
+
+	// The same as PostJson2,except a JSON object is passed in for the request body.
+	CkTask *PostJson3Async(const char *url, const char *contentType, CkJsonObject &json);
+
+
 	// Sends a simple URL encoded POST. The form parameters are sent in the body of the
 	// HTTP request in x-www-form-urlencoded format. The content-type is
 	// "application/x-www-form-urlencoded".
@@ -2576,6 +2586,12 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	// used in the xmlContent, which is typically "utf-8". The HTTP response is returned in
 	// an HTTP response object.
 	// 
+	// Important: This method sends the POST with a "Content-Type" header value of
+	// "text/xml". Sometimes a server might require the Content-Type header to be
+	// "application/xml". To use "application/xml" instead of the default "text/xml",
+	// call SetRequestHeader("Content-Type","application/xml") prior to calling this
+	// method.
+	// 
 	// To use HTTPS simply pass an endpointUrl beginning with "https://" instead of "http://".
 	// This applies to any Chilkat method where a URL is passed as an argument.
 	// 
@@ -2586,6 +2602,12 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	// making SOAP calls using HTTP POST. The xmlCharset should match the character encoding
 	// used in the xmlContent, which is typically "utf-8". The HTTP response is returned in
 	// an HTTP response object.
+	// 
+	// Important: This method sends the POST with a "Content-Type" header value of
+	// "text/xml". Sometimes a server might require the Content-Type header to be
+	// "application/xml". To use "application/xml" instead of the default "text/xml",
+	// call SetRequestHeader("Content-Type","application/xml") prior to calling this
+	// method.
 	// 
 	// To use HTTPS simply pass an endpointUrl beginning with "https://" instead of "http://".
 	// This applies to any Chilkat method where a URL is passed as an argument.
@@ -2784,6 +2806,17 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	CkTask *QuickGetAsync(const char *url);
 
 
+	// The same as QuickGet, but returns the content in a Chilkat BinData object. The
+	// existing content of binData, if any, is cleared and replaced with the downloaded
+	// content.
+	bool QuickGetBd(const char *url, CkBinData &binData);
+
+	// The same as QuickGet, but returns the content in a Chilkat BinData object. The
+	// existing content of binData, if any, is cleared and replaced with the downloaded
+	// content.
+	CkTask *QuickGetBdAsync(const char *url, CkBinData &binData);
+
+
 	// Sends an HTTP GET request for a URL and returns the response object. If the
 	// SendCookies property is true, matching cookies previously persisted to the
 	// CookiesDir are automatically included in the request. If the FetchFromCache
@@ -2796,6 +2829,17 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	// CookiesDir are automatically included in the request. If the FetchFromCache
 	// property is true, the page could be fetched directly from cache.
 	CkTask *QuickGetObjAsync(const char *url);
+
+
+	// The same as QuickGetStr, but returns the content in a Chilkat StringBuilder
+	// object. The existing content of sbContent, if any, is cleared and replaced with the
+	// downloaded content.
+	bool QuickGetSb(const char *url, CkStringBuilder &sbContent);
+
+	// The same as QuickGetStr, but returns the content in a Chilkat StringBuilder
+	// object. The existing content of sbContent, if any, is cleared and replaced with the
+	// downloaded content.
+	CkTask *QuickGetSbAsync(const char *url, CkStringBuilder &sbContent);
 
 
 	// Sends an HTTP GET request for a URL and returns the response body as a string.
@@ -2993,15 +3037,49 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	CkTask *S3_FileExistsAsync(const char *bucketPath, const char *objectName);
 
 
-	// Generates a temporary pre-signed URL for Amazon S3. Requires that the
-	// AwsSecretKey and AwsAccessKey be set to valid values prior to calling this
+	// Generates a temporary pre-signed URL for Amazon S3 using AWS Signature V2. (Call
+	// S3_GenerateUrlV4 to generate AWS Signature V4 pre-signed URLs.) Requires that
+	// the AwsSecretKey and AwsAccessKey be set to valid values prior to calling this
 	// method.
 	bool S3_GenerateUrl(const char *bucket, const char *path, CkDateTime &expire, CkString &outStr);
 
-	// Generates a temporary pre-signed URL for Amazon S3. Requires that the
-	// AwsSecretKey and AwsAccessKey be set to valid values prior to calling this
+	// Generates a temporary pre-signed URL for Amazon S3 using AWS Signature V2. (Call
+	// S3_GenerateUrlV4 to generate AWS Signature V4 pre-signed URLs.) Requires that
+	// the AwsSecretKey and AwsAccessKey be set to valid values prior to calling this
 	// method.
 	const char *s3_GenerateUrl(const char *bucket, const char *path, CkDateTime &expire);
+
+	// Generates a temporary pre-signed URL for Amazon S3 using AWS Signature V4. (Call
+	// S3_GenerateUrl to generate AWS Signature V2 pre-signed URLs.) Requires that the
+	// AwsSecretKey, AwsAccessKey, and AwsRegion properties be set to valid values
+	// prior to calling this method. Also requires the AwsEndpoint property to be set
+	// if the endpoint is different than "s3.amazonaws.com".
+	// 
+	// The URL that is generated has this format:
+	// https:////?X-Amz-Algorithm=AWS4-HMAC-SHA256
+	// &X-Amz-Credential=////aws4_request
+	// &X-Amz-Date=&X-Amz-Expires=&X-Amz-SignedHeaders=host
+	// &X-Amz-Signature=
+	// 
+	// The numSecondsValid is a string naming the AWS service, such as "s3".   If useHttps is true, then the URL begins with "https://", otherwise it begins with "http://".
+	// 
+	bool S3_GenerateUrlV4(bool useHttps, const char *bucketName, const char *path, int numSecondsValid, const char *awsService, CkString &outStr);
+
+	// Generates a temporary pre-signed URL for Amazon S3 using AWS Signature V4. (Call
+	// S3_GenerateUrl to generate AWS Signature V2 pre-signed URLs.) Requires that the
+	// AwsSecretKey, AwsAccessKey, and AwsRegion properties be set to valid values
+	// prior to calling this method. Also requires the AwsEndpoint property to be set
+	// if the endpoint is different than "s3.amazonaws.com".
+	// 
+	// The URL that is generated has this format:
+	// https:////?X-Amz-Algorithm=AWS4-HMAC-SHA256
+	// &X-Amz-Credential=////aws4_request
+	// &X-Amz-Date=&X-Amz-Expires=&X-Amz-SignedHeaders=host
+	// &X-Amz-Signature=
+	// 
+	// The numSecondsValid is a string naming the AWS service, such as "s3".   If useHttps is true, then the URL begins with "https://", otherwise it begins with "http://".
+	// 
+	const char *s3_GenerateUrlV4(bool useHttps, const char *bucketName, const char *path, int numSecondsValid, const char *awsService);
 
 	// Retrieves the XML listing of the objects contained within an Amazon S3 bucket.
 	// (This is like a directory listing, but in XML format.)
@@ -3156,6 +3234,12 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	// Allows for a client-side certificate + private key to be used for the SSL / TLS
 	// connection (often called 2-way SSL).
 	bool SetSslClientCertPfx(const char *pfxPath, const char *pfxPassword);
+
+
+	// Sets the value of a variable for substitutions in URLs passed to any method.
+	// Variables can appear in URLs in the following format: {$varName}. For example:
+	// https://graph.microsoft.com/v1.0/users/{$id}
+	bool SetUrlVar(const char *name, const char *value);
 
 
 	// Convenience method to force the calling process to sleep for a number of

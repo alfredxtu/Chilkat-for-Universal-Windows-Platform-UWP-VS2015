@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.62
+// This is a generated source file for Chilkat version 9.5.0.69
 #ifndef _C_CkUrlWH
 #define _C_CkUrlWH
 #include "chilkatDefs.h"
@@ -14,6 +14,8 @@ CK_VISIBLE_PUBLIC void CkUrlW_getHost(HCkUrlW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkUrlW_host(HCkUrlW cHandle);
 CK_VISIBLE_PUBLIC void CkUrlW_getHostType(HCkUrlW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkUrlW_hostType(HCkUrlW cHandle);
+CK_VISIBLE_PUBLIC BOOL CkUrlW_getLastMethodSuccess(HCkUrlW cHandle);
+CK_VISIBLE_PUBLIC void  CkUrlW_putLastMethodSuccess(HCkUrlW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkUrlW_getLogin(HCkUrlW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkUrlW_login(HCkUrlW cHandle);
 CK_VISIBLE_PUBLIC void CkUrlW_getPassword(HCkUrlW cHandle, HCkString retval);

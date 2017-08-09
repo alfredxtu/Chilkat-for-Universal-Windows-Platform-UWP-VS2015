@@ -14,6 +14,7 @@
 #include "include/CkCertW.h"
 #include "include/CkHashtableW.h"
 #include "include/CkHttpResponseW.h"
+#include "include/CkJsonObjectW.h"
 #include "include/CkHttpRequestW.h"
 #include "include/CkStringArrayW.h"
 #include "include/CkPrivateKeyW.h"
@@ -22,6 +23,7 @@
 #include "Cert.h"
 #include "Hashtable.h"
 #include "HttpResponse.h"
+#include "JsonObject.h"
 #include "HttpRequest.h"
 #include "StringArray.h"
 #include "CkDateTime.h"
@@ -107,6 +109,14 @@ Boolean Chilkat::Http::AllowHeaderFolding::get()
 void Chilkat::Http::AllowHeaderFolding::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_AllowHeaderFolding(newVal);
+    }
+String ^Chilkat::Http::AuthToken::get()
+    {
+    return ref new String(m_impl ? m_impl->authToken() : L"");
+    }
+void Chilkat::Http::AuthToken::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_AuthToken(newVal ? newVal->Data() : L"");
     }
 Boolean Chilkat::Http::AutoAddHostHeader::get()
     {
@@ -335,6 +345,10 @@ String ^Chilkat::Http::LastResponseHeader::get()
 int Chilkat::Http::LastStatus::get()
     {
     return m_impl ? m_impl->get_LastStatus() : 0;
+    }
+String ^Chilkat::Http::LastStatusText::get()
+    {
+    return ref new String(m_impl ? m_impl->lastStatusText() : L"");
     }
 int Chilkat::Http::LMFactor::get()
     {
@@ -830,6 +844,14 @@ void Http::ClearInMemoryCookies(void)
 	cxProgress.m_sender = this;
 	m_impl->ClearInMemoryCookies();
     }
+void Http::ClearUrlVars(void)
+    {
+	if (m_impl == nullptr) { return ; }
+	// --- prep output arg ---
+	CxHttpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	m_impl->ClearUrlVars();
+    }
 IAsyncOperation<Boolean>^ Http::CloseAllConnectionsAsync(void)
     {
 return create_async([this]() -> Boolean
@@ -1169,6 +1191,27 @@ return create_async([this, url, contentType, jsonText]() -> HttpResponse ^
 
 });
     }
+IAsyncOperation<HttpResponse ^>^ Http::PostJson3Async(Platform::String ^url, Platform::String ^contentType, Chilkat::JsonObject ^json)
+    {
+return create_async([this, url, contentType, json]() -> HttpResponse ^
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return nullptr; }
+	if (json == nullptr) { return nullptr; }
+	CkJsonObjectW* pObj2 = json->m_impl;
+	 if (!pObj2) { return nullptr; }
+	// --- prep output arg ---
+	CxHttpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	CkHttpResponseW *pRetObj = m_impl->PostJson3(url ? url->Data() : L"",contentType ? contentType->Data() : L"",*pObj2);
+	if (!pRetObj) return nullptr;
+	Chilkat::HttpResponse ^pHttpResponse = ref new Chilkat::HttpResponse();
+	pHttpResponse->m_impl = pRetObj;
+	return pHttpResponse;
+
+});
+    }
 IAsyncOperation<HttpResponse ^>^ Http::PostUrlEncodedAsync(Platform::String ^url, Chilkat::HttpRequest ^req)
     {
 return create_async([this, url, req]() -> HttpResponse ^
@@ -1295,6 +1338,23 @@ return create_async([this, url]() -> Windows::Foundation::Collections::IVector<u
 
 });
     }
+IAsyncOperation<Boolean>^ Http::QuickGetBdAsync(Platform::String ^url, Chilkat::BinData ^binData)
+    {
+return create_async([this, url, binData]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj1 = binData->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxHttpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->QuickGetBd(url ? url->Data() : L"",*pObj1);
+
+});
+    }
 IAsyncOperation<HttpResponse ^>^ Http::QuickGetObjAsync(Platform::String ^url)
     {
 return create_async([this, url]() -> HttpResponse ^
@@ -1310,6 +1370,23 @@ return create_async([this, url]() -> HttpResponse ^
 	Chilkat::HttpResponse ^pHttpResponse = ref new Chilkat::HttpResponse();
 	pHttpResponse->m_impl = pRetObj;
 	return pHttpResponse;
+
+});
+    }
+IAsyncOperation<Boolean>^ Http::QuickGetSbAsync(Platform::String ^url, Chilkat::StringBuilder ^sbContent)
+    {
+return create_async([this, url, sbContent]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (sbContent == nullptr) { return false; }
+	CkStringBuilderW* pObj1 = sbContent->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxHttpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->QuickGetSb(url ? url->Data() : L"",*pObj1);
 
 });
     }
@@ -1523,6 +1600,16 @@ Platform::String ^Http::S3_GenerateUrl(Platform::String ^bucket, Platform::Strin
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
+Platform::String ^Http::S3_GenerateUrlV4(Boolean useHttps, Platform::String ^bucketName, Platform::String ^path, int numSecondsValid, Platform::String ^awsService)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CxHttpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	const wchar_t *retStr = m_impl->s3_GenerateUrlV4(useHttps,bucketName ? bucketName->Data() : L"",path ? path->Data() : L"",numSecondsValid,awsService ? awsService->Data() : L"");
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
 IAsyncOperation<Platform::String ^>^ Http::S3_ListBucketObjectsAsync(Platform::String ^bucketPath)
     {
 return create_async([this, bucketPath]() -> Platform::String ^
@@ -1653,6 +1740,14 @@ Boolean Http::SetSslClientCertPfx(Platform::String ^pfxPath, Platform::String ^p
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->SetSslClientCertPfx(pfxPath ? pfxPath->Data() : L"",pfxPassword ? pfxPassword->Data() : L"");
+    }
+Boolean Http::SetUrlVar(Platform::String ^name, Platform::String ^value)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxHttpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->SetUrlVar(name ? name->Data() : L"",value ? value->Data() : L"");
     }
 void Http::SleepMs(int millisec)
     {

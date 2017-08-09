@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.62
+// This is a generated source file for Chilkat version 9.5.0.69
 #ifndef _C_CkSsh_H
 #define _C_CkSsh_H
 #include "chilkatDefs.h"
@@ -109,6 +109,8 @@ CK_VISIBLE_PUBLIC int CkSsh_getSoSndBuf(HCkSsh cHandle);
 CK_VISIBLE_PUBLIC void CkSsh_putSoSndBuf(HCkSsh cHandle, int newVal);
 CK_VISIBLE_PUBLIC BOOL CkSsh_getStderrToStdout(HCkSsh cHandle);
 CK_VISIBLE_PUBLIC void CkSsh_putStderrToStdout(HCkSsh cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC BOOL CkSsh_getStripColorCodes(HCkSsh cHandle);
+CK_VISIBLE_PUBLIC void CkSsh_putStripColorCodes(HCkSsh cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC BOOL CkSsh_getTcpNoDelay(HCkSsh cHandle);
 CK_VISIBLE_PUBLIC void CkSsh_putTcpNoDelay(HCkSsh cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkSsh_getUserAuthBanner(HCkSsh cHandle, HCkString retval);
@@ -185,6 +187,15 @@ CK_VISIBLE_PUBLIC int CkSsh_OpenSessionChannel(HCkSsh cHandle);
 CK_VISIBLE_PUBLIC HCkTask CkSsh_OpenSessionChannelAsync(HCkSsh cHandle);
 CK_VISIBLE_PUBLIC BOOL CkSsh_PeekReceivedText(HCkSsh cHandle, int channelNum, const char *charset, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkSsh_peekReceivedText(HCkSsh cHandle, int channelNum, const char *charset);
+CK_VISIBLE_PUBLIC int CkSsh_QuickCmdCheck(HCkSsh cHandle, int pollTimeoutMs);
+CK_VISIBLE_PUBLIC HCkTask CkSsh_QuickCmdCheckAsync(HCkSsh cHandle, int pollTimeoutMs);
+CK_VISIBLE_PUBLIC int CkSsh_QuickCmdSend(HCkSsh cHandle, const char *command);
+CK_VISIBLE_PUBLIC HCkTask CkSsh_QuickCmdSendAsync(HCkSsh cHandle, const char *command);
+CK_VISIBLE_PUBLIC BOOL CkSsh_QuickCommand(HCkSsh cHandle, const char *command, const char *charset, HCkString outStr);
+CK_VISIBLE_PUBLIC const char *CkSsh_quickCommand(HCkSsh cHandle, const char *command, const char *charset);
+CK_VISIBLE_PUBLIC HCkTask CkSsh_QuickCommandAsync(HCkSsh cHandle, const char *command, const char *charset);
+CK_VISIBLE_PUBLIC int CkSsh_QuickShell(HCkSsh cHandle);
+CK_VISIBLE_PUBLIC HCkTask CkSsh_QuickShellAsync(HCkSsh cHandle);
 CK_VISIBLE_PUBLIC BOOL CkSsh_ReKey(HCkSsh cHandle);
 CK_VISIBLE_PUBLIC HCkTask CkSsh_ReKeyAsync(HCkSsh cHandle);
 CK_VISIBLE_PUBLIC BOOL CkSsh_SaveLastError(HCkSsh cHandle, const char *path);

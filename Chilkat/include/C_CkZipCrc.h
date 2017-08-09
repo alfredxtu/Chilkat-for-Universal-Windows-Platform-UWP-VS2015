@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.62
+// This is a generated source file for Chilkat version 9.5.0.69
 #ifndef _C_CkZipCrc_H
 #define _C_CkZipCrc_H
 #include "chilkatDefs.h"
@@ -13,6 +13,8 @@ CK_VISIBLE_PUBLIC void CkZipCrc_setTaskCompleted(HCkZipCrc cHandle, void (*fnTas
 
 CK_VISIBLE_PUBLIC HCkZipCrc CkZipCrc_Create(void);
 CK_VISIBLE_PUBLIC void CkZipCrc_Dispose(HCkZipCrc handle);
+CK_VISIBLE_PUBLIC BOOL CkZipCrc_getLastMethodSuccess(HCkZipCrc cHandle);
+CK_VISIBLE_PUBLIC void CkZipCrc_putLastMethodSuccess(HCkZipCrc cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC BOOL CkZipCrc_getUtf8(HCkZipCrc cHandle);
 CK_VISIBLE_PUBLIC void CkZipCrc_putUtf8(HCkZipCrc cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkZipCrc_BeginStream(HCkZipCrc cHandle);

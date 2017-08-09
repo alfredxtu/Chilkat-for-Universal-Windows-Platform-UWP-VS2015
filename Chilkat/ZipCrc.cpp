@@ -43,6 +43,14 @@ Chilkat::ZipCrc::ZipCrc(void)
 //}
 
 
+Boolean Chilkat::ZipCrc::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::ZipCrc::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+    }
 
 
 void ZipCrc::BeginStream(void)

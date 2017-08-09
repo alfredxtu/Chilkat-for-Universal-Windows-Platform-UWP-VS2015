@@ -46,6 +46,11 @@ public ref class Mailboxes sealed
 	{
 		int32 get();
 	}
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 
 
 	// ----------------------

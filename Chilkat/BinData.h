@@ -43,6 +43,11 @@ public ref class BinData sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Boolean LastMethodSuccess
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property int32 NumBytes
 	{
 		int32 get();
@@ -80,6 +85,8 @@ public ref class BinData sealed
 
 	Boolean GetEncodedSb(Platform::String ^encoding, Chilkat::StringBuilder ^sb);
 
+	Platform::String ^GetString(Platform::String ^charset);
+
 	Boolean LoadBinary(Windows::Foundation::Collections::IVector<uint8>^data);
 
 	Boolean LoadEncoded(Platform::String ^encData, Platform::String ^encoding);
@@ -87,6 +94,8 @@ public ref class BinData sealed
 	Boolean LoadFile(Platform::String ^path);
 
 	Boolean RemoveChunk(int offset, int numBytes);
+
+	Boolean SecureClear(void);
 
 	Boolean WriteFile(Platform::String ^path);
 

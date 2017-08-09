@@ -10,9 +10,15 @@
 #include "include/CkJsonObjectW.h"
 		
 #include "include/CkJsonArrayW.h"
+#include "include/CkStringTableW.h"
+#include "include/CkBinDataW.h"
 #include "include/CkStringBuilderW.h"
+#include "include/CkHashtableW.h"
 #include "JsonArray.h"
+#include "StringTable.h"
+#include "BinData.h"
 #include "StringBuilder.h"
+#include "Hashtable.h"
 
 
 using namespace Chilkat;
@@ -221,6 +227,15 @@ Boolean JsonObject::AppendString(Platform::String ^name, Platform::String ^value
 	// --- prep output arg ---
 	return m_impl->AppendString(name ? name->Data() : L"",value ? value->Data() : L"");
     }
+Boolean JsonObject::AppendStringArray(Platform::String ^name, Chilkat::StringTable ^values)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (values == nullptr) { return false; }
+	CkStringTableW* pObj1 = values->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	return m_impl->AppendStringArray(name ? name->Data() : L"",*pObj1);
+    }
 JsonArray ^JsonObject::ArrayAt(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }
@@ -253,6 +268,25 @@ Boolean JsonObject::BoolOf(Platform::String ^jsonPath)
 	// --- prep output arg ---
 	return m_impl->BoolOf(jsonPath ? jsonPath->Data() : L"");
     }
+Boolean JsonObject::BytesOf(Platform::String ^jsonPath, Platform::String ^encoding, Chilkat::BinData ^bd)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bd == nullptr) { return false; }
+	CkBinDataW* pObj2 = bd->m_impl;
+	 if (!pObj2) { return false; }
+	// --- prep output arg ---
+	return m_impl->BytesOf(jsonPath ? jsonPath->Data() : L"",encoding ? encoding->Data() : L"",*pObj2);
+    }
+JsonObject ^JsonObject::Clone(void)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CkJsonObjectW *pRetObj = m_impl->Clone();
+	if (!pRetObj) return nullptr;
+	Chilkat::JsonObject ^pJsonObject = ref new Chilkat::JsonObject();
+	pJsonObject->m_impl = pRetObj;
+	return pJsonObject;
+    }
 Boolean JsonObject::Delete(Platform::String ^name)
     {
 	if (m_impl == nullptr) { return false; }
@@ -281,6 +315,27 @@ Boolean JsonObject::EmitSb(Chilkat::StringBuilder ^sb)
 	 if (!pObj0) { return false; }
 	// --- prep output arg ---
 	return m_impl->EmitSb(*pObj0);
+    }
+Platform::String ^JsonObject::EmitWithSubs(Chilkat::Hashtable ^subs, Boolean omitEmpty)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	if (subs == nullptr) { return nullptr; }
+	CkHashtableW* pObj0 = subs->m_impl;
+	 if (!pObj0) { return nullptr; }
+	// --- prep output arg ---
+	const wchar_t *retStr = m_impl->emitWithSubs(*pObj0,omitEmpty);
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
+JsonObject ^JsonObject::FindObjectWithMember(Platform::String ^name)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CkJsonObjectW *pRetObj = m_impl->FindObjectWithMember(name ? name->Data() : L"");
+	if (!pRetObj) return nullptr;
+	Chilkat::JsonObject ^pJsonObject = ref new Chilkat::JsonObject();
+	pJsonObject->m_impl = pRetObj;
+	return pJsonObject;
     }
 JsonObject ^JsonObject::FindRecord(Platform::String ^arrayPath, Platform::String ^relPath, Platform::String ^value, Boolean caseSensitive)
     {
@@ -364,6 +419,12 @@ Boolean JsonObject::IsNullOf(Platform::String ^jsonPath)
 	// --- prep output arg ---
 	return m_impl->IsNullOf(jsonPath ? jsonPath->Data() : L"");
     }
+int JsonObject::JsonTypeOf(Platform::String ^jsonPath)
+    {
+	if (m_impl == nullptr) { return -1; }
+	// --- prep output arg ---
+	return m_impl->JsonTypeOf(jsonPath ? jsonPath->Data() : L"");
+    }
 Boolean JsonObject::Load(Platform::String ^json)
     {
 	if (m_impl == nullptr) { return false; }
@@ -375,6 +436,12 @@ Boolean JsonObject::LoadFile(Platform::String ^path)
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->LoadFile(path ? path->Data() : L"");
+    }
+Boolean JsonObject::LoadPredefined(Platform::String ^name)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->LoadPredefined(name ? name->Data() : L"");
     }
 Boolean JsonObject::LoadSb(Chilkat::StringBuilder ^sb)
     {
@@ -412,6 +479,12 @@ JsonObject ^JsonObject::ObjectOf(Platform::String ^jsonPath)
 	Chilkat::JsonObject ^pJsonObject = ref new Chilkat::JsonObject();
 	pJsonObject->m_impl = pRetObj;
 	return pJsonObject;
+    }
+Boolean JsonObject::Predefine(Platform::String ^name)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->Predefine(name ? name->Data() : L"");
     }
 Boolean JsonObject::Rename(Platform::String ^oldName, Platform::String ^newName)
     {
@@ -507,11 +580,29 @@ Platform::String ^JsonObject::StringOf(Platform::String ^jsonPath)
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
+Boolean JsonObject::StringOfSb(Platform::String ^jsonPath, Chilkat::StringBuilder ^sb)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj1 = sb->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	return m_impl->StringOfSb(jsonPath ? jsonPath->Data() : L"",*pObj1);
+    }
 int JsonObject::TypeAt(int index)
     {
 	if (m_impl == nullptr) { return -1; }
 	// --- prep output arg ---
 	return m_impl->TypeAt(index);
+    }
+Boolean JsonObject::UpdateBd(Platform::String ^jsonPath, Platform::String ^encoding, Chilkat::BinData ^bd)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bd == nullptr) { return false; }
+	CkBinDataW* pObj2 = bd->m_impl;
+	 if (!pObj2) { return false; }
+	// --- prep output arg ---
+	return m_impl->UpdateBd(jsonPath ? jsonPath->Data() : L"",encoding ? encoding->Data() : L"",*pObj2);
     }
 Boolean JsonObject::UpdateBool(Platform::String ^jsonPath, Boolean value)
     {
@@ -524,6 +615,27 @@ Boolean JsonObject::UpdateInt(Platform::String ^jsonPath, int value)
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->UpdateInt(jsonPath ? jsonPath->Data() : L"",value);
+    }
+Boolean JsonObject::UpdateNull(Platform::String ^jsonPath)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->UpdateNull(jsonPath ? jsonPath->Data() : L"");
+    }
+Boolean JsonObject::UpdateNumber(Platform::String ^jsonPath, Platform::String ^numericStr)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->UpdateNumber(jsonPath ? jsonPath->Data() : L"",numericStr ? numericStr->Data() : L"");
+    }
+Boolean JsonObject::UpdateSb(Platform::String ^jsonPath, Chilkat::StringBuilder ^sb)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj1 = sb->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	return m_impl->UpdateSb(jsonPath ? jsonPath->Data() : L"",*pObj1);
     }
 Boolean JsonObject::UpdateString(Platform::String ^jsonPath, Platform::String ^value)
     {

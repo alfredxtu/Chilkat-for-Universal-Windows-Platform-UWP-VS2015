@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.62
+// This is a generated source file for Chilkat version 9.5.0.69
 #ifndef _C_CkMessageSetWH
 #define _C_CkMessageSetWH
 #include "chilkatDefs.h"
@@ -11,6 +11,8 @@ CK_VISIBLE_PUBLIC void CkMessageSetW_Dispose(HCkMessageSetW handle);
 CK_VISIBLE_PUBLIC int CkMessageSetW_getCount(HCkMessageSetW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkMessageSetW_getHasUids(HCkMessageSetW cHandle);
 CK_VISIBLE_PUBLIC void  CkMessageSetW_putHasUids(HCkMessageSetW cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC BOOL CkMessageSetW_getLastMethodSuccess(HCkMessageSetW cHandle);
+CK_VISIBLE_PUBLIC void  CkMessageSetW_putLastMethodSuccess(HCkMessageSetW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC BOOL CkMessageSetW_ContainsId(HCkMessageSetW cHandle, int msgId);
 CK_VISIBLE_PUBLIC BOOL CkMessageSetW_FromCompactString(HCkMessageSetW cHandle, const wchar_t *str);
 CK_VISIBLE_PUBLIC int CkMessageSetW_GetId(HCkMessageSetW cHandle, int index);

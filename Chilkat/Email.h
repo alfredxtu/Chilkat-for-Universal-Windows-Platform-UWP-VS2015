@@ -162,6 +162,10 @@ public ref class Email sealed
 	{
 		int32 get();
 	}
+	property int32 NumDigests
+	{
+		int32 get();
+	}
 	property int32 NumHeaderFields
 	{
 		int32 get();
@@ -181,6 +185,16 @@ public ref class Email sealed
 	property int32 NumTo
 	{
 		int32 get();
+	}
+	property Platform::String ^OaepHash
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Boolean OaepPadding
+	{
+		Boolean get();
+		void set(Boolean);
 	}
 	property Boolean OverwriteExisting
 	{
@@ -247,6 +261,11 @@ public ref class Email sealed
 	property Platform::String ^SignedBy
 	{
 		Platform::String ^get();
+	}
+	property Platform::String ^SigningAlg
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
 	}
 	property Platform::String ^SigningHashAlg
 	{
@@ -323,7 +342,11 @@ public ref class Email sealed
 
 	Boolean AddPlainTextAlternativeBody(Platform::String ^body);
 
-	Platform::String ^AddRelatedData(Platform::String ^path, Windows::Foundation::Collections::IVector<uint8>^inData);
+	Platform::String ^AddRelatedBd(Platform::String ^filename, Chilkat::BinData ^binData);
+
+	Boolean AddRelatedBd2(Chilkat::BinData ^binData, Platform::String ^fileNameInHtml);
+
+	Platform::String ^AddRelatedData(Platform::String ^fileName, Windows::Foundation::Collections::IVector<uint8>^inData);
 
 	void AddRelatedData2(Windows::Foundation::Collections::IVector<uint8>^inData, Platform::String ^fileNameInHtml);
 
@@ -335,7 +358,7 @@ public ref class Email sealed
 
 	Platform::String ^AddRelatedString(Platform::String ^nameInHtml, Platform::String ^str, Platform::String ^charset);
 
-	void AddRelatedString2(Platform::String ^content, Platform::String ^charset, Platform::String ^fileNameInHtml);
+	void AddRelatedString2(Platform::String ^fileNameInHtml, Platform::String ^content, Platform::String ^charset);
 
 	Boolean AddStringAttachment(Platform::String ^path, Platform::String ^content);
 
@@ -397,6 +420,8 @@ public ref class Email sealed
 
 	Platform::String ^GetAlternativeBody(int index);
 
+	Boolean GetAlternativeBodyBd(int index, Chilkat::BinData ^binData);
+
 	Platform::String ^GetAlternativeBodyByContentType(Platform::String ^contentType);
 
 	Platform::String ^GetAlternativeContentType(int index);
@@ -410,6 +435,8 @@ public ref class Email sealed
 	Platform::String ^GetAttachedMessageFilename(int index);
 
 	Platform::String ^GetAttachmentAttr(int index, Platform::String ^fieldName, Platform::String ^attrName);
+
+	Boolean GetAttachmentBd(int index, Chilkat::BinData ^binData);
 
 	Platform::String ^GetAttachmentContentID(int index);
 
@@ -440,6 +467,8 @@ public ref class Email sealed
 	Platform::String ^GetCcName(int index);
 
 	Platform::String ^GetDeliveryStatusInfo(Platform::String ^fieldName);
+
+	Email ^GetDigest(int index);
 
 	StringArray ^GetDsnFinalRecipients(void);
 
@@ -570,6 +599,10 @@ public ref class Email sealed
 	Boolean SetAttachmentFilename(int index, Platform::String ^filename);
 
 	Boolean SetBinaryBody(Windows::Foundation::Collections::IVector<uint8>^byteData, Platform::String ^contentType, Platform::String ^disposition, Platform::String ^filename);
+
+	Boolean SetDecryptCert(Chilkat::Cert ^cert);
+
+	Boolean SetDecryptCert2(Chilkat::Cert ^cert, Chilkat::PrivateKey ^key);
 
 	Boolean SetDt(Chilkat::CkDateTime ^dt);
 

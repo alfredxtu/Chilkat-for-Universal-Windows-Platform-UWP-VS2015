@@ -47,6 +47,10 @@ public ref class PublicKey sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property int32 KeySize
+	{
+		int32 get();
+	}
 	property Platform::String ^KeyType
 	{
 		Platform::String ^get();
@@ -85,6 +89,10 @@ public ref class PublicKey sealed
 	Windows::Foundation::Collections::IVector<uint8>^GetDer(Boolean preferPkcs1);
 
 	Platform::String ^GetEncoded(Boolean preferPkcs1, Platform::String ^encoding);
+
+	Platform::String ^GetJwk(void);
+
+	Platform::String ^GetJwkThumbprint(Platform::String ^hashAlg);
 
 	Windows::Foundation::Collections::IVector<uint8>^GetOpenSslDer(void);
 

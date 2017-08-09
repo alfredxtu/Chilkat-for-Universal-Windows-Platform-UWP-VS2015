@@ -124,6 +124,14 @@ String ^Chilkat::SFtpFile::LastAccessTimeStr::get()
     {
     return ref new String(m_impl ? m_impl->lastAccessTimeStr() : L"");
     }
+Boolean Chilkat::SFtpFile::LastMethodSuccess::get()
+    {
+    return m_impl ? m_impl->get_LastMethodSuccess() : false;
+    }
+void Chilkat::SFtpFile::LastMethodSuccess::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+    }
 String ^Chilkat::SFtpFile::LastModifiedTimeStr::get()
     {
     return ref new String(m_impl ? m_impl->lastModifiedTimeStr() : L"");

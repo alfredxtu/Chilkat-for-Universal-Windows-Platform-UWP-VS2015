@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.62
+// This is a generated source file for Chilkat version 9.5.0.69
 #ifndef _C_CkSshTunnel_H
 #define _C_CkSshTunnel_H
 #include "chilkatDefs.h"
@@ -127,6 +127,8 @@ CK_VISIBLE_PUBLIC HCkTask CkSshTunnel_ConnectAsync(HCkSshTunnel cHandle, const c
 CK_VISIBLE_PUBLIC BOOL CkSshTunnel_ConnectThroughSsh(HCkSshTunnel cHandle, HCkSsh ssh, const char *hostname, int port);
 CK_VISIBLE_PUBLIC HCkTask CkSshTunnel_ConnectThroughSshAsync(HCkSshTunnel cHandle, HCkSsh ssh, const char *hostname, int port);
 CK_VISIBLE_PUBLIC BOOL CkSshTunnel_DisconnectAllClients(HCkSshTunnel cHandle, BOOL waitForThreads);
+CK_VISIBLE_PUBLIC BOOL CkSshTunnel_GetCurrentState(HCkSshTunnel cHandle, HCkString outStr);
+CK_VISIBLE_PUBLIC const char *CkSshTunnel_getCurrentState(HCkSshTunnel cHandle);
 CK_VISIBLE_PUBLIC BOOL CkSshTunnel_IsSshConnected(HCkSshTunnel cHandle);
 CK_VISIBLE_PUBLIC BOOL CkSshTunnel_SaveLastError(HCkSshTunnel cHandle, const char *path);
 CK_VISIBLE_PUBLIC BOOL CkSshTunnel_StopAccepting(HCkSshTunnel cHandle, BOOL waitForThread);

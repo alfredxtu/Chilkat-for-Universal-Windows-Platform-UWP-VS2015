@@ -727,6 +727,20 @@ Boolean SFtp::Eof(Platform::String ^handle)
 	cxProgress.m_sender = this;
 	return m_impl->Eof(handle ? handle->Data() : L"");
     }
+IAsyncOperation<int>^ SFtp::FileExistsAsync(Platform::String ^remotePath, Boolean followLinks)
+    {
+return create_async([this, remotePath, followLinks]() -> int
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return -1; }
+	// --- prep output arg ---
+	CxSFtpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->FileExists(remotePath ? remotePath->Data() : L"",followLinks);
+
+});
+    }
 IAsyncOperation<Chilkat::CkDateTime ^>^ SFtp::GetFileCreateDtAsync(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle)
     {
 return create_async([this, pathOrHandle, bFollowLinks, bIsHandle]() -> CkDateTime ^
@@ -1218,6 +1232,20 @@ return create_async([this, remoteFilePath, localFilePath]() -> Boolean
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->ResumeUploadFileByName(remoteFilePath ? remoteFilePath->Data() : L"",localFilePath ? localFilePath->Data() : L"");
+
+});
+    }
+IAsyncOperation<Boolean>^ SFtp::SendIgnoreAsync(void)
+    {
+return create_async([this]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxSFtpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->SendIgnore();
 
 });
     }

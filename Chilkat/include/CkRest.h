@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat v9.5.0
+// This header is generated for Chilkat 9.5.0.69
 
 #ifndef _CkRest_H
 #define _CkRest_H
@@ -14,12 +14,13 @@
 
 class CkStringBuilder;
 class CkTask;
+class CkBinData;
 class CkByteData;
 class CkStream;
-class CkBinData;
 class CkUrl;
 class CkAuthAws;
 class CkAuthAzureAD;
+class CkAuthAzureSAS;
 class CkAuthAzureStorage;
 class CkAuthGoogle;
 class CkOAuth1;
@@ -311,6 +312,29 @@ class CK_VISIBLE_PUBLIC CkRest  : public CkClassWithCallbacks
 	bool AddHeader(const char *name, const char *value);
 
 
+	// Computes the Amazon MWS signature using the mwsSecretKey and adds the "Signature"
+	// parameter to the request. This method should be called for all Amazon
+	// Marketplace Web Service (Amazon MWS) HTTP requests. It should be called after
+	// all request parameters have been added.
+	// 
+	// The domain should be the domain of the request, such as one of the following:
+	//     mws.amazonservices.com
+	//     mws-eu.amazonservices.com
+	//     mws.amazonservices.in
+	//     mws.amazonservices.com.cn
+	//     mws.amazonservices.jp
+	// 
+	// The httpVerb should be the HTTP verb, such as "GET", "POST", etc. The uriPath is the
+	// URI path, such as "/Feeds/2009-01-01". In general, the httpVerb and uriPath should be
+	// identical to the 1st two args passed to methods such as
+	// FullRequestFormUrlEncoded.
+	// 
+	// Note: This method also automatically adds or replaces the existing Timestamp
+	// parameter to the current system date/time.
+	// 
+	bool AddMwsSignature(const char *httpVerb, const char *uriPath, const char *domain, const char *mwsSecretKey);
+
+
 	// Adds a query parameter. If the query parameter already exists, then it is
 	// replaced.
 	bool AddQueryParam(const char *name, const char *value);
@@ -331,8 +355,17 @@ class CK_VISIBLE_PUBLIC CkRest  : public CkClassWithCallbacks
 	bool ClearAllHeaders(void);
 
 
+	// Removes all sub-parts from a request. This is useful when preparing the REST
+	// object to send a new request after a multipart request has just been sent.
+	bool ClearAllParts(void);
+
+
 	// Clears all query parameters.
 	bool ClearAllQueryParams(void);
+
+
+	// Clears all authentication settings.
+	bool ClearAuth(void);
 
 
 	// Clears the response body stream set by calling SetResponseBodyStream.
@@ -381,6 +414,17 @@ class CK_VISIBLE_PUBLIC CkRest  : public CkClassWithCallbacks
 	// tunnel, this closes the logical channel within the SSH tunnel, and not the
 	// connection with the SSH server itself.
 	CkTask *DisconnectAsync(int maxWaitMs);
+
+
+	// Sends a complete REST request (header + binary body) and receives the full
+	// response. The binary body of the request is passed in binData. The response body is
+	// returned in responseBody (replacing whatever contents responseBody may have previously held).
+	bool FullRequestBd(const char *httpVerb, const char *uriPath, CkBinData &binData, CkStringBuilder &responseBody);
+
+	// Sends a complete REST request (header + binary body) and receives the full
+	// response. The binary body of the request is passed in binData. The response body is
+	// returned in responseBody (replacing whatever contents responseBody may have previously held).
+	CkTask *FullRequestBdAsync(const char *httpVerb, const char *uriPath, CkBinData &binData, CkStringBuilder &responseBody);
 
 
 	// Sends a complete REST request (header + body) and receives the full response. It
@@ -492,6 +536,22 @@ class CK_VISIBLE_PUBLIC CkRest  : public CkClassWithCallbacks
 	// SendReqNoBody, ReadResponseHeader, ReadRespBodyString.
 	// 
 	CkTask *FullRequestNoBodyAsync(const char *httpVerb, const char *uriPath);
+
+
+	// The same as FullRequestNoBody, except returns the response body in the binData.
+	// This method is useful for downloading binary files.
+	bool FullRequestNoBodyBd(const char *httpVerb, const char *uriPath, CkBinData &binData);
+
+	// The same as FullRequestNoBody, except returns the response body in the binData.
+	// This method is useful for downloading binary files.
+	CkTask *FullRequestNoBodyBdAsync(const char *httpVerb, const char *uriPath, CkBinData &binData);
+
+
+	// The same as FullRequestNoBody, except returns the response body in the sb.
+	bool FullRequestNoBodySb(const char *httpVerb, const char *uriPath, CkStringBuilder &sb);
+
+	// The same as FullRequestNoBody, except returns the response body in the sb.
+	CkTask *FullRequestNoBodySbAsync(const char *httpVerb, const char *uriPath, CkStringBuilder &sb);
 
 
 	// Sends a complete REST request (header + body string) and receives the full
@@ -788,6 +848,12 @@ class CK_VISIBLE_PUBLIC CkRest  : public CkClassWithCallbacks
 	bool SetAuthAzureAD(CkAuthAzureAD &authProvider);
 
 
+	// Provides the information for Azure SAS (Shared Access Signature) authorization.
+	// Calling this method will cause the "Authorization: SharedAccessSignature ..."
+	// header to be automatically added to all requests.
+	bool SetAuthAzureSas(CkAuthAzureSAS &authProvider);
+
+
 	// Sets the authorization service provider for Azure Storage Service requests.
 	bool SetAuthAzureStorage(CkAuthAzureStorage &authProvider);
 
@@ -869,6 +935,11 @@ class CK_VISIBLE_PUBLIC CkRest  : public CkClassWithCallbacks
 	// 
 	// The autoReconnect indicates whether connection should automatically be established as
 	// needed for subsequent REST requests.
+	// 
+	// Important: The UseConnection method is provided as a means for handling more
+	// complicated connections -- such as connections through proxies, tunnels, etc. If
+	// your application is connecting directly to the HTTP server, then simply call
+	// this class's Connect method.
 	// 
 	bool UseConnection(CkSocket &connection, bool autoReconnect);
 

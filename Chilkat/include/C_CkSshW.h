@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.62
+// This is a generated source file for Chilkat version 9.5.0.69
 #ifndef _C_CkSshWH
 #define _C_CkSshWH
 #include "chilkatDefs.h"
@@ -109,6 +109,8 @@ CK_VISIBLE_PUBLIC int CkSshW_getSoSndBuf(HCkSshW cHandle);
 CK_VISIBLE_PUBLIC void  CkSshW_putSoSndBuf(HCkSshW cHandle, int newVal);
 CK_VISIBLE_PUBLIC BOOL CkSshW_getStderrToStdout(HCkSshW cHandle);
 CK_VISIBLE_PUBLIC void  CkSshW_putStderrToStdout(HCkSshW cHandle, BOOL newVal);
+CK_VISIBLE_PUBLIC BOOL CkSshW_getStripColorCodes(HCkSshW cHandle);
+CK_VISIBLE_PUBLIC void  CkSshW_putStripColorCodes(HCkSshW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC BOOL CkSshW_getTcpNoDelay(HCkSshW cHandle);
 CK_VISIBLE_PUBLIC void  CkSshW_putTcpNoDelay(HCkSshW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkSshW_getUserAuthBanner(HCkSshW cHandle, HCkString retval);
@@ -183,6 +185,15 @@ CK_VISIBLE_PUBLIC int CkSshW_OpenSessionChannel(HCkSshW cHandle);
 CK_VISIBLE_PUBLIC HCkTaskW CkSshW_OpenSessionChannelAsync(HCkSshW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkSshW_PeekReceivedText(HCkSshW cHandle, int channelNum, const wchar_t *charset, HCkString outStr);
 CK_VISIBLE_PUBLIC const wchar_t *CkSshW_peekReceivedText(HCkSshW cHandle, int channelNum, const wchar_t *charset);
+CK_VISIBLE_PUBLIC int CkSshW_QuickCmdCheck(HCkSshW cHandle, int pollTimeoutMs);
+CK_VISIBLE_PUBLIC HCkTaskW CkSshW_QuickCmdCheckAsync(HCkSshW cHandle, int pollTimeoutMs);
+CK_VISIBLE_PUBLIC int CkSshW_QuickCmdSend(HCkSshW cHandle, const wchar_t *command);
+CK_VISIBLE_PUBLIC HCkTaskW CkSshW_QuickCmdSendAsync(HCkSshW cHandle, const wchar_t *command);
+CK_VISIBLE_PUBLIC BOOL CkSshW_QuickCommand(HCkSshW cHandle, const wchar_t *command, const wchar_t *charset, HCkString outStr);
+CK_VISIBLE_PUBLIC const wchar_t *CkSshW_quickCommand(HCkSshW cHandle, const wchar_t *command, const wchar_t *charset);
+CK_VISIBLE_PUBLIC HCkTaskW CkSshW_QuickCommandAsync(HCkSshW cHandle, const wchar_t *command, const wchar_t *charset);
+CK_VISIBLE_PUBLIC int CkSshW_QuickShell(HCkSshW cHandle);
+CK_VISIBLE_PUBLIC HCkTaskW CkSshW_QuickShellAsync(HCkSshW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkSshW_ReKey(HCkSshW cHandle);
 CK_VISIBLE_PUBLIC HCkTaskW CkSshW_ReKeyAsync(HCkSshW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkSshW_SaveLastError(HCkSshW cHandle, const wchar_t *path);

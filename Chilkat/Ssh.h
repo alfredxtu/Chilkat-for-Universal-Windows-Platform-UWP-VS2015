@@ -283,6 +283,11 @@ public ref class Ssh sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Boolean StripColorCodes
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property Boolean TcpNoDelay
 	{
 		Boolean get();
@@ -384,6 +389,14 @@ public ref class Ssh sealed
 	IAsyncOperation<int>^ OpenSessionChannelAsync(void);
 
 	Platform::String ^PeekReceivedText(int channelNum, Platform::String ^charset);
+
+	IAsyncOperation<int>^ QuickCmdCheckAsync(int pollTimeoutMs);
+
+	IAsyncOperation<int>^ QuickCmdSendAsync(Platform::String ^command);
+
+	IAsyncOperation<Platform::String ^>^ QuickCommandAsync(Platform::String ^command, Platform::String ^charset);
+
+	IAsyncOperation<int>^ QuickShellAsync(void);
 
 	IAsyncOperation<Boolean>^ ReKeyAsync(void);
 

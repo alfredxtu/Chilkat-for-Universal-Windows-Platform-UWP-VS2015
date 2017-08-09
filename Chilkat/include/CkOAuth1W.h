@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat v9.5.0
+// This header is generated for Chilkat 9.5.0.69
 
 #ifndef _CkOAuth1W_H
 #define _CkOAuth1W_H
@@ -12,6 +12,7 @@
 #include "CkString.h"
 #include "CkWideCharBase.h"
 
+class CkPrivateKeyW;
 
 
 
@@ -155,11 +156,14 @@ class CK_VISIBLE_PUBLIC CkOAuth1W  : public CkWideCharBase
 	// The generated base64 signature.
 	const wchar_t *signature(void);
 
-	// The signature method. Defaults to "HMAC-SHA1".
+	// The signature method. Defaults to "HMAC-SHA1". Other possible choices are
+	// "HMAC1-SHA256", "RSA-SHA1", and "RSA-SHA2".
 	void get_SignatureMethod(CkString &str);
-	// The signature method. Defaults to "HMAC-SHA1".
+	// The signature method. Defaults to "HMAC-SHA1". Other possible choices are
+	// "HMAC1-SHA256", "RSA-SHA1", and "RSA-SHA2".
 	const wchar_t *signatureMethod(void);
-	// The signature method. Defaults to "HMAC-SHA1".
+	// The signature method. Defaults to "HMAC-SHA1". Other possible choices are
+	// "HMAC1-SHA256", "RSA-SHA1", and "RSA-SHA2".
 	void put_SignatureMethod(const wchar_t *newVal);
 
 	// The timestamp, such as "1441632569".
@@ -207,6 +211,10 @@ class CK_VISIBLE_PUBLIC CkOAuth1W  : public CkWideCharBase
 
 	// Removes a name/value parameter from the OAuth1 signature.
 	bool RemoveParam(const wchar_t *name);
+
+	// Sets the RSA key to be used when the SignatureMethod is set to "RSA-SHA1" or
+	// "RSA-SHA2".
+	bool SetRsaKey(CkPrivateKeyW &privKey);
 
 
 

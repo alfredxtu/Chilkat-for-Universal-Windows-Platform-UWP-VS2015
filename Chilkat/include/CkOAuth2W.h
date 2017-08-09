@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat v9.5.0
+// This header is generated for Chilkat 9.5.0.69
 
 #ifndef _CkOAuth2W_H
 #define _CkOAuth2W_H
@@ -488,6 +488,19 @@ class CK_VISIBLE_PUBLIC CkOAuth2W  : public CkClassWithCallbacksW
 	// 
 	void put_RefreshToken(const wchar_t *newVal);
 
+	// This is an optional setting that defines the "resource" query parameter. For
+	// example, to call the Microsoft Graph API, set this property value to
+	// "https://graph.microsoft.com/".
+	void get_Resource(CkString &str);
+	// This is an optional setting that defines the "resource" query parameter. For
+	// example, to call the Microsoft Graph API, set this property value to
+	// "https://graph.microsoft.com/".
+	const wchar_t *resource(void);
+	// This is an optional setting that defines the "resource" query parameter. For
+	// example, to call the Microsoft Graph API, set this property value to
+	// "https://graph.microsoft.com/".
+	void put_Resource(const wchar_t *newVal);
+
 	// This is an optional setting that defines the scope of access. For example,
 	// Google API scopes are listed here:
 	// https://developers.google.com/identity/protocols/googlescopes
@@ -591,6 +604,15 @@ class CK_VISIBLE_PUBLIC CkOAuth2W  : public CkClassWithCallbacksW
 
 	// Monitors an already started OAuth2 authorization flow and returns when it is
 	// finished.
+	// 
+	// Note: It rarely makes sense to call this method. If this programming language
+	// supports callbacks, then MonitorAsync is a better choice. (See the Oauth2
+	// project repositories at https://github.com/chilkatsoft for samples.) If a
+	// programming language does not have callbacks, a better choice is to periodically
+	// check the AuthFlowState property for a value >= 3. If there is no response from
+	// the browser, the background thread (that is waiting on the browser) can be
+	// cancelled by calling the Cancel method.
+	// 
 	bool Monitor(void);
 
 	// Creates an asynchronous task to call the Monitor method with the arguments

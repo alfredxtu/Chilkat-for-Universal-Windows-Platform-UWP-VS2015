@@ -89,11 +89,19 @@ public ref class CkDateTime sealed
 	// ----------------------
 	Boolean AddDays(int numDays);
 
+	Boolean AddSeconds(int numSeconds);
+
 	void DeSerialize(Platform::String ^serializedDateTime);
+
+	int DiffSeconds(Chilkat::CkDateTime ^dateTimeArg);
+
+	Boolean ExpiresWithin(int n, Platform::String ^units);
 
 	int64 GetAsDateTimeTicks(Boolean bLocal);
 
 	uint32 GetAsDosDate(Boolean bLocal);
+
+	Platform::String ^GetAsIso8601(Platform::String ^formatStr, Boolean bLocal);
 
 	double GetAsOleDate(Boolean bLocal);
 
@@ -105,7 +113,11 @@ public ref class CkDateTime sealed
 
 	int64 GetAsUnixTime64(Boolean bLocal);
 
+	Platform::String ^GetAsUnixTimeStr(Boolean bLocal);
+
 	DtObj ^GetDtObj(Boolean bLocal);
+
+	Boolean OlderThan(int n, Platform::String ^units);
 
 	Platform::String ^Serialize(void);
 

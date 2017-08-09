@@ -15,6 +15,7 @@
 #include "include/CkBinDataW.h"
 #include "include/CkStringBuilderW.h"
 #include "include/CkCertChainW.h"
+#include "include/CkJsonObjectW.h"
 #include "include/CkXmlCertVaultW.h"
 #include "Cert.h"
 #include "PrivateKey.h"
@@ -22,6 +23,7 @@
 #include "BinData.h"
 #include "StringBuilder.h"
 #include "CertChain.h"
+#include "JsonObject.h"
 #include "XmlCertVault.h"
 
 
@@ -169,6 +171,22 @@ int Chilkat::Mime::NumSignerCerts::get()
     {
     return m_impl ? m_impl->get_NumSignerCerts() : 0;
     }
+String ^Chilkat::Mime::OaepHash::get()
+    {
+    return ref new String(m_impl ? m_impl->oaepHash() : L"");
+    }
+void Chilkat::Mime::OaepHash::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_OaepHash(newVal ? newVal->Data() : L"");
+    }
+Boolean Chilkat::Mime::OaepPadding::get()
+    {
+    return m_impl ? m_impl->get_OaepPadding() : false;
+    }
+void Chilkat::Mime::OaepPadding::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_OaepPadding(newVal);
+    }
 String ^Chilkat::Mime::Pkcs7CryptAlg::get()
     {
     return ref new String(m_impl ? m_impl->pkcs7CryptAlg() : L"");
@@ -192,6 +210,14 @@ String ^Chilkat::Mime::Protocol::get()
 void Chilkat::Mime::Protocol::set(String ^newVal)
     {
         if (m_impl) m_impl->put_Protocol(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::Mime::SigningAlg::get()
+    {
+    return ref new String(m_impl ? m_impl->signingAlg() : L"");
+    }
+void Chilkat::Mime::SigningAlg::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_SigningAlg(newVal ? newVal->Data() : L"");
     }
 String ^Chilkat::Mime::SigningHashAlg::get()
     {
@@ -486,6 +512,15 @@ Cert ^Mime::FindIssuer(Chilkat::Cert ^cert)
 	pCert->m_impl = pRetObj;
 	return pCert;
     }
+Boolean Mime::GetBodyBd(Chilkat::BinData ^binDat)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (binDat == nullptr) { return false; }
+	CkBinDataW* pObj0 = binDat->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->GetBodyBd(*pObj0);
+    }
 Windows::Foundation::Collections::IVector<uint8>^Mime::GetBodyBinary(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
@@ -761,6 +796,16 @@ Boolean Mime::IsXml(void)
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->IsXml();
+    }
+JsonObject ^Mime::LastJsonData(void)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CkJsonObjectW *pRetObj = m_impl->LastJsonData();
+	if (!pRetObj) return nullptr;
+	Chilkat::JsonObject ^pJsonObject = ref new Chilkat::JsonObject();
+	pJsonObject->m_impl = pRetObj;
+	return pJsonObject;
     }
 Boolean Mime::LoadMime(Platform::String ^mimeMsg)
     {

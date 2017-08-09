@@ -9,6 +9,8 @@
 #include "include/CkDateTime.h"
 #include "include/CkFileAccessW.h"
 		
+#include "include/CkBinDataW.h"
+#include "BinData.h"
 #include "CkDateTime.h"
 
 
@@ -202,6 +204,15 @@ Windows::Foundation::Collections::IVector<uint8>^FileAccess::FileRead(int maxNum
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
     }
+Boolean FileAccess::FileReadBd(int maxNumBytes, Chilkat::BinData ^binData)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj1 = binData->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	return m_impl->FileReadBd(maxNumBytes,*pObj1);
+    }
 Boolean FileAccess::FileRename(Platform::String ^existingFilepath, Platform::String ^newFilepath)
     {
 	if (m_impl == nullptr) { return false; }
@@ -229,6 +240,15 @@ Boolean FileAccess::FileWrite(Windows::Foundation::Collections::IVector<uint8>^d
 	// --- prep output arg ---
 	return m_impl->FileWrite(db0);
     }
+Boolean FileAccess::FileWriteBd(Chilkat::BinData ^binData, int offset, int numBytes)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj0 = binData->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->FileWriteBd(*pObj0,offset,numBytes);
+    }
 Platform::String ^FileAccess::GenBlockId(int index, int length, Platform::String ^encoding)
     {
 	if (m_impl == nullptr) { return nullptr; }
@@ -236,6 +256,48 @@ Platform::String ^FileAccess::GenBlockId(int index, int length, Platform::String
 	const wchar_t *retStr = m_impl->genBlockId(index,length,encoding ? encoding->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+    }
+Platform::String ^FileAccess::GetDirectoryName(Platform::String ^path)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	const wchar_t *retStr = m_impl->getDirectoryName(path ? path->Data() : L"");
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
+Platform::String ^FileAccess::GetExtension(Platform::String ^path)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	const wchar_t *retStr = m_impl->getExtension(path ? path->Data() : L"");
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
+Platform::String ^FileAccess::GetFileName(Platform::String ^path)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	const wchar_t *retStr = m_impl->getFileName(path ? path->Data() : L"");
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
+Platform::String ^FileAccess::GetFileNameWithoutExtension(Platform::String ^path)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	const wchar_t *retStr = m_impl->getFileNameWithoutExtension(path ? path->Data() : L"");
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
+Chilkat::CkDateTime ^FileAccess::GetLastModified(Platform::String ^path)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CkDateTimeW *pRetObj = m_impl->GetLastModified(path ? path->Data() : L"");
+	if (!pRetObj) return nullptr;
+	Chilkat::CkDateTime ^pCkDateTime = ref new Chilkat::CkDateTime();
+	pCkDateTime->m_impl = pRetObj;
+	return pCkDateTime;
     }
 int FileAccess::GetNumBlocks(int blockSize)
     {

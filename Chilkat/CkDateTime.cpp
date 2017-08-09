@@ -101,11 +101,32 @@ Boolean Chilkat::CkDateTime::AddDays(int numDays)
 	// --- prep output arg ---
 	return m_impl->AddDays(numDays);
     }
+Boolean Chilkat::CkDateTime::AddSeconds(int numSeconds)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->AddSeconds(numSeconds);
+    }
 void Chilkat::CkDateTime::DeSerialize(Platform::String ^serializedDateTime)
     {
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
 	m_impl->DeSerialize(serializedDateTime ? serializedDateTime->Data() : L"");
+    }
+int Chilkat::CkDateTime::DiffSeconds(Chilkat::CkDateTime ^dateTimeArg)
+    {
+	if (m_impl == nullptr) { return -1; }
+	if (dateTimeArg == nullptr) { return -1; }
+	CkDateTimeW* pObj0 = dateTimeArg->m_impl;
+	 if (!pObj0) { return -1; }
+	// --- prep output arg ---
+	return m_impl->DiffSeconds(*pObj0);
+    }
+Boolean Chilkat::CkDateTime::ExpiresWithin(int n, Platform::String ^units)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->ExpiresWithin(n,units ? units->Data() : L"");
     }
 int64 Chilkat::CkDateTime::GetAsDateTimeTicks(Boolean bLocal)
     {
@@ -118,6 +139,14 @@ uint32 Chilkat::CkDateTime::GetAsDosDate(Boolean bLocal)
 	if (m_impl == nullptr) { return 0; }
 	// --- prep output arg ---
 	return m_impl->GetAsDosDate(bLocal);
+    }
+Platform::String ^Chilkat::CkDateTime::GetAsIso8601(Platform::String ^formatStr, Boolean bLocal)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	const wchar_t *retStr = m_impl->getAsIso8601(formatStr ? formatStr->Data() : L"",bLocal);
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
     }
 double Chilkat::CkDateTime::GetAsOleDate(Boolean bLocal)
     {
@@ -153,6 +182,14 @@ int64 Chilkat::CkDateTime::GetAsUnixTime64(Boolean bLocal)
 	// --- prep output arg ---
 	return m_impl->GetAsUnixTime64(bLocal);
     }
+Platform::String ^Chilkat::CkDateTime::GetAsUnixTimeStr(Boolean bLocal)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	const wchar_t *retStr = m_impl->getAsUnixTimeStr(bLocal);
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
 DtObj ^Chilkat::CkDateTime::GetDtObj(Boolean bLocal)
     {
 	if (m_impl == nullptr) { return nullptr; }
@@ -162,6 +199,12 @@ DtObj ^Chilkat::CkDateTime::GetDtObj(Boolean bLocal)
 	Chilkat::DtObj ^pDtObj = ref new Chilkat::DtObj();
 	pDtObj->m_impl = pRetObj;
 	return pDtObj;
+    }
+Boolean Chilkat::CkDateTime::OlderThan(int n, Platform::String ^units)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->OlderThan(n,units ? units->Data() : L"");
     }
 Platform::String ^Chilkat::CkDateTime::Serialize(void)
     {

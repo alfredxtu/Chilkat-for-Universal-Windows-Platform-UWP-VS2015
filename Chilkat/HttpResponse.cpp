@@ -9,6 +9,10 @@
 #include "include/CkDateTime.h"
 #include "include/CkHttpResponseW.h"
 		
+#include "include/CkBinDataW.h"
+#include "include/CkStringBuilderW.h"
+#include "BinData.h"
+#include "StringBuilder.h"
 
 
 using namespace Chilkat;
@@ -153,6 +157,24 @@ String ^Chilkat::HttpResponse::Version::get()
     }
 
 
+Boolean HttpResponse::GetBodyBd(Chilkat::BinData ^binData)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj0 = binData->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->GetBodyBd(*pObj0);
+    }
+Boolean HttpResponse::GetBodySb(Chilkat::StringBuilder ^sb)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj0 = sb->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->GetBodySb(*pObj0);
+    }
 Platform::String ^HttpResponse::GetCookieDomain(int index)
     {
 	if (m_impl == nullptr) { return nullptr; }

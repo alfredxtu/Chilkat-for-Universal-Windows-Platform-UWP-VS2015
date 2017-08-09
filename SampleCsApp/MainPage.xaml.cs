@@ -74,6 +74,7 @@ namespace SampleCsApp
 
         private StringBuilder sbProgressInfo = new StringBuilder();
 
+
         private async void button1_Click(object sender, RoutedEventArgs e)
         {
             Chilkat.Http http = new Chilkat.Http();
@@ -90,29 +91,13 @@ namespace SampleCsApp
             http.ProgressInfo += Http_ProgressInfo;
             http.PercentDone += Http_PercentDone;
             StorageFolder folder = ApplicationData.Current.LocalFolder;
-            textBox1.Text = folder.Path;
+            //textBox1.Text = folder.Path;
 
             http.VerboseLogging = true;
 
-            success = await http.DownloadAsync("https://www.chilkatsoft.com/download/9.5.0.58/ChilkatAx-9.5.0-win32.zip", folder.Path + @"\chilkatAx.zip");
-            //Debug.WriteLine(http.LastErrorText);
-            //textBox2.Text = success.ToString();
-            //Debug.WriteLine(sbProgressInfo.ToString());
+            success = await http.DownloadAsync("https://chilkatdownload.com/9.5.0.68/chilkatax-9.5.0-win32.zip", folder.Path + @"\chilkatAx.zip");
+            textBox1.Text = http.LastErrorText;
 
-            // GetStringAsync returns a Task<string>. That means that when you await the
-            // task you'll get a string (urlContents).
-           // Windows.Foundation.IAsyncOperation<bool> downloadTask = http.DownloadAsync("https://www.chilkatsoft.com/download/9.5.0.58/ChilkatAx-9.5.0-win32.zip", folder.Path + @"\chilkatAx.zip");
-
-            // You can do work here that doesn't rely on the string from GetStringAsync.
-            // DoIndependentWork();
-
-            // The await operator suspends AccessTheWebAsync.
-            //  - AccessTheWebAsync can't continue until getStringTask is complete.
-            //  - Meanwhile, control returns to the caller of AccessTheWebAsync.
-            //  - Control resumes here when getStringTask is complete. 
-            //  - The await operator then retrieves the string result from getStringTask.
-            // string urlContents = await getStringTask;
-            //
         }
 
         async private void Http_PercentDone(object sender, Chilkat.PercentDoneEventArgs eventArgs)

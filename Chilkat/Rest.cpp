@@ -10,22 +10,24 @@
 #include "include/CkRestW.h"
 		
 #include "include/CkStringBuilderW.h"
-#include "include/CkStreamW.h"
 #include "include/CkBinDataW.h"
+#include "include/CkStreamW.h"
 #include "include/CkUrlW.h"
 #include "include/CkAuthAwsW.h"
 #include "include/CkAuthAzureADW.h"
+#include "include/CkAuthAzureSASW.h"
 #include "include/CkAuthAzureStorageW.h"
 #include "include/CkAuthGoogleW.h"
 #include "include/CkOAuth1W.h"
 #include "include/CkOAuth2W.h"
 #include "include/CkSocketW.h"
 #include "StringBuilder.h"
-#include "Stream.h"
 #include "BinData.h"
+#include "Stream.h"
 #include "Url.h"
 #include "AuthAws.h"
 #include "AuthAzureAD.h"
+#include "AuthAzureSAS.h"
 #include "AuthAzureStorage.h"
 #include "AuthGoogle.h"
 #include "OAuth1.h"
@@ -215,6 +217,14 @@ Boolean Rest::AddHeader(Platform::String ^name, Platform::String ^value)
 	cxProgress.m_sender = this;
 	return m_impl->AddHeader(name ? name->Data() : L"",value ? value->Data() : L"");
     }
+Boolean Rest::AddMwsSignature(Platform::String ^httpVerb, Platform::String ^uriPath, Platform::String ^domain, Platform::String ^mwsSecretKey)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxRestProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->AddMwsSignature(httpVerb ? httpVerb->Data() : L"",uriPath ? uriPath->Data() : L"",domain ? domain->Data() : L"",mwsSecretKey ? mwsSecretKey->Data() : L"");
+    }
 Boolean Rest::AddQueryParam(Platform::String ^name, Platform::String ^value)
     {
 	if (m_impl == nullptr) { return false; }
@@ -250,6 +260,14 @@ Boolean Rest::ClearAllHeaders(void)
 	cxProgress.m_sender = this;
 	return m_impl->ClearAllHeaders();
     }
+Boolean Rest::ClearAllParts(void)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxRestProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->ClearAllParts();
+    }
 Boolean Rest::ClearAllQueryParams(void)
     {
 	if (m_impl == nullptr) { return false; }
@@ -257,6 +275,14 @@ Boolean Rest::ClearAllQueryParams(void)
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->ClearAllQueryParams();
+    }
+Boolean Rest::ClearAuth(void)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxRestProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->ClearAuth();
     }
 void Rest::ClearResponseBodyStream(void)
     {
@@ -291,6 +317,26 @@ return create_async([this, maxWaitMs]() -> Boolean
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->Disconnect(maxWaitMs);
+
+});
+    }
+IAsyncOperation<Boolean>^ Rest::FullRequestBdAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Chilkat::BinData ^binData, Chilkat::StringBuilder ^responseBody)
+    {
+return create_async([this, httpVerb, uriPath, binData, responseBody]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj2 = binData->m_impl;
+	 if (!pObj2) { return false; }
+	if (responseBody == nullptr) { return false; }
+	CkStringBuilderW* pObj3 = responseBody->m_impl;
+	 if (!pObj3) { return false; }
+	// --- prep output arg ---
+	CxRestProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->FullRequestBd(httpVerb ? httpVerb->Data() : L"",uriPath ? uriPath->Data() : L"",*pObj2,*pObj3);
 
 });
     }
@@ -358,6 +404,40 @@ return create_async([this, httpVerb, uriPath]() -> Platform::String ^
 	const wchar_t *retStr = m_impl->fullRequestNoBody(httpVerb ? httpVerb->Data() : L"",uriPath ? uriPath->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+
+});
+    }
+IAsyncOperation<Boolean>^ Rest::FullRequestNoBodyBdAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Chilkat::BinData ^binData)
+    {
+return create_async([this, httpVerb, uriPath, binData]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj2 = binData->m_impl;
+	 if (!pObj2) { return false; }
+	// --- prep output arg ---
+	CxRestProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->FullRequestNoBodyBd(httpVerb ? httpVerb->Data() : L"",uriPath ? uriPath->Data() : L"",*pObj2);
+
+});
+    }
+IAsyncOperation<Boolean>^ Rest::FullRequestNoBodySbAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Chilkat::StringBuilder ^sb)
+    {
+return create_async([this, httpVerb, uriPath, sb]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj2 = sb->m_impl;
+	 if (!pObj2) { return false; }
+	// --- prep output arg ---
+	CxRestProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->FullRequestNoBodySb(httpVerb ? httpVerb->Data() : L"",uriPath ? uriPath->Data() : L"",*pObj2);
 
 });
     }
@@ -718,6 +798,17 @@ Boolean Rest::SetAuthAzureAD(Chilkat::AuthAzureAD ^authProvider)
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->SetAuthAzureAD(*pObj0);
+    }
+Boolean Rest::SetAuthAzureSas(Chilkat::AuthAzureSAS ^authProvider)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (authProvider == nullptr) { return false; }
+	CkAuthAzureSASW* pObj0 = authProvider->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxRestProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->SetAuthAzureSas(*pObj0);
     }
 Boolean Rest::SetAuthAzureStorage(Chilkat::AuthAzureStorage ^authProvider)
     {

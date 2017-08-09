@@ -92,6 +92,10 @@ public ref class PrivateKey sealed
 	// ----------------------
 	// Methods
 	// ----------------------
+	Platform::String ^GetJwk(void);
+
+	Platform::String ^GetJwkThumbprint(Platform::String ^hashAlg);
+
 	Windows::Foundation::Collections::IVector<uint8>^GetPkcs1(void);
 
 	Platform::String ^GetPkcs1ENC(Platform::String ^encoding);
@@ -121,6 +125,8 @@ public ref class PrivateKey sealed
 	Boolean LoadEncryptedPem(Platform::String ^pemStr, Platform::String ^password);
 
 	Boolean LoadEncryptedPemFile(Platform::String ^path, Platform::String ^password);
+
+	Boolean LoadJwk(Platform::String ^jsonStr);
 
 	Boolean LoadPem(Platform::String ^str);
 

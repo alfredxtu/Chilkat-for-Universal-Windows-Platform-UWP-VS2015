@@ -11,10 +11,12 @@
 		
 #include "include/CkBinDataW.h"
 #include "include/CkStringBuilderW.h"
+#include "include/CkStreamW.h"
 #include "include/CkCertW.h"
 #include "CkDateTime.h"
 #include "BinData.h"
 #include "StringBuilder.h"
+#include "Stream.h"
 #include "Cert.h"
 
 
@@ -361,6 +363,14 @@ Boolean Chilkat::Ftp2::KeepSessionLog::get()
 void Chilkat::Ftp2::KeepSessionLog::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_KeepSessionLog(newVal);
+    }
+Boolean Chilkat::Ftp2::LargeFileMeasures::get()
+    {
+    return m_impl ? m_impl->get_LargeFileMeasures() : false;
+    }
+void Chilkat::Ftp2::LargeFileMeasures::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_LargeFileMeasures(newVal);
     }
 String ^Chilkat::Ftp2::LastErrorHtml::get()
     {
@@ -1186,6 +1196,23 @@ return create_async([this, remoteFilePath, charset, sb]() -> Boolean
 	CxFtp2Progress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->GetFileSb(remoteFilePath ? remoteFilePath->Data() : L"",charset ? charset->Data() : L"",*pObj2);
+
+});
+    }
+IAsyncOperation<Boolean>^ Ftp2::GetFileToStreamAsync(Platform::String ^remoteFilePath, Chilkat::Stream ^toStream)
+    {
+return create_async([this, remoteFilePath, toStream]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (toStream == nullptr) { return false; }
+	CkStreamW* pObj1 = toStream->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxFtp2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->GetFileToStream(remoteFilePath ? remoteFilePath->Data() : L"",*pObj1);
 
 });
     }
