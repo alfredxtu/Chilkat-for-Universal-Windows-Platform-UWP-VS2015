@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.69
+// This is a generated source file for Chilkat version 9.5.0.76
 #ifndef _C_CkGlobalWH
 #define _C_CkGlobalWH
 #include "chilkatDefs.h"
@@ -31,10 +31,14 @@ CK_VISIBLE_PUBLIC BOOL CkGlobalW_getLastMethodSuccess(HCkGlobalW cHandle);
 CK_VISIBLE_PUBLIC void  CkGlobalW_putLastMethodSuccess(HCkGlobalW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC int CkGlobalW_getMaxThreads(HCkGlobalW cHandle);
 CK_VISIBLE_PUBLIC void  CkGlobalW_putMaxThreads(HCkGlobalW cHandle, int newVal);
+CK_VISIBLE_PUBLIC BOOL CkGlobalW_getPreferIpv6(HCkGlobalW cHandle);
+CK_VISIBLE_PUBLIC void  CkGlobalW_putPreferIpv6(HCkGlobalW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkGlobalW_getThreadPoolLogPath(HCkGlobalW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void  CkGlobalW_putThreadPoolLogPath(HCkGlobalW cHandle, const wchar_t *newVal);
 CK_VISIBLE_PUBLIC const wchar_t *CkGlobalW_threadPoolLogPath(HCkGlobalW cHandle);
 CK_VISIBLE_PUBLIC int CkGlobalW_getUnlockStatus(HCkGlobalW cHandle);
+CK_VISIBLE_PUBLIC BOOL CkGlobalW_getUsePkcsConstructedEncoding(HCkGlobalW cHandle);
+CK_VISIBLE_PUBLIC void  CkGlobalW_putUsePkcsConstructedEncoding(HCkGlobalW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC BOOL CkGlobalW_getVerboseLogging(HCkGlobalW cHandle);
 CK_VISIBLE_PUBLIC void  CkGlobalW_putVerboseLogging(HCkGlobalW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkGlobalW_getVersion(HCkGlobalW cHandle, HCkString retval);

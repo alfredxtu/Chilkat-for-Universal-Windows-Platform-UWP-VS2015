@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -20,8 +21,12 @@ using namespace concurrency;
 namespace Chilkat
 {
 
+	ref class StringArray;
+	ref class Xml;
+	ref class PublicKey;
 	ref class BinData;
 	ref class StringBuilder;
+	ref class XmlCertVault;
 
 
 public ref class XmlDSig sealed
@@ -102,6 +107,12 @@ public ref class XmlDSig sealed
 
 	Platform::String ^CanonicalizeXml(Platform::String ^xml, Platform::String ^version, Boolean withComments);
 
+	Boolean GetCerts(Chilkat::StringArray ^sa);
+
+	Xml ^GetKeyInfo(void);
+
+	PublicKey ^GetPublicKey(void);
+
 	Boolean IsReferenceExternal(int index);
 
 	Boolean LoadSignature(Platform::String ^xmlSig);
@@ -112,13 +123,21 @@ public ref class XmlDSig sealed
 
 	Platform::String ^ReferenceUri(int index);
 
+	Boolean SetHmacKey(Platform::String ^key, Platform::String ^encoding);
+
+	Boolean SetPublicKey(Chilkat::PublicKey ^pubKey);
+
 	Boolean SetRefDataBd(int index, Chilkat::BinData ^binData);
 
 	Boolean SetRefDataFile(int index, Platform::String ^path);
 
 	Boolean SetRefDataSb(int index, Chilkat::StringBuilder ^sb, Platform::String ^charset);
 
+	Boolean UseCertVault(Chilkat::XmlCertVault ^certVault);
+
 	Boolean VerifyReferenceDigest(int index);
+
+	Boolean VerifySignature(Boolean verifyReferenceDigests);
 
 
 

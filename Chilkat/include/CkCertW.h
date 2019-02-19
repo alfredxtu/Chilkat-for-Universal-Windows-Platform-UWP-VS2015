@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.69
+// This header is generated for Chilkat 9.5.0.76
 
 #ifndef _CkCertW_H
 #define _CkCertW_H
@@ -13,6 +13,7 @@
 #include "CkWideCharBase.h"
 
 class CkByteData;
+class CkBinDataW;
 class CkPrivateKeyW;
 class CkPublicKeyW;
 class CkCertChainW;
@@ -266,6 +267,11 @@ class CK_VISIBLE_PUBLIC CkCertW  : public CkWideCharBase
 	// true if this is a self-signed certificate, otherwise false.
 	bool get_SelfSigned(void);
 
+	// The certificate's serial number as a decimal string.
+	void get_SerialDecimal(CkString &str);
+	// The certificate's serial number as a decimal string.
+	const wchar_t *serialDecimal(void);
+
 	// The certificate's serial number as a hexidecimal string.
 	void get_SerialNumber(CkString &str);
 	// The certificate's serial number as a hexidecimal string.
@@ -291,6 +297,16 @@ class CK_VISIBLE_PUBLIC CkCertW  : public CkWideCharBase
 	// provide information about the key container and private key: CspName,
 	// KeyContainerName, MachineKeyset, and Silent.
 	bool get_Silent(void);
+
+	// Can be set to the PIN value for a certificate / private key stored on a smart
+	// card.
+	void get_SmartCardPin(CkString &str);
+	// Can be set to the PIN value for a certificate / private key stored on a smart
+	// card.
+	const wchar_t *smartCardPin(void);
+	// Can be set to the PIN value for a certificate / private key stored on a smart
+	// card.
+	void put_SmartCardPin(const wchar_t *newVal);
 
 	// The certificate subject's country.
 	void get_SubjectC(CkString &str);
@@ -404,6 +420,9 @@ class CK_VISIBLE_PUBLIC CkCertW  : public CkWideCharBase
 	// Exports the digital certificate to ASN.1 DER format.
 	bool ExportCertDer(CkByteData &outData);
 
+	// Exports the digital certificate in ASN.1 DER format to a BinData object.
+	bool ExportCertDerBd(CkBinDataW &cerData);
+
 	// Exports the digital certificate to ASN.1 DER format binary file.
 	bool ExportCertDerFile(const wchar_t *path);
 
@@ -433,6 +452,11 @@ class CK_VISIBLE_PUBLIC CkCertW  : public CkWideCharBase
 	// Exports the certificate's public key.
 	// The caller is responsible for deleting the object returned by this method.
 	CkPublicKeyW *ExportPublicKey(void);
+
+	// Exports the certificate and private key (if available) to pfxData. The password is what
+	// will be required to access the PFX contents at a later time. If includeCertChain is true,
+	// then the certificates in the chain of authority are also included in the PFX.
+	bool ExportToPfxBd(const wchar_t *password, bool includeCertChain, CkBinDataW &pfxData);
 
 	// Exports the certificate and private key (if available) to an in-memory PFX
 	// image. The password is what will be required to access the PFX contents at a later
@@ -558,6 +582,31 @@ class CK_VISIBLE_PUBLIC CkCertW  : public CkWideCharBase
 	// The caller is responsible for deleting the object returned by this method.
 	CkDateTimeW *GetValidToDt(void);
 
+	// Returns an encoded hash of a particular part of the certificate. The part may be
+	// one of the following:
+	//     IssuerDN
+	//     IssuerPublicKey
+	//     SubjectDN
+	//     SubjectPublicKey
+	// 
+	// The hashAlg is the name of the hash algorithm, such as "sha1", "sha256", "sha384",
+	// "sha512", "md5", etc. The encoding is the format to return, such as "hex", "base64",
+	// etc.
+	// 
+	bool HashOf(const wchar_t *part, const wchar_t *hashAlg, const wchar_t *encoding, CkString &outStr);
+	// Returns an encoded hash of a particular part of the certificate. The part may be
+	// one of the following:
+	//     IssuerDN
+	//     IssuerPublicKey
+	//     SubjectDN
+	//     SubjectPublicKey
+	// 
+	// The hashAlg is the name of the hash algorithm, such as "sha1", "sha256", "sha384",
+	// "sha512", "md5", etc. The encoding is the format to return, such as "hex", "base64",
+	// etc.
+	// 
+	const wchar_t *hashOf(const wchar_t *part, const wchar_t *hashAlg, const wchar_t *encoding);
+
 	// Returns true if the private key is installed on the local system for the
 	// certificate.
 	bool HasPrivateKey(void);
@@ -597,6 +646,9 @@ class CK_VISIBLE_PUBLIC CkCertW  : public CkWideCharBase
 	// Loads an ASN.1 or DER encoded certificate represented in a Base64 string.
 	bool LoadFromBase64(const wchar_t *encodedCert);
 
+	// Loads an X.509 certificate from the ASN.1 DER encoded bytes contained in certBytes.
+	bool LoadFromBd(CkBinDataW &certBytes);
+
 	// Loads an X.509 certificate from ASN.1 DER encoded bytes.
 	bool LoadFromBinary(CkByteData &data);
 
@@ -621,6 +673,10 @@ class CK_VISIBLE_PUBLIC CkCertW  : public CkWideCharBase
 
 	// Loads the certificate from a PEM string.
 	bool LoadPem(const wchar_t *strPem);
+
+	// Loads the certificate from the PFX contained in pfxData. Note: If the PFX contains
+	// multiple certificates, the 1st certificate in the PFX is loaded.
+	bool LoadPfxBd(CkBinDataW &pfxData, const wchar_t *password);
 
 	// Loads a PFX from an in-memory image of a PFX file. Note: If the PFX contains
 	// multiple certificates, the 1st certificate in the PFX is loaded.

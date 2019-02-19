@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -21,6 +22,7 @@ namespace Chilkat
 {
 
 	ref class BinData;
+	ref class StringBuilder;
 	ref class CkDateTime;
 
 
@@ -98,19 +100,23 @@ public ref class FileAccess sealed
 	// ----------------------
 	Boolean AppendAnsi(Platform::String ^text);
 
+	Boolean AppendBd(Chilkat::BinData ^bd);
+
+	Boolean AppendSb(Chilkat::StringBuilder ^sb, Platform::String ^charset);
+
 	Boolean AppendText(Platform::String ^str, Platform::String ^charset);
 
 	Boolean AppendUnicodeBOM(void);
 
 	Boolean AppendUtf8BOM(void);
 
-	Boolean DirAutoCreate(Platform::String ^dirPath);
+	Boolean DirAutoCreate(Platform::String ^filePath);
 
 	Boolean DirCreate(Platform::String ^dirPath);
 
 	Boolean DirDelete(Platform::String ^dirPath);
 
-	Boolean DirEnsureExists(Platform::String ^filePath);
+	Boolean DirEnsureExists(Platform::String ^dirPath);
 
 	void FileClose(void);
 
@@ -136,6 +142,8 @@ public ref class FileAccess sealed
 
 	int FileSize(Platform::String ^filePath);
 
+	int FileType(Platform::String ^path);
+
 	Boolean FileWrite(Windows::Foundation::Collections::IVector<uint8>^data);
 
 	Boolean FileWriteBd(Chilkat::BinData ^binData, int offset, int numBytes);
@@ -149,6 +157,8 @@ public ref class FileAccess sealed
 	Platform::String ^GetFileName(Platform::String ^path);
 
 	Platform::String ^GetFileNameWithoutExtension(Platform::String ^path);
+
+	CkDateTime ^GetFileTime(Platform::String ^path, int which);
 
 	CkDateTime ^GetLastModified(Platform::String ^path);
 
@@ -183,6 +193,10 @@ public ref class FileAccess sealed
 	Boolean SetLastModified(Platform::String ^filePath, Chilkat::CkDateTime ^lastModified);
 
 	Boolean SplitFile(Platform::String ^fileToSplit, Platform::String ^partPrefix, Platform::String ^partExtension, int partSize, Platform::String ^destDir);
+
+	Boolean SymlinkCreate(Platform::String ^targetPath, Platform::String ^linkPath);
+
+	Platform::String ^SymlinkTarget(Platform::String ^linkPath);
 
 	Boolean TreeDelete(Platform::String ^path);
 

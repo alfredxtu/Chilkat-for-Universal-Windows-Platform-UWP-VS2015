@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.69
+// This is a generated source file for Chilkat version 9.5.0.76
 #ifndef _C_CkPemWH
 #define _C_CkPemWH
 #include "chilkatDefs.h"
@@ -6,7 +6,7 @@
 #include "Chilkat_C.h"
 
 
-CK_VISIBLE_PUBLIC void CkPemW_setAbortCheck(HCkPemW cHandle, BOOL (*fnAbortCheck)());
+CK_VISIBLE_PUBLIC void CkPemW_setAbortCheck(HCkPemW cHandle, BOOL (*fnAbortCheck)(void));
 CK_VISIBLE_PUBLIC void CkPemW_setPercentDone(HCkPemW cHandle, BOOL (*fnPercentDone)(int pctDone));
 CK_VISIBLE_PUBLIC void CkPemW_setProgressInfo(HCkPemW cHandle, void (*fnProgressInfo)(const wchar_t *name, const wchar_t *value));
 CK_VISIBLE_PUBLIC void CkPemW_setTaskCompleted(HCkPemW cHandle, void (*fnTaskCompleted)(HCkTaskW hTask));
@@ -29,6 +29,7 @@ CK_VISIBLE_PUBLIC const wchar_t *CkPemW_lastErrorXml(HCkPemW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkPemW_getLastMethodSuccess(HCkPemW cHandle);
 CK_VISIBLE_PUBLIC void  CkPemW_putLastMethodSuccess(HCkPemW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC int CkPemW_getNumCerts(HCkPemW cHandle);
+CK_VISIBLE_PUBLIC int CkPemW_getNumCrls(HCkPemW cHandle);
 CK_VISIBLE_PUBLIC int CkPemW_getNumCsrs(HCkPemW cHandle);
 CK_VISIBLE_PUBLIC int CkPemW_getNumPrivateKeys(HCkPemW cHandle);
 CK_VISIBLE_PUBLIC int CkPemW_getNumPublicKeys(HCkPemW cHandle);

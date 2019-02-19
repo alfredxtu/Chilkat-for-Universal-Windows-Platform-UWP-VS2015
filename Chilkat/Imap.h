@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -32,6 +33,7 @@ namespace Chilkat
 	ref class StringArray;
 	ref class Cert;
 	ref class Mailboxes;
+	ref class SecureString;
 	ref class PrivateKey;
 	ref class SshKey;
 	ref class XmlCertVault;
@@ -453,6 +455,8 @@ public ref class Imap sealed
 
 	IAsyncOperation<Boolean>^ FetchSingleAsMimeSbAsync(int msgId, Boolean bUid, Chilkat::StringBuilder ^sbMime);
 
+	IAsyncOperation<Boolean>^ FetchSingleBdAsync(int msgId, Boolean bUid, Chilkat::BinData ^mimeData);
+
 	IAsyncOperation<Email ^>^ FetchSingleHeaderAsync(int msgId, Boolean bUid);
 
 	IAsyncOperation<Platform::String ^>^ FetchSingleHeaderAsMimeAsync(int msgId, Boolean bUID);
@@ -497,6 +501,8 @@ public ref class Imap sealed
 
 	IAsyncOperation<Boolean>^ LoginAsync(Platform::String ^loginName, Platform::String ^password);
 
+	IAsyncOperation<Boolean>^ LoginSecureAsync(Chilkat::SecureString ^loginName, Chilkat::SecureString ^password);
+
 	IAsyncOperation<Boolean>^ LogoutAsync(void);
 
 	IAsyncOperation<Boolean>^ MoveMessagesAsync(Chilkat::MessageSet ^messageSet, Platform::String ^destFolder);
@@ -534,6 +540,8 @@ public ref class Imap sealed
 	Boolean SetSslClientCertPem(Platform::String ^pemDataOrFilename, Platform::String ^pemPassword);
 
 	Boolean SetSslClientCertPfx(Platform::String ^pfxFilename, Platform::String ^pfxPassword);
+
+	IAsyncOperation<MessageSet ^>^ SortAsync(Platform::String ^sortCriteria, Platform::String ^charset, Platform::String ^searchCriteria, Boolean bUid);
 
 	IAsyncOperation<Boolean>^ SshAuthenticatePkAsync(Platform::String ^sshLogin, Chilkat::SshKey ^privateKey);
 

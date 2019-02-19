@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -9,6 +10,10 @@
 #include "include/CkDateTime.h"
 #include "include/CkHtmlToXmlW.h"
 		
+#include "include/CkBinDataW.h"
+#include "include/CkStringBuilderW.h"
+#include "BinData.h"
+#include "StringBuilder.h"
 
 
 using namespace Chilkat;
@@ -159,6 +164,15 @@ Platform::String ^HtmlToXml::ReadFileToString(Platform::String ^filename, Platfo
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
+Boolean HtmlToXml::SetHtmlBd(Chilkat::BinData ^bd)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bd == nullptr) { return false; }
+	CkBinDataW* pObj0 = bd->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->SetHtmlBd(*pObj0);
+    }
 void HtmlToXml::SetHtmlBytes(Windows::Foundation::Collections::IVector<uint8>^inData)
     {
 	if (m_impl == nullptr) { return ; }
@@ -181,6 +195,15 @@ Platform::String ^HtmlToXml::ToXml(void)
 	const wchar_t *retStr = m_impl->toXml();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+    }
+Boolean HtmlToXml::ToXmlSb(Chilkat::StringBuilder ^sb)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj0 = sb->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->ToXmlSb(*pObj0);
     }
 void HtmlToXml::UndropTagType(Platform::String ^tagName)
     {

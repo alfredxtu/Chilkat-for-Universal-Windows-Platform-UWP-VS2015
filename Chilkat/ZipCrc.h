@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -24,6 +25,8 @@ using namespace concurrency;
 namespace Chilkat
 {
 
+	ref class BinData;
+	ref class StringBuilder;
 
 
 public ref class ZipCrc sealed
@@ -74,10 +77,36 @@ public ref class ZipCrc sealed
 	// ----------------------
 	// Properties
 	// ----------------------
+	property Platform::String ^DebugLogFilePath
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^LastErrorHtml
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorText
+	{
+		Platform::String ^get();
+	}
+	property Platform::String ^LastErrorXml
+	{
+		Platform::String ^get();
+	}
 	property Boolean LastMethodSuccess
 	{
 		Boolean get();
 		void set(Boolean);
+	}
+	property Boolean VerboseLogging
+	{
+		Boolean get();
+		void set(Boolean);
+	}
+	property Platform::String ^Version
+	{
+		Platform::String ^get();
 	}
 
 
@@ -87,6 +116,12 @@ public ref class ZipCrc sealed
 	void BeginStream(void);
 
 	uint32 CalculateCrc(Windows::Foundation::Collections::IVector<uint8>^data);
+
+	uint32 CrcBd(Chilkat::BinData ^bd);
+
+	uint32 CrcSb(Chilkat::StringBuilder ^sb, Platform::String ^charset);
+
+	uint32 CrcString(Platform::String ^str, Platform::String ^charset);
 
 	uint32 EndStream(void);
 

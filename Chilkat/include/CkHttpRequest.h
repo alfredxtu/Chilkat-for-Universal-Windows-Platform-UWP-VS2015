@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.69
+// This header is generated for Chilkat 9.5.0.76
 
 #ifndef _CkHttpRequest_H
 #define _CkHttpRequest_H
@@ -12,8 +12,8 @@
 #include "CkString.h"
 #include "CkMultiByteBase.h"
 
-class CkByteData;
 class CkBinData;
+class CkByteData;
 class CkStringBuilder;
 
 
@@ -94,8 +94,8 @@ class CK_VISIBLE_PUBLIC CkHttpRequest  : public CkMultiByteBase
 	//         
 	// application/x-www-form-urlencoded    
 	// multipart/form-data    
-	// text/xml    
-	// application/jsonrequest    
+	// application/json    
+	// application/xml    
 	//     
 	// 
 	// If ContentType is set equal to the empty string, then no Content-Type header is
@@ -107,8 +107,8 @@ class CK_VISIBLE_PUBLIC CkHttpRequest  : public CkMultiByteBase
 	//         
 	// application/x-www-form-urlencoded    
 	// multipart/form-data    
-	// text/xml    
-	// application/jsonrequest    
+	// application/json    
+	// application/xml    
 	//     
 	// 
 	// If ContentType is set equal to the empty string, then no Content-Type header is
@@ -120,8 +120,8 @@ class CK_VISIBLE_PUBLIC CkHttpRequest  : public CkMultiByteBase
 	//         
 	// application/x-www-form-urlencoded    
 	// multipart/form-data    
-	// text/xml    
-	// application/jsonrequest    
+	// application/json    
+	// application/xml    
 	//     
 	// 
 	// If ContentType is set equal to the empty string, then no Content-Type header is
@@ -189,6 +189,19 @@ class CK_VISIBLE_PUBLIC CkHttpRequest  : public CkMultiByteBase
 	// ----------------------
 	// Methods
 	// ----------------------
+	// Adds a file to an upload request where the contents of the file come from byteData.
+	// 
+	// name is an arbitrary name. (In HTML, it is the form field name of the input
+	// tag.)
+	// remoteFilename is the name of the file to be created on the HTTP server.
+	// byteData contains the bytes to be uploaded.
+	// contentType contains is the value of the Content-Type header. An empty string may be
+	// passed to allow Chilkat to automatically determine the Content-Type based on the
+	// filename extension.
+	// 
+	bool AddBdForUpload(const char *name, const char *remoteFilename, CkBinData &byteData, const char *contentType);
+
+
 	// Adds a file to an upload request where the contents of the file come from an
 	// in-memory byte array. To create a file upload request, call UseUpload and then
 	// call AddBytesForUpload, AddStringForUpload, or AddFileForUpload for each file to
@@ -249,6 +262,11 @@ class CK_VISIBLE_PUBLIC CkHttpRequest  : public CkMultiByteBase
 	// parameter to the request. This method should be called for all Amazon
 	// Marketplace Web Service (Amazon MWS) HTTP requests. It should be called after
 	// all request parameters have been added.
+	// 
+	// Important: The Chilkat v9.5.0.75 release accidentally breaks Amazon MWS (not
+	// AWS) authentication. If you need MWS with 9.5.0.75, send email to
+	// support@chilkatsoft.com for a hotfix, or revert back to v9.5.0.73, or update to
+	// a version after 9.5.0.75.
 	// 
 	// The domain should be the domain of the request, such as one of the following:
 	//     mws.amazonservices.com
@@ -373,20 +391,20 @@ class CK_VISIBLE_PUBLIC CkHttpRequest  : public CkMultiByteBase
 	// would be sent if the ContentType property was
 	// application/x-www-form-urlencoded). For example, if a request has two params:
 	// param1="abc 123" and param2="abc-123", then GetUrlEncodedParams would return
-	// "abc+123<param2=abc%2D123"
+	// "abc+123
 	bool GetUrlEncodedParams(CkString &outStr);
 
 	// Returns the request parameters in URL encoded form (i.e. in the exact form that
 	// would be sent if the ContentType property was
 	// application/x-www-form-urlencoded). For example, if a request has two params:
 	// param1="abc 123" and param2="abc-123", then GetUrlEncodedParams would return
-	// "abc+123<param2=abc%2D123"
+	// "abc+123
 	const char *getUrlEncodedParams(void);
 	// Returns the request parameters in URL encoded form (i.e. in the exact form that
 	// would be sent if the ContentType property was
 	// application/x-www-form-urlencoded). For example, if a request has two params:
 	// param1="abc 123" and param2="abc-123", then GetUrlEncodedParams would return
-	// "abc+123<param2=abc%2D123"
+	// "abc+123
 	const char *urlEncodedParams(void);
 
 

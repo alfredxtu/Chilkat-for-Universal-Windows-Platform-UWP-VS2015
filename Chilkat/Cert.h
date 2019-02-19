@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -20,6 +21,7 @@ using namespace concurrency;
 namespace Chilkat
 {
 
+	ref class BinData;
 	ref class PrivateKey;
 	ref class PublicKey;
 	ref class CertChain;
@@ -182,6 +184,10 @@ public ref class Cert sealed
 	{
 		Boolean get();
 	}
+	property Platform::String ^SerialDecimal
+	{
+		Platform::String ^get();
+	}
 	property Platform::String ^SerialNumber
 	{
 		Platform::String ^get();
@@ -197,6 +203,11 @@ public ref class Cert sealed
 	property Boolean Silent
 	{
 		Boolean get();
+	}
+	property Platform::String ^SmartCardPin
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
 	}
 	property Platform::String ^SubjectC
 	{
@@ -264,6 +275,8 @@ public ref class Cert sealed
 
 	Windows::Foundation::Collections::IVector<uint8>^ExportCertDer(void);
 
+	Boolean ExportCertDerBd(Chilkat::BinData ^cerData);
+
 	Boolean ExportCertDerFile(Platform::String ^path);
 
 	Platform::String ^ExportCertPem(void);
@@ -275,6 +288,8 @@ public ref class Cert sealed
 	PrivateKey ^ExportPrivateKey(void);
 
 	PublicKey ^ExportPublicKey(void);
+
+	Boolean ExportToPfxBd(Platform::String ^password, Boolean includeCertChain, Chilkat::BinData ^pfxData);
 
 	Windows::Foundation::Collections::IVector<uint8>^ExportToPfxData(Platform::String ^password, Boolean includeCertChain);
 
@@ -296,6 +311,8 @@ public ref class Cert sealed
 
 	CkDateTime ^GetValidToDt(void);
 
+	Platform::String ^HashOf(Platform::String ^part, Platform::String ^hashAlg, Platform::String ^encoding);
+
 	Boolean HasPrivateKey(void);
 
 	Boolean LoadByCommonName(Platform::String ^cn);
@@ -306,11 +323,15 @@ public ref class Cert sealed
 
 	Boolean LoadFromBase64(Platform::String ^encodedCert);
 
+	Boolean LoadFromBd(Chilkat::BinData ^certBytes);
+
 	Boolean LoadFromBinary(Windows::Foundation::Collections::IVector<uint8>^data);
 
 	Boolean LoadFromFile(Platform::String ^path);
 
 	Boolean LoadPem(Platform::String ^strPem);
+
+	Boolean LoadPfxBd(Chilkat::BinData ^pfxData, Platform::String ^password);
 
 	Boolean LoadPfxData(Windows::Foundation::Collections::IVector<uint8>^pfxData, Platform::String ^password);
 

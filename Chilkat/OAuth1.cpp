@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -144,6 +145,14 @@ void Chilkat::OAuth1::OauthVersion::set(String ^newVal)
 String ^Chilkat::OAuth1::QueryString::get()
     {
     return ref new String(m_impl ? m_impl->queryString() : L"");
+    }
+String ^Chilkat::OAuth1::Realm::get()
+    {
+    return ref new String(m_impl ? m_impl->realm() : L"");
+    }
+void Chilkat::OAuth1::Realm::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_Realm(newVal ? newVal->Data() : L"");
     }
 String ^Chilkat::OAuth1::Signature::get()
     {

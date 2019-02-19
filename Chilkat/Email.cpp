@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -237,6 +238,14 @@ String ^Chilkat::Email::OaepHash::get()
 void Chilkat::Email::OaepHash::set(String ^newVal)
     {
         if (m_impl) m_impl->put_OaepHash(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::Email::OaepMgfHash::get()
+    {
+    return ref new String(m_impl ? m_impl->oaepMgfHash() : L"");
+    }
+void Chilkat::Email::OaepMgfHash::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_OaepMgfHash(newVal ? newVal->Data() : L"");
     }
 Boolean Chilkat::Email::OaepPadding::get()
     {
@@ -637,6 +646,12 @@ void Email::AppendToBody(Platform::String ^str)
 	// --- prep output arg ---
 	m_impl->AppendToBody(str ? str->Data() : L"");
     }
+Boolean Email::ApplyFixups(Platform::String ^fixups)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->ApplyFixups(fixups ? fixups->Data() : L"");
+    }
 Boolean Email::AspUnpack(Platform::String ^prefix, Platform::String ^saveDir, Platform::String ^urlPath, Boolean cleanFiles)
     {
 	if (m_impl == nullptr) { return false; }
@@ -680,6 +695,12 @@ Platform::String ^Email::BEncodeString(Platform::String ^str, Platform::String ^
 	const wchar_t *retStr = m_impl->bEncodeString(str ? str->Data() : L"",charset ? charset->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+    }
+void Email::Clear(void)
+    {
+	if (m_impl == nullptr) { return ; }
+	// --- prep output arg ---
+	m_impl->Clear();
     }
 void Email::ClearBcc(void)
     {

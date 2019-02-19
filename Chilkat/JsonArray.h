@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -20,6 +21,8 @@ using namespace concurrency;
 namespace Chilkat
 {
 
+	ref class CkDateTime;
+	ref class DtObj;
 	ref class StringBuilder;
 	ref class JsonObject;
 
@@ -112,11 +115,21 @@ public ref class JsonArray sealed
 
 	Boolean BoolAt(int index);
 
+	void Clear(void);
+
+	Boolean DateAt(int index, Chilkat::CkDateTime ^dateTime);
+
 	Boolean DeleteAt(int index);
+
+	Boolean DtAt(int index, Boolean bLocal, Chilkat::DtObj ^dt);
 
 	Platform::String ^Emit(void);
 
 	Boolean EmitSb(Chilkat::StringBuilder ^sb);
+
+	int FindObject(Platform::String ^name, Platform::String ^value, Boolean caseSensitive);
+
+	int FindString(Platform::String ^value, Boolean caseSensitive);
 
 	int IntAt(int index);
 
@@ -139,6 +152,8 @@ public ref class JsonArray sealed
 	Boolean SetStringAt(int index, Platform::String ^value);
 
 	Platform::String ^StringAt(int index);
+
+	Boolean Swap(int index1, int index2);
 
 	int TypeAt(int index);
 

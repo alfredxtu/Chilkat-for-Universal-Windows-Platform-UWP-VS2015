@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -24,6 +25,7 @@ namespace Chilkat
 	ref class Cert;
 	ref class CertChain;
 	ref class PrivateKey;
+	ref class BinData;
 	ref class JsonObject;
 	ref class StringBuilder;
 	ref class Pem;
@@ -137,6 +139,8 @@ public ref class JavaKeyStore sealed
 	Cert ^GetTrustedCert(int index);
 
 	Platform::String ^GetTrustedCertAlias(int index);
+
+	Boolean LoadBd(Platform::String ^password, Chilkat::BinData ^bd);
 
 	Boolean LoadBinary(Platform::String ^password, Windows::Foundation::Collections::IVector<uint8>^jksData);
 

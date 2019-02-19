@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.69
+// This is a generated source file for Chilkat version 9.5.0.76
 #ifndef _C_CkImapWH
 #define _C_CkImapWH
 #include "chilkatDefs.h"
@@ -6,7 +6,7 @@
 #include "Chilkat_C.h"
 
 
-CK_VISIBLE_PUBLIC void CkImapW_setAbortCheck(HCkImapW cHandle, BOOL (*fnAbortCheck)());
+CK_VISIBLE_PUBLIC void CkImapW_setAbortCheck(HCkImapW cHandle, BOOL (*fnAbortCheck)(void));
 CK_VISIBLE_PUBLIC void CkImapW_setPercentDone(HCkImapW cHandle, BOOL (*fnPercentDone)(int pctDone));
 CK_VISIBLE_PUBLIC void CkImapW_setProgressInfo(HCkImapW cHandle, void (*fnProgressInfo)(const wchar_t *name, const wchar_t *value));
 CK_VISIBLE_PUBLIC void CkImapW_setTaskCompleted(HCkImapW cHandle, void (*fnTaskCompleted)(HCkTaskW hTask));
@@ -225,6 +225,8 @@ CK_VISIBLE_PUBLIC const wchar_t *CkImapW_fetchSingleAsMime(HCkImapW cHandle, int
 CK_VISIBLE_PUBLIC HCkTaskW CkImapW_FetchSingleAsMimeAsync(HCkImapW cHandle, int msgId, BOOL bUid);
 CK_VISIBLE_PUBLIC BOOL CkImapW_FetchSingleAsMimeSb(HCkImapW cHandle, int msgId, BOOL bUid, HCkStringBuilderW sbMime);
 CK_VISIBLE_PUBLIC HCkTaskW CkImapW_FetchSingleAsMimeSbAsync(HCkImapW cHandle, int msgId, BOOL bUid, HCkStringBuilderW sbMime);
+CK_VISIBLE_PUBLIC BOOL CkImapW_FetchSingleBd(HCkImapW cHandle, int msgId, BOOL bUid, HCkBinDataW mimeData);
+CK_VISIBLE_PUBLIC HCkTaskW CkImapW_FetchSingleBdAsync(HCkImapW cHandle, int msgId, BOOL bUid, HCkBinDataW mimeData);
 CK_VISIBLE_PUBLIC HCkEmailW CkImapW_FetchSingleHeader(HCkImapW cHandle, int msgId, BOOL bUid);
 CK_VISIBLE_PUBLIC HCkTaskW CkImapW_FetchSingleHeaderAsync(HCkImapW cHandle, int msgId, BOOL bUid);
 CK_VISIBLE_PUBLIC BOOL CkImapW_FetchSingleHeaderAsMime(HCkImapW cHandle, int msgId, BOOL bUID, HCkString outStr);
@@ -265,6 +267,8 @@ CK_VISIBLE_PUBLIC HCkMailboxesW CkImapW_ListSubscribed(HCkImapW cHandle, const w
 CK_VISIBLE_PUBLIC HCkTaskW CkImapW_ListSubscribedAsync(HCkImapW cHandle, const wchar_t *reference, const wchar_t *wildcardedMailbox);
 CK_VISIBLE_PUBLIC BOOL CkImapW_Login(HCkImapW cHandle, const wchar_t *loginName, const wchar_t *password);
 CK_VISIBLE_PUBLIC HCkTaskW CkImapW_LoginAsync(HCkImapW cHandle, const wchar_t *loginName, const wchar_t *password);
+CK_VISIBLE_PUBLIC BOOL CkImapW_LoginSecure(HCkImapW cHandle, HCkSecureStringW loginName, HCkSecureStringW password);
+CK_VISIBLE_PUBLIC HCkTaskW CkImapW_LoginSecureAsync(HCkImapW cHandle, HCkSecureStringW loginName, HCkSecureStringW password);
 CK_VISIBLE_PUBLIC BOOL CkImapW_Logout(HCkImapW cHandle);
 CK_VISIBLE_PUBLIC HCkTaskW CkImapW_LogoutAsync(HCkImapW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkImapW_MoveMessages(HCkImapW cHandle, HCkMessageSetW messageSet, const wchar_t *destFolder);
@@ -303,6 +307,8 @@ CK_VISIBLE_PUBLIC HCkTaskW CkImapW_SetQuotaAsync(HCkImapW cHandle, const wchar_t
 CK_VISIBLE_PUBLIC BOOL CkImapW_SetSslClientCert(HCkImapW cHandle, HCkCertW cert);
 CK_VISIBLE_PUBLIC BOOL CkImapW_SetSslClientCertPem(HCkImapW cHandle, const wchar_t *pemDataOrFilename, const wchar_t *pemPassword);
 CK_VISIBLE_PUBLIC BOOL CkImapW_SetSslClientCertPfx(HCkImapW cHandle, const wchar_t *pfxFilename, const wchar_t *pfxPassword);
+CK_VISIBLE_PUBLIC HCkMessageSetW CkImapW_Sort(HCkImapW cHandle, const wchar_t *sortCriteria, const wchar_t *charset, const wchar_t *searchCriteria, BOOL bUid);
+CK_VISIBLE_PUBLIC HCkTaskW CkImapW_SortAsync(HCkImapW cHandle, const wchar_t *sortCriteria, const wchar_t *charset, const wchar_t *searchCriteria, BOOL bUid);
 CK_VISIBLE_PUBLIC BOOL CkImapW_SshAuthenticatePk(HCkImapW cHandle, const wchar_t *sshLogin, HCkSshKeyW privateKey);
 CK_VISIBLE_PUBLIC HCkTaskW CkImapW_SshAuthenticatePkAsync(HCkImapW cHandle, const wchar_t *sshLogin, HCkSshKeyW privateKey);
 CK_VISIBLE_PUBLIC BOOL CkImapW_SshAuthenticatePw(HCkImapW cHandle, const wchar_t *sshLogin, const wchar_t *sshPassword);

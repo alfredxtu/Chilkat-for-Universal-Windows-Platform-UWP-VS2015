@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -10,11 +11,11 @@
 #include "include/CkZipW.h"
 		
 #include "include/CkZipEntryW.h"
-#include "include/CkStringArrayW.h"
 #include "include/CkBinDataW.h"
+#include "include/CkStringArrayW.h"
 #include "ZipEntry.h"
-#include "StringArray.h"
 #include "BinData.h"
+#include "StringArray.h"
 
 
 using namespace Chilkat;
@@ -241,6 +242,14 @@ void Chilkat::Zip::PercentDoneScale::set(int newVal)
     {
         if (m_impl) m_impl->put_PercentDoneScale(newVal);
     }
+String ^Chilkat::Zip::PwdProtCharset::get()
+    {
+    return ref new String(m_impl ? m_impl->pwdProtCharset() : L"");
+    }
+void Chilkat::Zip::PwdProtCharset::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_PwdProtCharset(newVal ? newVal->Data() : L"");
+    }
 String ^Chilkat::Zip::TempDir::get()
     {
     return ref new String(m_impl ? m_impl->tempDir() : L"");
@@ -302,6 +311,21 @@ ZipEntry ^Zip::AppendBase64(Platform::String ^fileName, Platform::String ^encode
 	CxZipProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	CkZipEntryW *pRetObj = m_impl->AppendBase64(fileName ? fileName->Data() : L"",encodedCompressedData ? encodedCompressedData->Data() : L"");
+	if (!pRetObj) return nullptr;
+	Chilkat::ZipEntry ^pZipEntry = ref new Chilkat::ZipEntry();
+	pZipEntry->m_impl = pRetObj;
+	return pZipEntry;
+    }
+ZipEntry ^Zip::AppendBd(Platform::String ^pathInZip, Chilkat::BinData ^byteData)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	if (byteData == nullptr) { return nullptr; }
+	CkBinDataW* pObj1 = byteData->m_impl;
+	 if (!pObj1) { return nullptr; }
+	// --- prep output arg ---
+	CxZipProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	CkZipEntryW *pRetObj = m_impl->AppendBd(pathInZip ? pathInZip->Data() : L"",*pObj1);
 	if (!pRetObj) return nullptr;
 	Chilkat::ZipEntry ^pZipEntry = ref new Chilkat::ZipEntry();
 	pZipEntry->m_impl = pRetObj;

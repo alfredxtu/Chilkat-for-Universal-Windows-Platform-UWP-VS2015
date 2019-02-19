@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -111,6 +112,14 @@ void Chilkat::Global::MaxThreads::set(int newVal)
     {
         if (m_impl) m_impl->put_MaxThreads(newVal);
     }
+Boolean Chilkat::Global::PreferIpv6::get()
+    {
+    return m_impl ? m_impl->get_PreferIpv6() : false;
+    }
+void Chilkat::Global::PreferIpv6::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_PreferIpv6(newVal);
+    }
 String ^Chilkat::Global::ThreadPoolLogPath::get()
     {
     return ref new String(m_impl ? m_impl->threadPoolLogPath() : L"");
@@ -122,6 +131,14 @@ void Chilkat::Global::ThreadPoolLogPath::set(String ^newVal)
 int Chilkat::Global::UnlockStatus::get()
     {
     return m_impl ? m_impl->get_UnlockStatus() : 0;
+    }
+Boolean Chilkat::Global::UsePkcsConstructedEncoding::get()
+    {
+    return m_impl ? m_impl->get_UsePkcsConstructedEncoding() : false;
+    }
+void Chilkat::Global::UsePkcsConstructedEncoding::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_UsePkcsConstructedEncoding(newVal);
     }
 Boolean Chilkat::Global::VerboseLogging::get()
     {

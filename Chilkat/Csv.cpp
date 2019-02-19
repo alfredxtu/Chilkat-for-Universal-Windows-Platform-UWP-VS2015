@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -74,6 +75,14 @@ String ^Chilkat::Csv::Delimiter::get()
 void Chilkat::Csv::Delimiter::set(String ^newVal)
     {
         if (m_impl) m_impl->put_Delimiter(newVal ? newVal->Data() : L"");
+    }
+Boolean Chilkat::Csv::EnableQuotes::get()
+    {
+    return m_impl ? m_impl->get_EnableQuotes() : false;
+    }
+void Chilkat::Csv::EnableQuotes::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_EnableQuotes(newVal);
     }
 Boolean Chilkat::Csv::EscapeBackslash::get()
     {

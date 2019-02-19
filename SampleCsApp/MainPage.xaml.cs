@@ -28,23 +28,37 @@ namespace SampleCsApp
     {
         private Windows.UI.Core.CoreDispatcher m_dispatcher = null;
 
+        private string m_unlockError = "";
+        private bool m_unlocked = false;
+
         public MainPage()
         {
             this.InitializeComponent();
             m_dispatcher = Windows.UI.Core.CoreWindow.GetForCurrentThread().Dispatcher;
+
+            Chilkat.Global glob = new Chilkat.Global();
+            m_unlocked = glob.UnlockBundle("Anything for 30-day trial");
+            if (!m_unlocked)
+            {
+                m_unlockError = glob.LastErrorText;
+            }
+        }
+
+        private bool checkUnlocked()
+        {
+            if (!m_unlocked)
+            {
+                Debug.WriteLine(m_unlockError);
+                textBox1.Text = "Unlock failed, see Debug output for error information...";
+            }
+            return m_unlocked;
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
             Chilkat.Crypt2 crypt = new Chilkat.Crypt2();
 
-            bool success = crypt.UnlockComponent("Anything for 30-day trial");
-            if (success != true)
-            {
-                Debug.WriteLine(crypt.LastErrorText);
-                textBox1.Text = "Unlock failed, see Debug output for error information...";
-                return;
-            }
+            if (!checkUnlocked()) return;
 
             crypt.CryptAlgorithm = "chacha20";
 
@@ -75,17 +89,46 @@ namespace SampleCsApp
         private StringBuilder sbProgressInfo = new StringBuilder();
 
 
+        private async void button1a_Click(object sender, RoutedEventArgs e)
+        {
+            Chilkat.MailMan mailman = new Chilkat.MailMan();
+
+            if (!checkUnlocked()) return;
+
+            //  Set the SMTP server.
+            mailman.SmtpHost = "smtp.gmail.com";
+            mailman.SmtpUsername = "my_account@gmail.com";
+            mailman.SmtpPassword = "myPassword";
+            mailman.StartTLS = true;
+            mailman.SmtpPort = 587;
+
+            Chilkat.Email email = new Chilkat.Email();
+            email.Subject = "This is a test";
+            email.Body = "This is a test";
+            email.From = "my_account@gmail.com";
+            email.AddTo("Matt", "matt@example.com");
+
+            mailman.VerboseLogging = true;
+            bool success = await mailman.SendEmailAsync(email);
+
+            if (success != true)
+            {
+                textBox1.Text = mailman.LastErrorText;
+                return;
+            }
+
+            textBox1.Text = "email sent.";
+
+            success = await mailman.CloseSmtpConnectionAsync();
+
+        }
+
+
         private async void button1_Click(object sender, RoutedEventArgs e)
         {
             Chilkat.Http http = new Chilkat.Http();
 
-            bool success = http.UnlockComponent("Anything for 30-day trial");
-            if (success != true)
-            {
-                Debug.WriteLine(http.LastErrorText);
-                textBox1.Text = "Unlock failed, see Debug output for error information...";
-                return;
-            }
+            if (!checkUnlocked()) return;
 
             http.ReceiveRate += Http_ReceiveRate;
             http.ProgressInfo += Http_ProgressInfo;
@@ -95,10 +138,12 @@ namespace SampleCsApp
 
             http.VerboseLogging = true;
 
-            success = await http.DownloadAsync("https://chilkatdownload.com/9.5.0.68/chilkatax-9.5.0-win32.zip", folder.Path + @"\chilkatAx.zip");
+            bool success = await http.DownloadAsync("https://chilkatdownload.com/9.5.0.76/chilkatax-9.5.0-win32.zip", folder.Path + @"\chilkatAx.zip");
             textBox1.Text = http.LastErrorText;
 
         }
+
+
 
         async private void Http_PercentDone(object sender, Chilkat.PercentDoneEventArgs eventArgs)
         {

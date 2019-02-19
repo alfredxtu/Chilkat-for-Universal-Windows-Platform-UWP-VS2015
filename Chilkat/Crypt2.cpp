@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -12,15 +13,19 @@
 #include "include/CkCertW.h"
 #include "include/CkBinDataW.h"
 #include "include/CkStringBuilderW.h"
+#include "include/CkSecureStringW.h"
 #include "include/CkStreamW.h"
 #include "include/CkCertChainW.h"
+#include "include/CkJsonObjectW.h"
 #include "include/CkPrivateKeyW.h"
 #include "include/CkXmlCertVaultW.h"
 #include "Cert.h"
 #include "BinData.h"
 #include "StringBuilder.h"
+#include "SecureString.h"
 #include "Stream.h"
 #include "CertChain.h"
+#include "JsonObject.h"
 #include "PrivateKey.h"
 #include "XmlCertVault.h"
 
@@ -284,6 +289,14 @@ void Chilkat::Crypt2::OaepHash::set(String ^newVal)
     {
         if (m_impl) m_impl->put_OaepHash(newVal ? newVal->Data() : L"");
     }
+String ^Chilkat::Crypt2::OaepMgfHash::get()
+    {
+    return ref new String(m_impl ? m_impl->oaepMgfHash() : L"");
+    }
+void Chilkat::Crypt2::OaepMgfHash::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_OaepMgfHash(newVal ? newVal->Data() : L"");
+    }
 Boolean Chilkat::Crypt2::OaepPadding::get()
     {
     return m_impl ? m_impl->get_OaepPadding() : false;
@@ -369,6 +382,14 @@ String ^Chilkat::Crypt2::SigningAlg::get()
 void Chilkat::Crypt2::SigningAlg::set(String ^newVal)
     {
         if (m_impl) m_impl->put_SigningAlg(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::Crypt2::SigningAttributes::get()
+    {
+    return ref new String(m_impl ? m_impl->signingAttributes() : L"");
+    }
+void Chilkat::Crypt2::SigningAttributes::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_SigningAttributes(newVal ? newVal->Data() : L"");
     }
 String ^Chilkat::Crypt2::UuFilename::get()
     {
@@ -715,6 +736,17 @@ Boolean Crypt2::DecryptSb(Chilkat::BinData ^bdIn, Chilkat::StringBuilder ^sbOut)
 	cxProgress.m_sender = this;
 	return m_impl->DecryptSb(*pObj0,*pObj1);
     }
+Boolean Crypt2::DecryptSecureENC(Platform::String ^cipherText, Chilkat::SecureString ^secureStr)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (secureStr == nullptr) { return false; }
+	CkSecureStringW* pObj1 = secureStr->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxCrypt2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->DecryptSecureENC(cipherText ? cipherText->Data() : L"",*pObj1);
+    }
 IAsyncOperation<Boolean>^ Crypt2::DecryptStreamAsync(Chilkat::Stream ^strm)
     {
 return create_async([this, strm]() -> Boolean
@@ -765,6 +797,16 @@ Platform::String ^Crypt2::Encode(Windows::Foundation::Collections::IVector<uint8
 	CxCrypt2Progress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	const wchar_t *retStr = m_impl->encode(db0,encoding ? encoding->Data() : L"");
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
+Platform::String ^Crypt2::EncodeInt(int value, int numBytes, Boolean littleEndian, Platform::String ^encoding)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CxCrypt2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	const wchar_t *retStr = m_impl->encodeInt(value,numBytes,littleEndian,encoding ? encoding->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
@@ -840,6 +882,19 @@ Boolean Crypt2::EncryptSb(Chilkat::StringBuilder ^sbIn, Chilkat::BinData ^bdOut)
 	CxCrypt2Progress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->EncryptSb(*pObj0,*pObj1);
+    }
+Platform::String ^Crypt2::EncryptSecureENC(Chilkat::SecureString ^secureStr)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	if (secureStr == nullptr) { return nullptr; }
+	CkSecureStringW* pObj0 = secureStr->m_impl;
+	 if (!pObj0) { return nullptr; }
+	// --- prep output arg ---
+	CxCrypt2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	const wchar_t *retStr = m_impl->encryptSecureENC(*pObj0);
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
     }
 IAsyncOperation<Boolean>^ Crypt2::EncryptStreamAsync(Chilkat::Stream ^strm)
     {
@@ -1005,6 +1060,20 @@ Platform::String ^Crypt2::GetSignatureSigningTimeStr(int index)
 	const wchar_t *retStr = m_impl->getSignatureSigningTimeStr(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+    }
+Boolean Crypt2::GetSignedAttributes(int signerIndex, Chilkat::BinData ^pkcs7Der, Chilkat::StringBuilder ^sbJson)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (pkcs7Der == nullptr) { return false; }
+	CkBinDataW* pObj1 = pkcs7Der->m_impl;
+	 if (!pObj1) { return false; }
+	if (sbJson == nullptr) { return false; }
+	CkStringBuilderW* pObj2 = sbJson->m_impl;
+	 if (!pObj2) { return false; }
+	// --- prep output arg ---
+	CxCrypt2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->GetSignedAttributes(signerIndex,*pObj1,*pObj2);
     }
 Cert ^Crypt2::GetSignerCert(int index)
     {
@@ -1245,6 +1314,16 @@ Platform::String ^Crypt2::HmacStringENC(Platform::String ^inText)
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
+Platform::String ^Crypt2::Hotp(Platform::String ^secret, Platform::String ^secretEnc, Platform::String ^counterHex, int numDigits, int truncOffset, Platform::String ^hashAlg)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CxCrypt2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	const wchar_t *retStr = m_impl->hotp(secret ? secret->Data() : L"",secretEnc ? secretEnc->Data() : L"",counterHex ? counterHex->Data() : L"",numDigits,truncOffset,hashAlg ? hashAlg->Data() : L"");
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
 Windows::Foundation::Collections::IVector<uint8>^Crypt2::InflateBytes(Windows::Foundation::Collections::IVector<uint8>^data)
     {
 	if (m_impl == nullptr) { return nullptr; }
@@ -1302,6 +1381,18 @@ Boolean Crypt2::IsUnlocked(void)
 	CxCrypt2Progress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->IsUnlocked();
+    }
+JsonObject ^Crypt2::LastJsonData(void)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CxCrypt2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	CkJsonObjectW *pRetObj = m_impl->LastJsonData();
+	if (!pRetObj) return nullptr;
+	Chilkat::JsonObject ^pJsonObject = ref new Chilkat::JsonObject();
+	pJsonObject->m_impl = pRetObj;
+	return pJsonObject;
     }
 Platform::String ^Crypt2::MacBdENC(Chilkat::BinData ^bd)
     {
@@ -1837,6 +1928,16 @@ Windows::Foundation::Collections::IVector<uint8>^Crypt2::StringToBytes(Platform:
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
+    }
+Platform::String ^Crypt2::Totp(Platform::String ^secret, Platform::String ^secretEnc, Platform::String ^t0, Platform::String ^tNow, int tStep, int numDigits, int truncOffset, Platform::String ^hashAlg)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CxCrypt2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	const wchar_t *retStr = m_impl->totp(secret ? secret->Data() : L"",secretEnc ? secretEnc->Data() : L"",t0 ? t0->Data() : L"",tNow ? tNow->Data() : L"",tStep,numDigits,truncOffset,hashAlg ? hashAlg->Data() : L"");
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
     }
 Platform::String ^Crypt2::TrimEndingWith(Platform::String ^inStr, Platform::String ^ending)
     {

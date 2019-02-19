@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -63,9 +64,15 @@ public ref class BinData sealed
 
 	Boolean AppendBom(Platform::String ^charset);
 
+	Boolean AppendByte(int byteValue);
+
 	Boolean AppendEncoded(Platform::String ^encData, Platform::String ^encoding);
 
 	Boolean AppendEncodedSb(Chilkat::StringBuilder ^sb, Platform::String ^encoding);
+
+	Boolean AppendInt2(int value, Boolean littleEndian);
+
+	Boolean AppendInt4(int value, Boolean littleEndian);
 
 	Boolean AppendSb(Chilkat::StringBuilder ^sb, Platform::String ^charset);
 

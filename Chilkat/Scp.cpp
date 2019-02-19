@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -9,7 +10,9 @@
 #include "include/CkDateTime.h"
 #include "include/CkScpW.h"
 		
+#include "include/CkBinDataW.h"
 #include "include/CkSshW.h"
+#include "BinData.h"
 #include "Ssh.h"
 
 
@@ -151,6 +154,23 @@ String ^Chilkat::Scp::Version::get()
     }
 
 
+IAsyncOperation<Boolean>^ Scp::DownloadBdAsync(Platform::String ^remotePath, Chilkat::BinData ^bd)
+    {
+return create_async([this, remotePath, bd]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (bd == nullptr) { return false; }
+	CkBinDataW* pObj1 = bd->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxScpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->DownloadBd(remotePath ? remotePath->Data() : L"",*pObj1);
+
+});
+    }
 IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ Scp::DownloadBinaryAsync(Platform::String ^remotePath)
     {
 return create_async([this, remotePath]() -> Windows::Foundation::Collections::IVector<uint8>^
@@ -240,6 +260,23 @@ return create_async([this, localBaseDir, remoteBaseDir, mode, bRecurse]() -> Boo
 	CxScpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->SyncTreeUpload(localBaseDir ? localBaseDir->Data() : L"",remoteBaseDir ? remoteBaseDir->Data() : L"",mode,bRecurse);
+
+});
+    }
+IAsyncOperation<Boolean>^ Scp::UploadBdAsync(Platform::String ^remotePath, Chilkat::BinData ^bd)
+    {
+return create_async([this, remotePath, bd]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (bd == nullptr) { return false; }
+	CkBinDataW* pObj1 = bd->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxScpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->UploadBd(remotePath ? remotePath->Data() : L"",*pObj1);
 
 });
     }

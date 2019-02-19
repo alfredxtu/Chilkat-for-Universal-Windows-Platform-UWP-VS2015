@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -84,6 +85,11 @@ public ref class OAuth2 sealed
 	{
 		Platform::String ^get();
 	}
+	property Platform::String ^AppCallbackUrl
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property int32 AuthFlowState
 	{
 		int32 get();
@@ -144,6 +150,11 @@ public ref class OAuth2 sealed
 		int32 get();
 		void set(int32);
 	}
+	property int32 ListenPortRangeEnd
+	{
+		int32 get();
+		void set(int32);
+	}
 	property Platform::String ^LocalHost
 	{
 		Platform::String ^get();
@@ -184,6 +195,11 @@ public ref class OAuth2 sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Boolean UseBasicAuth
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property Boolean VerboseLogging
 	{
 		Boolean get();
@@ -200,9 +216,13 @@ public ref class OAuth2 sealed
 	// ----------------------
 	Boolean Cancel(void);
 
+	Platform::String ^GetRedirectRequestParam(Platform::String ^paramName);
+
 	IAsyncOperation<Boolean>^ MonitorAsync(void);
 
 	IAsyncOperation<Boolean>^ RefreshAccessTokenAsync(void);
+
+	IAsyncOperation<Boolean>^ SetRefreshHeaderAsync(Platform::String ^name, Platform::String ^value);
 
 	void SleepMs(int millisec);
 

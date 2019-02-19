@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.69
+// This header is generated for Chilkat 9.5.0.76
 
 #ifndef _CkXmpW_H
 #define _CkXmpW_H

@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.69
+// This header is generated for Chilkat 9.5.0.76
 
 #ifndef _CkScp_H
 #define _CkScp_H
@@ -13,6 +13,7 @@
 #include "CkClassWithCallbacks.h"
 
 class CkTask;
+class CkBinData;
 class CkByteData;
 class CkSsh;
 class CkBaseProgress;
@@ -195,6 +196,13 @@ class CK_VISIBLE_PUBLIC CkScp  : public CkClassWithCallbacks
 	// ----------------------
 	// Methods
 	// ----------------------
+	// Downloads a binary file from the SSH server and appends to the contents of bd.
+	bool DownloadBd(const char *remotePath, CkBinData &bd);
+
+	// Downloads a binary file from the SSH server and appends to the contents of bd.
+	CkTask *DownloadBdAsync(const char *remotePath, CkBinData &bd);
+
+
 	// Downloads a binary file from the SSH server and returns the contents.
 	bool DownloadBinary(const char *remotePath, CkByteData &outBytes);
 
@@ -284,6 +292,13 @@ class CK_VISIBLE_PUBLIC CkScp  : public CkClassWithCallbacks
 	//     mode=5: same as mode 4, but also newer files.
 	// 
 	CkTask *SyncTreeUploadAsync(const char *localBaseDir, const char *remoteBaseDir, int mode, bool bRecurse);
+
+
+	// Uploads the contents of bd to a file on the SSH server.
+	bool UploadBd(const char *remotePath, CkBinData &bd);
+
+	// Uploads the contents of bd to a file on the SSH server.
+	CkTask *UploadBdAsync(const char *remotePath, CkBinData &bd);
 
 
 	// Uploads binary data to a file on the SSH server.

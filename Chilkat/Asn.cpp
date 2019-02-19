@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -9,6 +10,8 @@
 #include "include/CkDateTime.h"
 #include "include/CkAsnW.h"
 		
+#include "include/CkBinDataW.h"
+#include "BinData.h"
 
 
 using namespace Chilkat;
@@ -301,6 +304,15 @@ Boolean Asn::LoadAsnXml(Platform::String ^xmlStr)
 	// --- prep output arg ---
 	return m_impl->LoadAsnXml(xmlStr ? xmlStr->Data() : L"");
     }
+Boolean Asn::LoadBd(Chilkat::BinData ^bd)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bd == nullptr) { return false; }
+	CkBinDataW* pObj0 = bd->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->LoadBd(*pObj0);
+    }
 Boolean Asn::LoadBinary(Windows::Foundation::Collections::IVector<uint8>^derBytes)
     {
 	if (m_impl == nullptr) { return false; }
@@ -327,6 +339,15 @@ Boolean Asn::SetEncodedContent(Platform::String ^encodedBytes, Platform::String 
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->SetEncodedContent(encodedBytes ? encodedBytes->Data() : L"",encoding ? encoding->Data() : L"");
+    }
+Boolean Asn::WriteBd(Chilkat::BinData ^bd)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bd == nullptr) { return false; }
+	CkBinDataW* pObj0 = bd->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->WriteBd(*pObj0);
     }
 Boolean Asn::WriteBinaryDer(Platform::String ^path)
     {

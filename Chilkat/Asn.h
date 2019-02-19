@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -20,6 +21,7 @@ using namespace concurrency;
 namespace Chilkat
 {
 
+	ref class BinData;
 
 
 public ref class Asn sealed
@@ -159,6 +161,8 @@ public ref class Asn sealed
 
 	Boolean LoadAsnXml(Platform::String ^xmlStr);
 
+	Boolean LoadBd(Chilkat::BinData ^bd);
+
 	Boolean LoadBinary(Windows::Foundation::Collections::IVector<uint8>^derBytes);
 
 	Boolean LoadBinaryFile(Platform::String ^path);
@@ -166,6 +170,8 @@ public ref class Asn sealed
 	Boolean LoadEncoded(Platform::String ^asnContent, Platform::String ^encoding);
 
 	Boolean SetEncodedContent(Platform::String ^encodedBytes, Platform::String ^encoding);
+
+	Boolean WriteBd(Chilkat::BinData ^bd);
 
 	Boolean WriteBinaryDer(Platform::String ^path);
 

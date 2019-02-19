@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -9,10 +10,14 @@
 #include "include/CkDateTime.h"
 #include "include/CkRsaW.h"
 		
+#include "include/CkBinDataW.h"
 #include "include/CkPrivateKeyW.h"
 #include "include/CkPublicKeyW.h"
+#include "include/CkCertW.h"
+#include "BinData.h"
 #include "PrivateKey.h"
 #include "PublicKey.h"
+#include "Cert.h"
 
 
 using namespace Chilkat;
@@ -119,6 +124,14 @@ void Chilkat::Rsa::OaepHash::set(String ^newVal)
     {
         if (m_impl) m_impl->put_OaepHash(newVal ? newVal->Data() : L"");
     }
+String ^Chilkat::Rsa::OaepMgfHash::get()
+    {
+    return ref new String(m_impl ? m_impl->oaepMgfHash() : L"");
+    }
+void Chilkat::Rsa::OaepMgfHash::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_OaepMgfHash(newVal ? newVal->Data() : L"");
+    }
 Boolean Chilkat::Rsa::OaepPadding::get()
     {
     return m_impl ? m_impl->get_OaepPadding() : false;
@@ -141,6 +154,15 @@ String ^Chilkat::Rsa::Version::get()
     }
 
 
+Boolean Rsa::DecryptBd(Chilkat::BinData ^bd, Boolean usePrivateKey)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bd == nullptr) { return false; }
+	CkBinDataW* pObj0 = bd->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->DecryptBd(*pObj0,usePrivateKey);
+    }
 Windows::Foundation::Collections::IVector<uint8>^Rsa::DecryptBytes(Windows::Foundation::Collections::IVector<uint8>^inData, Boolean usePrivateKey)
     {
 	if (m_impl == nullptr) { return nullptr; }
@@ -182,6 +204,15 @@ Platform::String ^Rsa::DecryptStringENC(Platform::String ^encodedSig, Boolean us
 	const wchar_t *retStr = m_impl->decryptStringENC(encodedSig ? encodedSig->Data() : L"",usePrivateKey);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+    }
+Boolean Rsa::EncryptBd(Chilkat::BinData ^bd, Boolean usePrivateKey)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bd == nullptr) { return false; }
+	CkBinDataW* pObj0 = bd->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->EncryptBd(*pObj0,usePrivateKey);
     }
 Windows::Foundation::Collections::IVector<uint8>^Rsa::EncryptBytes(Windows::Foundation::Collections::IVector<uint8>^binaryData, Boolean usePrivateKey)
     {
@@ -297,6 +328,15 @@ Boolean Rsa::ImportPublicKeyObj(Chilkat::PublicKey ^key)
 	// --- prep output arg ---
 	return m_impl->ImportPublicKeyObj(*pObj0);
     }
+Boolean Rsa::OpenSslSignBd(Chilkat::BinData ^bd)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bd == nullptr) { return false; }
+	CkBinDataW* pObj0 = bd->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->OpenSslSignBd(*pObj0);
+    }
 Windows::Foundation::Collections::IVector<uint8>^Rsa::OpenSslSignBytes(Windows::Foundation::Collections::IVector<uint8>^data)
     {
 	if (m_impl == nullptr) { return nullptr; }
@@ -339,6 +379,15 @@ Platform::String ^Rsa::OpenSslSignStringENC(Platform::String ^str)
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
+Boolean Rsa::OpenSslVerifyBd(Chilkat::BinData ^bd)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bd == nullptr) { return false; }
+	CkBinDataW* pObj0 = bd->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->OpenSslVerifyBd(*pObj0);
+    }
 Windows::Foundation::Collections::IVector<uint8>^Rsa::OpenSslVerifyBytes(Windows::Foundation::Collections::IVector<uint8>^signature)
     {
 	if (m_impl == nullptr) { return nullptr; }
@@ -380,6 +429,27 @@ Platform::String ^Rsa::OpenSslVerifyStringENC(Platform::String ^str)
 	const wchar_t *retStr = m_impl->openSslVerifyStringENC(str ? str->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+    }
+Boolean Rsa::SetX509Cert(Chilkat::Cert ^cert, Boolean usePrivateKey)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (cert == nullptr) { return false; }
+	CkCertW* pObj0 = cert->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->SetX509Cert(*pObj0,usePrivateKey);
+    }
+Boolean Rsa::SignBd(Chilkat::BinData ^bdData, Platform::String ^hashAlgorithm, Chilkat::BinData ^bdSig)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bdData == nullptr) { return false; }
+	CkBinDataW* pObj0 = bdData->m_impl;
+	 if (!pObj0) { return false; }
+	if (bdSig == nullptr) { return false; }
+	CkBinDataW* pObj2 = bdSig->m_impl;
+	 if (!pObj2) { return false; }
+	// --- prep output arg ---
+	return m_impl->SignBd(*pObj0,hashAlgorithm ? hashAlgorithm->Data() : L"",*pObj2);
     }
 Windows::Foundation::Collections::IVector<uint8>^Rsa::SignBytes(Windows::Foundation::Collections::IVector<uint8>^binaryData, Platform::String ^hashAlgorithm)
     {
@@ -457,6 +527,18 @@ Boolean Rsa::UnlockComponent(Platform::String ^unlockCode)
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->UnlockComponent(unlockCode ? unlockCode->Data() : L"");
+    }
+Boolean Rsa::VerifyBd(Chilkat::BinData ^bdData, Platform::String ^hashAlgorithm, Chilkat::BinData ^bdSig)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bdData == nullptr) { return false; }
+	CkBinDataW* pObj0 = bdData->m_impl;
+	 if (!pObj0) { return false; }
+	if (bdSig == nullptr) { return false; }
+	CkBinDataW* pObj2 = bdSig->m_impl;
+	 if (!pObj2) { return false; }
+	// --- prep output arg ---
+	return m_impl->VerifyBd(*pObj0,hashAlgorithm ? hashAlgorithm->Data() : L"",*pObj2);
     }
 Boolean Rsa::VerifyBytes(Windows::Foundation::Collections::IVector<uint8>^originalData, Platform::String ^hashAlgorithm, Windows::Foundation::Collections::IVector<uint8>^signatureBytes)
     {

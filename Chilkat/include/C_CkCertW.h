@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.69
+// This is a generated source file for Chilkat version 9.5.0.76
 #ifndef _C_CkCertWH
 #define _C_CkCertWH
 #include "chilkatDefs.h"
@@ -61,12 +61,17 @@ CK_VISIBLE_PUBLIC BOOL CkCertW_getRevoked(HCkCertW cHandle);
 CK_VISIBLE_PUBLIC void CkCertW_getRfc822Name(HCkCertW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkCertW_rfc822Name(HCkCertW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkCertW_getSelfSigned(HCkCertW cHandle);
+CK_VISIBLE_PUBLIC void CkCertW_getSerialDecimal(HCkCertW cHandle, HCkString retval);
+CK_VISIBLE_PUBLIC const wchar_t *CkCertW_serialDecimal(HCkCertW cHandle);
 CK_VISIBLE_PUBLIC void CkCertW_getSerialNumber(HCkCertW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkCertW_serialNumber(HCkCertW cHandle);
 CK_VISIBLE_PUBLIC void CkCertW_getSha1Thumbprint(HCkCertW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkCertW_sha1Thumbprint(HCkCertW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkCertW_getSignatureVerified(HCkCertW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkCertW_getSilent(HCkCertW cHandle);
+CK_VISIBLE_PUBLIC void CkCertW_getSmartCardPin(HCkCertW cHandle, HCkString retval);
+CK_VISIBLE_PUBLIC void  CkCertW_putSmartCardPin(HCkCertW cHandle, const wchar_t *newVal);
+CK_VISIBLE_PUBLIC const wchar_t *CkCertW_smartCardPin(HCkCertW cHandle);
 CK_VISIBLE_PUBLIC void CkCertW_getSubjectC(HCkCertW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkCertW_subjectC(HCkCertW cHandle);
 CK_VISIBLE_PUBLIC void CkCertW_getSubjectCN(HCkCertW cHandle, HCkString retval);
@@ -98,6 +103,7 @@ CK_VISIBLE_PUBLIC void CkCertW_getVersion(HCkCertW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkCertW_version(HCkCertW cHandle);
 CK_VISIBLE_PUBLIC int CkCertW_CheckRevoked(HCkCertW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkCertW_ExportCertDer(HCkCertW cHandle, HCkByteData outData);
+CK_VISIBLE_PUBLIC BOOL CkCertW_ExportCertDerBd(HCkCertW cHandle, HCkBinDataW cerData);
 CK_VISIBLE_PUBLIC BOOL CkCertW_ExportCertDerFile(HCkCertW cHandle, const wchar_t *path);
 CK_VISIBLE_PUBLIC BOOL CkCertW_ExportCertPem(HCkCertW cHandle, HCkString outStr);
 CK_VISIBLE_PUBLIC const wchar_t *CkCertW_exportCertPem(HCkCertW cHandle);
@@ -106,6 +112,7 @@ CK_VISIBLE_PUBLIC BOOL CkCertW_ExportCertXml(HCkCertW cHandle, HCkString outStr)
 CK_VISIBLE_PUBLIC const wchar_t *CkCertW_exportCertXml(HCkCertW cHandle);
 CK_VISIBLE_PUBLIC HCkPrivateKeyW CkCertW_ExportPrivateKey(HCkCertW cHandle);
 CK_VISIBLE_PUBLIC HCkPublicKeyW CkCertW_ExportPublicKey(HCkCertW cHandle);
+CK_VISIBLE_PUBLIC BOOL CkCertW_ExportToPfxBd(HCkCertW cHandle, const wchar_t *password, BOOL includeCertChain, HCkBinDataW pfxData);
 CK_VISIBLE_PUBLIC BOOL CkCertW_ExportToPfxData(HCkCertW cHandle, const wchar_t *password, BOOL includeCertChain, HCkByteData outBytes);
 CK_VISIBLE_PUBLIC BOOL CkCertW_ExportToPfxFile(HCkCertW cHandle, const wchar_t *pfxFilename, const wchar_t *pfxPassword, BOOL bIncludeCertChain);
 CK_VISIBLE_PUBLIC HCkCertW CkCertW_FindIssuer(HCkCertW cHandle);
@@ -120,6 +127,8 @@ CK_VISIBLE_PUBLIC BOOL CkCertW_GetSpkiFingerprint(HCkCertW cHandle, const wchar_
 CK_VISIBLE_PUBLIC const wchar_t *CkCertW_getSpkiFingerprint(HCkCertW cHandle, const wchar_t *hashAlg, const wchar_t *encoding);
 CK_VISIBLE_PUBLIC HCkDateTimeW CkCertW_GetValidFromDt(HCkCertW cHandle);
 CK_VISIBLE_PUBLIC HCkDateTimeW CkCertW_GetValidToDt(HCkCertW cHandle);
+CK_VISIBLE_PUBLIC BOOL CkCertW_HashOf(HCkCertW cHandle, const wchar_t *part, const wchar_t *hashAlg, const wchar_t *encoding, HCkString outStr);
+CK_VISIBLE_PUBLIC const wchar_t *CkCertW_hashOf(HCkCertW cHandle, const wchar_t *part, const wchar_t *hashAlg, const wchar_t *encoding);
 CK_VISIBLE_PUBLIC BOOL CkCertW_HasPrivateKey(HCkCertW cHandle);
 #if defined(CK_CRYPTOAPI_INCLUDED)
 CK_VISIBLE_PUBLIC BOOL CkCertW_LinkPrivateKey(HCkCertW cHandle, const wchar_t *keyContainerName, BOOL bMachineKeyset, BOOL bForSigning);
@@ -128,12 +137,14 @@ CK_VISIBLE_PUBLIC BOOL CkCertW_LoadByCommonName(HCkCertW cHandle, const wchar_t 
 CK_VISIBLE_PUBLIC BOOL CkCertW_LoadByEmailAddress(HCkCertW cHandle, const wchar_t *emailAddress);
 CK_VISIBLE_PUBLIC BOOL CkCertW_LoadByIssuerAndSerialNumber(HCkCertW cHandle, const wchar_t *issuerCN, const wchar_t *serialNumber);
 CK_VISIBLE_PUBLIC BOOL CkCertW_LoadFromBase64(HCkCertW cHandle, const wchar_t *encodedCert);
+CK_VISIBLE_PUBLIC BOOL CkCertW_LoadFromBd(HCkCertW cHandle, HCkBinDataW certBytes);
 CK_VISIBLE_PUBLIC BOOL CkCertW_LoadFromBinary(HCkCertW cHandle, HCkByteData data);
 #if !defined(CHILKAT_MONO)
 CK_VISIBLE_PUBLIC BOOL CkCertW_LoadFromBinary2(HCkCertW cHandle, const unsigned char *pByteData, unsigned long szByteData);
 #endif
 CK_VISIBLE_PUBLIC BOOL CkCertW_LoadFromFile(HCkCertW cHandle, const wchar_t *path);
 CK_VISIBLE_PUBLIC BOOL CkCertW_LoadPem(HCkCertW cHandle, const wchar_t *strPem);
+CK_VISIBLE_PUBLIC BOOL CkCertW_LoadPfxBd(HCkCertW cHandle, HCkBinDataW pfxData, const wchar_t *password);
 CK_VISIBLE_PUBLIC BOOL CkCertW_LoadPfxData(HCkCertW cHandle, HCkByteData pfxData, const wchar_t *password);
 #if !defined(CHILKAT_MONO)
 CK_VISIBLE_PUBLIC BOOL CkCertW_LoadPfxData2(HCkCertW cHandle, const unsigned char *pByteData, unsigned long szByteData, const wchar_t *password);

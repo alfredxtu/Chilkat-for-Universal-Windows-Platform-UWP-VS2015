@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -161,6 +162,15 @@ String ^Chilkat::HttpRequest::Version::get()
     }
 
 
+Boolean HttpRequest::AddBdForUpload(Platform::String ^name, Platform::String ^remoteFilename, Chilkat::BinData ^byteData, Platform::String ^contentType)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (byteData == nullptr) { return false; }
+	CkBinDataW* pObj2 = byteData->m_impl;
+	 if (!pObj2) { return false; }
+	// --- prep output arg ---
+	return m_impl->AddBdForUpload(name ? name->Data() : L"",remoteFilename ? remoteFilename->Data() : L"",*pObj2,contentType ? contentType->Data() : L"");
+    }
 Boolean HttpRequest::AddBytesForUpload(Platform::String ^name, Platform::String ^remoteFileName, Windows::Foundation::Collections::IVector<uint8>^byteData)
     {
 	if (m_impl == nullptr) { return false; }

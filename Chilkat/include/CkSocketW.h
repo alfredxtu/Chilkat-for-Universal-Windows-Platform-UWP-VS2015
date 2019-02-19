@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.69
+// This header is generated for Chilkat 9.5.0.76
 
 #ifndef _CkSocketW_H
 #define _CkSocketW_H
@@ -109,6 +109,7 @@ class CK_VISIBLE_PUBLIC CkSocketW  : public CkClassWithCallbacksW
 	// 122 = Failed to process client cert URL message.
 	// 123 = Failed to process client key exchange message.
 	// 124 = Failed to process certificate verify message.
+	// 125 = Received and rejected an SSL 2.0 connection attempt.
 	// 
 	int get_AcceptFailReason(void);
 
@@ -415,6 +416,7 @@ class CK_VISIBLE_PUBLIC CkSocketW  : public CkClassWithCallbacksW
 	// 105 = Unexpected TLS protocol version.
 	// 106 = Server certificate verify failed (the server certificate is expired or the cert's signature verification failed).
 	// 107 = Unacceptable TLS protocol version.
+	// 108 = App-defined server certificate requirements failure.
 	// 109 = Failed to read handshake messages.
 	// 110 = Failed to send client certificate handshake message.
 	// 111 = Failed to send client key exchange handshake message.
@@ -480,6 +482,15 @@ class CK_VISIBLE_PUBLIC CkSocketW  : public CkClassWithCallbacksW
 	const wchar_t *httpProxyDomain(void);
 	// The NTLM authentication domain (optional) if NTLM authentication is used.
 	void put_HttpProxyDomain(const wchar_t *newVal);
+
+	// If this connection is effectively used to send HTTP requests, then set this
+	// property to true when using an HTTP proxy. The default value of this property
+	// is false.
+	bool get_HttpProxyForHttp(void);
+	// If this connection is effectively used to send HTTP requests, then set this
+	// property to true when using an HTTP proxy. The default value of this property
+	// is false.
+	void put_HttpProxyForHttp(bool newVal);
 
 	// If an HTTP proxy is to be used, set this property to the HTTP proxy hostname or
 	// IPv4 address (in dotted decimal notation).
@@ -1612,6 +1623,27 @@ class CK_VISIBLE_PUBLIC CkSocketW  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *BindAndListenAsync(int port, int backLog);
 
+	// Binds a TCP socket to an unused port within a port range (beginPort to endPort) and
+	// configures it to listen for incoming connections. The size of the backlog is
+	// passed in endPort. The endPort is necessary when multiple connections arrive at the
+	// same time, or close enough in time such that they cannot be serviced
+	// immediately. (A typical value to use for endPort is 5.) This method should be
+	// called once prior to receiving incoming connection requests via the
+	// AcceptNextConnection method.
+	// 
+	// To bind and listen using IPv6, set the ListenIpv6 property = true prior to
+	// calling this method.
+	// 
+	// Returns the port number that was bound, or -1 if no port was available or if it
+	// failed for some other reason.
+	// 
+	int BindAndListenPortRange(int beginPort, int endPort, int backLog);
+
+	// Creates an asynchronous task to call the BindAndListenPortRange method with the
+	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *BindAndListenPortRangeAsync(int beginPort, int endPort, int backLog);
+
 	// Convenience method for building a simple HTTP GET request from a URL.
 	bool BuildHttpGetRequest(const wchar_t *url, CkString &outStr);
 	// Convenience method for building a simple HTTP GET request from a URL.
@@ -2024,6 +2056,16 @@ class CK_VISIBLE_PUBLIC CkSocketW  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *ReceiveUntilByteAsync(int lookForByte);
 
+	// Receives bytes on the TCP/IP or SSL socket until a specific 1-byte value is
+	// read. Returns all the bytes up to and including the lookForByte. The received bytes are
+	// appended to bd.
+	bool ReceiveUntilByteBd(int lookForByte, CkBinDataW &bd);
+
+	// Creates an asynchronous task to call the ReceiveUntilByteBd method with the
+	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *ReceiveUntilByteBdAsync(int lookForByte, CkBinDataW &bd);
+
 	// Reads text from the connected TCP/IP or SSL socket until a matching string
 	// (matchStr) is received. Returns the text up to and including the matching string. As
 	// an example, to one might read the header of an HTTP request or a MIME message by
@@ -2206,6 +2248,13 @@ class CK_VISIBLE_PUBLIC CkSocketW  : public CkClassWithCallbacksW
 	// 
 	bool SendWakeOnLan(const wchar_t *macAddress, int port, const wchar_t *ipBroadcastAddr);
 
+	// The same as SendWakeOnLan, but includes an additional argument to specify a
+	// SecureOn password. The password should be a hexidecimal string representing 4 or 6
+	// bytes. (See https://wiki.wireshark.org/WakeOnLAN) Sending a WakeOnLAN (WOL) to
+	// an IPv4 address would need a 4-byte SecureOn password, whereas an IPv6 address
+	// would need a 6-byte SecureOn password.
+	bool SendWakeOnLan2(const wchar_t *macAddress, int port, const wchar_t *ipBroadcastAddr, const wchar_t *password);
+
 	// A client-side certificate for SSL/TLS connections is optional. It should be used
 	// only if the server demands it. This method allows the certificate to be
 	// specified using a certificate object.
@@ -2292,6 +2341,11 @@ class CK_VISIBLE_PUBLIC CkSocketW  : public CkClassWithCallbacksW
 	// number of seconds since the last call to this method. (The StartTiming method
 	// and ElapsedSeconds property is provided for convenience.)
 	void StartTiming(void);
+
+	// Takes the connection from sock. If the caller of this method had an open
+	// connection, then it will be closed. This method is different than the TakeSocket
+	// method because the caller does not become a "socket set".
+	bool TakeConnection(CkSocketW &sock);
 
 	// Takes ownership of the sock. sock is added to the internal set of connected
 	// sockets. The caller object is now effectively a "socket set", i.e. a collection

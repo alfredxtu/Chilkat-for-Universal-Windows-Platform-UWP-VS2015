@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.73
 
 // This header is generated for Chilkat v9.5.0
 
@@ -25,6 +26,7 @@ namespace Chilkat
 {
 
 	ref class SshKey;
+	ref class SecureString;
 	ref class Ssh;
 
 
@@ -215,6 +217,11 @@ public ref class SshTunnel sealed
 		int32 get();
 		void set(int32);
 	}
+	property Boolean PreferIpv6
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property Platform::String ^SocksHostname
 	{
 		Platform::String ^get();
@@ -265,6 +272,11 @@ public ref class SshTunnel sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Platform::String ^UncommonOptions
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Boolean VerboseLogging
 	{
 		Boolean get();
@@ -284,6 +296,10 @@ public ref class SshTunnel sealed
 	IAsyncOperation<Boolean>^ AuthenticatePwAsync(Platform::String ^login, Platform::String ^password);
 
 	IAsyncOperation<Boolean>^ AuthenticatePwPkAsync(Platform::String ^username, Platform::String ^password, Chilkat::SshKey ^privateKey);
+
+	IAsyncOperation<Boolean>^ AuthenticateSecPwAsync(Chilkat::SecureString ^login, Chilkat::SecureString ^password);
+
+	IAsyncOperation<Boolean>^ AuthenticateSecPwPkAsync(Chilkat::SecureString ^username, Chilkat::SecureString ^password, Chilkat::SshKey ^privateKey);
 
 	IAsyncOperation<Boolean>^ BeginAcceptingAsync(int listenPort);
 

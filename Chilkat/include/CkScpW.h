@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.69
+// This header is generated for Chilkat 9.5.0.76
 
 #ifndef _CkScpW_H
 #define _CkScpW_H
@@ -12,8 +12,9 @@
 #include "CkString.h"
 #include "CkClassWithCallbacksW.h"
 
-class CkByteData;
+class CkBinDataW;
 class CkTaskW;
+class CkByteData;
 class CkSshW;
 class CkBaseProgressW;
 
@@ -202,6 +203,14 @@ class CK_VISIBLE_PUBLIC CkScpW  : public CkClassWithCallbacksW
 	// ----------------------
 	// Methods
 	// ----------------------
+	// Downloads a binary file from the SSH server and appends to the contents of bd.
+	bool DownloadBd(const wchar_t *remotePath, CkBinDataW &bd);
+
+	// Creates an asynchronous task to call the DownloadBd method with the arguments
+	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *DownloadBdAsync(const wchar_t *remotePath, CkBinDataW &bd);
+
 	// Downloads a binary file from the SSH server and returns the contents.
 	bool DownloadBinary(const wchar_t *remotePath, CkByteData &outBytes);
 
@@ -276,6 +285,14 @@ class CK_VISIBLE_PUBLIC CkScpW  : public CkClassWithCallbacksW
 	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *SyncTreeUploadAsync(const wchar_t *localBaseDir, const wchar_t *remoteBaseDir, int mode, bool bRecurse);
+
+	// Uploads the contents of bd to a file on the SSH server.
+	bool UploadBd(const wchar_t *remotePath, CkBinDataW &bd);
+
+	// Creates an asynchronous task to call the UploadBd method with the arguments
+	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *UploadBdAsync(const wchar_t *remotePath, CkBinDataW &bd);
 
 	// Uploads binary data to a file on the SSH server.
 	bool UploadBinary(const wchar_t *remotePath, CkByteData &binData);

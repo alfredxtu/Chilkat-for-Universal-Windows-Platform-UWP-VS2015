@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -20,8 +21,10 @@ using namespace concurrency;
 namespace Chilkat
 {
 
+	ref class BinData;
 	ref class PrivateKey;
 	ref class PublicKey;
+	ref class Cert;
 
 
 public ref class Rsa sealed
@@ -95,6 +98,11 @@ public ref class Rsa sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Platform::String ^OaepMgfHash
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Boolean OaepPadding
 	{
 		Boolean get();
@@ -114,6 +122,8 @@ public ref class Rsa sealed
 	// ----------------------
 	// Methods
 	// ----------------------
+	Boolean DecryptBd(Chilkat::BinData ^bd, Boolean usePrivateKey);
+
 	Windows::Foundation::Collections::IVector<uint8>^DecryptBytes(Windows::Foundation::Collections::IVector<uint8>^inData, Boolean usePrivateKey);
 
 	Windows::Foundation::Collections::IVector<uint8>^DecryptBytesENC(Platform::String ^str, Boolean bUsePrivateKey);
@@ -121,6 +131,8 @@ public ref class Rsa sealed
 	Platform::String ^DecryptString(Windows::Foundation::Collections::IVector<uint8>^binarySig, Boolean usePrivateKey);
 
 	Platform::String ^DecryptStringENC(Platform::String ^encodedSig, Boolean usePrivateKey);
+
+	Boolean EncryptBd(Chilkat::BinData ^bd, Boolean usePrivateKey);
 
 	Windows::Foundation::Collections::IVector<uint8>^EncryptBytes(Windows::Foundation::Collections::IVector<uint8>^binaryData, Boolean usePrivateKey);
 
@@ -148,6 +160,8 @@ public ref class Rsa sealed
 
 	Boolean ImportPublicKeyObj(Chilkat::PublicKey ^key);
 
+	Boolean OpenSslSignBd(Chilkat::BinData ^bd);
+
 	Windows::Foundation::Collections::IVector<uint8>^OpenSslSignBytes(Windows::Foundation::Collections::IVector<uint8>^data);
 
 	Platform::String ^OpenSslSignBytesENC(Windows::Foundation::Collections::IVector<uint8>^data);
@@ -156,6 +170,8 @@ public ref class Rsa sealed
 
 	Platform::String ^OpenSslSignStringENC(Platform::String ^str);
 
+	Boolean OpenSslVerifyBd(Chilkat::BinData ^bd);
+
 	Windows::Foundation::Collections::IVector<uint8>^OpenSslVerifyBytes(Windows::Foundation::Collections::IVector<uint8>^signature);
 
 	Windows::Foundation::Collections::IVector<uint8>^OpenSslVerifyBytesENC(Platform::String ^str);
@@ -163,6 +179,10 @@ public ref class Rsa sealed
 	Platform::String ^OpenSslVerifyString(Windows::Foundation::Collections::IVector<uint8>^data);
 
 	Platform::String ^OpenSslVerifyStringENC(Platform::String ^str);
+
+	Boolean SetX509Cert(Chilkat::Cert ^cert, Boolean usePrivateKey);
+
+	Boolean SignBd(Chilkat::BinData ^bdData, Platform::String ^hashAlgorithm, Chilkat::BinData ^bdSig);
 
 	Windows::Foundation::Collections::IVector<uint8>^SignBytes(Windows::Foundation::Collections::IVector<uint8>^binaryData, Platform::String ^hashAlgorithm);
 
@@ -179,6 +199,8 @@ public ref class Rsa sealed
 	Platform::String ^SnkToXml(Platform::String ^filename);
 
 	Boolean UnlockComponent(Platform::String ^unlockCode);
+
+	Boolean VerifyBd(Chilkat::BinData ^bdData, Platform::String ^hashAlgorithm, Chilkat::BinData ^bdSig);
 
 	Boolean VerifyBytes(Windows::Foundation::Collections::IVector<uint8>^originalData, Platform::String ^hashAlgorithm, Windows::Foundation::Collections::IVector<uint8>^signatureBytes);
 

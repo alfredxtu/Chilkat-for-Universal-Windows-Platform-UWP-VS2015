@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -12,11 +13,14 @@
 #include "include/CkJsonArrayW.h"
 #include "include/CkStringTableW.h"
 #include "include/CkBinDataW.h"
+#include "include/CkDtObjW.h"
 #include "include/CkStringBuilderW.h"
 #include "include/CkHashtableW.h"
 #include "JsonArray.h"
 #include "StringTable.h"
 #include "BinData.h"
+#include "CkDateTime.h"
+#include "DtObj.h"
 #include "StringBuilder.h"
 #include "Hashtable.h"
 
@@ -128,6 +132,14 @@ Boolean Chilkat::JsonObject::LastMethodSuccess::get()
 void Chilkat::JsonObject::LastMethodSuccess::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_LastMethodSuccess(newVal);
+    }
+String ^Chilkat::JsonObject::PathPrefix::get()
+    {
+    return ref new String(m_impl ? m_impl->pathPrefix() : L"");
+    }
+void Chilkat::JsonObject::PathPrefix::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_PathPrefix(newVal ? newVal->Data() : L"");
     }
 int Chilkat::JsonObject::Size::get()
     {
@@ -277,6 +289,12 @@ Boolean JsonObject::BytesOf(Platform::String ^jsonPath, Platform::String ^encodi
 	// --- prep output arg ---
 	return m_impl->BytesOf(jsonPath ? jsonPath->Data() : L"",encoding ? encoding->Data() : L"",*pObj2);
     }
+void JsonObject::Clear(void)
+    {
+	if (m_impl == nullptr) { return ; }
+	// --- prep output arg ---
+	m_impl->Clear();
+    }
 JsonObject ^JsonObject::Clone(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
@@ -286,6 +304,15 @@ JsonObject ^JsonObject::Clone(void)
 	Chilkat::JsonObject ^pJsonObject = ref new Chilkat::JsonObject();
 	pJsonObject->m_impl = pRetObj;
 	return pJsonObject;
+    }
+Boolean JsonObject::DateOf(Platform::String ^jsonPath, Chilkat::CkDateTime ^dateTime)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (dateTime == nullptr) { return false; }
+	CkDateTimeW* pObj1 = dateTime->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	return m_impl->DateOf(jsonPath ? jsonPath->Data() : L"",*pObj1);
     }
 Boolean JsonObject::Delete(Platform::String ^name)
     {
@@ -298,6 +325,15 @@ Boolean JsonObject::DeleteAt(int index)
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->DeleteAt(index);
+    }
+Boolean JsonObject::DtOf(Platform::String ^jsonPath, Boolean bLocal, Chilkat::DtObj ^dt)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (dt == nullptr) { return false; }
+	CkDtObjW* pObj2 = dt->m_impl;
+	 if (!pObj2) { return false; }
+	// --- prep output arg ---
+	return m_impl->DtOf(jsonPath ? jsonPath->Data() : L"",bLocal,*pObj2);
     }
 Platform::String ^JsonObject::Emit(void)
     {
@@ -589,6 +625,12 @@ Boolean JsonObject::StringOfSb(Platform::String ^jsonPath, Chilkat::StringBuilde
 	// --- prep output arg ---
 	return m_impl->StringOfSb(jsonPath ? jsonPath->Data() : L"",*pObj1);
     }
+Boolean JsonObject::Swap(int index1, int index2)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->Swap(index1,index2);
+    }
 int JsonObject::TypeAt(int index)
     {
 	if (m_impl == nullptr) { return -1; }
@@ -616,6 +658,18 @@ Boolean JsonObject::UpdateInt(Platform::String ^jsonPath, int value)
 	// --- prep output arg ---
 	return m_impl->UpdateInt(jsonPath ? jsonPath->Data() : L"",value);
     }
+Boolean JsonObject::UpdateNewArray(Platform::String ^jsonPath)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->UpdateNewArray(jsonPath ? jsonPath->Data() : L"");
+    }
+Boolean JsonObject::UpdateNewObject(Platform::String ^jsonPath)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->UpdateNewObject(jsonPath ? jsonPath->Data() : L"");
+    }
 Boolean JsonObject::UpdateNull(Platform::String ^jsonPath)
     {
 	if (m_impl == nullptr) { return false; }
@@ -642,6 +696,12 @@ Boolean JsonObject::UpdateString(Platform::String ^jsonPath, Platform::String ^v
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->UpdateString(jsonPath ? jsonPath->Data() : L"",value ? value->Data() : L"");
+    }
+Boolean JsonObject::WriteFile(Platform::String ^path)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->WriteFile(path ? path->Data() : L"");
     }
 
 

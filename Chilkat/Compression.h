@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -25,6 +26,7 @@ namespace Chilkat
 {
 
 	ref class BinData;
+	ref class StringBuilder;
 	ref class Stream;
 
 
@@ -91,6 +93,11 @@ public ref class Compression sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property int32 DeflateLevel
+	{
+		int32 get();
+		void set(int32);
+	}
 	property Platform::String ^EncodingMode
 	{
 		Platform::String ^get();
@@ -156,6 +163,8 @@ public ref class Compression sealed
 
 	IAsyncOperation<Boolean>^ CompressFileAsync(Platform::String ^srcPath, Platform::String ^destPath);
 
+	IAsyncOperation<Boolean>^ CompressSbAsync(Chilkat::StringBuilder ^sb, Chilkat::BinData ^binData);
+
 	IAsyncOperation<Boolean>^ CompressStreamAsync(Chilkat::Stream ^strm);
 
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ CompressStringAsync(Platform::String ^str);
@@ -169,6 +178,8 @@ public ref class Compression sealed
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ DecompressBytesENCAsync(Platform::String ^encodedCompressedData);
 
 	IAsyncOperation<Boolean>^ DecompressFileAsync(Platform::String ^srcPath, Platform::String ^destPath);
+
+	IAsyncOperation<Boolean>^ DecompressSbAsync(Chilkat::BinData ^binData, Chilkat::StringBuilder ^sb);
 
 	IAsyncOperation<Boolean>^ DecompressStreamAsync(Chilkat::Stream ^strm);
 

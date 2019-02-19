@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -10,7 +11,9 @@
 #include "include/CkPrivateKeyW.h"
 		
 #include "include/CkPublicKeyW.h"
+#include "include/CkBinDataW.h"
 #include "PublicKey.h"
+#include "BinData.h"
 
 
 using namespace Chilkat;
@@ -232,6 +235,15 @@ Platform::String ^PrivateKey::GetXml(void)
 	const wchar_t *retStr = m_impl->getXml();
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+    }
+Boolean PrivateKey::LoadAnyFormat(Chilkat::BinData ^privKeyData, Platform::String ^password)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (privKeyData == nullptr) { return false; }
+	CkBinDataW* pObj0 = privKeyData->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->LoadAnyFormat(*pObj0,password ? password->Data() : L"");
     }
 Boolean PrivateKey::LoadEncryptedPem(Platform::String ^pemStr, Platform::String ^password)
     {

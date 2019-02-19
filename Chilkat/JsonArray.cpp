@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -9,8 +10,11 @@
 #include "include/CkDateTime.h"
 #include "include/CkJsonArrayW.h"
 		
+#include "include/CkDtObjW.h"
 #include "include/CkStringBuilderW.h"
 #include "include/CkJsonObjectW.h"
+#include "CkDateTime.h"
+#include "DtObj.h"
 #include "StringBuilder.h"
 #include "JsonObject.h"
 
@@ -167,11 +171,35 @@ Boolean JsonArray::BoolAt(int index)
 	// --- prep output arg ---
 	return m_impl->BoolAt(index);
     }
+void JsonArray::Clear(void)
+    {
+	if (m_impl == nullptr) { return ; }
+	// --- prep output arg ---
+	m_impl->Clear();
+    }
+Boolean JsonArray::DateAt(int index, Chilkat::CkDateTime ^dateTime)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (dateTime == nullptr) { return false; }
+	CkDateTimeW* pObj1 = dateTime->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	return m_impl->DateAt(index,*pObj1);
+    }
 Boolean JsonArray::DeleteAt(int index)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->DeleteAt(index);
+    }
+Boolean JsonArray::DtAt(int index, Boolean bLocal, Chilkat::DtObj ^dt)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (dt == nullptr) { return false; }
+	CkDtObjW* pObj2 = dt->m_impl;
+	 if (!pObj2) { return false; }
+	// --- prep output arg ---
+	return m_impl->DtAt(index,bLocal,*pObj2);
     }
 Platform::String ^JsonArray::Emit(void)
     {
@@ -189,6 +217,18 @@ Boolean JsonArray::EmitSb(Chilkat::StringBuilder ^sb)
 	 if (!pObj0) { return false; }
 	// --- prep output arg ---
 	return m_impl->EmitSb(*pObj0);
+    }
+int JsonArray::FindObject(Platform::String ^name, Platform::String ^value, Boolean caseSensitive)
+    {
+	if (m_impl == nullptr) { return -1; }
+	// --- prep output arg ---
+	return m_impl->FindObject(name ? name->Data() : L"",value ? value->Data() : L"",caseSensitive);
+    }
+int JsonArray::FindString(Platform::String ^value, Boolean caseSensitive)
+    {
+	if (m_impl == nullptr) { return -1; }
+	// --- prep output arg ---
+	return m_impl->FindString(value ? value->Data() : L"",caseSensitive);
     }
 int JsonArray::IntAt(int index)
     {
@@ -264,6 +304,12 @@ Platform::String ^JsonArray::StringAt(int index)
 	const wchar_t *retStr = m_impl->stringAt(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+    }
+Boolean JsonArray::Swap(int index1, int index2)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->Swap(index1,index2);
     }
 int JsonArray::TypeAt(int index)
     {

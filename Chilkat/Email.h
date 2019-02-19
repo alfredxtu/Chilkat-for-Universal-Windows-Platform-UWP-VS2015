@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -191,6 +192,11 @@ public ref class Email sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Platform::String ^OaepMgfHash
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Boolean OaepPadding
 	{
 		Boolean get();
@@ -372,6 +378,8 @@ public ref class Email sealed
 
 	void AppendToBody(Platform::String ^str);
 
+	Boolean ApplyFixups(Platform::String ^fixups);
+
 	Boolean AspUnpack(Platform::String ^prefix, Platform::String ^saveDir, Platform::String ^urlPath, Boolean cleanFiles);
 
 	Windows::Foundation::Collections::IVector<uint8>^AspUnpack2(Platform::String ^prefix, Platform::String ^saveDir, Platform::String ^urlPath, Boolean cleanFiles);
@@ -381,6 +389,8 @@ public ref class Email sealed
 	Platform::String ^BEncodeBytes(Windows::Foundation::Collections::IVector<uint8>^inData, Platform::String ^charset);
 
 	Platform::String ^BEncodeString(Platform::String ^str, Platform::String ^charset);
+
+	void Clear(void);
 
 	void ClearBcc(void);
 

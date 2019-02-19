@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -118,6 +119,11 @@ public ref class OAuth1 sealed
 	property Platform::String ^QueryString
 	{
 		Platform::String ^get();
+	}
+	property Platform::String ^Realm
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
 	}
 	property Platform::String ^Signature
 	{

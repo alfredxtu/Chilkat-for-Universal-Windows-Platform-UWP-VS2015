@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -10,8 +11,10 @@
 #include "include/CkSshW.h"
 		
 #include "include/CkSshKeyW.h"
+#include "include/CkSecureStringW.h"
 #include "include/CkStringArrayW.h"
 #include "SshKey.h"
+#include "SecureString.h"
 #include "StringArray.h"
 
 
@@ -90,6 +93,14 @@ String ^Chilkat::Ssh::ClientIpAddress::get()
 void Chilkat::Ssh::ClientIpAddress::set(String ^newVal)
     {
         if (m_impl) m_impl->put_ClientIpAddress(newVal ? newVal->Data() : L"");
+    }
+int Chilkat::Ssh::ClientPort::get()
+    {
+    return m_impl ? m_impl->get_ClientPort() : 0;
+    }
+void Chilkat::Ssh::ClientPort::set(int newVal)
+    {
+        if (m_impl) m_impl->put_ClientPort(newVal);
     }
 int Chilkat::Ssh::ConnectTimeoutMs::get()
     {
@@ -279,6 +290,10 @@ void Chilkat::Ssh::ReqExecCharset::set(String ^newVal)
     {
         if (m_impl) m_impl->put_ReqExecCharset(newVal ? newVal->Data() : L"");
     }
+String ^Chilkat::Ssh::ServerIdentifier::get()
+    {
+    return ref new String(m_impl ? m_impl->serverIdentifier() : L"");
+    }
 String ^Chilkat::Ssh::SessionLog::get()
     {
     return ref new String(m_impl ? m_impl->sessionLog() : L"");
@@ -363,6 +378,14 @@ void Chilkat::Ssh::TcpNoDelay::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_TcpNoDelay(newVal);
     }
+String ^Chilkat::Ssh::UncommonOptions::get()
+    {
+    return ref new String(m_impl ? m_impl->uncommonOptions() : L"");
+    }
+void Chilkat::Ssh::UncommonOptions::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_UncommonOptions(newVal ? newVal->Data() : L"");
+    }
 String ^Chilkat::Ssh::UserAuthBanner::get()
     {
     return ref new String(m_impl ? m_impl->userAuthBanner() : L"");
@@ -430,6 +453,49 @@ return create_async([this, username, password, privateKey]() -> Boolean
 	CxSshProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->AuthenticatePwPk(username ? username->Data() : L"",password ? password->Data() : L"",*pObj2);
+
+});
+    }
+IAsyncOperation<Boolean>^ Ssh::AuthenticateSecPwAsync(Chilkat::SecureString ^login, Chilkat::SecureString ^password)
+    {
+return create_async([this, login, password]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (login == nullptr) { return false; }
+	CkSecureStringW* pObj0 = login->m_impl;
+	 if (!pObj0) { return false; }
+	if (password == nullptr) { return false; }
+	CkSecureStringW* pObj1 = password->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxSshProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->AuthenticateSecPw(*pObj0,*pObj1);
+
+});
+    }
+IAsyncOperation<Boolean>^ Ssh::AuthenticateSecPwPkAsync(Chilkat::SecureString ^username, Chilkat::SecureString ^password, Chilkat::SshKey ^privateKey)
+    {
+return create_async([this, username, password, privateKey]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (username == nullptr) { return false; }
+	CkSecureStringW* pObj0 = username->m_impl;
+	 if (!pObj0) { return false; }
+	if (password == nullptr) { return false; }
+	CkSecureStringW* pObj1 = password->m_impl;
+	 if (!pObj1) { return false; }
+	if (privateKey == nullptr) { return false; }
+	CkSshKeyW* pObj2 = privateKey->m_impl;
+	 if (!pObj2) { return false; }
+	// --- prep output arg ---
+	CxSshProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->AuthenticateSecPwPk(*pObj0,*pObj1,*pObj2);
 
 });
     }

@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -144,6 +145,14 @@ String ^Chilkat::Socket::HttpProxyDomain::get()
 void Chilkat::Socket::HttpProxyDomain::set(String ^newVal)
     {
         if (m_impl) m_impl->put_HttpProxyDomain(newVal ? newVal->Data() : L"");
+    }
+Boolean Chilkat::Socket::HttpProxyForHttp::get()
+    {
+    return m_impl ? m_impl->get_HttpProxyForHttp() : false;
+    }
+void Chilkat::Socket::HttpProxyForHttp::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_HttpProxyForHttp(newVal);
     }
 String ^Chilkat::Socket::HttpProxyHostname::get()
     {
@@ -536,6 +545,20 @@ return create_async([this, port, backLog]() -> Boolean
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->BindAndListen(port,backLog);
+
+});
+    }
+IAsyncOperation<int>^ Socket::BindAndListenPortRangeAsync(int beginPort, int endPort, int backLog)
+    {
+return create_async([this, beginPort, endPort, backLog]() -> int
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return -1; }
+	// --- prep output arg ---
+	CxSocketProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->BindAndListenPortRange(beginPort,endPort,backLog);
 
 });
     }
@@ -1013,6 +1036,23 @@ return create_async([this, lookForByte]() -> Windows::Foundation::Collections::I
 
 });
     }
+IAsyncOperation<Boolean>^ Socket::ReceiveUntilByteBdAsync(int lookForByte, Chilkat::BinData ^bd)
+    {
+return create_async([this, lookForByte, bd]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (bd == nullptr) { return false; }
+	CkBinDataW* pObj1 = bd->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxSocketProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->ReceiveUntilByteBd(lookForByte,*pObj1);
+
+});
+    }
 IAsyncOperation<Platform::String ^>^ Socket::ReceiveUntilMatchAsync(Platform::String ^matchStr)
     {
 return create_async([this, matchStr]() -> Platform::String ^
@@ -1283,6 +1323,17 @@ void Socket::StartTiming(void)
 	CxSocketProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	m_impl->StartTiming();
+    }
+Boolean Socket::TakeConnection(Chilkat::Socket ^sock)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (sock == nullptr) { return false; }
+	CkSocketW* pObj0 = sock->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxSocketProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->TakeConnection(*pObj0);
     }
 Boolean Socket::TakeSocket(Chilkat::Socket ^sock)
     {

@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -17,6 +18,7 @@
 #include "include/CkStringArrayW.h"
 #include "include/CkCertW.h"
 #include "include/CkMailboxesW.h"
+#include "include/CkSecureStringW.h"
 #include "include/CkPrivateKeyW.h"
 #include "include/CkSshKeyW.h"
 #include "include/CkXmlCertVaultW.h"
@@ -30,6 +32,7 @@
 #include "StringArray.h"
 #include "Cert.h"
 #include "Mailboxes.h"
+#include "SecureString.h"
 #include "PrivateKey.h"
 #include "SshKey.h"
 #include "XmlCertVault.h"
@@ -1086,6 +1089,23 @@ return create_async([this, msgId, bUid, sbMime]() -> Boolean
 
 });
     }
+IAsyncOperation<Boolean>^ Imap::FetchSingleBdAsync(int msgId, Boolean bUid, Chilkat::BinData ^mimeData)
+    {
+return create_async([this, msgId, bUid, mimeData]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (mimeData == nullptr) { return false; }
+	CkBinDataW* pObj2 = mimeData->m_impl;
+	 if (!pObj2) { return false; }
+	// --- prep output arg ---
+	CxImapProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->FetchSingleBd(msgId,bUid,*pObj2);
+
+});
+    }
 IAsyncOperation<Email ^>^ Imap::FetchSingleHeaderAsync(int msgId, Boolean bUid)
     {
 return create_async([this, msgId, bUid]() -> Email ^
@@ -1381,6 +1401,26 @@ return create_async([this, loginName, password]() -> Boolean
 
 });
     }
+IAsyncOperation<Boolean>^ Imap::LoginSecureAsync(Chilkat::SecureString ^loginName, Chilkat::SecureString ^password)
+    {
+return create_async([this, loginName, password]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (loginName == nullptr) { return false; }
+	CkSecureStringW* pObj0 = loginName->m_impl;
+	 if (!pObj0) { return false; }
+	if (password == nullptr) { return false; }
+	CkSecureStringW* pObj1 = password->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxImapProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->LoginSecure(*pObj0,*pObj1);
+
+});
+    }
 IAsyncOperation<Boolean>^ Imap::LogoutAsync(void)
     {
 return create_async([this]() -> Boolean
@@ -1657,6 +1697,24 @@ Boolean Imap::SetSslClientCertPfx(Platform::String ^pfxFilename, Platform::Strin
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->SetSslClientCertPfx(pfxFilename ? pfxFilename->Data() : L"",pfxPassword ? pfxPassword->Data() : L"");
+    }
+IAsyncOperation<MessageSet ^>^ Imap::SortAsync(Platform::String ^sortCriteria, Platform::String ^charset, Platform::String ^searchCriteria, Boolean bUid)
+    {
+return create_async([this, sortCriteria, charset, searchCriteria, bUid]() -> MessageSet ^
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CxImapProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	CkMessageSetW *pRetObj = m_impl->Sort(sortCriteria ? sortCriteria->Data() : L"",charset ? charset->Data() : L"",searchCriteria ? searchCriteria->Data() : L"",bUid);
+	if (!pRetObj) return nullptr;
+	Chilkat::MessageSet ^pMessageSet = ref new Chilkat::MessageSet();
+	pMessageSet->m_impl = pRetObj;
+	return pMessageSet;
+
+});
     }
 IAsyncOperation<Boolean>^ Imap::SshAuthenticatePkAsync(Platform::String ^sshLogin, Chilkat::SshKey ^privateKey)
     {

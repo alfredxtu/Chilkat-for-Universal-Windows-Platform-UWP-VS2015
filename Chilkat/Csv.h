@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -61,6 +62,11 @@ public ref class Csv sealed
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
+	}
+	property Boolean EnableQuotes
+	{
+		Boolean get();
+		void set(Boolean);
 	}
 	property Boolean EscapeBackslash
 	{

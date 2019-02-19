@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -29,6 +30,7 @@ namespace Chilkat
 	ref class StringBuilder;
 	ref class Stream;
 	ref class Cert;
+	ref class SecureString;
 
 
 public ref class Ftp2 sealed
@@ -533,6 +535,11 @@ public ref class Ftp2 sealed
 	{
 		Boolean get();
 	}
+	property Boolean SyncCreateAllLocalDirs
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property Platform::String ^SyncedFiles
 	{
 		Platform::String ^get();
@@ -543,7 +550,17 @@ public ref class Ftp2 sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Platform::String ^SyncMustMatchDir
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^SyncMustNotMatch
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^SyncMustNotMatchDir
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
@@ -753,9 +770,13 @@ public ref class Ftp2 sealed
 
 	Boolean SetOption(Platform::String ^option);
 
+	Boolean SetPassword(Chilkat::SecureString ^password);
+
 	IAsyncOperation<Boolean>^ SetRemoteFileDateTimeStrAsync(Platform::String ^dateTimeStr, Platform::String ^remoteFilename);
 
 	IAsyncOperation<Boolean>^ SetRemoteFileDtAsync(Chilkat::CkDateTime ^dt, Platform::String ^remoteFilename);
+
+	Boolean SetSecurePassword(Chilkat::SecureString ^password);
 
 	void SetSslCertRequirement(Platform::String ^reqName, Platform::String ^reqValue);
 

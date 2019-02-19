@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -178,6 +179,14 @@ String ^Chilkat::Mime::OaepHash::get()
 void Chilkat::Mime::OaepHash::set(String ^newVal)
     {
         if (m_impl) m_impl->put_OaepHash(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::Mime::OaepMgfHash::get()
+    {
+    return ref new String(m_impl ? m_impl->oaepMgfHash() : L"");
+    }
+void Chilkat::Mime::OaepMgfHash::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_OaepMgfHash(newVal ? newVal->Data() : L"");
     }
 Boolean Chilkat::Mime::OaepPadding::get()
     {

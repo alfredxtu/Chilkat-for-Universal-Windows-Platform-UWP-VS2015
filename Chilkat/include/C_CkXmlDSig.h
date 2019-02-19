@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.69
+// This is a generated source file for Chilkat version 9.5.0.76
 #ifndef _C_CkXmlDSig_H
 #define _C_CkXmlDSig_H
 #include "chilkatDefs.h"
@@ -35,6 +35,9 @@ CK_VISIBLE_PUBLIC BOOL CkXmlDSig_CanonicalizeFragment(HCkXmlDSig cHandle, const 
 CK_VISIBLE_PUBLIC const char *CkXmlDSig_canonicalizeFragment(HCkXmlDSig cHandle, const char *xml, const char *fragmentId, const char *version, const char *prefixList, BOOL withComments);
 CK_VISIBLE_PUBLIC BOOL CkXmlDSig_CanonicalizeXml(HCkXmlDSig cHandle, const char *xml, const char *version, BOOL withComments, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkXmlDSig_canonicalizeXml(HCkXmlDSig cHandle, const char *xml, const char *version, BOOL withComments);
+CK_VISIBLE_PUBLIC BOOL CkXmlDSig_GetCerts(HCkXmlDSig cHandle, HCkStringArray sa);
+CK_VISIBLE_PUBLIC HCkXml CkXmlDSig_GetKeyInfo(HCkXmlDSig cHandle);
+CK_VISIBLE_PUBLIC HCkPublicKey CkXmlDSig_GetPublicKey(HCkXmlDSig cHandle);
 CK_VISIBLE_PUBLIC BOOL CkXmlDSig_IsReferenceExternal(HCkXmlDSig cHandle, int index);
 CK_VISIBLE_PUBLIC BOOL CkXmlDSig_LoadSignature(HCkXmlDSig cHandle, const char *xmlSig);
 CK_VISIBLE_PUBLIC BOOL CkXmlDSig_LoadSignatureBd(HCkXmlDSig cHandle, HCkBinData binData);
@@ -42,8 +45,12 @@ CK_VISIBLE_PUBLIC BOOL CkXmlDSig_LoadSignatureSb(HCkXmlDSig cHandle, HCkStringBu
 CK_VISIBLE_PUBLIC BOOL CkXmlDSig_ReferenceUri(HCkXmlDSig cHandle, int index, HCkString outStr);
 CK_VISIBLE_PUBLIC const char *CkXmlDSig_referenceUri(HCkXmlDSig cHandle, int index);
 CK_VISIBLE_PUBLIC BOOL CkXmlDSig_SaveLastError(HCkXmlDSig cHandle, const char *path);
+CK_VISIBLE_PUBLIC BOOL CkXmlDSig_SetHmacKey(HCkXmlDSig cHandle, const char *key, const char *encoding);
+CK_VISIBLE_PUBLIC BOOL CkXmlDSig_SetPublicKey(HCkXmlDSig cHandle, HCkPublicKey pubKey);
 CK_VISIBLE_PUBLIC BOOL CkXmlDSig_SetRefDataBd(HCkXmlDSig cHandle, int index, HCkBinData binData);
 CK_VISIBLE_PUBLIC BOOL CkXmlDSig_SetRefDataFile(HCkXmlDSig cHandle, int index, const char *path);
 CK_VISIBLE_PUBLIC BOOL CkXmlDSig_SetRefDataSb(HCkXmlDSig cHandle, int index, HCkStringBuilder sb, const char *charset);
+CK_VISIBLE_PUBLIC BOOL CkXmlDSig_UseCertVault(HCkXmlDSig cHandle, HCkXmlCertVault certVault);
 CK_VISIBLE_PUBLIC BOOL CkXmlDSig_VerifyReferenceDigest(HCkXmlDSig cHandle, int index);
+CK_VISIBLE_PUBLIC BOOL CkXmlDSig_VerifySignature(HCkXmlDSig cHandle, BOOL verifyReferenceDigests);
 #endif

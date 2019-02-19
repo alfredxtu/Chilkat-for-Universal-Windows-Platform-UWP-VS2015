@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.69
+// This header is generated for Chilkat 9.5.0.76
 
 #ifndef _CkEmail_H
 #define _CkEmail_H
@@ -457,6 +457,16 @@ class CK_VISIBLE_PUBLIC CkEmail  : public CkMultiByteBase
 	// Selects the hash algorithm for use within OAEP padding when encrypting email
 	// using RSAES-OAEP. The valid choices are "sha1", "sha256", "sha384", "sha512",
 	void put_OaepHash(const char *newVal);
+
+	// Selects the MGF hash algorithm for use within OAEP padding when encrypting email
+	// using RSAES-OAEP. The valid choices are "sha1", "sha256", "sha384", "sha512",
+	void get_OaepMgfHash(CkString &str);
+	// Selects the MGF hash algorithm for use within OAEP padding when encrypting email
+	// using RSAES-OAEP. The valid choices are "sha1", "sha256", "sha384", "sha512",
+	const char *oaepMgfHash(void);
+	// Selects the MGF hash algorithm for use within OAEP padding when encrypting email
+	// using RSAES-OAEP. The valid choices are "sha1", "sha256", "sha384", "sha512",
+	void put_OaepMgfHash(const char *newVal);
 
 	// Selects the RSA encryption scheme when encrypting email. The default value is
 	// false, which selects RSAES_PKCS1-V1_5. If set to true, then RSAES_OAEP is
@@ -1071,6 +1081,20 @@ class CK_VISIBLE_PUBLIC CkEmail  : public CkMultiByteBase
 	void AppendToBody(const char *str);
 
 
+	// Sometimes emails created by other software or systems are not formatted
+	// according to typical conventions. This method provides a means to automatically
+	// fix certain problems.
+	// 
+	// The fixups set to a comma-separated list of keywords that identify the fixups to
+	// be applied. At the moment, there is only one fixup defined ("FixRelated") as
+	// described here:
+	//     FixRelated: Fixes the email so that HTML related items (images for example)
+	//     are properly located in the email MIME structure. This prevents them from being
+	//     seen as attachments.
+	// 
+	bool ApplyFixups(const char *fixups);
+
+
 	// Please see the examples at the following pages for detailed information:
 	bool AspUnpack(const char *prefix, const char *saveDir, const char *urlPath, bool cleanFiles);
 
@@ -1102,6 +1126,12 @@ class CK_VISIBLE_PUBLIC CkEmail  : public CkMultiByteBase
 	// parameter, B-Encodes the converted multibyte data, and returns the encoded
 	// Unicode string.
 	const char *bEncodeString(const char *str, const char *charset);
+
+	// Clears the email object of all information to the state as if the object was
+	// just created, which will have default headers such as Mime-Version, Date,
+	// Message-ID, Content-Type, Content-Transfer-Encoding, and X-Priority.
+	void Clear(void);
+
 
 	// Clears the list of blind carbon-copy recipients.
 	void ClearBcc(void);
@@ -1213,6 +1243,12 @@ class CK_VISIBLE_PUBLIC CkEmail  : public CkMultiByteBase
 	// Returns a copy of the Email object with the body and header fields changed so
 	// that the newly created email can be sent as a reply. After calling CreateReply,
 	// simply prepend additional information to the body, and call MailMan.SendEmail.
+	// 
+	// Note: Attachments are not included in the returned reply email. However,
+	// attached messages are included. If an application does not wish to include the
+	// attached messages in a reply email, they can be removed by calling
+	// RemoveAttachedMessages on the reply email object.
+	// 
 	// The caller is responsible for deleting the object returned by this method.
 	CkEmail *CreateReply(void);
 
@@ -1502,14 +1538,20 @@ class CK_VISIBLE_PUBLIC CkEmail  : public CkMultiByteBase
 
 
 	// Retrieves an attachment's data as a String. All CRLF sequences will be
-	// translated to single newline characters.
+	// translated to single newline characters. The charset indicates how to interpret the
+	// bytes of the attachment. For example, if the attachment is a text file using the
+	// utf-8 byte representation for characters, pass "utf-8".
 	bool GetAttachmentString(int index, const char *charset, CkString &outStr);
 
 	// Retrieves an attachment's data as a String. All CRLF sequences will be
-	// translated to single newline characters.
+	// translated to single newline characters. The charset indicates how to interpret the
+	// bytes of the attachment. For example, if the attachment is a text file using the
+	// utf-8 byte representation for characters, pass "utf-8".
 	const char *getAttachmentString(int index, const char *charset);
 	// Retrieves an attachment's data as a String. All CRLF sequences will be
-	// translated to single newline characters.
+	// translated to single newline characters. The charset indicates how to interpret the
+	// bytes of the attachment. For example, if the attachment is a text file using the
+	// utf-8 byte representation for characters, pass "utf-8".
 	const char *attachmentString(int index, const char *charset);
 
 

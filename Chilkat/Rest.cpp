@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -17,6 +18,7 @@
 #include "include/CkAuthAzureADW.h"
 #include "include/CkAuthAzureSASW.h"
 #include "include/CkAuthAzureStorageW.h"
+#include "include/CkSecureStringW.h"
 #include "include/CkAuthGoogleW.h"
 #include "include/CkOAuth1W.h"
 #include "include/CkOAuth2W.h"
@@ -29,6 +31,7 @@
 #include "AuthAzureAD.h"
 #include "AuthAzureSAS.h"
 #include "AuthAzureStorage.h"
+#include "SecureString.h"
 #include "AuthGoogle.h"
 #include "OAuth1.h"
 #include "OAuth2.h"
@@ -95,6 +98,14 @@ int Chilkat::Rest::ConnectFailReason::get()
     {
     return m_impl ? m_impl->get_ConnectFailReason() : 0;
     }
+int Chilkat::Rest::ConnectTimeoutMs::get()
+    {
+    return m_impl ? m_impl->get_ConnectTimeoutMs() : 0;
+    }
+void Chilkat::Rest::ConnectTimeoutMs::set(int newVal)
+    {
+        if (m_impl) m_impl->put_ConnectTimeoutMs(newVal);
+    }
 String ^Chilkat::Rest::DebugLogFilePath::get()
     {
     return ref new String(m_impl ? m_impl->debugLogFilePath() : L"");
@@ -102,6 +113,14 @@ String ^Chilkat::Rest::DebugLogFilePath::get()
 void Chilkat::Rest::DebugLogFilePath::set(String ^newVal)
     {
         if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
+Boolean Chilkat::Rest::DebugMode::get()
+    {
+    return m_impl ? m_impl->get_DebugMode() : false;
+    }
+void Chilkat::Rest::DebugMode::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_DebugMode(newVal);
     }
 int Chilkat::Rest::HeartbeatMs::get()
     {
@@ -225,6 +244,14 @@ Boolean Rest::AddMwsSignature(Platform::String ^httpVerb, Platform::String ^uriP
 	cxProgress.m_sender = this;
 	return m_impl->AddMwsSignature(httpVerb ? httpVerb->Data() : L"",uriPath ? uriPath->Data() : L"",domain ? domain->Data() : L"",mwsSecretKey ? mwsSecretKey->Data() : L"");
     }
+Boolean Rest::AddPathParam(Platform::String ^name, Platform::String ^value)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxRestProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->AddPathParam(name ? name->Data() : L"",value ? value->Data() : L"");
+    }
 Boolean Rest::AddQueryParam(Platform::String ^name, Platform::String ^value)
     {
 	if (m_impl == nullptr) { return false; }
@@ -267,6 +294,14 @@ Boolean Rest::ClearAllParts(void)
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->ClearAllParts();
+    }
+Boolean Rest::ClearAllPathParams(void)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxRestProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->ClearAllPathParams();
     }
 Boolean Rest::ClearAllQueryParams(void)
     {
@@ -495,6 +530,17 @@ return create_async([this, httpVerb, uriPath, bodyText]() -> Platform::String ^
 	return ref new String(retStr);
 
 });
+    }
+Boolean Rest::GetLastDebugRequest(Chilkat::BinData ^bd)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bd == nullptr) { return false; }
+	CkBinDataW* pObj0 = bd->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxRestProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->GetLastDebugRequest(*pObj0);
     }
 IAsyncOperation<Boolean>^ Rest::ReadRespBdAsync(Chilkat::BinData ^responseBody)
     {
@@ -828,6 +874,20 @@ Boolean Rest::SetAuthBasic(Platform::String ^username, Platform::String ^passwor
 	CxRestProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->SetAuthBasic(username ? username->Data() : L"",password ? password->Data() : L"");
+    }
+Boolean Rest::SetAuthBasicSecure(Chilkat::SecureString ^username, Chilkat::SecureString ^password)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (username == nullptr) { return false; }
+	CkSecureStringW* pObj0 = username->m_impl;
+	 if (!pObj0) { return false; }
+	if (password == nullptr) { return false; }
+	CkSecureStringW* pObj1 = password->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxRestProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->SetAuthBasicSecure(*pObj0,*pObj1);
     }
 Boolean Rest::SetAuthGoogle(Chilkat::AuthGoogle ^authProvider)
     {

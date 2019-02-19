@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -78,6 +79,14 @@ int Chilkat::AuthGoogle::ExpireNumSeconds::get()
 void Chilkat::AuthGoogle::ExpireNumSeconds::set(int newVal)
     {
         if (m_impl) m_impl->put_ExpireNumSeconds(newVal);
+    }
+int Chilkat::AuthGoogle::Iat::get()
+    {
+    return m_impl ? m_impl->get_Iat() : 0;
+    }
+void Chilkat::AuthGoogle::Iat::set(int newVal)
+    {
+        if (m_impl) m_impl->put_Iat(newVal);
     }
 String ^Chilkat::AuthGoogle::JsonKey::get()
     {

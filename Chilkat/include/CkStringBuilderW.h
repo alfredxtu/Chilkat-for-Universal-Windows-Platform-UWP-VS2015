@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.69
+// This header is generated for Chilkat 9.5.0.76
 
 #ifndef _CkStringBuilderW_H
 #define _CkStringBuilderW_H
@@ -57,6 +57,12 @@ class CK_VISIBLE_PUBLIC CkStringBuilderW  : public CkWideCharBase
 	int get_IntValue(void);
 	// Returns the content of the string converted to an integer.
 	void put_IntValue(int newVal);
+
+	// Returns true if the content contains only those characters allowed in the
+	// base64 encoding. A base64 string is composed of characters 'A'..'Z', 'a'..'z',
+	// '0'..'9', '+', '/' and it is often padded at the end with up to two '=', to make
+	// the length a multiple of 4. Whitespace is ignored.
+	bool get_IsBase64(void);
 
 	// The number of characters of the string contained within this instance.
 	int get_Length(void);
@@ -138,7 +144,7 @@ class CK_VISIBLE_PUBLIC CkStringBuilderW  : public CkWideCharBase
 	// 
 	bool Decode(const wchar_t *encoding, const wchar_t *charset);
 
-	// Encodes to base64, hex, quoted-printable, or URL-encoding. The encoding can be set
+	// Encodes to base64, hex, quoted-printable, URL encoding, etc. The encoding can be set
 	// to any of the following strings: "base64", "hex", "quoted-printable" (or "qp"),
 	// "url", "base32", "Q", "B", "url_rc1738", "url_rfc2396", "url_rfc3986",
 	// "url_oauth", "uu", "modBase64", or "html" (for HTML entity encoding). The full
@@ -169,12 +175,59 @@ class CK_VISIBLE_PUBLIC CkStringBuilderW  : public CkWideCharBase
 	// endMark.
 	const wchar_t *afterBetween(const wchar_t *searchAfter, const wchar_t *beginMark, const wchar_t *endMark);
 
+	// Returns the substring found after the final occurrence of marker. If removeFlag is
+	// true, the marker and the content that follows is removed from this content.
+	// 
+	// If the marker is not present, then the entire string is returned. In this case, if
+	// removeFlag is true, this object is also cleared.
+	// 
+	bool GetAfterFinal(const wchar_t *marker, bool removeFlag, CkString &outStr);
+	// Returns the substring found after the final occurrence of marker. If removeFlag is
+	// true, the marker and the content that follows is removed from this content.
+	// 
+	// If the marker is not present, then the entire string is returned. In this case, if
+	// removeFlag is true, this object is also cleared.
+	// 
+	const wchar_t *getAfterFinal(const wchar_t *marker, bool removeFlag);
+	// Returns the substring found after the final occurrence of marker. If removeFlag is
+	// true, the marker and the content that follows is removed from this content.
+	// 
+	// If the marker is not present, then the entire string is returned. In this case, if
+	// removeFlag is true, this object is also cleared.
+	// 
+	const wchar_t *afterFinal(const wchar_t *marker, bool removeFlag);
+
 	// Returns the contents as a string.
 	bool GetAsString(CkString &outStr);
 	// Returns the contents as a string.
 	const wchar_t *getAsString(void);
 	// Returns the contents as a string.
 	const wchar_t *asString(void);
+
+	// Returns the substring found before the 1st occurrence of marker. If removeFlag is
+	// true, the content up to and including the marker is removed from this object's
+	// contents.
+	// 
+	// If the marker is not present, then the entire string is returned. In this case, if
+	// removeFlag is true, this object is also cleared.
+	// 
+	bool GetBefore(const wchar_t *marker, bool removeFlag, CkString &outStr);
+	// Returns the substring found before the 1st occurrence of marker. If removeFlag is
+	// true, the content up to and including the marker is removed from this object's
+	// contents.
+	// 
+	// If the marker is not present, then the entire string is returned. In this case, if
+	// removeFlag is true, this object is also cleared.
+	// 
+	const wchar_t *getBefore(const wchar_t *marker, bool removeFlag);
+	// Returns the substring found before the 1st occurrence of marker. If removeFlag is
+	// true, the content up to and including the marker is removed from this object's
+	// contents.
+	// 
+	// If the marker is not present, then the entire string is returned. In this case, if
+	// removeFlag is true, this object is also cleared.
+	// 
+	const wchar_t *before(const wchar_t *marker, bool removeFlag);
 
 	// Returns the substring found between the 1st occurrence of beginMark and the next
 	// occurrence of endMark.
@@ -264,17 +317,41 @@ class CK_VISIBLE_PUBLIC CkStringBuilderW  : public CkWideCharBase
 	// Prepends a copy of the specified string to this instance.
 	bool Prepend(const wchar_t *value);
 
+	// In-place decodes the string from punycode.
+	bool PunyDecode(void);
+
+	// In-place encodes the string to punycode.
+	bool PunyEncode(void);
+
+	// Removes the substring found after the final occurrence of the marker. Also removes
+	// the marker. Returns true if the marker was found and content was removed.
+	// Otherwise returns false.
+	bool RemoveAfterFinal(const wchar_t *marker);
+
+	// Removes the substring found before the 1st occurrence of the marker. Also removes
+	// the marker. Returns true if the marker was found and content was removed.
+	// Otherwise returns false.
+	bool RemoveBefore(const wchar_t *marker);
+
 	// Replaces all occurrences of a specified string in this instance with another
 	// specified string. Returns the number of replacements.
 	int Replace(const wchar_t *value, const wchar_t *replacement);
 
-	// Replaces the first occurrence of the content found between beginMark and endMark with
-	// replacement. The beginMark and endMark are included in what is replaced if replaceMarks is true.
+	// Replaces the content found after the final occurrence of marker with replacement.
+	bool ReplaceAfterFinal(const wchar_t *marker, const wchar_t *replacement);
+
+	// Replaces the first occurrence of ALL the content found between beginMark and endMark
+	// with replacement. The beginMark and endMark are included in what is replaced if replaceMarks is true.
 	bool ReplaceAllBetween(const wchar_t *beginMark, const wchar_t *endMark, const wchar_t *replacement, bool replaceMarks);
 
 	// Replaces all occurrences of value with replacement, but only where value is found between
 	// beginMark and endMark. Returns the number of replacements made.
 	int ReplaceBetween(const wchar_t *beginMark, const wchar_t *endMark, const wchar_t *value, const wchar_t *replacement);
+
+	// Replaces the first occurrence of a specified string in this instance with
+	// another string. Returns true if the value was found and replaced. Otherwise
+	// returns false.
+	bool ReplaceFirst(const wchar_t *value, const wchar_t *replacement);
 
 	// Replaces all occurrences of value with the decimal integer replacement. Returns the
 	// number of replacements.
@@ -332,6 +409,12 @@ class CK_VISIBLE_PUBLIC CkStringBuilderW  : public CkWideCharBase
 	// preamble), is emitted for charsets that define a BOM (such as utf-8, utf-16,
 	// utf-32, etc.)
 	bool WriteFile(const wchar_t *path, const wchar_t *charset, bool emitBom);
+
+	// Writes the contents to a file, but only if it is a new file or if the contents
+	// are different than the existing file. If emitBom is true, then the BOM (also
+	// known as a preamble), is emitted for charsets that define a BOM (such as utf-8,
+	// utf-16, utf-32, etc.)
+	bool WriteFileIfModified(const wchar_t *path, const wchar_t *charset, bool emitBom);
 
 
 

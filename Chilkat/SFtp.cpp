@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -10,11 +11,13 @@
 #include "include/CkSFtpW.h"
 		
 #include "include/CkSshKeyW.h"
+#include "include/CkSecureStringW.h"
 #include "include/CkSshW.h"
 #include "include/CkBinDataW.h"
 #include "include/CkStringBuilderW.h"
 #include "include/CkSFtpDirW.h"
 #include "SshKey.h"
+#include "SecureString.h"
 #include "Ssh.h"
 #include "BinData.h"
 #include "StringBuilder.h"
@@ -350,6 +353,10 @@ void Chilkat::SFtp::ReadDirMustNotMatch::set(String ^newVal)
     {
         if (m_impl) m_impl->put_ReadDirMustNotMatch(newVal ? newVal->Data() : L"");
     }
+String ^Chilkat::SFtp::ServerIdentifier::get()
+    {
+    return ref new String(m_impl ? m_impl->serverIdentifier() : L"");
+    }
 String ^Chilkat::SFtp::SessionLog::get()
     {
     return ref new String(m_impl ? m_impl->sessionLog() : L"");
@@ -410,6 +417,14 @@ void Chilkat::SFtp::SoSndBuf::set(int newVal)
     {
         if (m_impl) m_impl->put_SoSndBuf(newVal);
     }
+Boolean Chilkat::SFtp::SyncCreateAllLocalDirs::get()
+    {
+    return m_impl ? m_impl->get_SyncCreateAllLocalDirs() : false;
+    }
+void Chilkat::SFtp::SyncCreateAllLocalDirs::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_SyncCreateAllLocalDirs(newVal);
+    }
 String ^Chilkat::SFtp::SyncDirectives::get()
     {
     return ref new String(m_impl ? m_impl->syncDirectives() : L"");
@@ -434,6 +449,14 @@ void Chilkat::SFtp::SyncMustMatch::set(String ^newVal)
     {
         if (m_impl) m_impl->put_SyncMustMatch(newVal ? newVal->Data() : L"");
     }
+String ^Chilkat::SFtp::SyncMustMatchDir::get()
+    {
+    return ref new String(m_impl ? m_impl->syncMustMatchDir() : L"");
+    }
+void Chilkat::SFtp::SyncMustMatchDir::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_SyncMustMatchDir(newVal ? newVal->Data() : L"");
+    }
 String ^Chilkat::SFtp::SyncMustNotMatch::get()
     {
     return ref new String(m_impl ? m_impl->syncMustNotMatch() : L"");
@@ -442,6 +465,14 @@ void Chilkat::SFtp::SyncMustNotMatch::set(String ^newVal)
     {
         if (m_impl) m_impl->put_SyncMustNotMatch(newVal ? newVal->Data() : L"");
     }
+String ^Chilkat::SFtp::SyncMustNotMatchDir::get()
+    {
+    return ref new String(m_impl ? m_impl->syncMustNotMatchDir() : L"");
+    }
+void Chilkat::SFtp::SyncMustNotMatchDir::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_SyncMustNotMatchDir(newVal ? newVal->Data() : L"");
+    }
 Boolean Chilkat::SFtp::TcpNoDelay::get()
     {
     return m_impl ? m_impl->get_TcpNoDelay() : false;
@@ -449,6 +480,14 @@ Boolean Chilkat::SFtp::TcpNoDelay::get()
 void Chilkat::SFtp::TcpNoDelay::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_TcpNoDelay(newVal);
+    }
+String ^Chilkat::SFtp::UncommonOptions::get()
+    {
+    return ref new String(m_impl ? m_impl->uncommonOptions() : L"");
+    }
+void Chilkat::SFtp::UncommonOptions::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_UncommonOptions(newVal ? newVal->Data() : L"");
     }
 int Chilkat::SFtp::UploadChunkSize::get()
     {
@@ -477,6 +516,14 @@ void Chilkat::SFtp::VerboseLogging::set(Boolean newVal)
 String ^Chilkat::SFtp::Version::get()
     {
     return ref new String(m_impl ? m_impl->version() : L"");
+    }
+uint32 Chilkat::SFtp::XferByteCount::get()
+    {
+    return m_impl ? m_impl->get_XferByteCount() : 0;
+    }
+int64 Chilkat::SFtp::XferByteCount64::get()
+    {
+    return m_impl ? m_impl->get_XferByteCount64() : 0;
     }
 
 
@@ -549,6 +596,49 @@ return create_async([this, username, password, privateKey]() -> Boolean
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->AuthenticatePwPk(username ? username->Data() : L"",password ? password->Data() : L"",*pObj2);
+
+});
+    }
+IAsyncOperation<Boolean>^ SFtp::AuthenticateSecPwAsync(Chilkat::SecureString ^login, Chilkat::SecureString ^password)
+    {
+return create_async([this, login, password]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (login == nullptr) { return false; }
+	CkSecureStringW* pObj0 = login->m_impl;
+	 if (!pObj0) { return false; }
+	if (password == nullptr) { return false; }
+	CkSecureStringW* pObj1 = password->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxSFtpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->AuthenticateSecPw(*pObj0,*pObj1);
+
+});
+    }
+IAsyncOperation<Boolean>^ SFtp::AuthenticateSecPwPkAsync(Chilkat::SecureString ^username, Chilkat::SecureString ^password, Chilkat::SshKey ^privateKey)
+    {
+return create_async([this, username, password, privateKey]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (username == nullptr) { return false; }
+	CkSecureStringW* pObj0 = username->m_impl;
+	 if (!pObj0) { return false; }
+	if (password == nullptr) { return false; }
+	CkSecureStringW* pObj1 = password->m_impl;
+	 if (!pObj1) { return false; }
+	if (privateKey == nullptr) { return false; }
+	CkSshKeyW* pObj2 = privateKey->m_impl;
+	 if (!pObj2) { return false; }
+	// --- prep output arg ---
+	CxSFtpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->AuthenticateSecPwPk(*pObj0,*pObj1,*pObj2);
 
 });
     }
@@ -741,6 +831,20 @@ return create_async([this, remotePath, followLinks]() -> int
 
 });
     }
+IAsyncOperation<Boolean>^ SFtp::FsyncAsync(Platform::String ^handle)
+    {
+return create_async([this, handle]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxSFtpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->Fsync(handle ? handle->Data() : L"");
+
+});
+    }
 IAsyncOperation<Chilkat::CkDateTime ^>^ SFtp::GetFileCreateDtAsync(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle)
     {
 return create_async([this, pathOrHandle, bFollowLinks, bIsHandle]() -> CkDateTime ^
@@ -930,6 +1034,20 @@ return create_async([this, pathOrHandle, bFollowLinks, bIsHandle]() -> Platform:
 	const wchar_t *retStr = m_impl->getFileSizeStr(pathOrHandle ? pathOrHandle->Data() : L"",bFollowLinks,bIsHandle);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+
+});
+    }
+IAsyncOperation<Boolean>^ SFtp::HardLinkAsync(Platform::String ^oldPath, Platform::String ^newPath)
+    {
+return create_async([this, oldPath, newPath]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxSFtpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->HardLink(oldPath ? oldPath->Data() : L"",newPath ? newPath->Data() : L"");
 
 });
     }
@@ -1144,6 +1262,22 @@ return create_async([this, handle, offset, numBytes, charset]() -> Platform::Str
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	const wchar_t *retStr = m_impl->readFileText64s(handle ? handle->Data() : L"",offset ? offset->Data() : L"",numBytes,charset ? charset->Data() : L"");
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+
+});
+    }
+IAsyncOperation<Platform::String ^>^ SFtp::ReadLinkAsync(Platform::String ^path)
+    {
+return create_async([this, path]() -> Platform::String ^
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CxSFtpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	const wchar_t *retStr = m_impl->readLink(path ? path->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
 
@@ -1370,6 +1504,20 @@ return create_async([this, pathOrHandle, isHandle, permissions]() -> Boolean
 
 });
     }
+IAsyncOperation<Boolean>^ SFtp::SymLinkAsync(Platform::String ^oldPath, Platform::String ^newPath)
+    {
+return create_async([this, oldPath, newPath]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxSFtpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->SymLink(oldPath ? oldPath->Data() : L"",newPath ? newPath->Data() : L"");
+
+});
+    }
 IAsyncOperation<Boolean>^ SFtp::SyncTreeDownloadAsync(Platform::String ^remoteRoot, Platform::String ^localRoot, int mode, Boolean recurse)
     {
 return create_async([this, remoteRoot, localRoot, mode, recurse]() -> Boolean
@@ -1423,9 +1571,9 @@ return create_async([this, binData, remoteFilePath]() -> Boolean
 
 });
     }
-IAsyncOperation<Boolean>^ SFtp::UploadFileAsync(Platform::String ^handle, Platform::String ^fromFilename)
+IAsyncOperation<Boolean>^ SFtp::UploadFileAsync(Platform::String ^handle, Platform::String ^fromLocalFilePath)
     {
-return create_async([this, handle, fromFilename]() -> Boolean
+return create_async([this, handle, fromLocalFilePath]() -> Boolean
 {
 // This runs in a thread pool thread...
 
@@ -1433,7 +1581,7 @@ return create_async([this, handle, fromFilename]() -> Boolean
 	// --- prep output arg ---
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
-	return m_impl->UploadFile(handle ? handle->Data() : L"",fromFilename ? fromFilename->Data() : L"");
+	return m_impl->UploadFile(handle ? handle->Data() : L"",fromLocalFilePath ? fromLocalFilePath->Data() : L"");
 
 });
     }

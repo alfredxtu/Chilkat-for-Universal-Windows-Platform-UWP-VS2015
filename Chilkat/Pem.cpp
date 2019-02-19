@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -102,6 +103,10 @@ void Chilkat::Pem::LastMethodSuccess::set(Boolean newVal)
 int Chilkat::Pem::NumCerts::get()
     {
     return m_impl ? m_impl->get_NumCerts() : 0;
+    }
+int Chilkat::Pem::NumCrls::get()
+    {
+    return m_impl ? m_impl->get_NumCrls() : 0;
     }
 int Chilkat::Pem::NumCsrs::get()
     {

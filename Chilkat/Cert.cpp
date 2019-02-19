@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -9,10 +10,12 @@
 #include "include/CkDateTime.h"
 #include "include/CkCertW.h"
 		
+#include "include/CkBinDataW.h"
 #include "include/CkPrivateKeyW.h"
 #include "include/CkPublicKeyW.h"
 #include "include/CkCertChainW.h"
 #include "include/CkXmlCertVaultW.h"
+#include "BinData.h"
 #include "PrivateKey.h"
 #include "PublicKey.h"
 #include "CertChain.h"
@@ -196,6 +199,10 @@ Boolean Chilkat::Cert::SelfSigned::get()
     {
     return m_impl ? m_impl->get_SelfSigned() : false;
     }
+String ^Chilkat::Cert::SerialDecimal::get()
+    {
+    return ref new String(m_impl ? m_impl->serialDecimal() : L"");
+    }
 String ^Chilkat::Cert::SerialNumber::get()
     {
     return ref new String(m_impl ? m_impl->serialNumber() : L"");
@@ -211,6 +218,14 @@ Boolean Chilkat::Cert::SignatureVerified::get()
 Boolean Chilkat::Cert::Silent::get()
     {
     return m_impl ? m_impl->get_Silent() : false;
+    }
+String ^Chilkat::Cert::SmartCardPin::get()
+    {
+    return ref new String(m_impl ? m_impl->smartCardPin() : L"");
+    }
+void Chilkat::Cert::SmartCardPin::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_SmartCardPin(newVal ? newVal->Data() : L"");
     }
 String ^Chilkat::Cert::SubjectC::get()
     {
@@ -290,6 +305,15 @@ Windows::Foundation::Collections::IVector<uint8>^Cert::ExportCertDer(void)
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
     }
+Boolean Cert::ExportCertDerBd(Chilkat::BinData ^cerData)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (cerData == nullptr) { return false; }
+	CkBinDataW* pObj0 = cerData->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->ExportCertDerBd(*pObj0);
+    }
 Boolean Cert::ExportCertDerFile(Platform::String ^path)
     {
 	if (m_impl == nullptr) { return false; }
@@ -337,6 +361,15 @@ PublicKey ^Cert::ExportPublicKey(void)
 	Chilkat::PublicKey ^pPublicKey = ref new Chilkat::PublicKey();
 	pPublicKey->m_impl = pRetObj;
 	return pPublicKey;
+    }
+Boolean Cert::ExportToPfxBd(Platform::String ^password, Boolean includeCertChain, Chilkat::BinData ^pfxData)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (pfxData == nullptr) { return false; }
+	CkBinDataW* pObj2 = pfxData->m_impl;
+	 if (!pObj2) { return false; }
+	// --- prep output arg ---
+	return m_impl->ExportToPfxBd(password ? password->Data() : L"",includeCertChain,*pObj2);
     }
 Windows::Foundation::Collections::IVector<uint8>^Cert::ExportToPfxData(Platform::String ^password, Boolean includeCertChain)
     {
@@ -426,6 +459,14 @@ Chilkat::CkDateTime ^Cert::GetValidToDt(void)
 	pCkDateTime->m_impl = pRetObj;
 	return pCkDateTime;
     }
+Platform::String ^Cert::HashOf(Platform::String ^part, Platform::String ^hashAlg, Platform::String ^encoding)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	const wchar_t *retStr = m_impl->hashOf(part ? part->Data() : L"",hashAlg ? hashAlg->Data() : L"",encoding ? encoding->Data() : L"");
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
 Boolean Cert::HasPrivateKey(void)
     {
 	if (m_impl == nullptr) { return false; }
@@ -456,6 +497,15 @@ Boolean Cert::LoadFromBase64(Platform::String ^encodedCert)
 	// --- prep output arg ---
 	return m_impl->LoadFromBase64(encodedCert ? encodedCert->Data() : L"");
     }
+Boolean Cert::LoadFromBd(Chilkat::BinData ^certBytes)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (certBytes == nullptr) { return false; }
+	CkBinDataW* pObj0 = certBytes->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->LoadFromBd(*pObj0);
+    }
 Boolean Cert::LoadFromBinary(Windows::Foundation::Collections::IVector<uint8>^data)
     {
 	if (m_impl == nullptr) { return false; }
@@ -476,6 +526,15 @@ Boolean Cert::LoadPem(Platform::String ^strPem)
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->LoadPem(strPem ? strPem->Data() : L"");
+    }
+Boolean Cert::LoadPfxBd(Chilkat::BinData ^pfxData, Platform::String ^password)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (pfxData == nullptr) { return false; }
+	CkBinDataW* pObj0 = pfxData->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->LoadPfxBd(*pObj0,password ? password->Data() : L"");
     }
 Boolean Cert::LoadPfxData(Windows::Foundation::Collections::IVector<uint8>^pfxData, Platform::String ^password)
     {

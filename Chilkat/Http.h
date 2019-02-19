@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -24,16 +25,17 @@ using namespace concurrency;
 namespace Chilkat
 {
 
+	ref class JsonObject;
 	ref class BinData;
 	ref class StringBuilder;
 	ref class Cert;
 	ref class Hashtable;
 	ref class HttpResponse;
-	ref class JsonObject;
 	ref class HttpRequest;
 	ref class StringArray;
 	ref class CkDateTime;
 	ref class PrivateKey;
+	ref class SecureString;
 
 
 public ref class Http sealed
@@ -605,6 +607,11 @@ public ref class Http sealed
 	{
 		Platform::String ^get();
 	}
+	property Platform::String ^UncommonOptions
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Boolean UpdateCache
 	{
 		Boolean get();
@@ -642,11 +649,17 @@ public ref class Http sealed
 
 	Boolean AddQuickHeader(Platform::String ^headerFieldName, Platform::String ^headerFieldValue);
 
+	void ClearHeaders(void);
+
 	void ClearInMemoryCookies(void);
 
 	void ClearUrlVars(void);
 
 	IAsyncOperation<Boolean>^ CloseAllConnectionsAsync(void);
+
+	Boolean CreateOcspRequest(Chilkat::JsonObject ^requestDetails, Chilkat::BinData ^ocspRequest);
+
+	Boolean CreateTimestampRequest(Platform::String ^hashAlg, Platform::String ^hashVal, Platform::String ^reqPolicyOid, Boolean addNonce, Boolean reqTsaCert, Chilkat::BinData ^tmestampToken);
 
 	void DnsCacheClear(void);
 
@@ -686,7 +699,11 @@ public ref class Http sealed
 
 	Boolean IsUnlocked(void);
 
+	int ParseOcspReply(Chilkat::BinData ^ocspReply, Chilkat::JsonObject ^replyData);
+
 	IAsyncOperation<HttpResponse ^>^ PBinaryAsync(Platform::String ^verb, Platform::String ^url, Windows::Foundation::Collections::IVector<uint8>^byteData, Platform::String ^contentType, Boolean md5, Boolean gzip);
+
+	IAsyncOperation<HttpResponse ^>^ PBinaryBdAsync(Platform::String ^verb, Platform::String ^url, Chilkat::BinData ^data, Platform::String ^contentType, Boolean md5, Boolean gzip);
 
 	IAsyncOperation<Platform::String ^>^ PostBinaryAsync(Platform::String ^url, Windows::Foundation::Collections::IVector<uint8>^byteData, Platform::String ^contentType, Boolean md5, Boolean gzip);
 
@@ -701,6 +718,8 @@ public ref class Http sealed
 	IAsyncOperation<HttpResponse ^>^ PostXmlAsync(Platform::String ^endpointUrl, Platform::String ^xmlContent, Platform::String ^xmlCharset);
 
 	IAsyncOperation<HttpResponse ^>^ PTextAsync(Platform::String ^verb, Platform::String ^url, Platform::String ^textData, Platform::String ^charset, Platform::String ^contentType, Boolean md5, Boolean gzip);
+
+	IAsyncOperation<HttpResponse ^>^ PTextSbAsync(Platform::String ^verb, Platform::String ^url, Chilkat::StringBuilder ^textData, Platform::String ^charset, Platform::String ^contentType, Boolean md5, Boolean gzip);
 
 	IAsyncOperation<Platform::String ^>^ PutBinaryAsync(Platform::String ^url, Windows::Foundation::Collections::IVector<uint8>^byteData, Platform::String ^contentType, Boolean md5, Boolean gzip);
 
@@ -720,6 +739,8 @@ public ref class Http sealed
 
 	IAsyncOperation<Platform::String ^>^ QuickPutStrAsync(Platform::String ^url);
 
+	IAsyncOperation<HttpResponse ^>^ QuickRequestAsync(Platform::String ^verb, Platform::String ^url);
+
 	Boolean RemoveQuickHeader(Platform::String ^headerFieldName);
 
 	void RemoveRequestHeader(Platform::String ^name);
@@ -728,6 +749,8 @@ public ref class Http sealed
 
 	IAsyncOperation<Boolean>^ ResumeDownloadAsync(Platform::String ^url, Platform::String ^targetFilename);
 
+	IAsyncOperation<Boolean>^ ResumeDownloadBdAsync(Platform::String ^url, Chilkat::BinData ^binData);
+
 	IAsyncOperation<Boolean>^ S3_CreateBucketAsync(Platform::String ^bucketPath);
 
 	IAsyncOperation<Boolean>^ S3_DeleteBucketAsync(Platform::String ^bucketPath);
@@ -735,6 +758,8 @@ public ref class Http sealed
 	IAsyncOperation<HttpResponse ^>^ S3_DeleteMultipleObjectsAsync(Platform::String ^bucketName, Chilkat::StringArray ^objectNames);
 
 	IAsyncOperation<Boolean>^ S3_DeleteObjectAsync(Platform::String ^bucketPath, Platform::String ^objectName);
+
+	IAsyncOperation<Boolean>^ S3_DownloadBdAsync(Platform::String ^bucketPath, Platform::String ^objectName, Chilkat::BinData ^bd);
 
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ S3_DownloadBytesAsync(Platform::String ^bucketPath, Platform::String ^objectName);
 
@@ -752,6 +777,8 @@ public ref class Http sealed
 
 	IAsyncOperation<Platform::String ^>^ S3_ListBucketsAsync(void);
 
+	IAsyncOperation<Boolean>^ S3_UploadBdAsync(Chilkat::BinData ^bd, Platform::String ^contentType, Platform::String ^bucketPath, Platform::String ^objectName);
+
 	IAsyncOperation<Boolean>^ S3_UploadBytesAsync(Windows::Foundation::Collections::IVector<uint8>^contentBytes, Platform::String ^contentType, Platform::String ^bucketPath, Platform::String ^objectName);
 
 	IAsyncOperation<Boolean>^ S3_UploadFileAsync(Platform::String ^localFilePath, Platform::String ^contentType, Platform::String ^bucketPath, Platform::String ^objectName);
@@ -762,7 +789,11 @@ public ref class Http sealed
 
 	Boolean SetOAuthRsaKey(Chilkat::PrivateKey ^privKey);
 
+	Boolean SetPassword(Chilkat::SecureString ^password);
+
 	void SetRequestHeader(Platform::String ^headerFieldName, Platform::String ^headerFieldValue);
+
+	Boolean SetSecurePassword(Chilkat::SecureString ^password);
 
 	Boolean SetSslClientCert(Chilkat::Cert ^cert);
 
@@ -771,6 +802,8 @@ public ref class Http sealed
 	Boolean SetSslClientCertPfx(Platform::String ^pfxPath, Platform::String ^pfxPassword);
 
 	Boolean SetUrlVar(Platform::String ^name, Platform::String ^value);
+
+	IAsyncOperation<Boolean>^ SharePointOnlineAuthAsync(Platform::String ^siteUrl, Platform::String ^username, Chilkat::SecureString ^password, Chilkat::JsonObject ^extraInfo);
 
 	void SleepMs(int millisec);
 
@@ -781,6 +814,8 @@ public ref class Http sealed
 	Platform::String ^UrlDecode(Platform::String ^str);
 
 	Platform::String ^UrlEncode(Platform::String ^str);
+
+	int VerifyTimestampReply(Chilkat::BinData ^timestampReply, Chilkat::Cert ^tsaCert);
 
 	IAsyncOperation<Platform::String ^>^ XmlRpcAsync(Platform::String ^urlEndpoint, Platform::String ^xmlIn);
 

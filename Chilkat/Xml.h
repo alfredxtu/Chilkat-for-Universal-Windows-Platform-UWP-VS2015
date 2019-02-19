@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -93,6 +94,10 @@ public ref class Xml sealed
 		int32 get();
 		void set(int32);
 	}
+	property Boolean IsBase64
+	{
+		Boolean get();
+	}
 	property int32 J
 	{
 		int32 get();
@@ -139,6 +144,16 @@ public ref class Xml sealed
 		void set(Boolean);
 	}
 	property Platform::String ^Tag
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^TagNsPrefix
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^TagUnprefixed
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
@@ -237,11 +252,15 @@ public ref class Xml sealed
 
 	Boolean GetChild2(int index);
 
+	Platform::String ^GetChildAttrValue(Platform::String ^tagPath, Platform::String ^attrName);
+
 	Boolean GetChildBoolValue(Platform::String ^tagPath);
 
 	Platform::String ^GetChildContent(Platform::String ^tagPath);
 
 	Platform::String ^GetChildContentByIndex(int index);
+
+	Boolean GetChildContentSb(Platform::String ^tagPath, Chilkat::StringBuilder ^sb);
 
 	Xml ^GetChildExact(Platform::String ^tag, Platform::String ^content);
 
@@ -325,6 +344,10 @@ public ref class Xml sealed
 
 	Boolean PreviousSibling2(void);
 
+	int PruneAttribute(Platform::String ^attrName);
+
+	int PruneTag(Platform::String ^tag);
+
 	Boolean QEncodeContent(Platform::String ^charset, Windows::Foundation::Collections::IVector<uint8>^inData);
 
 	Boolean RemoveAllAttributes(void);
@@ -341,9 +364,13 @@ public ref class Xml sealed
 
 	void RemoveFromTree(void);
 
+	int RemoveStyleSheet(Platform::String ^attrName, Platform::String ^attrValue);
+
 	Boolean SaveBinaryContent(Platform::String ^filename, Boolean unzipFlag, Boolean decryptFlag, Platform::String ^password);
 
 	Boolean SaveXml(Platform::String ^fileName);
+
+	void Scrub(Platform::String ^directives);
 
 	Xml ^SearchAllForContent(Chilkat::Xml ^afterPtr, Platform::String ^contentPattern);
 
@@ -386,6 +413,12 @@ public ref class Xml sealed
 	Platform::String ^TagContent(Platform::String ^tagName);
 
 	Boolean TagEquals(Platform::String ^tag);
+
+	int TagIndex(Platform::String ^tagPath);
+
+	Boolean TagNsEquals(Platform::String ^ns);
+
+	Boolean TagUnpEquals(Platform::String ^unprefixedTag);
 
 	Boolean UnzipContent(void);
 

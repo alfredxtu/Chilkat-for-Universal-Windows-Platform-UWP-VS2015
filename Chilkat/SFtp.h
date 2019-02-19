@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -25,6 +26,7 @@ namespace Chilkat
 {
 
 	ref class SshKey;
+	ref class SecureString;
 	ref class Ssh;
 	ref class BinData;
 	ref class StringBuilder;
@@ -293,6 +295,10 @@ public ref class SFtp sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Platform::String ^ServerIdentifier
+	{
+		Platform::String ^get();
+	}
 	property Platform::String ^SessionLog
 	{
 		Platform::String ^get();
@@ -332,6 +338,11 @@ public ref class SFtp sealed
 		int32 get();
 		void set(int32);
 	}
+	property Boolean SyncCreateAllLocalDirs
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property Platform::String ^SyncDirectives
 	{
 		Platform::String ^get();
@@ -347,7 +358,17 @@ public ref class SFtp sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Platform::String ^SyncMustMatchDir
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^SyncMustNotMatch
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^SyncMustNotMatchDir
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
@@ -356,6 +377,11 @@ public ref class SFtp sealed
 	{
 		Boolean get();
 		void set(Boolean);
+	}
+	property Platform::String ^UncommonOptions
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
 	}
 	property int32 UploadChunkSize
 	{
@@ -376,6 +402,14 @@ public ref class SFtp sealed
 	{
 		Platform::String ^get();
 	}
+	property uint32 XferByteCount
+	{
+		uint32 get();
+	}
+	property int64 XferByteCount64
+	{
+		int64 get();
+	}
 
 
 	// ----------------------
@@ -390,6 +424,10 @@ public ref class SFtp sealed
 	IAsyncOperation<Boolean>^ AuthenticatePwAsync(Platform::String ^login, Platform::String ^password);
 
 	IAsyncOperation<Boolean>^ AuthenticatePwPkAsync(Platform::String ^username, Platform::String ^password, Chilkat::SshKey ^privateKey);
+
+	IAsyncOperation<Boolean>^ AuthenticateSecPwAsync(Chilkat::SecureString ^login, Chilkat::SecureString ^password);
+
+	IAsyncOperation<Boolean>^ AuthenticateSecPwPkAsync(Chilkat::SecureString ^username, Chilkat::SecureString ^password, Chilkat::SshKey ^privateKey);
 
 	void ClearAccumulateBuffer(void);
 
@@ -421,6 +459,8 @@ public ref class SFtp sealed
 
 	IAsyncOperation<int>^ FileExistsAsync(Platform::String ^remotePath, Boolean followLinks);
 
+	IAsyncOperation<Boolean>^ FsyncAsync(Platform::String ^handle);
+
 	IAsyncOperation<CkDateTime ^>^ GetFileCreateDtAsync(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
 
 	IAsyncOperation<Platform::String ^>^ GetFileCreateTimeStrAsync(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
@@ -444,6 +484,8 @@ public ref class SFtp sealed
 	IAsyncOperation<int64>^ GetFileSize64Async(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
 
 	IAsyncOperation<Platform::String ^>^ GetFileSizeStrAsync(Platform::String ^pathOrHandle, Boolean bFollowLinks, Boolean bIsHandle);
+
+	IAsyncOperation<Boolean>^ HardLinkAsync(Platform::String ^oldPath, Platform::String ^newPath);
 
 	IAsyncOperation<Boolean>^ InitializeSftpAsync(void);
 
@@ -472,6 +514,8 @@ public ref class SFtp sealed
 	IAsyncOperation<Platform::String ^>^ ReadFileText64Async(Platform::String ^handle, int64 offset, int numBytes, Platform::String ^charset);
 
 	IAsyncOperation<Platform::String ^>^ ReadFileText64sAsync(Platform::String ^handle, Platform::String ^offset, int numBytes, Platform::String ^charset);
+
+	IAsyncOperation<Platform::String ^>^ ReadLinkAsync(Platform::String ^path);
 
 	IAsyncOperation<Platform::String ^>^ RealPathAsync(Platform::String ^originalPath, Platform::String ^composePath);
 
@@ -503,6 +547,8 @@ public ref class SFtp sealed
 
 	IAsyncOperation<Boolean>^ SetPermissionsAsync(Platform::String ^pathOrHandle, Boolean isHandle, int permissions);
 
+	IAsyncOperation<Boolean>^ SymLinkAsync(Platform::String ^oldPath, Platform::String ^newPath);
+
 	IAsyncOperation<Boolean>^ SyncTreeDownloadAsync(Platform::String ^remoteRoot, Platform::String ^localRoot, int mode, Boolean recurse);
 
 	IAsyncOperation<Boolean>^ SyncTreeUploadAsync(Platform::String ^localBaseDir, Platform::String ^remoteBaseDir, int mode, Boolean bRecurse);
@@ -511,7 +557,7 @@ public ref class SFtp sealed
 
 	IAsyncOperation<Boolean>^ UploadBdAsync(Chilkat::BinData ^binData, Platform::String ^remoteFilePath);
 
-	IAsyncOperation<Boolean>^ UploadFileAsync(Platform::String ^handle, Platform::String ^fromFilename);
+	IAsyncOperation<Boolean>^ UploadFileAsync(Platform::String ^handle, Platform::String ^fromLocalFilePath);
 
 	IAsyncOperation<Boolean>^ UploadFileByNameAsync(Platform::String ^remoteFilePath, Platform::String ^localFilePath);
 

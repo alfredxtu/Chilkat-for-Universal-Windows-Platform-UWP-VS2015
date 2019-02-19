@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -56,6 +57,14 @@ void Chilkat::OAuth2::AccessToken::set(String ^newVal)
 String ^Chilkat::OAuth2::AccessTokenResponse::get()
     {
     return ref new String(m_impl ? m_impl->accessTokenResponse() : L"");
+    }
+String ^Chilkat::OAuth2::AppCallbackUrl::get()
+    {
+    return ref new String(m_impl ? m_impl->appCallbackUrl() : L"");
+    }
+void Chilkat::OAuth2::AppCallbackUrl::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_AppCallbackUrl(newVal ? newVal->Data() : L"");
     }
 int Chilkat::OAuth2::AuthFlowState::get()
     {
@@ -141,6 +150,14 @@ void Chilkat::OAuth2::ListenPort::set(int newVal)
     {
         if (m_impl) m_impl->put_ListenPort(newVal);
     }
+int Chilkat::OAuth2::ListenPortRangeEnd::get()
+    {
+    return m_impl ? m_impl->get_ListenPortRangeEnd() : 0;
+    }
+void Chilkat::OAuth2::ListenPortRangeEnd::set(int newVal)
+    {
+        if (m_impl) m_impl->put_ListenPortRangeEnd(newVal);
+    }
 String ^Chilkat::OAuth2::LocalHost::get()
     {
     return ref new String(m_impl ? m_impl->localHost() : L"");
@@ -205,6 +222,14 @@ void Chilkat::OAuth2::TokenType::set(String ^newVal)
     {
         if (m_impl) m_impl->put_TokenType(newVal ? newVal->Data() : L"");
     }
+Boolean Chilkat::OAuth2::UseBasicAuth::get()
+    {
+    return m_impl ? m_impl->get_UseBasicAuth() : false;
+    }
+void Chilkat::OAuth2::UseBasicAuth::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_UseBasicAuth(newVal);
+    }
 Boolean Chilkat::OAuth2::VerboseLogging::get()
     {
     return m_impl ? m_impl->get_VerboseLogging() : false;
@@ -226,6 +251,16 @@ Boolean OAuth2::Cancel(void)
 	CxOAuth2Progress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->Cancel();
+    }
+Platform::String ^OAuth2::GetRedirectRequestParam(Platform::String ^paramName)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CxOAuth2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	const wchar_t *retStr = m_impl->getRedirectRequestParam(paramName ? paramName->Data() : L"");
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
     }
 IAsyncOperation<Boolean>^ OAuth2::MonitorAsync(void)
     {
@@ -252,6 +287,20 @@ return create_async([this]() -> Boolean
 	CxOAuth2Progress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->RefreshAccessToken();
+
+});
+    }
+IAsyncOperation<Boolean>^ OAuth2::SetRefreshHeaderAsync(Platform::String ^name, Platform::String ^value)
+    {
+return create_async([this, name, value]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	CxOAuth2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->SetRefreshHeader(name ? name->Data() : L"",value ? value->Data() : L"");
 
 });
     }

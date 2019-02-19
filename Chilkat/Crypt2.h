@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -27,8 +28,10 @@ namespace Chilkat
 	ref class Cert;
 	ref class BinData;
 	ref class StringBuilder;
+	ref class SecureString;
 	ref class Stream;
 	ref class CertChain;
+	ref class JsonObject;
 	ref class PrivateKey;
 	ref class XmlCertVault;
 
@@ -226,6 +229,11 @@ public ref class Crypt2 sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Platform::String ^OaepMgfHash
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Boolean OaepPadding
 	{
 		Boolean get();
@@ -267,6 +275,11 @@ public ref class Crypt2 sealed
 		void set(Windows::Foundation::Collections::IVector<uint8> ^);
 	}
 	property Platform::String ^SigningAlg
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^SigningAttributes
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
@@ -351,6 +364,8 @@ public ref class Crypt2 sealed
 
 	Boolean DecryptSb(Chilkat::BinData ^bdIn, Chilkat::StringBuilder ^sbOut);
 
+	Boolean DecryptSecureENC(Platform::String ^cipherText, Chilkat::SecureString ^secureStr);
+
 	IAsyncOperation<Boolean>^ DecryptStreamAsync(Chilkat::Stream ^strm);
 
 	Platform::String ^DecryptString(Windows::Foundation::Collections::IVector<uint8>^data);
@@ -358,6 +373,8 @@ public ref class Crypt2 sealed
 	Platform::String ^DecryptStringENC(Platform::String ^str);
 
 	Platform::String ^Encode(Windows::Foundation::Collections::IVector<uint8>^byteData, Platform::String ^encoding);
+
+	Platform::String ^EncodeInt(int value, int numBytes, Boolean littleEndian, Platform::String ^encoding);
 
 	Platform::String ^EncodeString(Platform::String ^strToEncode, Platform::String ^charsetName, Platform::String ^toEncodingName);
 
@@ -370,6 +387,8 @@ public ref class Crypt2 sealed
 	Platform::String ^EncryptEncoded(Platform::String ^str);
 
 	Boolean EncryptSb(Chilkat::StringBuilder ^sbIn, Chilkat::BinData ^bdOut);
+
+	Platform::String ^EncryptSecureENC(Chilkat::SecureString ^secureStr);
 
 	IAsyncOperation<Boolean>^ EncryptStreamAsync(Chilkat::Stream ^strm);
 
@@ -400,6 +419,8 @@ public ref class Crypt2 sealed
 	Cert ^GetLastCert(void);
 
 	Platform::String ^GetSignatureSigningTimeStr(int index);
+
+	Boolean GetSignedAttributes(int signerIndex, Chilkat::BinData ^pkcs7Der, Chilkat::StringBuilder ^sbJson);
 
 	Cert ^GetSignerCert(int index);
 
@@ -441,6 +462,8 @@ public ref class Crypt2 sealed
 
 	Platform::String ^HmacStringENC(Platform::String ^inText);
 
+	Platform::String ^Hotp(Platform::String ^secret, Platform::String ^secretEnc, Platform::String ^counterHex, int numDigits, int truncOffset, Platform::String ^hashAlg);
+
 	Windows::Foundation::Collections::IVector<uint8>^InflateBytes(Windows::Foundation::Collections::IVector<uint8>^data);
 
 	Windows::Foundation::Collections::IVector<uint8>^InflateBytesENC(Platform::String ^str);
@@ -450,6 +473,8 @@ public ref class Crypt2 sealed
 	Platform::String ^InflateStringENC(Platform::String ^str);
 
 	Boolean IsUnlocked(void);
+
+	JsonObject ^LastJsonData(void);
 
 	Platform::String ^MacBdENC(Chilkat::BinData ^bd);
 
@@ -548,6 +573,8 @@ public ref class Crypt2 sealed
 	Platform::String ^SignStringENC(Platform::String ^str);
 
 	Windows::Foundation::Collections::IVector<uint8>^StringToBytes(Platform::String ^inStr, Platform::String ^charset);
+
+	Platform::String ^Totp(Platform::String ^secret, Platform::String ^secretEnc, Platform::String ^t0, Platform::String ^tNow, int tStep, int numDigits, int truncOffset, Platform::String ^hashAlg);
 
 	Platform::String ^TrimEndingWith(Platform::String ^inStr, Platform::String ^ending);
 

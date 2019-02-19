@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.69
+// This header is generated for Chilkat 9.5.0.76
 
 #ifndef _CkXmlDSigW_H
 #define _CkXmlDSigW_H
@@ -12,8 +12,12 @@
 #include "CkString.h"
 #include "CkWideCharBase.h"
 
+class CkStringArrayW;
+class CkXmlW;
+class CkPublicKeyW;
 class CkBinDataW;
 class CkStringBuilderW;
+class CkXmlCertVaultW;
 
 
 
@@ -94,11 +98,21 @@ class CK_VISIBLE_PUBLIC CkXmlDSigW  : public CkWideCharBase
 	// remain at the default value of 0.
 	void put_Selector(int newVal);
 
+	// Note: This property is not actually used because the "with/without comments"
+	// behavior is passed as an argument to the CanonicalizeXml and
+	// CanonicalizeFragment methods.
+	// 
 	// Determines whether XML is canonicalized with or without comments. The default
 	// value is false. (Set to true to canonicalize with XML comments.)
+	// 
 	bool get_WithComments(void);
+	// Note: This property is not actually used because the "with/without comments"
+	// behavior is passed as an argument to the CanonicalizeXml and
+	// CanonicalizeFragment methods.
+	// 
 	// Determines whether XML is canonicalized with or without comments. The default
 	// value is false. (Set to true to canonicalize with XML comments.)
+	// 
 	void put_WithComments(bool newVal);
 
 
@@ -158,6 +172,21 @@ class CK_VISIBLE_PUBLIC CkXmlDSigW  : public CkWideCharBase
 	// 
 	const wchar_t *canonicalizeXml(const wchar_t *xml, const wchar_t *version, bool withComments);
 
+	// Returns the certificates found in the signature indicated by the Selector
+	// property. The base64 representation of each certificate is returned.
+	bool GetCerts(CkStringArrayW &sa);
+
+	// Returns the KeyInfo XML for the signature indicated by the Selector property.
+	// Returns _NULL_ if no KeyInfo exists.
+	// The caller is responsible for deleting the object returned by this method.
+	CkXmlW *GetKeyInfo(void);
+
+	// Returns the public key from the KeyInfo XML for the signature indicated by the
+	// Selector property. Returns _NULL_ if no KeyInfo exists, or if no public key is
+	// actually contained in the KeyInfo.
+	// The caller is responsible for deleting the object returned by this method.
+	CkPublicKeyW *GetPublicKey(void);
+
 	// Returns true if the reference at index is external. Each external reference
 	// would first need to be provided by the application prior to validating the
 	// signature.
@@ -209,6 +238,20 @@ class CK_VISIBLE_PUBLIC CkXmlDSigW  : public CkWideCharBase
 	// index 0.) URI's beginning with a pound sign ('#') are internal references.
 	const wchar_t *referenceUri(int index);
 
+	// Sets the HMAC key to be used if the Signature used an HMAC signing algorithm.
+	// The encoding specifies the encoding of key, and can be "hex", "base64", "ascii", or
+	// any of the binary encodings supported by Chilkat in the link below.
+	bool SetHmacKey(const wchar_t *key, const wchar_t *encoding);
+
+	// Sets the public key to be used for verifying the signature indicated by the
+	// Selector property. A public key only needs to be explicitly provided by the
+	// application for those XML signatures where the public key is not already
+	// available within the KeyInfo of the Signature. In some cases, the KeyInfo within
+	// the Signature contains information about what public key was used for signing.
+	// The application can use this information to retrieve the matching public key and
+	// provide it via this method.
+	bool SetPublicKey(CkPublicKeyW &pubKey);
+
 	// Provides the binary data for the external reference at index.
 	bool SetRefDataBd(int index, CkBinDataW &binData);
 
@@ -222,10 +265,22 @@ class CK_VISIBLE_PUBLIC CkXmlDSigW  : public CkWideCharBase
 	// etc. (If in doubt, try utf-8 first.)
 	bool SetRefDataSb(int index, CkStringBuilderW &sb, const wchar_t *charset);
 
+	// Adds an XML certificate vault to the object's internal list of sources to be
+	// searched for certificates having public keys when verifying an XML signature. A
+	// single XML certificate vault may be used. If UseCertVault is called multiple
+	// times, only the last certificate vault will be used, as each call to
+	// UseCertVault will replace the certificate vault provided in previous calls.
+	bool UseCertVault(CkXmlCertVaultW &certVault);
+
 	// This method allows for an application to verify the digest for each reference
 	// separately. This can be helpful if the full XMLDSIG validation fails, then one
 	// can test each referenced data's digest to see which, if any, fail to match.
 	bool VerifyReferenceDigest(int index);
+
+	// Verifies the signature indicated by the Selector property. If verifyReferenceDigests is true,
+	// then the digest of each Reference within the signature's SignedInfo is also
+	// validated.
+	bool VerifySignature(bool verifyReferenceDigests);
 
 
 

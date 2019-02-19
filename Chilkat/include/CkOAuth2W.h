@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.69
+// This header is generated for Chilkat 9.5.0.76
 
 #ifndef _CkOAuth2W_H
 #define _CkOAuth2W_H
@@ -120,7 +120,7 @@ class CK_VISIBLE_PUBLIC CkOAuth2W  : public CkClassWithCallbacksW
 	// 
 	// Note: Not all responses are JSON. A successful Facebook response is plain text
 	// and looks like this:
-	// access_token=EAAZALuOC1wAwBAKH6FKnxOkjfEPOIkYUlabbliyskquOfVbSkgVM3lUFtsiZDCGmT1H8TidCKWUMbQ3cOU38CZAEd82vrdOayDBJ0lYqWDTVmCsO95SiiZCX09X2lAoP5eZAdZC1RIwRIXbn2UBZBhYD5hSVBETBx6AZD&expires=5134653
+	// access_token=EAAZALuOC1wAwBAKH6FKnxOkjfEP ... UBZBhYD5hSVBETBx6AZD&expires=5134653
 	// 
 	void get_AccessTokenResponse(CkString &str);
 	// When the OAuth2 three-legged authorization has completed in the background
@@ -141,9 +141,55 @@ class CK_VISIBLE_PUBLIC CkOAuth2W  : public CkClassWithCallbacksW
 	// 
 	// Note: Not all responses are JSON. A successful Facebook response is plain text
 	// and looks like this:
-	// access_token=EAAZALuOC1wAwBAKH6FKnxOkjfEPOIkYUlabbliyskquOfVbSkgVM3lUFtsiZDCGmT1H8TidCKWUMbQ3cOU38CZAEd82vrdOayDBJ0lYqWDTVmCsO95SiiZCX09X2lAoP5eZAdZC1RIwRIXbn2UBZBhYD5hSVBETBx6AZD&expires=5134653
+	// access_token=EAAZALuOC1wAwBAKH6FKnxOkjfEP ... UBZBhYD5hSVBETBx6AZD&expires=5134653
 	// 
 	const wchar_t *accessTokenResponse(void);
+
+	// Some OAuth2 services, such as QuickBooks, do not allow for
+	// "http://localhost:port" callback URLs. When this is the case, a desktop app
+	// cannot pop up a browser and expect to get the final redirect callback. The
+	// workaround is to set this property to a URI on your web server, which sends a
+	// response to redirect back to "http://localhost:3017". Thus the callback becomes
+	// a double redirect, which ends at localhost:port, and thus completes the circuit.
+	// 
+	// If the OAuth2 service allows for "http://localhost:port" callback URLs, then
+	// leave this property empty.
+	// 
+	// As an example, one could set this property to
+	// "https://www.yourdomain.com/OAuth2.php", where the PHP source contains the
+	// following:
+	// 
+	void get_AppCallbackUrl(CkString &str);
+	// Some OAuth2 services, such as QuickBooks, do not allow for
+	// "http://localhost:port" callback URLs. When this is the case, a desktop app
+	// cannot pop up a browser and expect to get the final redirect callback. The
+	// workaround is to set this property to a URI on your web server, which sends a
+	// response to redirect back to "http://localhost:3017". Thus the callback becomes
+	// a double redirect, which ends at localhost:port, and thus completes the circuit.
+	// 
+	// If the OAuth2 service allows for "http://localhost:port" callback URLs, then
+	// leave this property empty.
+	// 
+	// As an example, one could set this property to
+	// "https://www.yourdomain.com/OAuth2.php", where the PHP source contains the
+	// following:
+	// 
+	const wchar_t *appCallbackUrl(void);
+	// Some OAuth2 services, such as QuickBooks, do not allow for
+	// "http://localhost:port" callback URLs. When this is the case, a desktop app
+	// cannot pop up a browser and expect to get the final redirect callback. The
+	// workaround is to set this property to a URI on your web server, which sends a
+	// response to redirect back to "http://localhost:3017". Thus the callback becomes
+	// a double redirect, which ends at localhost:port, and thus completes the circuit.
+	// 
+	// If the OAuth2 service allows for "http://localhost:port" callback URLs, then
+	// leave this property empty.
+	// 
+	// As an example, one could set this property to
+	// "https://www.yourdomain.com/OAuth2.php", where the PHP source contains the
+	// following:
+	// 
+	void put_AppCallbackUrl(const wchar_t *newVal);
 
 	// Indicates the current progress of the OAuth2 three-legged authorization flow.
 	// Possible values are:
@@ -394,6 +440,49 @@ class CK_VISIBLE_PUBLIC CkOAuth2W  : public CkClassWithCallbacksW
 	// 
 	void put_ListenPort(int newVal);
 
+	// If set, then an unused port will be chosen in the range from the ListenPort
+	// property to this property. Some OAuth2 services, such as Google, require that
+	// callback URL's, including port numbers, be selected in advance. This feature
+	// allows for a range of callback URL's to be specified to cope with the
+	// possibility that another application on the same computer might be using a
+	// particular port.
+	// 
+	// For example, a Google ClientID might be configured with a set of authorized
+	// callback URI's such as:
+	//     http://localhost:55110/
+	//     http://localhost:55112/
+	//     http://localhost:55113/
+	//     http://localhost:55114/
+	//     http://localhost:55115/
+	//     http://localhost:55116/
+	//     http://localhost:55117/
+	// 
+	// In which case the ListenPort property would be set to 55110, and this property
+	// would be set to 55117.
+	// 
+	int get_ListenPortRangeEnd(void);
+	// If set, then an unused port will be chosen in the range from the ListenPort
+	// property to this property. Some OAuth2 services, such as Google, require that
+	// callback URL's, including port numbers, be selected in advance. This feature
+	// allows for a range of callback URL's to be specified to cope with the
+	// possibility that another application on the same computer might be using a
+	// particular port.
+	// 
+	// For example, a Google ClientID might be configured with a set of authorized
+	// callback URI's such as:
+	//     http://localhost:55110/
+	//     http://localhost:55112/
+	//     http://localhost:55113/
+	//     http://localhost:55114/
+	//     http://localhost:55115/
+	//     http://localhost:55116/
+	//     http://localhost:55117/
+	// 
+	// In which case the ListenPort property would be set to 55110, and this property
+	// would be set to 55117.
+	// 
+	void put_ListenPortRangeEnd(int newVal);
+
 	// Defaults to "localhost". This should typically remain at the default value. It
 	// is the loopback domain or IP address used for the redirect_uri. For example,
 	// "http://localhost:2012/". (assuming 2012 was used or randomly chosen as the
@@ -490,15 +579,18 @@ class CK_VISIBLE_PUBLIC CkOAuth2W  : public CkClassWithCallbacksW
 
 	// This is an optional setting that defines the "resource" query parameter. For
 	// example, to call the Microsoft Graph API, set this property value to
-	// "https://graph.microsoft.com/".
+	// "https://graph.microsoft.com/". The Microsoft Dynamics CRM OAuth authentication
+	// also requires the Resource property.
 	void get_Resource(CkString &str);
 	// This is an optional setting that defines the "resource" query parameter. For
 	// example, to call the Microsoft Graph API, set this property value to
-	// "https://graph.microsoft.com/".
+	// "https://graph.microsoft.com/". The Microsoft Dynamics CRM OAuth authentication
+	// also requires the Resource property.
 	const wchar_t *resource(void);
 	// This is an optional setting that defines the "resource" query parameter. For
 	// example, to call the Microsoft Graph API, set this property value to
-	// "https://graph.microsoft.com/".
+	// "https://graph.microsoft.com/". The Microsoft Dynamics CRM OAuth authentication
+	// also requires the Resource property.
 	void put_Resource(const wchar_t *newVal);
 
 	// This is an optional setting that defines the scope of access. For example,
@@ -594,6 +686,31 @@ class CK_VISIBLE_PUBLIC CkOAuth2W  : public CkClassWithCallbacksW
 	// 
 	void put_TokenType(const wchar_t *newVal);
 
+	// If set to true, then the internal POST (on the background thread) that
+	// exchanges the code for an access token will send the client_id/client_secret in
+	// an "Authorization Basic ..." header where the client_id is the login and the
+	// client_secret is the password.
+	// 
+	// Some services, such as fitbit.com, require the client_id/client_secret to be
+	// passed in this way.
+	// 
+	// The default value of this property is false, which causes the
+	// client_id/client_secret to be sent as query params.
+	// 
+	bool get_UseBasicAuth(void);
+	// If set to true, then the internal POST (on the background thread) that
+	// exchanges the code for an access token will send the client_id/client_secret in
+	// an "Authorization Basic ..." header where the client_id is the login and the
+	// client_secret is the password.
+	// 
+	// Some services, such as fitbit.com, require the client_id/client_secret to be
+	// passed in this way.
+	// 
+	// The default value of this property is false, which causes the
+	// client_id/client_secret to be sent as query params.
+	// 
+	void put_UseBasicAuth(bool newVal);
+
 
 
 	// ----------------------
@@ -601,6 +718,37 @@ class CK_VISIBLE_PUBLIC CkOAuth2W  : public CkClassWithCallbacksW
 	// ----------------------
 	// Cancels an OAuth2 authorization flow that is in progress.
 	bool Cancel(void);
+
+	// Some OAuth2 providers can provide additional parameters in the redirect request
+	// sent to the local listener (i.e. the Chilkat background thread). One such case
+	// is for QuickBooks, It contains a realmId parameter such as the following:
+	// http://localhost:55568/?state=xxxxxxxxxxxx&code=xxxxxxxxxxxx&realmId=1234567890
+	// 
+	// After the OAuth2 authentication is completed, an application can call this
+	// method to get any of the parameter values. For example, to get the realmId
+	// value, pass "realmId" in paramName.
+	// 
+	bool GetRedirectRequestParam(const wchar_t *paramName, CkString &outStr);
+	// Some OAuth2 providers can provide additional parameters in the redirect request
+	// sent to the local listener (i.e. the Chilkat background thread). One such case
+	// is for QuickBooks, It contains a realmId parameter such as the following:
+	// http://localhost:55568/?state=xxxxxxxxxxxx&code=xxxxxxxxxxxx&realmId=1234567890
+	// 
+	// After the OAuth2 authentication is completed, an application can call this
+	// method to get any of the parameter values. For example, to get the realmId
+	// value, pass "realmId" in paramName.
+	// 
+	const wchar_t *getRedirectRequestParam(const wchar_t *paramName);
+	// Some OAuth2 providers can provide additional parameters in the redirect request
+	// sent to the local listener (i.e. the Chilkat background thread). One such case
+	// is for QuickBooks, It contains a realmId parameter such as the following:
+	// http://localhost:55568/?state=xxxxxxxxxxxx&code=xxxxxxxxxxxx&realmId=1234567890
+	// 
+	// After the OAuth2 authentication is completed, an application can call this
+	// method to get any of the parameter values. For example, to get the realmId
+	// value, pass "realmId" in paramName.
+	// 
+	const wchar_t *redirectRequestParam(const wchar_t *paramName);
 
 	// Monitors an already started OAuth2 authorization flow and returns when it is
 	// finished.
@@ -634,6 +782,17 @@ class CK_VISIBLE_PUBLIC CkOAuth2W  : public CkClassWithCallbacksW
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *RefreshAccessTokenAsync(void);
 
+	// Provides for the ability to add HTTP request headers for the request sent by the
+	// RefreshAccesToken method. For example, if the "Accept: application/json" header
+	// needs to be sent, then add it by calling this method with name = "Accept" and
+	// value = "application/json".
+	bool SetRefreshHeader(const wchar_t *name, const wchar_t *value);
+
+	// Creates an asynchronous task to call the SetRefreshHeader method with the
+	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *SetRefreshHeaderAsync(const wchar_t *name, const wchar_t *value);
+
 	// Convenience method to force the calling thread to sleep for a number of
 	// milliseconds.
 	void SleepMs(int millisec);
@@ -652,6 +811,12 @@ class CK_VISIBLE_PUBLIC CkOAuth2W  : public CkClassWithCallbacksW
 	// The return value is the URL to be loaded (navigated to) in a popup or embedded
 	// browser.
 	// 
+	// Note: It's best not to call StartAuth if a previous call to StartAuth is in a
+	// non-completed state. However, starting in v9.5.0.76, if a background thread from
+	// a previous call to StartAuth is still running, it will be automatically
+	// canceled. However,rather than relying on this automatic behavior, your
+	// application should explicity Cancel the previous StartAuth before calling again.
+	// 
 	bool StartAuth(CkString &outStr);
 	// Initiates the three-legged OAuth2 flow. The various properties, such as
 	// ClientId, ClientSecret, Scope, CodeChallenge, AuthorizationEndpoint, and
@@ -666,6 +831,12 @@ class CK_VISIBLE_PUBLIC CkOAuth2W  : public CkClassWithCallbacksW
 	//     application controls this behavior by setting the various properties beforehand.
 	// The return value is the URL to be loaded (navigated to) in a popup or embedded
 	// browser.
+	// 
+	// Note: It's best not to call StartAuth if a previous call to StartAuth is in a
+	// non-completed state. However, starting in v9.5.0.76, if a background thread from
+	// a previous call to StartAuth is still running, it will be automatically
+	// canceled. However,rather than relying on this automatic behavior, your
+	// application should explicity Cancel the previous StartAuth before calling again.
 	// 
 	const wchar_t *startAuth(void);
 

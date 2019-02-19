@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -25,8 +26,8 @@ namespace Chilkat
 {
 
 	ref class ZipEntry;
-	ref class StringArray;
 	ref class BinData;
+	ref class StringArray;
 
 
 public ref class Zip sealed
@@ -290,6 +291,11 @@ public ref class Zip sealed
 		int32 get();
 		void set(int32);
 	}
+	property Platform::String ^PwdProtCharset
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^TempDir
 	{
 		Platform::String ^get();
@@ -327,6 +333,8 @@ public ref class Zip sealed
 	void AddNoCompressExtension(Platform::String ^fileExtension);
 
 	ZipEntry ^AppendBase64(Platform::String ^fileName, Platform::String ^encodedCompressedData);
+
+	ZipEntry ^AppendBd(Platform::String ^pathInZip, Chilkat::BinData ^byteData);
 
 	ZipEntry ^AppendCompressed(Platform::String ^filename, Windows::Foundation::Collections::IVector<uint8>^inData);
 

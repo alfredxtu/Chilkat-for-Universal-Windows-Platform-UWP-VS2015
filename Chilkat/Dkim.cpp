@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -9,6 +10,10 @@
 #include "include/CkDateTime.h"
 #include "include/CkDkimW.h"
 		
+#include "include/CkBinDataW.h"
+#include "include/CkPrivateKeyW.h"
+#include "BinData.h"
+#include "PrivateKey.h"
 
 
 using namespace Chilkat;
@@ -183,6 +188,10 @@ void Chilkat::Dkim::VerboseLogging::set(Boolean newVal)
     {
         if (m_impl) m_impl->put_VerboseLogging(newVal);
     }
+String ^Chilkat::Dkim::VerifyInfo::get()
+    {
+    return ref new String(m_impl ? m_impl->verifyInfo() : L"");
+    }
 String ^Chilkat::Dkim::Version::get()
     {
     return ref new String(m_impl ? m_impl->version() : L"");
@@ -218,6 +227,50 @@ Windows::Foundation::Collections::IVector<uint8>^Dkim::AddDomainKeySignature(Win
 	const uint8 *pOut = outDb.getData();
 	std::vector<uint8> vec(pOut, pOut+(size_t)outDb.getSize());
 	return ref new Platform::Collections::Vector<uint8>(std::move(vec));
+    }
+Boolean Dkim::DkimSign(Chilkat::BinData ^mimeData)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (mimeData == nullptr) { return false; }
+	CkBinDataW* pObj0 = mimeData->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxDkimProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->DkimSign(*pObj0);
+    }
+Boolean Dkim::DkimVerify(int sigIndex, Chilkat::BinData ^mimeData)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (mimeData == nullptr) { return false; }
+	CkBinDataW* pObj1 = mimeData->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxDkimProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->DkimVerify(sigIndex,*pObj1);
+    }
+Boolean Dkim::DomainKeySign(Chilkat::BinData ^mimeData)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (mimeData == nullptr) { return false; }
+	CkBinDataW* pObj0 = mimeData->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxDkimProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->DomainKeySign(*pObj0);
+    }
+Boolean Dkim::DomainKeyVerify(int sigIndex, Chilkat::BinData ^mimeData)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (mimeData == nullptr) { return false; }
+	CkBinDataW* pObj1 = mimeData->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxDkimProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->DomainKeyVerify(sigIndex,*pObj1);
     }
 Boolean Dkim::LoadDkimPk(Platform::String ^privateKey, Platform::String ^optionalPassword)
     {
@@ -300,6 +353,17 @@ int Dkim::NumDkimSignatures(Windows::Foundation::Collections::IVector<uint8>^mim
 	cxProgress.m_sender = this;
 	return m_impl->NumDkimSignatures(db0);
     }
+int Dkim::NumDkimSigs(Chilkat::BinData ^mimeData)
+    {
+	if (m_impl == nullptr) { return -1; }
+	if (mimeData == nullptr) { return -1; }
+	CkBinDataW* pObj0 = mimeData->m_impl;
+	 if (!pObj0) { return -1; }
+	// --- prep output arg ---
+	CxDkimProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->NumDkimSigs(*pObj0);
+    }
 int Dkim::NumDomainKeySignatures(Windows::Foundation::Collections::IVector<uint8>^mimeData)
     {
 	if (m_impl == nullptr) { return -1; }
@@ -310,6 +374,17 @@ int Dkim::NumDomainKeySignatures(Windows::Foundation::Collections::IVector<uint8
 	CxDkimProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->NumDomainKeySignatures(db0);
+    }
+int Dkim::NumDomainKeySigs(Chilkat::BinData ^mimeData)
+    {
+	if (m_impl == nullptr) { return -1; }
+	if (mimeData == nullptr) { return -1; }
+	CkBinDataW* pObj0 = mimeData->m_impl;
+	 if (!pObj0) { return -1; }
+	// --- prep output arg ---
+	CxDkimProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->NumDomainKeySigs(*pObj0);
     }
 IAsyncOperation<Boolean>^ Dkim::PrefetchPublicKeyAsync(Platform::String ^selector, Platform::String ^domain)
     {
@@ -324,6 +399,28 @@ return create_async([this, selector, domain]() -> Boolean
 	return m_impl->PrefetchPublicKey(selector ? selector->Data() : L"",domain ? domain->Data() : L"");
 
 });
+    }
+Boolean Dkim::SetDkimPrivateKey(Chilkat::PrivateKey ^privateKey)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (privateKey == nullptr) { return false; }
+	CkPrivateKeyW* pObj0 = privateKey->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxDkimProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->SetDkimPrivateKey(*pObj0);
+    }
+Boolean Dkim::SetDomainKeyPrivateKey(Chilkat::PrivateKey ^privateKey)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (privateKey == nullptr) { return false; }
+	CkPrivateKeyW* pObj0 = privateKey->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxDkimProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->SetDomainKeyPrivateKey(*pObj0);
     }
 Boolean Dkim::UnlockComponent(Platform::String ^unlockCode)
     {

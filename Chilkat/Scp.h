@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -24,6 +25,7 @@ using namespace concurrency;
 namespace Chilkat
 {
 
+	ref class BinData;
 	ref class Ssh;
 
 
@@ -151,6 +153,8 @@ public ref class Scp sealed
 	// ----------------------
 	// Methods
 	// ----------------------
+	IAsyncOperation<Boolean>^ DownloadBdAsync(Platform::String ^remotePath, Chilkat::BinData ^bd);
+
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ DownloadBinaryAsync(Platform::String ^remotePath);
 
 	IAsyncOperation<Platform::String ^>^ DownloadBinaryEncodedAsync(Platform::String ^remotePath, Platform::String ^encoding);
@@ -162,6 +166,8 @@ public ref class Scp sealed
 	IAsyncOperation<Boolean>^ SyncTreeDownloadAsync(Platform::String ^remoteRoot, Platform::String ^localRoot, int mode, Boolean bRecurse);
 
 	IAsyncOperation<Boolean>^ SyncTreeUploadAsync(Platform::String ^localBaseDir, Platform::String ^remoteBaseDir, int mode, Boolean bRecurse);
+
+	IAsyncOperation<Boolean>^ UploadBdAsync(Platform::String ^remotePath, Chilkat::BinData ^bd);
 
 	IAsyncOperation<Boolean>^ UploadBinaryAsync(Platform::String ^remotePath, Windows::Foundation::Collections::IVector<uint8>^binData);
 

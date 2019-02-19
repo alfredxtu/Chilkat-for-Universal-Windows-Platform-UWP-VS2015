@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -52,6 +53,10 @@ int Chilkat::StringBuilder::IntValue::get()
 void Chilkat::StringBuilder::IntValue::set(int newVal)
     {
         if (m_impl) m_impl->put_IntValue(newVal);
+    }
+Boolean Chilkat::StringBuilder::IsBase64::get()
+    {
+    return m_impl ? m_impl->get_IsBase64() : false;
     }
 Boolean Chilkat::StringBuilder::LastMethodSuccess::get()
     {
@@ -183,11 +188,27 @@ Platform::String ^StringBuilder::GetAfterBetween(Platform::String ^searchAfter, 
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
+Platform::String ^StringBuilder::GetAfterFinal(Platform::String ^marker, Boolean removeFlag)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	const wchar_t *retStr = m_impl->getAfterFinal(marker ? marker->Data() : L"",removeFlag);
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
 Platform::String ^StringBuilder::GetAsString(void)
     {
 	if (m_impl == nullptr) { return nullptr; }
 	// --- prep output arg ---
 	const wchar_t *retStr = m_impl->getAsString();
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
+Platform::String ^StringBuilder::GetBefore(Platform::String ^marker, Boolean removeFlag)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	const wchar_t *retStr = m_impl->getBefore(marker ? marker->Data() : L"",removeFlag);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
@@ -245,11 +266,41 @@ Boolean StringBuilder::Prepend(Platform::String ^value)
 	// --- prep output arg ---
 	return m_impl->Prepend(value ? value->Data() : L"");
     }
+Boolean StringBuilder::PunyDecode(void)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->PunyDecode();
+    }
+Boolean StringBuilder::PunyEncode(void)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->PunyEncode();
+    }
+Boolean StringBuilder::RemoveAfterFinal(Platform::String ^marker)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->RemoveAfterFinal(marker ? marker->Data() : L"");
+    }
+Boolean StringBuilder::RemoveBefore(Platform::String ^marker)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->RemoveBefore(marker ? marker->Data() : L"");
+    }
 int StringBuilder::Replace(Platform::String ^value, Platform::String ^replacement)
     {
 	if (m_impl == nullptr) { return -1; }
 	// --- prep output arg ---
 	return m_impl->Replace(value ? value->Data() : L"",replacement ? replacement->Data() : L"");
+    }
+Boolean StringBuilder::ReplaceAfterFinal(Platform::String ^marker, Platform::String ^replacement)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->ReplaceAfterFinal(marker ? marker->Data() : L"",replacement ? replacement->Data() : L"");
     }
 Boolean StringBuilder::ReplaceAllBetween(Platform::String ^beginMark, Platform::String ^endMark, Platform::String ^replacement, Boolean replaceMarks)
     {
@@ -262,6 +313,12 @@ int StringBuilder::ReplaceBetween(Platform::String ^beginMark, Platform::String 
 	if (m_impl == nullptr) { return -1; }
 	// --- prep output arg ---
 	return m_impl->ReplaceBetween(beginMark ? beginMark->Data() : L"",endMark ? endMark->Data() : L"",value ? value->Data() : L"",replacement ? replacement->Data() : L"");
+    }
+Boolean StringBuilder::ReplaceFirst(Platform::String ^value, Platform::String ^replacement)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->ReplaceFirst(value ? value->Data() : L"",replacement ? replacement->Data() : L"");
     }
 int StringBuilder::ReplaceI(Platform::String ^value, int replacement)
     {
@@ -340,6 +397,12 @@ Boolean StringBuilder::WriteFile(Platform::String ^path, Platform::String ^chars
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->WriteFile(path ? path->Data() : L"",charset ? charset->Data() : L"",emitBom);
+    }
+Boolean StringBuilder::WriteFileIfModified(Platform::String ^path, Platform::String ^charset, Boolean emitBom)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->WriteFileIfModified(path ? path->Data() : L"",charset ? charset->Data() : L"",emitBom);
     }
 
 

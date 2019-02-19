@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -125,6 +126,10 @@ void Chilkat::Xml::I::set(int newVal)
     {
         if (m_impl) m_impl->put_I(newVal);
     }
+Boolean Chilkat::Xml::IsBase64::get()
+    {
+    return m_impl ? m_impl->get_IsBase64() : false;
+    }
 int Chilkat::Xml::J::get()
     {
     return m_impl ? m_impl->get_J() : 0;
@@ -192,6 +197,22 @@ String ^Chilkat::Xml::Tag::get()
 void Chilkat::Xml::Tag::set(String ^newVal)
     {
         if (m_impl) m_impl->put_Tag(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::Xml::TagNsPrefix::get()
+    {
+    return ref new String(m_impl ? m_impl->tagNsPrefix() : L"");
+    }
+void Chilkat::Xml::TagNsPrefix::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_TagNsPrefix(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::Xml::TagUnprefixed::get()
+    {
+    return ref new String(m_impl ? m_impl->tagUnprefixed() : L"");
+    }
+void Chilkat::Xml::TagUnprefixed::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_TagUnprefixed(newVal ? newVal->Data() : L"");
     }
 int Chilkat::Xml::TreeId::get()
     {
@@ -499,6 +520,14 @@ Boolean Xml::GetChild2(int index)
 	// --- prep output arg ---
 	return m_impl->GetChild2(index);
     }
+Platform::String ^Xml::GetChildAttrValue(Platform::String ^tagPath, Platform::String ^attrName)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	const wchar_t *retStr = m_impl->getChildAttrValue(tagPath ? tagPath->Data() : L"",attrName ? attrName->Data() : L"");
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
+    }
 Boolean Xml::GetChildBoolValue(Platform::String ^tagPath)
     {
 	if (m_impl == nullptr) { return false; }
@@ -520,6 +549,15 @@ Platform::String ^Xml::GetChildContentByIndex(int index)
 	const wchar_t *retStr = m_impl->getChildContentByIndex(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+    }
+Boolean Xml::GetChildContentSb(Platform::String ^tagPath, Chilkat::StringBuilder ^sb)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj1 = sb->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	return m_impl->GetChildContentSb(tagPath ? tagPath->Data() : L"",*pObj1);
     }
 Xml ^Xml::GetChildExact(Platform::String ^tag, Platform::String ^content)
     {
@@ -841,6 +879,18 @@ Boolean Xml::PreviousSibling2(void)
 	// --- prep output arg ---
 	return m_impl->PreviousSibling2();
     }
+int Xml::PruneAttribute(Platform::String ^attrName)
+    {
+	if (m_impl == nullptr) { return -1; }
+	// --- prep output arg ---
+	return m_impl->PruneAttribute(attrName ? attrName->Data() : L"");
+    }
+int Xml::PruneTag(Platform::String ^tag)
+    {
+	if (m_impl == nullptr) { return -1; }
+	// --- prep output arg ---
+	return m_impl->PruneTag(tag ? tag->Data() : L"");
+    }
 Boolean Xml::QEncodeContent(Platform::String ^charset, Windows::Foundation::Collections::IVector<uint8>^inData)
     {
 	if (m_impl == nullptr) { return false; }
@@ -892,6 +942,12 @@ void Xml::RemoveFromTree(void)
 	// --- prep output arg ---
 	m_impl->RemoveFromTree();
     }
+int Xml::RemoveStyleSheet(Platform::String ^attrName, Platform::String ^attrValue)
+    {
+	if (m_impl == nullptr) { return -1; }
+	// --- prep output arg ---
+	return m_impl->RemoveStyleSheet(attrName ? attrName->Data() : L"",attrValue ? attrValue->Data() : L"");
+    }
 Boolean Xml::SaveBinaryContent(Platform::String ^filename, Boolean unzipFlag, Boolean decryptFlag, Platform::String ^password)
     {
 	if (m_impl == nullptr) { return false; }
@@ -903,6 +959,12 @@ Boolean Xml::SaveXml(Platform::String ^fileName)
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->SaveXml(fileName ? fileName->Data() : L"");
+    }
+void Xml::Scrub(Platform::String ^directives)
+    {
+	if (m_impl == nullptr) { return ; }
+	// --- prep output arg ---
+	m_impl->Scrub(directives ? directives->Data() : L"");
     }
 Xml ^Xml::SearchAllForContent(Chilkat::Xml ^afterPtr, Platform::String ^contentPattern)
     {
@@ -1072,6 +1134,24 @@ Boolean Xml::TagEquals(Platform::String ^tag)
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->TagEquals(tag ? tag->Data() : L"");
+    }
+int Xml::TagIndex(Platform::String ^tagPath)
+    {
+	if (m_impl == nullptr) { return -1; }
+	// --- prep output arg ---
+	return m_impl->TagIndex(tagPath ? tagPath->Data() : L"");
+    }
+Boolean Xml::TagNsEquals(Platform::String ^ns)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->TagNsEquals(ns ? ns->Data() : L"");
+    }
+Boolean Xml::TagUnpEquals(Platform::String ^unprefixedTag)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->TagUnpEquals(unprefixedTag ? unprefixedTag->Data() : L"");
     }
 Boolean Xml::UnzipContent(void)
     {

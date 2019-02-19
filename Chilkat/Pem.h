@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -113,6 +114,10 @@ public ref class Pem sealed
 		void set(Boolean);
 	}
 	property int32 NumCerts
+	{
+		int32 get();
+	}
+	property int32 NumCrls
 	{
 		int32 get();
 	}

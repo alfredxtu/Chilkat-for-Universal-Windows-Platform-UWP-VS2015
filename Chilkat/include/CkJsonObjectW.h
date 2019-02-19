@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.69
+// This header is generated for Chilkat 9.5.0.76
 
 #ifndef _CkJsonObjectW_H
 #define _CkJsonObjectW_H
@@ -15,6 +15,8 @@
 class CkJsonArrayW;
 class CkStringTableW;
 class CkBinDataW;
+class CkDateTimeW;
+class CkDtObjW;
 class CkStringBuilderW;
 class CkHashtableW;
 
@@ -118,6 +120,28 @@ class CK_VISIBLE_PUBLIC CkJsonObjectW  : public CkWideCharBase
 	// The value of the "k" index to be used when evaluating a JSON path.
 	void put_K(int newVal);
 
+	// A prefix string that is automatically added to the JSON path passed in the first
+	// argument for other methods (such as StringOf, UpdateString, SetBoolOf,
+	// SizeOfArray, etc.)
+	// 
+	// The default value is the empty string.
+	// 
+	void get_PathPrefix(CkString &str);
+	// A prefix string that is automatically added to the JSON path passed in the first
+	// argument for other methods (such as StringOf, UpdateString, SetBoolOf,
+	// SizeOfArray, etc.)
+	// 
+	// The default value is the empty string.
+	// 
+	const wchar_t *pathPrefix(void);
+	// A prefix string that is automatically added to the JSON path passed in the first
+	// argument for other methods (such as StringOf, UpdateString, SetBoolOf,
+	// SizeOfArray, etc.)
+	// 
+	// The default value is the empty string.
+	// 
+	void put_PathPrefix(const wchar_t *newVal);
+
 	// The number of name/value members in this JSON object.
 	int get_Size(void);
 
@@ -163,26 +187,47 @@ class CK_VISIBLE_PUBLIC CkJsonObjectW  : public CkWideCharBase
 	bool AddStringAt(int index, const wchar_t *name, const wchar_t *value);
 
 	// Appends a new and empty JSON array and returns it.
+	// 
+	// Important: The name is the member name, it is not a JSON path.
+	// 
 	// The caller is responsible for deleting the object returned by this method.
 	CkJsonArrayW *AppendArray(const wchar_t *name);
 
 	// Appends a new boolean member. (This is the same as passing -1 to the AddBoolAt
 	// method.)
+	// 
+	// Important: The name is the member name. It is not a JSON path. To append (or
+	// update) using a JSON path, call UpdateBool instead.
+	// 
 	bool AppendBool(const wchar_t *name, bool value);
 
 	// Appends a new integer member. (This is the same as passing an index of -1 to the
 	// AddIntAt method.)
+	// 
+	// Important: The name is the member name. It is not a JSON path. To append (or
+	// update) using a JSON path, call UpdateInt instead.
+	// 
 	bool AppendInt(const wchar_t *name, int value);
 
 	// Appends a new and empty JSON object and returns it.
+	// 
+	// Important: The name is the member name, it is not a JSON path.
+	// 
 	// The caller is responsible for deleting the object returned by this method.
 	CkJsonObjectW *AppendObject(const wchar_t *name);
 
 	// Appends a new string member. (This is the same as passing -1 to the AddStringAt
 	// method.)
+	// 
+	// Important: The name is the member name. It is not a JSON path. To append (or
+	// update) using a JSON path, call UpdateString instead.
+	// 
 	bool AppendString(const wchar_t *name, const wchar_t *value);
 
 	// Appends an array of string values.
+	// 
+	// Important: The name is the member name, it is not a JSON path.
+	// 
 	bool AppendStringArray(const wchar_t *name, CkStringTableW &values);
 
 	// Returns the JSON array that is the value of the Nth member. Indexing is 0-based
@@ -205,9 +250,19 @@ class CK_VISIBLE_PUBLIC CkJsonObjectW  : public CkWideCharBase
 	// encoding of the bytes, such as "base64", "hex", etc.
 	bool BytesOf(const wchar_t *jsonPath, const wchar_t *encoding, CkBinDataW &bd);
 
+	// Clears the contents of the JSON object. This is the equivalent of calling
+	// jsonObject.Load("{}")
+	void Clear(void);
+
 	// Returns a copy of this JSON object.
 	// The caller is responsible for deleting the object returned by this method.
 	CkJsonObjectW *Clone(void);
+
+	// Fills the dateTime with the date/time string located at jsonPath. Auto-recognizes the
+	// following date/time string formats: ISO-8061 Timestamp (such as
+	// "2009-11-04T19:55:41Z"), RFC822 date/time format (such as "Wed, 18 Apr 2018
+	// 15:51:55 -0400"), or Unix timestamp integers.
+	bool DateOf(const wchar_t *jsonPath, CkDateTimeW &dateTime);
 
 	// Deletes the member at having the name specified by name.
 	bool Delete(const wchar_t *name);
@@ -215,6 +270,13 @@ class CK_VISIBLE_PUBLIC CkJsonObjectW  : public CkWideCharBase
 	// Deletes the member at index index. Indexing is 0-based (the 1st member is at
 	// index 0).
 	bool DeleteAt(int index);
+
+	// Fills the dt with the date/time string located at jsonPath. If bLocal is true,
+	// then dt is filled with the local date/time values, otherwise it is filled with
+	// the UTC/GMT values. Auto-recognizes the following date/time string formats:
+	// ISO-8061 Timestamp (such as "2009-11-04T19:55:41Z"), RFC822 date/time format
+	// (such as "Wed, 18 Apr 2018 15:51:55 -0400"), or Unix timestamp integers.
+	bool DtOf(const wchar_t *jsonPath, bool bLocal, CkDtObjW &dt);
 
 	// Writes the JSON document (rooted at the caller) and returns as a string.
 	bool Emit(CkString &outStr);
@@ -417,6 +479,9 @@ const wchar_t *emit(void);
 	// Appends the string value at the specified jsonPath to sb.
 	bool StringOfSb(const wchar_t *jsonPath, CkStringBuilderW &sb);
 
+	// Swaps the positions of members at index1 and index2.
+	bool Swap(int index1, int index2);
+
 	// Returns the type of data at the given index. Possible return values are:
 	//     string
 	//     number
@@ -441,6 +506,14 @@ const wchar_t *emit(void);
 	// not exist, it is automatically created as needed.
 	bool UpdateInt(const wchar_t *jsonPath, int value);
 
+	// Updates or appends a new and empty array at the jsonPath. If the full path specified
+	// by jsonPath does not exist, it is automatically created as needed.
+	bool UpdateNewArray(const wchar_t *jsonPath);
+
+	// Updates or appends a new and empty array at the jsonPath. If the full path specified
+	// by jsonPath does not exist, it is automatically created as needed.
+	bool UpdateNewObject(const wchar_t *jsonPath);
+
 	// Updates or appends a null member. If the full path specified by jsonPath does not
 	// exist, it is automatically created as needed.
 	bool UpdateNull(const wchar_t *jsonPath);
@@ -462,6 +535,9 @@ const wchar_t *emit(void);
 	// present. Version 9.5.0.68 fixes the problem.
 	// 
 	bool UpdateString(const wchar_t *jsonPath, const wchar_t *value);
+
+	// Saves the JSON to a file.
+	bool WriteFile(const wchar_t *path);
 
 
 

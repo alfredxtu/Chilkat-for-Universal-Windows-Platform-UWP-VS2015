@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -27,11 +28,12 @@ namespace Chilkat
 	ref class EmailBundle;
 	ref class Email;
 	ref class StringArray;
+	ref class BinData;
 	ref class Cert;
 	ref class JsonObject;
-	ref class BinData;
 	ref class StringBuilder;
 	ref class PrivateKey;
+	ref class SecureString;
 	ref class SshKey;
 	ref class XmlCertVault;
 	ref class Ssh;
@@ -548,6 +550,8 @@ public ref class MailMan sealed
 
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ FetchMimeAsync(Platform::String ^uidl);
 
+	IAsyncOperation<Boolean>^ FetchMimeBdAsync(Platform::String ^uidl, Chilkat::BinData ^mimeData);
+
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ FetchMimeByMsgnumAsync(int msgnum);
 
 	IAsyncOperation<EmailBundle ^>^ FetchMultipleAsync(Chilkat::StringArray ^uidlArray);
@@ -638,6 +642,8 @@ public ref class MailMan sealed
 
 	IAsyncOperation<Boolean>^ SendMimeAsync(Platform::String ^fromAddr, Platform::String ^recipients, Platform::String ^mimeSource);
 
+	IAsyncOperation<Boolean>^ SendMimeBdAsync(Platform::String ^fromAddr, Platform::String ^recipients, Chilkat::BinData ^mimeData);
+
 	IAsyncOperation<Boolean>^ SendMimeBytesAsync(Platform::String ^fromAddr, Platform::String ^recipients, Windows::Foundation::Collections::IVector<uint8>^mimeSource);
 
 	IAsyncOperation<Boolean>^ SendMimeToListAsync(Platform::String ^fromAddr, Platform::String ^distListFilename, Platform::String ^mimeSource);
@@ -647,6 +653,8 @@ public ref class MailMan sealed
 	Boolean SetDecryptCert(Chilkat::Cert ^cert);
 
 	Boolean SetDecryptCert2(Chilkat::Cert ^cert, Chilkat::PrivateKey ^privateKey);
+
+	Boolean SetPassword(Platform::String ^protocol, Chilkat::SecureString ^password);
 
 	Boolean SetSslClientCert(Chilkat::Cert ^cert);
 

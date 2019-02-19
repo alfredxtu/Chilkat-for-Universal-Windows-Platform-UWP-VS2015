@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -11,8 +12,10 @@
 		
 #include "include/CkPrivateKeyW.h"
 #include "include/CkBinDataW.h"
+#include "include/CkPublicKeyW.h"
 #include "PrivateKey.h"
 #include "BinData.h"
+#include "PublicKey.h"
 
 
 using namespace Chilkat;
@@ -167,6 +170,15 @@ Platform::String ^Csr::GenCsrPem(Chilkat::PrivateKey ^privKey)
 	const wchar_t *retStr = m_impl->genCsrPem(*pObj0);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+    }
+Boolean Csr::GetPublicKey(Chilkat::PublicKey ^pubkey)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (pubkey == nullptr) { return false; }
+	CkPublicKeyW* pObj0 = pubkey->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->GetPublicKey(*pObj0);
     }
 Platform::String ^Csr::GetSubjectField(Platform::String ^oid)
     {

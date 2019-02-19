@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -20,6 +21,8 @@ using namespace concurrency;
 namespace Chilkat
 {
 
+	ref class BinData;
+	ref class StringBuilder;
 
 
 public ref class HtmlToXml sealed
@@ -110,11 +113,15 @@ public ref class HtmlToXml sealed
 
 	Platform::String ^ReadFileToString(Platform::String ^filename, Platform::String ^srcCharset);
 
+	Boolean SetHtmlBd(Chilkat::BinData ^bd);
+
 	void SetHtmlBytes(Windows::Foundation::Collections::IVector<uint8>^inData);
 
 	Boolean SetHtmlFromFile(Platform::String ^filename);
 
 	Platform::String ^ToXml(void);
+
+	Boolean ToXmlSb(Chilkat::StringBuilder ^sb);
 
 	void UndropTagType(Platform::String ^tagName);
 

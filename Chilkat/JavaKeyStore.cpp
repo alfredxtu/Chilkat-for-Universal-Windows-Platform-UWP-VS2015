@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -13,6 +14,7 @@
 #include "include/CkCertW.h"
 #include "include/CkCertChainW.h"
 #include "include/CkPrivateKeyW.h"
+#include "include/CkBinDataW.h"
 #include "include/CkJsonObjectW.h"
 #include "include/CkStringBuilderW.h"
 #include "include/CkPemW.h"
@@ -21,6 +23,7 @@
 #include "Cert.h"
 #include "CertChain.h"
 #include "PrivateKey.h"
+#include "BinData.h"
 #include "JsonObject.h"
 #include "StringBuilder.h"
 #include "Pem.h"
@@ -259,6 +262,15 @@ Platform::String ^JavaKeyStore::GetTrustedCertAlias(int index)
 	const wchar_t *retStr = m_impl->getTrustedCertAlias(index);
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+    }
+Boolean JavaKeyStore::LoadBd(Platform::String ^password, Chilkat::BinData ^bd)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bd == nullptr) { return false; }
+	CkBinDataW* pObj1 = bd->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	return m_impl->LoadBd(password ? password->Data() : L"",*pObj1);
     }
 Boolean JavaKeyStore::LoadBinary(Platform::String ^password, Windows::Foundation::Collections::IVector<uint8>^jksData)
     {

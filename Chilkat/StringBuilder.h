@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -48,6 +49,10 @@ public ref class StringBuilder sealed
 		int32 get();
 		void set(int32);
 	}
+	property Boolean IsBase64
+	{
+		Boolean get();
+	}
 	property Boolean LastMethodSuccess
 	{
 		Boolean get();
@@ -96,7 +101,11 @@ public ref class StringBuilder sealed
 
 	Platform::String ^GetAfterBetween(Platform::String ^searchAfter, Platform::String ^beginMark, Platform::String ^endMark);
 
+	Platform::String ^GetAfterFinal(Platform::String ^marker, Boolean removeFlag);
+
 	Platform::String ^GetAsString(void);
+
+	Platform::String ^GetBefore(Platform::String ^marker, Boolean removeFlag);
 
 	Platform::String ^GetBetween(Platform::String ^beginMark, Platform::String ^endMark);
 
@@ -112,11 +121,23 @@ public ref class StringBuilder sealed
 
 	Boolean Prepend(Platform::String ^value);
 
+	Boolean PunyDecode(void);
+
+	Boolean PunyEncode(void);
+
+	Boolean RemoveAfterFinal(Platform::String ^marker);
+
+	Boolean RemoveBefore(Platform::String ^marker);
+
 	int Replace(Platform::String ^value, Platform::String ^replacement);
+
+	Boolean ReplaceAfterFinal(Platform::String ^marker, Platform::String ^replacement);
 
 	Boolean ReplaceAllBetween(Platform::String ^beginMark, Platform::String ^endMark, Platform::String ^replacement, Boolean replaceMarks);
 
 	int ReplaceBetween(Platform::String ^beginMark, Platform::String ^endMark, Platform::String ^value, Platform::String ^replacement);
+
+	Boolean ReplaceFirst(Platform::String ^value, Platform::String ^replacement);
 
 	int ReplaceI(Platform::String ^value, int replacement);
 
@@ -143,6 +164,8 @@ public ref class StringBuilder sealed
 	Boolean TrimInsideSpaces(void);
 
 	Boolean WriteFile(Platform::String ^path, Platform::String ^charset, Boolean emitBom);
+
+	Boolean WriteFileIfModified(Platform::String ^path, Platform::String ^charset, Boolean emitBom);
 
 
 

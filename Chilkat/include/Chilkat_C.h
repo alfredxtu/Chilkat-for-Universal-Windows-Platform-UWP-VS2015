@@ -146,6 +146,7 @@ typedef void *HCkJws;
 typedef void *HCkAuthUtil;
 typedef void *HCkXmlDSig;
 typedef void *HCkXmlDSigGen;
+typedef void *HCkWebSocket;
 
 
 typedef void *HCkByteDataW;
@@ -268,5 +269,6 @@ typedef void *HCkJwsW;
 typedef void *HCkAuthUtilW;
 typedef void *HCkXmlDSigW;
 typedef void *HCkXmlDSigGenW;
+typedef void *HCkWebSocketW;
 
 #endif

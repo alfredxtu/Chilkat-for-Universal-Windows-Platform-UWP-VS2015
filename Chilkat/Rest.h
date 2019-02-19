@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -32,6 +33,7 @@ namespace Chilkat
 	ref class AuthAzureAD;
 	ref class AuthAzureSAS;
 	ref class AuthAzureStorage;
+	ref class SecureString;
 	ref class AuthGoogle;
 	ref class OAuth1;
 	ref class OAuth2;
@@ -105,10 +107,20 @@ public ref class Rest sealed
 	{
 		int32 get();
 	}
+	property int32 ConnectTimeoutMs
+	{
+		int32 get();
+		void set(int32);
+	}
 	property Platform::String ^DebugLogFilePath
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
+	}
+	property Boolean DebugMode
+	{
+		Boolean get();
+		void set(Boolean);
 	}
 	property int32 HeartbeatMs
 	{
@@ -199,6 +211,8 @@ public ref class Rest sealed
 
 	Boolean AddMwsSignature(Platform::String ^httpVerb, Platform::String ^uriPath, Platform::String ^domain, Platform::String ^mwsSecretKey);
 
+	Boolean AddPathParam(Platform::String ^name, Platform::String ^value);
+
 	Boolean AddQueryParam(Platform::String ^name, Platform::String ^value);
 
 	Boolean AddQueryParams(Platform::String ^queryString);
@@ -208,6 +222,8 @@ public ref class Rest sealed
 	Boolean ClearAllHeaders(void);
 
 	Boolean ClearAllParts(void);
+
+	Boolean ClearAllPathParams(void);
 
 	Boolean ClearAllQueryParams(void);
 
@@ -238,6 +254,8 @@ public ref class Rest sealed
 	IAsyncOperation<Platform::String ^>^ FullRequestStreamAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Chilkat::Stream ^stream);
 
 	IAsyncOperation<Platform::String ^>^ FullRequestStringAsync(Platform::String ^httpVerb, Platform::String ^uriPath, Platform::String ^bodyText);
+
+	Boolean GetLastDebugRequest(Chilkat::BinData ^bd);
 
 	IAsyncOperation<Boolean>^ ReadRespBdAsync(Chilkat::BinData ^responseBody);
 
@@ -288,6 +306,8 @@ public ref class Rest sealed
 	Boolean SetAuthAzureStorage(Chilkat::AuthAzureStorage ^authProvider);
 
 	Boolean SetAuthBasic(Platform::String ^username, Platform::String ^password);
+
+	Boolean SetAuthBasicSecure(Chilkat::SecureString ^username, Chilkat::SecureString ^password);
 
 	Boolean SetAuthGoogle(Chilkat::AuthGoogle ^authProvider);
 

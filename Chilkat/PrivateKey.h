@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -21,6 +22,7 @@ namespace Chilkat
 {
 
 	ref class PublicKey;
+	ref class BinData;
 
 
 public ref class PrivateKey sealed
@@ -121,6 +123,8 @@ public ref class PrivateKey sealed
 	Platform::String ^GetRsaPem(void);
 
 	Platform::String ^GetXml(void);
+
+	Boolean LoadAnyFormat(Chilkat::BinData ^privKeyData, Platform::String ^password);
 
 	Boolean LoadEncryptedPem(Platform::String ^pemStr, Platform::String ^password);
 

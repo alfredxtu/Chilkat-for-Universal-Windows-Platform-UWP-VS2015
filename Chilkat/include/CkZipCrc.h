@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.69
+// This header is generated for Chilkat 9.5.0.76
 
 #ifndef _CkZipCrc_H
 #define _CkZipCrc_H
@@ -13,6 +13,8 @@
 #include "CkClassWithCallbacks.h"
 
 class CkByteData;
+class CkBinData;
+class CkStringBuilder;
 class CkTask;
 class CkBaseProgress;
 
@@ -66,8 +68,26 @@ class CK_VISIBLE_PUBLIC CkZipCrc  : public CkClassWithCallbacks
 
 	// Calculates a 32-bit CRC for in-memory byte data. This is the 32-bit CRC that
 	// would be found in a Zip file header if a file containing the data was added to a
-	// zip archive.
+	// zip archive. Returns the CRC32 of the data.
 	unsigned long CalculateCrc(CkByteData &data);
+
+
+	// Calculates a CRC32 for the bytes contained in bd.
+	unsigned long CrcBd(CkBinData &bd);
+
+
+	// Calculates a CRC32 for the string contained in sb. The charset is the byte
+	// representation to be used for the sb when calculating the CRC32. It can be
+	// utf-8, utf-16, windows-1252, iso-8859-1, or any of the character encodings
+	// (charsets) listed at the link below.
+	unsigned long CrcSb(CkStringBuilder &sb, const char *charset);
+
+
+	// Calculates a CRC32 for a string. The charset is the byte representation to be used
+	// for the str when calculating the CRC32. It can be utf-8, utf-16, windows-1252,
+	// iso-8859-1, or any of the character encodings (charsets) listed at the link
+	// below.
+	unsigned long CrcString(const char *str, const char *charset);
 
 
 	// Finalizes and returns the Zip CRC value calculated by calling BeginStream
@@ -75,23 +95,26 @@ class CK_VISIBLE_PUBLIC CkZipCrc  : public CkClassWithCallbacks
 	unsigned long EndStream(void);
 
 
-	// Adds additional data to the CRC currently being calculated. (See BeginStream for
-	// more information.)
+	// Calculates the CRC32 of a file. The data contained in the file is streamed for
+	// the calculation to keep the memory footprint small and constant. Returns the
+	// CRC32 of the file.
 	unsigned long FileCrc(const char *path);
 
-	// Adds additional data to the CRC currently being calculated. (See BeginStream for
-	// more information.)
+	// Calculates the CRC32 of a file. The data contained in the file is streamed for
+	// the calculation to keep the memory footprint small and constant. Returns the
+	// CRC32 of the file.
 	CkTask *FileCrcAsync(const char *path);
 
 
-	// Converts a 32-bit integer to a hexidecimal string.
+	// Adds additional data to the CRC currently being calculated. (See BeginStream for
+	// more information.)
 	void MoreData(CkByteData &data);
 
 
-	// Converts a 32-bit integer to a hexidecimal string.
+	// Converts a 32-bit integer to a hex string.
 	bool ToHex(int crc, CkString &outStr);
 
-	// Converts a 32-bit integer to a hexidecimal string.
+	// Converts a 32-bit integer to a hex string.
 	const char *toHex(int crc);
 
 

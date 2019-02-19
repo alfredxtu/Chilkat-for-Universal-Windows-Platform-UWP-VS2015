@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -89,6 +90,11 @@ public ref class Global sealed
 		int32 get();
 		void set(int32);
 	}
+	property Boolean PreferIpv6
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property Platform::String ^ThreadPoolLogPath
 	{
 		Platform::String ^get();
@@ -97,6 +103,11 @@ public ref class Global sealed
 	property int32 UnlockStatus
 	{
 		int32 get();
+	}
+	property Boolean UsePkcsConstructedEncoding
+	{
+		Boolean get();
+		void set(Boolean);
 	}
 	property Boolean VerboseLogging
 	{

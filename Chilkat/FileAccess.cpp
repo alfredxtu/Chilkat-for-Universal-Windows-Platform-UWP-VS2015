@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -10,7 +11,9 @@
 #include "include/CkFileAccessW.h"
 		
 #include "include/CkBinDataW.h"
+#include "include/CkStringBuilderW.h"
 #include "BinData.h"
+#include "StringBuilder.h"
 #include "CkDateTime.h"
 
 
@@ -110,6 +113,24 @@ Boolean FileAccess::AppendAnsi(Platform::String ^text)
 	// --- prep output arg ---
 	return m_impl->AppendAnsi(text ? text->Data() : L"");
     }
+Boolean FileAccess::AppendBd(Chilkat::BinData ^bd)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bd == nullptr) { return false; }
+	CkBinDataW* pObj0 = bd->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->AppendBd(*pObj0);
+    }
+Boolean FileAccess::AppendSb(Chilkat::StringBuilder ^sb, Platform::String ^charset)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj0 = sb->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->AppendSb(*pObj0,charset ? charset->Data() : L"");
+    }
 Boolean FileAccess::AppendText(Platform::String ^str, Platform::String ^charset)
     {
 	if (m_impl == nullptr) { return false; }
@@ -128,11 +149,11 @@ Boolean FileAccess::AppendUtf8BOM(void)
 	// --- prep output arg ---
 	return m_impl->AppendUtf8BOM();
     }
-Boolean FileAccess::DirAutoCreate(Platform::String ^dirPath)
+Boolean FileAccess::DirAutoCreate(Platform::String ^filePath)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	return m_impl->DirAutoCreate(dirPath ? dirPath->Data() : L"");
+	return m_impl->DirAutoCreate(filePath ? filePath->Data() : L"");
     }
 Boolean FileAccess::DirCreate(Platform::String ^dirPath)
     {
@@ -146,11 +167,11 @@ Boolean FileAccess::DirDelete(Platform::String ^dirPath)
 	// --- prep output arg ---
 	return m_impl->DirDelete(dirPath ? dirPath->Data() : L"");
     }
-Boolean FileAccess::DirEnsureExists(Platform::String ^filePath)
+Boolean FileAccess::DirEnsureExists(Platform::String ^dirPath)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
-	return m_impl->DirEnsureExists(filePath ? filePath->Data() : L"");
+	return m_impl->DirEnsureExists(dirPath ? dirPath->Data() : L"");
     }
 void FileAccess::FileClose(void)
     {
@@ -231,6 +252,12 @@ int FileAccess::FileSize(Platform::String ^filePath)
 	// --- prep output arg ---
 	return m_impl->FileSize(filePath ? filePath->Data() : L"");
     }
+int FileAccess::FileType(Platform::String ^path)
+    {
+	if (m_impl == nullptr) { return -1; }
+	// --- prep output arg ---
+	return m_impl->FileType(path ? path->Data() : L"");
+    }
 Boolean FileAccess::FileWrite(Windows::Foundation::Collections::IVector<uint8>^data)
     {
 	if (m_impl == nullptr) { return false; }
@@ -288,6 +315,16 @@ Platform::String ^FileAccess::GetFileNameWithoutExtension(Platform::String ^path
 	const wchar_t *retStr = m_impl->getFileNameWithoutExtension(path ? path->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+    }
+Chilkat::CkDateTime ^FileAccess::GetFileTime(Platform::String ^path, int which)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CkDateTimeW *pRetObj = m_impl->GetFileTime(path ? path->Data() : L"",which);
+	if (!pRetObj) return nullptr;
+	Chilkat::CkDateTime ^pCkDateTime = ref new Chilkat::CkDateTime();
+	pCkDateTime->m_impl = pRetObj;
+	return pCkDateTime;
     }
 Chilkat::CkDateTime ^FileAccess::GetLastModified(Platform::String ^path)
     {
@@ -420,6 +457,20 @@ Boolean FileAccess::SplitFile(Platform::String ^fileToSplit, Platform::String ^p
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->SplitFile(fileToSplit ? fileToSplit->Data() : L"",partPrefix ? partPrefix->Data() : L"",partExtension ? partExtension->Data() : L"",partSize,destDir ? destDir->Data() : L"");
+    }
+Boolean FileAccess::SymlinkCreate(Platform::String ^targetPath, Platform::String ^linkPath)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->SymlinkCreate(targetPath ? targetPath->Data() : L"",linkPath ? linkPath->Data() : L"");
+    }
+Platform::String ^FileAccess::SymlinkTarget(Platform::String ^linkPath)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	const wchar_t *retStr = m_impl->symlinkTarget(linkPath ? linkPath->Data() : L"");
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
     }
 Boolean FileAccess::TreeDelete(Platform::String ^path)
     {

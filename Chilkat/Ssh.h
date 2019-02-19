@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -25,6 +26,7 @@ namespace Chilkat
 {
 
 	ref class SshKey;
+	ref class SecureString;
 	ref class StringArray;
 
 
@@ -107,6 +109,11 @@ public ref class Ssh sealed
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
+	}
+	property int32 ClientPort
+	{
+		int32 get();
+		void set(int32);
 	}
 	property int32 ConnectTimeoutMs
 	{
@@ -239,6 +246,10 @@ public ref class Ssh sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Platform::String ^ServerIdentifier
+	{
+		Platform::String ^get();
+	}
 	property Platform::String ^SessionLog
 	{
 		Platform::String ^get();
@@ -293,6 +304,11 @@ public ref class Ssh sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Platform::String ^UncommonOptions
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property Platform::String ^UserAuthBanner
 	{
 		Platform::String ^get();
@@ -317,6 +333,10 @@ public ref class Ssh sealed
 	IAsyncOperation<Boolean>^ AuthenticatePwAsync(Platform::String ^login, Platform::String ^password);
 
 	IAsyncOperation<Boolean>^ AuthenticatePwPkAsync(Platform::String ^username, Platform::String ^password, Chilkat::SshKey ^privateKey);
+
+	IAsyncOperation<Boolean>^ AuthenticateSecPwAsync(Chilkat::SecureString ^login, Chilkat::SecureString ^password);
+
+	IAsyncOperation<Boolean>^ AuthenticateSecPwPkAsync(Chilkat::SecureString ^username, Chilkat::SecureString ^password, Chilkat::SshKey ^privateKey);
 
 	Boolean ChannelIsOpen(int channelNum);
 

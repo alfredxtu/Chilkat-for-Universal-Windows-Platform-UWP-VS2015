@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.69
+// This header is generated for Chilkat 9.5.0.76
 
 #ifndef _CkRestW_H
 #define _CkRestW_H
@@ -22,6 +22,7 @@ class CkAuthAwsW;
 class CkAuthAzureADW;
 class CkAuthAzureSASW;
 class CkAuthAzureStorageW;
+class CkSecureStringW;
 class CkAuthGoogleW;
 class CkOAuth1W;
 class CkOAuth2W;
@@ -146,6 +147,30 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// 116 = Server's Finished message is invalid.
 	// 
 	int get_ConnectFailReason(void);
+
+	// The maximum amount of time to wait for the connection to be accepted by the HTTP
+	// server.
+	// 
+	// Note: Suprisingly, this property was forgotten and not added until Chilkat
+	// v9.5.0.71.
+	// 
+	int get_ConnectTimeoutMs(void);
+	// The maximum amount of time to wait for the connection to be accepted by the HTTP
+	// server.
+	// 
+	// Note: Suprisingly, this property was forgotten and not added until Chilkat
+	// v9.5.0.71.
+	// 
+	void put_ConnectTimeoutMs(int newVal);
+
+	// If true then all calls to Send* or FullRequest* methods will not actually send
+	// a request. Instead, the request will be written to a memory buffer which can
+	// then be retrieved by calling GetLastDebugRequest.
+	bool get_DebugMode(void);
+	// If true then all calls to Send* or FullRequest* methods will not actually send
+	// a request. Instead, the request will be written to a memory buffer which can
+	// then be retrieved by calling GetLastDebugRequest.
+	void put_DebugMode(bool newVal);
 
 	// This property is only valid in programming environment and languages that allow
 	// for event callbacks.
@@ -323,6 +348,11 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// Marketplace Web Service (Amazon MWS) HTTP requests. It should be called after
 	// all request parameters have been added.
 	// 
+	// Important: The Chilkat v9.5.0.75 release accidentally breaks Amazon MWS (not
+	// AWS) authentication. If you need MWS with 9.5.0.75, send email to
+	// support@chilkatsoft.com for a hotfix, or revert back to v9.5.0.73, or update to
+	// a version after 9.5.0.75.
+	// 
 	// The domain should be the domain of the request, such as one of the following:
 	//     mws.amazonservices.com
 	//     mws-eu.amazonservices.com
@@ -339,6 +369,13 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// parameter to the current system date/time.
 	// 
 	bool AddMwsSignature(const wchar_t *httpVerb, const wchar_t *uriPath, const wchar_t *domain, const wchar_t *mwsSecretKey);
+
+	// Adds or replaces a path parameter. A path parameter is a string that will be
+	// replaced in any uriPath string passed to a method. For example, if name is
+	// "fileId" and value is "1R_70heIyzIAu1_u0prXbYcaIiJRVkgBl", then a uriPath
+	// argument of "/drive/v3/files/fileId" will be transformed to
+	// "/drive/v3/files/1R_70heIyzIAu1_u0prXbYcaIiJRVkgBl" in a method call.
+	bool AddPathParam(const wchar_t *name, const wchar_t *value);
 
 	// Adds a query parameter. If the query parameter already exists, then it is
 	// replaced.
@@ -360,13 +397,16 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// object to send a new request after a multipart request has just been sent.
 	bool ClearAllParts(void);
 
+	// Clears all path parameters.
+	bool ClearAllPathParams(void);
+
 	// Clears all query parameters.
 	bool ClearAllQueryParams(void);
 
 	// Clears all authentication settings.
 	bool ClearAuth(void);
 
-	// Clears the response body stream set by calling SetResponseBodyStream.
+	// Clears the response body stream.
 	void ClearResponseBodyStream(void);
 
 	// Establishes an initial connection to a REST server. The hostname can be a domain
@@ -571,6 +611,10 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *FullRequestStringAsync(const wchar_t *httpVerb, const wchar_t *uriPath, const wchar_t *bodyText);
+
+	// Returns the fully composed HTTP request that would've been sent had the
+	// DebugMode been turned off. The request is returned in bd.
+	bool GetLastDebugRequest(CkBinDataW &bd);
 
 	// Reads the response body. Should only be called after ReadResponseHeader has been
 	// called, and should only be called when it is already known that the response
@@ -783,6 +827,10 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// account ID, and the password is a client secret or token.
 	bool SetAuthBasic(const wchar_t *username, const wchar_t *password);
 
+	// The same as SetAuthBasic, but provides a more secure means for passing the
+	// arguments as secure string objects.
+	bool SetAuthBasicSecure(CkSecureStringW &username, CkSecureStringW &password);
+
 	// Sets the authorization service provider for Google API requests.
 	bool SetAuthGoogle(CkAuthGoogleW &authProvider);
 
@@ -831,6 +879,13 @@ class CK_VISIBLE_PUBLIC CkRestW  : public CkClassWithCallbacksW
 	// If autoSetStreamCharset is true, then the expectedStatus's StringCharset property will automatically get
 	// set based on the charset, if any, indicated in the response header. If the
 	// response is binary, then autoSetStreamCharset is ignored.
+	// 
+	// Starting in v9.5.0.75, the expectedStatus may be passed as a negative number to specify a
+	// range of expected (success) status codes. For example:
+	//     -200: Allow status codes 200 - 299
+	//     -210: Allow status codes 210 - 219
+	//     -220: Allow status codes 220 - 229
+	//     etc.
 	// 
 	bool SetResponseBodyStream(int expectedStatus, bool autoSetStreamCharset, CkStreamW &responseStream);
 

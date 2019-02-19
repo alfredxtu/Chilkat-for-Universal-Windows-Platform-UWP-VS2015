@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.69
+// This is a generated source file for Chilkat version 9.5.0.76
 #ifndef _C_CkOAuth1WH
 #define _C_CkOAuth1WH
 #include "chilkatDefs.h"
@@ -49,6 +49,9 @@ CK_VISIBLE_PUBLIC void  CkOAuth1W_putOauthVersion(HCkOAuth1W cHandle, const wcha
 CK_VISIBLE_PUBLIC const wchar_t *CkOAuth1W_oauthVersion(HCkOAuth1W cHandle);
 CK_VISIBLE_PUBLIC void CkOAuth1W_getQueryString(HCkOAuth1W cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkOAuth1W_queryString(HCkOAuth1W cHandle);
+CK_VISIBLE_PUBLIC void CkOAuth1W_getRealm(HCkOAuth1W cHandle, HCkString retval);
+CK_VISIBLE_PUBLIC void  CkOAuth1W_putRealm(HCkOAuth1W cHandle, const wchar_t *newVal);
+CK_VISIBLE_PUBLIC const wchar_t *CkOAuth1W_realm(HCkOAuth1W cHandle);
 CK_VISIBLE_PUBLIC void CkOAuth1W_getSignature(HCkOAuth1W cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkOAuth1W_signature(HCkOAuth1W cHandle);
 CK_VISIBLE_PUBLIC void CkOAuth1W_getSignatureMethod(HCkOAuth1W cHandle, HCkString retval);

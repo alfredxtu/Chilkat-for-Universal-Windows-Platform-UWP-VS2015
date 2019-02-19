@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -133,6 +134,11 @@ public ref class Mime sealed
 		int32 get();
 	}
 	property Platform::String ^OaepHash
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^OaepMgfHash
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);

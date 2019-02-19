@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -9,25 +10,27 @@
 #include "include/CkDateTime.h"
 #include "include/CkHttpW.h"
 		
+#include "include/CkJsonObjectW.h"
 #include "include/CkBinDataW.h"
 #include "include/CkStringBuilderW.h"
 #include "include/CkCertW.h"
 #include "include/CkHashtableW.h"
 #include "include/CkHttpResponseW.h"
-#include "include/CkJsonObjectW.h"
 #include "include/CkHttpRequestW.h"
 #include "include/CkStringArrayW.h"
 #include "include/CkPrivateKeyW.h"
+#include "include/CkSecureStringW.h"
+#include "JsonObject.h"
 #include "BinData.h"
 #include "StringBuilder.h"
 #include "Cert.h"
 #include "Hashtable.h"
 #include "HttpResponse.h"
-#include "JsonObject.h"
 #include "HttpRequest.h"
 #include "StringArray.h"
 #include "CkDateTime.h"
 #include "PrivateKey.h"
+#include "SecureString.h"
 
 
 using namespace Chilkat;
@@ -778,6 +781,14 @@ String ^Chilkat::Http::TlsVersion::get()
     {
     return ref new String(m_impl ? m_impl->tlsVersion() : L"");
     }
+String ^Chilkat::Http::UncommonOptions::get()
+    {
+    return ref new String(m_impl ? m_impl->uncommonOptions() : L"");
+    }
+void Chilkat::Http::UncommonOptions::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_UncommonOptions(newVal ? newVal->Data() : L"");
+    }
 Boolean Chilkat::Http::UpdateCache::get()
     {
     return m_impl ? m_impl->get_UpdateCache() : false;
@@ -836,6 +847,14 @@ Boolean Http::AddQuickHeader(Platform::String ^headerFieldName, Platform::String
 	cxProgress.m_sender = this;
 	return m_impl->AddQuickHeader(headerFieldName ? headerFieldName->Data() : L"",headerFieldValue ? headerFieldValue->Data() : L"");
     }
+void Http::ClearHeaders(void)
+    {
+	if (m_impl == nullptr) { return ; }
+	// --- prep output arg ---
+	CxHttpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	m_impl->ClearHeaders();
+    }
 void Http::ClearInMemoryCookies(void)
     {
 	if (m_impl == nullptr) { return ; }
@@ -865,6 +884,31 @@ return create_async([this]() -> Boolean
 	return m_impl->CloseAllConnections();
 
 });
+    }
+Boolean Http::CreateOcspRequest(Chilkat::JsonObject ^requestDetails, Chilkat::BinData ^ocspRequest)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (requestDetails == nullptr) { return false; }
+	CkJsonObjectW* pObj0 = requestDetails->m_impl;
+	 if (!pObj0) { return false; }
+	if (ocspRequest == nullptr) { return false; }
+	CkBinDataW* pObj1 = ocspRequest->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxHttpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->CreateOcspRequest(*pObj0,*pObj1);
+    }
+Boolean Http::CreateTimestampRequest(Platform::String ^hashAlg, Platform::String ^hashVal, Platform::String ^reqPolicyOid, Boolean addNonce, Boolean reqTsaCert, Chilkat::BinData ^tmestampToken)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (tmestampToken == nullptr) { return false; }
+	CkBinDataW* pObj5 = tmestampToken->m_impl;
+	 if (!pObj5) { return false; }
+	// --- prep output arg ---
+	CxHttpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->CreateTimestampRequest(hashAlg ? hashAlg->Data() : L"",hashVal ? hashVal->Data() : L"",reqPolicyOid ? reqPolicyOid->Data() : L"",addNonce,reqTsaCert,*pObj5);
     }
 void Http::DnsCacheClear(void)
     {
@@ -1115,6 +1159,20 @@ Boolean Http::IsUnlocked(void)
 	cxProgress.m_sender = this;
 	return m_impl->IsUnlocked();
     }
+int Http::ParseOcspReply(Chilkat::BinData ^ocspReply, Chilkat::JsonObject ^replyData)
+    {
+	if (m_impl == nullptr) { return -1; }
+	if (ocspReply == nullptr) { return -1; }
+	CkBinDataW* pObj0 = ocspReply->m_impl;
+	 if (!pObj0) { return -1; }
+	if (replyData == nullptr) { return -1; }
+	CkJsonObjectW* pObj1 = replyData->m_impl;
+	 if (!pObj1) { return -1; }
+	// --- prep output arg ---
+	CxHttpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->ParseOcspReply(*pObj0,*pObj1);
+    }
 IAsyncOperation<HttpResponse ^>^ Http::PBinaryAsync(Platform::String ^verb, Platform::String ^url, Windows::Foundation::Collections::IVector<uint8>^byteData, Platform::String ^contentType, Boolean md5, Boolean gzip)
     {
 return create_async([this, verb, url, byteData, contentType, md5, gzip]() -> HttpResponse ^
@@ -1129,6 +1187,27 @@ return create_async([this, verb, url, byteData, contentType, md5, gzip]() -> Htt
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	CkHttpResponseW *pRetObj = m_impl->PBinary(verb ? verb->Data() : L"",url ? url->Data() : L"",db2,contentType ? contentType->Data() : L"",md5,gzip);
+	if (!pRetObj) return nullptr;
+	Chilkat::HttpResponse ^pHttpResponse = ref new Chilkat::HttpResponse();
+	pHttpResponse->m_impl = pRetObj;
+	return pHttpResponse;
+
+});
+    }
+IAsyncOperation<HttpResponse ^>^ Http::PBinaryBdAsync(Platform::String ^verb, Platform::String ^url, Chilkat::BinData ^data, Platform::String ^contentType, Boolean md5, Boolean gzip)
+    {
+return create_async([this, verb, url, data, contentType, md5, gzip]() -> HttpResponse ^
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return nullptr; }
+	if (data == nullptr) { return nullptr; }
+	CkBinDataW* pObj2 = data->m_impl;
+	 if (!pObj2) { return nullptr; }
+	// --- prep output arg ---
+	CxHttpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	CkHttpResponseW *pRetObj = m_impl->PBinaryBd(verb ? verb->Data() : L"",url ? url->Data() : L"",*pObj2,contentType ? contentType->Data() : L"",md5,gzip);
 	if (!pRetObj) return nullptr;
 	Chilkat::HttpResponse ^pHttpResponse = ref new Chilkat::HttpResponse();
 	pHttpResponse->m_impl = pRetObj;
@@ -1262,6 +1341,27 @@ return create_async([this, verb, url, textData, charset, contentType, md5, gzip]
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	CkHttpResponseW *pRetObj = m_impl->PText(verb ? verb->Data() : L"",url ? url->Data() : L"",textData ? textData->Data() : L"",charset ? charset->Data() : L"",contentType ? contentType->Data() : L"",md5,gzip);
+	if (!pRetObj) return nullptr;
+	Chilkat::HttpResponse ^pHttpResponse = ref new Chilkat::HttpResponse();
+	pHttpResponse->m_impl = pRetObj;
+	return pHttpResponse;
+
+});
+    }
+IAsyncOperation<HttpResponse ^>^ Http::PTextSbAsync(Platform::String ^verb, Platform::String ^url, Chilkat::StringBuilder ^textData, Platform::String ^charset, Platform::String ^contentType, Boolean md5, Boolean gzip)
+    {
+return create_async([this, verb, url, textData, charset, contentType, md5, gzip]() -> HttpResponse ^
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return nullptr; }
+	if (textData == nullptr) { return nullptr; }
+	CkStringBuilderW* pObj2 = textData->m_impl;
+	 if (!pObj2) { return nullptr; }
+	// --- prep output arg ---
+	CxHttpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	CkHttpResponseW *pRetObj = m_impl->PTextSb(verb ? verb->Data() : L"",url ? url->Data() : L"",*pObj2,charset ? charset->Data() : L"",contentType ? contentType->Data() : L"",md5,gzip);
 	if (!pRetObj) return nullptr;
 	Chilkat::HttpResponse ^pHttpResponse = ref new Chilkat::HttpResponse();
 	pHttpResponse->m_impl = pRetObj;
@@ -1422,6 +1522,24 @@ return create_async([this, url]() -> Platform::String ^
 
 });
     }
+IAsyncOperation<HttpResponse ^>^ Http::QuickRequestAsync(Platform::String ^verb, Platform::String ^url)
+    {
+return create_async([this, verb, url]() -> HttpResponse ^
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CxHttpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	CkHttpResponseW *pRetObj = m_impl->QuickRequest(verb ? verb->Data() : L"",url ? url->Data() : L"");
+	if (!pRetObj) return nullptr;
+	Chilkat::HttpResponse ^pHttpResponse = ref new Chilkat::HttpResponse();
+	pHttpResponse->m_impl = pRetObj;
+	return pHttpResponse;
+
+});
+    }
 Boolean Http::RemoveQuickHeader(Platform::String ^headerFieldName)
     {
 	if (m_impl == nullptr) { return false; }
@@ -1459,6 +1577,23 @@ return create_async([this, url, targetFilename]() -> Boolean
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->ResumeDownload(url ? url->Data() : L"",targetFilename ? targetFilename->Data() : L"");
+
+});
+    }
+IAsyncOperation<Boolean>^ Http::ResumeDownloadBdAsync(Platform::String ^url, Chilkat::BinData ^binData)
+    {
+return create_async([this, url, binData]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj1 = binData->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxHttpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->ResumeDownloadBd(url ? url->Data() : L"",*pObj1);
 
 });
     }
@@ -1522,6 +1657,23 @@ return create_async([this, bucketPath, objectName]() -> Boolean
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->S3_DeleteObject(bucketPath ? bucketPath->Data() : L"",objectName ? objectName->Data() : L"");
+
+});
+    }
+IAsyncOperation<Boolean>^ Http::S3_DownloadBdAsync(Platform::String ^bucketPath, Platform::String ^objectName, Chilkat::BinData ^bd)
+    {
+return create_async([this, bucketPath, objectName, bd]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (bd == nullptr) { return false; }
+	CkBinDataW* pObj2 = bd->m_impl;
+	 if (!pObj2) { return false; }
+	// --- prep output arg ---
+	CxHttpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->S3_DownloadBd(bucketPath ? bucketPath->Data() : L"",objectName ? objectName->Data() : L"",*pObj2);
 
 });
     }
@@ -1642,6 +1794,23 @@ return create_async([this]() -> Platform::String ^
 
 });
     }
+IAsyncOperation<Boolean>^ Http::S3_UploadBdAsync(Chilkat::BinData ^bd, Platform::String ^contentType, Platform::String ^bucketPath, Platform::String ^objectName)
+    {
+return create_async([this, bd, contentType, bucketPath, objectName]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (bd == nullptr) { return false; }
+	CkBinDataW* pObj0 = bd->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxHttpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->S3_UploadBd(*pObj0,contentType ? contentType->Data() : L"",bucketPath ? bucketPath->Data() : L"",objectName ? objectName->Data() : L"");
+
+});
+    }
 IAsyncOperation<Boolean>^ Http::S3_UploadBytesAsync(Windows::Foundation::Collections::IVector<uint8>^contentBytes, Platform::String ^contentType, Platform::String ^bucketPath, Platform::String ^objectName)
     {
 return create_async([this, contentBytes, contentType, bucketPath, objectName]() -> Boolean
@@ -1706,6 +1875,17 @@ Boolean Http::SetOAuthRsaKey(Chilkat::PrivateKey ^privKey)
 	cxProgress.m_sender = this;
 	return m_impl->SetOAuthRsaKey(*pObj0);
     }
+Boolean Http::SetPassword(Chilkat::SecureString ^password)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (password == nullptr) { return false; }
+	CkSecureStringW* pObj0 = password->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxHttpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->SetPassword(*pObj0);
+    }
 void Http::SetRequestHeader(Platform::String ^headerFieldName, Platform::String ^headerFieldValue)
     {
 	if (m_impl == nullptr) { return ; }
@@ -1713,6 +1893,17 @@ void Http::SetRequestHeader(Platform::String ^headerFieldName, Platform::String 
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	m_impl->SetRequestHeader(headerFieldName ? headerFieldName->Data() : L"",headerFieldValue ? headerFieldValue->Data() : L"");
+    }
+Boolean Http::SetSecurePassword(Chilkat::SecureString ^password)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (password == nullptr) { return false; }
+	CkSecureStringW* pObj0 = password->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxHttpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->SetSecurePassword(*pObj0);
     }
 Boolean Http::SetSslClientCert(Chilkat::Cert ^cert)
     {
@@ -1748,6 +1939,26 @@ Boolean Http::SetUrlVar(Platform::String ^name, Platform::String ^value)
 	CxHttpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->SetUrlVar(name ? name->Data() : L"",value ? value->Data() : L"");
+    }
+IAsyncOperation<Boolean>^ Http::SharePointOnlineAuthAsync(Platform::String ^siteUrl, Platform::String ^username, Chilkat::SecureString ^password, Chilkat::JsonObject ^extraInfo)
+    {
+return create_async([this, siteUrl, username, password, extraInfo]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (password == nullptr) { return false; }
+	CkSecureStringW* pObj2 = password->m_impl;
+	 if (!pObj2) { return false; }
+	if (extraInfo == nullptr) { return false; }
+	CkJsonObjectW* pObj3 = extraInfo->m_impl;
+	 if (!pObj3) { return false; }
+	// --- prep output arg ---
+	CxHttpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->SharePointOnlineAuth(siteUrl ? siteUrl->Data() : L"",username ? username->Data() : L"",*pObj2,*pObj3);
+
+});
     }
 void Http::SleepMs(int millisec)
     {
@@ -1805,6 +2016,20 @@ Platform::String ^Http::UrlEncode(Platform::String ^str)
 	const wchar_t *retStr = m_impl->urlEncode(str ? str->Data() : L"");
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
+    }
+int Http::VerifyTimestampReply(Chilkat::BinData ^timestampReply, Chilkat::Cert ^tsaCert)
+    {
+	if (m_impl == nullptr) { return -1; }
+	if (timestampReply == nullptr) { return -1; }
+	CkBinDataW* pObj0 = timestampReply->m_impl;
+	 if (!pObj0) { return -1; }
+	if (tsaCert == nullptr) { return -1; }
+	CkCertW* pObj1 = tsaCert->m_impl;
+	 if (!pObj1) { return -1; }
+	// --- prep output arg ---
+	CxHttpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->VerifyTimestampReply(*pObj0,*pObj1);
     }
 IAsyncOperation<Platform::String ^>^ Http::XmlRpcAsync(Platform::String ^urlEndpoint, Platform::String ^xmlIn)
     {

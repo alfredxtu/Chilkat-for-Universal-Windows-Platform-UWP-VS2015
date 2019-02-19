@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -128,6 +129,8 @@ public ref class HttpRequest sealed
 	// ----------------------
 	// Methods
 	// ----------------------
+	Boolean AddBdForUpload(Platform::String ^name, Platform::String ^remoteFilename, Chilkat::BinData ^byteData, Platform::String ^contentType);
+
 	Boolean AddBytesForUpload(Platform::String ^name, Platform::String ^remoteFileName, Windows::Foundation::Collections::IVector<uint8>^byteData);
 
 	Boolean AddBytesForUpload2(Platform::String ^name, Platform::String ^remoteFileName, Windows::Foundation::Collections::IVector<uint8>^byteData, Platform::String ^contentType);

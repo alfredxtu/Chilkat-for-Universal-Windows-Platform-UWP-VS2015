@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -140,6 +141,11 @@ public ref class Socket sealed
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
+	}
+	property Boolean HttpProxyForHttp
+	{
+		Boolean get();
+		void set(Boolean);
 	}
 	property Platform::String ^HttpProxyHostname
 	{
@@ -402,6 +408,8 @@ public ref class Socket sealed
 
 	IAsyncOperation<Boolean>^ BindAndListenAsync(int port, int backLog);
 
+	IAsyncOperation<int>^ BindAndListenPortRangeAsync(int beginPort, int endPort, int backLog);
+
 	Platform::String ^BuildHttpGetRequest(Platform::String ^url);
 
 	IAsyncOperation<int>^ CheckWriteableAsync(int maxWaitMs);
@@ -470,6 +478,8 @@ public ref class Socket sealed
 
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ ReceiveUntilByteAsync(int lookForByte);
 
+	IAsyncOperation<Boolean>^ ReceiveUntilByteBdAsync(int lookForByte, Chilkat::BinData ^bd);
+
 	IAsyncOperation<Platform::String ^>^ ReceiveUntilMatchAsync(Platform::String ^matchStr);
 
 	IAsyncOperation<Boolean>^ SendBdAsync(Chilkat::BinData ^binData, uint32 offset, uint32 numBytes);
@@ -509,6 +519,8 @@ public ref class Socket sealed
 	IAsyncOperation<Boolean>^ SshOpenTunnelAsync(Platform::String ^sshHostname, int sshPort);
 
 	void StartTiming(void);
+
+	Boolean TakeConnection(Chilkat::Socket ^sock);
 
 	Boolean TakeSocket(Chilkat::Socket ^sock);
 

@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.69
+// This header is generated for Chilkat 9.5.0.76
 
 #ifndef _CkFtp2W_H
 #define _CkFtp2W_H
@@ -19,6 +19,7 @@ class CkBinDataW;
 class CkStringBuilderW;
 class CkStreamW;
 class CkCertW;
+class CkSecureStringW;
 class CkFtp2ProgressW;
 
 
@@ -1218,17 +1219,21 @@ class CK_VISIBLE_PUBLIC CkFtp2W  : public CkClassWithCallbacksW
 	// true and re-calling the upload or download method.
 	void put_RestartNext(bool newVal);
 
-	// The buffer size to be used with the underlying TCP/IP socket for sending. The
-	// default value is 65536 (64K). Set it to a smaller value for more frequent
-	// percentage completion event callbacks. A larger SendBufferSize may improve
-	// performance, but at the expense not having as frequent progress monitoring
-	// callbacks (if used and if supported by your programming language).
+	// This property is now deprecated, and has no effect in Chilkat versions 9.5.0.69
+	// and greater.
+	// 
+	// In the past, it affected how often percent completion callbacks were made.
+	// Setting it to a smaller value caused more frequent percentage completion event
+	// callbacks. The default value is 65536 (64K) and should generally not be changed.
+	// 
 	int get_SendBufferSize(void);
-	// The buffer size to be used with the underlying TCP/IP socket for sending. The
-	// default value is 65536 (64K). Set it to a smaller value for more frequent
-	// percentage completion event callbacks. A larger SendBufferSize may improve
-	// performance, but at the expense not having as frequent progress monitoring
-	// callbacks (if used and if supported by your programming language).
+	// This property is now deprecated, and has no effect in Chilkat versions 9.5.0.69
+	// and greater.
+	// 
+	// In the past, it affected how often percent completion callbacks were made.
+	// Setting it to a smaller value caused more frequent percentage completion event
+	// callbacks. The default value is 65536 (64K) and should generally not be changed.
+	// 
 	void put_SendBufferSize(int newVal);
 
 	// Contains the session log if KeepSessionLog is turned on.
@@ -1625,6 +1630,21 @@ class CK_VISIBLE_PUBLIC CkFtp2W  : public CkClassWithCallbacksW
 	// was verified when connecting via SSL / TLS.
 	bool get_SslServerCertVerified(void);
 
+	// If true, then empty directories on the server are created locally when doing a
+	// download synchronization. If false, then only directories containing files
+	// that are downloaded are auto-created.
+	// 
+	// The default value of this property is true.
+	// 
+	bool get_SyncCreateAllLocalDirs(void);
+	// If true, then empty directories on the server are created locally when doing a
+	// download synchronization. If false, then only directories containing files
+	// that are downloaded are auto-created.
+	// 
+	// The default value of this property is true.
+	// 
+	void put_SyncCreateAllLocalDirs(bool newVal);
+
 	// The paths of the files uploaded or downloaded in the last call to
 	// SyncDeleteTree, SyncLocalDir, SyncLocalTree, SyncRemoteTree, or SyncRemoteTree2.
 	// The paths are listed one per line. In both cases (for upload and download) each
@@ -1670,6 +1690,22 @@ class CK_VISIBLE_PUBLIC CkFtp2W  : public CkClassWithCallbacksW
 	void put_SyncMustMatch(const wchar_t *newVal);
 
 	// Can contain a wildcarded list of file patterns separated by semicolons. For
+	// example, "xml; txt; data_*". If set, the Sync* upload and download methods will
+	// only enter directories that match any one of these patterns. Pattern matching is
+	// case-insensitive.
+	void get_SyncMustMatchDir(CkString &str);
+	// Can contain a wildcarded list of file patterns separated by semicolons. For
+	// example, "xml; txt; data_*". If set, the Sync* upload and download methods will
+	// only enter directories that match any one of these patterns. Pattern matching is
+	// case-insensitive.
+	const wchar_t *syncMustMatchDir(void);
+	// Can contain a wildcarded list of file patterns separated by semicolons. For
+	// example, "xml; txt; data_*". If set, the Sync* upload and download methods will
+	// only enter directories that match any one of these patterns. Pattern matching is
+	// case-insensitive.
+	void put_SyncMustMatchDir(const wchar_t *newVal);
+
+	// Can contain a wildcarded list of file patterns separated by semicolons. For
 	// example, "*.xml; *.txt; *.csv". If set, the Sync* upload and download methods
 	// will not transfer files that match any one of these patterns. Pattern matching
 	// is case-insensitive.
@@ -1696,6 +1732,22 @@ class CK_VISIBLE_PUBLIC CkFtp2W  : public CkClassWithCallbacksW
 	// DownloadTree and DirTreeXml methods.
 	// 
 	void put_SyncMustNotMatch(const wchar_t *newVal);
+
+	// Can contain a wildcarded list of file patterns separated by semicolons. For
+	// example, "xml; txt; data_*". If set, the Sync* upload and download methods will
+	// enter directories that match any one of these patterns. Pattern matching is
+	// case-insensitive.
+	void get_SyncMustNotMatchDir(CkString &str);
+	// Can contain a wildcarded list of file patterns separated by semicolons. For
+	// example, "xml; txt; data_*". If set, the Sync* upload and download methods will
+	// enter directories that match any one of these patterns. Pattern matching is
+	// case-insensitive.
+	const wchar_t *syncMustNotMatchDir(void);
+	// Can contain a wildcarded list of file patterns separated by semicolons. For
+	// example, "xml; txt; data_*". If set, the Sync* upload and download methods will
+	// enter directories that match any one of these patterns. Pattern matching is
+	// case-insensitive.
+	void put_SyncMustNotMatchDir(const wchar_t *newVal);
 
 	// Contains the list of files that would be transferred in a call to
 	// SyncRemoteTree2 when the previewOnly argument is set to true. This string
@@ -3644,13 +3696,7 @@ class CK_VISIBLE_PUBLIC CkFtp2W  : public CkClassWithCallbacksW
 	// "subDir/*.xml", etc.
 	// 
 	// The format of the XML returned is:
-	// <nlst>
-	// <e>filename_or_dir_1</e>
-	// <e>filename_or_dir_2</e>
-	// <e>filename_or_dir_3</e>
-	// <e>filename_or_dir_4</e>
-	// ...
-	// </nlst>
+	// filename_or_dir_1filename_or_dir_2filename_or_dir_3filename_or_dir_4...
 	// 
 	bool NlstXml(const wchar_t *remoteDirPattern, CkString &outStr);
 	// Sends an NLST command to the FTP server and returns the results in XML format.
@@ -3659,13 +3705,7 @@ class CK_VISIBLE_PUBLIC CkFtp2W  : public CkClassWithCallbacksW
 	// "subDir/*.xml", etc.
 	// 
 	// The format of the XML returned is:
-	// <nlst>
-	// <e>filename_or_dir_1</e>
-	// <e>filename_or_dir_2</e>
-	// <e>filename_or_dir_3</e>
-	// <e>filename_or_dir_4</e>
-	// ...
-	// </nlst>
+	// filename_or_dir_1filename_or_dir_2filename_or_dir_3filename_or_dir_4...
 	// 
 	const wchar_t *nlstXml(const wchar_t *remoteDirPattern);
 
@@ -3846,6 +3886,15 @@ class CK_VISIBLE_PUBLIC CkFtp2W  : public CkClassWithCallbacksW
 	// 
 	bool SetOption(const wchar_t *option);
 
+	// Sets the password in a more secure way than setting the Password property.
+	// Calling this method is the equivalent of setting the Password property.
+	// 
+	// Note: Starting in v9.5.0.76, this method has been copied to SetSecurePassword.
+	// Applications should call SetSecurePassword instead because this method is now
+	// deprecated.
+	// 
+	bool SetPassword(CkSecureStringW &password);
+
 	// Sets the last-modified date/time of a file on the FTP server. Important: Not all
 	// FTP servers support this functionality. Please see the information at the
 	// Chilkat blog below:
@@ -3874,6 +3923,10 @@ class CK_VISIBLE_PUBLIC CkFtp2W  : public CkClassWithCallbacksW
 	// arguments provided. (Async methods are available starting in Chilkat v9.5.0.52.)
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *SetRemoteFileDtAsync(CkDateTimeW &dt, const wchar_t *remoteFilename);
+
+	// Sets the password in a more secure way than setting the Password property.
+	// Calling this method is the equivalent of setting the Password property.
+	bool SetSecurePassword(CkSecureStringW &password);
 
 	// Enforces a requirement on the FTP server's certificate. The reqName can be
 	// "SubjectDN", "SubjectCN", "IssuerDN", or "IssuerCN". The reqName specifies the part

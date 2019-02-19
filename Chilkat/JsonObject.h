@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -23,6 +24,8 @@ namespace Chilkat
 	ref class JsonArray;
 	ref class StringTable;
 	ref class BinData;
+	ref class CkDateTime;
+	ref class DtObj;
 	ref class StringBuilder;
 	ref class Hashtable;
 
@@ -99,6 +102,11 @@ public ref class JsonObject sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Platform::String ^PathPrefix
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
 	property int32 Size
 	{
 		int32 get();
@@ -153,11 +161,17 @@ public ref class JsonObject sealed
 
 	Boolean BytesOf(Platform::String ^jsonPath, Platform::String ^encoding, Chilkat::BinData ^bd);
 
+	void Clear(void);
+
 	JsonObject ^Clone(void);
+
+	Boolean DateOf(Platform::String ^jsonPath, Chilkat::CkDateTime ^dateTime);
 
 	Boolean Delete(Platform::String ^name);
 
 	Boolean DeleteAt(int index);
+
+	Boolean DtOf(Platform::String ^jsonPath, Boolean bLocal, Chilkat::DtObj ^dt);
 
 	Platform::String ^Emit(void);
 
@@ -241,6 +255,8 @@ public ref class JsonObject sealed
 
 	Boolean StringOfSb(Platform::String ^jsonPath, Chilkat::StringBuilder ^sb);
 
+	Boolean Swap(int index1, int index2);
+
 	int TypeAt(int index);
 
 	Boolean UpdateBd(Platform::String ^jsonPath, Platform::String ^encoding, Chilkat::BinData ^bd);
@@ -249,6 +265,10 @@ public ref class JsonObject sealed
 
 	Boolean UpdateInt(Platform::String ^jsonPath, int value);
 
+	Boolean UpdateNewArray(Platform::String ^jsonPath);
+
+	Boolean UpdateNewObject(Platform::String ^jsonPath);
+
 	Boolean UpdateNull(Platform::String ^jsonPath);
 
 	Boolean UpdateNumber(Platform::String ^jsonPath, Platform::String ^numericStr);
@@ -256,6 +276,8 @@ public ref class JsonObject sealed
 	Boolean UpdateSb(Platform::String ^jsonPath, Chilkat::StringBuilder ^sb);
 
 	Boolean UpdateString(Platform::String ^jsonPath, Platform::String ^value);
+
+	Boolean WriteFile(Platform::String ^path);
 
 
 

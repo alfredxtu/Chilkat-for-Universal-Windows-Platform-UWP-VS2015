@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.69
+// This header is generated for Chilkat 9.5.0.76
 
 #ifndef _CkFileAccessW_H
 #define _CkFileAccessW_H
@@ -12,8 +12,9 @@
 #include "CkString.h"
 #include "CkWideCharBase.h"
 
-class CkByteData;
 class CkBinDataW;
+class CkStringBuilderW;
+class CkByteData;
 class CkDateTimeW;
 
 
@@ -101,6 +102,13 @@ class CK_VISIBLE_PUBLIC CkFileAccessW  : public CkWideCharBase
 	// ----------------------
 	// Appends a string using the ANSI character encoding to the currently open file.
 	bool AppendAnsi(const wchar_t *text);
+
+	// Appends the contents of bd to the currently open file.
+	bool AppendBd(CkBinDataW &bd);
+
+	// Appends the contents of sb using the character encoding (such as "utf-8")
+	// specified by charset to the currently open file.
+	bool AppendSb(CkStringBuilderW &sb, const wchar_t *charset);
 
 	// Appends a string using the character encoding specified by str to the currently
 	// open file.
@@ -205,6 +213,20 @@ class CK_VISIBLE_PUBLIC CkFileAccessW  : public CkWideCharBase
 	// Returns the size, in bytes, of a file. Returns -1 for failure.
 	int FileSize(const wchar_t *filePath);
 
+	// Examines the file at path and returns one of the following values:
+	// 
+	// -1 = Unable to check because of directory permissions or some error preventing
+	// the ability to obtain the information.
+	// 0 = File does not exist.
+	// 1 = Regular file.
+	// 2 = Directory.
+	// 3 = Symbolic link.
+	// 99 = Something else.
+	// 
+	// Additional file types may be added in the future as needed.
+	// 
+	int FileType(const wchar_t *path);
+
 	// Writes bytes to the currently open file.
 	bool FileWrite(CkByteData &data);
 
@@ -288,6 +310,19 @@ class CK_VISIBLE_PUBLIC CkFileAccessW  : public CkWideCharBase
 	// GetFileNameWithoutExtension('C:\mydir\myfile.ext') returns 'myfile'
 	// GetFileNameWithoutExtension('C:\mydir\') returns ''
 	const wchar_t *fileNameWithoutExtension(const wchar_t *path);
+
+	// Gets one of the following date/times for a file:
+	// 0: Last-modified
+	// 1: Last-access
+	// 2: Creation
+	// The "path" argument indicates which time to return. The values can be 0, 1, or
+	// 2.
+	// 
+	// Note: Linux filesystems do not keep a file's creation date/time. In such a case,
+	// this method will return the last-modified time.
+	// 
+	// The caller is responsible for deleting the object returned by this method.
+	CkDateTimeW *GetFileTime(const wchar_t *path, int which);
 
 	// Gets the last-modified date/time for a file.
 	// The caller is responsible for deleting the object returned by this method.
@@ -393,6 +428,24 @@ class CK_VISIBLE_PUBLIC CkFileAccessW  : public CkWideCharBase
 
 	// Splits a file into chunks. Please refer to the example below:
 	bool SplitFile(const wchar_t *fileToSplit, const wchar_t *partPrefix, const wchar_t *partExtension, int partSize, const wchar_t *destDir);
+
+	// Creates a symbolic link.
+	// 
+	// Note: On Windows systems, this is not the same as creating a shortcut. A Windows
+	// symbolic link and a Windows shortcut are two different things. Shortcut files
+	// are common on Windows, but not symbolic links. Creating a symbolic link requires
+	// a special privilege, unless running as administrator. To be able to create
+	// symbolic links, your user account or group needs to be listed in secpol.msc →
+	// Security Settings → Local Policies → User Rights Assignment → Create
+	// symbolic links. However the special setting is not needed when running within
+	// the development environment, such as from Visual Studio.
+	// 
+	bool SymlinkCreate(const wchar_t *targetPath, const wchar_t *linkPath);
+
+	// Returns the full pathname of the file at the end of the linkPath.
+	bool SymlinkTarget(const wchar_t *linkPath, CkString &outStr);
+	// Returns the full pathname of the file at the end of the linkPath.
+	const wchar_t *symlinkTarget(const wchar_t *linkPath);
 
 	// Deletes an entire directory tree (all files and sub-directories).
 	bool TreeDelete(const wchar_t *path);

@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -92,6 +93,11 @@ public ref class AuthGoogle sealed
 		void set(Platform::String ^);
 	}
 	property int32 ExpireNumSeconds
+	{
+		int32 get();
+		void set(int32);
+	}
+	property int32 Iat
 	{
 		int32 get();
 		void set(int32);

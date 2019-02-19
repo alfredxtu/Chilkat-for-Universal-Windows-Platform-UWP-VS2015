@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -9,10 +10,18 @@
 #include "include/CkDateTime.h"
 #include "include/CkXmlDSigW.h"
 		
+#include "include/CkStringArrayW.h"
+#include "include/CkXmlW.h"
+#include "include/CkPublicKeyW.h"
 #include "include/CkBinDataW.h"
 #include "include/CkStringBuilderW.h"
+#include "include/CkXmlCertVaultW.h"
+#include "StringArray.h"
+#include "Xml.h"
+#include "PublicKey.h"
 #include "BinData.h"
 #include "StringBuilder.h"
+#include "XmlCertVault.h"
 
 
 using namespace Chilkat;
@@ -129,6 +138,35 @@ Platform::String ^XmlDSig::CanonicalizeXml(Platform::String ^xml, Platform::Stri
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
+Boolean XmlDSig::GetCerts(Chilkat::StringArray ^sa)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (sa == nullptr) { return false; }
+	CkStringArrayW* pObj0 = sa->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->GetCerts(*pObj0);
+    }
+Xml ^XmlDSig::GetKeyInfo(void)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CkXmlW *pRetObj = m_impl->GetKeyInfo();
+	if (!pRetObj) return nullptr;
+	Chilkat::Xml ^pXml = ref new Chilkat::Xml();
+	pXml->m_impl = pRetObj;
+	return pXml;
+    }
+PublicKey ^XmlDSig::GetPublicKey(void)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CkPublicKeyW *pRetObj = m_impl->GetPublicKey();
+	if (!pRetObj) return nullptr;
+	Chilkat::PublicKey ^pPublicKey = ref new Chilkat::PublicKey();
+	pPublicKey->m_impl = pRetObj;
+	return pPublicKey;
+    }
 Boolean XmlDSig::IsReferenceExternal(int index)
     {
 	if (m_impl == nullptr) { return false; }
@@ -167,6 +205,21 @@ Platform::String ^XmlDSig::ReferenceUri(int index)
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
+Boolean XmlDSig::SetHmacKey(Platform::String ^key, Platform::String ^encoding)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->SetHmacKey(key ? key->Data() : L"",encoding ? encoding->Data() : L"");
+    }
+Boolean XmlDSig::SetPublicKey(Chilkat::PublicKey ^pubKey)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (pubKey == nullptr) { return false; }
+	CkPublicKeyW* pObj0 = pubKey->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->SetPublicKey(*pObj0);
+    }
 Boolean XmlDSig::SetRefDataBd(int index, Chilkat::BinData ^binData)
     {
 	if (m_impl == nullptr) { return false; }
@@ -191,11 +244,26 @@ Boolean XmlDSig::SetRefDataSb(int index, Chilkat::StringBuilder ^sb, Platform::S
 	// --- prep output arg ---
 	return m_impl->SetRefDataSb(index,*pObj1,charset ? charset->Data() : L"");
     }
+Boolean XmlDSig::UseCertVault(Chilkat::XmlCertVault ^certVault)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (certVault == nullptr) { return false; }
+	CkXmlCertVaultW* pObj0 = certVault->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->UseCertVault(*pObj0);
+    }
 Boolean XmlDSig::VerifyReferenceDigest(int index)
     {
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->VerifyReferenceDigest(index);
+    }
+Boolean XmlDSig::VerifySignature(Boolean verifyReferenceDigests)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->VerifySignature(verifyReferenceDigests);
     }
 
 

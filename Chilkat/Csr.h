@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -22,6 +23,7 @@ namespace Chilkat
 
 	ref class PrivateKey;
 	ref class BinData;
+	ref class PublicKey;
 
 
 public ref class Csr sealed
@@ -118,6 +120,8 @@ public ref class Csr sealed
 	Boolean GenCsrBd(Chilkat::PrivateKey ^privKey, Chilkat::BinData ^csrData);
 
 	Platform::String ^GenCsrPem(Chilkat::PrivateKey ^privKey);
+
+	Boolean GetPublicKey(Chilkat::PublicKey ^pubkey);
 
 	Platform::String ^GetSubjectField(Platform::String ^oid);
 

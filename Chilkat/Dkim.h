@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This header is generated for Chilkat v9.5.0
 
@@ -24,6 +25,8 @@ using namespace concurrency;
 namespace Chilkat
 {
 
+	ref class BinData;
+	ref class PrivateKey;
 
 
 public ref class Dkim sealed
@@ -166,6 +169,10 @@ public ref class Dkim sealed
 		Boolean get();
 		void set(Boolean);
 	}
+	property Platform::String ^VerifyInfo
+	{
+		Platform::String ^get();
+	}
 	property Platform::String ^Version
 	{
 		Platform::String ^get();
@@ -178,6 +185,14 @@ public ref class Dkim sealed
 	Windows::Foundation::Collections::IVector<uint8>^AddDkimSignature(Windows::Foundation::Collections::IVector<uint8>^mimeIn);
 
 	Windows::Foundation::Collections::IVector<uint8>^AddDomainKeySignature(Windows::Foundation::Collections::IVector<uint8>^mimeIn);
+
+	Boolean DkimSign(Chilkat::BinData ^mimeData);
+
+	Boolean DkimVerify(int sigIndex, Chilkat::BinData ^mimeData);
+
+	Boolean DomainKeySign(Chilkat::BinData ^mimeData);
+
+	Boolean DomainKeyVerify(int sigIndex, Chilkat::BinData ^mimeData);
 
 	Boolean LoadDkimPk(Platform::String ^privateKey, Platform::String ^optionalPassword);
 
@@ -197,9 +212,17 @@ public ref class Dkim sealed
 
 	int NumDkimSignatures(Windows::Foundation::Collections::IVector<uint8>^mimeData);
 
+	int NumDkimSigs(Chilkat::BinData ^mimeData);
+
 	int NumDomainKeySignatures(Windows::Foundation::Collections::IVector<uint8>^mimeData);
 
+	int NumDomainKeySigs(Chilkat::BinData ^mimeData);
+
 	IAsyncOperation<Boolean>^ PrefetchPublicKeyAsync(Platform::String ^selector, Platform::String ^domain);
+
+	Boolean SetDkimPrivateKey(Chilkat::PrivateKey ^privateKey);
+
+	Boolean SetDomainKeyPrivateKey(Chilkat::PrivateKey ^privateKey);
 
 	Boolean UnlockComponent(Platform::String ^unlockCode);
 

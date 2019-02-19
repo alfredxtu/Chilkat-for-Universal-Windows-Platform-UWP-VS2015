@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -83,6 +84,12 @@ Boolean BinData::AppendBom(Platform::String ^charset)
 	// --- prep output arg ---
 	return m_impl->AppendBom(charset ? charset->Data() : L"");
     }
+Boolean BinData::AppendByte(int byteValue)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->AppendByte(byteValue);
+    }
 Boolean BinData::AppendEncoded(Platform::String ^encData, Platform::String ^encoding)
     {
 	if (m_impl == nullptr) { return false; }
@@ -97,6 +104,18 @@ Boolean BinData::AppendEncodedSb(Chilkat::StringBuilder ^sb, Platform::String ^e
 	 if (!pObj0) { return false; }
 	// --- prep output arg ---
 	return m_impl->AppendEncodedSb(*pObj0,encoding ? encoding->Data() : L"");
+    }
+Boolean BinData::AppendInt2(int value, Boolean littleEndian)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->AppendInt2(value,littleEndian);
+    }
+Boolean BinData::AppendInt4(int value, Boolean littleEndian)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->AppendInt4(value,littleEndian);
     }
 Boolean BinData::AppendSb(Chilkat::StringBuilder ^sb, Platform::String ^charset)
     {

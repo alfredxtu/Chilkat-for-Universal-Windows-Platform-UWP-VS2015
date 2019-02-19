@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.69
+// This is a generated source file for Chilkat version 9.5.0.76
 #ifndef _C_CkZipWH
 #define _C_CkZipWH
 #include "chilkatDefs.h"
@@ -6,7 +6,7 @@
 #include "Chilkat_C.h"
 
 
-CK_VISIBLE_PUBLIC void CkZipW_setAbortCheck(HCkZipW cHandle, BOOL (*fnAbortCheck)());
+CK_VISIBLE_PUBLIC void CkZipW_setAbortCheck(HCkZipW cHandle, BOOL (*fnAbortCheck)(void));
 CK_VISIBLE_PUBLIC void CkZipW_setPercentDone(HCkZipW cHandle, BOOL (*fnPercentDone)(int pctDone));
 CK_VISIBLE_PUBLIC void CkZipW_setProgressInfo(HCkZipW cHandle, void (*fnProgressInfo)(const wchar_t *name, const wchar_t *value));
 CK_VISIBLE_PUBLIC void CkZipW_setTaskCompleted(HCkZipW cHandle, void (*fnTaskCompleted)(HCkTaskW hTask));
@@ -131,6 +131,9 @@ CK_VISIBLE_PUBLIC void  CkZipW_putPathPrefix(HCkZipW cHandle, const wchar_t *new
 CK_VISIBLE_PUBLIC const wchar_t *CkZipW_pathPrefix(HCkZipW cHandle);
 CK_VISIBLE_PUBLIC int CkZipW_getPercentDoneScale(HCkZipW cHandle);
 CK_VISIBLE_PUBLIC void  CkZipW_putPercentDoneScale(HCkZipW cHandle, int newVal);
+CK_VISIBLE_PUBLIC void CkZipW_getPwdProtCharset(HCkZipW cHandle, HCkString retval);
+CK_VISIBLE_PUBLIC void  CkZipW_putPwdProtCharset(HCkZipW cHandle, const wchar_t *newVal);
+CK_VISIBLE_PUBLIC const wchar_t *CkZipW_pwdProtCharset(HCkZipW cHandle);
 CK_VISIBLE_PUBLIC void CkZipW_getTempDir(HCkZipW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void  CkZipW_putTempDir(HCkZipW cHandle, const wchar_t *newVal);
 CK_VISIBLE_PUBLIC const wchar_t *CkZipW_tempDir(HCkZipW cHandle);
@@ -150,6 +153,7 @@ CK_VISIBLE_PUBLIC BOOL CkZipW_AddEmbedded(HCkZipW cHandle, const wchar_t *exeFil
 #endif
 CK_VISIBLE_PUBLIC void CkZipW_AddNoCompressExtension(HCkZipW cHandle, const wchar_t *fileExtension);
 CK_VISIBLE_PUBLIC HCkZipEntryW CkZipW_AppendBase64(HCkZipW cHandle, const wchar_t *fileName, const wchar_t *encodedCompressedData);
+CK_VISIBLE_PUBLIC HCkZipEntryW CkZipW_AppendBd(HCkZipW cHandle, const wchar_t *pathInZip, HCkBinDataW byteData);
 CK_VISIBLE_PUBLIC HCkZipEntryW CkZipW_AppendCompressed(HCkZipW cHandle, const wchar_t *filename, HCkByteData inData);
 CK_VISIBLE_PUBLIC HCkZipEntryW CkZipW_AppendData(HCkZipW cHandle, const wchar_t *fileName, HCkByteData inData);
 CK_VISIBLE_PUBLIC HCkZipEntryW CkZipW_AppendDataEncoded(HCkZipW cHandle, const wchar_t *filename, const wchar_t *encoding, const wchar_t *data);

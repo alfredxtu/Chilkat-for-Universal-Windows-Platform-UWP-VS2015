@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -10,8 +11,10 @@
 #include "include/CkCompressionW.h"
 		
 #include "include/CkBinDataW.h"
+#include "include/CkStringBuilderW.h"
 #include "include/CkStreamW.h"
 #include "BinData.h"
+#include "StringBuilder.h"
 #include "Stream.h"
 
 
@@ -70,6 +73,14 @@ String ^Chilkat::Compression::DebugLogFilePath::get()
 void Chilkat::Compression::DebugLogFilePath::set(String ^newVal)
     {
         if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
+    }
+int Chilkat::Compression::DeflateLevel::get()
+    {
+    return m_impl ? m_impl->get_DeflateLevel() : 0;
+    }
+void Chilkat::Compression::DeflateLevel::set(int newVal)
+    {
+        if (m_impl) m_impl->put_DeflateLevel(newVal);
     }
 String ^Chilkat::Compression::EncodingMode::get()
     {
@@ -340,6 +351,26 @@ return create_async([this, srcPath, destPath]() -> Boolean
 
 });
     }
+IAsyncOperation<Boolean>^ Compression::CompressSbAsync(Chilkat::StringBuilder ^sb, Chilkat::BinData ^binData)
+    {
+return create_async([this, sb, binData]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj0 = sb->m_impl;
+	 if (!pObj0) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj1 = binData->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxCompressionProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->CompressSb(*pObj0,*pObj1);
+
+});
+    }
 IAsyncOperation<Boolean>^ Compression::CompressStreamAsync(Chilkat::Stream ^strm)
     {
 return create_async([this, strm]() -> Boolean
@@ -458,6 +489,26 @@ return create_async([this, srcPath, destPath]() -> Boolean
 	CxCompressionProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->DecompressFile(srcPath ? srcPath->Data() : L"",destPath ? destPath->Data() : L"");
+
+});
+    }
+IAsyncOperation<Boolean>^ Compression::DecompressSbAsync(Chilkat::BinData ^binData, Chilkat::StringBuilder ^sb)
+    {
+return create_async([this, binData, sb]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (binData == nullptr) { return false; }
+	CkBinDataW* pObj0 = binData->m_impl;
+	 if (!pObj0) { return false; }
+	if (sb == nullptr) { return false; }
+	CkStringBuilderW* pObj1 = sb->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxCompressionProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->DecompressSb(*pObj0,*pObj1);
 
 });
     }

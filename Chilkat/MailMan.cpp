@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -12,11 +13,12 @@
 #include "include/CkEmailBundleW.h"
 #include "include/CkEmailW.h"
 #include "include/CkStringArrayW.h"
+#include "include/CkBinDataW.h"
 #include "include/CkCertW.h"
 #include "include/CkJsonObjectW.h"
-#include "include/CkBinDataW.h"
 #include "include/CkStringBuilderW.h"
 #include "include/CkPrivateKeyW.h"
+#include "include/CkSecureStringW.h"
 #include "include/CkSshKeyW.h"
 #include "include/CkXmlCertVaultW.h"
 #include "include/CkSshW.h"
@@ -24,11 +26,12 @@
 #include "EmailBundle.h"
 #include "Email.h"
 #include "StringArray.h"
+#include "BinData.h"
 #include "Cert.h"
 #include "JsonObject.h"
-#include "BinData.h"
 #include "StringBuilder.h"
 #include "PrivateKey.h"
+#include "SecureString.h"
 #include "SshKey.h"
 #include "XmlCertVault.h"
 #include "Ssh.h"
@@ -923,6 +926,23 @@ return create_async([this, uidl]() -> Windows::Foundation::Collections::IVector<
 
 });
     }
+IAsyncOperation<Boolean>^ MailMan::FetchMimeBdAsync(Platform::String ^uidl, Chilkat::BinData ^mimeData)
+    {
+return create_async([this, uidl, mimeData]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (mimeData == nullptr) { return false; }
+	CkBinDataW* pObj1 = mimeData->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxMailManProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->FetchMimeBd(uidl ? uidl->Data() : L"",*pObj1);
+
+});
+    }
 IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ MailMan::FetchMimeByMsgnumAsync(int msgnum)
     {
 return create_async([this, msgnum]() -> Windows::Foundation::Collections::IVector<uint8>^
@@ -1585,6 +1605,23 @@ return create_async([this, fromAddr, recipients, mimeSource]() -> Boolean
 
 });
     }
+IAsyncOperation<Boolean>^ MailMan::SendMimeBdAsync(Platform::String ^fromAddr, Platform::String ^recipients, Chilkat::BinData ^mimeData)
+    {
+return create_async([this, fromAddr, recipients, mimeData]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (mimeData == nullptr) { return false; }
+	CkBinDataW* pObj2 = mimeData->m_impl;
+	 if (!pObj2) { return false; }
+	// --- prep output arg ---
+	CxMailManProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->SendMimeBd(fromAddr ? fromAddr->Data() : L"",recipients ? recipients->Data() : L"",*pObj2);
+
+});
+    }
 IAsyncOperation<Boolean>^ MailMan::SendMimeBytesAsync(Platform::String ^fromAddr, Platform::String ^recipients, Windows::Foundation::Collections::IVector<uint8>^mimeSource)
     {
 return create_async([this, fromAddr, recipients, mimeSource]() -> Boolean
@@ -1660,6 +1697,17 @@ Boolean MailMan::SetDecryptCert2(Chilkat::Cert ^cert, Chilkat::PrivateKey ^priva
 	CxMailManProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->SetDecryptCert2(*pObj0,*pObj1);
+    }
+Boolean MailMan::SetPassword(Platform::String ^protocol, Chilkat::SecureString ^password)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (password == nullptr) { return false; }
+	CkSecureStringW* pObj1 = password->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxMailManProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->SetPassword(protocol ? protocol->Data() : L"",*pObj1);
     }
 Boolean MailMan::SetSslClientCert(Chilkat::Cert ^cert)
     {

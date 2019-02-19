@@ -1,3 +1,4 @@
+// Generated for Chilkat v9.5.0.76
 
 // This source file is generated.
 
@@ -13,11 +14,13 @@
 #include "include/CkStringBuilderW.h"
 #include "include/CkStreamW.h"
 #include "include/CkCertW.h"
+#include "include/CkSecureStringW.h"
 #include "CkDateTime.h"
 #include "BinData.h"
 #include "StringBuilder.h"
 #include "Stream.h"
 #include "Cert.h"
+#include "SecureString.h"
 
 
 using namespace Chilkat;
@@ -652,6 +655,14 @@ Boolean Chilkat::Ftp2::SslServerCertVerified::get()
     {
     return m_impl ? m_impl->get_SslServerCertVerified() : false;
     }
+Boolean Chilkat::Ftp2::SyncCreateAllLocalDirs::get()
+    {
+    return m_impl ? m_impl->get_SyncCreateAllLocalDirs() : false;
+    }
+void Chilkat::Ftp2::SyncCreateAllLocalDirs::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_SyncCreateAllLocalDirs(newVal);
+    }
 String ^Chilkat::Ftp2::SyncedFiles::get()
     {
     return ref new String(m_impl ? m_impl->syncedFiles() : L"");
@@ -668,6 +679,14 @@ void Chilkat::Ftp2::SyncMustMatch::set(String ^newVal)
     {
         if (m_impl) m_impl->put_SyncMustMatch(newVal ? newVal->Data() : L"");
     }
+String ^Chilkat::Ftp2::SyncMustMatchDir::get()
+    {
+    return ref new String(m_impl ? m_impl->syncMustMatchDir() : L"");
+    }
+void Chilkat::Ftp2::SyncMustMatchDir::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_SyncMustMatchDir(newVal ? newVal->Data() : L"");
+    }
 String ^Chilkat::Ftp2::SyncMustNotMatch::get()
     {
     return ref new String(m_impl ? m_impl->syncMustNotMatch() : L"");
@@ -675,6 +694,14 @@ String ^Chilkat::Ftp2::SyncMustNotMatch::get()
 void Chilkat::Ftp2::SyncMustNotMatch::set(String ^newVal)
     {
         if (m_impl) m_impl->put_SyncMustNotMatch(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::Ftp2::SyncMustNotMatchDir::get()
+    {
+    return ref new String(m_impl ? m_impl->syncMustNotMatchDir() : L"");
+    }
+void Chilkat::Ftp2::SyncMustNotMatchDir::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_SyncMustNotMatchDir(newVal ? newVal->Data() : L"");
     }
 String ^Chilkat::Ftp2::SyncPreview::get()
     {
@@ -1915,6 +1942,17 @@ Boolean Ftp2::SetOption(Platform::String ^option)
 	cxProgress.m_sender = this;
 	return m_impl->SetOption(option ? option->Data() : L"");
     }
+Boolean Ftp2::SetPassword(Chilkat::SecureString ^password)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (password == nullptr) { return false; }
+	CkSecureStringW* pObj0 = password->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxFtp2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->SetPassword(*pObj0);
+    }
 IAsyncOperation<Boolean>^ Ftp2::SetRemoteFileDateTimeStrAsync(Platform::String ^dateTimeStr, Platform::String ^remoteFilename)
     {
 return create_async([this, dateTimeStr, remoteFilename]() -> Boolean
@@ -1945,6 +1983,17 @@ return create_async([this, dt, remoteFilename]() -> Boolean
 	return m_impl->SetRemoteFileDt(*pObj0,remoteFilename ? remoteFilename->Data() : L"");
 
 });
+    }
+Boolean Ftp2::SetSecurePassword(Chilkat::SecureString ^password)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (password == nullptr) { return false; }
+	CkSecureStringW* pObj0 = password->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	CxFtp2Progress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->SetSecurePassword(*pObj0);
     }
 void Ftp2::SetSslCertRequirement(Platform::String ^reqName, Platform::String ^reqValue)
     {
