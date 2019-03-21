@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.76
+// This header is generated for Chilkat 9.5.0.77
 
 #ifndef _CkHtmlToXmlW_H
 #define _CkHtmlToXmlW_H

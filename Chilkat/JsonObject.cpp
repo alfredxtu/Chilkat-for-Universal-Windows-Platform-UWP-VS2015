@@ -1,4 +1,4 @@
-// Generated for Chilkat v9.5.0.76
+// Generated for Chilkat v9.5.0.77
 
 // This source file is generated.
 
@@ -343,6 +343,15 @@ Platform::String ^JsonObject::Emit(void)
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
+Boolean JsonObject::EmitBd(Chilkat::BinData ^bd)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bd == nullptr) { return false; }
+	CkBinDataW* pObj0 = bd->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->EmitBd(*pObj0);
+    }
 Boolean JsonObject::EmitSb(Chilkat::StringBuilder ^sb)
     {
 	if (m_impl == nullptr) { return false; }
@@ -466,6 +475,15 @@ Boolean JsonObject::Load(Platform::String ^json)
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->Load(json ? json->Data() : L"");
+    }
+Boolean JsonObject::LoadBd(Chilkat::BinData ^bd)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bd == nullptr) { return false; }
+	CkBinDataW* pObj0 = bd->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->LoadBd(*pObj0);
     }
 Boolean JsonObject::LoadFile(Platform::String ^path)
     {

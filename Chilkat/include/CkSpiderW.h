@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.76
+// This header is generated for Chilkat 9.5.0.77
 
 #ifndef _CkSpiderW_H
 #define _CkSpiderW_H

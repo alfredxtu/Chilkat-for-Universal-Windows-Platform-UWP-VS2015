@@ -1,4 +1,4 @@
-// Generated for Chilkat v9.5.0.76
+// Generated for Chilkat v9.5.0.77
 
 // This header is generated for Chilkat v9.5.0
 
@@ -36,6 +36,7 @@ namespace Chilkat
 	ref class SecureString;
 	ref class PrivateKey;
 	ref class SshKey;
+	ref class JsonObject;
 	ref class XmlCertVault;
 	ref class Ssh;
 	ref class Socket;
@@ -554,6 +555,8 @@ public ref class Imap sealed
 	IAsyncOperation<Boolean>^ StoreFlagsAsync(int msgId, Boolean bUid, Platform::String ^flagNames, int value);
 
 	IAsyncOperation<Boolean>^ SubscribeAsync(Platform::String ^mailbox);
+
+	IAsyncOperation<JsonObject ^>^ ThreadCmdAsync(Platform::String ^threadAlg, Platform::String ^charset, Platform::String ^searchCriteria, Boolean bUid);
 
 	Boolean UnlockComponent(Platform::String ^unlockCode);
 

@@ -1,4 +1,4 @@
-// Generated for Chilkat v9.5.0.76
+// Generated for Chilkat v9.5.0.77
 
 // This source file is generated.
 
@@ -100,6 +100,16 @@ String ^Chilkat::CertStore::Version::get()
     }
 
 
+Cert ^CertStore::FindCertByKeyContainer(Platform::String ^name)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CkCertW *pRetObj = m_impl->FindCertByKeyContainer(name ? name->Data() : L"");
+	if (!pRetObj) return nullptr;
+	Chilkat::Cert ^pCert = ref new Chilkat::Cert();
+	pCert->m_impl = pRetObj;
+	return pCert;
+    }
 Cert ^CertStore::FindCertByRfc822Name(Platform::String ^name)
     {
 	if (m_impl == nullptr) { return nullptr; }

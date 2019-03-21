@@ -1,4 +1,4 @@
-// Generated for Chilkat v9.5.0.76
+// Generated for Chilkat v9.5.0.77
 
 // This header is generated for Chilkat v9.5.0
 
@@ -135,6 +135,16 @@ public ref class Scp sealed
 		void set(Platform::String ^);
 	}
 	property Platform::String ^SyncMustNotMatchDir
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^UncommonOptions
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Platform::String ^UnixPermOverride
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);

@@ -1,4 +1,4 @@
-// Generated for Chilkat v9.5.0.76
+// Generated for Chilkat v9.5.0.77
 
 // This header is generated for Chilkat v9.5.0
 
@@ -175,6 +175,8 @@ public ref class JsonObject sealed
 
 	Platform::String ^Emit(void);
 
+	Boolean EmitBd(Chilkat::BinData ^bd);
+
 	Boolean EmitSb(Chilkat::StringBuilder ^sb);
 
 	Platform::String ^EmitWithSubs(Chilkat::Hashtable ^subs, Boolean omitEmpty);
@@ -208,6 +210,8 @@ public ref class JsonObject sealed
 	int JsonTypeOf(Platform::String ^jsonPath);
 
 	Boolean Load(Platform::String ^json);
+
+	Boolean LoadBd(Chilkat::BinData ^bd);
 
 	Boolean LoadFile(Platform::String ^path);
 

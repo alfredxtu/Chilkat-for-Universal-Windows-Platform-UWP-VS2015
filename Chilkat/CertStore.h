@@ -1,4 +1,4 @@
-// Generated for Chilkat v9.5.0.76
+// Generated for Chilkat v9.5.0.77
 
 // This header is generated for Chilkat v9.5.0
 
@@ -89,6 +89,8 @@ public ref class CertStore sealed
 	// ----------------------
 	// Methods
 	// ----------------------
+	Cert ^FindCertByKeyContainer(Platform::String ^name);
+
 	Cert ^FindCertByRfc822Name(Platform::String ^name);
 
 	Cert ^FindCertBySerial(Platform::String ^str);

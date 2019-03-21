@@ -1,4 +1,4 @@
-// Generated for Chilkat v9.5.0.76
+// Generated for Chilkat v9.5.0.77
 
 // This header is generated for Chilkat v9.5.0
 
@@ -499,6 +499,8 @@ public ref class SFtp sealed
 
 	IAsyncOperation<SFtpDir ^>^ ReadDirAsync(Platform::String ^handle);
 
+	IAsyncOperation<Boolean>^ ReadFileBdAsync(Platform::String ^handle, int numBytes, Chilkat::BinData ^bd);
+
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ ReadFileBytesAsync(Platform::String ^handle, int numBytes);
 
 	IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ ReadFileBytes32Async(Platform::String ^handle, int offset, int numBytes);
@@ -562,6 +564,8 @@ public ref class SFtp sealed
 	IAsyncOperation<Boolean>^ UploadFileByNameAsync(Platform::String ^remoteFilePath, Platform::String ^localFilePath);
 
 	IAsyncOperation<Boolean>^ UploadSbAsync(Chilkat::StringBuilder ^sb, Platform::String ^remoteFilePath, Platform::String ^charset, Boolean includeBom);
+
+	IAsyncOperation<Boolean>^ WriteFileBdAsync(Platform::String ^handle, Chilkat::BinData ^bd);
 
 	IAsyncOperation<Boolean>^ WriteFileBytesAsync(Platform::String ^handle, Windows::Foundation::Collections::IVector<uint8>^byteData);
 

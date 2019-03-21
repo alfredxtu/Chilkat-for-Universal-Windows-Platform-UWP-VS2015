@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.76
+// This header is generated for Chilkat 9.5.0.77
 
 #ifndef _CkSFtpW_H
 #define _CkSFtpW_H
@@ -769,16 +769,31 @@ class CK_VISIBLE_PUBLIC CkSFtpW  : public CkClassWithCallbacksW
 	// or SyncDownloadTree. The paths are listed one per line. In both cases (for
 	// upload and download) each line contains the paths relative to the root synced
 	// directory.
+	// 
+	// Note: For SyncTreeDownload, some of entires can be the paths of local
+	// directories that were created. Starting in v9.5.0.77, local directory paths will
+	// be terminated with a "/" char (to disinguish a directory from an actual file).
+	// 
 	void get_SyncedFiles(CkString &str);
 	// The paths of the files uploaded or downloaded in the last call to SyncUploadTree
 	// or SyncDownloadTree. The paths are listed one per line. In both cases (for
 	// upload and download) each line contains the paths relative to the root synced
 	// directory.
+	// 
+	// Note: For SyncTreeDownload, some of entires can be the paths of local
+	// directories that were created. Starting in v9.5.0.77, local directory paths will
+	// be terminated with a "/" char (to disinguish a directory from an actual file).
+	// 
 	const wchar_t *syncedFiles(void);
 	// The paths of the files uploaded or downloaded in the last call to SyncUploadTree
 	// or SyncDownloadTree. The paths are listed one per line. In both cases (for
 	// upload and download) each line contains the paths relative to the root synced
 	// directory.
+	// 
+	// Note: For SyncTreeDownload, some of entires can be the paths of local
+	// directories that were created. Starting in v9.5.0.77, local directory paths will
+	// be terminated with a "/" char (to disinguish a directory from an actual file).
+	// 
 	void put_SyncedFiles(const wchar_t *newVal);
 
 	// Can contain a wildcarded list of file patterns separated by semicolons. For
@@ -1767,6 +1782,22 @@ class CK_VISIBLE_PUBLIC CkSFtpW  : public CkClassWithCallbacksW
 	// Reads file data from a remote file on the SSH server. The handle is a file handle
 	// returned by the OpenFile method. The numBytes is the maximum number of bytes to
 	// read. If the end-of-file is reached prior to reading the number of requested
+	// bytes, then fewer bytes may be returned. The received bytes are appended to the
+	// contents of bd.
+	// 
+	// To read an entire file, one may call ReadFileBd repeatedly until Eof(handle)
+	// returns true.
+	// 
+	bool ReadFileBd(const wchar_t *handle, int numBytes, CkBinDataW &bd);
+
+	// Creates an asynchronous task to call the ReadFileBd method with the arguments
+	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *ReadFileBdAsync(const wchar_t *handle, int numBytes, CkBinDataW &bd);
+
+	// Reads file data from a remote file on the SSH server. The handle is a file handle
+	// returned by the OpenFile method. The numBytes is the maximum number of bytes to
+	// read. If the end-of-file is reached prior to reading the number of requested
 	// bytes, then fewer bytes may be returned.
 	// 
 	// To read an entire file, one may call ReadFileBytes repeatedly until Eof(handle)
@@ -2232,14 +2263,14 @@ class CK_VISIBLE_PUBLIC CkSFtpW  : public CkClassWithCallbacksW
 	CkTaskW *UploadBdAsync(CkBinDataW &binData, const wchar_t *remoteFilePath);
 
 	// Uploads a file from the local filesystem to the SFTP server. handle is a handle of
-	// a currently open file (obtained by calling the OpenFile method). fromFilename is the
+	// a currently open file (obtained by calling the OpenFile method). fromLocalFilePath is the
 	// local file path of the file to be uploaded.
-	bool UploadFile(const wchar_t *handle, const wchar_t *fromFilename);
+	bool UploadFile(const wchar_t *handle, const wchar_t *fromLocalFilePath);
 
 	// Creates an asynchronous task to call the UploadFile method with the arguments
 	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
 	// The caller is responsible for deleting the object returned by this method.
-	CkTaskW *UploadFileAsync(const wchar_t *handle, const wchar_t *fromFilename);
+	CkTaskW *UploadFileAsync(const wchar_t *handle, const wchar_t *fromLocalFilePath);
 
 	// Simplified method for uploading a file to the SFTP/SSH server.
 	// 
@@ -2261,6 +2292,15 @@ class CK_VISIBLE_PUBLIC CkSFtpW  : public CkClassWithCallbacksW
 	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *UploadSbAsync(CkStringBuilderW &sb, const wchar_t *remoteFilePath, const wchar_t *charset, bool includeBom);
+
+	// Appends the contents of bd to an open file. The handle is a file handle returned
+	// by the OpenFile method.
+	bool WriteFileBd(const wchar_t *handle, CkBinDataW &bd);
+
+	// Creates an asynchronous task to call the WriteFileBd method with the arguments
+	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *WriteFileBdAsync(const wchar_t *handle, CkBinDataW &bd);
 
 	// Appends byte data to an open file. The handle is a file handle returned by the
 	// OpenFile method.

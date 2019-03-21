@@ -1,4 +1,4 @@
-// Generated for Chilkat v9.5.0.76
+// Generated for Chilkat v9.5.0.77
 
 // This source file is generated.
 
@@ -21,6 +21,7 @@
 #include "include/CkSecureStringW.h"
 #include "include/CkPrivateKeyW.h"
 #include "include/CkSshKeyW.h"
+#include "include/CkJsonObjectW.h"
 #include "include/CkXmlCertVaultW.h"
 #include "include/CkSshW.h"
 #include "include/CkSocketW.h"
@@ -35,6 +36,7 @@
 #include "SecureString.h"
 #include "PrivateKey.h"
 #include "SshKey.h"
+#include "JsonObject.h"
 #include "XmlCertVault.h"
 #include "Ssh.h"
 #include "Socket.h"
@@ -1800,6 +1802,24 @@ return create_async([this, mailbox]() -> Boolean
 	CxImapProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->Subscribe(mailbox ? mailbox->Data() : L"");
+
+});
+    }
+IAsyncOperation<JsonObject ^>^ Imap::ThreadCmdAsync(Platform::String ^threadAlg, Platform::String ^charset, Platform::String ^searchCriteria, Boolean bUid)
+    {
+return create_async([this, threadAlg, charset, searchCriteria, bUid]() -> JsonObject ^
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	CxImapProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	CkJsonObjectW *pRetObj = m_impl->ThreadCmd(threadAlg ? threadAlg->Data() : L"",charset ? charset->Data() : L"",searchCriteria ? searchCriteria->Data() : L"",bUid);
+	if (!pRetObj) return nullptr;
+	Chilkat::JsonObject ^pJsonObject = ref new Chilkat::JsonObject();
+	pJsonObject->m_impl = pRetObj;
+	return pJsonObject;
 
 });
     }

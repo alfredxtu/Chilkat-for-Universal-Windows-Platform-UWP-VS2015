@@ -1,4 +1,4 @@
-// Generated for Chilkat v9.5.0.76
+// Generated for Chilkat v9.5.0.77
 
 // This header is generated for Chilkat v9.5.0
 
@@ -204,6 +204,11 @@ public ref class Cert sealed
 	{
 		Boolean get();
 	}
+	property Boolean SmartCardNoDialog
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property Platform::String ^SmartCardPin
 	{
 		Platform::String ^get();
@@ -273,6 +278,8 @@ public ref class Cert sealed
 	// ----------------------
 	int CheckRevoked(void);
 
+	int CheckSmartCardPin(void);
+
 	Windows::Foundation::Collections::IVector<uint8>^ExportCertDer(void);
 
 	Boolean ExportCertDerBd(Chilkat::BinData ^cerData);
@@ -329,6 +336,8 @@ public ref class Cert sealed
 
 	Boolean LoadFromFile(Platform::String ^path);
 
+	Boolean LoadFromSmartcard(Platform::String ^csp);
+
 	Boolean LoadPem(Platform::String ^strPem);
 
 	Boolean LoadPfxBd(Chilkat::BinData ^pfxData, Platform::String ^password);
@@ -350,6 +359,8 @@ public ref class Cert sealed
 	Boolean UseCertVault(Chilkat::XmlCertVault ^vault);
 
 	Boolean VerifySignature(void);
+
+	Platform::String ^X509PKIPathv1(void);
 
 
 

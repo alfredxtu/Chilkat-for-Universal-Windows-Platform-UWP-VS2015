@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.76
+// This header is generated for Chilkat 9.5.0.77
 
 #ifndef _CkEmail_H
 #define _CkEmail_H
@@ -164,7 +164,8 @@ class CK_VISIBLE_PUBLIC CkEmail  : public CkMultiByteBase
 	void put_Charset(const char *newVal);
 
 	// true if the email arrived encrypted and was successfully decrypted, otherwise
-	// false.
+	// false. This property is only meaningful when the ReceivedEncrypted property is
+	// equal to true.
 	bool get_Decrypted(void);
 
 	// The date/time from the "Date" header in UTC/GMT standard time. Use the LocalDate
@@ -667,7 +668,8 @@ class CK_VISIBLE_PUBLIC CkEmail  : public CkMultiByteBase
 
 	// true if the email was received with one or more digital signatures, and if all
 	// the signatures were validated indicating that the email was not altered.
-	// Otherwise this property is set to false.
+	// Otherwise this property is set to false. (This property is only meaningful
+	// when the ReceivedSigned property is equal to true.)
 	bool get_SignaturesValid(void);
 
 	// If the email was received digitally signed, this property contains the fields of
@@ -727,6 +729,11 @@ class CK_VISIBLE_PUBLIC CkEmail  : public CkMultiByteBase
 	void put_SigningHashAlg(const char *newVal);
 
 	// The size in bytes of the email, including all parts and attachments.
+	// 
+	// Note: This property is only valid if the full email was downloaded. If only the
+	// header was downloaded, then this property will contain the size of just the
+	// header.
+	// 
 	int get_Size(void);
 
 	// The email subject.

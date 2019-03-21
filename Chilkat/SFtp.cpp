@@ -1,4 +1,4 @@
-// Generated for Chilkat v9.5.0.76
+// Generated for Chilkat v9.5.0.77
 
 // This source file is generated.
 
@@ -1131,6 +1131,23 @@ return create_async([this, handle]() -> SFtpDir ^
 
 });
     }
+IAsyncOperation<Boolean>^ SFtp::ReadFileBdAsync(Platform::String ^handle, int numBytes, Chilkat::BinData ^bd)
+    {
+return create_async([this, handle, numBytes, bd]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (bd == nullptr) { return false; }
+	CkBinDataW* pObj2 = bd->m_impl;
+	 if (!pObj2) { return false; }
+	// --- prep output arg ---
+	CxSFtpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->ReadFileBd(handle ? handle->Data() : L"",numBytes,*pObj2);
+
+});
+    }
 IAsyncOperation<Windows::Foundation::Collections::IVector<uint8>^>^ SFtp::ReadFileBytesAsync(Platform::String ^handle, int numBytes)
     {
 return create_async([this, handle, numBytes]() -> Windows::Foundation::Collections::IVector<uint8>^
@@ -1613,6 +1630,23 @@ return create_async([this, sb, remoteFilePath, charset, includeBom]() -> Boolean
 	CxSFtpProgress cxProgress(m_impl);
 	cxProgress.m_sender = this;
 	return m_impl->UploadSb(*pObj0,remoteFilePath ? remoteFilePath->Data() : L"",charset ? charset->Data() : L"",includeBom);
+
+});
+    }
+IAsyncOperation<Boolean>^ SFtp::WriteFileBdAsync(Platform::String ^handle, Chilkat::BinData ^bd)
+    {
+return create_async([this, handle, bd]() -> Boolean
+{
+// This runs in a thread pool thread...
+
+	if (m_impl == nullptr) { return false; }
+	if (bd == nullptr) { return false; }
+	CkBinDataW* pObj1 = bd->m_impl;
+	 if (!pObj1) { return false; }
+	// --- prep output arg ---
+	CxSFtpProgress cxProgress(m_impl);
+	cxProgress.m_sender = this;
+	return m_impl->WriteFileBd(handle ? handle->Data() : L"",*pObj1);
 
 });
     }

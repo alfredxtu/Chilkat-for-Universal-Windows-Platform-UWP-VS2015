@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.76
+// This header is generated for Chilkat 9.5.0.77
 
 #ifndef _CkXmlDSigGen_H
 #define _CkXmlDSigGen_H
@@ -436,15 +436,19 @@ class CK_VISIBLE_PUBLIC CkXmlDSigGen  : public CkMultiByteBase
 	// SigLocation. Possible values are:
 	//     0: Insert the Signature as the last child of the element at SigLocation.
 	//     This is the default.
-	//     1: Insert the Signature as a sibling directly after the SigLocation.
-	//     2: Insert the Signature as a sibling directly before the SigLocation.
+	//     1: Insert the Signature as a sibling directly after the element at
+	//     SigLocation.
+	//     2: Insert the Signature as a sibling directly before the element at
+	//     SigLocation.
 	int get_SigLocationMod(void);
 	// Modifies the placement of the signature at the location specified by
 	// SigLocation. Possible values are:
 	//     0: Insert the Signature as the last child of the element at SigLocation.
 	//     This is the default.
-	//     1: Insert the Signature as a sibling directly after the SigLocation.
-	//     2: Insert the Signature as a sibling directly before the SigLocation.
+	//     1: Insert the Signature as a sibling directly after the element at
+	//     SigLocation.
+	//     2: Insert the Signature as a sibling directly before the element at
+	//     SigLocation.
 	void put_SigLocationMod(int newVal);
 
 	// The namespace prefix of the Signature that is to be created. The default value

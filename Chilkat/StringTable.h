@@ -1,4 +1,4 @@
-// Generated for Chilkat v9.5.0.76
+// Generated for Chilkat v9.5.0.77
 
 // This header is generated for Chilkat v9.5.0
 
@@ -91,6 +91,8 @@ public ref class StringTable sealed
 	Boolean AppendFromSb(Chilkat::StringBuilder ^sb);
 
 	void Clear(void);
+
+	int FindSubstring(int startIndex, Platform::String ^substr, Boolean caseSensitive);
 
 	int IntAt(int index);
 

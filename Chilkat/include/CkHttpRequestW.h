@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.76
+// This header is generated for Chilkat 9.5.0.77
 
 #ifndef _CkHttpRequestW_H
 #define _CkHttpRequestW_H
@@ -172,13 +172,73 @@ class CK_VISIBLE_PUBLIC CkHttpRequestW  : public CkWideCharBase
 	int get_NumParams(void);
 
 	// The path of the resource requested. A path of "/" indicates the default document
-	// for a domain.
+	// of a domain.
+	// 
+	// Explaining the Parts of a URL
+	// 
+	// http://example.com:8042/over/there?name=ferret#nose
+	// \__/   \______________/\_________/ \________/ \__/
+	//  |           |            |            |        |
+	// scheme   domain+port     path        query   fragment
+	// 
+	// This property should be set to the path part of the URL. You may also include
+	// the query part in this property value. If the Content-Type of the request is NOT
+	// application/x-www-form-urlencoded, then you would definitely want to include
+	// query parameters in the path. If the Content-Type of the request IS
+	// application/x-www-form-urlencoded, the query parameters are passed in the body
+	// of the request. It is also possible to pass some query parameters via the path,
+	// and some in the body of a application/x-www-form-urlencoded request, but you
+	// shouldn't include the same parameter in both places. You would never need to
+	// include the fragment part. The fragment is nothing more than an instruction for
+	// a browser to automatically navigate to a particular location in the HTML page
+	// (assuming the request returns HTML, otherwise a fragment makes no sense).
+	// 
 	void get_Path(CkString &str);
 	// The path of the resource requested. A path of "/" indicates the default document
-	// for a domain.
+	// of a domain.
+	// 
+	// Explaining the Parts of a URL
+	// 
+	// http://example.com:8042/over/there?name=ferret#nose
+	// \__/   \______________/\_________/ \________/ \__/
+	//  |           |            |            |        |
+	// scheme   domain+port     path        query   fragment
+	// 
+	// This property should be set to the path part of the URL. You may also include
+	// the query part in this property value. If the Content-Type of the request is NOT
+	// application/x-www-form-urlencoded, then you would definitely want to include
+	// query parameters in the path. If the Content-Type of the request IS
+	// application/x-www-form-urlencoded, the query parameters are passed in the body
+	// of the request. It is also possible to pass some query parameters via the path,
+	// and some in the body of a application/x-www-form-urlencoded request, but you
+	// shouldn't include the same parameter in both places. You would never need to
+	// include the fragment part. The fragment is nothing more than an instruction for
+	// a browser to automatically navigate to a particular location in the HTML page
+	// (assuming the request returns HTML, otherwise a fragment makes no sense).
+	// 
 	const wchar_t *path(void);
 	// The path of the resource requested. A path of "/" indicates the default document
-	// for a domain.
+	// of a domain.
+	// 
+	// Explaining the Parts of a URL
+	// 
+	// http://example.com:8042/over/there?name=ferret#nose
+	// \__/   \______________/\_________/ \________/ \__/
+	//  |           |            |            |        |
+	// scheme   domain+port     path        query   fragment
+	// 
+	// This property should be set to the path part of the URL. You may also include
+	// the query part in this property value. If the Content-Type of the request is NOT
+	// application/x-www-form-urlencoded, then you would definitely want to include
+	// query parameters in the path. If the Content-Type of the request IS
+	// application/x-www-form-urlencoded, the query parameters are passed in the body
+	// of the request. It is also possible to pass some query parameters via the path,
+	// and some in the body of a application/x-www-form-urlencoded request, but you
+	// shouldn't include the same parameter in both places. You would never need to
+	// include the fragment part. The fragment is nothing more than an instruction for
+	// a browser to automatically navigate to a particular location in the HTML page
+	// (assuming the request returns HTML, otherwise a fragment makes no sense).
+	// 
 	void put_Path(const wchar_t *newVal);
 
 	// Controls whether the charset is explicitly included in the content-type header

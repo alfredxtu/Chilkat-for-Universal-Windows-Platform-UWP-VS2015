@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.76
+// This header is generated for Chilkat 9.5.0.77
 
 #ifndef _CkOAuth2W_H
 #define _CkOAuth2W_H
@@ -786,6 +786,11 @@ class CK_VISIBLE_PUBLIC CkOAuth2W  : public CkClassWithCallbacksW
 	// RefreshAccesToken method. For example, if the "Accept: application/json" header
 	// needs to be sent, then add it by calling this method with name = "Accept" and
 	// value = "application/json".
+	// 
+	// Multiple headers may be added by calling this method once for each. To remove a
+	// header, call this method with name equal to the header name, and with an empty
+	// string for value.
+	// 
 	bool SetRefreshHeader(const wchar_t *name, const wchar_t *value);
 
 	// Creates an asynchronous task to call the SetRefreshHeader method with the

@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.76
+// This header is generated for Chilkat 9.5.0.77
 
 #ifndef _CkScpW_H
 #define _CkScpW_H
@@ -197,6 +197,65 @@ class CK_VISIBLE_PUBLIC CkScpW  : public CkClassWithCallbacksW
 	// SyncTreeDownload methods will not traverse into a directory that matches any one
 	// of these patterns.
 	void put_SyncMustNotMatchDir(const wchar_t *newVal);
+
+	// This is a catch-all property to be used for uncommon needs. The default value is
+	// the empty string.
+	// 
+	// As of v9.5.0.77, there is only one uncommon option:
+	//     FilenameOnly Set this property to the keyword "FilenameOnly" if only the
+	//     filename should be used in the "scp -t" command. (LANCOM routers using SCP seem
+	//     to need it.)
+	// 
+	void get_UncommonOptions(CkString &str);
+	// This is a catch-all property to be used for uncommon needs. The default value is
+	// the empty string.
+	// 
+	// As of v9.5.0.77, there is only one uncommon option:
+	//     FilenameOnly Set this property to the keyword "FilenameOnly" if only the
+	//     filename should be used in the "scp -t" command. (LANCOM routers using SCP seem
+	//     to need it.)
+	// 
+	const wchar_t *uncommonOptions(void);
+	// This is a catch-all property to be used for uncommon needs. The default value is
+	// the empty string.
+	// 
+	// As of v9.5.0.77, there is only one uncommon option:
+	//     FilenameOnly Set this property to the keyword "FilenameOnly" if only the
+	//     filename should be used in the "scp -t" command. (LANCOM routers using SCP seem
+	//     to need it.)
+	// 
+	void put_UncommonOptions(const wchar_t *newVal);
+
+	// When Chilkat uploads a file by SCP, the UNIX permissions of the remote file are
+	// set based on the permissions of the local file being uploaded. Usually this is
+	// OK, but in some cases the access permissions of the local file are not what is
+	// wanted for the remote file. This property can be set to an octal permissions
+	// string, such as "0644", to force the remote file permissions to this value.
+	// 
+	// The default value of this property is the empty string (remote files permissions
+	// mirror the permissions of the local file being uploaded).
+	// 
+	void get_UnixPermOverride(CkString &str);
+	// When Chilkat uploads a file by SCP, the UNIX permissions of the remote file are
+	// set based on the permissions of the local file being uploaded. Usually this is
+	// OK, but in some cases the access permissions of the local file are not what is
+	// wanted for the remote file. This property can be set to an octal permissions
+	// string, such as "0644", to force the remote file permissions to this value.
+	// 
+	// The default value of this property is the empty string (remote files permissions
+	// mirror the permissions of the local file being uploaded).
+	// 
+	const wchar_t *unixPermOverride(void);
+	// When Chilkat uploads a file by SCP, the UNIX permissions of the remote file are
+	// set based on the permissions of the local file being uploaded. Usually this is
+	// OK, but in some cases the access permissions of the local file are not what is
+	// wanted for the remote file. This property can be set to an octal permissions
+	// string, such as "0644", to force the remote file permissions to this value.
+	// 
+	// The default value of this property is the empty string (remote files permissions
+	// mirror the permissions of the local file being uploaded).
+	// 
+	void put_UnixPermOverride(const wchar_t *newVal);
 
 
 

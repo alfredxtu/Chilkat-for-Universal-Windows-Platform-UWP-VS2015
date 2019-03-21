@@ -1,4 +1,4 @@
-// Generated for Chilkat v9.5.0.76
+// Generated for Chilkat v9.5.0.77
 
 // This source file is generated.
 
@@ -139,6 +139,22 @@ String ^Chilkat::Scp::SyncMustNotMatchDir::get()
 void Chilkat::Scp::SyncMustNotMatchDir::set(String ^newVal)
     {
         if (m_impl) m_impl->put_SyncMustNotMatchDir(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::Scp::UncommonOptions::get()
+    {
+    return ref new String(m_impl ? m_impl->uncommonOptions() : L"");
+    }
+void Chilkat::Scp::UncommonOptions::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_UncommonOptions(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::Scp::UnixPermOverride::get()
+    {
+    return ref new String(m_impl ? m_impl->unixPermOverride() : L"");
+    }
+void Chilkat::Scp::UnixPermOverride::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_UnixPermOverride(newVal ? newVal->Data() : L"");
     }
 Boolean Chilkat::Scp::VerboseLogging::get()
     {

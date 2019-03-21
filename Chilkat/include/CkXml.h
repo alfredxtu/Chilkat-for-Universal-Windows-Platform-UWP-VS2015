@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.76
+// This header is generated for Chilkat 9.5.0.77
 
 #ifndef _CkXml_H
 #define _CkXml_H
@@ -14,6 +14,7 @@
 
 class CkByteData;
 class CkStringBuilder;
+class CkBinData;
 
 
 
@@ -225,6 +226,13 @@ class CK_VISIBLE_PUBLIC CkXml  : public CkMultiByteBase
 	// The node's namespace prefix, if present. For example, if the tag is
 	// "soapenv:Envelope", then this property will return "soapenv".
 	void put_TagNsPrefix(const char *newVal);
+
+	// Returns the path to reach this element from the XML document root. If the caller
+	// is the document root, then the empty string is returned.
+	void get_TagPath(CkString &str);
+	// Returns the path to reach this element from the XML document root. If the caller
+	// is the document root, then the empty string is returned.
+	const char *tagPath(void);
 
 	// The node's tag without the namespace prefix. For example, if the tag is
 	// "soapenv:Envelope", then this property will return "Envelope".
@@ -755,6 +763,10 @@ class CK_VISIBLE_PUBLIC CkXml  : public CkMultiByteBase
 	const char *xml(void);
 
 
+	// Emits (appends) the XML to the contents of bd.
+	bool GetXmlBd(CkBinData &bd);
+
+
 	// Emits the XML to a StringBuilder object. (Appends to the existing contents of
 	// sb.)
 	bool GetXmlSb(CkStringBuilder &sb);
@@ -815,6 +827,11 @@ class CK_VISIBLE_PUBLIC CkXml  : public CkMultiByteBase
 
 	// Updates the internal reference of the caller to its last child.
 	bool LastChild2(void);
+
+
+	// Loads XML from the contents of bd. If autoTrim is true, then each element's text
+	// content is trimmed of leading and trailing whitespace.
+	bool LoadBd(CkBinData &bd, bool autoTrim);
 
 
 	// Loads XML from the contents of a StringBuilder object.
@@ -882,6 +899,16 @@ class CK_VISIBLE_PUBLIC CkXml  : public CkMultiByteBase
 	// "colors|primary|red". See the example below for details.
 	// 
 	void NewChildInt2(const char *tagPath, int value);
+
+
+	// Updates to Xml object's internal reference to the next node in a depth-first
+	// traversal. (This method name, NextInTraversal2, ends with "2" to signify that
+	// the internal reference is updated. There is no "NextInTraversal" method.)
+	// 
+	// The sbState contains the current state of the traversal. sbState should be empty when
+	// beginning a traversal.
+	// 
+	bool NextInTraversal2(CkStringBuilder &sbState);
 
 
 	// Returns the nodes next sibling, or NULL if there are no more.
@@ -989,6 +1016,9 @@ class CK_VISIBLE_PUBLIC CkXml  : public CkMultiByteBase
 	//     removes extra SPACE chars so that no more than one SPACE char in a row exists.
 	//     "ContentTrimEnds" - Same as AttrTrimEnds but for content.
 	//     "ContentTrimInside" - Same as AttrTrimInside but for content.
+	//     "LowercaseAttrs" - Convert all attribute names to lowercase.
+	//     "LowercaseTags" - Convert all tags to lowercase.
+	//     "RemoveCtrl" - Remove non-printable us-ascii control chars (us-ascii values
 	// 
 	// If you have other ideas for useful XML scrubbing directives, send email to
 	// support@chilkatsoft.com. It must be general enough such that many developers

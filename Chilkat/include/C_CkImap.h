@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.76
+// This is a generated source file for Chilkat version 9.5.0.77
 #ifndef _C_CkImap_H
 #define _C_CkImap_H
 #include "chilkatDefs.h"
@@ -332,6 +332,8 @@ CK_VISIBLE_PUBLIC BOOL CkImap_StoreFlags(HCkImap cHandle, int msgId, BOOL bUid, 
 CK_VISIBLE_PUBLIC HCkTask CkImap_StoreFlagsAsync(HCkImap cHandle, int msgId, BOOL bUid, const char *flagNames, int value);
 CK_VISIBLE_PUBLIC BOOL CkImap_Subscribe(HCkImap cHandle, const char *mailbox);
 CK_VISIBLE_PUBLIC HCkTask CkImap_SubscribeAsync(HCkImap cHandle, const char *mailbox);
+CK_VISIBLE_PUBLIC HCkJsonObject CkImap_ThreadCmd(HCkImap cHandle, const char *threadAlg, const char *charset, const char *searchCriteria, BOOL bUid);
+CK_VISIBLE_PUBLIC HCkTask CkImap_ThreadCmdAsync(HCkImap cHandle, const char *threadAlg, const char *charset, const char *searchCriteria, BOOL bUid);
 CK_VISIBLE_PUBLIC BOOL CkImap_UnlockComponent(HCkImap cHandle, const char *unlockCode);
 CK_VISIBLE_PUBLIC BOOL CkImap_Unsubscribe(HCkImap cHandle, const char *mailbox);
 CK_VISIBLE_PUBLIC HCkTask CkImap_UnsubscribeAsync(HCkImap cHandle, const char *mailbox);

@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.76
+// This header is generated for Chilkat 9.5.0.77
 
 #ifndef _CkHttp_H
 #define _CkHttp_H
@@ -3516,6 +3516,12 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	// NOT pass "https://www.somedomain.com/" in the 1st argument. Instead, pass
 	// "www.somedomain.com".
 	// 
+	// The Parts of a URL
+	// 
+	// http://example.com:8042/over/there?name=ferret#nose
+	// \__/   \______________/\_________/ \________/ \__/
+	//  |           |            |            |        |
+	// scheme   domain+port     path        query   fragment
 	// The caller is responsible for deleting the object returned by this method.
 	CkHttpResponse *SynchronousRequest(const char *domain, int port, bool ssl, CkHttpRequest &req);
 
@@ -3529,6 +3535,12 @@ class CK_VISIBLE_PUBLIC CkHttp  : public CkClassWithCallbacks
 	// NOT pass "https://www.somedomain.com/" in the 1st argument. Instead, pass
 	// "www.somedomain.com".
 	// 
+	// The Parts of a URL
+	// 
+	// http://example.com:8042/over/there?name=ferret#nose
+	// \__/   \______________/\_________/ \________/ \__/
+	//  |           |            |            |        |
+	// scheme   domain+port     path        query   fragment
 	CkTask *SynchronousRequestAsync(const char *domain, int port, bool ssl, CkHttpRequest &req);
 
 

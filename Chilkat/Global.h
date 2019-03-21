@@ -1,4 +1,4 @@
-// Generated for Chilkat v9.5.0.76
+// Generated for Chilkat v9.5.0.77
 
 // This header is generated for Chilkat v9.5.0
 
@@ -126,6 +126,8 @@ public ref class Global sealed
 	Boolean DnsClearCache(void);
 
 	Boolean FinalizeThreadPool(void);
+
+	Boolean ThreadPoolLogLine(Platform::String ^str);
 
 	Boolean UnlockBundle(Platform::String ^bundleUnlockCode);
 

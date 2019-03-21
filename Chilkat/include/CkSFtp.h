@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.76
+// This header is generated for Chilkat 9.5.0.77
 
 #ifndef _CkSFtp_H
 #define _CkSFtp_H
@@ -762,16 +762,31 @@ class CK_VISIBLE_PUBLIC CkSFtp  : public CkClassWithCallbacks
 	// or SyncDownloadTree. The paths are listed one per line. In both cases (for
 	// upload and download) each line contains the paths relative to the root synced
 	// directory.
+	// 
+	// Note: For SyncTreeDownload, some of entires can be the paths of local
+	// directories that were created. Starting in v9.5.0.77, local directory paths will
+	// be terminated with a "/" char (to disinguish a directory from an actual file).
+	// 
 	void get_SyncedFiles(CkString &str);
 	// The paths of the files uploaded or downloaded in the last call to SyncUploadTree
 	// or SyncDownloadTree. The paths are listed one per line. In both cases (for
 	// upload and download) each line contains the paths relative to the root synced
 	// directory.
+	// 
+	// Note: For SyncTreeDownload, some of entires can be the paths of local
+	// directories that were created. Starting in v9.5.0.77, local directory paths will
+	// be terminated with a "/" char (to disinguish a directory from an actual file).
+	// 
 	const char *syncedFiles(void);
 	// The paths of the files uploaded or downloaded in the last call to SyncUploadTree
 	// or SyncDownloadTree. The paths are listed one per line. In both cases (for
 	// upload and download) each line contains the paths relative to the root synced
 	// directory.
+	// 
+	// Note: For SyncTreeDownload, some of entires can be the paths of local
+	// directories that were created. Starting in v9.5.0.77, local directory paths will
+	// be terminated with a "/" char (to disinguish a directory from an actual file).
+	// 
 	void put_SyncedFiles(const char *newVal);
 
 	// Can contain a wildcarded list of file patterns separated by semicolons. For
@@ -2051,6 +2066,29 @@ class CK_VISIBLE_PUBLIC CkSFtp  : public CkClassWithCallbacks
 	// Reads file data from a remote file on the SSH server. The handle is a file handle
 	// returned by the OpenFile method. The numBytes is the maximum number of bytes to
 	// read. If the end-of-file is reached prior to reading the number of requested
+	// bytes, then fewer bytes may be returned. The received bytes are appended to the
+	// contents of bd.
+	// 
+	// To read an entire file, one may call ReadFileBd repeatedly until Eof(handle)
+	// returns true.
+	// 
+	bool ReadFileBd(const char *handle, int numBytes, CkBinData &bd);
+
+	// Reads file data from a remote file on the SSH server. The handle is a file handle
+	// returned by the OpenFile method. The numBytes is the maximum number of bytes to
+	// read. If the end-of-file is reached prior to reading the number of requested
+	// bytes, then fewer bytes may be returned. The received bytes are appended to the
+	// contents of bd.
+	// 
+	// To read an entire file, one may call ReadFileBd repeatedly until Eof(handle)
+	// returns true.
+	// 
+	CkTask *ReadFileBdAsync(const char *handle, int numBytes, CkBinData &bd);
+
+
+	// Reads file data from a remote file on the SSH server. The handle is a file handle
+	// returned by the OpenFile method. The numBytes is the maximum number of bytes to
+	// read. If the end-of-file is reached prior to reading the number of requested
 	// bytes, then fewer bytes may be returned.
 	// 
 	// To read an entire file, one may call ReadFileBytes repeatedly until Eof(handle)
@@ -2604,14 +2642,14 @@ class CK_VISIBLE_PUBLIC CkSFtp  : public CkClassWithCallbacks
 
 
 	// Uploads a file from the local filesystem to the SFTP server. handle is a handle of
-	// a currently open file (obtained by calling the OpenFile method). fromFilename is the
+	// a currently open file (obtained by calling the OpenFile method). fromLocalFilePath is the
 	// local file path of the file to be uploaded.
-	bool UploadFile(const char *handle, const char *fromFilename);
+	bool UploadFile(const char *handle, const char *fromLocalFilePath);
 
 	// Uploads a file from the local filesystem to the SFTP server. handle is a handle of
-	// a currently open file (obtained by calling the OpenFile method). fromFilename is the
+	// a currently open file (obtained by calling the OpenFile method). fromLocalFilePath is the
 	// local file path of the file to be uploaded.
-	CkTask *UploadFileAsync(const char *handle, const char *fromFilename);
+	CkTask *UploadFileAsync(const char *handle, const char *fromLocalFilePath);
 
 
 	// Simplified method for uploading a file to the SFTP/SSH server.
@@ -2636,6 +2674,15 @@ class CK_VISIBLE_PUBLIC CkSFtp  : public CkClassWithCallbacks
 
 	// Uploads the contents of a StringBuilder to a remote file.
 	CkTask *UploadSbAsync(CkStringBuilder &sb, const char *remoteFilePath, const char *charset, bool includeBom);
+
+
+	// Appends the contents of bd to an open file. The handle is a file handle returned
+	// by the OpenFile method.
+	bool WriteFileBd(const char *handle, CkBinData &bd);
+
+	// Appends the contents of bd to an open file. The handle is a file handle returned
+	// by the OpenFile method.
+	CkTask *WriteFileBdAsync(const char *handle, CkBinData &bd);
 
 
 	// Appends byte data to an open file. The handle is a file handle returned by the

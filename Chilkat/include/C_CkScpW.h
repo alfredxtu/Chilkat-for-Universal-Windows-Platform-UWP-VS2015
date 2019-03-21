@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.76
+// This is a generated source file for Chilkat version 9.5.0.77
 #ifndef _C_CkScpWH
 #define _C_CkScpWH
 #include "chilkatDefs.h"
@@ -45,6 +45,12 @@ CK_VISIBLE_PUBLIC const wchar_t *CkScpW_syncMustNotMatch(HCkScpW cHandle);
 CK_VISIBLE_PUBLIC void CkScpW_getSyncMustNotMatchDir(HCkScpW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void  CkScpW_putSyncMustNotMatchDir(HCkScpW cHandle, const wchar_t *newVal);
 CK_VISIBLE_PUBLIC const wchar_t *CkScpW_syncMustNotMatchDir(HCkScpW cHandle);
+CK_VISIBLE_PUBLIC void CkScpW_getUncommonOptions(HCkScpW cHandle, HCkString retval);
+CK_VISIBLE_PUBLIC void  CkScpW_putUncommonOptions(HCkScpW cHandle, const wchar_t *newVal);
+CK_VISIBLE_PUBLIC const wchar_t *CkScpW_uncommonOptions(HCkScpW cHandle);
+CK_VISIBLE_PUBLIC void CkScpW_getUnixPermOverride(HCkScpW cHandle, HCkString retval);
+CK_VISIBLE_PUBLIC void  CkScpW_putUnixPermOverride(HCkScpW cHandle, const wchar_t *newVal);
+CK_VISIBLE_PUBLIC const wchar_t *CkScpW_unixPermOverride(HCkScpW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkScpW_getVerboseLogging(HCkScpW cHandle);
 CK_VISIBLE_PUBLIC void  CkScpW_putVerboseLogging(HCkScpW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkScpW_getVersion(HCkScpW cHandle, HCkString retval);

@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.76
+// This is a generated source file for Chilkat version 9.5.0.77
 #ifndef _C_CkSFtp_H
 #define _C_CkSFtp_H
 #include "chilkatDefs.h"
@@ -257,6 +257,8 @@ CK_VISIBLE_PUBLIC const char *CkSFtp_openFile(HCkSFtp cHandle, const char *remot
 CK_VISIBLE_PUBLIC HCkTask CkSFtp_OpenFileAsync(HCkSFtp cHandle, const char *remotePath, const char *access, const char *createDisposition);
 CK_VISIBLE_PUBLIC HCkSFtpDir CkSFtp_ReadDir(HCkSFtp cHandle, const char *handle);
 CK_VISIBLE_PUBLIC HCkTask CkSFtp_ReadDirAsync(HCkSFtp cHandle, const char *handle);
+CK_VISIBLE_PUBLIC BOOL CkSFtp_ReadFileBd(HCkSFtp cHandle, const char *handle, int numBytes, HCkBinData bd);
+CK_VISIBLE_PUBLIC HCkTask CkSFtp_ReadFileBdAsync(HCkSFtp cHandle, const char *handle, int numBytes, HCkBinData bd);
 CK_VISIBLE_PUBLIC BOOL CkSFtp_ReadFileBytes(HCkSFtp cHandle, const char *handle, int numBytes, HCkByteData outBytes);
 CK_VISIBLE_PUBLIC HCkTask CkSFtp_ReadFileBytesAsync(HCkSFtp cHandle, const char *handle, int numBytes);
 CK_VISIBLE_PUBLIC BOOL CkSFtp_ReadFileBytes32(HCkSFtp cHandle, const char *handle, int offset, int numBytes, HCkByteData outBytes);
@@ -324,6 +326,8 @@ CK_VISIBLE_PUBLIC BOOL CkSFtp_UploadFileByName(HCkSFtp cHandle, const char *remo
 CK_VISIBLE_PUBLIC HCkTask CkSFtp_UploadFileByNameAsync(HCkSFtp cHandle, const char *remoteFilePath, const char *localFilePath);
 CK_VISIBLE_PUBLIC BOOL CkSFtp_UploadSb(HCkSFtp cHandle, HCkStringBuilder sb, const char *remoteFilePath, const char *charset, BOOL includeBom);
 CK_VISIBLE_PUBLIC HCkTask CkSFtp_UploadSbAsync(HCkSFtp cHandle, HCkStringBuilder sb, const char *remoteFilePath, const char *charset, BOOL includeBom);
+CK_VISIBLE_PUBLIC BOOL CkSFtp_WriteFileBd(HCkSFtp cHandle, const char *handle, HCkBinData bd);
+CK_VISIBLE_PUBLIC HCkTask CkSFtp_WriteFileBdAsync(HCkSFtp cHandle, const char *handle, HCkBinData bd);
 CK_VISIBLE_PUBLIC BOOL CkSFtp_WriteFileBytes(HCkSFtp cHandle, const char *handle, HCkByteData byteData);
 CK_VISIBLE_PUBLIC HCkTask CkSFtp_WriteFileBytesAsync(HCkSFtp cHandle, const char *handle, HCkByteData byteData);
 CK_VISIBLE_PUBLIC BOOL CkSFtp_WriteFileBytes32(HCkSFtp cHandle, const char *handle, int offset, HCkByteData data);

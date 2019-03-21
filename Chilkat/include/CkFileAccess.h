@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.76
+// This header is generated for Chilkat 9.5.0.77
 
 #ifndef _CkFileAccess_H
 #define _CkFileAccess_H
@@ -132,7 +132,8 @@ class CK_VISIBLE_PUBLIC CkFileAccess  : public CkMultiByteBase
 	bool DirCreate(const char *dirPath);
 
 
-	// Deletes the directory specified by dirPath.
+	// Deletes the directory specified by dirPath. It is only possible to delete a
+	// directory if it contains no files or subdirectories.
 	bool DirDelete(const char *dirPath);
 
 
@@ -239,6 +240,7 @@ class CK_VISIBLE_PUBLIC CkFileAccess  : public CkMultiByteBase
 	// 1 = Regular file.
 	// 2 = Directory.
 	// 3 = Symbolic link.
+	// 4 = Windows Shortcut.
 	// 99 = Something else.
 	// 
 	// Additional file types may be added in the future as needed.
@@ -492,10 +494,12 @@ class CK_VISIBLE_PUBLIC CkFileAccess  : public CkMultiByteBase
 	bool SymlinkCreate(const char *targetPath, const char *linkPath);
 
 
-	// Returns the full pathname of the file at the end of the linkPath.
+	// Returns the full pathname of the file at the end of the linkPath. Also handles
+	// Windows shortcut files by returning the absolute path of the target.
 	bool SymlinkTarget(const char *linkPath, CkString &outStr);
 
-	// Returns the full pathname of the file at the end of the linkPath.
+	// Returns the full pathname of the file at the end of the linkPath. Also handles
+	// Windows shortcut files by returning the absolute path of the target.
 	const char *symlinkTarget(const char *linkPath);
 
 	// Deletes an entire directory tree (all files and sub-directories).

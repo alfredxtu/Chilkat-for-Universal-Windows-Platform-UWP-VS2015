@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.76
+// This header is generated for Chilkat 9.5.0.77
 
 #ifndef _CkImapW_H
 #define _CkImapW_H
@@ -26,6 +26,7 @@ class CkSecureStringW;
 class CkCspW;
 class CkPrivateKeyW;
 class CkSshKeyW;
+class CkJsonObjectW;
 class CkXmlCertVaultW;
 class CkSshW;
 class CkSocketW;
@@ -2488,6 +2489,78 @@ class CK_VISIBLE_PUBLIC CkImapW  : public CkClassWithCallbacksW
 	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
 	// The caller is responsible for deleting the object returned by this method.
 	CkTaskW *SubscribeAsync(const wchar_t *mailbox);
+
+	// Sends the THREAD command to search the already selected mailbox for messages
+	// that match searchCriteria.
+	// 
+	// The following explanation is from RFC 5256
+	// <https://tools.ietf.org/html/rfc5256> :
+	// 
+	// The THREAD command is a variant of SEARCH with threading semantics 
+	// for the results.  Thread has two arguments before the searching 
+	// criteria argument: a threading algorithm and the searching 
+	// charset.
+	// 
+	// The THREAD command first searches the mailbox for messages that
+	// match the given searching criteria using the charset argument for
+	// the interpretation of strings in the searching criteria.  It then
+	// returns the matching messages in an untagged THREAD response,
+	// threaded according to the specified threading algorithm.
+	// 
+	// All collation is in ascending order.  Earlier dates collate before
+	// later dates and strings are collated according to ascending values.
+	// 
+	// The defined threading algorithms are as follows:
+	// 
+	//       ORDEREDSUBJECT
+	// 
+	//          The ORDEREDSUBJECT threading algorithm is also referred to as
+	//          "poor man's threading".  The searched messages are sorted by
+	//          base subject and then by the sent date.  The messages are then
+	//          split into separate threads, with each thread containing
+	//          messages with the same base subject text.  Finally, the threads
+	//          are sorted by the sent date of the first message in the thread.
+	// 
+	//          The top level or "root" in ORDEREDSUBJECT threading contains
+	//          the first message of every thread.  All messages in the root
+	//          are siblings of each other.  The second message of a thread is
+	//          the child of the first message, and subsequent messages of the
+	//          thread are siblings of the second message and hence children of
+	//          the message at the root.  Hence, there are no grandchildren in
+	//          ORDEREDSUBJECT threading.
+	// 
+	//          Children in ORDEREDSUBJECT threading do not have descendents.
+	//          Client implementations SHOULD treat descendents of a child in a
+	//          server response as being siblings of that child.
+	// 
+	//       REFERENCES
+	// 
+	//          The REFERENCES threading algorithm threads the searched
+	//          messages by grouping them together in parent/child
+	//          relationships based on which messages are replies to others.
+	//          The parent/child relationships are built using two methods:
+	//          reconstructing a message's ancestry using the references
+	//          contained within it; and checking the original (not base)
+	//          subject of a message to see if it is a reply to (or forward of)
+	//          another message.
+	// 
+	// See RFC 5256
+	// <https://tools.ietf.org/html/rfc5256> for more details:
+	// 
+	// The searchCriteria is passed through to the low-level IMAP protocol unmodified, and
+	// therefore the rules for the IMAP SEARCH command (RFC 3501) apply. See the
+	// documentation for the Search method for more details (and also see RFC 3501).
+	// 
+	// The results are returned in a JSON object to make it easy to parse the
+	// parent/child relationships. See the example below for details.
+	// 
+	// The caller is responsible for deleting the object returned by this method.
+	CkJsonObjectW *ThreadCmd(const wchar_t *threadAlg, const wchar_t *charset, const wchar_t *searchCriteria, bool bUid);
+
+	// Creates an asynchronous task to call the ThreadCmd method with the arguments
+	// provided. (Async methods are available starting in Chilkat v9.5.0.52.)
+	// The caller is responsible for deleting the object returned by this method.
+	CkTaskW *ThreadCmdAsync(const wchar_t *threadAlg, const wchar_t *charset, const wchar_t *searchCriteria, bool bUid);
 
 	// Unlocks the component. This must be called once at the beginning of your program
 	// to unlock the component. A purchased unlock code is provided when the IMAP

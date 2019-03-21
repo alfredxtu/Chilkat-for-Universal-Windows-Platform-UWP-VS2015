@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.76
+// This is a generated source file for Chilkat version 9.5.0.77
 #ifndef _C_CkJsonObjectWH
 #define _C_CkJsonObjectWH
 #include "chilkatDefs.h"
@@ -66,6 +66,7 @@ CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_DeleteAt(HCkJsonObjectW cHandle, int index)
 CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_DtOf(HCkJsonObjectW cHandle, const wchar_t *jsonPath, BOOL bLocal, HCkDtObjW dt);
 CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_Emit(HCkJsonObjectW cHandle, HCkString outStr);
 CK_VISIBLE_PUBLIC const wchar_t *CkJsonObjectW_emit(HCkJsonObjectW cHandle);
+CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_EmitBd(HCkJsonObjectW cHandle, HCkBinDataW bd);
 CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_EmitSb(HCkJsonObjectW cHandle, HCkStringBuilderW sb);
 CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_EmitWithSubs(HCkJsonObjectW cHandle, HCkHashtableW subs, BOOL omitEmpty, HCkString outStr);
 CK_VISIBLE_PUBLIC const wchar_t *CkJsonObjectW_emitWithSubs(HCkJsonObjectW cHandle, HCkHashtableW subs, BOOL omitEmpty);
@@ -85,6 +86,7 @@ CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_IsNullAt(HCkJsonObjectW cHandle, int index)
 CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_IsNullOf(HCkJsonObjectW cHandle, const wchar_t *jsonPath);
 CK_VISIBLE_PUBLIC int CkJsonObjectW_JsonTypeOf(HCkJsonObjectW cHandle, const wchar_t *jsonPath);
 CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_Load(HCkJsonObjectW cHandle, const wchar_t *json);
+CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_LoadBd(HCkJsonObjectW cHandle, HCkBinDataW bd);
 CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_LoadFile(HCkJsonObjectW cHandle, const wchar_t *path);
 CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_LoadPredefined(HCkJsonObjectW cHandle, const wchar_t *name);
 CK_VISIBLE_PUBLIC BOOL CkJsonObjectW_LoadSb(HCkJsonObjectW cHandle, HCkStringBuilderW sb);

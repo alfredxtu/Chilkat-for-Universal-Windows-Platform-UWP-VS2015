@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.76
+// This header is generated for Chilkat 9.5.0.77
 
 #ifndef _CkJsonObjectW_H
 #define _CkJsonObjectW_H
@@ -293,6 +293,9 @@ const wchar_t *emit(void);
 
 
 
+	// Emits (appends) to the contents of bd.
+	bool EmitBd(CkBinDataW &bd);
+
 	// Appends the JSON to a StringBuilder object.
 	bool EmitSb(CkStringBuilderW &sb);
 
@@ -386,6 +389,9 @@ const wchar_t *emit(void);
 	// Parses a JSON string and loads it into this JSON object to provide DOM-style
 	// access.
 	bool Load(const wchar_t *json);
+
+	// Loads the contents of bd.
+	bool LoadBd(CkBinDataW &bd);
 
 	// Loads a JSON file into this JSON object. The path is the file path to the JSON
 	// file.

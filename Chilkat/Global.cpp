@@ -1,4 +1,4 @@
-// Generated for Chilkat v9.5.0.76
+// Generated for Chilkat v9.5.0.77
 
 // This source file is generated.
 
@@ -165,6 +165,12 @@ Boolean Global::FinalizeThreadPool(void)
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->FinalizeThreadPool();
+    }
+Boolean Global::ThreadPoolLogLine(Platform::String ^str)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->ThreadPoolLogLine(str ? str->Data() : L"");
     }
 Boolean Global::UnlockBundle(Platform::String ^bundleUnlockCode)
     {

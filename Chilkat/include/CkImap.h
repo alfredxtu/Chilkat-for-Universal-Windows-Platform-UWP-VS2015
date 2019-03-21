@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.76
+// This header is generated for Chilkat 9.5.0.77
 
 #ifndef _CkImap_H
 #define _CkImap_H
@@ -26,6 +26,7 @@ class CkSecureString;
 class CkCsp;
 class CkPrivateKey;
 class CkSshKey;
+class CkJsonObject;
 class CkXmlCertVault;
 class CkSsh;
 class CkSocket;
@@ -3085,6 +3086,140 @@ class CK_VISIBLE_PUBLIC CkImap  : public CkClassWithCallbacks
 	// "mailbox" is used, it has the same meaning as "folder".
 	// 
 	CkTask *SubscribeAsync(const char *mailbox);
+
+
+	// Sends the THREAD command to search the already selected mailbox for messages
+	// that match searchCriteria.
+	// 
+	// The following explanation is from RFC 5256
+	// <https://tools.ietf.org/html/rfc5256> :
+	// 
+	// The THREAD command is a variant of SEARCH with threading semantics 
+	// for the results.  Thread has two arguments before the searching 
+	// criteria argument: a threading algorithm and the searching 
+	// charset.
+	// 
+	// The THREAD command first searches the mailbox for messages that
+	// match the given searching criteria using the charset argument for
+	// the interpretation of strings in the searching criteria.  It then
+	// returns the matching messages in an untagged THREAD response,
+	// threaded according to the specified threading algorithm.
+	// 
+	// All collation is in ascending order.  Earlier dates collate before
+	// later dates and strings are collated according to ascending values.
+	// 
+	// The defined threading algorithms are as follows:
+	// 
+	//       ORDEREDSUBJECT
+	// 
+	//          The ORDEREDSUBJECT threading algorithm is also referred to as
+	//          "poor man's threading".  The searched messages are sorted by
+	//          base subject and then by the sent date.  The messages are then
+	//          split into separate threads, with each thread containing
+	//          messages with the same base subject text.  Finally, the threads
+	//          are sorted by the sent date of the first message in the thread.
+	// 
+	//          The top level or "root" in ORDEREDSUBJECT threading contains
+	//          the first message of every thread.  All messages in the root
+	//          are siblings of each other.  The second message of a thread is
+	//          the child of the first message, and subsequent messages of the
+	//          thread are siblings of the second message and hence children of
+	//          the message at the root.  Hence, there are no grandchildren in
+	//          ORDEREDSUBJECT threading.
+	// 
+	//          Children in ORDEREDSUBJECT threading do not have descendents.
+	//          Client implementations SHOULD treat descendents of a child in a
+	//          server response as being siblings of that child.
+	// 
+	//       REFERENCES
+	// 
+	//          The REFERENCES threading algorithm threads the searched
+	//          messages by grouping them together in parent/child
+	//          relationships based on which messages are replies to others.
+	//          The parent/child relationships are built using two methods:
+	//          reconstructing a message's ancestry using the references
+	//          contained within it; and checking the original (not base)
+	//          subject of a message to see if it is a reply to (or forward of)
+	//          another message.
+	// 
+	// See RFC 5256
+	// <https://tools.ietf.org/html/rfc5256> for more details:
+	// 
+	// The searchCriteria is passed through to the low-level IMAP protocol unmodified, and
+	// therefore the rules for the IMAP SEARCH command (RFC 3501) apply. See the
+	// documentation for the Search method for more details (and also see RFC 3501).
+	// 
+	// The results are returned in a JSON object to make it easy to parse the
+	// parent/child relationships. See the example below for details.
+	// 
+	// The caller is responsible for deleting the object returned by this method.
+	CkJsonObject *ThreadCmd(const char *threadAlg, const char *charset, const char *searchCriteria, bool bUid);
+
+	// Sends the THREAD command to search the already selected mailbox for messages
+	// that match searchCriteria.
+	// 
+	// The following explanation is from RFC 5256
+	// <https://tools.ietf.org/html/rfc5256> :
+	// 
+	// The THREAD command is a variant of SEARCH with threading semantics 
+	// for the results.  Thread has two arguments before the searching 
+	// criteria argument: a threading algorithm and the searching 
+	// charset.
+	// 
+	// The THREAD command first searches the mailbox for messages that
+	// match the given searching criteria using the charset argument for
+	// the interpretation of strings in the searching criteria.  It then
+	// returns the matching messages in an untagged THREAD response,
+	// threaded according to the specified threading algorithm.
+	// 
+	// All collation is in ascending order.  Earlier dates collate before
+	// later dates and strings are collated according to ascending values.
+	// 
+	// The defined threading algorithms are as follows:
+	// 
+	//       ORDEREDSUBJECT
+	// 
+	//          The ORDEREDSUBJECT threading algorithm is also referred to as
+	//          "poor man's threading".  The searched messages are sorted by
+	//          base subject and then by the sent date.  The messages are then
+	//          split into separate threads, with each thread containing
+	//          messages with the same base subject text.  Finally, the threads
+	//          are sorted by the sent date of the first message in the thread.
+	// 
+	//          The top level or "root" in ORDEREDSUBJECT threading contains
+	//          the first message of every thread.  All messages in the root
+	//          are siblings of each other.  The second message of a thread is
+	//          the child of the first message, and subsequent messages of the
+	//          thread are siblings of the second message and hence children of
+	//          the message at the root.  Hence, there are no grandchildren in
+	//          ORDEREDSUBJECT threading.
+	// 
+	//          Children in ORDEREDSUBJECT threading do not have descendents.
+	//          Client implementations SHOULD treat descendents of a child in a
+	//          server response as being siblings of that child.
+	// 
+	//       REFERENCES
+	// 
+	//          The REFERENCES threading algorithm threads the searched
+	//          messages by grouping them together in parent/child
+	//          relationships based on which messages are replies to others.
+	//          The parent/child relationships are built using two methods:
+	//          reconstructing a message's ancestry using the references
+	//          contained within it; and checking the original (not base)
+	//          subject of a message to see if it is a reply to (or forward of)
+	//          another message.
+	// 
+	// See RFC 5256
+	// <https://tools.ietf.org/html/rfc5256> for more details:
+	// 
+	// The searchCriteria is passed through to the low-level IMAP protocol unmodified, and
+	// therefore the rules for the IMAP SEARCH command (RFC 3501) apply. See the
+	// documentation for the Search method for more details (and also see RFC 3501).
+	// 
+	// The results are returned in a JSON object to make it easy to parse the
+	// parent/child relationships. See the example below for details.
+	// 
+	CkTask *ThreadCmdAsync(const char *threadAlg, const char *charset, const char *searchCriteria, bool bUid);
 
 
 	// Unlocks the component. This must be called once at the beginning of your program

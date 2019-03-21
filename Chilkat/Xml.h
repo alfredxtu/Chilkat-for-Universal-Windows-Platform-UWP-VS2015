@@ -1,4 +1,4 @@
-// Generated for Chilkat v9.5.0.76
+// Generated for Chilkat v9.5.0.77
 
 // This header is generated for Chilkat v9.5.0
 
@@ -22,6 +22,7 @@ namespace Chilkat
 {
 
 	ref class StringBuilder;
+	ref class BinData;
 
 
 public ref class Xml sealed
@@ -152,6 +153,10 @@ public ref class Xml sealed
 	{
 		Platform::String ^get();
 		void set(Platform::String ^);
+	}
+	property Platform::String ^TagPath
+	{
+		Platform::String ^get();
 	}
 	property Platform::String ^TagUnprefixed
 	{
@@ -292,6 +297,8 @@ public ref class Xml sealed
 
 	Platform::String ^GetXml(void);
 
+	Boolean GetXmlBd(Chilkat::BinData ^bd);
+
 	Boolean GetXmlSb(Chilkat::StringBuilder ^sb);
 
 	Boolean HasAttribute(Platform::String ^name);
@@ -312,6 +319,8 @@ public ref class Xml sealed
 
 	Boolean LastChild2(void);
 
+	Boolean LoadBd(Chilkat::BinData ^bd, Boolean autoTrim);
+
 	Boolean LoadSb(Chilkat::StringBuilder ^sb, Boolean autoTrim);
 
 	Boolean LoadXml(Platform::String ^xmlData);
@@ -331,6 +340,8 @@ public ref class Xml sealed
 	Xml ^NewChildBefore(int index, Platform::String ^tag, Platform::String ^content);
 
 	void NewChildInt2(Platform::String ^tagPath, int value);
+
+	Boolean NextInTraversal2(Chilkat::StringBuilder ^sbState);
 
 	Xml ^NextSibling(void);
 

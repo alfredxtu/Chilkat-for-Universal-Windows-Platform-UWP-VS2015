@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.76
+// This header is generated for Chilkat 9.5.0.77
 
 #ifndef _CkSshTunnelW_H
 #define _CkSshTunnelW_H
@@ -573,6 +573,9 @@ class CK_VISIBLE_PUBLIC CkSshTunnelW  : public CkClassWithCallbacksW
 	//     "KEX_DH_GEX_REQUEST_OLD" - Force the old Group Exchange message to be used.
 	//     This would be used for very old SSH server implementations that do not use the
 	//     RFC standard for diffie-hellman-group-exchange.
+	//     "NoKeepAliveIgnoreMsg" - (Added in v9.5.0.76) Prevents the default behavior
+	//     of the SSH tunnel sending an "ignore" message every 20 seconds to keep an unused
+	//     connection alive.
 	// 
 	void get_UncommonOptions(CkString &str);
 	// This is a catch-all property to be used for uncommon needs. This property
@@ -582,6 +585,9 @@ class CK_VISIBLE_PUBLIC CkSshTunnelW  : public CkClassWithCallbacksW
 	//     "KEX_DH_GEX_REQUEST_OLD" - Force the old Group Exchange message to be used.
 	//     This would be used for very old SSH server implementations that do not use the
 	//     RFC standard for diffie-hellman-group-exchange.
+	//     "NoKeepAliveIgnoreMsg" - (Added in v9.5.0.76) Prevents the default behavior
+	//     of the SSH tunnel sending an "ignore" message every 20 seconds to keep an unused
+	//     connection alive.
 	// 
 	const wchar_t *uncommonOptions(void);
 	// This is a catch-all property to be used for uncommon needs. This property
@@ -591,6 +597,9 @@ class CK_VISIBLE_PUBLIC CkSshTunnelW  : public CkClassWithCallbacksW
 	//     "KEX_DH_GEX_REQUEST_OLD" - Force the old Group Exchange message to be used.
 	//     This would be used for very old SSH server implementations that do not use the
 	//     RFC standard for diffie-hellman-group-exchange.
+	//     "NoKeepAliveIgnoreMsg" - (Added in v9.5.0.76) Prevents the default behavior
+	//     of the SSH tunnel sending an "ignore" message every 20 seconds to keep an unused
+	//     connection alive.
 	// 
 	void put_UncommonOptions(const wchar_t *newVal);
 
@@ -671,6 +680,9 @@ class CK_VISIBLE_PUBLIC CkSshTunnelW  : public CkClassWithCallbacksW
 	// to see if BeginAccepting succeeds by waiting a short time (perhaps 50 millisec)
 	// and then examine the IsAccepting property. If it is false, then BeginAccepting
 	// failed.
+	// 
+	// Important: The listenPort must be a port number that nothing else on the local
+	// computer is listening on.
 	// 
 	bool BeginAccepting(int listenPort);
 

@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.76
+// This is a generated source file for Chilkat version 9.5.0.77
 #ifndef _C_CkXmlDSigWH
 #define _C_CkXmlDSigWH
 #include "chilkatDefs.h"
@@ -11,6 +11,11 @@ CK_VISIBLE_PUBLIC void CkXmlDSigW_Dispose(HCkXmlDSigW handle);
 CK_VISIBLE_PUBLIC void CkXmlDSigW_getDebugLogFilePath(HCkXmlDSigW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void  CkXmlDSigW_putDebugLogFilePath(HCkXmlDSigW cHandle, const wchar_t *newVal);
 CK_VISIBLE_PUBLIC const wchar_t *CkXmlDSigW_debugLogFilePath(HCkXmlDSigW cHandle);
+CK_VISIBLE_PUBLIC void CkXmlDSigW_getExternalRefDirs(HCkXmlDSigW cHandle, HCkString retval);
+CK_VISIBLE_PUBLIC void  CkXmlDSigW_putExternalRefDirs(HCkXmlDSigW cHandle, const wchar_t *newVal);
+CK_VISIBLE_PUBLIC const wchar_t *CkXmlDSigW_externalRefDirs(HCkXmlDSigW cHandle);
+CK_VISIBLE_PUBLIC BOOL CkXmlDSigW_getIgnoreExternalRefs(HCkXmlDSigW cHandle);
+CK_VISIBLE_PUBLIC void  CkXmlDSigW_putIgnoreExternalRefs(HCkXmlDSigW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC void CkXmlDSigW_getLastErrorHtml(HCkXmlDSigW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC const wchar_t *CkXmlDSigW_lastErrorHtml(HCkXmlDSigW cHandle);
 CK_VISIBLE_PUBLIC void CkXmlDSigW_getLastErrorText(HCkXmlDSigW cHandle, HCkString retval);
@@ -21,6 +26,7 @@ CK_VISIBLE_PUBLIC BOOL CkXmlDSigW_getLastMethodSuccess(HCkXmlDSigW cHandle);
 CK_VISIBLE_PUBLIC void  CkXmlDSigW_putLastMethodSuccess(HCkXmlDSigW cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC int CkXmlDSigW_getNumReferences(HCkXmlDSigW cHandle);
 CK_VISIBLE_PUBLIC int CkXmlDSigW_getNumSignatures(HCkXmlDSigW cHandle);
+CK_VISIBLE_PUBLIC int CkXmlDSigW_getRefFailReason(HCkXmlDSigW cHandle);
 CK_VISIBLE_PUBLIC int CkXmlDSigW_getSelector(HCkXmlDSigW cHandle);
 CK_VISIBLE_PUBLIC void  CkXmlDSigW_putSelector(HCkXmlDSigW cHandle, int newVal);
 CK_VISIBLE_PUBLIC BOOL CkXmlDSigW_getVerboseLogging(HCkXmlDSigW cHandle);

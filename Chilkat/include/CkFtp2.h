@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.76
+// This header is generated for Chilkat 9.5.0.77
 
 #ifndef _CkFtp2_H
 #define _CkFtp2_H
@@ -405,6 +405,15 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 	// bandwidth throttle a 1-byte download???) As the downloaded file size gets
 	// larger, the transfer rate will better approximate this property's setting.
 	// 
+	// Also note: When downloading, the FTP server has no knowledge of the client's
+	// desire for throttling, and is always sending data as fast as possible. (There's
+	// nothing in the FTP protocol to request throttling.) Therefore, any throttling
+	// for a download on the client side is simply to allow system socket buffers
+	// (outgoing buffers on the sender, and incoming buffers on the client) to fill to
+	// 100% capacity, and this also poses the threat of causing a data connection to
+	// become broken. It's probably not worthwhile to attempt to throttle downloads. It
+	// may have been better that this property never existed.
+	// 
 	int get_BandwidthThrottleDown(void);
 	// If set to a non-zero value, the FTP2 component will bandwidth throttle all
 	// downloads to this value.
@@ -415,6 +424,15 @@ class CK_VISIBLE_PUBLIC CkFtp2  : public CkClassWithCallbacks
 	// Note: It is difficult to throttle very small downloads. (For example, how do you
 	// bandwidth throttle a 1-byte download???) As the downloaded file size gets
 	// larger, the transfer rate will better approximate this property's setting.
+	// 
+	// Also note: When downloading, the FTP server has no knowledge of the client's
+	// desire for throttling, and is always sending data as fast as possible. (There's
+	// nothing in the FTP protocol to request throttling.) Therefore, any throttling
+	// for a download on the client side is simply to allow system socket buffers
+	// (outgoing buffers on the sender, and incoming buffers on the client) to fill to
+	// 100% capacity, and this also poses the threat of causing a data connection to
+	// become broken. It's probably not worthwhile to attempt to throttle downloads. It
+	// may have been better that this property never existed.
 	// 
 	void put_BandwidthThrottleDown(int newVal);
 

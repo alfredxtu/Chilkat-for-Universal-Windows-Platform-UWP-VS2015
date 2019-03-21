@@ -1,4 +1,4 @@
-// Generated for Chilkat v9.5.0.76
+// Generated for Chilkat v9.5.0.77
 
 // This source file is generated.
 
@@ -219,6 +219,14 @@ Boolean Chilkat::Cert::Silent::get()
     {
     return m_impl ? m_impl->get_Silent() : false;
     }
+Boolean Chilkat::Cert::SmartCardNoDialog::get()
+    {
+    return m_impl ? m_impl->get_SmartCardNoDialog() : false;
+    }
+void Chilkat::Cert::SmartCardNoDialog::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_SmartCardNoDialog(newVal);
+    }
 String ^Chilkat::Cert::SmartCardPin::get()
     {
     return ref new String(m_impl ? m_impl->smartCardPin() : L"");
@@ -294,6 +302,12 @@ int Cert::CheckRevoked(void)
 	if (m_impl == nullptr) { return -1; }
 	// --- prep output arg ---
 	return m_impl->CheckRevoked();
+    }
+int Cert::CheckSmartCardPin(void)
+    {
+	if (m_impl == nullptr) { return -1; }
+	// --- prep output arg ---
+	return m_impl->CheckSmartCardPin();
     }
 Windows::Foundation::Collections::IVector<uint8>^Cert::ExportCertDer(void)
     {
@@ -521,6 +535,12 @@ Boolean Cert::LoadFromFile(Platform::String ^path)
 	// --- prep output arg ---
 	return m_impl->LoadFromFile(path ? path->Data() : L"");
     }
+Boolean Cert::LoadFromSmartcard(Platform::String ^csp)
+    {
+	if (m_impl == nullptr) { return false; }
+	// --- prep output arg ---
+	return m_impl->LoadFromSmartcard(csp ? csp->Data() : L"");
+    }
 Boolean Cert::LoadPem(Platform::String ^strPem)
     {
 	if (m_impl == nullptr) { return false; }
@@ -598,6 +618,14 @@ Boolean Cert::VerifySignature(void)
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->VerifySignature();
+    }
+Platform::String ^Cert::X509PKIPathv1(void)
+    {
+	if (m_impl == nullptr) { return nullptr; }
+	// --- prep output arg ---
+	const wchar_t *retStr = m_impl->x509PKIPathv1();
+	if (!retStr) return nullptr;
+	return ref new String(retStr);
     }
 
 

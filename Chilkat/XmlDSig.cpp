@@ -1,4 +1,4 @@
-// Generated for Chilkat v9.5.0.76
+// Generated for Chilkat v9.5.0.77
 
 // This source file is generated.
 
@@ -64,6 +64,22 @@ void Chilkat::XmlDSig::DebugLogFilePath::set(String ^newVal)
     {
         if (m_impl) m_impl->put_DebugLogFilePath(newVal ? newVal->Data() : L"");
     }
+String ^Chilkat::XmlDSig::ExternalRefDirs::get()
+    {
+    return ref new String(m_impl ? m_impl->externalRefDirs() : L"");
+    }
+void Chilkat::XmlDSig::ExternalRefDirs::set(String ^newVal)
+    {
+        if (m_impl) m_impl->put_ExternalRefDirs(newVal ? newVal->Data() : L"");
+    }
+Boolean Chilkat::XmlDSig::IgnoreExternalRefs::get()
+    {
+    return m_impl ? m_impl->get_IgnoreExternalRefs() : false;
+    }
+void Chilkat::XmlDSig::IgnoreExternalRefs::set(Boolean newVal)
+    {
+        if (m_impl) m_impl->put_IgnoreExternalRefs(newVal);
+    }
 String ^Chilkat::XmlDSig::LastErrorHtml::get()
     {
     return ref new String(m_impl ? m_impl->lastErrorHtml() : L"");
@@ -91,6 +107,10 @@ int Chilkat::XmlDSig::NumReferences::get()
 int Chilkat::XmlDSig::NumSignatures::get()
     {
     return m_impl ? m_impl->get_NumSignatures() : 0;
+    }
+int Chilkat::XmlDSig::RefFailReason::get()
+    {
+    return m_impl ? m_impl->get_RefFailReason() : 0;
     }
 int Chilkat::XmlDSig::Selector::get()
     {

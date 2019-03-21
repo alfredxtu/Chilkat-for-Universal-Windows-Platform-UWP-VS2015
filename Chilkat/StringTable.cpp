@@ -1,4 +1,4 @@
-// Generated for Chilkat v9.5.0.76
+// Generated for Chilkat v9.5.0.77
 
 // This source file is generated.
 
@@ -118,6 +118,12 @@ void StringTable::Clear(void)
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
 	m_impl->Clear();
+    }
+int StringTable::FindSubstring(int startIndex, Platform::String ^substr, Boolean caseSensitive)
+    {
+	if (m_impl == nullptr) { return -1; }
+	// --- prep output arg ---
+	return m_impl->FindSubstring(startIndex,substr ? substr->Data() : L"",caseSensitive);
     }
 int StringTable::IntAt(int index)
     {

@@ -1,4 +1,4 @@
-// Generated for Chilkat v9.5.0.76
+// Generated for Chilkat v9.5.0.77
 
 // This source file is generated.
 
@@ -11,7 +11,9 @@
 #include "include/CkXmlW.h"
 		
 #include "include/CkStringBuilderW.h"
+#include "include/CkBinDataW.h"
 #include "StringBuilder.h"
+#include "BinData.h"
 
 
 using namespace Chilkat;
@@ -205,6 +207,10 @@ String ^Chilkat::Xml::TagNsPrefix::get()
 void Chilkat::Xml::TagNsPrefix::set(String ^newVal)
     {
         if (m_impl) m_impl->put_TagNsPrefix(newVal ? newVal->Data() : L"");
+    }
+String ^Chilkat::Xml::TagPath::get()
+    {
+    return ref new String(m_impl ? m_impl->tagPath() : L"");
     }
 String ^Chilkat::Xml::TagUnprefixed::get()
     {
@@ -687,6 +693,15 @@ Platform::String ^Xml::GetXml(void)
 	if (!retStr) return nullptr;
 	return ref new String(retStr);
     }
+Boolean Xml::GetXmlBd(Chilkat::BinData ^bd)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bd == nullptr) { return false; }
+	CkBinDataW* pObj0 = bd->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->GetXmlBd(*pObj0);
+    }
 Boolean Xml::GetXmlSb(Chilkat::StringBuilder ^sb)
     {
 	if (m_impl == nullptr) { return false; }
@@ -759,6 +774,15 @@ Boolean Xml::LastChild2(void)
 	if (m_impl == nullptr) { return false; }
 	// --- prep output arg ---
 	return m_impl->LastChild2();
+    }
+Boolean Xml::LoadBd(Chilkat::BinData ^bd, Boolean autoTrim)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (bd == nullptr) { return false; }
+	CkBinDataW* pObj0 = bd->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->LoadBd(*pObj0,autoTrim);
     }
 Boolean Xml::LoadSb(Chilkat::StringBuilder ^sb, Boolean autoTrim)
     {
@@ -834,6 +858,15 @@ void Xml::NewChildInt2(Platform::String ^tagPath, int value)
 	if (m_impl == nullptr) { return ; }
 	// --- prep output arg ---
 	m_impl->NewChildInt2(tagPath ? tagPath->Data() : L"",value);
+    }
+Boolean Xml::NextInTraversal2(Chilkat::StringBuilder ^sbState)
+    {
+	if (m_impl == nullptr) { return false; }
+	if (sbState == nullptr) { return false; }
+	CkStringBuilderW* pObj0 = sbState->m_impl;
+	 if (!pObj0) { return false; }
+	// --- prep output arg ---
+	return m_impl->NextInTraversal2(*pObj0);
     }
 Xml ^Xml::NextSibling(void)
     {

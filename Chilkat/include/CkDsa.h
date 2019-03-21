@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-// This header is generated for Chilkat 9.5.0.76
+// This header is generated for Chilkat 9.5.0.77
 
 #ifndef _CkDsa_H
 #define _CkDsa_H
@@ -167,7 +167,7 @@ class CK_VISIBLE_PUBLIC CkDsa  : public CkMultiByteBase
 	// Generates a new DSA key from a DER-format parameters file created by OpenSSL. An
 	// example of using OpenSSL to generate DSA parameters in DER format is:
 	// openssl dsaparam -outform DER 1024 dsaparam.der
-	//  The newly generated key may be exported by calling one of the To* methods.
+	// The newly generated key may be exported by calling one of the To* methods.
 	bool GenKeyFromParamsDerFile(const char *path);
 
 

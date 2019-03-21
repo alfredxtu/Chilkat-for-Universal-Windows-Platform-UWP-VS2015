@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.76
+// This is a generated source file for Chilkat version 9.5.0.77
 #ifndef _C_CkXmlWH
 #define _C_CkXmlWH
 #include "chilkatDefs.h"
@@ -57,6 +57,8 @@ CK_VISIBLE_PUBLIC const wchar_t *CkXmlW_tag(HCkXmlW cHandle);
 CK_VISIBLE_PUBLIC void CkXmlW_getTagNsPrefix(HCkXmlW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void  CkXmlW_putTagNsPrefix(HCkXmlW cHandle, const wchar_t *newVal);
 CK_VISIBLE_PUBLIC const wchar_t *CkXmlW_tagNsPrefix(HCkXmlW cHandle);
+CK_VISIBLE_PUBLIC void CkXmlW_getTagPath(HCkXmlW cHandle, HCkString retval);
+CK_VISIBLE_PUBLIC const wchar_t *CkXmlW_tagPath(HCkXmlW cHandle);
 CK_VISIBLE_PUBLIC void CkXmlW_getTagUnprefixed(HCkXmlW cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void  CkXmlW_putTagUnprefixed(HCkXmlW cHandle, const wchar_t *newVal);
 CK_VISIBLE_PUBLIC const wchar_t *CkXmlW_tagUnprefixed(HCkXmlW cHandle);
@@ -135,6 +137,7 @@ CK_VISIBLE_PUBLIC void CkXmlW_GetRoot2(HCkXmlW cHandle);
 CK_VISIBLE_PUBLIC HCkXmlW CkXmlW_GetSelf(HCkXmlW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkXmlW_GetXml(HCkXmlW cHandle, HCkString outStr);
 CK_VISIBLE_PUBLIC const wchar_t *CkXmlW_getXml(HCkXmlW cHandle);
+CK_VISIBLE_PUBLIC BOOL CkXmlW_GetXmlBd(HCkXmlW cHandle, HCkBinDataW bd);
 CK_VISIBLE_PUBLIC BOOL CkXmlW_GetXmlSb(HCkXmlW cHandle, HCkStringBuilderW sb);
 CK_VISIBLE_PUBLIC BOOL CkXmlW_HasAttribute(HCkXmlW cHandle, const wchar_t *name);
 CK_VISIBLE_PUBLIC BOOL CkXmlW_HasAttrWithValue(HCkXmlW cHandle, const wchar_t *name, const wchar_t *value);
@@ -145,6 +148,7 @@ CK_VISIBLE_PUBLIC void CkXmlW_InsertChildTreeAfter(HCkXmlW cHandle, int index, H
 CK_VISIBLE_PUBLIC void CkXmlW_InsertChildTreeBefore(HCkXmlW cHandle, int index, HCkXmlW tree);
 CK_VISIBLE_PUBLIC HCkXmlW CkXmlW_LastChild(HCkXmlW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkXmlW_LastChild2(HCkXmlW cHandle);
+CK_VISIBLE_PUBLIC BOOL CkXmlW_LoadBd(HCkXmlW cHandle, HCkBinDataW bd, BOOL autoTrim);
 CK_VISIBLE_PUBLIC BOOL CkXmlW_LoadSb(HCkXmlW cHandle, HCkStringBuilderW sb, BOOL autoTrim);
 CK_VISIBLE_PUBLIC BOOL CkXmlW_LoadXml(HCkXmlW cHandle, const wchar_t *xmlData);
 CK_VISIBLE_PUBLIC BOOL CkXmlW_LoadXml2(HCkXmlW cHandle, const wchar_t *xmlData, BOOL autoTrim);
@@ -155,6 +159,7 @@ CK_VISIBLE_PUBLIC void CkXmlW_NewChild2(HCkXmlW cHandle, const wchar_t *tagPath,
 CK_VISIBLE_PUBLIC HCkXmlW CkXmlW_NewChildAfter(HCkXmlW cHandle, int index, const wchar_t *tag, const wchar_t *content);
 CK_VISIBLE_PUBLIC HCkXmlW CkXmlW_NewChildBefore(HCkXmlW cHandle, int index, const wchar_t *tag, const wchar_t *content);
 CK_VISIBLE_PUBLIC void CkXmlW_NewChildInt2(HCkXmlW cHandle, const wchar_t *tagPath, int value);
+CK_VISIBLE_PUBLIC BOOL CkXmlW_NextInTraversal2(HCkXmlW cHandle, HCkStringBuilderW sbState);
 CK_VISIBLE_PUBLIC HCkXmlW CkXmlW_NextSibling(HCkXmlW cHandle);
 CK_VISIBLE_PUBLIC BOOL CkXmlW_NextSibling2(HCkXmlW cHandle);
 CK_VISIBLE_PUBLIC int CkXmlW_NumChildrenAt(HCkXmlW cHandle, const wchar_t *tagPath);

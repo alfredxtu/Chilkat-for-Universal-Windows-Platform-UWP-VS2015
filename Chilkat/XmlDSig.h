@@ -1,4 +1,4 @@
-// Generated for Chilkat v9.5.0.76
+// Generated for Chilkat v9.5.0.77
 
 // This header is generated for Chilkat v9.5.0
 
@@ -54,6 +54,16 @@ public ref class XmlDSig sealed
 		Platform::String ^get();
 		void set(Platform::String ^);
 	}
+	property Platform::String ^ExternalRefDirs
+	{
+		Platform::String ^get();
+		void set(Platform::String ^);
+	}
+	property Boolean IgnoreExternalRefs
+	{
+		Boolean get();
+		void set(Boolean);
+	}
 	property Platform::String ^LastErrorHtml
 	{
 		Platform::String ^get();
@@ -76,6 +86,10 @@ public ref class XmlDSig sealed
 		int32 get();
 	}
 	property int32 NumSignatures
+	{
+		int32 get();
+	}
+	property int32 RefFailReason
 	{
 		int32 get();
 	}

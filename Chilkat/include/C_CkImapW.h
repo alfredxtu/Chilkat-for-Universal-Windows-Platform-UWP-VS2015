@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.76
+// This is a generated source file for Chilkat version 9.5.0.77
 #ifndef _C_CkImapWH
 #define _C_CkImapWH
 #include "chilkatDefs.h"
@@ -321,6 +321,8 @@ CK_VISIBLE_PUBLIC BOOL CkImapW_StoreFlags(HCkImapW cHandle, int msgId, BOOL bUid
 CK_VISIBLE_PUBLIC HCkTaskW CkImapW_StoreFlagsAsync(HCkImapW cHandle, int msgId, BOOL bUid, const wchar_t *flagNames, int value);
 CK_VISIBLE_PUBLIC BOOL CkImapW_Subscribe(HCkImapW cHandle, const wchar_t *mailbox);
 CK_VISIBLE_PUBLIC HCkTaskW CkImapW_SubscribeAsync(HCkImapW cHandle, const wchar_t *mailbox);
+CK_VISIBLE_PUBLIC HCkJsonObjectW CkImapW_ThreadCmd(HCkImapW cHandle, const wchar_t *threadAlg, const wchar_t *charset, const wchar_t *searchCriteria, BOOL bUid);
+CK_VISIBLE_PUBLIC HCkTaskW CkImapW_ThreadCmdAsync(HCkImapW cHandle, const wchar_t *threadAlg, const wchar_t *charset, const wchar_t *searchCriteria, BOOL bUid);
 CK_VISIBLE_PUBLIC BOOL CkImapW_UnlockComponent(HCkImapW cHandle, const wchar_t *unlockCode);
 CK_VISIBLE_PUBLIC BOOL CkImapW_Unsubscribe(HCkImapW cHandle, const wchar_t *mailbox);
 CK_VISIBLE_PUBLIC HCkTaskW CkImapW_UnsubscribeAsync(HCkImapW cHandle, const wchar_t *mailbox);

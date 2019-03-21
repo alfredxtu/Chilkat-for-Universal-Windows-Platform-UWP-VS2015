@@ -1,4 +1,4 @@
-// This is a generated source file for Chilkat version 9.5.0.76
+// This is a generated source file for Chilkat version 9.5.0.77
 #ifndef _C_CkScp_H
 #define _C_CkScp_H
 #include "chilkatDefs.h"
@@ -54,6 +54,12 @@ CK_VISIBLE_PUBLIC const char *CkScp_syncMustNotMatch(HCkScp cHandle);
 CK_VISIBLE_PUBLIC void CkScp_getSyncMustNotMatchDir(HCkScp cHandle, HCkString retval);
 CK_VISIBLE_PUBLIC void CkScp_putSyncMustNotMatchDir(HCkScp cHandle, const char *newVal);
 CK_VISIBLE_PUBLIC const char *CkScp_syncMustNotMatchDir(HCkScp cHandle);
+CK_VISIBLE_PUBLIC void CkScp_getUncommonOptions(HCkScp cHandle, HCkString retval);
+CK_VISIBLE_PUBLIC void CkScp_putUncommonOptions(HCkScp cHandle, const char *newVal);
+CK_VISIBLE_PUBLIC const char *CkScp_uncommonOptions(HCkScp cHandle);
+CK_VISIBLE_PUBLIC void CkScp_getUnixPermOverride(HCkScp cHandle, HCkString retval);
+CK_VISIBLE_PUBLIC void CkScp_putUnixPermOverride(HCkScp cHandle, const char *newVal);
+CK_VISIBLE_PUBLIC const char *CkScp_unixPermOverride(HCkScp cHandle);
 CK_VISIBLE_PUBLIC BOOL CkScp_getUtf8(HCkScp cHandle);
 CK_VISIBLE_PUBLIC void CkScp_putUtf8(HCkScp cHandle, BOOL newVal);
 CK_VISIBLE_PUBLIC BOOL CkScp_getVerboseLogging(HCkScp cHandle);
